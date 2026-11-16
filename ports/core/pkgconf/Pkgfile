@@ -3,6 +3,18 @@ version=3.0.5
 release=1
 source=(http://distfiles.dereferenced.org/$name/$name-$version.tar.gz)
 build_type=configure_build
+
+# Stage 1 needs a pkg-config of its own, otherwise configure scripts ask the
+# host's pkg-config and get the host's .pc files: CPython's readline, sqlite,
+# openssl and libffi probes then succeed against Gentoo's libraries while the
+# headers cannot be found. The pkg-config symlink normally comes from
+# post_build, which the bootstrap path does not run.
+bootstrap_build() {
+	./configure --prefix=$TOOLS
+	make
+	make install
+	ln -sfv pkgconf $TOOLS/bin/pkg-config
+}
 build_opt="--with-pkg-config-dir=/usr/lib/pkgconfig:/usr/share/pkgconfig
 	--with-system-libdir=/lib:/usr/lib
 	--with-system-includedir=/usr/include"

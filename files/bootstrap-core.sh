@@ -148,6 +148,16 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 	# not turn warnings into errors for the bootstrap.
 	export CFLAGS="-O2 -std=gnu17 -Wno-error"
 	export CXXFLAGS="$CFLAGS"
+
+	# Without this, PKG_CHECK_MODULES in every configure script is answered by
+	# the host pkg-config with the host .pc files. A .pc file for /usr/include
+	# contributes no -I flag (pkg-config drops system dirs), so a module gets
+	# enabled by the host library while its header cannot be found: this
+	# compiler's native system header dir is $TOOLS/include, not /usr/include.
+	# That is what broke python at zlib.h, zstd.h, lzma.h and readline.h.
+	# Point pkg-config at the temporary toolchain only.
+	export PKG_CONFIG_PATH=
+	export PKG_CONFIG_LIBDIR="$TOOLS/lib/pkgconfig:$TOOLS/libdata/pkgconfig:$TOOLS/share/pkgconfig"
 	hostnative="binutils-pass1 gmp mpfr mpc gcc-pass1"
 	HOSTPATH=$(printf '%s' "$PATH" | sed -e "s|$TOOLS/bin:||g" -e "s|:$TOOLS/bin||g")
 	HOSTCC=$(PATH="$HOSTPATH" command -v gcc 2>/dev/null || PATH="$HOSTPATH" command -v cc 2>/dev/null || true)
@@ -499,7 +509,7 @@ export PATH=$TOOLS/bin:$PATH
 # from the temporary toolchain (bzip2 already provides bzlib.h). Anything
 # after python is simply not visible to its configure.
 toolchainpkg="binutils-pass1 gmp mpfr mpc gcc-pass1 linux-headers glibc gcc-pass2 binutils-pass2 libxcrypt gcc-pass3 m4
-	ncurses bash bison bzip2 coreutils diffutils file findutils gawk gettext grep gzip make patch perl zlib xz zstd python
+	ncurses bash bison bzip2 coreutils diffutils file findutils gawk gettext grep gzip make patch perl pkgconf zlib xz zstd python
 	sed tar texinfo openssl ca-certificates curl libarchive"
 	
 basepkg="aaa_filesystem linux-headers man-pages glibc tzdata zlib bzip2 xz file ncurses readline m4 bc binutils libxcrypt

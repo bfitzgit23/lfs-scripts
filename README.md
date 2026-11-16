@@ -643,13 +643,33 @@ fatal error: zstd.h: No such file or directory
 fatal error: lzma.h: No such file or directory
 ```
 
-`toolchainpkg` now lists `zlib xz zstd python` in that order (the stage 1 loop
-builds in list order, and bzip2 already comes earlier for `bzlib.h`). zlib and
-xz take the generic recipe, which configures with `--prefix=$TOOLS`; zstd has
-no `./configure`, so `ports/core/zstd` grew a `bootstrap_build` that runs
-`make PREFIX=$TOOLS install` (`make install` there pulls in `install-includes`,
-which is what installs `zstd.h`).
+`toolchainpkg` now lists `pkgconf zlib xz zstd python` in that order (the stage
+1 loop builds in list order, and bzip2 already comes earlier for `bzlib.h`).
+zlib and xz take the generic recipe, which configures with `--prefix=$TOOLS`;
+zstd has no `./configure`, so `ports/core/zstd` grew a `bootstrap_build` that
+runs `make PREFIX=$TOOLS install` (`make install` there pulls in
+`install-includes`, which is what installs `zstd.h`).
 
-Modules whose libraries appear later in the list (`_ssl`, `_sqlite3`,
-`readline`, `_ctypes`) are simply skipped by python's configure in stage 1;
-they are built properly in the base system, where the full order applies.
+The errors above were only the symptoms. CPython 3.14 has no `Modules/setup.py`
+anymore: `configure` decides each module with `PKG_CHECK_MODULES` and turns the
+`@MODULE_X_TRUE@` lines of `Modules/Setup.stdlib.in` on or off. Stage 1 had no
+pkg-config of its own, so those probes were answered by the **host** pkg-config
+with the host's `.pc` files. A `.pc` file for `/usr/include` contributes no
+`-I` flag, because pkg-config drops system directories, so the module was
+enabled by the host library while the header could not be found — the stage 1
+compiler searches `$TOOLS/include` (it is built with
+`--with-native-system-header-dir=$TOOLS/include`) and not `/usr/include`. Hence
+"found the library, missing the header", one library at a time.
+
+Stage 1 now builds `pkgconf` and exports
+
+```sh
+export PKG_CONFIG_PATH=
+export PKG_CONFIG_LIBDIR="$TOOLS/lib/pkgconfig:$TOOLS/libdata/pkgconfig:$TOOLS/share/pkgconfig"
+```
+
+so probes can only see the temporary toolchain. python finds zlib, liblzma and
+libzstd there; `readline`, `_sqlite3`, `_ssl` and `_ctypes` are honestly
+not found and skipped, and are built properly in the base system, where the
+full order applies. The same leak would have hit every later stage 1 package
+that uses pkg-config (openssl, curl, libarchive).
