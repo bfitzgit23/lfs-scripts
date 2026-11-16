@@ -316,8 +316,8 @@ stormfs-linux converted to CRUX `Pkgfile` recipes:
 - Recipes keep scratchpkg's `build()` bodies, including their sourcing of
   `/usr/share/bfsos/spkgbuild.helper`. Building them with `pkgmk` needs that
   helper installed, or the helper calls replaced with explicit commands.
-- Use them with `prt-get` by adding the tree to `/etc/prt-get.conf`, e.g.
-  `prt-get` directive `prtdir /usr/ports/scratch/core`.
+- Use them with `prt-get`: `etc/prt-get.conf` in this repository lists every port
+  tree in search order, ready to install as /etc/prt-get.conf.
 
 ## ISO builder and installer
 
@@ -364,3 +364,30 @@ files), so it is vendored under `assets/s6-services/`.
   (`<repo dir> <repo url> [branch]`) for `portsync`.
 - `ports/multilib` versions are kept in step with the venomlinux `multilib`
   tree; `ports/multilib/REPO` marks the tree for `prt-get`.
+
+## prt-get configuration and duplicate pruning
+
+`etc/prt-get.conf` lists every port tree with a `prtdir` line, in search order:
+
+```
+prtdir /usr/ports/core
+prtdir /usr/ports/extra
+prtdir /usr/ports/contrib
+prtdir /usr/ports/multilib
+prtdir /usr/ports/scratch/venom-core
+...
+```
+
+Port names are unique across the whole repository (2837 ports, 0 duplicates).
+Where a name appeared in more than one tree, the prune kept the copy from the
+highest-precedence tree and removed the rest:
+
+1. `ports/core`, `ports/extra`, `ports/contrib`, `ports/multilib` - the
+   distribution's own ports, already pinned to LFS 13.1;
+2. `ports/scratch/venom-*` - the maintained upstream trees, whose recipes are
+   plain `Pkgfile` shell without the scratchpkg helper;
+3. the remaining imported `ports/scratch/*` trees - the older scratchpkg port
+   set, kept for the ports nothing else provides.
+
+`ports/PRUNED-PORTS.txt` records every removed path with that rule, and a
+removed port can be recovered with `git log --diff-filter=D -- <path>`.
