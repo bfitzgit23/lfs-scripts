@@ -1,0 +1,33 @@
+# description	: 32-bit Avahi mDNS/DNS-SD compatibility libraries
+# homepage	: https://github.com/avahi/avahi
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="32-bit Avahi mDNS/DNS-SD compatibility libraries"
+name=avahi-32
+version=0.9_rc5
+srcver=0.9-rc5
+release=9
+source="https://github.com/avahi/avahi/archive/v$srcver/avahi-$srcver.tar.gz https://www.linuxfromscratch.org/patches/blfs/svn/avahi-$srcver-ipv6_race_condition_fix-1.patch"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	bfs_compat32
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "avahi-$srcver" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	# Apply patch sources; pkgbuild does this automatically.
+	for _p in "$SRC"/*.patch "$SRC"/*.diff; do
+		[ -f "$_p" ] || continue
+		patch -t "${patch_opt:--p1}" -i "$_p" || return 1
+	done
+        _bfs_require_compat32_extension 2 || return 0
+  autoreconf -fiv || return 1
+	bfs_autobuild
+
+  # compat-32 owns only the 32-bit ABI. Native Avahi owns executables,
+  # configuration, service units, headers and architecture-independent data.
+  rm -rf "$PKG/usr/bin" "$PKG/usr/sbin" "$PKG/usr/include" "$PKG/usr/share" \
+         "$PKG/usr/lib/systemd" "$PKG/etc" "$PKG/var"
+	bfs_compat32_validate || return 1
+}

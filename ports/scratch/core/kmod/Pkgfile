@@ -1,0 +1,23 @@
+# description	: kmod package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="kmod package"
+name=kmod
+version=34.2
+release=1
+source="https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-$version.tar.xz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+	mkdir -p $PKG/sbin $PKG/bin
+	for target in depmod insmod modinfo modprobe rmmod; do
+	  ln -s /usr/bin/kmod $PKG/sbin/$target
+	done
+	
+#	ln -s kmod $PKG/usr/bin/lsmod
+}

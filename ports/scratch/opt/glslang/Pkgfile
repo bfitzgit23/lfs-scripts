@@ -1,0 +1,23 @@
+# description	: glslang package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="glslang package"
+name=glslang
+version=16.5.0
+release=2
+build_opt="-D CMAKE_INSTALL_PREFIX=/usr
+      -D CMAKE_BUILD_TYPE=Release
+      -D ALLOW_EXTERNAL_SPIRV_TOOLS=ON
+      -D BUILD_SHARED_LIBS=ON
+      -D GLSLANG_TESTS=ON
+      -G Ninja .."
+source="https://github.com/KhronosGroup/glslang/archive/$version/$name-sdk-$version.tar.gz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+}

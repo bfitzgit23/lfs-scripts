@@ -1,0 +1,21 @@
+# description	: Run commands in an environment faking root privileges
+# homepage	: https://packages.debian.org/unstable/utils/fakeroot
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Run commands in an environment faking root privileges"
+name=fakeroot
+version=2.1.4
+release=1
+source="https://deb.debian.org/debian/pool/main/f/$name/${name}_${version}.orig.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	sed -i '/^SUBDIRS/d' doc/Makefile.am
+	./bootstrap
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

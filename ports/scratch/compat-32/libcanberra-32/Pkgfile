@@ -1,0 +1,32 @@
+# description	: A small and lightweight implementation of the XDG Sound Theme Specification
+# homepage	: http://0pointer.de/lennart/projects/libcanberra
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: pulseaudio-32
+
+description="A small and lightweight implementation of the XDG Sound Theme Specification"
+name=libcanberra-32
+version=0.30
+release=3
+source="http://0pointer.de/lennart/projects/libcanberra/libcanberra-$version.tar.xz libcanberra-broadway-fix.patch libcanberra-multi-backend.patch"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	bfs_compat32
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	# Apply patch sources; pkgbuild does this automatically.
+	for _p in "$SRC"/*.patch "$SRC"/*.diff; do
+		[ -f "$_p" ] || continue
+		patch -t "${patch_opt:--p1}" -i "$_p" || return 1
+	done
+        _bfs_require_compat32_extension 2 || return $?
+	bfs_autobuild
+
+	rm -r $PKG/usr/{bin,share,include}
+	rm -r $PKG/usr/lib/systemd/system/canberra-system-bootup.service
+	rm -r $PKG/usr/lib/systemd/system/canberra-system-shutdown-reboot.service
+	rm -r $PKG/usr/lib/systemd/system/canberra-system-shutdown.service
+	bfs_compat32_validate || return 1
+}

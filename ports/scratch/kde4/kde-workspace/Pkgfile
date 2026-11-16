@@ -1,0 +1,174 @@
+# description	: KDE 4 Plasma workspace and window manager
+# homepage	: https://kde.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="KDE 4 Plasma workspace and window manager"
+name=kde-workspace
+version=4.11.14
+release=21
+source="https://download.kde.org/Attic/4.14.3/src/kde-workspace-$version.tar.xz kde-workspace-4.11.14-optional-qtdeclarative.patch.manual kde-workspace-4.11.14-optional-webkit.patch.manual kde-workspace-4.11.14-optional-dbusmenu-blitz.patch.manual kde-workspace-4.11.14-optional-qml-sweep.patch.manual kde-workspace-4.11.14-optional-qml-shell.patch.manual kde-workspace-4.11.14-unique-test-names.patch.manual kde-workspace-4.11.14-window-selection-contains.patch.manual kde-workspace-4.11.14-fontconfig-freetype-header.patch.manual kde-workspace-4.11.14-taskmanager-contains.patch.manual kde-workspace-4.11.14-joystick-strict-ansi.patch.manual kde-workspace-4.11.14-kdm-c99.patch.manual kde-workspace-4.11.14-kdm-qimageblitz-fallback.patch.manual kde-workspace-4.11.14-bbcukmet-contains.patch.manual kde-workspace-4.11.14-plasma-akonadi-cxx11.patch.manual kde-workspace-4.11.14-rss-cxx11.patch.manual org.kde.ksysguard.processlisthelper.policy"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+	# KDM's greeter runs as this unprivileged account when it is present.
+	# Keep the BLFS-assigned IDs so upgrades and permissions stay stable.
+	getent group kdm >/dev/null 2>&1 || groupadd -g 37 kdm || return 1
+	id -u kdm >/dev/null 2>&1 || useradd \
+		-u 37 -g kdm -d /var/lib/kdm -s /bin/false \
+		-c "KDM Daemon Owner" kdm || return 1
+	install -d -o kdm -g kdm -m 0755 /var/lib/kdm || return 1
+
+	# Qt 4 is built without QtDeclarative, so the systemtray applet cannot be
+	# compiled: its UI includes the QtDeclarative headers and instantiates
+	# Plasma::DeclarativeWidget, which kdelibs leaves out in the same
+	# configuration.  Skip the applet like the WebKit one above, and report
+	# KDeclarative (the QML support module from kdelibs) as optional so the
+	# required-package summary does not abort the configure step.
+	#
+	# ksysguard's process UI renders its scripting console with QtWebKit and
+	# evaluates the scripts with QtScript.  BFSOS ships neither module, so only
+	# build the console when both are present and let KSysGuardProcessList
+	# report scripting as unavailable, which also omits the script actions from
+	# the process context menu.
+	# DBusMenuQt backs the appmenu kded module and the status notifier item
+	# data engine; QImageBlitz dims the logout curtain.  Both were declared
+	# required, so feature_summary() aborted configure once their finds were
+	# disabled.  Mark them optional here and guard the two users.
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-optional-qtdeclarative.patch.manual" || return 1
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-optional-webkit.patch.manual" || return 1
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-optional-dbusmenu-blitz.patch.manual" || return 1
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-optional-qml-sweep.patch.manual" || return 1
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-optional-qml-shell.patch.manual" || return 1
+
+	# All three signalplotter tests were handed the same ctest name,
+	# ksysguard-signalplottertest, so configure aborts on the duplicate.
+	# Give the two benchmarks their own names, as later 4.11 releases do.
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-unique-test-names.patch.manual" || return 1
+
+	# QString::contains() returns bool; the extra "> 0" is what GCC 16 now
+	# rejects, since it no longer accepts the ordered comparison.
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-window-selection-contains.patch.manual" || return 1
+
+	# FcFreeTypeQuery() is declared in fontconfig/fcfreetype.h, but Fc.cpp,
+	# FcEngine.cpp and Utils.cpp call it after including only fontconfig.h,
+	# so the declaration is missing.  Include the header where it is used.
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-fontconfig-freetype-header.patch.manual" || return 1
+
+	# Same GCC 16 rejection of "bool > 0" that khotkeys hit: Task::idMatch()
+	# compares two QString::contains() results against 0.
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-taskmanager-contains.patch.manual" || return 1
+
+	# joydevice.h defines __STRICT_ANSI__ unconditionally after
+	# including linux/joystick.h; restore the previous state instead.
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-joystick-strict-ansi.patch.manual" || return 1
+
+	# ck-connector.h includes C99-only D-Bus headers; build kdm as gnu99.
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-kdm-c99.patch.manual" || return 1
+
+	# QImageBlitz is disabled, so kdm needs the Qt fallback.
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-kdm-qimageblitz-fallback.patch.manual" || return 1
+
+	# QString::contains() is used as a boolean here; GCC 16 rejects > 0.
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-bbcukmet-contains.patch.manual" || return 1
+
+	# Akonadi headers pull in a C++11-only Boost; build these targets as C++11.
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-plasma-akonadi-cxx11.patch.manual" || return 1
+	# syndication pulls in the same C++11-only Boost headers.
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-rss-cxx11.patch.manual" || return 1
+
+	export CMAKE_PREFIX_PATH="/opt/qt4:/usr"
+	export PATH="/opt/qt4/bin:$PATH"
+	export QT_QMAKE_EXECUTABLE=/opt/qt4/bin/qmake
+	export CFLAGS="${CFLAGS:+$CFLAGS }-std=gnu99"
+	export CXXFLAGS="${CXXFLAGS:+$CXXFLAGS }-std=gnu++98 -fpermissive -Wno-deprecated-declarations"
+
+	# kdelibs before 4.14.3-21 shipped cmake modules that read the location of a
+	# kauth-policy-gen target its exported tools file never contained, so every
+	# KDE 4 configure aborted in get_target_property().  Report that here instead
+	# of letting the raw missing-target error escape.
+	_bfs_kdelibs_modules=$(kde4-config --path data 2>/dev/null | cut -d: -f1)/cmake/modules
+	if [ -f "$_bfs_kdelibs_modules/FindKDE4Internal.cmake" ] &&
+	   ! grep -qF 'TARGET ${KDE4_TARGET_PREFIX}kauth-policy-gen' "$_bfs_kdelibs_modules/FindKDE4Internal.cmake"; then
+		echo "$name: installed kdelibs is older than 4.14.3-21;" >&2
+		echo "$name: rebuild and reinstall kdelibs before building this package." >&2
+		return 1
+	fi
+
+	cmake -S . -B build -G Ninja \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+		-DKDE4_BUILD_TESTS=OFF \
+		-DBUILD_TESTING=OFF \
+		-DWITH_XINERAMA=ON \
+		-DWITH_OpenGL=ON \
+		-DWITH_XComposite=ON \
+		-DWITH_XDamage=ON \
+		-DWITH_XRandR=ON \
+		-DWITH_XTest=ON \
+		-DWITH_XCursor=ON \
+		-DWITH_Xfixes=ON \
+		-DWITH_XSCREENSAVER=ON \
+		-DWITH_Xscreensaver=ON \
+		-DKDE4_KDM_PAM_SERVICE=kde \
+		-DWITH_KDM=ON \
+		-DWITH_Xmms=OFF \
+		-DWITH_XKB=ON \
+		-DWITH_GLIB2=ON \
+		-DWITH_Fontconfig=ON \
+		-DWITH_Strigi=ON \
+		-DWITH_Soprano=ON \
+		-DWITH_Nepomuk=ON \
+		-DWITH_Akonadi=ON \
+		-DWITH_KdepimLibs=ON \
+		-DWITH_Boost=ON \
+		-DWITH_UDev=ON \
+		-DWITH_UPower=ON \
+		-DWITH_UDisks=OFF \
+		-DWITH_UDisks2=OFF \
+		-DWITH_PolkitQt=OFF \
+		-DWITH_PolkitQt1=OFF \
+		-DWITH_Wayland=OFF \
+		-DWITH_OpenGLES=OFF \
+		-DWITH_NetworkManager=OFF \
+		-DWITH_ModemManager=OFF \
+		-DWITH_BlueZ=OFF \
+		-DCMAKE_DISABLE_FIND_PACKAGE_DBusMenuQt=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_QImageBlitz=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_QJSON=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_PythonLibrary=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_LibUSB=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_OpenGLES=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_Wayland=TRUE || return 1
+
+	cmake --build build -j "${JOBS:-1}" || return 1
+	DESTDIR="$PKG" cmake --install build || return 1
+
+	# This build uses the fake KAuth backend, whose policy generator emits
+	# nothing.  Install the process-list helper's actions explicitly so
+	# KSysGuard and KWin can discover the send-signal and priority actions.
+	install -Dm644 "$SRC/org.kde.ksysguard.processlisthelper.policy" \
+		"$PKG/usr/share/polkit-1/actions/org.kde.ksysguard.processlisthelper.policy" || return 1
+
+	# KDM's install-time PAM helper copies the host's login stack when it can.
+	# Pin the service definition so the installed image authenticates through
+	# the BFSOS PAM policy regardless of what the build host has in /etc/pam.d.
+	install -d -m 0755 "$PKG/etc/pam.d" || return 1
+	cat > "$PKG/etc/pam.d/kde" <<'EOF'
+#%PAM-1.0
+auth       requisite    pam_nologin.so
+auth       required     pam_env.so
+auth       required     pam_succeed_if.so uid >= 1000 quiet
+auth       include      system-auth
+account    include      system-account
+password   include      system-password
+session    include      system-session
+EOF
+	ln -sf kde "$PKG/etc/pam.d/kdm" || return 1
+
+	install -d -o kdm -g kdm -m 0755 "$PKG/var/lib/kdm" || return 1
+}

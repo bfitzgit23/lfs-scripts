@@ -1,0 +1,97 @@
+# description	: KDE 4 runtime components
+# homepage	: https://kde.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="KDE 4 runtime components"
+name=kde-runtime
+version=4.14.3
+release=11
+source="https://download.kde.org/Attic/4.14.3/src/kde-runtime-$version.tar.xz kde-runtime-4.14.3-cmake-minimum.patch.manual kde-runtime-4.14.3-optional-kdeclarative.patch.manual kde-runtime-4.14.3-duplicate-handbook-targets.patch.manual kde-runtime-4.14.3-skip-html-thumbnail.patch.manual kde-runtime-4.14.3-error-dialog-without-kwebkit.patch.manual kde-runtime-4.14.3-skip-declarative-scriptengines.patch.manual kde-runtime-4.14.3-drop-kdewebkit-link.patch.manual"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+	export CMAKE_PREFIX_PATH="/opt/qt4:/usr"
+	export PATH="/opt/qt4/bin:$PATH"
+	export QT_QMAKE_EXECUTABLE=/opt/qt4/bin/qmake
+	export CFLAGS="${CFLAGS:+$CFLAGS }-std=gnu99"
+	export CXXFLAGS="${CXXFLAGS:+$CXXFLAGS }-std=gnu++98 -fpermissive -Wno-deprecated-declarations"
+
+	patch -p1 -i "$SRC/kde-runtime-4.14.3-cmake-minimum.patch.manual" || return 1
+
+	# kdelibs is built against Qt 4 without QtDeclarative, so its
+	# experimental/libkdeclarative is skipped and no KDeclarative config is
+	# installed.  kde-runtime marks the package TYPE REQUIRED and ends with
+	# feature_summary(FATAL_ON_MISSING_REQUIRED_PACKAGES), which aborted the
+	# configure; only the QML plugins in plasma/declarativeimports need it, so
+	# make the find optional and skip that directory when it is absent.
+	patch -p1 -i "$SRC/kde-runtime-4.14.3-optional-kdeclarative.patch.manual" || return 1
+
+	# kde4_create_handbook() names its custom target after the directory it
+	# runs in, so doc/kcontrol/bookmarks and doc/kioslave/bookmarks both want
+	# "bookmarks-handbook" (likewise smb).  CMake 4 with the raised policy
+	# minimum enforces CMP0002 and aborts on the duplicate; skip the kioslave
+	# copies so the kcontrol handbook is the one that gets built.
+	patch -p1 -i "$SRC/kde-runtime-4.14.3-duplicate-handbook-targets.patch.manual" || return 1
+
+	# htmlcreator.cpp is a QtWebKit plugin: it includes <QtWebKit/QWebFrame>
+	# and <kwebpage.h> from kdelibs' kdewebkit module.  Qt 4 here is configured
+	# without WebKit and kdelibs no longer builds kdewebkit, so the plugin can
+	# never compile; skip it and drop its service file so nothing advertises a
+	# thumbnailer that is not installed.
+	patch -p1 -i "$SRC/kde-runtime-4.14.3-skip-html-thumbnail.patch.manual" || return 1
+
+	# DrKonqi's unhandled-Bugzilla-error dialog uses KWebView from kdelibs'
+	# kdewebkit module, which is not built here because Qt has no WebKit.
+	# QTextBrowser renders the same HTML subset without needing that module.
+	patch -p1 -i "$SRC/kde-runtime-4.14.3-error-dialog-without-kwebkit.patch.manual" || return 1
+
+	# Qt is configured -no-declarative, so QtDeclarative does not exist and
+	# plasmoid/appletinterface.h (which pulls in declarative/toolboxproxy.h and
+	# declarative/appletcontainer.h) cannot compile.  Skip the two applet
+	# script engines and keep the runner, dataengine and addon-packagestructure
+	# plugins, whose sources never touch those headers.
+	patch -p1 -i "$SRC/kde-runtime-4.14.3-skip-declarative-scriptengines.patch.manual" || return 1
+
+	# The installed kdelibs cmake modules still expand KDE4_KDEWEBKIT_LIBRARY/LIBS
+	# and QT_QTWEBKIT_LIBRARY to -lkdewebkit and a missing Qt module, so the
+	# linker goes looking for libraries that do not exist.  Nothing in
+	# kde-runtime refers to a WebKit symbol any more, so drop the references.
+	patch -p1 -i "$SRC/kde-runtime-4.14.3-drop-kdewebkit-link.patch.manual" || return 1
+
+	# kdelibs before 4.14.3-21 shipped cmake modules that read the location of a
+	# kauth-policy-gen target its exported tools file never contained, so every
+	# KDE 4 configure aborted in get_target_property().  Report that here instead
+	# of letting the raw missing-target error escape.
+	_bfs_kdelibs_modules=$(kde4-config --path data 2>/dev/null | cut -d: -f1)/cmake/modules
+	if [ -f "$_bfs_kdelibs_modules/FindKDE4Internal.cmake" ] &&
+	   ! grep -qF 'TARGET ${KDE4_TARGET_PREFIX}kauth-policy-gen' "$_bfs_kdelibs_modules/FindKDE4Internal.cmake"; then
+		echo "$name: installed kdelibs is older than 4.14.3-21;" >&2
+		echo "$name: rebuild and reinstall kdelibs before building this package." >&2
+		return 1
+	fi
+
+	cmake -S . -B build -G Ninja \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+		-DKDE4_BUILD_TESTS=OFF \
+		-DBUILD_TESTING=OFF \
+		-DKDERUNTIME_BUILD_NEPOMUK=OFF \
+		-DCMAKE_DISABLE_FIND_PACKAGE_QCA2=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_SLP=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_LibSSH=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_OpenEXR=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_Xine=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_Samba=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_NFS=TRUE \
+		-DWITH_SAMBA=OFF \
+		-DWITH_NFS=OFF \
+		-DWITH_PulseAudio=OFF || return 1
+
+	cmake --build build -j "${JOBS:-1}" || return 1
+	DESTDIR="$PKG" cmake --install build || return 1
+}

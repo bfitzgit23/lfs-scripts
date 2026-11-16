@@ -1,0 +1,47 @@
+# description	: gettext package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="gettext package"
+name=gettext
+version=1.0
+release=1
+source="https://ftp.gnu.org/gnu/gettext/gettext-$version.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    ./configure \
+        --prefix=/usr \
+        --libexecdir=/usr/lib \
+        --enable-shared \
+        --enable-static \
+        --disable-csharp \
+        --disable-java \
+        --disable-nls \
+        --without-emacs \
+        --without-git \
+        --with-included-glib \
+        --with-included-libcroco \
+        --with-included-libxml \
+        --with-included-libunistring
+
+    make
+    make DESTDIR="$PKG" install
+}
+
+bootstrap_build() {
+    ./configure \
+        --disable-shared \
+        --without-emacs \
+        --without-git
+
+    make -j1
+
+    cp -v \
+        gettext-tools/src/msgfmt \
+        gettext-tools/src/msgmerge \
+        gettext-tools/src/xgettext \
+        "$TOOLS/bin"
+}

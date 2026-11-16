@@ -1,0 +1,17 @@
+# description	: Linux From Scratch System V initialization scripts
+# homepage	: https://www.linuxfromscratch.org/lfs/
+# maintainer	: BFSOS maintainers
+
+description="Linux From Scratch System V initialization scripts"
+name=lfs-bootscripts
+version=20250827
+release=2
+source="https://www.linuxfromscratch.org/lfs/downloads/12.4/lfs-bootscripts-$version.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    make DESTDIR="$PKG" install || return 1
+}

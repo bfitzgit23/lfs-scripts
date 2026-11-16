@@ -1,0 +1,38 @@
+# description	: CDDA extraction tool with jitter correction
+# homepage	: https://xiph.org/paranoia/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="CDDA extraction tool with jitter correction"
+name=cdparanoia-32
+version=10.2
+release=5
+SPKG_AUTO_PATCH=no
+source="https://downloads.xiph.org/releases/cdparanoia/cdparanoia-III-$version.src.tgz cdparanoia-10.2-463009.patch cdparanoia-10.2-endian.patch cdparanoia-10.2-install.patch cdparanoia-10.2-format-security.patch cdparanoia-use-proper-gnu-config-files.patch cdparanoia-10.2-ldflags.patch cdparanoia-10.2-add-pkgconfig.patch"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	bfs_compat32
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  (
+    set -e
+	patch -p3 -i $SRC/cdparanoia-10.2-463009.patch || return 1
+	patch -p1 -i $SRC/cdparanoia-10.2-endian.patch || return 1
+	patch -p1 -i $SRC/cdparanoia-10.2-install.patch || return 1
+	patch -p1 -i $SRC/cdparanoia-10.2-format-security.patch || return 1
+	patch -p1 -i $SRC/cdparanoia-use-proper-gnu-config-files.patch || return 1
+	patch -p1 -i $SRC/cdparanoia-10.2-ldflags.patch || return 1
+	patch -p1 -i $SRC/cdparanoia-10.2-add-pkgconfig.patch || return 1
+	autoreconf -ifv || return 1
+
+	./configure $build_opt || return 1
+
+	make -j1 || return 1
+	make DESTDIR="$PKG" install || return 1
+
+	rm -rf "$PKG/usr/bin" "$PKG/usr/include" "$PKG/usr/share"
+  )
+	bfs_compat32_validate || return 1
+}

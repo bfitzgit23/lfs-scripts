@@ -1,0 +1,31 @@
+# description	: Linux userspace API headers from the BFSOS default kernel line
+# homepage	: https://www.kernel.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Linux userspace API headers from the BFSOS default kernel line"
+name=linux-headers
+version=7.3.1
+release=1
+# Keep libc/userspace headers aligned with the BFSOS default kernel line.
+# The optional mainline kernel remains separately available as `linux`.
+# The tarball unpacks to linux-$version, which is not $name-$version, so both
+# build paths enter that directory explicitly.
+source="https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-$version.tar.xz"
+
+build() {
+	cd "$SRC/linux-$version" || return 1
+	make mrproper
+	make headers
+	find usr/include -type f ! -name '*.h' -delete
+	mkdir -p $PKG/usr/include
+	cp -rv usr/include/* $PKG/usr/include
+}
+
+bootstrap_build() {
+	cd "$SRC/linux-$version" || return 1
+	make mrproper
+	make headers
+	find usr/include -type f ! -name '*.h' -delete
+	mkdir -p $TOOLS/include
+	cp -rv usr/include/* $TOOLS/include
+}

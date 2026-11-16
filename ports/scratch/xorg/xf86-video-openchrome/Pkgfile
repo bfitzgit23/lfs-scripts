@@ -1,0 +1,24 @@
+# description	: Legacy X.Org driver for VIA/OpenChrome graphics
+# homepage	: https://www.freedesktop.org/wiki/Openchrome/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Legacy X.Org driver for VIA/OpenChrome graphics"
+name=xf86-video-openchrome
+version=0.6.0
+release=3
+source="https://www.x.org/releases/individual/driver/xf86-video-openchrome-$version.tar.bz2"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    # shadowUpdatePackedWeak() was removed from current Xorg. The normal
+    # shadowUpdatePacked callback now has the function-pointer type expected
+    # by shadowAdd().
+    sed -i 's/shadowUpdatePackedWeak()/shadowUpdatePacked/g' src/via_driver.c || return $?
+
+    ./configure --prefix=/usr || return $?
+    make -j1 CFLAGS+=" -fcommon" || return $?
+    make DESTDIR="$PKG" install || return $?
+}

@@ -1,0 +1,27 @@
+# description	: Intel graphics video driver
+# homepage	: https://www.x.org/wiki/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Intel graphics video driver"
+name=xf86-video-intel
+version=2.99.917.931
+release=1
+# pkgbuild rejects '-' in version; keep the CRUX snapshot label separate.
+_snapshot=2.99.917-931
+source="https://crux.nu/files/distfiles/xf86-video-intel-$_snapshot.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$_snapshot" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+	./configure \
+		--prefix=/usr \
+		--libexecdir=/usr/lib/xf86-video-intel \
+		--enable-tools \
+		--with-default-dri=3
+
+	make
+	make DESTDIR=$PKG install
+}

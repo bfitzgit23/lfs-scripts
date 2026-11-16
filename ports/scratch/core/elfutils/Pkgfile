@@ -1,0 +1,37 @@
+# description	: A collection of utilities to handle ELF objects.
+# homepage	: https://sourceware.org/elfutils/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="A collection of utilities to handle ELF objects."
+name=elfutils
+version=0.196
+release=1
+keep_static=1
+source="https://sourceware.org/ftp/elfutils/$version/elfutils-$version.tar.bz2 libeu.patch"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+	# Apply patch sources; pkgbuild does this automatically.
+	for _bfs_patch in "$SRC"/*.patch "$SRC"/*.diff; do
+		[ -f "$_bfs_patch" ] || continue
+		patch -t "${patch_opt:--p1}" -i "$_bfs_patch" || return 1
+	done
+	sed -e 's/run-backtrace-native.sh//g' -i tests/Makefile.am
+	autoreconf -vfi
+
+	CPPFLAGS="-D_FORTIFY_SOURCE=-0"\
+	./configure \
+		--prefix=/usr \
+		--program-prefix=eu- \
+		--sysconfdir=/etc    \
+		--enable-deterministic-archives \
+		--disable-hardening \
+		 --enable-maintainer-mode
+
+	make
+	make DESTDIR=$PKG install
+}

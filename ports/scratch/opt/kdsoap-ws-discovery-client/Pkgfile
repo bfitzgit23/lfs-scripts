@@ -1,0 +1,26 @@
+# description	: Qt 6 WS-Discovery client library based on KDSoap
+# homepage	: https://invent.kde.org/libraries/kdsoap-ws-discovery-client
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Qt 6 WS-Discovery client library based on KDSoap"
+name=kdsoap-ws-discovery-client
+version=0.4.0
+release=2
+source="https://deb.debian.org/debian/pool/main/k/$name/${name}_${version}.orig.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    cmake -B build -S . \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_PREFIX_PATH="/opt/qt6;/opt/kf6" \
+        -DQT_MAJOR_VERSION=6 \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DBUILD_TESTING=OFF \
+        -Wno-author || return 1
+
+    cmake --build build -j${JOBS:-1} || return 1
+    DESTDIR="$PKG" cmake --install build || return 1
+}

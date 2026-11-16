@@ -1,0 +1,40 @@
+# description	: CUPS - Common UNIX Printing System
+# homepage	: https://openprinting.github.io/cups/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="CUPS - Common UNIX Printing System"
+name=cups
+version=2.4.19
+release=4
+source="https://github.com/OpenPrinting/cups/releases/download/v$version/$name-$version-source.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    ./configure --libdir=/usr/lib \
+        --with-rundir=/run/cups \
+        --with-system-groups=lpadmin \
+        --with-docdir=/usr/share/cups/doc-$version \
+        --without-systemd \
+        --without-rcdir || return 1
+    make || return 1
+    make BUILDROOT="$PKG" install || return 1
+
+    # CUPS ships systemd units and a SysV init script upstream; BFSOS uses
+    # the OpenRC wrapper from openrc-init-scripts instead.
+    rm -rf "$PKG/usr/lib/systemd" "$PKG/lib/systemd" "$PKG/etc/init.d" \
+        || return 1
+
+    install -d "$PKG/usr/share/doc" || return 1
+    ln -sfn "../cups/doc-$version" "$PKG/usr/share/doc/$name-$version" || return 1
+    printf '%s\n' 'ServerName /run/cups/cups.sock' > "$PKG/etc/cups/client.conf" || return 1
+
+    install -d "$PKG/etc/pam.d"
+    cat > "$PKG/etc/pam.d/cups" <<'PAM'
+auth    include system-auth
+account include system-account
+session include system-session
+PAM
+}

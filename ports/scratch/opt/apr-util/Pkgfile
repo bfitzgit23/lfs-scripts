@@ -1,0 +1,22 @@
+# description	: apr-util package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="apr-util package"
+name=apr-util
+version=1.6.5
+release=2
+build_opt="--prefix=/usr
+            --with-apr=/usr
+            --with-gdbm=/usr
+            --with-openssl=/usr
+            --with-crypto"
+source="https://archive.apache.org/dist/apr/${name}-${version}.tar.bz2"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+}

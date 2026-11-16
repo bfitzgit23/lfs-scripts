@@ -1,0 +1,18 @@
+# description	: A lil' TOML parser
+# homepage	: https://github.com/hukkin/tomli
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="A lil' TOML parser"
+name=python3-tomli
+version=2.4.1
+release=1
+source="https://pypi.python.org/packages/source/t/tomli/tomli-$version.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "tomli-2.4.1" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+  /usr/bin/pip3 install --isolate --root=$PKG --ignore-installed --no-deps .
+}

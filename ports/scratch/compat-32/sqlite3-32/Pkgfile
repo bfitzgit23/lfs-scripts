@@ -1,0 +1,42 @@
+# description	: SQL database engine
+# homepage	: https://www.sqlite.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="SQL database engine"
+name=sqlite3-32
+version=3.53.4
+# pkgbuild sources recipes with /bin/sh, so compute the dotted version
+# forms that POSIX shell has no substitution for.
+_ver_space=$(printf '%s' "$version" | tr . ' ')
+release=3
+_version=$(printf "%i%.2i%.2i%.2i" $_ver_space)
+source="https://www.sqlite.org/2026/sqlite-autoconf-${_version}.tar.gz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	bfs_compat32
+	# The autoconf tarball unpacks as sqlite-autoconf-<numeric version>.
+	cd "sqlite-autoconf-$_version" || return 1
+  (
+    set -e
+        CFLAGS="-DSQLITE_SECURE_DELETE=1 -DSQLITE_ENABLE_COLUMN_METADATA=1 \
+                -DSQLITE_ENABLE_UNLOCK_NOTIFY=1 -DSQLITE_ENABLE_DBSTAT_VTAB=1 \
+                -DSQLITE_ENABLE_FTS3=1 $CFLAGS" \
+        ./configure \
+                --host=i686-pc-linux-gnu \
+                --prefix=/usr \
+                --libdir=/usr/lib32 \
+                --enable-readline \
+                --with-readline-inc='-I/usr/include' \
+                --with-readline-lib='-L/usr/lib32 -lreadline' || return 1
+
+        make -j "${JOBS:-1}" || return 1
+        make DESTDIR="$PKG" install || return 1
+
+        rm -rf \
+                "$PKG/usr/bin" \
+                "$PKG/usr/include" \
+                "$PKG/usr/share"
+  )
+	bfs_compat32_validate || return 1
+}

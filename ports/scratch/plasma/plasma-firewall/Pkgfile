@@ -1,0 +1,25 @@
+# description	: plasma-firewall package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="plasma-firewall package"
+name=plasma-firewall
+version=6.7.6
+release=1
+build_opt="-DCMAKE_INSTALL_PREFIX=/opt/kf6 \
+            -DCMAKE_PREFIX_PATH=/opt/qt6;/opt/kf6 
+             -DCMAKE_INSTALL_LIBEXECDIR=libexec 
+             -DCMAKE_BUILD_TYPE=Release         
+             -DCMAKE_QT6=ON				
+             -DBUILD_QT5=OFF                    
+             -DBUILD_TESTING=OFF                
+             -Wno-author"
+source="https://download.kde.org/stable/plasma/$version/$name-$version.tar.xz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+}

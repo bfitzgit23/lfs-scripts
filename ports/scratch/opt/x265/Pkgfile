@@ -1,0 +1,24 @@
+# description	: x265 package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="x265 package"
+name=x265
+version=4.3
+release=2
+# GitHub release assets are returning 504; use the tag archive instead.
+source="https://github.com/Multicorewareinc/x265/archive/refs/tags/$version.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+mkdir bld &&
+cd    bld &&
+
+cmake -D CMAKE_INSTALL_PREFIX=/usr \
+      -D GIT_ARCHETYPE=1           \
+      -W no-dev ../source          &&
+make
+make DESTDIR="$PKG" install
+}

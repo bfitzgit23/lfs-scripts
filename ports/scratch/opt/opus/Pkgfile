@@ -1,0 +1,25 @@
+# description	: a totally open, royalty-free, highly versatile audio codec
+# homepage	: https://www.opus-codec.org
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: doxygen texlive tl-unx
+
+description="a totally open, royalty-free, highly versatile audio codec"
+name=opus
+version=1.6.1
+release=3
+source="https://downloads.xiph.org/releases/opus/opus-$version.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  mkdir build &&
+cd    build &&
+
+meson setup --prefix=/usr        \
+            --buildtype=release  \
+            -Ddocdir=/usr/share/doc/opus-1.4 &&
+ninja
+  DESTDIR=$PKG ninja install
+}

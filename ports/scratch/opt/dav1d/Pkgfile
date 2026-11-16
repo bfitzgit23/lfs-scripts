@@ -1,0 +1,26 @@
+# description	: Fast and small AV1 video decoder
+# homepage	: https://code.videolan.org/videolan/dav1d
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: nasm
+
+description="Fast and small AV1 video decoder"
+name=dav1d
+version=1.5.4
+release=1
+source="https://download.videolan.org/pub/videolan/dav1d/${version}/dav1d-${version}.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    meson setup build \
+        --prefix=/usr \
+        --buildtype=release \
+        -Denable_tests=false \
+        -Denable_examples=false || return 1
+
+    ninja -C build || return 1
+
+    DESTDIR="$PKG" ninja -C build install || return 1
+}

@@ -1,0 +1,26 @@
+# description	: Official DirectX headers available under an open source license
+# homepage	: https://github.com/microsoft/DirectX-Headers
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Official DirectX headers available under an open source license"
+name=directx-headers
+version=1.619.5
+release=1
+source="https://github.com/microsoft/DirectX-Headers/archive/v$version/$name-$version.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  meson setup DirectX-Headers-$version build \
+    --prefix=/usr \
+    --buildtype=plain \
+    --wrap-mode nodownload \
+    -D b_lto=false \
+    -D b_pie=true \
+    -D build-test=false
+
+  meson compile -C build
+  DESTDIR=$PKG meson install -C build
+}

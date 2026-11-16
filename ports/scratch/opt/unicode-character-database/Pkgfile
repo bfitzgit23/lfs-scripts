@@ -1,0 +1,24 @@
+# description	: Unicode Character Database
+# homepage	: https://www.unicode.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Unicode Character Database"
+name=unicode-character-database
+version=17.0.0
+release=2
+# Keep the archives packed: extracting them would scatter their data files
+# through the source directory, and pkgbuild has no way to rename them.
+noextract="UCD.zip Unihan.zip"
+source="https://www.unicode.org/Public/$version/ucd/UCD.zip https://www.unicode.org/Public/$version/ucd/Unihan.zip"
+
+build() {
+    for _f in UCD Unihan; do
+        install -Dm644 "$SRC/$_f.zip" "$PKG/usr/share/unicode/$_f-$version.zip" || return 1
+        bsdtar -C "$PKG/usr/share/unicode" -x --no-same-owner --no-same-permissions -f "$SRC/$_f.zip" || return 1
+    done
+
+    ln -s . "$PKG/usr/share/unicode/ucd" || return 1
+    for _f in $name unicode-data unidata; do
+        ln -s unicode "$PKG/usr/share/$_f" || return 1
+    done
+}

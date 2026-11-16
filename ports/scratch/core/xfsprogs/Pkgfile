@@ -1,0 +1,37 @@
+# description	: xfsprogs package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="xfsprogs package"
+name=xfsprogs
+version=7.2.0
+release=1
+source="https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/$name-$version.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+make configure
+
+export DEBUG=-DNDEBUG
+export OPTIMIZER="$CFLAGS"
+
+./configure \
+    --prefix=/usr \
+    --localstatedir=/var \
+    --libexecdir=/usr/lib \
+    --disable-gettext \
+    --disable-libicu
+
+make
+make -j1 DIST_ROOT="$PKG" install install-dev
+
+install -d "$PKG/sbin"
+
+mv "$PKG/usr/sbin/fsck.xfs" "$PKG/sbin/"
+mv "$PKG/usr/sbin/xfs_repair" "$PKG/sbin/"
+
+rm -rf "$PKG/usr/share/doc"
+}

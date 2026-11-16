@@ -1,0 +1,24 @@
+# description	: Utilities and libraries for managing POSIX Access Control Lists.
+# homepage	: https://savannah.nongnu.org/projects/acl
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Utilities and libraries for managing POSIX Access Control Lists."
+name=acl
+version=2.4.0
+release=2
+keep_static=1
+source="https://debian.netcologne.de/savannah/acl/acl-$version.tar.xz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+    find "$PKG" -type f -name '*.la' -delete
+
+    rm -rf \
+        "$PKG/usr/share/doc" \
+        "$PKG/usr/share/info"
+}

@@ -1,0 +1,17 @@
+# description	: libdvdcss package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="libdvdcss package"
+name=libdvdcss
+version=1.6.0
+release=3
+source="https://mirror.freedif.org/pub/blfs/conglomeration/libdvdcss/libdvdcss-$version.tar.xz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+}

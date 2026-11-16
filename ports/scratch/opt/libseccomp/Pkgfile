@@ -1,0 +1,17 @@
+# description	: libseccomp package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="libseccomp package"
+name=libseccomp
+version=2.6.1
+release=2
+source="https://github.com/seccomp/${name}/releases/download/v${version}/${name}-${version}.tar.gz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+}

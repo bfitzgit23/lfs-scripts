@@ -1,0 +1,24 @@
+# description	: The ALSA Utilities package contains various utilities which are useful for controlling your sound card.
+# homepage	: https://www.alsa-project.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: docutils fftw libsamplerate python3-dialog
+
+description="The ALSA Utilities package contains various utilities which are useful for controlling your sound card."
+name=alsa-utils
+version=1.2.16
+release=2
+source="https://www.alsa-project.org/files/pub/utils/$name-$version.tar.bz2"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+	./configure --disable-alsaconf \
+            --disable-bat   \
+            --enable-xmlto \
+            --with-curses=ncursesw || return 1
+make || return 1
+make DESTDIR="$PKG" install || return 1
+}

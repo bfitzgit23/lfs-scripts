@@ -1,0 +1,24 @@
+# description	: findutils package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="findutils package"
+name=findutils
+version=4.11.0
+release=1
+source="https://ftp.gnu.org/gnu/findutils/findutils-$version.tar.xz"
+
+# locate's install-data-hook creates $(LOCATE_DB) with mkinstalldirs and
+# ignores DESTDIR, so the configured localstatedir must be writable on the
+# build host.  Stage 1 builds into the temporary toolchain as an unprivileged
+# user, where /var/lib/locate is not writable; bfs_collect_build_opt() in the
+# shared helper relocates that default into $TOOLS for bootstrap builds only,
+# so a target-root build keeps the real path.
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+}

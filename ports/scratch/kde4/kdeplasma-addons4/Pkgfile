@@ -1,0 +1,79 @@
+# description	: Additional Plasma widgets and plugins for KDE 4
+# homepage	: https://kde.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Additional Plasma widgets and plugins for KDE 4"
+# Keep the KDE4 package name distinct from the KF6 package in ports/plasma.
+name=kdeplasma-addons4
+_pkgname=kdeplasma-addons
+version=4.14.3
+release=13
+source="https://download.kde.org/Attic/4.14.3/src/$_pkgname-$version.tar.xz kdeplasma-addons4-4.14.3-cmake-minimum.patch.manual kdeplasma-addons4-4.14.3-pattern-qimageblitz-fallback.patch.manual kdeplasma-addons4-4.14.3-akonadi-cxx11.patch.manual kdeplasma-addons4-4.14.3-rtm-tests-off.patch.manual kdeplasma-addons4-4.14.3-qtdeclarative-guard.patch.manual kdeplasma-addons4-4.14.3-find-akonadi.patch.manual kdeplasma-addons4-4.14.3-community-qtwebkit-guard.patch.manual kdeplasma-addons4-4.14.3-rememberthemilk-kdewebkit-guard.patch.manual kdeplasma-addons4-4.14.3-potd-natgeo-kdewebkit-guard.patch.manual"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$_pkgname-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+	export CMAKE_PREFIX_PATH="/opt/qt4:/usr"
+	export PATH="/opt/qt4/bin:$PATH"
+	export QT_QMAKE_EXECUTABLE=/opt/qt4/bin/qmake
+	export CFLAGS="${CFLAGS:+$CFLAGS }-std=gnu99"
+	export CXXFLAGS="${CXXFLAGS:+$CXXFLAGS }-std=gnu++98 -fpermissive -Wno-deprecated-declarations"
+
+	patch -p1 -i "$SRC/kdeplasma-addons4-4.14.3-cmake-minimum.patch.manual" || return 1
+
+	# QImageBlitz is not packaged; the pattern wallpaper falls back to Qt.
+	patch -p1 -i "$SRC/kdeplasma-addons4-4.14.3-pattern-qimageblitz-fallback.patch.manual" || return 1
+
+	# Akonadi public headers pull in the same C++11-only Boost.
+	patch -p1 -i "$SRC/kdeplasma-addons4-4.14.3-akonadi-cxx11.patch.manual" || return 1
+
+	# libs/rtm adds its tests subdirectory unconditionally and rtmlogin needs
+	# KWebView, which kdelibs is built without.
+	patch -p1 -i "$SRC/kdeplasma-addons4-4.14.3-rtm-tests-off.patch.manual" || return 1
+
+	# Qt4 here has no QtDeclarative; the QML applets cannot build.
+	patch -p1 -i "$SRC/kdeplasma-addons4-4.14.3-qtdeclarative-guard.patch.manual" || return 1
+
+	# kdepimlibs' export references the imported Akonadi target by name.
+	patch -p1 -i "$SRC/kdeplasma-addons4-4.14.3-find-akonadi.patch.manual" || return 1
+
+	# The opendesktop applet renders contact info with QtWebKit.
+	patch -p1 -i "$SRC/kdeplasma-addons4-4.14.3-community-qtwebkit-guard.patch.manual" || return 1
+
+	# The RTM applet embeds KWebView from the omitted kdewebkit module.
+	patch -p1 -i "$SRC/kdeplasma-addons4-4.14.3-rememberthemilk-kdewebkit-guard.patch.manual" || return 1
+
+	# The NatGeo picture provider scrapes its page with KWebPage.
+	patch -p1 -i "$SRC/kdeplasma-addons4-4.14.3-potd-natgeo-kdewebkit-guard.patch.manual" || return 1
+
+	# kdelibs before 4.14.3-21 shipped cmake modules that read the location of a
+	# kauth-policy-gen target its exported tools file never contained, so every
+	# KDE 4 configure aborted in get_target_property().  Report that here instead
+	# of letting the raw missing-target error escape.
+	_bfs_kdelibs_modules=$(kde4-config --path data 2>/dev/null | cut -d: -f1)/cmake/modules
+	if [ -f "$_bfs_kdelibs_modules/FindKDE4Internal.cmake" ] &&
+	   ! grep -qF 'TARGET ${KDE4_TARGET_PREFIX}kauth-policy-gen' "$_bfs_kdelibs_modules/FindKDE4Internal.cmake"; then
+		echo "$name: installed kdelibs is older than 4.14.3-21;" >&2
+		echo "$name: rebuild and reinstall kdelibs before building this package." >&2
+		return 1
+	fi
+
+	cmake -S . -B build -G Ninja \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+		-DKDE4_BUILD_TESTS=OFF \
+		-DBUILD_TESTING=OFF \
+		-DCMAKE_DISABLE_FIND_PACKAGE_QCA2=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_Marble=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_DBusMenuQt=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_QJSON=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_QImageBlitz=TRUE \
+		-DCMAKE_DISABLE_FIND_PACKAGE_Qalculate=TRUE || return 1
+
+	cmake --build build -j "${JOBS:-1}" || return 1
+	DESTDIR="$PKG" cmake --install build || return 1
+}

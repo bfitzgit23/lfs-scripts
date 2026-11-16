@@ -1,0 +1,17 @@
+# description	: m4 package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="m4 package"
+name=m4
+version=1.4.21
+release=1
+source="https://ftp.gnu.org/gnu/m4/m4-$version.tar.xz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+}

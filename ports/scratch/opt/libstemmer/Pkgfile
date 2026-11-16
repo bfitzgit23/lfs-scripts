@@ -1,0 +1,25 @@
+# description	: Snowball stemming algorithms C library
+# homepage	: https://snowballstem.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Snowball stemming algorithms C library"
+name=libstemmer
+version=3.1.1
+release=1
+keep_static=1
+source="https://snowballstem.org/dist/libstemmer_c-$version.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    # The upstream libstemmer_c distribution intentionally has no install
+    # target. Build the generated C library, then stage its public API and
+    # static archive explicitly for consumers such as TinySPARQL.
+    make -j "${JOBS:-1}" CFLAGS="$CFLAGS -fPIC" || return 1
+
+    install -d "$PKG/usr/lib" "$PKG/usr/include" || return 1
+    install -m644 libstemmer.a "$PKG/usr/lib/libstemmer.a" || return 1
+    install -m644 include/libstemmer.h "$PKG/usr/include/libstemmer.h" || return 1
+}

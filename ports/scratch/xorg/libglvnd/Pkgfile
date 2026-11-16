@@ -1,0 +1,32 @@
+# description	: GL Vendor-Neutral Dispatch library
+# homepage	: https://github.com/NVIDIA/libglvnd
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="GL Vendor-Neutral Dispatch library"
+name=libglvnd
+version=1.7.0
+release=2
+source="https://github.com/NVIDIA/libglvnd/archive/v${version}/libglvnd-${version}.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    meson setup build \
+        --prefix=/usr \
+        --buildtype=plain \
+        --wrap-mode=nodownload \
+        -Db_lto=true \
+        -Db_pie=true \
+        -Dx11=enabled \
+        -Dglx=enabled \
+        -Dgles1=false \
+        -Degl=true \
+        -Dtls=false || return 1
+
+    meson compile -C build || return 1
+
+    DESTDIR="$PKG" \
+        meson install -C build || return 1
+}

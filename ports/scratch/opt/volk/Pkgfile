@@ -1,0 +1,26 @@
+# description	: Meta loader for Vulkan API
+# homepage	: https://github.com/zeux/volk
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Meta loader for Vulkan API"
+name=volk
+version=1.4.357.0
+_version=vulkan-sdk-$version
+release=1
+source="https://github.com/zeux/volk/archive/$_version/$name-$version.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  cmake -S volk-$_version -B build -G Ninja \
+    -D CMAKE_INSTALL_PREFIX=/usr \
+    -D CMAKE_INSTALL_LIBDIR=lib \
+    -D CMAKE_BUILD_TYPE=Release \
+    -D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+    -D VOLK_INSTALL=True \
+    -Wno-dev
+  cmake --build build
+  DESTDIR=$PKG cmake --install build
+}

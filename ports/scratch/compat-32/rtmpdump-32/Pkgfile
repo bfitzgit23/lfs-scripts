@@ -1,0 +1,47 @@
+# description	: A tool to download rtmp streams.
+# homepage	: http://rtmpdump.mplayerhq.hu/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="A tool to download rtmp streams."
+name=rtmpdump-32
+version=2.6
+_commit=6f6bb1353fc84f4cc37138baa99f586750028a01
+release=6
+source="https://crux.nu/files/distfiles/rtmpdump-2.6.tar.gz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	bfs_compat32
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  (
+    set -e
+  sed \
+    -e 's/^CRYPTO=OPENSSL/#CRYPTO=OPENSSL/' \
+    -e 's/#CRYPTO=GNUTLS/CRYPTO=GNUTLS/' \
+    -i Makefile -i librtmp/Makefile
+
+  sed \
+    -e 's|OPT=|&-fPIC |' \
+    -e 's|OPT|OPTS|' \
+    -e 's|CFLAGS=.*|& $(OPT)|' \
+    -i librtmp/Makefile
+
+  make \
+    OPT="$CFLAGS" \
+    XLDFLAGS="$LDFLAGS"
+  mkdir -p $PKG/usr/lib32
+  make \
+    prefix='/usr' \
+    sbindir='/usr/bin' \
+    libdir='/usr/lib32' \
+    mandir='/usr/share/man' \
+    DESTDIR=$PKG \
+    install
+
+  rm -r $PKG/usr/{bin,include,share}
+  )
+	bfs_compat32_validate || return 1
+}

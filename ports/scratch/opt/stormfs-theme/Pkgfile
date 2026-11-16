@@ -1,0 +1,32 @@
+# description	: StormFS GTK theme, icon theme and wallpapers
+# homepage	: https://github.com/bfitzgit23/StormFS-Linux
+# maintainer	: StormFS maintainers
+
+description="StormFS GTK theme, icon theme and wallpapers"
+name=stormfs-theme
+version=2026.08.24
+release=4
+source="https://github.com/bfitzgit23/StormFS-Linux/releases/download/theme-pack/StormFS-Recovered-Theme-Icons-Wallpapers-StormPkg.zip xfce-xsettings.xml xfce-xfwm4.xml gtk-settings.ini"
+
+build() {
+	# pkgbuild extracts archive sources into $SRC before calling build().
+	cd "$SRC" || return 1
+
+	unzip -q StormFS-Recovered-Pack/StormFS-Theme-Icons-v3.zip || return 1
+	unzip -q StormFS-Recovered-Pack/stormd_wallpapers.zip -d wallpapers || return 1
+
+	install -d "$PKG/usr/share/themes" "$PKG/usr/share/icons" \
+		"$PKG/usr/share/backgrounds/stormfs" || return 1
+	cp -a theme/StormFS "$PKG/usr/share/themes/" || return 1
+	cp -a icons/StormFS-Icons "$PKG/usr/share/icons/" || return 1
+	install -m 0644 wallpapers/*.png "$PKG/usr/share/backgrounds/stormfs/" || return 1
+
+	install -d "$PKG/etc/xdg/xfce4/xfconf/xfce-perchannel-xml" \
+		"$PKG/etc/gtk-3.0" "$PKG/etc/gtk-4.0" || return 1
+	install -m 0644 xfce-xsettings.xml \
+		"$PKG/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml" || return 1
+	install -m 0644 xfce-xfwm4.xml \
+		"$PKG/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" || return 1
+	install -m 0644 gtk-settings.ini "$PKG/etc/gtk-3.0/settings.ini" || return 1
+	install -m 0644 gtk-settings.ini "$PKG/etc/gtk-4.0/settings.ini" || return 1
+}

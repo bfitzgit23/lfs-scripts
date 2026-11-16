@@ -1,0 +1,28 @@
+# description	: S-Lang programmer's library
+# homepage	: http://www.jedsoft.org/slang/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: oniguruma
+
+description="S-Lang programmer's library"
+name=slang-32
+version=2.3.3
+release=2
+source="https://www.jedsoft.org/releases/${name%-*}/${name%-*}-$version.tar.bz2"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	bfs_compat32
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  (
+    set -e
+	./configure $build_opt
+
+	make -j1
+	make -j1 DESTDIR=$PKG install-all
+	rm -r $PKG/usr/{bin,etc,share,include}
+  )
+	bfs_compat32_validate || return 1
+}

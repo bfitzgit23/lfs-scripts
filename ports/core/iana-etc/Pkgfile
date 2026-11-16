@@ -1,5 +1,5 @@
 name=iana-etc
-version=20230913
+version=20260805
 release=1
 source=(services protocols)
 

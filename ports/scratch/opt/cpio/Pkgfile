@@ -1,0 +1,31 @@
+# description	: The cpio package contains tools for archiving.
+# homepage	: https://ftp.gnu.org/gnu/cpio/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: texlive (or install-tl-unx)
+
+description="The cpio package contains tools for archiving."
+name=cpio
+version=2.15
+release=1
+CFLAGS+=' -fcommon'
+build_opt="--prefix=/usr
+            --enable-mt
+            --with-rmt=/usr/libexec/rmt"
+source="https://ftp.gnu.org/gnu/$name/$name-$version.tar.bz2"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+sed -e "/^extern int (\*xstat)/s/()/(const char * restrict,  struct stat * restrict)/" \
+    -i src/extern.h
+sed -e "/^int (\*xstat)/s/()/(const char * restrict,  struct stat * restrict)/" \
+    -i src/global.c
+CFLAGS+=' -fcommon'
+	# The release archive ships a generated configure. Regenerating it here
+	# forces autopoint/gettext m4 updates and can fail before the build; the
+	# source edits above do not change configure.ac.
+	bfs_autobuild
+}

@@ -1,0 +1,24 @@
+# description	: Compression utility using the lzma algorithm, successor of lzma-utils
+# homepage	: https://tukaani.org/xz/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Compression utility using the lzma algorithm, successor of lzma-utils"
+name=xz-32
+version=5.8.4
+release=2
+source="https://github.com/tukaani-project/xz/releases/download/v$version/xz-$version.tar.gz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	bfs_compat32
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+        _bfs_require_compat32_extension 2 || return 0
+	autoreconf -vfi
+	bfs_autobuild
+
+	rm -r $PKG/usr/{bin,include,share}
+	bfs_compat32_validate || return 1
+}

@@ -1,5 +1,5 @@
 name=e2fsprogs
-version=1.47.0
+version=1.47.4
 release=1
 source=(https://downloads.sourceforge.net/project/$name/$name/v$version/$name-$version.tar.gz)
 build_opt="

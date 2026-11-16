@@ -1,0 +1,25 @@
+# description	: find duplicate files utility
+# homepage	: https://github.com/pauldreik/rdfind
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="find duplicate files utility"
+name=rdfind
+version=1.8.0
+release=1
+renames=($name-$version.tar.gz)
+source="https://github.com/pauldreik/rdfind/archive/releases/$version.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+
+  # Older base archives have autoconf's autom4te pointing at the temporary
+  # toolchain m4, which is removed before optional packages are built.
+  M4=/usr/bin/m4 ./bootstrap.sh
+  ./configure --prefix=/usr
+  make
+  make DESTDIR=$PKG install
+}

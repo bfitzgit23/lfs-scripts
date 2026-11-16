@@ -1,0 +1,23 @@
+# description	: A debugging and profiling system for Linux programs
+# homepage	: https://valgrind.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: gdb llvm which
+
+description="A debugging and profiling system for Linux programs"
+name=valgrind
+version=3.27.1
+release=2
+source="https://sourceware.org/pub/$name/$name-$version.tar.bz2"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+ sed -i 's|/doc/valgrind||' docs/Makefile.in &&
+
+./configure --prefix=/usr \
+            --datadir=/usr/share/doc/valgrind-$version &&
+make
+  make DESTDIR=$PKG install
+}

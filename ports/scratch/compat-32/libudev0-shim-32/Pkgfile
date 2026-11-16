@@ -1,0 +1,25 @@
+# description	: libudev.so.0 compatibility library for systems with newer udev versions
+# homepage	: https://github.com/archlinux/libudev0-shim
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="libudev.so.0 compatibility library for systems with newer udev versions"
+name=libudev0-shim-32
+version=2
+release=2
+source="https://github.com/archlinux/libudev0-shim/archive/v$version/${name%-*}-$version.tar.gz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	bfs_compat32
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  (
+    set -e
+	make
+	install -Dm 755 libudev.so.0.13.9999 -t $PKG/usr/lib32
+	ln -s libudev.so.0.13.9999 $PKG/usr/lib32/libudev.so.0
+  )
+	bfs_compat32_validate || return 1
+}

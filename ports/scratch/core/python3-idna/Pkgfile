@@ -1,0 +1,23 @@
+# description	: Internationalized Domain Names in Applications (IDNA)
+# homepage	: https://pypi.org/project/idna/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Internationalized Domain Names in Applications (IDNA)"
+name=python3-idna
+version=3.20
+release=1
+source="https://files.pythonhosted.org/packages/source/i/idna/idna-${version}.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "idna-3.20" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    python3 -m build \
+        --no-isolation \
+        --wheel || return 1
+
+    python3 -m installer \
+        --destdir="$PKG" \
+        dist/*.whl || return 1
+}

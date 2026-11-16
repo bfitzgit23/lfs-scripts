@@ -1,0 +1,31 @@
+# description	: Library of JPEG support functions.
+# homepage	: https://www.libjpeg-turbo.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: yasm
+
+description="Library of JPEG support functions."
+name=libjpeg-turbo
+version=3.2.0
+release=2
+source="https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/$version/$name-$version.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+
+
+	mkdir build &&
+cd    build &&
+
+cmake -DCMAKE_INSTALL_PREFIX=/usr \
+      -DCMAKE_BUILD_TYPE=RELEASE  \
+      -DENABLE_STATIC=FALSE       \
+      -DCMAKE_INSTALL_DOCDIR=/usr/share/doc/libjpeg-turbo-3.0.0 \
+      -DCMAKE_INSTALL_DEFAULT_LIBDIR=lib  \
+      .. &&
+make
+	make DESTDIR=$PKG install
+}

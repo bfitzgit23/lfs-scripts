@@ -1,0 +1,31 @@
+# description	: A library to handle keyboard descriptions.
+# homepage	: https://xkbcommon.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: libxcb wayland wayland-protocols doxygen
+
+description="A library to handle keyboard descriptions."
+name=libxkbcommon
+version=1.13.2
+release=8
+source="https://github.com/xkbcommon/libxkbcommon/archive/xkbcommon-$version.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	prt-get isinst wayland-protocols || SPKG_XKBCOMMON+=' -Denable-wayland=false'
+	prt-get isinst xkeyboard-config || SPKG_XKBCOMMON+=' -Denable-x11=false'
+
+
+	mkdir build &&
+cd    build &&
+
+meson setup ..            \
+      --prefix=/usr       \
+      --buildtype=release \
+      -Denable-docs=false \
+     $SPKG_XKBCOMMON &&
+ninja
+DESTDIR=$PKG ninja install
+}

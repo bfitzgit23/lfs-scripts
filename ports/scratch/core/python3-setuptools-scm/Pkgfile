@@ -1,0 +1,17 @@
+# description	: python3-setuptools-scm package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="python3-setuptools-scm package"
+name=python3-setuptools-scm
+version=10.3.4
+release=1
+source="https://pypi.io/packages/source/s/setuptools_scm/setuptools_scm-$version.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "setuptools_scm-10.3.4" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+python3 -m build --wheel --skip-dependency-check --no-isolation
+python3 -m installer --destdir="$PKG" dist/*.whl
+}

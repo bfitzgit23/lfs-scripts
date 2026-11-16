@@ -1,0 +1,20 @@
+# description	: Text based document generation.
+# homepage	: https://asciidoc.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Text based document generation."
+name=asciidoc
+version=10.2.1
+release=4
+source="https://github.com/$name-py/$name-py/archive/$version/$name-py-$version.tar.gz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  export PYTHON=/usr/bin/python3
+  autoconf || return 1
+	bfs_autobuild
+}

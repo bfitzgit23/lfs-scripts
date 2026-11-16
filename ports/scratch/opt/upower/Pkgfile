@@ -1,0 +1,28 @@
+# description	: D-Bus service for power-device enumeration and statistics
+# homepage	: https://gitlab.freedesktop.org/upower/upower
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="D-Bus service for power-device enumeration and statistics"
+name=upower
+version=1.91.3
+release=3
+source="https://gitlab.freedesktop.org/${name}/${name}/-/archive/v${version}/${name}-v${version}.tar.bz2"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    meson setup build \
+        --prefix=/usr \
+        --buildtype=release \
+        -Dgtk-doc=false \
+        -Dman=false \
+        -Dsystemdsystemunitdir=no \
+        -Dudevrulesdir=/usr/lib/udev/rules.d || return 1
+    meson compile -C build || return 1
+    DESTDIR="$PKG" meson install --no-rebuild -C build || return 1
+
+    # upowerd is D-Bus activated on OpenRC; do not package a unit.
+    rm -rf "$PKG/usr/lib/systemd" "$PKG/lib/systemd" || return 1
+}

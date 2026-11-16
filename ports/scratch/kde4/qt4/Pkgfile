@@ -1,0 +1,85 @@
+# description	: Qt 4.8 compatibility framework for KDE 4
+# homepage	: https://www.qt.io/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: cups
+
+description="Qt 4.8 compatibility framework for KDE 4"
+name=qt4
+version=4.8.7
+release=5
+source="https://download.qt.io/archive/qt/4.8/$version/qt-everywhere-opensource-src-$version.tar.gz qt4-gcc-requires.patch.manual qt4-4.8.7-qforeach-gcc9.patch.manual qt4-4.8.7-linguist-pointer-compare.patch.manual qt4-openssl-1.1.patch.manual qt4-openssl4.patch.manual"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "qt-everywhere-opensource-src-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+	# GCC 16 reserves 'requires' as a C++20 keyword, but qmake uses it as a
+	# local identifier. Keep this patch manual so it is not picked up by an
+	# automatic *.patch loop and applied twice.
+	patch -p1 -i "$SRC/qt4-gcc-requires.patch.manual" || return 1
+
+	# GCC 9 changed the scope of a break inside the extension used by Qt4's
+	# Q_FOREACH. The broken loop makes uic emit incomplete UI headers.
+	patch -p1 -i "$SRC/qt4-4.8.7-qforeach-gcc9.patch.manual" || return 1
+
+	# ContextItem::findMessage returns a MessageItem pointer. Ordered
+	# comparison against an integer is ill-formed and newer GCC rejects it.
+	patch -p1 -i "$SRC/qt4-4.8.7-linguist-pointer-compare.patch.manual" || return 1
+
+	# Qt 4.8.7 predates OpenSSL 1.1. The first patch ports the SSL backend
+	# to the opaque OpenSSL API; the second updates the remaining ASN.1 and
+	# X509 accessors, const-correctness, and removed protocol methods for
+	# OpenSSL 4.
+	patch -p1 -i "$SRC/qt4-openssl-1.1.patch.manual" || return 1
+	patch -p1 -i "$SRC/qt4-openssl4.patch.manual" || return 1
+
+	# A previous failed build may have left those incomplete uic headers behind.
+	find . -type f -path '*/.uic/*' -name 'ui_*.h' -delete
+
+	export CFLAGS="${CFLAGS:+$CFLAGS }-std=gnu99"
+	# ICU 78 defaults UChar to C++11 char16_t and exposes C++17-only header
+	# APIs. Qt4 is C++98 and only consumes ICU's C ABI.
+	export CXXFLAGS="${CXXFLAGS:+$CXXFLAGS }-std=gnu++98 -fpermissive -Wno-deprecated-declarations"
+	export CXXFLAGS="$CXXFLAGS -DU_SHOW_CPLUSPLUS_API=0 -DU_SHOW_CPLUSPLUS_HEADER_API=0 -DUCHAR_TYPE=uint16_t"
+
+	# libQtHelp has a transitive dependency on the build-tree libQtCLucene.
+	# Modern binutils will not resolve that from -L alone; it needs the
+	# build-tree lib directory in the linker's rpath-link search path.
+	export LDFLAGS="${LDFLAGS:+$LDFLAGS }-Wl,-rpath-link,$PWD/lib"
+
+	./configure \
+		-prefix /opt/qt4 \
+		-sysconfdir /etc/xdg \
+		-opensource \
+		-confirm-license \
+		-release \
+		-shared \
+		-system-zlib \
+		-system-libpng \
+		-system-libjpeg \
+		-system-libtiff \
+		-system-libmng \
+		-system-sqlite \
+		-dbus-linked \
+		-openssl-linked \
+		-no-webkit \
+		-no-phonon \
+		-no-declarative \
+		-no-multimedia \
+		-no-gstreamer \
+		-nomake examples \
+		-nomake demos || return 1
+
+	make -j "${JOBS:-1}" || return 1
+	make -j1 INSTALL_ROOT="$PKG" install || return 1
+
+	install -d "$PKG/etc/ld.so.conf.d" "$PKG/etc/profile.d" || return 1
+	printf '%s\n' '/opt/qt4/lib' > "$PKG/etc/ld.so.conf.d/qt4.conf" || return 1
+	cat > "$PKG/etc/profile.d/qt4.sh" <<'EOF' || return 1
+export QT4DIR=/opt/qt4
+export PATH="/opt/qt4/bin:$PATH"
+export CMAKE_PREFIX_PATH="/opt/qt4${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}"
+EOF
+}

@@ -1,0 +1,42 @@
+# description	: Tools for managing logical volumes and device mappings.
+# homepage	: https://sourceware.org/lvm2/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Tools for managing logical volumes and device mappings."
+name=lvm2
+version=2.03.42
+release=2
+build_opt=(
+    --prefix=/usr
+    --sbindir=/usr/bin
+    --libdir=/usr/lib
+    --sysconfdir=/etc
+    --localstatedir=/var
+    --runstatedir=/run
+    --enable-cmdlib
+    --enable-pkgconfig
+    --disable-systemd
+    --enable-dmeventd
+    --disable-udev_sync
+)
+source="https://sourceware.org/pub/lvm2/LVM2.$version.tgz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    ./configure "${build_opt[@]}"
+
+    make
+    make DESTDIR="$PKG" install
+    if [[ -f "$PKG/etc/lvm/lvm.conf" ]]; then
+        sed -i \
+            -e '/locking_dir =/{s/#//;s@/var/run@@}' \
+            "$PKG/etc/lvm/lvm.conf"
+    fi
+
+    find "$PKG" -type f -name '*.la' -delete
+
+    rm -rf "$PKG/usr/share/doc"
+}

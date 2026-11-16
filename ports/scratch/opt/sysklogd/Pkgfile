@@ -1,0 +1,19 @@
+# description	: sysklogd package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="sysklogd package"
+name=sysklogd
+version=2.7.2
+release=1
+sv=($name.run)
+source="https://github.com/troglobit/sysklogd/releases/download/v$version/sysklogd-$version.tar.gz sysklogd.run"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+	install -Dm644 syslog.conf $PKG/etc/syslog.conf
+}

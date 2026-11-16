@@ -1,0 +1,26 @@
+# description	: metacity package
+# homepage	: https://gnome.org
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="metacity package"
+name=metacity
+version=3.58.1
+release=2
+source="https://download.gnome.org/sources/$name/${version%.*}/$name-$version.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  ./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --localstatedir=/var \
+    --disable-debug \
+    --enable-compile-warnings \
+    --disable-vulkan
+  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+  make
+DESTDIR="$PKG" make install
+}

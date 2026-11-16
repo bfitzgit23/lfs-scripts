@@ -1,0 +1,22 @@
+# description	: Bitmaps for X
+# homepage	: https://xorg.freedesktop.org
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Bitmaps for X"
+name=xkeyboard-config
+version=2.48
+release=3
+source="https://www.x.org/releases/individual/data/$name/$name-$version.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	mkdir build &&
+cd    build &&
+
+meson setup --prefix=$XORG_PREFIX --buildtype=release .. &&
+ninja
+DESTDIR=$PKG ninja install
+}

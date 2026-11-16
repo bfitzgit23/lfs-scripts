@@ -1,0 +1,176 @@
+# description	: KDE 4 PIM libraries
+# homepage	: https://kde.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="KDE 4 PIM libraries"
+name=kdepimlibs
+version=4.14.3
+release=18
+source="https://download.kde.org/Attic/4.14.3/src/kdepimlibs-$version.tar.xz kdepimlibs-4.14.3-cmake-minimum.patch.manual kdepimlibs-4.14.3-export-library-dependencies.patch.manual kdepimlibs-4.14.3-findgpgme-pkgconfig.patch.manual kdepimlibs-4.14.3-gpgmepp-location.patch.manual kdepimlibs-4.14.3-cmp0022-export.patch.manual kdepimlibs-4.14.3-akonadi-location.patch.manual kdepimlibs-4.14.3-bug338658-1.patch.manual kdepimlibs-4.14.3-bug338658-2.patch.manual"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+	export CMAKE_PREFIX_PATH="/opt/qt4:/usr"
+	export PATH="/opt/qt4/bin:$PATH"
+	export QT_QMAKE_EXECUTABLE=/opt/qt4/bin/qmake
+	export CFLAGS="${CFLAGS:+$CFLAGS }-std=gnu99"
+	# Qt 4.8 headers and the 2014 sources are noisy under a current GCC:
+	# -Wdeprecated-copy fires inside qstring.h/qlist.h/qstyleoption.h, and
+	# -Wdangling-reference, -Wimplicit-fallthrough and -Wtemplate-id-cdtor fire
+	# on code that predates those warnings.  -Wno-cpp drops the
+	# "_BSD_SOURCE and _SVID_SOURCE are deprecated" #warning from features.h.
+	# Without these the warnings bury the actual compile errors in the log.
+	export CXXFLAGS="${CXXFLAGS:+$CXXFLAGS }-std=gnu++11 -fpermissive -Wno-deprecated-declarations"
+	export CXXFLAGS="$CXXFLAGS -Wno-deprecated-copy -Wno-dangling-reference"
+	export CXXFLAGS="$CXXFLAGS -Wno-implicit-fallthrough -Wno-template-id-cdtor -Wno-cpp"
+
+	# gpgme 2.0 removed the entire trustlist API: gpgme_op_trustlist_start,
+	# _next and _end, gpgme_trust_item_t and the ref/unref helpers.  gpgme++
+	# still compiles against it in trustitem.cpp, context.cpp and
+	# eventloopinteractor.cpp.  The feature has been dead since gpgme 1.14
+	# (every call returns GPG_ERR_NOT_IMPLEMENTED), so put the names back
+	# locally and force the header into every translation unit instead of
+	# rewriting three 2014 sources.
+	cat > "$PWD/gpgme2-trustlist-compat.h" <<'BFS_GPGME_TRUSTLIST_EOF'
+/* gpgme 2.0 removed the trustlist API that gpgme++ 2.8 still compiles
+   against.  Restore the declarations it names; nothing here performs an
+   operation, matching the GPG_ERR_NOT_IMPLEMENTED gpgme has returned from
+   these calls since 1.14. */
+#include <gpgme.h>
+
+#if defined(GPGME_VERSION_NUMBER) && GPGME_VERSION_NUMBER >= 0x020000
+
+struct _gpgme_trust_item {
+    unsigned int _refs;
+    const char *keyid;
+    const char *name;
+    int type;
+    int level;
+    const char *owner_trust;
+    const char *validity;
+    struct _gpgme_trust_item *next;
+};
+
+typedef struct _gpgme_trust_item *gpgme_trust_item_t;
+
+/* gpgme 2 never emits this event any more.  Use a value outside the
+   remaining gpgme_event_io_t members so the switch in
+   eventloopinteractor.cpp does not end up with duplicate case labels. */
+#define GPGME_EVENT_NEXT_TRUSTITEM 0x100
+
+static inline gpgme_error_t
+gpgme_op_trustlist_start( gpgme_ctx_t ctx, const char *pattern, int max_level )
+{
+    (void)ctx; (void)pattern; (void)max_level;
+    return gpgme_error( GPG_ERR_NOT_IMPLEMENTED );
+}
+
+static inline gpgme_error_t
+gpgme_op_trustlist_next( gpgme_ctx_t ctx, gpgme_trust_item_t *item )
+{
+    (void)ctx;
+    if ( item ) {
+        *item = 0;
+    }
+    return gpgme_error( GPG_ERR_NOT_IMPLEMENTED );
+}
+
+static inline gpgme_error_t
+gpgme_op_trustlist_end( gpgme_ctx_t ctx )
+{
+    (void)ctx;
+    return gpgme_error( GPG_ERR_NOT_IMPLEMENTED );
+}
+
+static inline gpgme_trust_item_t
+gpgme_trust_item_ref( gpgme_trust_item_t item )
+{
+    return item;
+}
+
+static inline void
+gpgme_trust_item_unref( gpgme_trust_item_t item )
+{
+    (void)item;
+}
+
+#endif /* gpgme >= 2.0 */
+BFS_GPGME_TRUSTLIST_EOF
+	export CXXFLAGS="$CXXFLAGS -include $PWD/gpgme2-trustlist-compat.h"
+	# kcalcore/kcal use the libical 1.0 API that libical 3 and 4 removed
+	# (is_utc, the _r names, by-value icalrecurrencetype), so build against
+	# the pinned libical1 port and never fall back to /usr/include/libical.
+	if [ ! -f /opt/libical/include/libical/ical.h ]; then
+		echo "$name: /opt/libical is missing; build and install libical1 first." >&2
+		return 1
+	fi
+
+	# kdepimlibs marks QJSON TYPE REQUIRED upstream and ends its CMakeLists
+	# with feature_summary(FATAL_ON_MISSING_REQUIRED_PACKAGES), so configure
+	# aborts in that summary when the library is absent -- or when the find is
+	# explicitly disabled.  Fail here with a readable message instead.
+	if [ ! -f /usr/include/qjson/parser.h ]; then
+		echo "$name: /usr/include/qjson/parser.h is missing; build and install qjson first." >&2
+		return 1
+	fi
+
+	export LIBICAL_BASE=/opt/libical
+	export LD_LIBRARY_PATH="/opt/libical/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+
+	patch -p1 -i "$SRC/kdepimlibs-4.14.3-cmake-minimum.patch.manual" || return 1
+	patch -p1 -i "$SRC/kdepimlibs-4.14.3-export-library-dependencies.patch.manual" || return 1
+	patch -p1 -i "$SRC/kdepimlibs-4.14.3-findgpgme-pkgconfig.patch.manual" || return 1
+	patch -p1 -i "$SRC/kdepimlibs-4.14.3-gpgmepp-location.patch.manual" || return 1
+	patch -p1 -i "$SRC/kdepimlibs-4.14.3-cmp0022-export.patch.manual" || return 1
+	patch -p1 -i "$SRC/kdepimlibs-4.14.3-akonadi-location.patch.manual" || return 1
+
+	# The two patches Arch's kdepimlibs4 package carried, for KDE bug 338658.
+	# ItemSync merged on GID, which is not guaranteed unique within a
+	# collection, so a resource could run into "multiple merge candidates" and
+	# abort the sync.  Upstream 4.14.11 (commits 4429619 and d8b5da7) made RID
+	# the default and left GID as an explicit opt-in; both hunks apply to
+	# 4.14.3 with a small offset and touch only akonadi/itemsync.*,
+	# akonadi/resourcebase.* and akonadi/tests/itemsynctest.cpp.
+	patch -p1 -i "$SRC/kdepimlibs-4.14.3-bug338658-1.patch.manual" || return 1
+	patch -p1 -i "$SRC/kdepimlibs-4.14.3-bug338658-2.patch.manual" || return 1
+
+	# The exported target file must carry the keyword, otherwise CMake refuses
+	# to export any target that still has an old-style link interface.
+	grep -q EXPORT_LINK_INTERFACE_LIBRARIES CMakeLists.txt || {
+		echo "$name: export patch did not apply to the source tree" >&2
+		return 1
+	}
+
+	# kdelibs before 4.14.3-21 shipped cmake modules that read the location of a
+	# kauth-policy-gen target its exported tools file never contained, so every
+	# KDE 4 configure aborted in get_target_property().  Report that here instead
+	# of letting the raw missing-target error escape.
+	_bfs_kdelibs_modules=$(kde4-config --path data 2>/dev/null | cut -d: -f1)/cmake/modules
+	if [ -f "$_bfs_kdelibs_modules/FindKDE4Internal.cmake" ] &&
+	   ! grep -qF 'TARGET ${KDE4_TARGET_PREFIX}kauth-policy-gen' "$_bfs_kdelibs_modules/FindKDE4Internal.cmake"; then
+		echo "$name: installed kdelibs is older than 4.14.3-21;" >&2
+		echo "$name: rebuild and reinstall kdelibs before building this package." >&2
+		return 1
+	fi
+
+	cmake -S . -B build --fresh -G Ninja \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+		-DLIBICAL_INCLUDE_DIRS=/opt/libical/include \
+		-DLIBICAL_LIBRARY=/opt/libical/lib/libical.so \
+		-DLIBICALSS_LIBRARY=/opt/libical/lib/libicalss.so \
+		-DKDE4_BUILD_TESTS=OFF \
+		-DBUILD_TESTING=OFF \
+		-DKDEPIM_MOBILE_UI=OFF \
+		-DKDEPIMLIBS_RUN_ISOLATED_TESTS=OFF \
+		-DSTATIC_LIBRARY=OFF \
+		-DCMAKE_DISABLE_FIND_PACKAGE_Qca2=TRUE || return 1
+
+	cmake --build build -j "${JOBS:-1}" || return 1
+	DESTDIR="$PKG" cmake --install build || return 1
+}

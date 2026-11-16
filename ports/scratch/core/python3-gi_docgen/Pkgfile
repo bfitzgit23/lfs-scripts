@@ -1,0 +1,18 @@
+# description	: python3-gi_docgen package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="python3-gi_docgen package"
+name=python3-gi_docgen
+version=2026.1
+release=1
+source="https://files.pythonhosted.org/packages/source/g/gi-docgen/gi_docgen-${version}.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "gi_docgen-2026.1" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  
+  python3 -m build --wheel --no-isolation
+  python3 -m installer --destdir="$PKG" dist/*.whl
+}

@@ -1,0 +1,24 @@
+# description	: A fast image manipulation library
+# homepage	: https://sourceforge.net/projects/enlightenment/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: libid3tag-32 giflib-32 libwebp-32
+
+description="A fast image manipulation library"
+name=imlib2-32
+version=1.12.7
+release=3
+source="https://downloads.sourceforge.net/project/enlightenment/imlib2-src/$version/imlib2-$version.tar.xz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	bfs_compat32
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+        _bfs_require_compat32_extension 2 || return $?
+	bfs_autobuild
+
+	rm -r $PKG/usr/{bin,include,share}
+	bfs_compat32_validate || return 1
+}

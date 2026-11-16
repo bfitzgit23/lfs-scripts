@@ -1,0 +1,33 @@
+# description	: gmp package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="gmp package"
+name=gmp
+version=6.3.0
+release=1
+build_opt="--enable-cxx
+--disable-static"
+bootstrap_opt="$build_opt
+--enable-cxx
+--disable-static"
+source="https://ftp.gnu.org/gnu/gmp/gmp-$version.tar.xz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+ sed -i '/long long t1;/,+1s/()/(...)/' configure
+	bfs_autobuild
+}
+
+bootstrap_build() {
+sed -i '/long long t1;/,+1s/()/(...)/' configure
+./configure --prefix=$TOOLS    \
+            --enable-cxx     \
+            --disable-static \
+            --docdir=$TOOLS/usr/share/doc/gmp-6.3.0
+make
+make install
+}

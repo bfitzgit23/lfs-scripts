@@ -1,0 +1,37 @@
+# description	: Free library for arbitrary precision arithmetic
+# homepage	: https://gmplib.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Free library for arbitrary precision arithmetic"
+name=libgmp-32
+version=6.3.0
+release=3
+source="https://gmplib.org/download/gmp/gmp-$version.tar.xz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	bfs_compat32
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  (
+    set -e
+	CC="gcc -std=gnu17" \
+	CXX="g++ -std=gnu++17" \
+	./configure \
+		--prefix=/usr \
+		--libdir=/usr/lib32 \
+		--enable-cxx \
+		--build=i686-pc-linux-gnu
+
+	make
+	make DESTDIR=$PKG install
+
+	mv $PKG/usr/include/gmp{,-32}.h
+	rm $PKG/usr/include/gmpxx.h
+
+	rm -r $PKG/usr/share
+  )
+	bfs_compat32_validate || return 1
+}

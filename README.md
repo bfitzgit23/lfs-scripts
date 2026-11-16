@@ -256,3 +256,74 @@ pre_build() {
 Thats some explanation for writing ports. For unused options, remove it. Keep it simple!.
 
 Since the package manager and some utilities is used from CRUX, you can check CRUX wiki for extra info: https://crux.nu/Wiki/HomePage
+
+# lfs-scripts 2026 refresh
+
+This tree now also carries an interactive installer front-end, the ISO builder
+and installer script, artwork, and the scratchpkg package set converted to
+CRUX `Pkgfile` recipes for `pkgutils`/`prt-get`.
+
+## Interactive bootstrap (ncurses + dialog)
+
+`bootstrap.sh` is a `dialog`/`whiptail` front-end over the original build logic,
+which now lives unchanged in `files/bootstrap-core.sh`:
+
+```sh
+./bootstrap.sh              # menu: toolchain, base system, rebuild, compress, settings
+./bootstrap.sh 1            # scripted: temporary toolchain (regular user)
+./bootstrap.sh 2            # scripted: base system (root)
+./bootstrap.sh --settings   # edit and save settings to bootstrap.conf
+./bootstrap.sh --text       # same menu with plain-text prompts
+```
+
+Settings are read from the environment first, then `bootstrap.conf`:
+
+| Variable | Meaning | Default |
+| --- | --- | --- |
+| `LFS` | installation root | `/tmp/lfs-rootfs` |
+| `TOOLS` | temporary toolchain | `/tmp/lfs-tools` |
+| `SOURCEDIR` | source cache | `./sources` |
+| `PACKAGESDIR` | package cache | `./packages` |
+| `BFS_JOBS` | parallel build jobs | `nproc` |
+
+Every stage is logged to `logs/bootstrap-<timestamp>-stage<N>.log`.
+
+## LFS 13.1
+
+`ports/core` is pinned to the Linux From Scratch 13.1 package set (SysV
+initscripts, no systemd), including the 13.1 toolchain: binutils 2.47,
+gcc 16.2.0, glibc 2.44, coreutils 9.11, bash 5.3, linux 7.1.8 and the rest of
+the 13.1 list. The reference list used for the bump is kept at
+`tools/lfs-13.1-wget-list`, and `tools/update-lfs-versions.sh <list> <portsdir>`
+can re-apply a version map after a book update.
+
+## scratchpkg ports converted to Pkgfiles
+
+`ports/scratch/` contains the scratchpkg (spkgbuild) package set from
+stormfs-linux converted to CRUX `Pkgfile` recipes:
+
+- `tools/spkgbuild2pkgfile.sh` performs the conversion
+  (`spkgbuild` -> `Pkgfile`, CRLF stripped, `build_opt` dropped, the redundant
+  `cd $name-$version` removed because `pkgmk` already runs there).
+- Categories are preserved (`core`, `extra`, `contrib`, `multilib`,
+  `compat-32`, `compiz`, `gnome`, ...), so a port is
+  `ports/scratch/<category>/<port>/Pkgfile`.
+- `ports/scratch/CONVERSION-NOTES.md` lists any recipe that needed manual
+  review; those were copied verbatim instead of being rewritten.
+- Use them with `prt-get` by adding the tree to `/etc/prt-get.conf`, e.g.
+  `prt-get` directive `prtdir /usr/ports/scratch/core`.
+
+## ISO builder and installer
+
+- `iso-builder/` builds a bootable ISO from the finished rootfs
+  (`mkiso.sh`, `files/`, `liverootfs/`, `run_qemu`).
+- `scripts/install-lfs-menu.sh` is the menu-driven installer, adapted from the
+  stormfs-linux installer for lfs-scripts naming and paths.
+
+## Artwork and submodules
+
+- `assets/wallpapers/` - the LFS wallpapers.
+- `assets/themes/` - the theme/icon/wallpaper pack and the LFS1 wallpaper set.
+- Submodules: `.oh-my-bash`, `StormFS-grub-theme`, `adw-gtk3`,
+  `tela-icon-theme`, `tela-circle-icon-theme`, `scratchpkg`.
+  Initialise with `git submodule update --init --recursive`.

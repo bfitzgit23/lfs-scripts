@@ -1,0 +1,26 @@
+# description	: Tools and library to manipulate EFI variables
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Tools and library to manipulate EFI variables"
+name=mandoc
+version=1.14.6
+release=1
+source="https://mandoc.bsd.lv/snapshots/mandoc-1.14.6.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+
+	./configure &&
+	make mandoc
+
+    	./configure &&
+make mandoc
+mkdir -p $PKG/usr/bin
+install -vm755 mandoc   $PKG/usr/bin &&
+mkdir -p $PKG/usr/share/man/man1
+install -vm644 mandoc.1 $PKG/usr/share/man/man1
+}

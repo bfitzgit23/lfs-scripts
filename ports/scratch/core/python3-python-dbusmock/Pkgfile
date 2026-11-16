@@ -1,0 +1,30 @@
+# description	: python3-python-dbusmock package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="python3-python-dbusmock package"
+name=python3-python-dbusmock
+version=0.38.1
+release=2
+source="https://files.pythonhosted.org/packages/source/p/python_dbusmock/python_dbusmock-${version}.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "python_dbusmock-0.38.1" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    /usr/bin/pip3 wheel \
+        --no-build-isolation \
+        --no-deps \
+        --no-cache-dir \
+        -w dist \
+        . || return 1
+
+    /usr/bin/pip3 install \
+        --no-index \
+        --no-deps \
+        --no-cache-dir \
+        --no-user \
+        --root="$PKG" \
+        --prefix=/usr \
+        dist/*.whl || return 1
+}

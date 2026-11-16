@@ -1,0 +1,41 @@
+# description	: BFSOS OpenRC service scripts
+# homepage	: https://github.com/OpenRC/openrc
+# maintainer	: BFSOS maintainers
+# optional	: cups openssh samba avahi nftables rsync kerberos smartmontools wpa_supplicant lightdm lxdm kdm sddm plasma-login-manager consolekit libvirt bfs-kernel-maintenance
+
+description="BFSOS OpenRC service scripts"
+name=openrc-init-scripts
+version=4
+release=10
+source="networkmanager acpid bluetooth dbus gpm chronyd cups sshd samba avahi-daemon nftables rsyncd krb5-kdc krb5-kadmind wpa_supplicant smartd bfs-kernel-finalize sddm kdm lightdm lxdm plasmalogin consolekit virtlogd libvirtd pipewire.desktop pipewire-pulse.desktop wireplumber.desktop udev udev-postmount"
+
+build() {
+    install -d -m 0755 "$PKG/etc/init.d" \
+                      "$PKG/etc/xdg/autostart" || return 1
+
+    # SysV-style daemon services live in /etc/init.d.  Optional services
+    # (cups, sshd, samba, avahi-daemon, nftables, rsyncd, Kerberos,
+    # wpa_supplicant, virtlogd, libvirtd and the display managers) install
+    # their scripts unconditionally; they are only enabled by an admin or by
+    # the installer service list, and fail cleanly when the matching package
+    # is not installed.  Enable with e.g.:
+    #   rc-update add nftables default
+    #   rc-update add sddm default   (after configuring the VT/inittab)
+    # udev must start in sysinit: it creates the /dev/input nodes that
+    # libinput and Xorg enumerate, so without it keyboards, mice and
+    # touchpads are invisible to the graphical session.
+    for service in networkmanager acpid bluetooth dbus gpm chronyd \
+                   cups sshd samba avahi-daemon nftables rsyncd \
+                   krb5-kdc krb5-kadmind wpa_supplicant smartd \
+                   bfs-kernel-finalize sddm kdm lightdm lxdm plasmalogin \
+                   consolekit virtlogd libvirtd udev udev-postmount; do
+        install -m 0755 "$service" "$PKG/etc/init.d/$service" || return 1
+    done
+
+    # PipeWire session stack is per-user; without a per-user service manager
+    # it is launched by the desktop session from XDG autostart (as documented
+    # by LFS/BLFS and the Gentoo OpenRC wiki).
+    for entry in pipewire.desktop pipewire-pulse.desktop wireplumber.desktop; do
+        install -m 0644 "$entry" "$PKG/etc/xdg/autostart/$entry" || return 1
+    done
+}

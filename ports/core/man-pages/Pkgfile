@@ -1,5 +1,5 @@
 name=man-pages
-version=6.05.01
+version=6.18
 release=1
 source=(https://www.kernel.org/pub/linux/docs/$name/$name-$version.tar.xz)
 

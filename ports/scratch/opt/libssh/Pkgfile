@@ -1,0 +1,24 @@
+# description	: Multiplatform C library implementing the SSHv2 protocol
+# homepage	: https://www.libssh.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Multiplatform C library implementing the SSHv2 protocol"
+name=libssh
+version=0.12.2
+release=1
+build_opt="-DCMAKE_INSTALL_PREFIX=/usr \
+          -DCMAKE_INSTALL_LIBDIR=lib \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DWITH_EXAMPLES=OFF \
+          -DWITH_TESTING=OFF \
+          -DWITH_SERVER=ON"
+source="https://www.libssh.org/files/0.12/$name-$version.tar.xz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+}

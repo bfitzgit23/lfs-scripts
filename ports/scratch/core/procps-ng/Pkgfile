@@ -1,0 +1,25 @@
+# description	: procps-ng package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="procps-ng package"
+name=procps-ng
+version=4.0.7
+release=1
+source="https://sourceforge.net/projects/procps-ng/files/Production/procps-ng-$version.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+      
+
+        ./configure --prefix=/usr                           \
+            --docdir=/usr/share/doc/$name-$version \
+            --disable-static                        \
+            --disable-kill                          \
+            --enable-watch8bit                      \
+            --without-systemd
+        make
+        make DESTDIR=$PKG install
+}

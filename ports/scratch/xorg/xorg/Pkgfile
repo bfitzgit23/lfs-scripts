@@ -1,0 +1,16 @@
+# description	: Complete baseline BFSOS X.Org environment
+# homepage	: https://www.x.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Complete baseline BFSOS X.Org environment"
+name=xorg
+version=7x
+release=3
+source=""
+
+build() {
+    mkdir -p "$PKG/usr/share/bfsos/meta-packages"
+    printf '%s
+' 'BFSOS xorg meta package' \
+        > "$PKG/usr/share/bfsos/meta-packages/xorg"
+}
