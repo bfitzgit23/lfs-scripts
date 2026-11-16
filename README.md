@@ -716,3 +716,29 @@ rm -f  /tmp/lfs-tools/ncurses                                  # skip marker
 sed -i '/^ncurses$/d' /tmp/lfs-rootfs/var/lib/lfs-scripts/stage1.done
 rm -rf /tmp/lfs-tools/include/ncurses                           # stale headers
 ```
+
+### curl 8.4.0 cannot build against OpenSSL 4.0
+
+OpenSSL 4.0 made `ASN1_STRING` opaque and constified much of the X509 API.
+curl 8.4.0 still touched the struct directly, so stage 1 stopped at:
+
+```
+vtls/openssl.c:455:11: error: invalid use of incomplete typedef 'ASN1_INTEGER'
+```
+
+plus a pile of `discards 'const' qualifier` warnings, because `-Wno-error` does
+not downgrade a type error. Upstream only grew its compatibility layer later
+(`ASN1_STRING_get0_data()` / `ASN1_STRING_length()` behind
+`#if OPENSSL_VERSION_NUMBER < 0x40100000L`). `ports/core/curl` is now
+**8.23.0**, the current release, which builds cleanly against OpenSSL 4.0.1.
+
+Two details worth knowing:
+
+- the ABI did not move: curl still ships `lib/Makefile.soname` as `12:0:8`, so
+  the installed object is `libcurl.so.4.8.0` exactly as with 8.4.0, and the
+  header set in `include/curl/` is unchanged — the `.footprint` needed no edit.
+  New man pages may appear; refresh `.footprint` from a real build if you use
+  `pkgmk -uf`.
+- `build_opt` no longer passes `--without-librtmp`: RTMP support was removed
+  from curl, so the option no longer exists in `configure` (autoconf would only
+  warn, but it is dead weight).

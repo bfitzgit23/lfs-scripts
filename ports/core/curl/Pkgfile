@@ -1,5 +1,5 @@
 name=curl
-version=8.4.0
+version=8.23.0
 release=1
 source=(https://$name.se/download/$name-$version.tar.xz)
 build_opt="
@@ -9,7 +9,6 @@ build_opt="
 	--without-brotli
 	--without-libidn2
 	--without-libpsl
-	--without-librtmp
 	--without-nghttp2"
 
 bootstrap_opt="
