@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: POSIX.1e capabilities library
 # homepage	: https://sites.google.com/site/fullycapable/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

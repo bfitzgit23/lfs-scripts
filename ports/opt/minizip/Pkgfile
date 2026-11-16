@@ -1,4 +1,4 @@
-# Depends: zlib bzip2 xz openssl
+# Depends: zlib bzip2 xz openssl bfs-spkgbuild-macros
 # description	: Modern Minizip library
 # homepage	: https://github.com/zlib-ng/minizip-ng
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

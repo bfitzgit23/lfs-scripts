@@ -1,4 +1,4 @@
-# Depends: libyaml graphviz rustc valgrind
+# Depends: libyaml graphviz rustc valgrind bfs-spkgbuild-macros
 # description	: ruby package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

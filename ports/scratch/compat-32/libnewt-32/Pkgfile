@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: a programming library for color text mode
 # homepage	: https://pagure.io/newt
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

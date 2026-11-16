@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Vulkan validation layers, 32bit
 # homepage	: https://www.khronos.org/vulkan/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

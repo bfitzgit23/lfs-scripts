@@ -1,4 +1,4 @@
-# Depends: libcupsfilters libppd
+# Depends: libcupsfilters libppd bfs-spkgbuild-macros
 # description	: Backends and filters for CUPS
 # homepage	: https://openprinting.github.io/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

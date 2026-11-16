@@ -1,4 +1,4 @@
-# Depends: dbus glib libical
+# Depends: dbus glib libical bfs-spkgbuild-macros
 # description	: The BlueZ package contains the Bluetooth protocol stack for Linux.
 # homepage	: https://www.kernel.org/pub/linux/bluetooth/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

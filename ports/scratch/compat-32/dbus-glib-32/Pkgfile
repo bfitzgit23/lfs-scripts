@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: D-Bus GLib bindings
 # homepage	: http://freedesktop.org/wiki/Software/DBusBindings
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

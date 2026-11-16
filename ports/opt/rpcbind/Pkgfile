@@ -1,4 +1,4 @@
-# Depends: libtirpc
+# Depends: libtirpc bfs-spkgbuild-macros
 # description	: RPC program number to universal address mapper
 # homepage	: https://sourceforge.net/projects/rpcbind/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

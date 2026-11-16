@@ -396,3 +396,43 @@ highest-precedence tree and removed the rest:
 
 `ports/PRUNED-PORTS.txt` records every removed path with that rule, and a
 removed port can be recovered with `git log --diff-filter=D -- <path>`.
+
+## The spkgbuild helper and why no recipe needed rewriting
+
+234 recipes in this repository call into `/usr/share/bfsos/spkgbuild.helper`
+inside `build()`, almost always as:
+
+```sh
+build() {
+    . /usr/share/bfsos/spkgbuild.helper || return 1
+    _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+    cd "$_bfs_src" || return 1
+    bfs_autobuild
+}
+```
+
+The helper is not missing: it is a port in this tree.
+`ports/scratch/core/bfs-spkgbuild-macros` ships `helper.sh` and installs it to
+`/usr/share/bfsos/spkgbuild.helper`. It is plain POSIX shell and only reads
+`$SRC`, `$PKG`, `$name`, `$version`, `$build_opt` and `$CFLAGS`, all of which
+`pkgmk` provides, so it runs unchanged under `pkgutils`.
+
+Two things were wrong and are now fixed:
+
+* the converted port directory held only `Pkgfile`, so `source=(helper.sh)` had
+  no file to install. `helper.sh` is now part of the port and the source line is
+  an array, as `pkgutils` expects;
+* nothing declared the dependency, so nothing guaranteed the helper was
+  installed before a recipe tried to source it. All 234 recipes now carry
+  `bfs-spkgbuild-macros` in their `# Depends:` header, so
+  `prt-get depinst <port>` installs the helper first.
+
+That is the whole fix - one file plus a dependency line per recipe. Rewriting
+234 `build()` bodies would have replaced a tested helper with 234 untested
+reimplementations. Only two recipes touched the source line without ever
+calling a helper function (`engrampa`, `pidgin`); that line is gone from those.
+
+Patch files and other per-port assets referenced by local name were also
+missing from the converted trees, since the first conversion copied only
+`Pkgfile`s. They are now copied in (262 files); the references that remain
+without a local file are all remote URLs that `pkgmk` downloads itself.

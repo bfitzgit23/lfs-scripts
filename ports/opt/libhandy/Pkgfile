@@ -1,4 +1,4 @@
-# Depends: gtk3 vala
+# Depends: gtk3 vala bfs-spkgbuild-macros
 # description	: libhandy package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

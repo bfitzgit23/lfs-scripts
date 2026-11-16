@@ -1,4 +1,4 @@
-# Depends: json-c dbus dnsmasq glib gnutls libcap-ng libnl libpcap libseccomp libssh2 libxml2 libxslt nftables parted polkit qemu readline yajl
+# Depends: json-c dbus dnsmasq glib gnutls libcap-ng libnl libpcap libseccomp libssh2 libxml2 libxslt nftables parted polkit qemu readline yajl bfs-spkgbuild-macros
 # description	: Toolkit for managing virtualization hosts
 # homepage	: https://libvirt.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

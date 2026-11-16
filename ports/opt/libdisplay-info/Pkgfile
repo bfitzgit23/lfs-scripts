@@ -1,4 +1,4 @@
-# Depends: hwdata
+# Depends: hwdata bfs-spkgbuild-macros
 # description	: libdisplay-info package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

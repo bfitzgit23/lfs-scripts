@@ -1,4 +1,4 @@
-# Depends: apr
+# Depends: apr bfs-spkgbuild-macros
 # description	: apr-util package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

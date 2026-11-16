@@ -1,4 +1,4 @@
-# Depends: dbus libcap polkit
+# Depends: dbus libcap polkit bfs-spkgbuild-macros
 # description	: Realtime Policy and Watchdog Daemon
 # homepage	: https://gitlab.freedesktop.org/pipewire/rtkit
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

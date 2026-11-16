@@ -1,4 +1,4 @@
-# Depends: libcupsfilters
+# Depends: libcupsfilters bfs-spkgbuild-macros
 # description	: libppd package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

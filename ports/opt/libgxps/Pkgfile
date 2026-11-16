@@ -1,4 +1,4 @@
-# Depends: gtk3 lcms2 libarchive libjpeg-turbo libtiff libxslt
+# Depends: gtk3 lcms2 libarchive libjpeg-turbo libtiff libxslt bfs-spkgbuild-macros
 # description	: libgxps package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

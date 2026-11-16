@@ -1,4 +1,4 @@
-# Depends: cmake rustc
+# Depends: cmake rustc bfs-spkgbuild-macros
 # description	: CMake integration for Rust projects
 # homepage	: https://github.com/corrosion-rs/corrosion
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

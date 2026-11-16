@@ -1,4 +1,4 @@
-# Depends: brotli cmake
+# Depends: brotli cmake bfs-spkgbuild-macros
 # description	: woff2 package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: An abstraction library that comes between applications and audio visualisation plugins.
 # homepage	: http://libvisual.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

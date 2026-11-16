@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: yelp package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

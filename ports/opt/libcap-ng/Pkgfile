@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: POSIX capabilities library
 # homepage	: https://people.redhat.com/sgrubb/libcap-ng/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

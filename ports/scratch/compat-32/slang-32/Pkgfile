@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: S-Lang programmer's library
 # homepage	: http://www.jedsoft.org/slang/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

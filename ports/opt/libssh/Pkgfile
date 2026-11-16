@@ -1,4 +1,4 @@
-# Depends: openssl zlib cmake
+# Depends: openssl zlib cmake bfs-spkgbuild-macros
 # description	: Multiplatform C library implementing the SSHv2 protocol
 # homepage	: https://www.libssh.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

@@ -1,4 +1,4 @@
-# Depends: gtk3 gtk-vnc libvirt libvirt-glib libxml2 spice-gtk spice-protocol vte
+# Depends: gtk3 gtk-vnc libvirt libvirt-glib libxml2 spice-gtk spice-protocol vte bfs-spkgbuild-macros
 # description	: Graphical console client for libvirt virtual machines
 # homepage	: https://virt-manager.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

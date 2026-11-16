@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: GNU database library for C
 # homepage	: https://www.gnu.org/software/gdbm/gdbm.html
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

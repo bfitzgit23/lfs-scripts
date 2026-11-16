@@ -1,4 +1,4 @@
-# Depends: colord gtk3 glib gobject-introspection gtk4 vala
+# Depends: colord gtk3 glib gobject-introspection gtk4 vala bfs-spkgbuild-macros
 # description	: colord-gtk package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

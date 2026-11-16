@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: CDDA extraction tool with jitter correction
 # homepage	: https://xiph.org/paranoia/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

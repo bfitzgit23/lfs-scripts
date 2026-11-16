@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: A small and lightweight implementation of the XDG Sound Theme Specification
 # homepage	: http://0pointer.de/lennart/projects/libcanberra
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

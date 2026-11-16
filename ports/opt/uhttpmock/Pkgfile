@@ -1,4 +1,4 @@
-# Depends: libsoup3 glib vala
+# Depends: libsoup3 glib vala bfs-spkgbuild-macros
 # description	: uhttpmock package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

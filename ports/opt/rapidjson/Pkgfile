@@ -1,4 +1,4 @@
-# Depends: cmake
+# Depends: cmake bfs-spkgbuild-macros
 # description	: Fast JSON parser and generator for C++
 # homepage	: https://github.com/Tencent/rapidjson
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

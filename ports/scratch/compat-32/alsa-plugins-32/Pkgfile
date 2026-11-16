@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: ALSA Plugins contains plugins for various audio libraries and sound servers.
 # homepage	: https://www.alsa-project.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

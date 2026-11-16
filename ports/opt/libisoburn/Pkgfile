@@ -1,4 +1,4 @@
-# Depends: libburn libisofs
+# Depends: libburn libisofs bfs-spkgbuild-macros
 # description	: libisoburn package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 # optional	: tk

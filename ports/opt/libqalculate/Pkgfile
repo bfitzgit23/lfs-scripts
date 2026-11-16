@@ -1,4 +1,4 @@
-# Depends: curl icu libxml2
+# Depends: curl icu libxml2 bfs-spkgbuild-macros
 # description	: The libqalculate package contains a library that provides functions for a multi-purpose calculator.
 # homepage	: https://github.com/Qalculate/libqalculate/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

@@ -1,4 +1,4 @@
-# Depends: dbus gobject-introspection gtk3 libdbusmenu-gtk3 libgnomekbd libx11 python3-gobject vala
+# Depends: dbus gobject-introspection gtk3 libdbusmenu-gtk3 libgnomekbd libx11 python3-gobject vala bfs-spkgbuild-macros
 # description	: Common library for X-Apps project
 # homepage	: https://github.com/linuxmint/xapp
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

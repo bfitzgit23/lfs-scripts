@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Netscape Portable Runtime library
 # homepage	: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSPR
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

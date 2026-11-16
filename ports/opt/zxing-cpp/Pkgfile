@@ -1,4 +1,4 @@
-# Depends: cmake
+# Depends: cmake bfs-spkgbuild-macros
 # description	: C++ barcode image processing library
 # homepage	: https://github.com/zxing-cpp/zxing-cpp
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

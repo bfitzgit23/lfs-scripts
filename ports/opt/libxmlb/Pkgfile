@@ -1,4 +1,4 @@
-# Depends: glib gobject-introspection gtk-doc
+# Depends: glib gobject-introspection gtk-doc bfs-spkgbuild-macros
 # description	: libxmlb package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

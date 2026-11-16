@@ -1,4 +1,4 @@
-# Depends: gsl libxml2 sqlite
+# Depends: gsl libxml2 sqlite bfs-spkgbuild-macros
 # description	: bogofilter package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

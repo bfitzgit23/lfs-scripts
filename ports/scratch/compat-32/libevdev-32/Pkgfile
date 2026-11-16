@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Wrapper library for evdev devices
 # homepage	: https://xorg.freedesktop.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

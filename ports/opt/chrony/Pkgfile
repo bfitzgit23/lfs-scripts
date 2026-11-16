@@ -1,4 +1,4 @@
-# Depends: gnutls libcap libedit libseccomp nettle
+# Depends: gnutls libcap libedit libseccomp nettle bfs-spkgbuild-macros
 # description	: Lightweight NTP client/server used by the BFSOS live environment
 # homepage	: https://chrony-project.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

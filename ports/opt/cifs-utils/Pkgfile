@@ -1,4 +1,4 @@
-# Depends: talloc
+# Depends: talloc bfs-spkgbuild-macros
 # description	: SMB/CIFS client mount helpers and utilities
 # homepage	: https://wiki.samba.org/index.php/LinuxCIFS_utils
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

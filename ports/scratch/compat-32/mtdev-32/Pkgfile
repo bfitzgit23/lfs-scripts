@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Kernel multi-touch transformation library
 # homepage	: https://bitmath.org/code/mtdev/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

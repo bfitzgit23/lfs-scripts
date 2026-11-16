@@ -1,4 +1,4 @@
-# Depends: gtk3 glib gobject-introspection
+# Depends: gtk3 glib gobject-introspection bfs-spkgbuild-macros
 # description	: keybinder-3.0 package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

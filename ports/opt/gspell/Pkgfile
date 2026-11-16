@@ -1,4 +1,4 @@
-# Depends: enchant icu gtk3 glib gobject-introspection vala valgrind
+# Depends: enchant icu gtk3 glib gobject-introspection vala valgrind bfs-spkgbuild-macros
 # description	: gspell package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

@@ -1,4 +1,4 @@
-# Depends: cyrus-sasl glib libjpeg-turbo lz4 openssl opus pixman python3-pyparsing spice-protocol zlib
+# Depends: cyrus-sasl glib libjpeg-turbo lz4 openssl opus pixman python3-pyparsing spice-protocol zlib bfs-spkgbuild-macros
 # description	: SPICE remote display server library
 # homepage	: https://www.spice-space.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

@@ -1,4 +1,4 @@
-# Depends: appstream glib gobject-introspection
+# Depends: appstream glib gobject-introspection bfs-spkgbuild-macros
 # description	: Lightweight AppStream metadata reader for libadwaita
 # homepage	: https://gitlab.gnome.org/GNOME/ministream
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

@@ -1,4 +1,4 @@
-# Depends: glib pipewire linux-pam lua
+# Depends: glib pipewire linux-pam lua bfs-spkgbuild-macros
 # description	: Session and policy manager for PipeWire
 # homepage	: https://pipewire.pages.freedesktop.org/wireplumber/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

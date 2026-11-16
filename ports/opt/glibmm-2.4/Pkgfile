@@ -1,4 +1,4 @@
-# Depends: glib libsigc++2
+# Depends: glib libsigc++2 bfs-spkgbuild-macros
 # description	: C++ interface for GLib, legacy glibmm-2.4 ABI.
 # homepage	: https://www.gtkmm.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

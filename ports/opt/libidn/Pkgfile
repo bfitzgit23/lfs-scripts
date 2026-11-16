@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: libidn package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

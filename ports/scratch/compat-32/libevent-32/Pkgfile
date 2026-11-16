@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Event notification library
 # homepage	: http://www.monkey.org/~provos/libevent/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

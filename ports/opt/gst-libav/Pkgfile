@@ -1,4 +1,4 @@
-# Depends: ffmpeg gst-plugins-base yasm
+# Depends: ffmpeg gst-plugins-base yasm bfs-spkgbuild-macros
 # description	: gst-libav package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

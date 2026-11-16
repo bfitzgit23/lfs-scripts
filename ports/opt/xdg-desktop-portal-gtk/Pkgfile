@@ -1,4 +1,4 @@
-# Depends: gtk3 xdg-desktop-portal gnome-desktop
+# Depends: gtk3 xdg-desktop-portal gnome-desktop bfs-spkgbuild-macros
 # description	: xdg-desktop-portal-gtk package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

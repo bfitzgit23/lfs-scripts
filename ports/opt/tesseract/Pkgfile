@@ -1,4 +1,4 @@
-# Depends: curl leptonica libarchive
+# Depends: curl leptonica libarchive bfs-spkgbuild-macros
 # description	: OCR engine used by KDE Spectacle text recognition
 # homepage	: https://github.com/tesseract-ocr/tesseract
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

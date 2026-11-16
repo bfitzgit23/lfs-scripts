@@ -1,4 +1,4 @@
-# Depends: libevdev libgudev libxml2
+# Depends: libevdev libgudev libxml2 bfs-spkgbuild-macros
 # description	: libwacom package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

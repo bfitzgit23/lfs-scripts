@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Low-latency audio/video router and processor - 32-bit client library
 # homepage	: https://pipewire.org
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

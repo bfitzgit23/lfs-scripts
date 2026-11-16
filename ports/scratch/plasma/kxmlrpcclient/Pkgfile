@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: kxmlrpcclient package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

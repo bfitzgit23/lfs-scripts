@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Graphical editor for the dconf configuration database
 # homepage	: https://apps.gnome.org/DconfEditor/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

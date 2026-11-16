@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: libudev.so.0 compatibility library for systems with newer udev versions
 # homepage	: https://github.com/archlinux/libudev0-shim
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

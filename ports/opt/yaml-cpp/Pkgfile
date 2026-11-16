@@ -1,4 +1,4 @@
-# Depends: cmake
+# Depends: cmake bfs-spkgbuild-macros
 # description	: YAML parser and emitter for C++
 # homepage	: https://github.com/jbeder/yaml-cpp
 # maintainer	: StormFS maintainers

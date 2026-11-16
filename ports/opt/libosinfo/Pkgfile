@@ -1,4 +1,4 @@
-# Depends: glib gobject-introspection libsoup3 libxml2 libxslt vala
+# Depends: glib gobject-introspection libsoup3 libxml2 libxslt vala bfs-spkgbuild-macros
 # description	: Operating-system information database library for virtualization tools
 # homepage	: https://libosinfo.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

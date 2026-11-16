@@ -1,4 +1,4 @@
-# Depends: gdk-pixbuf libwebp
+# Depends: gdk-pixbuf libwebp bfs-spkgbuild-macros
 # description	: webp-pixbuf-loader package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

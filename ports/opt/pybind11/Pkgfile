@@ -1,4 +1,4 @@
-# Depends: cmake python3
+# Depends: cmake python3 bfs-spkgbuild-macros
 # description	: Seamless operability between C++11 and Python
 # homepage	: https://github.com/pybind/pybind11
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

@@ -1,4 +1,4 @@
-# Depends: python3-attrs
+# Depends: python3-attrs bfs-spkgbuild-macros
 # description	: libei package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

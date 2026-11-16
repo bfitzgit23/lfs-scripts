@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Lightweight Directory Access Protocol (LDAP) Toolkit
 # homepage	: https://www.openldap.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

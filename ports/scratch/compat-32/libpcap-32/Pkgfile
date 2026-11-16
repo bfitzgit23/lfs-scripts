@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Packet capture library
 # homepage	: https://www.tcpdump.org
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

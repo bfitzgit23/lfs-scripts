@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: 32-bit Avahi mDNS/DNS-SD compatibility libraries
 # homepage	: https://github.com/avahi/avahi
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

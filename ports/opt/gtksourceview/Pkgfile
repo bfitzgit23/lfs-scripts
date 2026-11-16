@@ -1,4 +1,4 @@
-# Depends: gtk4 pcre2 glib gobject-introspection libxml2 vala valgrind vulkan-loader
+# Depends: gtk4 pcre2 glib gobject-introspection libxml2 vala valgrind vulkan-loader bfs-spkgbuild-macros
 # description	: gtksourceview package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

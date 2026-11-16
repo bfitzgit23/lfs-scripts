@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Mozilla Network Security Services (32-bit ABI libraries)
 # homepage	: https://firefox-source-docs.mozilla.org/security/nss/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

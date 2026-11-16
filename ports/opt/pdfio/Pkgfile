@@ -1,4 +1,4 @@
-# Depends: libpng zlib
+# Depends: libpng zlib bfs-spkgbuild-macros
 # description	: PDF read/write library
 # homepage	: https://www.msweet.org/pdfio/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

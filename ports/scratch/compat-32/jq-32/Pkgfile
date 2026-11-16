@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Lightweight and flexible command-line JSON processor
 # homepage	: https://stedolan.github.io/jq/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

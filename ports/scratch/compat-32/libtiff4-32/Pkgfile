@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Library for manipulation of TIFF (Tag Image File Format) images
 # homepage	: http://www.simplesystems.org/libtiff/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

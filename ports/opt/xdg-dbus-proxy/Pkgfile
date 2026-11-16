@@ -1,4 +1,4 @@
-# Depends: glib
+# Depends: glib bfs-spkgbuild-macros
 # description	: xdg-dbus-proxy package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

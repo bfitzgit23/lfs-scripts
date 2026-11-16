@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: A library for a new image format comparable to JPEG.
 # homepage	: https://developers.google.com/speed/webp/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

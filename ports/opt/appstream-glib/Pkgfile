@@ -1,4 +1,4 @@
-# Depends: curl gdk-pixbuf libarchive
+# Depends: curl gdk-pixbuf libarchive bfs-spkgbuild-macros
 # description	: appstream-glib package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

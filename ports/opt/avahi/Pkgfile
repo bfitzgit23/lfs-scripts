@@ -1,4 +1,4 @@
-# Depends: glib gobject-introspection gtk3 libdaemon
+# Depends: glib gobject-introspection gtk3 libdaemon bfs-spkgbuild-macros
 # description	: Multicast DNS/DNS-SD service discovery stack
 # homepage	: https://github.com/avahi/avahi
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

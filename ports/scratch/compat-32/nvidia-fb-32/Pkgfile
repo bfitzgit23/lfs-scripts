@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: NVIDIA 32-bit userspace libraries matching the production driver
 # homepage	: https://www.nvidia.com/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

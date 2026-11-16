@@ -1,0 +1,99 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -313,6 +313,10 @@
+ 
+ ################# list the subdirectories #################
+ 
++if (QT_QTDECLARATIVE_LIBRARY)
++  add_definitions(-DHAVE_QTDECLARATIVE)
++endif (QT_QTDECLARATIVE_LIBRARY)
++
+ add_subdirectory( cmake )
+ add_subdirectory( kdecore )
+ add_subdirectory( kdeui )
+--- a/experimental/CMakeLists.txt
++++ b/experimental/CMakeLists.txt
+@@ -22,4 +22,6 @@
+ endif(BUILDING_EXPERIMENTAL_SEPARATELY)
+ 
+ 
+-add_subdirectory(libkdeclarative)
++if (QT_QTDECLARATIVE_LIBRARY AND QT_QTSCRIPT_LIBRARY)
++   add_subdirectory(libkdeclarative)
++endif (QT_QTDECLARATIVE_LIBRARY AND QT_QTSCRIPT_LIBRARY)
+--- a/plasma/CMakeLists.txt
++++ b/plasma/CMakeLists.txt
+@@ -273,6 +273,19 @@
+         widgets/videowidget.cpp)
+ endif(PHONON_FOUND)
+ 
++if (NOT QT_QTDECLARATIVE_LIBRARY OR NOT QT_QTSCRIPT_LIBRARY)
++    list(REMOVE_ITEM plasma_LIB_SRCS
++        ${CMAKE_SOURCE_DIR}/experimental/libkdeclarative/kdeclarative.cpp
++        ${CMAKE_SOURCE_DIR}/experimental/libkdeclarative/private/engineaccess.cpp
++        ${CMAKE_SOURCE_DIR}/experimental/libkdeclarative/private/kiconprovider.cpp
++        ${CMAKE_SOURCE_DIR}/experimental/libkdeclarative/bindings/qscriptnonguibookkeeping.cpp
++        ${CMAKE_SOURCE_DIR}/experimental/libkdeclarative/bindings/i18n.cpp
++        ${CMAKE_SOURCE_DIR}/experimental/libkdeclarative/bindings/icon.cpp
++        ${CMAKE_SOURCE_DIR}/experimental/libkdeclarative/bindings/url.cpp
++        private/declarative/declarativenetworkaccessmanagerfactory.cpp
++        widgets/declarativewidget.cpp)
++endif (NOT QT_QTDECLARATIVE_LIBRARY OR NOT QT_QTSCRIPT_LIBRARY)
++
+ kde4_add_library(plasma ${LIBRARY_TYPE} ${plasma_LIB_SRCS})
+ 
+ target_link_libraries(plasma ${QT_QTUITOOLS_LIBRARY} ${QT_QTWEBKIT_LIBRARY}
+--- a/plasma/popupapplet.cpp
++++ b/plasma/popupapplet.cpp
+@@ -27,7 +27,9 @@
+ #include <QGraphicsLinearLayout>
+ #include <QTimer>
+ #include <QVBoxLayout>
++#ifdef HAVE_QTDECLARATIVE
+ #include <QDeclarativeItem>
++#endif
+ 
+ #ifdef Q_WS_X11
+ #include <QX11Info>
+@@ -243,13 +245,17 @@
+ 
+         //99% of the times q->parentWidget() is the containment, but using it  we can also manage the applet-in-applet case (i.e. systray)
+         //there are also cases where the parentlayoutitem is bigger than the containment (e.g. newspaper)
++#ifdef HAVE_QTDECLARATIVE
+         QDeclarativeItem *di = qobject_cast<QDeclarativeItem *>(q->parentObject());
++#endif
+         if (q->parentLayoutItem()) {
+             parentSize = q->parentLayoutItem()->geometry().size();
+         } else if (q->parentWidget()) {
+             parentSize = q->parentWidget()->size();
++#ifdef HAVE_QTDECLARATIVE
+         } else if (di) {
+             parentSize = QSizeF(di->width(), di->height());
++#endif
+         }
+ 
+         //check if someone did the nasty trick of applets in applets, in this case we always want to be collapsed
+--- a/plasma/private/packages.cpp
++++ b/plasma/private/packages.cpp
+@@ -34,7 +34,9 @@
+ #include <knewstuff3/downloaddialog.h>
+ #endif
+ 
++#ifdef HAVE_QTDECLARATIVE
+ #include "kdeclarative.h"
++#endif
+ 
+ #include "private/wallpaper_p.h"
+ 
+@@ -44,7 +46,10 @@
+ PlasmoidPackage::PlasmoidPackage(QObject *parent)
+     : Plasma::PackageStructure(parent, QString("Plasmoid"))
+ {
+-    QStringList platform = KDeclarative::runtimePlatform();
++    QStringList platform;
++#ifdef HAVE_QTDECLARATIVE
++    platform = KDeclarative::runtimePlatform();
++#endif
+     if (!platform.isEmpty()) {
+         QMutableStringListIterator it(platform);
+         while (it.hasNext()) {

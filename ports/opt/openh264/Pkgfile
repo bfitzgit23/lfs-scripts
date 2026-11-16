@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Cisco OpenH264 codec
 # homepage	: https://github.com/cisco/openh264
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

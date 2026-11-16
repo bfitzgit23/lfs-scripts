@@ -1,4 +1,4 @@
-# Depends: cmake gpgme
+# Depends: cmake gpgme bfs-spkgbuild-macros
 # description	: C++ bindings for GPGME
 # homepage	: https://www.gnupg.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

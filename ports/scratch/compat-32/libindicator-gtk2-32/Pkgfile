@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Set of symbols and convenience functions for Ayatana indicators (GTK+ 2 library) 32bit
 # homepage	: https://launchpad.net/libindicator
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

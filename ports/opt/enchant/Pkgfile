@@ -1,4 +1,4 @@
-# Depends: glib aspell
+# Depends: glib aspell bfs-spkgbuild-macros
 # description	: enchant package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

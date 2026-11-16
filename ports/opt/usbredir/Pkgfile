@@ -1,4 +1,4 @@
-# Depends: glib libusb
+# Depends: glib libusb bfs-spkgbuild-macros
 # description	: USB traffic redirection library for virtualization
 # homepage	: https://gitlab.freedesktop.org/spice/usbredir
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

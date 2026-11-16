@@ -1,4 +1,4 @@
-# Depends: python3-certifi python3-urllib3
+# Depends: python3-certifi python3-urllib3 bfs-spkgbuild-macros
 # description	: sentry_sdk package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

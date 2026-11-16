@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: A library that handles input devices for display servers
 # homepage	: https://wayland.freedesktop.org/libinput/doc/latest/index.html
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

@@ -1,4 +1,4 @@
-# Depends: libevent libnl libtirpc libxml2 rpcbind rpcsvc-proto
+# Depends: libevent libnl libtirpc libxml2 rpcbind rpcsvc-proto bfs-spkgbuild-macros
 # description	: NFS client/server userspace utilities
 # homepage	: https://linux-nfs.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

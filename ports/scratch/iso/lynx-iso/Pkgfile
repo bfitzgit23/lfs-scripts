@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Minimal HTTPS-capable Lynx text browser for BFSOS live media
 # homepage	: https://lynx.invisible-island.net/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

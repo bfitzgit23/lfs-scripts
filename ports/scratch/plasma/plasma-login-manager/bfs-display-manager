@@ -1,0 +1,72 @@
+#!/bin/sh
+set -eu
+
+state_dir=/etc/bfsos
+state_file=$state_dir/display-manager
+
+usage() {
+    cat <<'USAGE'
+Usage: bfs-display-manager {sddm|plasmalogin|status}
+
+Select exactly one BFSOS graphical display manager without uninstalling the
+other package. "plasmalogin" selects KDE Plasma Login Manager.
+USAGE
+}
+
+unit_exists() {
+    [ -x "/etc/init.d/$1" ]
+}
+
+status() {
+    selected=$(cat "$state_file" 2>/dev/null || printf '%s' 'unselected')
+    printf 'Selected BFSOS display manager: %s\n' "$selected"
+    for unit in sddm plasmalogin; do
+        if [ -e "/etc/runlevels/default/$unit" ]; then
+            state=enabled
+        else
+            state=disabled
+        fi
+        printf '%-24s %s\n' "$unit" "$state"
+    done
+}
+
+[ "$#" -eq 1 ] || { usage >&2; exit 2; }
+case "$1" in
+    status)
+        status
+        exit 0
+        ;;
+    sddm)
+        selected=sddm
+        unit=sddm
+        other=plasmalogin
+        ;;
+    plasmalogin)
+        selected=plasmalogin
+        unit=plasmalogin
+        other=sddm
+        ;;
+    *)
+        usage >&2
+        exit 2
+        ;;
+esac
+
+unit_exists "$unit" || {
+    echo "Cannot select $selected: /etc/init.d/$unit is not installed." >&2
+    exit 1
+}
+
+mkdir -p "$state_dir"
+printf '%s\n' "$selected" > "$state_file.tmp.$$"
+mv -f "$state_file.tmp.$$" "$state_file"
+
+if command -v rc-update >/dev/null 2>&1; then
+    if unit_exists "$other"; then
+        rc-update del "$other" default >/dev/null 2>&1 || true
+    fi
+    rm -f /etc/runlevels/default/display-manager 2>/dev/null || true
+    rc-update add "$unit" default
+fi
+
+printf 'BFSOS display manager selected: %s (%s)\n' "$selected" "$unit"

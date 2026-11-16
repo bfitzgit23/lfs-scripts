@@ -1,4 +1,4 @@
-# Depends: gobject-introspection cairo cyrus-sasl gdk-pixbuf glib gtk3 gstreamer gst-plugins-base gst-plugins-good json-glib libcap-ng libepoxy libjpeg-turbo libusb lz4 openssl opus pixman polkit python3-pyparsing python3-six spice-protocol usbredir wayland wayland-protocols zlib
+# Depends: gobject-introspection cairo cyrus-sasl gdk-pixbuf glib gtk3 gstreamer gst-plugins-base gst-plugins-good json-glib libcap-ng libepoxy libjpeg-turbo libusb lz4 openssl opus pixman polkit python3-pyparsing python3-six spice-protocol usbredir wayland wayland-protocols zlib bfs-spkgbuild-macros
 # description	: GTK3 SPICE client library and widget
 # homepage	: https://www.spice-space.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

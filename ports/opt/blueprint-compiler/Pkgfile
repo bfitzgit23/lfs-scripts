@@ -1,4 +1,4 @@
-# Depends: python3-gobject
+# Depends: python3-gobject bfs-spkgbuild-macros
 # description	: Compiler for the Blueprint GTK interface definition language
 # homepage	: https://gitlab.gnome.org/GNOME/blueprint-compiler
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

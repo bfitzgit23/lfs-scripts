@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Library for Neighbor Discovery Protocol
 # homepage	: http://libndp.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

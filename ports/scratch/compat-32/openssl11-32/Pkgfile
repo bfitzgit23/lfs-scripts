@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Secure Sockets Layer and Transport Layer Security tools
 # homepage	: https://www.openssl.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

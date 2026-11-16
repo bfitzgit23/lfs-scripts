@@ -1,4 +1,4 @@
-# Depends: cmake
+# Depends: cmake bfs-spkgbuild-macros
 # description	: faad2 package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

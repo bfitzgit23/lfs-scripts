@@ -1,4 +1,4 @@
-# Depends: dbus glib python3-meson_python patchelf
+# Depends: dbus glib python3-meson_python patchelf bfs-spkgbuild-macros
 # description	: dbus-python package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

@@ -1,4 +1,4 @@
-# Depends: libvirt python3
+# Depends: libvirt python3 bfs-spkgbuild-macros
 # description	: Python bindings for libvirt
 # homepage	: https://libvirt.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

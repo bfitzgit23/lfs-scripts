@@ -1,4 +1,4 @@
-# Depends: gnutls gtk3 libgcrypt glib gobject-introspection vala
+# Depends: gnutls gtk3 libgcrypt glib gobject-introspection vala bfs-spkgbuild-macros
 # description	: gtk-vnc package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

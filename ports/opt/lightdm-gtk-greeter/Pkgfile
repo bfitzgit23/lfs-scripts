@@ -1,4 +1,4 @@
-# Depends: lightdm gtk3 exo intltool libxklavier
+# Depends: lightdm gtk3 exo intltool libxklavier bfs-spkgbuild-macros
 # description	: GTK3 greeter for the LightDM display manager
 # homepage	: https://github.com/Xubuntu/lightdm-gtk-greeter
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

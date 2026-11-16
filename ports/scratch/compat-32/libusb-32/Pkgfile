@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Library giving userland programs access to USB devices
 # homepage	: https://libusb.info/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

@@ -1,4 +1,4 @@
-# Depends: json-glib libsoup3 avahi libnotify modemmanager vala
+# Depends: json-glib libsoup3 avahi libnotify modemmanager vala bfs-spkgbuild-macros
 # description	: geoclue package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

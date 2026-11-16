@@ -1,4 +1,4 @@
-# Depends: glib gobject-introspection libvirt libxml2 vala
+# Depends: glib gobject-introspection libvirt libxml2 vala bfs-spkgbuild-macros
 # description	: GLib and GObject bindings for libvirt
 # homepage	: https://libvirt.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

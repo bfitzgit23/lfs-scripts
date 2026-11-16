@@ -1,4 +1,4 @@
-# Depends: cups glib ghostscript lcms2 poppler qpdf libexif libjpeg-turbo libjxl libpng libtiff mupdf pdfio
+# Depends: cups glib ghostscript lcms2 poppler qpdf libexif libjpeg-turbo libjxl libpng libtiff mupdf pdfio bfs-spkgbuild-macros
 # description	: libcupsfilters package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

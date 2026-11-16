@@ -1,4 +1,4 @@
-# Depends: brotli cmake giflib highway lcms2 libjpeg-turbo libpng gdk-pixbuf
+# Depends: brotli cmake giflib highway lcms2 libjpeg-turbo libpng gdk-pixbuf bfs-spkgbuild-macros
 # description	: libjxl package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

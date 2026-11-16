@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: Minimal NetworkManager daemon plus nmcli/nmtui for BFSOS live media
 # homepage	: https://networkmanager.dev/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

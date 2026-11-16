@@ -1,4 +1,4 @@
-# Depends: cmake
+# Depends: cmake bfs-spkgbuild-macros
 # description	: abseil-cpp package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

@@ -1,4 +1,4 @@
-# Depends: libjpeg-turbo lcms2
+# Depends: libjpeg-turbo lcms2 bfs-spkgbuild-macros
 # description	: libmng package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

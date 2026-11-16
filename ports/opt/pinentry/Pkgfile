@@ -1,4 +1,4 @@
-# Depends: libassuan libgpg-error
+# Depends: libassuan libgpg-error bfs-spkgbuild-macros
 # description	: pinentry package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

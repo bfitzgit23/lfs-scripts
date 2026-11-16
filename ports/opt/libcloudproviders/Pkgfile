@@ -1,4 +1,4 @@
-# Depends: glib gobject-introspection vala
+# Depends: glib gobject-introspection vala bfs-spkgbuild-macros
 # description	: libcloudproviders package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

@@ -1,4 +1,4 @@
-# Depends: alsa-lib alsa-ucm-conf bluez gstreamer gst-plugins-base pulseaudio sbc v4l-utils
+# Depends: alsa-lib alsa-ucm-conf bluez gstreamer gst-plugins-base pulseaudio sbc v4l-utils bfs-spkgbuild-macros
 # description	: Server and userspace API for handling audio and video multimedia pipelines
 # homepage	: https://pipewire.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

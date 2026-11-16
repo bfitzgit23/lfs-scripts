@@ -1,4 +1,4 @@
-# Depends: fuse gdk-pixbuf json-glib pipewire dbus bubblewrap
+# Depends: fuse gdk-pixbuf json-glib pipewire dbus bubblewrap bfs-spkgbuild-macros
 # description	: Desktop integration portal for Flatpak and other sandboxed applications
 # homepage	: https://github.com/flatpak/xdg-desktop-portal
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

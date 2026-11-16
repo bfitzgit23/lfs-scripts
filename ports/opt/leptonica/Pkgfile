@@ -1,4 +1,4 @@
-# Depends: giflib libjpeg-turbo libpng libtiff libwebp openjpeg2
+# Depends: giflib libjpeg-turbo libpng libtiff libwebp openjpeg2 bfs-spkgbuild-macros
 # description	: Image processing library required by Tesseract OCR
 # homepage	: http://www.leptonica.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

@@ -1,4 +1,4 @@
-# Depends: wayland pango dbus
+# Depends: wayland pango dbus bfs-spkgbuild-macros
 # description	: libdecor package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

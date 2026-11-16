@@ -1,4 +1,4 @@
-# Depends: boost valgrind
+# Depends: boost valgrind bfs-spkgbuild-macros
 # description	: exempi package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

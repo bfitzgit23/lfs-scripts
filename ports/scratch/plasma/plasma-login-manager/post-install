@@ -1,0 +1,17 @@
+#!/bin/sh
+set -eu
+
+# These are the paths represented by the upstream systemd-sysusers and
+# systemd-tmpfiles files. OpenRC service startup recreates /run on boot.
+install -d -m 0750 -o plasmalogin -g plasmalogin /var/lib/plasmalogin
+install -d -m 0755 -o root -g root /run/plasmalogin
+install -d -m 0700 -o plasmalogin -g plasmalogin /run/plasmalogin/greeter
+
+# The daemon's standard logger writes here when it is not attached to a tty.
+touch /var/log/plasmalogin.log
+chown plasmalogin:plasmalogin /var/log/plasmalogin.log
+chmod 0640 /var/log/plasmalogin.log
+
+# Installation is deliberately non-disruptive. Service activation belongs to
+# an explicit installer/administrator bfs-display-manager selection, never a
+# package post-install/update hook.

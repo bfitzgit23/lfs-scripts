@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: XAudio2 reimplementation
 # homepage	: https://github.com/FNA-XNA/FAudio/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

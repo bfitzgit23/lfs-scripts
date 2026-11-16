@@ -1,3 +1,4 @@
+# Depends: bfs-spkgbuild-macros
 # description	: SPICE protocol headers
 # homepage	: https://www.spice-space.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

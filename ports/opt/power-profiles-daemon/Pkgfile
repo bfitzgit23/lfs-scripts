@@ -1,4 +1,4 @@
-# Depends: polkit python3-gobject upower
+# Depends: polkit python3-gobject upower bfs-spkgbuild-macros
 # description	: power-profiles-daemon package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 # optional	: gtk-doc dbusmock umockdev

@@ -1,4 +1,4 @@
-# Depends: libgudev libpcap vala
+# Depends: libgudev libpcap vala bfs-spkgbuild-macros
 # description	: umockdev package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

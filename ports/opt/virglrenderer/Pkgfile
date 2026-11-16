@@ -1,4 +1,4 @@
-# Depends: libdrm libepoxy mesa
+# Depends: libdrm libepoxy mesa bfs-spkgbuild-macros
 # description	: VirGL virtual OpenGL/Vulkan renderer
 # homepage	: https://gitlab.freedesktop.org/virgl/virglrenderer
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
