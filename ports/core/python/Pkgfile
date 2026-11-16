@@ -2,6 +2,7 @@ name=python
 version=3.14.7
 release=1
 source=(https://www.$name.org/ftp/$name/$version/Python-$version.tar.xz
+	Python-3.14.7-openssl_4-1.patch
 	pyconfig.h)
 build_opt="--without-ensurepip
 	--enable-shared
@@ -12,6 +13,15 @@ build_opt="--without-ensurepip
 bootstrap_opt="--without-ensurepip"
 
 pre_build() {
+	# OpenSSL 4.0 removed SSLv3_method()/TLSv1_method()/TLSv1_1_method()/
+	# TLSv1_2_method(), made ASN1_STRING opaque and constified several X509
+	# accessors, so Modules/_ssl.c in 3.14.7 no longer compiles against it.
+	# This is the LFS 13.1 backport of the upstream fixes ("openssl_4"), and it
+	# goes in before the tests are removed because it also patches
+	# Lib/test/test_ssl.py. -N makes a resume over an already patched tree a
+	# no-op instead of a failure.
+	patch -Np1 -i $PKGMK_SOURCE_DIR/Python-3.14.7-openssl_4-1.patch
+
 	# Remove tests
 	rm -rvf Lib/test Lib/*/test Lib/*/tests Lib/*/idle_test
 }

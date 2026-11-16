@@ -1,0 +1,3 @@
+# A patch with CRLF line endings does not apply inside the build.
+*.patch -text
+*.diff  -text

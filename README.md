@@ -742,3 +742,28 @@ Two details worth knowing:
 - `build_opt` no longer passes `--without-librtmp`: RTMP support was removed
   from curl, so the option no longer exists in `configure` (autoconf would only
   warn, but it is dead weight).
+
+### python needs the LFS "openssl_4" backport for `_ssl`
+
+`ports/core/python` builds `_ssl` in the base system, where openssl 4.0.1 comes
+first in the package order. Python 3.14.7 still declares and calls
+
+```c
+SSLv3_method(); TLSv1_method(); TLSv1_1_method(); TLSv1_2_method();
+```
+
+under `OPENSSL_NO_SSL3_METHOD` / `OPENSSL_NO_TLS1_1_METHOD` guards, and OpenSSL
+4.0 removed those functions outright, so the module cannot compile.
+`Python-3.14.7-openssl_4-1.patch` (the LFS 13.1 backport, upstream status
+"Applied") is now in `source=` and applied in `pre_build()`, before the tests
+are deleted, because it also touches `Lib/test/test_ssl.py`.
+
+It was verified by applying it to a fresh `Python-3.14.7.tar.xz`:
+`patch -Np1 -i …` exits 0 with no `.rej`, every hunk landing with offsets of a
+few lines. A `patch --dry-run` is misleading for this file: it contains five
+sequential diffs against the same files, and in dry-run mode later diffs are
+compared with the unmodified file, so they report false failures.
+
+`.gitattributes` pins `*.patch`/`*.diff` to `-text`: this repo is developed on
+Windows with `core.autocrlf=true`, and a CRLF-rewritten patch would not apply
+inside the build.
