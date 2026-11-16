@@ -589,6 +589,23 @@ Swept all `ports/**/Pkgfile` for the three ways that policy can be defeated:
 | `CFLAGS=`/`CXXFLAGS=` that drop the inherited value | 13 | only `ports/core/bc` was in a stage-1/2 set; fixed to append `-std=gnu99` instead of replacing with `-std=c99` |
 | `-std=` forced by a recipe | 16 | bc (fixed), cdrtools `-std=gnu89`, texlive `-std=gnu17`, protobuf-c and the KDE4/Qt ports `-std=c++*`; none of these is in stage 1/2 |
 
+### The one package that must *not* be built as C17: gcc itself
+
+`ports/core/gcc/Pkgfile` strips `-std=` from `CFLAGS`/`CXXFLAGS` before it
+builds (`gcc_default_std`), keeping `-O2` and `-Wno-error`. gcc 16's own tree is
+written for the standard the compiler defaults to: `gcc/config/i386/i386.h:1723`
+declares `bool preserve_none_abi;` without including `<stdbool.h>`, which only
+compiles where `bool` is a keyword (C23). With `-std=gnu17` the target libgcc
+fails in stage 1:
+
+```
+i386.h:1723:3: error: unknown type name 'bool'
+```
+
+Dropping the override rather than adding `-include stdbool.h` is deliberate: it
+also restores any other C23 feature gcc's sources rely on, and it works with
+older host compilers (which simply default to an older standard).
+
 Re-run the sweep after bumping versions:
 
 ```sh

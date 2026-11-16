@@ -7,7 +7,20 @@ source=(https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/gcc-16.2.0.tar.xz
 keep_static=1
 keep_libtool=1
 
+# gcc's own tree is written for whatever standard the compiler defaults to:
+# gcc/config/i386/i386.h uses `bool` without including <stdbool.h>, which only
+# works in C23 (bool is a keyword there). The bootstrap CFLAGS force -std=gnu17
+# because gmp/libxcrypt predate C23, and that makes libgcc fail with
+# "unknown type name 'bool'". Keep -O2 and -Wno-error, drop the -std override
+# so gcc is built with its own default standard.
+gcc_default_std() {
+	CFLAGS=$(printf '%s' "$CFLAGS" | sed -e 's/-std=[^[:space:]]*//g')
+	CXXFLAGS=$(printf '%s' "$CXXFLAGS" | sed -e 's/-std=[^[:space:]]*//g')
+	export CFLAGS CXXFLAGS
+}
+
 bootstrap_build() {
+	gcc_default_std
 	if [ "$tcpkg" = gcc-pass1 ]; then
 		for file in gcc/config/linux.h gcc/config/i386/linux.h gcc/config/i386/linux64.h
 		do
@@ -133,6 +146,7 @@ bootstrap_build() {
 }
 
 pkg_build() {
+	gcc_default_std
 	# /lib is 64bit libraries directory
 	sed -e '/m64=/s/lib64/lib/' \
 	    -i.orig gcc/config/i386/t-linux64
