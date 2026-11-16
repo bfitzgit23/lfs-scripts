@@ -171,7 +171,7 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 			*" $i "*)
 				echo "    (host toolchain: $HOSTCC, CFLAGS=$hostcflags)"
 				if [ -n "$HOSTCXX" ]; then
-					$runclean PATH="$HOSTPATH" CC="$HOSTCC" CXX="$HOSTCXX" CFLAGS="$hostcflags" ="$hostcflags" 						"$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
+					$runclean PATH="$HOSTPATH" CC="$HOSTCC" CXX="$HOSTCXX" CFLAGS="$hostcflags" CXXFLAGS="$hostcflags" 						"$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
 				else
 					$runclean PATH="$HOSTPATH" CC="$HOSTCC" CFLAGS="$hostcflags" "$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
 				fi
