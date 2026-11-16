@@ -673,3 +673,46 @@ libzstd there; `readline`, `_sqlite3`, `_ssl` and `_ctypes` are honestly
 not found and skipped, and are built properly in the base system, where the
 full order applies. The same leak would have hit every later stage 1 package
 that uses pkg-config (openssl, curl, libarchive).
+
+### ncurses headers stay out of `$TOOLS/include`
+
+ncurses' `configure` decides where headers go with
+
+```sh
+if test "$prefix" = "/usr" ; then with_overwrite=yes; else with_overwrite=no; fi
+...
+includesubdir=
+if test "$with_overwrite" = no && test "x$includedir" = 'x${prefix}/include'; then
+	includesubdir="/ncurses"
+fi
+```
+
+So a stage 1 build with `--prefix=$TOOLS` puts them in `$TOOLS/include/ncurses/`
+unless `--enable-overwrite` is passed, while the `/usr` build puts them straight
+into `/usr/include` (which is why the port's footprint looks normal either way).
+
+That is what broke python's `_curses`:
+
+```
+./Modules/_cursesmodule.c:3777:37: error: implicit declaration of function 'setupterm'
+```
+
+`_cursesmodule.c` uses `setupterm()` unconditionally but includes `<term.h>` —
+which declares it — only under `#ifdef HAVE_TERM_H`, and python's configure sets
+that with `AC_CHECK_HEADERS([term.h], [], [], _CURSES_INCLUDES)`, a bare
+`term.h` lookup. With the header one level too deep the check failed, and
+python's `-Werror=implicit-function-declaration` turned the call into an error.
+
+`ports/core/ncurses` had a `bootstrap_build` in all but name: the function was
+called `bootstrap_pkg`, so `files/pkgmk.bootstrap` never called it and stage 1
+used the generic recipe. It is now `bootstrap_build`, which passes
+`--enable-overwrite` (plus `--enable-widec`, so `libncursesw` exists and python's
+`ncursesw` probe succeeds) and creates the `$TOOLS/lib/libncurses.so` symlink.
+
+Rebuilding ncurses into an existing `$TOOLS` requires dropping its markers:
+
+```sh
+rm -f  /tmp/lfs-tools/ncurses                                  # skip marker
+sed -i '/^ncurses$/d' /tmp/lfs-rootfs/var/lib/lfs-scripts/stage1.done
+rm -rf /tmp/lfs-tools/include/ncurses                           # stale headers
+```

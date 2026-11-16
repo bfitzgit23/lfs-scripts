@@ -10,7 +10,15 @@ build_opt="--without-debug
 	--enable-widec
 	--with-pkg-config-libdir=/usr/lib/pkgconfig"
 
-bootstrap_pkg() {
+# The bootstrap hook is bootstrap_build; this function used to be called
+# bootstrap_pkg, so it never ran and stage 1 fell back to a plain
+# `./configure --prefix=$TOOLS`. That matters: ncurses' configure sets
+# with_overwrite=yes only for --prefix=/usr, otherwise includesubdir=/ncurses,
+# so the headers land in $TOOLS/include/ncurses/ instead of $TOOLS/include/.
+# python then cannot find term.h (its AC_CHECK_HEADERS uses a bare <term.h>),
+# leaves HAVE_TERM_H undefined, and setupterm() becomes an implicit declaration
+# that python's own -Werror=implicit-function-declaration rejects.
+bootstrap_build() {
 	sed -i s/mawk// configure
 	
 	./configure \
