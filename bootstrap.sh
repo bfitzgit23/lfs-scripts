@@ -158,6 +158,25 @@ Log: $log"
     fi
 }
 
+# ---------------------------------------------------------------- status ----
+status_report() {
+    state="${LFS:-/tmp/lfs-rootfs}/var/lib/lfs-scripts"
+    if [ ! -d "$state" ]; then
+        echo "no build state yet ($state does not exist)"
+        return 0
+    fi
+    for n in 1 2 3; do
+        if [ -f "$state/stage$n.complete" ]; then
+            echo "stage $n: complete ($(cat "$state/stage$n.complete"))"
+        elif [ -f "$state/stage$n.failed" ]; then
+            echo "stage $n: last attempt stopped at $(cat "$state/stage$n.failed")"
+        else
+            echo "stage $n: not finished"
+        fi
+        [ -s "$state/stage$n.done" ] && echo "         $(wc -l < "$state/stage$n.done" | tr -d ' ') package(s) recorded"
+    done
+}
+
 resume_stage() {
     state="${LFS:-/tmp/lfs-rootfs}/var/lib/lfs-scripts"
     if [ ! -f "$state/stage1.complete" ]; then
@@ -228,6 +247,7 @@ Usage: $0 [option]
   --settings      edit settings and save them to bootstrap.conf
   --text          skip the dialog menu and prompt in plain text
   --resume        rerun the stage that last failed, skipping finished packages
+  --status        show what the recorded build state says about each stage
   --help          this message
 
 Settings come from the environment, then bootstrap.conf:
@@ -240,6 +260,9 @@ case ${1:-} in
         detect_dialog
         DIALOG_BIN=""
         run_stage "$1" "stage $1"
+        ;;
+    --status)
+        status_report
         ;;
     --resume)
         detect_dialog

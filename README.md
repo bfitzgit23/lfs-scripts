@@ -543,3 +543,25 @@ packages built before the failure are still there when you resume. Delete
 but includes neither `<limits.h>` nor any header that reaches it, and glibc 2.44
 no longer provides it transitively. `ports/core/binutils/path_max.patch` adds
 the include with a `4096` fallback, and the port applies it before configuring.
+
+### libxcrypt: `initialization discards 'const' qualifier`
+
+libxcrypt 4.5.2 compiles with `-Werror`, and its
+
+```c
+char *hptr = strchr ((const char *) intbuf->retval + 3, '$');
+```
+
+is fine in C17 but not in C23, where `strchr` returns `const char *` for a const
+argument. gcc 15+ defaults to C23, so stage 1 now builds every package with
+`CFLAGS="-O2 -std=gnu17 -Wno-error"`, and the base system's `pkgmk.conf` uses
+the same policy (`-std=gnu17 -Wno-error`). The C17 flag is the actual fix; the
+`-Wno-error` is belt and braces for other packages that ship `-Werror`.
+
+### Where resume state lives, and /tmp
+
+State is under `$LFS/var/lib/lfs-scripts`. The default `LFS` is
+`/tmp/lfs-rootfs`, and on many systems (Gentoo included) `/tmp` is tmpfs, so a
+reboot wipes both the toolchain and the record of what was built — nothing can
+be resumed across a reboot in that case. Put `LFS` on a real filesystem if you
+want resume to survive one. `./bootstrap.sh --status` prints the current state.

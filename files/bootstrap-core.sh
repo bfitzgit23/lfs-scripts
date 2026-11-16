@@ -141,6 +141,13 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 	# no working cross compiler yet. $TOOLS/bin is first on PATH, and pass 1
 	# binutils has just filled it, so the host gcc would pick up those as/ld.
 	# Build these packages with the host toolchain and only the host PATH.
+
+	# The toolchain sources predate C23. gcc 15 and later default to -std=gnu23,
+	# where e.g. strchr() returns a const pointer, and a package that compiles
+	# with -Werror (libxcrypt) then fails on its own code. Build as C17 and do
+	# not turn warnings into errors for the bootstrap.
+	export CFLAGS="-O2 -std=gnu17 -Wno-error"
+	export CXXFLAGS="$CFLAGS"
 	hostnative="binutils-pass1 gmp mpfr mpc gcc-pass1"
 	HOSTPATH=$(printf '%s' "$PATH" | sed -e "s|$TOOLS/bin:||g" -e "s|:$TOOLS/bin||g")
 	HOSTCC=$(PATH="$HOSTPATH" command -v gcc 2>/dev/null || PATH="$HOSTPATH" command -v cc 2>/dev/null || true)
@@ -164,7 +171,7 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 	# list means "(void)", so that probe stops compiling and gmp reports
 	# "could not find a working compiler". These sources predate C23; build
 	# the pre-toolchain packages as C17.
-	hostcflags="-O2 -std=gnu17"
+	hostcflags="$CFLAGS"
 
 	# Prove the host compiler works before spending time on binutils, and say
 	# what it said if it does not.
@@ -188,6 +195,28 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 	rm -rf "$_ctmp"
 	echo "stage 1: host compiler works"
 	_state_summary 1
+	case "$LFS" in
+		/tmp/*)
+			echo "note: $LFS is under /tmp; if /tmp is cleared at boot the"
+			echo "      toolchain and this resume state are lost with it"
+			;;
+	esac
+
+	if [ -f "$(_state_dir)/stage1.complete" ]; then
+		echo "stage 1: already complete, nothing to do"
+		echo "         delete $(_state_dir) to rebuild the toolchain from scratch"
+		return 0
+	fi
+
+
+	_todo=""
+	for i in $toolchainpkg; do
+		if [ -f "$TOOLS/$i" ] || _state_has 1 "$i"; then
+			continue
+		fi
+		_todo="$_todo $i"
+	done
+	echo "stage 1: packages still to build:${_todo:- none}"
 
 	n=0
 	built=0
@@ -314,6 +343,12 @@ _buildbase() {
 	[ "$1" = rebuild ] && _bstage=3
 	_state_summary $_bstage
 
+	if [ -f "$(_state_dir)/stage$_bstage.complete" ]; then
+		echo "stage $_bstage: already complete, nothing to do"
+		echo "         delete $(_state_dir) to rebuild from scratch"
+		return 0
+	fi
+
 	if [ ! -f $LFS/var/lib/pkg/db ]; then
 		#mknod -m 600 $LFS/dev/console c 5 1 || true
 		#mknod -m 666 $LFS/dev/null c 1 3 || true
@@ -343,7 +378,7 @@ _buildbase() {
 	mkdir -p $LFS/var/lib/pkgmk
 	cp ports/core/pkgutils/extension $LFS/var/lib/pkgmk
 	echo "
-export CFLAGS=\"-O2 -march=x86-64 -pipe -std=gnu17\"
+export CFLAGS=\"-O2 -march=x86-64 -pipe -std=gnu17 -Wno-error\"
 export CXXFLAGS=\"${CFLAGS}\"
 
 export JOBS=$(nproc)
