@@ -629,3 +629,17 @@ Both gettext builds now pass `--without-emacs` (gettext-tools/configure.ac's
 documented switch, which sets `EMACS=no`), so the byte-compile and
 `install-lispLISP` rules become unconditional no-ops. po-mode is a developer
 convenience, not something a bootstrap or a base system needs.
+
+### python needs zlib in the temporary toolchain
+
+`python` is built in stage 1 as well as in the base system, but the temporary
+toolchain originally had no `zlib`, so python stopped at:
+
+```
+fatal error: zlib.h: No such file or directory
+```
+
+`zlib` is now in `toolchainpkg`, immediately before `python` (the stage 1 loop
+builds in list order). Its port has no `bootstrap_build`, so the generic
+recipe configures it with `--prefix=$TOOLS` and the header lands in
+`$TOOLS/include/zlib.h`, where the stage 1 compiler looks.
