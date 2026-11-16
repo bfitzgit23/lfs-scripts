@@ -113,6 +113,33 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 	fi
 	echo "stage 1: host compiler $HOSTCC"
 	echo "stage 1: host PATH $HOSTPATH"
+	echo "stage 1: assembler $(command -v as || echo MISSING), linker $(command -v ld || echo MISSING)"
+
+	# Anything the caller exported leaks into every configure probe, and gmp
+	# reports a polluted environment as "could not find a working compiler".
+	runclean="env -u CFLAGS -u CXXFLAGS -u CPPFLAGS -u LDFLAGS -u CC -u CXX -u CPP -u LD"
+
+	# Prove the host compiler works before spending time on binutils, and say
+	# what it said if it does not.
+	_ctmp=$(mktemp -d)
+	printf 'int main(void){return 0;}
+' > "$_ctmp/t.c"
+	echo "stage 1: test-compiling with $HOSTCC"
+	if ! $runclean CC="$HOSTCC" "$HOSTCC" -o "$_ctmp/t" "$_ctmp/t.c" 2>"$_ctmp/err"; then
+		echo "stage 1: the host compiler cannot build a trivial program:" >&2
+		sed -e 's/^/    /' "$_ctmp/err" >&2
+		echo "stage 1: environment that affects it:" >&2
+		echo "    CC=${CC-<unset>} CFLAGS=${CFLAGS-<unset>}" >&2
+		echo "    LDFLAGS=${LDFLAGS-<unset>} LD=${LD-<unset>}" >&2
+		rm -rf "$_ctmp"
+		exit 1
+	fi
+	if ! "$_ctmp/t" >/dev/null 2>&1; then
+		echo "stage 1: warning: the host compiler links, but the binary will not run" >&2
+		echo "stage 1:          (is /tmp mounted noexec?) - configure probes will fail" >&2
+	fi
+	rm -rf "$_ctmp"
+	echo "stage 1: host compiler works"
 
 	n=0
 	built=0
@@ -137,9 +164,9 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 			*" $i "*)
 				echo "    (host toolchain: $HOSTCC)"
 				if [ -n "$HOSTCXX" ]; then
-					env PATH="$HOSTPATH" CC="$HOSTCC" CXX="$HOSTCXX" "$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
+					$runclean PATH="$HOSTPATH" CC="$HOSTCC" CXX="$HOSTCXX" 						"$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
 				else
-					env PATH="$HOSTPATH" CC="$HOSTCC" "$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
+					$runclean PATH="$HOSTPATH" CC="$HOSTCC" 						"$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
 				fi
 				;;
 			*)

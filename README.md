@@ -469,3 +469,10 @@ Those packages now build with `PATH` rewritten so `$TOOLS/bin` comes last and
 with `CC`/`CXX` pinned to the host compiler (`gcc`/`g++` found outside
 `$TOOLS/bin`). Stage 1 prints the host compiler and the path it uses, and stops
 with a clear message if no host compiler exists at all.
+
+Stage 1 now also test-compiles a trivial program with the chosen host compiler
+before building anything, prints the assembler and linker it will use, and runs
+host-native builds with `CFLAGS`, `CXXFLAGS`, `CPPFLAGS`, `LDFLAGS`, `CC`,
+`CXX`, `CPP` and `LD` unset so a stale value in your shell cannot poison every
+configure probe. If the compiler cannot build that program, stage 1 stops and
+prints gcc's own error.
