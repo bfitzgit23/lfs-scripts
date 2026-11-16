@@ -1,0 +1,35 @@
+# Depends: gtk3 vim libxt
+# description	: GTK version of the vim editor
+# homepage	: https://www.vim.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="GTK version of the vim editor"
+name=gvim
+version=9.2.1036
+release=1
+source="https://github.com/vim/vim/archive/v${version}/vim-$version.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	cd src
+
+	sed -i '/^CFLAGS/d' Makefile
+
+	./configure \
+		--prefix=/usr \
+		--with-vim-name=gvim \
+		--with-x=yes \
+		--enable-gui=gtk3 \
+		--enable-multibyte \
+		--enable-cscope \
+		--disable-gpm \
+		--disable-nls
+
+	make VIMRTDIR=
+	make VIMRTDIR= DESTDIR=$PKG installvimbin install-icons
+
+	sed -ri '/\[.+\]=/d' $PKG/usr/share/applications/*.desktop
+}

@@ -1,0 +1,10 @@
+#!/bin/bash
+cat > /etc/polkit-1/rules.d/40-adm.rules << "EOF"
+polkit.addAdminRule(function(action, subject) {
+   return ["unix-group:adm"];
+   });
+EOF
+
+# accounts-daemon is D-Bus activated. Enabling a runlevel service would start
+# a second copy that cannot own the well-known bus name.
+exit 0

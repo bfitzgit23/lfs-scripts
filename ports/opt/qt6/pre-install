@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+# Canonical /opt environment is owned by aaa_filesystem.
+exit 0

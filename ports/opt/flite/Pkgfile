@@ -1,0 +1,26 @@
+# Depends: alsa-lib
+# description	: Small fast portable speech synthesis engine
+# homepage	: https://github.com/festvox/flite
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Small fast portable speech synthesis engine"
+name=flite
+version=2.2
+release=1
+source="https://github.com/festvox/flite/archive/refs/tags/v$version.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    ./configure \
+        --prefix=/usr \
+        --enable-shared \
+        --with-audio=alsa || return 1
+
+    # Flite has historically had parallel-build ordering problems.
+    make -j1 || return 1
+
+    make DESTDIR="$PKG" install || return 1
+}

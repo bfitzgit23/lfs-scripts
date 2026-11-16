@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+name="kdm"
+description="KDE Display Manager"
+command="/usr/bin/kdm"
+command_args="-nodaemon"
+command_background=true
+pidfile="/run/kdm.pid"
+
+depend() {
+    need localmount dbus
+    after bootmisc modules
+    use logger
+}
+
+# kde-workspace now builds KDM.  Disable any other display manager first.
+# Enable with:  rc-update add kdm default

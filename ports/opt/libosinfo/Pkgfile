@@ -1,0 +1,26 @@
+# Depends: glib gobject-introspection libsoup3 libxml2 libxslt vala
+# description	: Operating-system information database library for virtualization tools
+# homepage	: https://libosinfo.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Operating-system information database library for virtualization tools"
+name=libosinfo
+version=1.12.0
+release=1
+build_opt=(
+    -Denable-gtk-doc=false
+    -Denable-tests=false
+)
+source="https://releases.pagure.org/libosinfo/libosinfo-$version.tar.xz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    sed -i \
+        's/const char \*msg ATTRIBUTE_UNUSED/const char *msg/' \
+        osinfo/osinfo_loader.c || return 1
+	bfs_autobuild
+}

@@ -1,0 +1,18 @@
+# Depends: glib aspell
+# description	: enchant package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="enchant package"
+name=enchant
+version=2.8.21
+release=2
+source="$name-$version.tar.gz::https://github.com/rrthomas/$name/releases/download/v$version/$name-$version.tar.gz?download=1"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+}

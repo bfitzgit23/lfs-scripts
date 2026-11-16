@@ -1,0 +1,31 @@
+#!/sbin/openrc-run
+name="plasmalogin"
+description="KDE Plasma Login Manager"
+export PLASMALOGIN_GREETER_EXEC=/opt/kf6/bin/startplasma-login-wayland
+export XDG_RUNTIME_DIR=/run/plasmalogin/greeter
+export PATH=/opt/kf6/bin:/opt/qt6/bin:${PATH}
+export XDG_DATA_DIRS=/usr/local/share:/usr/share:/opt/kf6/share
+export XDG_CONFIG_DIRS=/etc/xdg:/opt/kf6/etc/xdg
+export QT_PLUGIN_PATH=/opt/kf6/lib/plugins:/opt/kf6/lib/plugins/kcms
+export QML2_IMPORT_PATH=/opt/kf6/lib/qml
+command="/opt/kf6/bin/plasmalogin"
+command_background=true
+pidfile="/run/${RC_SVCNAME}.pid"
+
+start_pre() {
+    checkpath -d -m 0755 /run/plasmalogin || return 1
+    checkpath -d -m 0700 -o plasmalogin:plasmalogin "$XDG_RUNTIME_DIR" || return 1
+    checkpath -d -m 0750 -o plasmalogin:plasmalogin /var/lib/plasmalogin || return 1
+}
+
+depend() {
+    need localmount
+    need dbus
+    after bootmisc modules
+    use logger
+}
+
+# Plasma Login Manager claims the first free virtual terminal.  Make sure no
+# agetty line in /etc/inittab owns that console before enabling (see the dm
+# note in /etc/inittab), then run:  rc-update add plasmalogin default
+# Activating a display manager is always an explicit admin action in BFSOS.

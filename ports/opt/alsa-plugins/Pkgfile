@@ -1,0 +1,22 @@
+# Depends: alsa-lib
+# description	: The ALSA Plugins package contains plugins for various audio libraries and sound servers.
+# homepage	: https://www.alsa-project.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: ffmpeg libsamplerate pulseaudio speex jack libavtp maemo
+
+description="The ALSA Plugins package contains plugins for various audio libraries and sound servers."
+name=alsa-plugins
+version=1.2.12
+release=2
+source="ftp://ftp.alsa-project.org/pub/plugins/$name-$version.tar.bz2"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+	./configure --sysconfdir=/etc --disable-libav &&
+make
+	make DESTDIR=$PKG install
+}

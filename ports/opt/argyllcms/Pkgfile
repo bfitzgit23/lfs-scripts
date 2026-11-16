@@ -1,0 +1,24 @@
+# Depends: ftjam libpng libtiff libxinerama libxrandr libxxf86vm
+# description	: An ICC compatible color management system with support for different colorimeter hardware
+# homepage	: https://www.argyllcms.com/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="An ICC compatible color management system with support for different colorimeter hardware"
+name=argyllcms
+version=3.5.0
+release=2
+source="https://www.argyllcms.com/Argyll_V${version}_src.zip"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  sed -i 's:^TEST=="/lib/udev/usb-db", IMPORT{program}="usb-db %p":IMPORT{builtin}="hwdb --subsystem=usb":' usb/55-Argyll.rules
+  echo "LINKFLAGS += ${LDFLAGS} ;" >> Jamtop
+  CCOPTFLAG="$CFLAGS"
+  jam -q -fJambase ${MAKEFLAGS} -sPREFIX=/usr -sDESTDIR=$PKG -sREFSUBDIR=share/argyllcms/ref all
+  jam -q -fJambase ${MAKEFLAGS} -sPREFIX=/usr -sDESTDIR=$PKG -sREFSUBDIR=share/argyllcms/ref install
+
+  rm $PKG/usr/bin/License.txt
+}

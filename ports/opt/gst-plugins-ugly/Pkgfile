@@ -1,0 +1,29 @@
+# Depends: gst-plugins-base liba52 libdvdread x264
+# description	: A set of plugins for gstreamer that may pose distribution problems.
+# homepage	: https://gstreamer.freedesktop.org/modules/gst-plugins-ugly.html
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: libcdio libsidplay libmpeg2 opencore-amr valgrind hotdoc orc twolame
+
+description="A set of plugins for gstreamer that may pose distribution problems."
+name=gst-plugins-ugly
+version=1.28.7
+release=1
+source="https://gstreamer.freedesktop.org/src/$name/$name-$version.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+  mkdir build &&
+cd    build &&
+
+meson  setup ..            \
+       --prefix=/usr       \
+       --buildtype=release \
+       -Dgpl=enabled       \
+       -Dpackage-origin=https://www.linuxfromscratch.org/blfs/view/stable/ \
+       -Dpackage-name="GStreamer 1.22.6 BLFS" &&
+ninja
+  DESTDIR=$PKG ninja install
+}

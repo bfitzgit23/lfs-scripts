@@ -1,0 +1,26 @@
+# Depends: python3-six expat mpfr readline texinfo xz zlib
+# description	: gdb package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="gdb package"
+name=gdb
+version=17.2
+release=2
+source="https://ftp.gnu.org/gnu/${name}/${name}-${version}.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+sed '/^SUBDIRS/s/doc//' -i gdb/Makefile.in
+mkdir build &&
+cd    build &&
+
+../configure --prefix=/usr          \
+             --with-system-readline \
+             --with-python=/usr/bin/python3 &&
+make
+make -C gdb DESTDIR=$PKG install &&
+make -C gdbserver DESTDIR=$PKG install
+}

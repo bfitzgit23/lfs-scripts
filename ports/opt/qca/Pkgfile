@@ -1,0 +1,25 @@
+# Depends: cmake make-ca qt6
+# description	: Qt cryptographic architecture
+# homepage	: https://userbase.kde.org/QCA
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: botan cyrus-sasl doxygen gnupg libgcrypt nss p11-kit
+
+description="Qt cryptographic architecture"
+name=qca
+version=2.3.12
+release=2
+source="https://download.kde.org/stable/qca/$version/qca-$version.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    cmake -S . -B build -G Ninja \
+        -DCMAKE_INSTALL_PREFIX=/opt/qt6 \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DQT6=ON \
+        -DQCA_MAN_INSTALL_DIR=/usr/share/man
+    cmake --build build -j "${JOBS:-1}"
+    DESTDIR="$PKG" cmake --install build
+}

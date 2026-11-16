@@ -1,0 +1,21 @@
+# Depends: meson ninja curl libarchive
+# description	: Emerald package manager for StormFS
+# homepage	: https://gitlab.com/vylen/emerald
+# maintainer	: StormFS maintainers
+
+description="Emerald package manager for StormFS"
+name=emerald
+version=0.1
+release=1
+source="https://gitlab.com/vylen/emerald/-/archive/main/emerald-main.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    cd emerald-main || return 1
+    meson setup build --prefix=/usr --buildtype=release || return 1
+    ninja -C build -j "${JOBS:-1}" || return 1
+    DESTDIR="$PKG" ninja -C build install || return 1
+}

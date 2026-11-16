@@ -1,0 +1,27 @@
+# Depends: flex bison
+# description	: Device Tree Compiler and libfdt
+# homepage	: https://git.kernel.org/pub/scm/utils/dtc/dtc.git/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Device Tree Compiler and libfdt"
+name=dtc
+version=1.8.1
+release=1
+build_opt=(
+    PREFIX=/usr
+    LIBDIR=/usr/lib
+)
+source="https://www.kernel.org/pub/software/utils/dtc/dtc-$version.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+    make "${build_opt[@]}" || return 1
+
+    make \
+        DESTDIR="$PKG" \
+        "${build_opt[@]}" \
+        install || return 1
+}

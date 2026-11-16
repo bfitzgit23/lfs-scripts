@@ -1,0 +1,20 @@
+# Depends: giflib libjpeg-turbo libpng libtiff libwebp openjpeg2
+# description	: Image processing library required by Tesseract OCR
+# homepage	: http://www.leptonica.org/
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="Image processing library required by Tesseract OCR"
+name=leptonica
+version=1.87.0
+release=2
+build_opt="--disable-programs"
+source="https://github.com/DanBloomberg/leptonica/releases/download/$version/leptonica-$version.tar.gz"
+
+build() {
+	. /usr/share/bfsos/spkgbuild.helper || return 1
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+	bfs_autobuild
+}

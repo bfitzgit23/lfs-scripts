@@ -1,0 +1,26 @@
+# Depends: perl
+# description	: Uniform Resource Identifiers (absolute and relative)
+# homepage	: https://github.com/libwww-perl/URI
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# optional	: p5-business-isbn
+
+description="Uniform Resource Identifiers (absolute and relative)"
+name=p5-uri
+version=5.37
+release=1
+source="http://search.cpan.org/CPAN/authors/id/O/OA/OALDERS/URI-${version}.tar.gz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
+	make OPTIMIZE="$CFLAGS" DESTDIR="$PKG" install
+
+	find "$PKG" -depth \
+		-type f \( -name .packlist -o -name \*.bs -o -name perllocal.pod \) -delete , \
+		-type f -name autosplit.ix \( -exec grep -q '^[[:space:]]*package' {} \; -o -delete \) , \
+		-type d -empty -exec rmdir {} +
+}

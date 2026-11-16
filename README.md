@@ -379,11 +379,16 @@ prtdir /usr/ports/scratch/venom-core
 ```
 
 Port names are unique across the whole repository (2837 ports, 0 duplicates).
+`ports/opt` used to be spkgbuild-only, which is why it was absent from the
+prt-get configuration; it is now a native Pkgfile tree with a `prtdir` line of
+its own.
 Where a name appeared in more than one tree, the prune kept the copy from the
 highest-precedence tree and removed the rest:
 
-1. `ports/core`, `ports/extra`, `ports/contrib`, `ports/multilib` - the
-   distribution's own ports, already pinned to LFS 13.1;
+1. `ports/core`, `ports/extra`, `ports/contrib`, `ports/multilib`, `ports/opt`
+   - the distribution.s own ports: core/extra/contrib/multilib pinned to LFS
+   13.1, plus `ports/opt` converted from the stormfs spkgbuild set (306 ports,
+   including `chromium-bin`);
 2. `ports/scratch/venom-*` - the maintained upstream trees, whose recipes are
    plain `Pkgfile` shell without the scratchpkg helper;
 3. the remaining imported `ports/scratch/*` trees - the older scratchpkg port

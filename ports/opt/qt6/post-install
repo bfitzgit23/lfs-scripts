@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+# Refresh the loader after the package-owned /etc/ld.so.conf.d/qt6.conf lands.
+command -v ldconfig >/dev/null 2>&1 && ldconfig

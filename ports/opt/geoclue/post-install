@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+
+# BFSOS no longer ships a distro/maintainer Google Geolocation API key.
+# Remove the legacy BFSOS override created by older package releases. Users who
+# need a provider-specific key should create a separate local conf.d override.
+rm -f /etc/geoclue/conf.d/90-lfs-google.conf
+
+exit 0
