@@ -1,4 +1,4 @@
 name=sed
 version=4.10
 release=1
-source=(https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.xz)
+source=(https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/sed-4.10.tar.xz)

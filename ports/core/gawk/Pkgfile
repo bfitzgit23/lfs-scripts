@@ -1,4 +1,4 @@
 name=gawk
 version=5.4.1
 release=1
-source=(https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.xz)
+source=(https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/gawk-5.4.1.tar.xz)

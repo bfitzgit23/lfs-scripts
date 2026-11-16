@@ -1,4 +1,4 @@
 name=libtool
 version=2.6.2
 release=1
-source=(https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.xz)
+source=(https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/libtool-2.6.2.tar.xz)

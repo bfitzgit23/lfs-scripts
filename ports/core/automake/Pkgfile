@@ -1,4 +1,4 @@
 name=automake
 version=1.18.1
 release=1
-source=(https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.xz)
+source=(https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/automake-1.18.1.tar.xz)

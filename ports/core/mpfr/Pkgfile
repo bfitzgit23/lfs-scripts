@@ -1,5 +1,5 @@
 name=mpfr
 version=4.2.2
 release=1
-source=(https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.xz)
+source=(https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/mpfr-4.2.2.tar.xz)
 build_opt="--enable-thread-safe"
