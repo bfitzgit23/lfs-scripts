@@ -8,7 +8,7 @@ name=gdbm-32
 version=1.26
 release=2
 build_opt="--enable-libgdbm-compat"
-source="https://ftp.gnu.org/gnu/${name%-*}/${name%-*}-$version.tar.gz"
+source="https://mirrors.kernel.org/gnu/${name%-*}/${name%-*}-$version.tar.gz"
 
 build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
