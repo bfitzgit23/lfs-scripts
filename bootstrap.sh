@@ -158,6 +158,18 @@ Log: $log"
     fi
 }
 
+resume_stage() {
+    state="${LFS:-/tmp/lfs-rootfs}/var/lib/lfs-scripts"
+    if [ ! -f "$state/stage1.complete" ]; then
+        run_stage 1 "Temporary toolchain (resume)"
+    elif [ ! -f "$state/stage2.complete" ]; then
+        run_stage 2 "Base system (resume)"
+    else
+        ui_info "Nothing to resume" \
+            "Stages 1 and 2 are complete (${state}).\nUse Rebuild or Compress from the menu."
+    fi
+}
+
 settings_menu() {
     while :; do
         choice=$(ui_menu "Settings" \
@@ -188,6 +200,7 @@ main_menu() {
             BASE "Build the base system (root)" \
             REBUILD "Rebuild the base system (root)" \
             COMPRESS "Compress the finished rootfs" \
+            RESUME    "Resume the interrupted stage" \
             SETTINGS "Settings" \
             QUIT "Quit") || choice=QUIT
 
@@ -196,7 +209,8 @@ main_menu() {
             BASE)      run_stage 2 "Base system" ;;
             REBUILD)   run_stage 3 "Rebuild base system" ;;
             COMPRESS)  run_stage 4 "Compress rootfs" ;;
-            SETTINGS)  settings_menu ;;
+            RESUME)   resume_stage ;;
+            SETTINGS) settings_menu ;;
             QUIT|"")   return 0 ;;
         esac
     done
@@ -213,6 +227,7 @@ Usage: $0 [option]
   4               compress the finished rootfs
   --settings      edit settings and save them to bootstrap.conf
   --text          skip the dialog menu and prompt in plain text
+  --resume        rerun the stage that last failed, skipping finished packages
   --help          this message
 
 Settings come from the environment, then bootstrap.conf:
@@ -225,6 +240,11 @@ case ${1:-} in
         detect_dialog
         DIALOG_BIN=""
         run_stage "$1" "stage $1"
+        ;;
+    --resume)
+        detect_dialog
+        DIALOG_BIN=""
+        resume_stage
         ;;
     --settings)
         detect_dialog

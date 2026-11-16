@@ -1,9 +1,16 @@
 name=binutils
 version=2.47
 release=1
-source=(https://sourceware.org/pub/$name/releases/$name-$version.tar.xz)
+source=(https://sourceware.org/pub/$name/releases/$name-$version.tar.xz
+	path_max.patch)
 
 bootstrap_build() {
+	# ld/ldmain.c uses PATH_MAX without including <limits.h>, relying on a
+	# transitive include that glibc 2.44 no longer provides. Without this the
+	# binutils-pass2 ld fails with "'PATH_MAX' undeclared".
+	[ -f "$PKGMK_SOURCE_DIR/path_max.patch" ] &&
+		patch -Np1 -i "$PKGMK_SOURCE_DIR/path_max.patch"
+
 	mkdir -v build
 	cd       build
 	

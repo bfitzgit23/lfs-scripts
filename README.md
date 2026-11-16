@@ -507,3 +507,39 @@ Downloads must come from hosts the build machine can reach:
 the build host, and `https://ftp.osuosl.org/pub/gnu/` hangs there even though it
 answers elsewhere. When bumping a version, check the new URL with
 `curl -sIL -o /dev/null -w '%{http_code}' <url>` before committing.
+
+## Resume / restore
+
+Every package that finishes is recorded in `$LFS/var/lib/lfs-scripts`:
+
+```
+stage1.done          one completed package name per line
+stage1.failed        the package the last run died on (removed on progress)
+stage1.complete      timestamp, written when the stage finished
+stage2.done/...      same, for the base system (stage3.* for rebuild)
+```
+
+Re-running a stage skips anything already recorded, so an interrupted toolchain
+or base build continues instead of starting over:
+
+```sh
+./bootstrap.sh --resume        # reruns the stage that is not complete
+./bootstrap.sh 1               # or rerun a stage directly
+```
+
+The toolchain stage also keeps `/tmp/lfs-pkg` when a package fails, so the
+packages built before the failure are still there when you resume. Delete
+`$LFS/var/lib/lfs-scripts` to start a stage from scratch.
+
+## binutils: `'PATH_MAX' undeclared`
+
+`binutils 2.47`'s `ld/ldmain.c` uses `PATH_MAX` inside
+
+```c
+#if defined (__linux__) && _POSIX_VERSION >= 200112L
+  char name[PATH_MAX];
+```
+
+but includes neither `<limits.h>` nor any header that reaches it, and glibc 2.44
+no longer provides it transitively. `ports/core/binutils/path_max.patch` adds
+the include with a `4096` fallback, and the port applies it before configuring.

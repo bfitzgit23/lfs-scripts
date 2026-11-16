@@ -54,6 +54,46 @@ _chroot() {
 	chroot "$LFS" "$_env" -i PATH="$LFSPATH" "$@"
 }
 
+# Resume support. Every package that finishes is recorded under $LFS, so a run
+# that dies (bad source, compiler error, Ctrl-C, reboot) can be restarted and
+# skips the work already done instead of rebuilding the whole toolchain.
+_state_dir() { echo "$LFS/var/lib/lfs-scripts"; }
+_state_file() { echo "$(_state_dir)/stage$1.done"; }
+
+_state_has() {
+	grep -qx "$2" "$(_state_file "$1")" 2>/dev/null
+}
+
+_state_mark() {
+	mkdir -p "$(_state_dir)" 2>/dev/null || return 0
+	_state_has "$1" "$2" || echo "$2" >> "$(_state_file "$1")"
+	rm -f "$(_state_dir)/stage$1.failed"
+}
+
+_state_fail() {
+	mkdir -p "$(_state_dir)" 2>/dev/null
+	echo "$2" > "$(_state_dir)/stage$1.failed"
+}
+
+_state_complete() {
+	mkdir -p "$(_state_dir)" 2>/dev/null
+	date '+%Y-%m-%d %H:%M:%S' > "$(_state_dir)/stage$1.complete"
+	rm -f "$(_state_dir)/stage$1.failed"
+}
+
+_state_summary() {
+	if [ -f "$(_state_dir)/stage$1.complete" ]; then
+		echo "stage $1: already complete ($(cat "$(_state_dir)/stage$1.complete"))"
+		return 0
+	fi
+	if [ -s "$(_state_file "$1")" ]; then
+		echo "stage $1: resuming, $(wc -l < "$(_state_file "$1")" | tr -d ' ') package(s) already complete"
+	fi
+	if [ -f "$(_state_dir)/stage$1.failed" ]; then
+		echo "stage $1: the last attempt stopped at '$(cat "$(_state_dir)/stage$1.failed")'"
+	fi
+}
+
 _buildtoolchain() {
 	if [ "$(id -u)" = 0 ]; then
 		echo "temporary toolchain need to build as regular user"
@@ -147,6 +187,7 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 	fi
 	rm -rf "$_ctmp"
 	echo "stage 1: host compiler works"
+	_state_summary 1
 
 	n=0
 	built=0
@@ -154,7 +195,7 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 	empty=""
 	for i in $toolchainpkg; do
 		n=$((n+1))
-		if [ -f "$TOOLS/$i" ]; then
+		if [ -f "$TOOLS/$i" ] || _state_has 1 "$i"; then
 			echo "[$n] $i: already built, skipping"
 			skipped=$((skipped+1))
 			continue
@@ -193,8 +234,10 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 			echo "host compiler: ${HOSTCC:-<not used for this package>}" >&2
 			echo "host path: ${HOSTPATH:-$PATH}" >&2
 			ls -l "$TOOLS/bin" 2>/dev/null | head -n 10 >&2
-			rm -rf /tmp/lfs-pkg
+			_state_fail 1 "$i"
 			echo "error: pkgmk failed for '$i'" >&2
+			echo "       fix the cause, then resume with: ./bootstrap.sh --resume" >&2
+			echo "       completed packages are recorded in $(_state_dir)" >&2
 			exit 1
 		fi
 		rm -rf /tmp/lfs-pkg
@@ -205,6 +248,7 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 			empty="$empty $i"
 		fi
 		touch "$TOOLS/$i"
+		_state_mark 1 "$i"
 		built=$((built+1))
 		unset tcpkg
 	done
@@ -232,6 +276,7 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 	cd $TMPPWD
 	
 	echo
+	_state_complete 1
 	echo "toolchain build completed: $built package(s) built, $skipped already present"
 }
 
@@ -264,6 +309,10 @@ _buildbase() {
 	if [ "$1" != rebuild ]; then
 		_ensure_toolchain_shims || exit 1
 	fi
+
+	_bstage=2
+	[ "$1" = rebuild ] && _bstage=3
+	_state_summary $_bstage
 
 	if [ ! -f $LFS/var/lib/pkg/db ]; then
 		#mknod -m 600 $LFS/dev/console c 5 1 || true
@@ -314,13 +363,23 @@ PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 	mountfs
 	for i in $basepkg; do
 		if [ "$1" != rebuild ]; then
-			pkginfo -i -r $LFS | awk '{print $1}' | grep -qx $i && continue
+			pkginfo -i -r $LFS | awk '{print $1}' | grep -qx $i && { _state_mark $_bstage "$i"; continue; }
 			unset _force
 			case $i in
 				aaa_filesystem|gcc|bash|dash|perl|coreutils|pkgutils) _force=-f;;
 			esac
-			_chroot pkgin -d $i -is -if -im -cf /tmp/pkgmk.conf || { umountfs; exit 1; }
-			pkgadd -r $LFS $_force $(ls -1 $packagedir/$i#* | tail -n1) || { umountfs; exit 1; }
+			_chroot pkgin -d $i -is -if -im -cf /tmp/pkgmk.conf || {
+				_state_fail $_bstage "$i"; umountfs
+				echo "error: $i failed to build (stage $_bstage)" >&2
+				echo "       fix the cause, then resume with: ./bootstrap.sh --resume" >&2
+				exit 1
+			}
+			pkgadd -r $LFS $_force $(ls -1 $packagedir/$i#* | tail -n1) || {
+				_state_fail $_bstage "$i"; umountfs
+				echo "error: $i failed to install (stage $_bstage)" >&2
+				echo "       fix the cause, then resume with: ./bootstrap.sh --resume" >&2
+				exit 1
+			}
 			case $i in
 				glibc) cat << EOF > $LFS/tmp/glibc-postinstall
 #!/bin/sh
@@ -345,11 +404,18 @@ EOF
 				;;
 			esac
 		else
-			_chroot prt-get update -fr -if $i || { umountfs; exit 1; }
+			_chroot prt-get update -fr -if $i || {
+				_state_fail $_bstage "$i"; umountfs
+				echo "error: $i failed to rebuild (stage $_bstage)" >&2
+				echo "       fix the cause, then resume with: ./bootstrap.sh --resume" >&2
+				exit 1
+			}
 		fi
+		_state_mark $_bstage "$i"
 	done
 	umountfs
 	
+	_state_complete $_bstage
 	echo
 	echo "base system build completed"
 }
