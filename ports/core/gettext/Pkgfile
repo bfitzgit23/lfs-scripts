@@ -26,7 +26,14 @@ pkg_build() {
 
 
 bootstrap_build() {
-	./configure --disable-shared
+	# gettext installs Emacs Lisp (gettext-tools/emacs/Makefile) and, when
+	# configure finds an emacs on PATH, byte-compiles it during make with
+	# `$(EMACS) --batch --no-site-file`. An emacs that is not GNU Emacs (a
+	# wrapper, mg, ...) rejects those long options with
+	# "emacs: invalid option -- '-'". The bootstrap needs no po-mode:
+	# --without-emacs makes configure set EMACS=no, which turns the
+	# byte-compile and lisp install rules into no-ops.
+	./configure --disable-shared --without-emacs
 	make -j1
 	cp -v gettext-tools/src/msgfmt \
 	      gettext-tools/src/msgmerge \

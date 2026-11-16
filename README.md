@@ -613,3 +613,19 @@ grep -rn 'Werror' ports --include=Pkgfile
 grep -rn 'CFLAGS="[^$]\|CXXFLAGS="[^$]' ports --include=Pkgfile
 grep -rn '\-std=' ports --include=Pkgfile
 ```
+
+### gettext and a non-GNU `emacs`
+
+gettext installs Emacs Lisp support (`gettext-tools/emacs/Makefile`) and
+byte-compiles it during `make` with `$(EMACS) --batch --no-site-file` whenever
+configure found an `emacs` on `PATH`. If that `emacs` is not GNU Emacs (a
+wrapper script, `mg`, an alias) it fails with:
+
+```
+emacs: invalid option -- '-'
+```
+
+Both gettext builds now pass `--without-emacs` (gettext-tools/configure.ac's
+documented switch, which sets `EMACS=no`), so the byte-compile and
+`install-lispLISP` rules become unconditional no-ops. po-mode is a developer
+convenience, not something a bootstrap or a base system needs.
