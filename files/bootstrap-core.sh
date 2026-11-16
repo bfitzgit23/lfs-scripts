@@ -119,6 +119,13 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 	# reports a polluted environment as "could not find a working compiler".
 	runclean="env -u CFLAGS -u CXXFLAGS -u CPPFLAGS -u LDFLAGS -u CC -u CXX -u CPP -u LD"
 
+	# gmp 6.3.0's configure probes declare `void g(){}` and then call g() with
+	# six arguments. gcc 15 and later default to C23, where an empty parameter
+	# list means "(void)", so that probe stops compiling and gmp reports
+	# "could not find a working compiler". These sources predate C23; build
+	# the pre-toolchain packages as C17.
+	hostcflags="-O2 -std=gnu17"
+
 	# Prove the host compiler works before spending time on binutils, and say
 	# what it said if it does not.
 	_ctmp=$(mktemp -d)
@@ -156,17 +163,17 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 		export tcpkg="$i"
 		cd "ports/core/${i%-pass*}" || exit 1
 		mkdir -p /tmp/lfs-pkg
-		before=$(find "$TOOLS" -maxdepth 3 ! -name "$i" 2>/dev/null | wc -l)
+		before=$(find -L "$TOOLS" -maxdepth 3 ! -name "$i" 2>/dev/null | wc -l)
 		# -f: without it pkgmk is free to answer "Package is up to date" and
 		# exit 0, which used to leave a skip marker and no toolchain.
 		_pkgmk_rc=0
 		case " $hostnative " in
 			*" $i "*)
-				echo "    (host toolchain: $HOSTCC)"
+				echo "    (host toolchain: $HOSTCC, CFLAGS=$hostcflags)"
 				if [ -n "$HOSTCXX" ]; then
-					$runclean PATH="$HOSTPATH" CC="$HOSTCC" CXX="$HOSTCXX" 						"$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
+					$runclean PATH="$HOSTPATH" CC="$HOSTCC" CXX="$HOSTCXX" CFLAGS="$hostcflags" ="$hostcflags" 						"$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
 				else
-					$runclean PATH="$HOSTPATH" CC="$HOSTCC" 						"$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
+					$runclean PATH="$HOSTPATH" CC="$HOSTCC" CFLAGS="$hostcflags" "$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
 				fi
 				;;
 			*)
@@ -192,7 +199,7 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 		fi
 		rm -rf /tmp/lfs-pkg
 		cd - >/dev/null 2>&1
-		after=$(find "$TOOLS" -maxdepth 3 ! -name "$i" 2>/dev/null | wc -l)
+		after=$(find -L "$TOOLS" -maxdepth 3 ! -name "$i" 2>/dev/null | wc -l)
 		if [ "$after" -le "$before" ]; then
 			echo "warning: $i installed nothing into $TOOLS" >&2
 			empty="$empty $i"
@@ -287,7 +294,7 @@ _buildbase() {
 	mkdir -p $LFS/var/lib/pkgmk
 	cp ports/core/pkgutils/extension $LFS/var/lib/pkgmk
 	echo "
-export CFLAGS=\"-O2 -march=x86-64 -pipe\"
+export CFLAGS=\"-O2 -march=x86-64 -pipe -std=gnu17\"
 export CXXFLAGS=\"${CFLAGS}\"
 
 export JOBS=$(nproc)

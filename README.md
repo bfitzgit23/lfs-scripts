@@ -476,3 +476,20 @@ host-native builds with `CFLAGS`, `CXXFLAGS`, `CPPFLAGS`, `LDFLAGS`, `CC`,
 `CXX`, `CPP` and `LD` unset so a stale value in your shell cannot poison every
 configure probe. If the compiler cannot build that program, stage 1 stops and
 prints gcc's own error.
+
+### gmp / mpfr / mpc: `could not find a working compiler` on gcc 15+
+
+gmp 6.3.0's configure probes contain
+
+```c
+void g(){}
+...
+g(i,d[i].src,d[i].n,got,d[i].want,9);
+```
+
+an empty parameter list, which in C23 means `(void)`. gcc 15 and later default to
+C23, so the probe fails to compile with `too many arguments to function 'g'` and
+configure reports a missing compiler even though the toolchain is fine.
+
+Stage 1 builds the pre-toolchain packages with `CFLAGS="-O2 -std=gnu17"`, and the
+base system builds with `-std=gnu17` appended to `CFLAGS` for the same reason.
