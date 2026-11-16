@@ -7,7 +7,7 @@ name=advcpmv
 version=0.9
 cuversion=9.5
 release=1
-source="https://ftp.osuosl.org/pub/gnu/coreutils/coreutils-$cuversion.tar.xz 
+source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/coreutils/coreutils-$cuversion.tar.xz 
 	https://raw.githubusercontent.com/jarun/advcpmv/master/$name-$version-$cuversion.patch"
 
 build() {

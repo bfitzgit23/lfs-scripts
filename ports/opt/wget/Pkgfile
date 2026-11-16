@@ -12,7 +12,7 @@ build_opt=(
     --sysconfdir=/etc
     --disable-doc
 )
-source="https://ftp.osuosl.org/pub/gnu/wget/wget2-$version.tar.gz"
+source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/wget/wget2-2.2.1.tar.gz"
 
 build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

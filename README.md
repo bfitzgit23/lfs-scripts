@@ -493,3 +493,17 @@ configure reports a missing compiler even though the toolchain is fine.
 
 Stage 1 builds the pre-toolchain packages with `CFLAGS="-O2 -std=gnu17"`, and the
 base system builds with `-std=gnu17` appended to `CFLAGS` for the same reason.
+
+### Source mirrors
+
+Downloads must come from hosts the build machine can reach:
+
+- LFS 13.1 packages: `https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/`
+- GNU packages not in the 13.1 set: `https://mirrorservice.org/sites/ftp.gnu.org/gnu/`
+  (fallbacks used while verifying: `ftp.nluug.nl/pub/gnu/`,
+  `mirrors.dotsrc.org/gnu/`, `ftp.funet.fi/pub/gnu/`)
+
+`ftp.gnu.org`, `ftpmirror.gnu.org` and `mirrors.kernel.org` are unreachable from
+the build host, and `https://ftp.osuosl.org/pub/gnu/` hangs there even though it
+answers elsewhere. When bumping a version, check the new URL with
+`curl -sIL -o /dev/null -w '%{http_code}' <url>` before committing.

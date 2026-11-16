@@ -5,7 +5,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=time
 version=1.10
 release=1
-source="https://ftp.osuosl.org/pub/gnu/time/$name-$version.tar.gz"
+source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/time/time-1.10.tar.gz"
 
 build() {
 

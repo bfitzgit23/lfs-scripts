@@ -8,7 +8,7 @@ name=aspell6-en
 version=2026.02.25_0
 srcver=2026.02.25-0
 release=1
-source="https://ftp.osuosl.org/pub/gnu/aspell/dict/en/$name-$srcver.tar.bz2"
+source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/aspell/dict/en/aspell6-en-2026.02.25-0.tar.bz2"
 
 build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$srcver" -print -quit)

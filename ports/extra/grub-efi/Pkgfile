@@ -3,7 +3,7 @@
 name=grub-efi
 version=2.06
 release=1
-source=(https://ftp.osuosl.org/pub/gnu/$name/grub-$version.tar.xz
+source=(https://mirrorservice.org/sites/ftp.gnu.org/gnu/grub/grub-$version.tar.xz
 	https://unifoundry.com/pub/unifont/unifont-15.0.01/font-builds/unifont-15.0.01.pcf.gz
 	grub-2.06-upstream_fixes-1.patch)
 renames=(SKIP unifont-15.0.01.pcf.noextract SKIP)

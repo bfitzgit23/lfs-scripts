@@ -1,4 +1,4 @@
 name=which
 version=2.21
 release=1
-source=(https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.gz)
+source=(https://mirrorservice.org/sites/ftp.gnu.org/gnu/which/which-2.21.tar.gz)

@@ -1,4 +1,4 @@
 name=libcdio
 version=2.1.0
 release=1
-source=(https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.bz2)
+source=(https://mirrorservice.org/sites/ftp.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2)

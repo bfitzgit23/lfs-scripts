@@ -6,7 +6,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=emacs
 version=30.2
 release=1
-source="https://ftp.osuosl.org/pub/gnu/emacs/$name-$version.tar.xz"
+source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/emacs/emacs-30.2.tar.xz"
 
 build() {
 

@@ -3,4 +3,4 @@
 name=parted
 version=3.6
 release=1
-source=(https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.xz)
+source=(https://mirrorservice.org/sites/ftp.gnu.org/gnu/parted/parted-3.6.tar.xz)

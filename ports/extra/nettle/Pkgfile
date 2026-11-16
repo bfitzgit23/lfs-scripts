@@ -1,5 +1,5 @@
 name=nettle
 version=3.9.1
 release=1
-source=(https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.gz)
+source=(https://mirrorservice.org/sites/ftp.gnu.org/gnu/nettle/nettle-3.9.1.tar.gz)
 build_opt="--libdir=/usr/lib"

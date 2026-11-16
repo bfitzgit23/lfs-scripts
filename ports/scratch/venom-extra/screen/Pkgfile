@@ -5,7 +5,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=screen
 version=5.0.1
 release=1
-source="https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.gz"
+source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/screen/screen-5.0.1.tar.gz"
 
 build() {
 
