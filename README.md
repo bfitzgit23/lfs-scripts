@@ -436,3 +436,22 @@ Patch files and other per-port assets referenced by local name were also
 missing from the converted trees, since the first conversion copied only
 `Pkgfile`s. They are now copied in (262 files); the references that remain
 without a local file are all remote URLs that `pkgmk` downloads itself.
+
+### Stage 2 fails with `chroot: failed to run 'env': No such file or directory`
+
+`chroot` needs an `env` binary *inside* the new root, and a fresh rootfs has
+none. Stage 2 therefore links a handful of toolchain binaries into the rootfs
+first, including `/usr/bin/env` -> `$TOOLS/bin/env`.
+
+Two things used to break that:
+
+* the links were only created when `$LFS/var/lib/pkg/db` did not exist, so an
+  aborted stage 2 (which creates the db) made every later run skip them;
+* if the temporary toolchain was gone — `/tmp` is a tmpfs on most systems, so a
+  reboot after stage 1 clears it — the run died with that `chroot` error instead
+  of saying what was actually missing.
+
+The links are now recreated on every stage 2 run, and stage 2 checks for
+`$LFS$TOOLS/bin/env` up front and stops with an explicit message. If you see
+that message, the toolchain is gone and stage 1 has to run again; keep `LFS` and
+`TOOLS` on a real filesystem (not `/tmp`) if you want them to survive a reboot.

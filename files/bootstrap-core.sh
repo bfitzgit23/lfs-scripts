@@ -1,5 +1,52 @@
 #!/bin/sh -e	
 
+_ensure_toolchain_shims() {
+	# The base system starts from an empty rootfs and needs a handful of
+	# toolchain binaries - env(1) above all - before anything can run inside
+	# the chroot. These shims are recreated every run: an aborted stage 2
+	# leaves $LFS/var/lib/pkg/db behind, and gating on it used to skip the
+	# shims and fail later with "chroot: failed to run 'env'".
+	_tc="$LFS$TOOLS"
+	if [ ! -x "$_tc/bin/env" ]; then
+		echo "error: the temporary toolchain is missing: $_tc/bin/env" >&2
+		echo "       run stage 1 first, and check that LFS ($LFS) and TOOLS" >&2
+		echo "       ($TOOLS) point at the same tree used to build it." >&2
+		return 1
+	fi
+	mkdir -p "$LFS/bin" "$LFS/usr/bin" "$LFS/usr/lib" "$LFS/etc" "$LFS/dev"
+	for i in bash cat chmod dd echo ln mkdir pwd rm stty; do
+		ln -sfn "$TOOLS/bin/$i" "$LFS/bin/$i"
+	done
+	for i in env install perl printf touch; do
+		ln -sfn "$TOOLS/bin/$i" "$LFS/usr/bin/$i"
+	done
+	ln -sfn "$TOOLS/lib/libgcc_s.so" "$LFS/usr/lib/libgcc_s.so"
+	ln -sfn "$TOOLS/lib/libgcc_s.so.1" "$LFS/usr/lib/libgcc_s.so.1"
+	for i in libstdc++.a libstdc++.so libstdc++.so.6; do
+		ln -sfn "$TOOLS/lib/$i" "$LFS/usr/lib/$i"
+	done
+	ln -sfn bash "$LFS/bin/sh"
+	ln -sfn /proc/self/mounts "$LFS/etc/mtab"
+	return 0
+}
+
+_chroot() {
+	# chroot with a clean environment, using an env(1) that exists inside the
+	# target root rather than assuming one is on PATH there.
+	_env=""
+	for _cand in "$TOOLS/bin/env" /usr/bin/env /bin/env; do
+		if [ -x "$LFS$_cand" ]; then
+			_env="$_cand"
+			break
+		fi
+	done
+	if [ -z "$_env" ]; then
+		echo "error: no env(1) inside $LFS; run stage 1 before stage 2" >&2
+		return 1
+	fi
+	chroot "$LFS" "$_env" -i PATH="$LFSPATH" "$@"
+}
+
 _buildtoolchain() {
 	if [ "$(id -u)" = 0 ]; then
 		echo "temporary toolchain need to build as regular user"
@@ -82,19 +129,13 @@ _buildbase() {
 		echo "base need to build as root"
 		exit 1
 	fi
+	# stage 3 rebuilds with the base system itself; only the toolchain-backed
+	# stages need the shims
+	if [ "$1" != rebuild ]; then
+		_ensure_toolchain_shims || exit 1
+	fi
+
 	if [ ! -f $LFS/var/lib/pkg/db ]; then
-		mkdir -pv $LFS/bin $LFS/usr/lib $LFS/usr/bin $LFS/etc $LFS/dev
-		for i in bash cat chmod dd echo ln mkdir pwd rm stty; do
-			ln -svf $TOOLS/bin/$i $LFS/bin
-		done
-		for i in env install perl printf touch; do
-			ln -svf $TOOLS/bin/$i $LFS/usr/bin
-		done
-		ln -svf $TOOLS/lib/libgcc_s.so $TOOLS/lib/libgcc_s.so.1 $LFS/usr/lib
-		ln -svf $TOOLS/lib/libstdc++.a $TOOLS/lib/libstdc++.so $TOOLS/lib/libstdc++.so.6 $LFS/usr/lib
-		ln -svf bash $LFS/bin/sh
-		ln -svf /proc/self/mounts $LFS/etc/mtab
-		
 		#mknod -m 600 $LFS/dev/console c 5 1 || true
 		#mknod -m 666 $LFS/dev/null c 1 3 || true
 
@@ -148,7 +189,7 @@ PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 			case $i in
 				aaa_filesystem|gcc|bash|dash|perl|coreutils|pkgutils) _force=-f;;
 			esac
-			chroot $LFS env -i PATH=$LFSPATH pkgin -d $i -is -if -im -cf /tmp/pkgmk.conf || { umountfs; exit 1; }
+			_chroot pkgin -d $i -is -if -im -cf /tmp/pkgmk.conf || { umountfs; exit 1; }
 			pkgadd -r $LFS $_force $(ls -1 $packagedir/$i#* | tail -n1) || { umountfs; exit 1; }
 			case $i in
 				glibc) cat << EOF > $LFS/tmp/glibc-postinstall
@@ -169,12 +210,12 @@ grep "/lib.*/libc.so.6 " dummy.log >> /tmp/adjusttoolchainresult
 grep found dummy.log >> /tmp/adjusttoolchainresult
 rm -v dummy.c a.out dummy.log
 EOF
-				chroot $LFS env -i PATH=$LFSPATH sh /tmp/glibc-postinstall
+				_chroot sh /tmp/glibc-postinstall
 				rm -f $LFS/tmp/glibc-postinstall
 				;;
 			esac
 		else
-			chroot $LFS env -i PATH=$LFSPATH prt-get update -fr -if $i || { umountfs; exit 1; }
+			_chroot prt-get update -fr -if $i || { umountfs; exit 1; }
 		fi
 	done
 	umountfs
