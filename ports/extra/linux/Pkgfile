@@ -1,9 +1,9 @@
 # Depends on: mkinitramfs
 
 name=linux
-version=7.1.8
+version=7.3.4
 release=1
-source=(https://cdn.kernel.org/pub/$name/kernel/v6.x/$name-$version.tar.xz
+source=(https://cdn.kernel.org/pub/$name/kernel/v7.x/$name-$version.tar.xz
 	dotconfig)
 
 pkg_build() {

@@ -292,8 +292,9 @@ Every stage is logged to `logs/bootstrap-<timestamp>-stage<N>.log`.
 
 `ports/core` is pinned to the Linux From Scratch 13.1 package set (SysV
 initscripts, no systemd), including the 13.1 toolchain: binutils 2.47,
-gcc 16.2.0, glibc 2.44, coreutils 9.11, bash 5.3, linux 7.1.8 and the rest of
-the 13.1 list. The reference list used for the bump is kept at
+gcc 16.2.0, glibc 2.44, coreutils 9.11, bash 5.3 and the rest of
+the 13.1 list. The kernel and its headers are pinned ahead of the book at
+7.3.4 (`v7.x` tarballs). The reference list used for the bump is kept at
 `tools/lfs-13.1-wget-list`, and `tools/update-lfs-versions.sh <list> <portsdir>`
 can re-apply a version map after a book update.
 
