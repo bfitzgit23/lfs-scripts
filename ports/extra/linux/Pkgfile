@@ -1,7 +1,7 @@
 # Depends on: mkinitramfs
 
 name=linux
-version=6.1.57
+version=7.1.8
 release=1
 source=(https://cdn.kernel.org/pub/$name/kernel/v6.x/$name-$version.tar.xz
 	dotconfig)
