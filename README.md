@@ -455,3 +455,17 @@ The links are now recreated on every stage 2 run, and stage 2 checks for
 `$LFS$TOOLS/bin/env` up front and stops with an explicit message. If you see
 that message, the toolchain is gone and stage 1 has to run again; keep `LFS` and
 `TOOLS` on a real filesystem (not `/tmp`) if you want them to survive a reboot.
+
+### Stage 1 stops at gmp: `checking whether the C compiler works... no`
+
+`gmp`, `mpfr`, `mpc` and `gcc-pass1` carry no `build()` of their own; they fall
+back to `./configure --prefix=$TOOLS` and are compiled by the **host** compiler,
+because there is no cross compiler yet. Stage 1 has `$TOOLS/bin` first on PATH
+and binutils-pass1 has just filled it, so the host gcc could pick up those
+`as`/`ld` instead of its own and fail its link test - which is exactly what
+`could not find a working compiler` reports.
+
+Those packages now build with `PATH` rewritten so `$TOOLS/bin` comes last and
+with `CC`/`CXX` pinned to the host compiler (`gcc`/`g++` found outside
+`$TOOLS/bin`). Stage 1 prints the host compiler and the path it uses, and stops
+with a clear message if no host compiler exists at all.

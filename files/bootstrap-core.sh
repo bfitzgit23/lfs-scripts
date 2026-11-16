@@ -1,4 +1,7 @@
-#!/bin/sh -e
+HOSTPATH=$(printf "%s" "$PATH" | sed -e "s|$TOOLS/bin:||g" -e "s|:$TOOLS/bin||g")
+	# keep the toolchain last: bsdtar and friends live there, but the host as/ld
+	# must win
+	HOSTPATH="$HOSTPATH:$TOOLS/bin"#!/bin/sh -e
 
 # The ports, files/ and sources/ paths below are relative to the repository
 # root, so anchor on the script location instead of the caller's cwd.
@@ -94,6 +97,23 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 		rm -rf /tmp/pkgutils-5.40.10
 	fi
 	
+	# The stages up to gcc-pass2 are compiled by the *host* compiler: there is
+	# no working cross compiler yet. $TOOLS/bin is first on PATH, and pass 1
+	# binutils has just filled it, so the host gcc would pick up those as/ld.
+	# Build these packages with the host toolchain and only the host PATH.
+	hostnative="binutils-pass1 gmp mpfr mpc gcc-pass1"
+	HOSTPATH=$(printf '%s' "$PATH" | sed -e "s|$TOOLS/bin:||g" -e "s|:$TOOLS/bin||g")
+	HOSTCC=$(PATH="$HOSTPATH" command -v gcc 2>/dev/null || PATH="$HOSTPATH" command -v cc 2>/dev/null || true)
+	HOSTCXX=$(PATH="$HOSTPATH" command -v g++ 2>/dev/null || PATH="$HOSTPATH" command -v c++ 2>/dev/null || true)
+	if [ -z "$HOSTCC" ]; then
+		echo "error: no host C compiler (gcc or cc) found" >&2
+		echo "       looked in: $HOSTPATH" >&2
+		echo "       a host toolchain (gcc, make, tar, xz) is required for stage 1" >&2
+		exit 1
+	fi
+	echo "stage 1: host compiler $HOSTCC"
+	echo "stage 1: host PATH $HOSTPATH"
+
 	n=0
 	built=0
 	skipped=0
@@ -112,7 +132,21 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 		before=$(find "$TOOLS" -maxdepth 3 ! -name "$i" 2>/dev/null | wc -l)
 		# -f: without it pkgmk is free to answer "Package is up to date" and
 		# exit 0, which used to leave a skip marker and no toolchain.
-		if ! pkgmk -d -f -is -if -im -cf /tmp/bootstrap.conf; then
+		_pkgmk_rc=0
+		case " $hostnative " in
+			*" $i "*)
+				echo "    (host toolchain: $HOSTCC)"
+				if [ -n "$HOSTCXX" ]; then
+					env PATH="$HOSTPATH" CC="$HOSTCC" CXX="$HOSTCXX" 						"$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
+				else
+					env PATH="$HOSTPATH" CC="$HOSTCC" 						"$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
+				fi
+				;;
+			*)
+				pkgmk -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
+				;;
+		esac
+		if [ "$_pkgmk_rc" -ne 0 ]; then
 			rm -rf /tmp/lfs-pkg
 			echo "error: pkgmk failed for '$i'" >&2
 			exit 1
