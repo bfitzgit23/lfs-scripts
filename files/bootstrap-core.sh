@@ -137,9 +137,9 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 			*" $i "*)
 				echo "    (host toolchain: $HOSTCC)"
 				if [ -n "$HOSTCXX" ]; then
-					env PATH="$HOSTPATH" CC="$HOSTCC" CXX="$HOSTCXX" 						"$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
+					env PATH="$HOSTPATH" CC="$HOSTCC" CXX="$HOSTCXX" "$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
 				else
-					env PATH="$HOSTPATH" CC="$HOSTCC" 						"$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
+					env PATH="$HOSTPATH" CC="$HOSTCC" "$TOOLS/bin/pkgmk" -d -f -is -if -im -cf /tmp/bootstrap.conf || _pkgmk_rc=$?
 				fi
 				;;
 			*)
