@@ -6,6 +6,7 @@ description="libmng - Mutliple Image Network Graphics"
 name=libmng-32
 version=2.0.3
 release=3
+build_opt="--mandir=/usr/man"
 source="https://downloads.sourceforge.net/project/libmng//libmng-devel/$version/libmng-$version.tar.gz"
 
 build() {

@@ -6,6 +6,7 @@ description="a totally open, royalty-free, highly versatile audio codec"
 name=opus-32
 version=1.6.1
 release=3
+build_opt="-D custom-modes=true -D tests=disabled"
 source="https://downloads.xiph.org/releases/opus/opus-$version.tar.gz"
 
 build() {

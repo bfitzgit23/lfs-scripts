@@ -7,6 +7,7 @@ description="NFS client/server userspace utilities"
 name=nfs-utils
 version=2.9.2
 release=1
+build_opt="--sysconfdir=/etc --sbindir=/usr/sbin --disable-gss"
 source="https://www.kernel.org/pub/linux/utils/nfs-utils/$version/nfs-utils-$version.tar.xz"
 
 build() {

@@ -5,6 +5,7 @@ description="hwdata package"
 name=hwdata
 version=0.411
 release=1
+build_opt="--prefix=/usr --disable-blacklist"
 source="https://github.com/vcrhonek/${name}/archive/v${version}/${name}-${version}.tar.gz"
 
 build() {

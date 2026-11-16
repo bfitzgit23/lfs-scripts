@@ -6,6 +6,7 @@ description="Image processing library required by Tesseract OCR"
 name=leptonica
 version=1.87.0
 release=2
+build_opt="--disable-programs"
 source="https://github.com/DanBloomberg/leptonica/releases/download/$version/leptonica-$version.tar.gz"
 
 build() {

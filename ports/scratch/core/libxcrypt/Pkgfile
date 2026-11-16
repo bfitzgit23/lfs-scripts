@@ -6,6 +6,7 @@ description="The Libxcrypt package contains a modern library for one-way hashing
 name=libxcrypt
 version=4.5.2
 release=1
+build_opt="--enable-hashes=strong,glibc --enable-obsolete-api=no --disable-failure-tokens"
 source="https://github.com/besser82/libxcrypt/releases/download/v$version/libxcrypt-$version.tar.xz"
 
 build() {

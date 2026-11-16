@@ -7,6 +7,7 @@ name=openh264
 version=2.6.0
 release=2
 build_type=makefile_build
+build_opt=(PREFIX=/usr)
 source="https://github.com/cisco/openh264/archive/refs/tags/v$version.tar.gz"
 
 build() {

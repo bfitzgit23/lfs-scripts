@@ -7,6 +7,7 @@ description="a programming library for color text mode"
 name=libnewt-32
 version=0.52.25
 release=3
+build_opt="--without-python --disable-nls"
 # Pagure's release endpoint currently returns 404; BLFS mirrors the
 # byte-identical upstream archive (MD5 cca66ed1d8774fb9e3f6a33525de416d).
 source="https://anduin.linuxfromscratch.org/BLFS/newt/newt-$version.tar.gz"

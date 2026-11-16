@@ -6,6 +6,7 @@ description="GNU database library for C"
 name=gdbm-32
 version=1.26
 release=2
+build_opt="--enable-libgdbm-compat"
 source="https://ftp.gnu.org/gnu/${name%-*}/${name%-*}-$version.tar.gz"
 
 build() {

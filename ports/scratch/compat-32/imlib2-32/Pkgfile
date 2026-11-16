@@ -7,6 +7,7 @@ description="A fast image manipulation library"
 name=imlib2-32
 version=1.12.7
 release=3
+build_opt="--x-libraries=/usr/lib32 --enable-mmx --disable-amd64"
 source="https://downloads.sourceforge.net/project/enlightenment/imlib2-src/$version/imlib2-$version.tar.xz"
 
 build() {

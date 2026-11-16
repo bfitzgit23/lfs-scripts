@@ -6,6 +6,7 @@ description="Sound sample rate conversion library"
 name=libsamplerate-32
 version=0.2.2
 release=3
+build_opt="-D BUILD_SHARED_LIBS=ON -Wno-dev"
 source="https://github.com/libsndfile/libsamplerate/releases/download/$version/libsamplerate-$version.tar.xz"
 
 build() {

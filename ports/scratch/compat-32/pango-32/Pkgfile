@@ -6,6 +6,7 @@ description="A library for layout and rendering of text"
 name=pango-32
 version=1.58.2
 release=3
+build_opt="-D introspection=disabled"
 source="https://download.gnome.org/sources/pango/${version:0:4}/${name%-*}-$version.tar.xz"
 
 build() {

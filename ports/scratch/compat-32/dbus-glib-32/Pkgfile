@@ -6,6 +6,7 @@ description="D-Bus GLib bindings"
 name=dbus-glib-32
 version=0.114
 release=2
+build_opt="--enable-bash-completion=no"
 source="https://dbus.freedesktop.org/releases/${name%-*}/${name%-*}-$version.tar.gz"
 
 build() {

@@ -6,6 +6,7 @@ description="URL transfer tool"
 name=curl
 version=8.22.0
 release=1
+build_opt="
 	--with-openssl
 	--enable-threaded-resolver
 	--with-ca-bundle=/etc/pki/tls/certs/ca-bundle.crt

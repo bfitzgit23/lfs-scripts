@@ -5,6 +5,7 @@ description="kmod package"
 name=kmod
 version=34.2
 release=1
+build_opt="-D openssl=enabled -D xz=enabled -D zlib=enabled -D manpages=false"
 source="https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-$version.tar.xz"
 
 build() {

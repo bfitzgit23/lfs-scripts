@@ -6,6 +6,7 @@ description="A library for configuring and customizing font access"
 name=fontconfig-32
 version=2.18.3
 release=3
+build_opt="-D doc-man=enabled -D doc=disabled -D nls=disabled -D tests=disabled -D cache-build=disabled"
 source="https://fontconfig.org/release/fontconfig-$version.tar.xz"
 
 build() {

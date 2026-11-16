@@ -303,13 +303,18 @@ can re-apply a version map after a book update.
 stormfs-linux converted to CRUX `Pkgfile` recipes:
 
 - `tools/spkgbuild2pkgfile.sh` performs the conversion
-  (`spkgbuild` -> `Pkgfile`, CRLF stripped, `build_opt` dropped, the redundant
-  `cd $name-$version` removed because `pkgmk` already runs there).
+  (`spkgbuild` -> `Pkgfile`, CRLF stripped, the redundant `cd $name-$version`
+  removed because `pkgmk` already runs there, empty `backup`/`noextract`
+  dropped). `build_opt` and everything else is kept, so multi-line arrays and
+  quoted strings stay intact.
 - Categories are preserved (`core`, `extra`, `contrib`, `multilib`,
   `compat-32`, `compiz`, `gnome`, ...), so a port is
   `ports/scratch/<category>/<port>/Pkgfile`.
-- `ports/scratch/CONVERSION-NOTES.md` lists any recipe that needed manual
-  review; those were copied verbatim instead of being rewritten.
+- All 1429 recipes pass `bash -n`; `ports/scratch/CONVERSION-NOTES.md` records
+  what the conversion strips and lists no exceptions.
+- Recipes keep scratchpkg's `build()` bodies, including their sourcing of
+  `/usr/share/bfsos/spkgbuild.helper`. Building them with `pkgmk` needs that
+  helper installed, or the helper calls replaced with explicit commands.
 - Use them with `prt-get` by adding the tree to `/etc/prt-get.conf`, e.g.
   `prt-get` directive `prtdir /usr/ports/scratch/core`.
 

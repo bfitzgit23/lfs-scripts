@@ -7,6 +7,7 @@ description="SMB/CIFS client mount helpers and utilities"
 name=cifs-utils
 version=7.7
 release=1
+build_opt="--disable-pam"
 source="https://www.samba.org/ftp/linux-cifs/cifs-utils/cifs-utils-$version.tar.bz2"
 
 build() {

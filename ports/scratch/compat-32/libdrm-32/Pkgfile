@@ -6,6 +6,7 @@ description="Userspace interface to kernel DRM services"
 name=libdrm-32
 version=2.4.134
 release=3
+build_opt="-D intel=enabled -D man-pages=disabled -D valgrind=disabled -D cairo-tests=disabled"
 source="https://dri.freedesktop.org/${name%-*}/${name%-*}-$version.tar.xz"
 
 build() {

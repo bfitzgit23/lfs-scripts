@@ -6,6 +6,7 @@ name=sysklogd
 version=2.7.2
 release=1
 sv=($name.run)
+build_opt="--without-logger"
 source="https://github.com/troglobit/sysklogd/releases/download/v$version/sysklogd-$version.tar.gz sysklogd.run"
 
 build() {

@@ -6,6 +6,7 @@ description="Lightweight and flexible command-line JSON processor"
 name=jq-32
 version=1.8.2
 release=2
+build_opt="--disable-maintainer-mode --with-oniguruma=builtin --disable-gtk-doc"
 source="https://github.com/stedolan/jq/releases/download/jq-$version/jq-$version.tar.gz"
 
 build() {

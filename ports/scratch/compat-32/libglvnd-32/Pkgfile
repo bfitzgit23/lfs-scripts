@@ -6,6 +6,7 @@ description="The GL Vendor-Neutral Dispatch library"
 name=libglvnd-32
 version=1.7.0
 release=5
+build_opt="-Dheaders=false"
 source="https://github.com/NVIDIA/${name%-32}/archive/v$version/${name%-32}-$version.tar.gz"
 
 build() {

@@ -6,6 +6,7 @@ description="Pixel manipulation library"
 name=pixman-32
 version=0.46.4
 release=3
+build_opt="-D tests=disabled"
 source="https://www.x.org/releases/individual/lib/pixman-$version.tar.xz"
 
 build() {

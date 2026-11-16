@@ -6,6 +6,7 @@ description="Cross-platform 3D audio."
 name=openal-32
 version=1.25.2
 release=3
+build_opt="-D ALSOFT_UTILS=OFF -D ALSOFT_EXAMPLES=OFF -D QT_QMAKE_EXECUTABLE=qmake-disabled"
 source="https://github.com/kcat/openal-soft/archive/$version/openal-soft-$version.tar.gz"
 
 build() {

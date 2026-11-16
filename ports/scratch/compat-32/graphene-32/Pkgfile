@@ -6,6 +6,7 @@ description="A thin layer of graphic data types - 32-bit"
 name=graphene-32
 version=1.10.8
 release=4
+build_opt="-Dgobject_types=true -Dintrospection=disabled -Dtests=false -Dinstalled_tests=false"
 source="https://github.com/ebassi/graphene/archive/$version/graphene-$version.tar.gz"
 
 build() {

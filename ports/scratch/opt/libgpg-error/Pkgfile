@@ -6,6 +6,7 @@ description="Common error codes and messages used by GnuPG and related software.
 name=libgpg-error
 version=1.61
 release=3
+build_opt="--prefix=/usr"
 source="https://distfiles.icmpv6.org/distfiles/$name-$version.tar.bz2"
 
 build() {

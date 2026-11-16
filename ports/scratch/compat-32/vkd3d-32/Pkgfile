@@ -6,6 +6,7 @@ description="Direct3D 12 to Vulkan translation library By WineHQ."
 name=vkd3d-32
 version=2.1
 release=3
+build_opt="--with-spirv-tools"
 source="https://dl.winehq.org/vkd3d/source/${name%-*}-$version.tar.xz"
 
 build() {

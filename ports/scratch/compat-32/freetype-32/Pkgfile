@@ -6,6 +6,7 @@ description="A free and portable TrueType font rendering engine"
 name=freetype-32
 version=2.14.3
 release=3
+build_opt="-D default_library=shared"
 source="https://sourceforge.net/projects/freetype/files/freetype2/$version/freetype-$version.tar.xz"
 
 build() {

@@ -6,6 +6,7 @@ description="Video Decode and Presentation API for Unix provides a complete solu
 name=libvdpau-32
 version=1.5
 release=3
+build_opt="-Ddocumentation=false"
 source="https://gitlab.freedesktop.org/vdpau/${name%-*}/-/archive/$version//${name%-*}-$version.tar.bz2"
 
 build() {

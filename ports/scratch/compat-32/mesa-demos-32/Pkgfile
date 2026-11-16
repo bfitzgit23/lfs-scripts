@@ -6,6 +6,7 @@ description="Mesa 3D demos"
 name=mesa-demos-32
 version=9.0.0
 release=3
+build_opt="-D gles1=disabled -D with-system-data-files=true -D osmesa=disabled"
 source="https://archive.mesa3d.org/demos/${name%-*}-$version.tar.xz"
 
 build() {

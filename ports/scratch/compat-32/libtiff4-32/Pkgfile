@@ -6,6 +6,7 @@ description="Library for manipulation of TIFF (Tag Image File Format) images"
 name=libtiff4-32
 version=3.9.7
 release=3
+build_opt="--prefix=/usr --libdir=/usr/lib32"
 source="http://download.osgeo.org/libtiff/tiff-$version.tar.gz libtiff4-soname.patch"
 
 build() {

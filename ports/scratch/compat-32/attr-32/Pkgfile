@@ -6,6 +6,7 @@ description="Extented attributes library"
 name=attr-32
 version=2.6.0
 release=2
+build_opt="--bindir=/bin"
 source="http://download-mirror.savannah.gnu.org/releases/${name%-*}/${name%-*}-$version.tar.gz"
 
 build() {

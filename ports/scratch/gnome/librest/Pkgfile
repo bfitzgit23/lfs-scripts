@@ -1,0 +1,25 @@
+# description	: librest package
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+
+description="librest package"
+name=librest
+version=0.10.2
+release=2
+source="https://download.gnome.org/sources/${name}/${version%.*}/${name}-${version}.tar.xz"
+
+build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+mkdir build &&
+cd    build &&
+
+meson setup --prefix=/usr       \
+            --buildtype=release \
+            -Dexamples=false    \
+            -Dgtk_doc=false     \
+            ..                  &&
+ninja
+DESTDIR="$PKG" ninja install
+}

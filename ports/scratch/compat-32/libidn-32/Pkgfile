@@ -6,6 +6,7 @@ description="Provides support for IETF Internationalized Domain Names (IDN)."
 name=libidn-32
 version=1.44
 release=2
+build_opt="--disable-nls"
 source="https://ftp.gnu.org/gnu/${name%-*}/${name%-*}-$version.tar.gz"
 
 build() {

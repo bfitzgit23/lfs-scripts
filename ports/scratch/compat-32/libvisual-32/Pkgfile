@@ -6,6 +6,7 @@ description="An abstraction library that comes between applications and audio vi
 name=libvisual-32
 version=0.4.2
 release=2
+build_opt="--enable-extra-optimization --disable-examples --disable-nls"
 source="https://github.com/Libvisual/libvisual/releases/download/libvisual-$version/libvisual-$version.tar.bz2"
 
 build() {

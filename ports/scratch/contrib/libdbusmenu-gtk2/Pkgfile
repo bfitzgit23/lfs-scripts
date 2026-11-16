@@ -6,6 +6,7 @@ description="GTK2 library for passing menus over D-Bus"
 name=libdbusmenu-gtk2
 version=18.10
 release=6
+build_opt="--prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/libdbusmenu-gtk2 --localstatedir=/var --disable-dumper --disable-tests --disable-vala --disable-nls --with-gtk=2"
 # Custom build required: only the GTK2 sublibrary is installed
 source="https://deb.debian.org/debian/pool/main/libd/libdbusmenu/libdbusmenu_18.10.20180917~bzr492+repack1.orig.tar.xz 0001_no-deprecated-gnome-common-macros.patch 0003_port-tools-dbusmenu-bench-to-py3.patch 0004_prevent-test-json-from-failing.patch"
 

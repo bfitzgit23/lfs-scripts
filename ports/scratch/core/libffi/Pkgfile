@@ -5,6 +5,7 @@ description="libffi package"
 name=libffi
 version=3.8.0
 release=1
+build_opt="--with-gcc-arch=x86-64"
 bootstrap_opt=""
 source="https://github.com/libffi/libffi/releases/download/v$version/libffi-$version.tar.gz"
 

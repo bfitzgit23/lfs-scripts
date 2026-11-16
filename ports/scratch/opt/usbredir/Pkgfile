@@ -6,6 +6,7 @@ description="USB traffic redirection library for virtualization"
 name=usbredir
 version=0.15.0
 release=1
+build_opt=(-Dtools=enabled -Dtests=disabled)
 source="https://gitlab.freedesktop.org/spice/usbredir/-/archive/usbredir-$version/usbredir-usbredir-$version.tar.bz2"
 
 build() {

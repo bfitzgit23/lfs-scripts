@@ -5,6 +5,7 @@ description="dash package"
 name=dash
 version=0.5.13.5
 release=1
+build_opt="--bindir=/bin"
 source="https://gondor.apana.org.au/~herbert/$name/files/$name-$version.tar.gz"
 
 build() {

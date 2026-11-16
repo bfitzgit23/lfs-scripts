@@ -9,6 +9,7 @@ description="Lightweight NTP client/server used by the BFSOS live environment"
 name=chrony
 version=4.9
 release=3
+build_opt="--with-user=chrony"
 source="https://chrony-project.org/releases/chrony-$version.tar.gz"
 
 build() {

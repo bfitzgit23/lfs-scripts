@@ -6,6 +6,7 @@ description="A collection of utilities to handle ELF objects."
 name=elfutils-32
 version=0.196
 release=3
+build_opt="--program-prefix=eu- --disable-debuginfod --disable-libdebuginfod --disable-nls"
 source="https://sourceware.org/${name%-*}/ftp/$version/${name%-*}-$version.tar.bz2"
 
 build() {

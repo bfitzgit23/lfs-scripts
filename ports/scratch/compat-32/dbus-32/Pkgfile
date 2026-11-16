@@ -6,6 +6,7 @@ description="A message bus system"
 name=dbus-32
 version=1.16.2
 release=5
+build_opt="--libexecdir=lib32/dbus -D dbus_daemondir=/usr/sbin -D dbus_user=messagebus -D runtime_dir=/run -D system_pid_file=/run/dbus/pid -D system_socket=/run/dbus/system_bus_socket"
 source="https://dbus.freedesktop.org/releases/dbus/dbus-$version.tar.xz"
 
 build() {

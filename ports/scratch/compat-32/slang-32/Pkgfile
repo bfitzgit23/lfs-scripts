@@ -7,6 +7,7 @@ description="S-Lang programmer's library"
 name=slang-32
 version=2.3.3
 release=2
+build_opt="--host=${BFS_MULTILIB_HOST:-i686-pc-linux-gnu} --prefix=/usr --libdir=/usr/lib32"
 source="https://www.jedsoft.org/releases/${name%-*}/${name%-*}-$version.tar.bz2"
 
 build() {

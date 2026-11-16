@@ -5,6 +5,7 @@ description="libdv package"
 name=libdv
 version=1.0.0
 release=1
+build_opt="--disable-xv"
 source="https://downloads.sourceforge.net/${name}/${name}-${version}.tar.gz"
 
 build() {

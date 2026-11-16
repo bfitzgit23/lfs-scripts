@@ -6,6 +6,7 @@ description="Low-level cryptographic library"
 name=nettle-32
 version=4.0
 release=2
+build_opt="--disable-documentation"
 source="https://ftp.gnu.org/gnu/nettle/nettle-$version.tar.gz"
 
 build() {

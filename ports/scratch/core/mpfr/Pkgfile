@@ -5,6 +5,7 @@ description="mpfr package"
 name=mpfr
 version=4.2.2
 release=1
+build_opt="--enable-thread-safe"
 source="https://ftp.gnu.org/gnu/mpfr/mpfr-$version.tar.xz"
 
 build() {

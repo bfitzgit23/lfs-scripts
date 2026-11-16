@@ -6,6 +6,7 @@ description="Portable Foreign Function Interface Library"
 name=libffi-32
 version=3.8.0
 release=3
+build_opt="--includedir=/usr/lib32/libffi/include"
 source="https://github.com/libffi/libffi/releases/download/v$version/libffi-$version.tar.gz"
 
 build() {

@@ -10,6 +10,7 @@ version=78.3
 _ver_under=$(printf '%s' "$version" | tr . _)
 _ver_dash=$(printf '%s' "$version" | tr . -)
 release=3
+build_opt="--disable-samples --disable-tests"
 source="https://github.com/unicode-org/icu/releases/download/release-$_ver_dash/icu4c-$_ver_under-src.tgz"
 
 build() {

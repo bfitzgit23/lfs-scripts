@@ -6,6 +6,7 @@ description="RPC program number to universal address mapper"
 name=rpcbind
 version=1.2.9
 release=1
+build_opt="--enable-warmstarts"
 source="https://downloads.sourceforge.net/project/rpcbind/rpcbind/$version/rpcbind-$version.tar.bz2"
 
 build() {

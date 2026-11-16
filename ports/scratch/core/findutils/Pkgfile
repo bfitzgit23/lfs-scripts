@@ -5,6 +5,7 @@ description="findutils package"
 name=findutils
 version=4.11.0
 release=1
+build_opt="--localstatedir=/var/lib/locate"
 source="https://ftp.gnu.org/gnu/findutils/findutils-$version.tar.xz"
 
 # locate's install-data-hook creates $(LOCATE_DB) with mkinstalldirs and

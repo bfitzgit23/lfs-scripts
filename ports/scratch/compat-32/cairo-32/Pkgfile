@@ -6,6 +6,7 @@ description="A 2D graphics library with support for multiple output devices"
 name=cairo-32
 version=1.18.4
 release=3
+build_opt="-D dwrite=disabled -D spectre=disabled -D symbol-lookup=disabled -D tests=disabled"
 source="https://gitlab.freedesktop.org/cairo/cairo/-/archive/$version/cairo-$version.tar.bz2"
 
 build() {

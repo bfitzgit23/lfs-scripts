@@ -6,6 +6,7 @@ description="Perl Compatible Regular Expressions"
 name=libpcre-32
 version=8.45
 release=3
+build_opt="--enable-unicode-properties --enable-pcre16 --enable-pcre32 --enable-jit --disable-pcregrep-libz --disable-pcregrep-libbz2 --disable-pcretest-libreadline"
 source="https://downloads.sourceforge.net/project/pcre/pcre/$version/pcre-$version.tar.bz2"
 
 build() {

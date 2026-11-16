@@ -6,6 +6,7 @@ description="Text based document generation."
 name=asciidoc
 version=10.2.1
 release=4
+build_opt="--sysconfdir=/etc"
 source="https://github.com/$name-py/$name-py/archive/$version/$name-py-$version.tar.gz"
 
 build() {

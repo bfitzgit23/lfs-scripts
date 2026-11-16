@@ -6,6 +6,7 @@ description="A tool for transfering files with URL syntax"
 name=curl-32
 version=8.22.0
 release=3
+build_opt="--enable-ipv6 --without-libidn2 --with-openssl --enable-threaded-resolver --without-libpsl --with-ca-bundle=/etc/ssl/cert.pem"
 source="https://curl.se/download/${name%-*}-$version.tar.xz"
 
 build() {

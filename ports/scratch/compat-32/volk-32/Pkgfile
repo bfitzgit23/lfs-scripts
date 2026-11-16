@@ -7,6 +7,7 @@ name=volk-32
 version=1.4.357.0
 _version=vulkan-sdk-$version
 release=3
+build_opt="-D VOLK_INSTALL=True -Wno-dev"
 source="https://github.com/zeux/volk/archive/$_version/volk-$version.tar.gz"
 
 build() {

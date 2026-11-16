@@ -6,6 +6,7 @@ description="Public Suffix List library."
 name=libpsl-32
 version=0.23.3
 release=4
+build_opt="-D runtime=libidn2 -D builtin=true -D psl_file=/usr/share/publicsuffix/effective_tld_names.dat -D psl_testfile=/usr/share/publicsuffix/test_psl.txt"
 source="https://github.com/rockdaboot/${name%-*}/releases/download/$version/${name%-*}-$version.tar.lz"
 
 build() {

@@ -6,6 +6,7 @@ description="A System V Release 4.0 curses emulation library"
 name=ncurses-32
 version=6.6
 release=4
+build_opt="--with-normal --with-shared --without-debug --without-ada --without-tests --enable-pc-files --with-pkg-config-libdir=/usr/lib32/pkgconfig --without-gpm --enable-widec"
 source="https://invisible-mirror.net/archives/ncurses/ncurses-$version.tar.gz"
 
 build() {

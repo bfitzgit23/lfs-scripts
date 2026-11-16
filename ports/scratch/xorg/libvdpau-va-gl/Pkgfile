@@ -5,6 +5,7 @@ description="libvdpau-va-gl package"
 name=libvdpau-va-gl
 version=0.4.2
 release=1
+build_opt="-D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$XORG_PREFIX"
 source="https://github.com/i-rinat/${name}/archive/v${version}/${name}-${version}.tar.gz"
 
 build() {
