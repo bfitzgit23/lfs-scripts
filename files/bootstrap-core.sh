@@ -147,6 +147,18 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 				;;
 		esac
 		if [ "$_pkgmk_rc" -ne 0 ]; then
+			# configure decisions are invisible in the pkgmk output, so show
+			# what the compiler probe actually said before giving up.
+			for l in work/*/config.log work/config.log */config.log; do
+				[ -f "$l" ] || continue
+				echo "---- tail of $l ----"
+				tail -n 40 "$l"
+				echo "---- end of $l ----"
+				break
+			done
+			echo "host compiler: ${HOSTCC:-<not used for this package>}" >&2
+			echo "host path: ${HOSTPATH:-$PATH}" >&2
+			ls -l "$TOOLS/bin" 2>/dev/null | head -n 10 >&2
 			rm -rf /tmp/lfs-pkg
 			echo "error: pkgmk failed for '$i'" >&2
 			exit 1
