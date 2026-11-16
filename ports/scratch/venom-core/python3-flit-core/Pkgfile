@@ -1,0 +1,21 @@
+# Depends: python3-installer
+description="Simplified packaging of Python modules"
+homepage="https://github.com/takluyver/flit"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-flit-core
+version=4.0.0
+release=1
+source="$name-$version.tar.gz::https://github.com/takluyver/flit/archive/$version/flit-$version.tar.gz
+	vendor-licence.patch"
+
+build() {
+  rm flit-$version/tests/test_sdist.py
+ cd flit-$version/flit_core
+
+ patch -Np1 -i $SRC/vendor-licence.patch
+  rm -rf flit_core/vendor/
+	python3 build_dists.py
+	python3 -m installer -d $PKG \
+		dist/flit_core-$version-py3-none-any.whl
+}

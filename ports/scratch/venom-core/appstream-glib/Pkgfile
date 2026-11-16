@@ -1,0 +1,18 @@
+# Depends: gcab json-glib stemmer libsoup gtk3
+description="Objects and methods for reading and writing AppStream metadata"
+homepage="https://people.freedesktop.org/~hughsient/appstream-glib/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=appstream-glib
+version=0.8.3
+_version=$(printf '%s' "$version" | sed 's/\./_/g')
+release=2
+source="$name-$version.tar.gz::https://github.com/hughsie/appstream-glib/archive/appstream_glib_${_version}.tar.gz"
+
+build() {
+	cd appstream-glib-appstream_glib_${_version}	
+
+	venom-meson -Dman=false -Drpm=false build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

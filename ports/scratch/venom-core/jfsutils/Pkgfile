@@ -1,0 +1,24 @@
+# Depends: util-linux
+description="Administration and debugging tools for the jfs file system"
+homepage="http://jfs.sourceforge.net/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=jfsutils
+version=1.1.15
+release=1
+source="http://jfs.sourceforge.net/project/pub/jfsutils-$version.tar.gz
+	inttypes.patch
+	sysmacros.patch"
+
+build() {
+
+	# patch taken from Arch
+	patch -Np1 -i ../inttypes.patch
+	patch -Np1 -i ../sysmacros.patch
+
+	export CFLAGS="$CFLAGS -fcommon"
+
+	./configure
+	make
+	make DESTDIR=$PKG install
+}

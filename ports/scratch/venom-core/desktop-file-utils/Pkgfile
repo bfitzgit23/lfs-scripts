@@ -1,0 +1,15 @@
+# Depends: glib meson
+description="Command line utilities for working with Desktop entries"
+homepage="https://www.freedesktop.org/wiki/Software/desktop-file-utils"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=desktop-file-utils
+version=0.28
+release=1
+source="https://gitlab.freedesktop.org/xdg/desktop-file-utils/-/archive/$version/${name}-${version}.tar.bz2"
+
+build() {
+	venom-meson build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

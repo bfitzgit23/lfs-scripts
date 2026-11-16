@@ -1,0 +1,27 @@
+# Depends: meson wayland-protocols libxkbcommon libjpeg-turbo libpng json-c hicolor-icon-theme
+description="Image viewer for Sway"
+homepage="https://github.com/artemsen/swayimg"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=swayimg
+version=5.4
+release=1
+source="https://github.com/artemsen/$name/archive/v$version/$name-$version.tar.gz"
+
+build() {
+
+    venom-meson $name-$version build \
+		-D jpeg=enabled \
+		-D png=enabled \
+		-D heif=$(scratch isinstalled libheif && printf "enabled" || printf "disabled") \
+		-D jxl=$(scratch isinstalled libjxl && printf "enabled" || printf "disabled") \
+		-D svg=$(scratch isinstalled librsvg && printf "enabled" || printf "disabled") \
+		-D webp=$(scratch isinstalled libwebp && printf "enabled" || printf "disabled") \
+		-D exr=$(scratch isinstalled openxr && printf "enabled" || printf "disabled") \
+		-D tiff=$(scratch isinstalled libtiff && printf "enabled" || printf "disabled") \
+		-D bash=$(scratch isinstalled bash-completion && printf "enabled" || printf "disabled") \
+		-D zsh=$(scratch isinstalled zsh && printf "enabled" || printf "disabled") \
+		-D version=$version
+    meson compile -C build
+    DESTDIR=$PKG meson install --no-rebuild -C build
+}

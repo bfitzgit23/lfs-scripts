@@ -1,0 +1,4 @@
+envfile /etc/s6/config/wireguard.conf
+importas -uD "wg0" WG_INTERFACE WG_INTERFACE
+fdmove -c 2 1
+wg-quick down ${WG_INTERFACE}

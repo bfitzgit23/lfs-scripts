@@ -1,0 +1,20 @@
+# Depends: python3-packaging python3-gpep517 python3-pyproject-hooks
+description="A simple, correct PEP517 package builder"
+homepage="https://github.com/pypa/build"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-build
+version=1.5.0
+release=1
+source="$name-$version.tar.gz::https://github.com/pypa/build/archive/refs/tags/$version/py3-build-$version.tar.gz"
+
+build() {
+  cd build-$version
+
+		gpep517 build-wheel \
+			--wheel-dir .dist \
+			--output-fd 3 3>&1 >&2
+
+		python3 -m installer -d $PKG \
+			.dist/build*.whl		
+}

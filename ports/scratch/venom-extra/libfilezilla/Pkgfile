@@ -1,0 +1,15 @@
+# Depends: gnutls
+description="Small and modern C++ library, offering some basic functionality to build high-performing, platform-independent programs"
+homepage="https://lib.filezilla-project.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libfilezilla
+version=0.56.1
+release=1
+source="https://sources.archlinux.org/other/libfilezilla/$name-$version.tar.xz"
+
+build() {
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+}

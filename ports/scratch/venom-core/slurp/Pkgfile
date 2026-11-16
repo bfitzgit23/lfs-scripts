@@ -1,0 +1,15 @@
+# Depends: meson cairo wayland-protocols libxkbcommon scdoc
+description="Select a region in a Wayland compositor and print it to the standard output. Works well with grim."
+homepage="https://github.com/emersion/slurp"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=slurp
+version=1.5.0
+release=2
+source="$name-$version.tar.gz::https://github.com/emersion/slurp/archive/refs/tags/v$version.tar.gz"
+
+build() {
+	venom-meson $name-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build 
+}

@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+foreground { mkdir -p /run/samba }
+nmbd -F -d=1 --no-process-group

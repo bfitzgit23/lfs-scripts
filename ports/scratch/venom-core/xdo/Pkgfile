@@ -1,0 +1,15 @@
+# Depends: libxcb xcb-util xcb-util-wm
+description="Utility for performing actions on windows in X"
+homepage="https://github.com/baskerville/xdo"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xdo
+version=0.5.7
+release=1
+source="https://github.com/baskerville/xdo/archive/$version/$name-$version.tar.gz"
+
+build() {
+
+	make PREFIX=/usr
+	make PREFIX=/usr DESTDIR=$PKG install
+}

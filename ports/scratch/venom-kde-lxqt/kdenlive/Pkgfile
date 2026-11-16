@@ -1,0 +1,29 @@
+# Depends: kddockwidgets kfilemetadata knewstuff knotifyconfig ktextwidgets kxmlgui mlt purpose qqc2-desktop-style opentimelineio
+description="A non-linear video editor for Linux using the MLT video framework"
+homepage="https://apps.kde.org/kdenlive/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=kdenlive
+version=26.04.2
+release=1
+source="http://download.kde.org/stable/release-service/$version/src/$name-$version.tar.xz"
+
+build() {
+	cmake -S $name-$version -B build -G Ninja \
+	       -D CMAKE_INSTALL_PREFIX=/usr \
+	       -D CMAKE_INSTALL_LIBDIR=lib \
+	       -D CMAKE_BUILD_TYPE=Release \
+	       -D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+	       -D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+	       -DBUILD_QCH=ON \
+	       -D BUILD_TESTING=OFF \
+	       -Wno-dev
+	 cmake --build build
+	 DESTDIR=$PKG cmake --install build
+
+	scratch isinstalled imath && {
+		rm -fr $PKG/usr/include/Imath \
+		       $PKG/usr/lib/cmake/Imath 
+		rm -f  $PKG/usr/lib/pkgconfig/Imath.pc
+	}
+}

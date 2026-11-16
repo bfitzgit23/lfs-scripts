@@ -1,0 +1,15 @@
+# Depends: gtk3 meson
+description="Paper is an open source desktop theme and icon project by Sam Hewitt"
+homepage="https://github.com/snwh/paper-icon-theme"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=paper-icon-theme
+version=1.5.0
+release=1
+source="$name-$version.tar.gz::https://github.com/snwh/$name/archive/v.$version.tar.gz"
+
+build() {
+	venom-meson $name-v.$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

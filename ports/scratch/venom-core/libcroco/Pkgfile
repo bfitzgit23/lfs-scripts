@@ -1,0 +1,17 @@
+# Depends: glib libxml2
+description="Standalone CSS2 parsing and manipulation library"
+homepage="https://gitlab.gnome.org/GNOME/libcroco"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libcroco
+version=0.6.13
+release=1
+source="https://gitlab.gnome.org/Archive/libcroco/-/archive/$version/$name-$version.tar.gz"
+
+build() {
+	autoreconf -fvi
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+
+}

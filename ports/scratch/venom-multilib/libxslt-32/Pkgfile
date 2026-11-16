@@ -1,0 +1,28 @@
+# Depends: libxslt libgpg-error-32 libgcrypt-32 libxml2-32
+description="XSLT libraries used for extending libxml2 libraries to support XSLT files"
+homepage="https://gitlab.gnome.org/GNOME/libxslt/-/wikis/home"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libxslt-32
+version=1.1.45
+release=1
+source="https://gitlab.gnome.org/GNOME/libxslt/-/archive/v$version/${name%-*}-v$version.tar.gz"
+
+build() {
+	cd ${name%-*}-v$version
+
+	export CC="gcc -m32"
+	export CXX="g++ -m32"
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+	sed -i s/3000/5000/ libxslt/transform.c doc/xsltproc.1 doc/xsltproc.xml
+	
+        autoreconf -fi
+
+	./configure --prefix=/usr --libdir=/usr/lib32 --disable-static --without-python
+	make
+	make DESTDIR=$PWD/DESTDIR install
+
+	mkdir -p $PKG/usr/lib32
+	cp -Rv DESTDIR/usr/lib32/* $PKG/usr/lib32
+}

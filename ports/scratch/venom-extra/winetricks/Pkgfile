@@ -1,0 +1,13 @@
+# Depends: wine cabextract unzip xmessage zenity
+description="Script to install various redistributable runtime libraries in Wine"
+homepage="https://github.com/Winetricks/winetricks"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=winetricks
+version=20260125
+release=1
+source="https://github.com/Winetricks/winetricks/archive/$version/$name-$version.tar.gz"
+
+build() {
+	make DESTDIR=$PKG install
+}

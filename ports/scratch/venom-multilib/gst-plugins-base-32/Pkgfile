@@ -1,0 +1,30 @@
+# Depends: gst-plugins-base gstreamer-32 alsa-lib-32
+description="Well-groomed and well-maintained collection of GStreamer plug-ins and elements"
+homepage="https://gstreamer.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=gst-plugins-base-32
+version=1.28.4
+release=1
+source="http://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-$version.tar.xz"
+
+build() {
+        export CC="gcc -m32"
+	export CXX="g++ -m32"
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"        
+
+        venom-meson gst-plugins-base-$version build \
+		--libdir=/usr/lib32 \
+		--libexecdir=/usr/lib32 \
+		-Dalsa=enabled \
+		-Dintrospection=disabled \
+		-Dtests=disabled \
+		-Ddoc=disabled \
+		-Dlibvisual=disabled \
+		-Dtremor=disabled \
+		-Dpackage-name="GStreamer Base Plugins $version (Venom Linux)"		
+	meson compile -C build
+	DESTDIR=$PWD/DESTDIR meson install --no-rebuild -C build
+	mkdir -p $PKG/usr/lib32
+	cp -Rv DESTDIR/usr/lib32/* $PKG/usr/lib32
+}

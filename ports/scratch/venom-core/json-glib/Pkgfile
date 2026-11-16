@@ -1,0 +1,19 @@
+# Depends: gobject-introspection
+description="library providing serialization and deserialization support for the JavaScript Object Notation (JSON) format"
+homepage="https://gnome.pages.gitlab.gnome.org/json-glib/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=json-glib
+version=1.10.8
+release=1
+source="https://gitlab.gnome.org/GNOME/json-glib/-/archive/$version/$name-$version.tar.gz"
+
+build() {
+	venom-meson \
+	--libexecdir=/usr/lib/$name \
+	-Dgtk_doc=disabled \
+	-Dtests=false \
+	build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

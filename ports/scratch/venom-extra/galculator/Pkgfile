@@ -1,0 +1,17 @@
+# Depends: gtk3 intltool
+description="GTK+ based scientific calculator"
+homepage="http://galculator.sourceforge.net/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=galculator
+version=2.1.4
+release=1
+source="http://galculator.mnim.org/downloads/$name-$version.tar.bz2"
+
+build() {
+	export CFLAGS="$CFLAGS -fcommon"
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

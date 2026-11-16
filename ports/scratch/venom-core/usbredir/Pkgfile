@@ -1,0 +1,15 @@
+# Depends: libusb glib
+description="USB traffic redirection protocol"
+homepage="https://www.spice-space.org/usbredir.html"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=usbredir
+version=0.15.0
+release=1
+source="https://spice-space.org/download/usbredir/$name-$version.tar.xz"
+
+build() {
+        venom-meson $name-$version build 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

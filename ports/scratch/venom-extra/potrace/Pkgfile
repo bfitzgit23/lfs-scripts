@@ -1,0 +1,19 @@
+description="Utility for tracing a bitmap (input: PBM,PGM,PPM,BMP; output: EPS,PS,PDF,SVG,DXF,PGM,Gimppath,XFig)"
+homepage="http://potrace.sourceforge.net"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=potrace
+version=1.16
+release=1
+source="http://potrace.sourceforge.net/download/$version/$name-$version.tar.gz"
+
+build() {
+
+	./configure \
+		--prefix=/usr \
+		--mandir=/usr/share/man \
+		--with-libpotrace
+	make
+	make DESTDIR=$PKG install
+
+}

@@ -1,0 +1,18 @@
+description="Large, sparse array mapping each unicode code point to the annotation data for it"
+homepage="https://github.com/fontforge/libuninameslist"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libuninameslist
+version=20260107
+release=1
+source="https://github.com/fontforge/$name/releases/download/$version/$name-dist-$version.tar.gz"
+
+build() {
+
+	autoreconf -i
+	automake --foreign -Wall
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

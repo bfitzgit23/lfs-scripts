@@ -1,0 +1,15 @@
+# Depends: colord libhandy sane yelp-tools libadwaita hicolor-icon-theme
+description="Simple Scanning Utility"
+homepage="https://github.com/GNOME/simple-scan"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=simple-scan
+version=50.0
+release=1
+source="https://gitlab.gnome.org/GNOME/$name/-/archive/$version/$name-$version.tar.gz"
+
+build() {
+	venom-meson $name-$version build 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build 
+}

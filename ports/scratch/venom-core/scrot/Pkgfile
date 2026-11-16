@@ -1,0 +1,19 @@
+# Depends: giblib imlib2 autoconf-archive libxfixes libxcomposite libbsd
+description="Simple command-line screenshot utility for X"
+homepage="https://github.com/resurrecting-open-source-projects/scrot"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=scrot
+version=2.0.0
+release=1
+source="https://github.com/resurrecting-open-source-projects/$name/archive/refs/tags/$version.tar.gz"
+
+build() {
+
+	NOCONFIGURE=1 ./autogen.sh
+	./configure \
+		--prefix=/usr \
+		--mandir=/usr/share/man
+	make
+	make DESTDIR=$PKG install
+}

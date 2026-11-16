@@ -1,0 +1,15 @@
+# Depends: geany
+description="Themes for geany"
+homepage="https://git.geany.org/geany-themes/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=geany-themes
+version=1.24
+release=1
+source="https://git.geany.org/$name/snapshot/$name-$version.tar.gz"
+
+build() {
+
+	mkdir -pv $PKG/usr/share/geany/colorschemes/
+	cp -v colorschemes/*.conf $PKG/usr/share/geany/colorschemes/
+}

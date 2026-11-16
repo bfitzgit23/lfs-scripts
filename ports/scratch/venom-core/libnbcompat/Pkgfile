@@ -1,0 +1,16 @@
+# Depends: autoconf automake libtool
+description="portable NetBSD-compatibility library"
+homepage="https://github.com/archiecobbs/libnbcompat"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libnbcompat
+version=1.0.2
+release=1
+source="$name-$version.tar.gz::https://github.com/archiecobbs/libnbcompat/archive/refs/tags/${version}.tar.gz"
+
+build() {
+	./autogen.sh
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

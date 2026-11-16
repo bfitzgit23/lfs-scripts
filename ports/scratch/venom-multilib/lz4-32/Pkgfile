@@ -1,0 +1,26 @@
+description="Extremely fast compression algorithm"
+homepage="https://lz4.github.io/lz4/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=lz4-32
+version=1.10.0
+release=1
+source="lz4-$version.tar.gz::https://github.com/lz4/lz4/archive/v$version.tar.gz"
+
+build() {
+	export CC="gcc -m32"
+	export CXX="g++ -m32"
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+	cd lz4-$version
+	make -C lib PREFIX=/usr
+        make -C programs PREFIX=/usr lz4 lz4c
+        make install \
+        PREFIX=/usr \
+        LIBDIR=/usr/lib32 \
+        PKGCONFIGDIR=/usr/lib32/pkgconfig \
+        DESTDIR=$PKG
+        rm -rf $PKG/usr/share
+        rm -rf $PKG/usr/include
+        rm -rf $PKG/usr/bin
+}

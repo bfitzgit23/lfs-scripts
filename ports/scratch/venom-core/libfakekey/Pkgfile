@@ -1,0 +1,16 @@
+# Depends: libx11 libxtst
+description="X virtual keyboard library"
+homepage="https://www.yoctoproject.org/tools-resources/projects/matchbox"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libfakekey
+version=0.3
+release=1
+source="http://git.yoctoproject.org/cgit/cgit.cgi/$name/snapshot/$name-$version.tar.gz"
+
+build() {
+	./autogen.sh
+	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+	make
+	make DESTDIR=$PKG install
+}

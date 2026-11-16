@@ -1,0 +1,17 @@
+# Depends: meson gobject-introspection
+description="Library to help create and query binary XML blobs"
+homepage="https://github.com/hughsie/libxmlb"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libxmlb
+version=0.3.27
+release=1
+source="https://github.com/hughsie/libxmlb/releases/download/$version/$name-$version.tar.xz"
+
+build() {
+        venom-meson $name-$version build \
+		-D gtkdoc=false \
+		-D tests=false 
+        meson compile -C build
+        DESTDIR=$PKG meson install --no-rebuild -C build
+}

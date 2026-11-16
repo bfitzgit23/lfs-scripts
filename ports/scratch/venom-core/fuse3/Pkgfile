@@ -1,0 +1,18 @@
+# Depends: meson
+description="A simple interface for userspace programs to export a virtual filesystem to the Linux kernel"
+homepage="https://github.com/libfuse/libfuse"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=fuse3
+version=3.18.2
+release=1
+source="$name-$version.tar.gz::https://github.com/libfuse/libfuse/archive/refs/tags/fuse-${version}.tar.gz"
+
+build() {
+	
+	venom-meson libfuse-fuse-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+	rm -r $PKG/dev $PKG/etc/fuse.conf
+	rm -fr $PKG/etc/init.d
+}

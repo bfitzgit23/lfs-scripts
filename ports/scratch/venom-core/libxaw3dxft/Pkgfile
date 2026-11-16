@@ -1,0 +1,24 @@
+# Depends: libxft libxmu libxpm util-macros
+description="xaw3d library for xpaint"
+homepage="https://sourceforge.net/projects/sf-xpaint"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libxaw3dxft
+version=1.6.4
+release=1
+source="https://github.com/DaveFlater/libXaw3dXft/releases/download/v$version/$name-$version.tar.xz"
+
+build() {
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--mandir=/usr/share/man \
+		--localstatedir=/var \
+		--enable-internationalization \
+		--enable-multiplane-bitmaps \
+		--enable-gray-stipples \
+		--enable-arrow-scrollbars
+	make
+	make DESTDIR=$PKG install
+
+}

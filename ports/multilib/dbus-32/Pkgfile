@@ -1,7 +1,7 @@
 # Depends on: dbus expat-32
 
 name=dbus-32
-version=1.14.10
+version=1.16.2
 release=1
 source=(https://dbus.freedesktop.org/releases/dbus/dbus-$version.tar.xz)
 build_opt="

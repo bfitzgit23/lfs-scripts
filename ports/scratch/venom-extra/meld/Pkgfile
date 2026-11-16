@@ -1,0 +1,16 @@
+# Depends: dconf gsettings-desktop-schemas gtksourceview4 python3-gobject3
+description="Visual diff and merge tool"
+homepage="https://meldmerge.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+        
+
+name=meld
+version=3.24.0
+release=1
+source="https://gitlab.gnome.org/GNOME/meld/-/archive/$version/$name-$version.tar.gz"
+  
+build() {
+	venom-meson $name-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

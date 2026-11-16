@@ -1,5 +1,5 @@
 name=python-32
-version=3.11.6
+version=3.14.7
 release=1
 source=(https://www.python.org/ftp/python/$version/Python-$version.tar.xz)
 build_opt="--without-ensurepip --enable-shared --with-system-expat

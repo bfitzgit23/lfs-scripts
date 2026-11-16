@@ -1,0 +1,14 @@
+# Depends: libxi libxt
+description="Hide the mouse cursor when typing"
+homepage="https://github.com/jcs/xbanish"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xbanish
+version=1.8
+release=1
+source="$name-$version.zip::https://github.com/jcs/xbanish/archive/v${version}.zip"
+
+build() {
+	make
+	make PREFIX=/usr DESTDIR=$PKG install
+}

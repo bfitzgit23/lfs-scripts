@@ -1,0 +1,21 @@
+# Depends: util-macros mkfontscale font-util
+description="X.org Type1 fonts"
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=font-ibm-type1
+version=1.0.4
+release=1
+source="http://ftp.x.org/pub/individual/font/font-ibm-type1-$version.tar.xz"
+
+build() {
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}
+

@@ -1,0 +1,18 @@
+description="Tool to manipulate intel IA-32/X86-64 microcode bundles"
+homepage="https://gitlab.com/iucode-tool/iucode-tool/wikis/home"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=iucode-tool
+version=2.3.1
+release=1
+source="https://gitlab.com/iucode-tool/releases/raw/master/${name}_${version}.tar.xz"
+
+build() {
+
+        ./configure \
+                --prefix=/usr   \
+                --sbindir=/usr/sbin
+
+        make
+        make DESTDIR=$PKG install 
+}

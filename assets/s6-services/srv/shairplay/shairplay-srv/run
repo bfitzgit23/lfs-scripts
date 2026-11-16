@@ -1,0 +1,6 @@
+#!/bin/execlineb -P
+envfile /etc/s6/config/shairplay.conf
+importas -uD "shairplay" SHAIRPLAY_NAME SHAIRPLAY_NAME
+importas -uD "" SHAIRPLAY_PASSWORD SHAIRPLAY_PASSWORD
+fdmove -c 2 1
+/usr/bin/shairplay -a ${SHAIRPLAY_NAME} ${SHAIRPLAY_PASSWORD}

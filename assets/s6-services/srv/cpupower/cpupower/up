@@ -1,0 +1,19 @@
+envfile /etc/default/cpupower
+importas -uD "" governor governor
+importas -uD "" min_freq min_freq
+importas -uD "" max_freq max_freq
+importas -uD "" freq freq
+importas -uD "" mc_scheduler mc_scheduler
+importas -uD "" smp_scheduler smp_scheduler
+importas -uD "" perf_bias perf_bias
+
+# frequency options
+foreground { if -t { test ${governor} } cpupower frequency-set -g ${governor} }
+foreground { if -t { test ${min_freq} } cpupower frequency-set -d ${min_freq} }
+foreground { if -t { test ${max_freq} } cpupower frequency-set -u ${max_freq} }
+foreground { if -t { test ${freq} } cpupower frequency-set -f ${freq} }
+
+# cpu options
+foreground { if -t { test ${mc_scheduler} } cpupower set -m ${mc_scheduler} }
+foreground { if -t { test ${smp_scheduler} } cpupower set -s ${smp_scheduler} }
+foreground { if -t { test ${perf_bias} } cpupower set -b ${perf_bias} }

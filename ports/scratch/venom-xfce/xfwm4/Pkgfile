@@ -1,0 +1,22 @@
+# Depends: libwnck3 libxfce4ui
+description="Window manager for Xfce"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xfwm4
+version=4.20.0
+release=1
+source="http://archive.xfce.org/src/xfce/xfwm4/${version%.*}/$name-$version.tar.bz2"
+
+build() {
+
+	./configure \
+		--prefix=/usr \
+		--enable-randr \
+		--enable-compositor \
+		--enable-xsync \
+		--disable-nls
+	make
+	make DESTDIR=$PKG install
+
+}

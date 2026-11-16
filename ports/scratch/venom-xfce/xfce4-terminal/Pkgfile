@@ -1,0 +1,24 @@
+# Depends: libxfce4ui vte3
+description="GTK+3 terminal emulator for xfce desktop"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xfce4-terminal
+version=1.2.0
+release=1
+
+case $version in
+	*.*.*.*) _ver=${version%.*}; _ver=${_ver%.*};;
+	*.*.*) _ver=${version%.*};;
+esac
+
+source="http://archive.xfce.org/src/apps/xfce4-terminal/${_ver}/$name-$version.tar.xz"
+
+build() {
+
+	venom-meson $name-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+
+	rm -rf $PKG/usr/share/locale
+}

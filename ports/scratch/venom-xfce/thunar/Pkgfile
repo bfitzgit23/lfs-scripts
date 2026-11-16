@@ -1,0 +1,21 @@
+# Depends: exo hicolor-icon-theme libgudev libnotify libexif
+description="Xfce file manager, a GTK+ 3 GUI to organise the files on your computer"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=thunar
+version=4.20.8
+release=1
+source="http://archive.xfce.org/src/xfce/$name/${version%.*}/thunar-$version.tar.bz2"
+
+build() {
+	cd thunar-$version
+
+	./configure --prefix=/usr \
+	            --sysconfdir=/etc
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/lib/systemd/
+
+}

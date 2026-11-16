@@ -1,0 +1,20 @@
+# Depends: libxmu libx11
+description="Server access control program for X"
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xhost
+version=1.0.10
+release=1
+source="http://ftp.x.org/pub/individual/app/xhost-$version.tar.xz"
+
+build() {
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}

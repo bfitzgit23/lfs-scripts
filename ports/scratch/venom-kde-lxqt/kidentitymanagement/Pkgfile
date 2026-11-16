@@ -1,0 +1,23 @@
+# Depends: kirigami-addons kpimtextedit
+description="Library to assist in handling user identities"
+homepage="https://kontact.kde.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=kidentitymanagement
+version=26.04.2
+release=1
+source="http://download.kde.org/stable/release-service/$version/src/$name-$version.tar.xz"
+
+build() {
+	cmake -S $name-$version -B build -G Ninja \
+	        -D CMAKE_INSTALL_PREFIX=/usr \
+	        -D CMAKE_INSTALL_LIBDIR=lib \
+	        -D CMAKE_BUILD_TYPE=Release \
+	        -D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+	        -D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+	        -D BUILD_TESTING=OFF \
+	        -Wno-dev
+	 cmake --build build
+	 DESTDIR=$PKG cmake --install build
+
+}

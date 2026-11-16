@@ -1,0 +1,16 @@
+# Depends: pcre2
+description="Library facilitates the common operations with sizes in bytes"
+homepage="https://github.com/rhinstaller/libbytesize"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libbytesize
+version=2.12
+release=1
+source="https://github.com/storaged-project/$name/releases/download/$version/$name-$version.tar.gz"
+
+build() {
+	./configure --prefix=/usr --with-gtk-doc=no
+	make
+	make DESTDIR=$PKG install
+
+}

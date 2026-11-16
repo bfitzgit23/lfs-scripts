@@ -1,0 +1,17 @@
+# Depends: docbook-xsl
+description="Manage user directories like ~/Desktop and ~/Music"
+homepage="https://www.freedesktop.org/wiki/Software/xdg-user-dirs"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xdg-user-dirs
+version=0.20
+release=2
+source="$name-$version.tar.gz::https://gitlab.freedesktop.org/xdg/xdg-user-dirs/-/archive/v$version/$name-v$version.tar.gz"
+
+build() {
+	venom-meson $name-v$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+
+        rm -rf $PKG/usr/lib/systemd
+}

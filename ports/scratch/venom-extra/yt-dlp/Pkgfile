@@ -1,0 +1,19 @@
+# Depends: python3-urllib3
+description="youtube-dl fork with additional features and fixes"
+homepage="https://github.com/yt-dlp/yt-dlp"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=yt-dlp
+version=2026.06.09
+release=1
+source="https://github.com/yt-dlp/yt-dlp/archive/$version/$name-$version.tar.gz"
+
+
+build() {
+
+	    gpep517 build-wheel \
+		   --wheel-dir .dist \
+		   --output-fd 3 3>&1 >&2
+	   python3 -m installer -d $PKG \
+			.dist/*.whl
+}

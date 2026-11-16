@@ -1,0 +1,17 @@
+# Depends: xfce4-panel gtk-layer-shell
+description="Alternate menu for Xfce4"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xfce4-whiskermenu-plugin
+version=2.10.1
+release=1
+source="https://gitlab.xfce.org/panel-plugins/$name/-/archive/$name-$version/$name-$name-$version.tar.gz"
+
+
+build() {
+	venom-meson $name-$name-$version build 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+
+}

@@ -1,0 +1,19 @@
+# Depends: libcanberra libx11 libxml2 mate-desktop gtk3 glib libmatemixer mate-panel
+description="MATE Media Tools"
+homepage="https://mate-desktop.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=mate-media
+version=1.28.1
+release=1
+source="https://pub.mate-desktop.org/releases/${version%.*}/$name-$version.tar.xz"
+
+build() {
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--libexecdir=/usr/lib/$name \
+		--disable-nls
+	make
+	make DESTDIR=$PKG install
+}

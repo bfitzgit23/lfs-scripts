@@ -1,0 +1,32 @@
+if -t -n { pipeline { cat /proc/cmdline } grep -qF nohdparm }
+envfile /etc/s6/config/hdparm.conf
+importas -sCuD "" pata_all_args pata_all_args
+importas -sCuD "" sata_all_args sata_all_args
+importas -sCuD "" all_args all_args
+elglob -0 hd_devices /dev/hd*
+elglob -0 sd_devices /dev/sd*
+elglob -0 cd_devices /dev/cdrom*
+
+foreground {
+	forx -E hd_device { ${hd_devices} }
+		backtick -n -E device { basename ${hd_device} }
+		envfile /etc/s6/config/hdparm.conf
+		importas -sCuD "" DEVICE_ARGS ${device}_args
+		redirfd -w 1 /dev/null hdparm ${DEVICE_ARGS} ${pata_all_args} ${all_args} ${hd_device}
+}
+
+foreground {
+	forx -E sd_device { ${sd_devices} }
+		backtick -n -E device { basename ${sd_device} }
+		envfile /etc/s6/config/hdparm.conf
+		importas -sCuD "" DEVICE_ARGS ${device}_args
+		redirfd -w 1 /dev/null hdparm ${DEVICE_ARGS} ${sata_all_args} ${all_args} ${sd_device}
+}
+
+foreground {
+	forx -E cd_device { ${cd_devices} }
+		backtick -n -E device { basename ${cd_device} }
+		envfile /etc/s6/config/hdparm.conf
+		importas -sCuD "" DEVICE_ARGS ${device}_args
+		redirfd -w 1 /dev/null hdparm ${DEVICE_ARGS} ${all_args} ${cd_device}
+}

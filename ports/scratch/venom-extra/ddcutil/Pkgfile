@@ -1,0 +1,16 @@
+# Depends: libdrm libgudev
+description="Program for querying and changing monitor settings, such as brightness and color levels"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+homepage="https://www.ddcutil.com" 
+
+name=ddcutil
+version=2.2.7
+release=1
+source="https://github.com/rockowitz/ddcutil/archive/v${version}/${name}-${version}.tar.gz"
+
+build() {
+	./autogen.sh
+	./configure --prefix=/usr --enable-drm
+	make
+	make DESTDIR=$PKG install
+}

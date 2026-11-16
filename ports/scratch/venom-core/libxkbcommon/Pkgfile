@@ -1,0 +1,17 @@
+# Depends: libxml2 xkeyboard-config
+description="keymap compiler and support library"
+homepage="https://xkbcommon.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libxkbcommon
+version=1.13.2
+release=1
+source="$name-$version.tar.gz::https://github.com/xkbcommon/libxkbcommon/archive/xkbcommon-$version.tar.gz"
+
+build() {
+	venom-meson $name-xkbcommon-$version build \
+		-Denable-docs=false \
+		-Denable-wayland=$(scratch isinstalled wayland-protocols && printf "true" || printf "false") 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

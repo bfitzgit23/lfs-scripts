@@ -1,0 +1,21 @@
+# Depends: python3-setuptools python3-gpep517 python3-hatchling
+description="Python syntax highlighter"
+homepage="https://pygments.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-pygments
+version=2.20.0
+release=1
+source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/P/Pygments/pygments-$version.tar.gz
+	"
+
+build() {
+	cd pygments-$version
+
+	gpep517 build-wheel \
+		--wheel-dir .dist \
+		--output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG \
+		.dist/*.whl
+	ln -s pygmentize $PKG/usr/bin/pygmentize-3
+}

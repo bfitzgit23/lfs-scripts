@@ -1,0 +1,17 @@
+# Depends: libwnck3 wayland-protocols xfce4-dev-tools libdisplay-info wlr-protocols
+description="Windowing concept abstraction library for X11 and Wayland "
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libxfce4windowing
+version=4.20.5
+release=1
+source="https://gitlab.xfce.org/xfce/$name/-/archive/$name-$version/$name-$name-$version.tar.bz2"
+
+build() {
+
+	venom-meson $name-$name-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+
+}

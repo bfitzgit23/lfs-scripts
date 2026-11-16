@@ -1,0 +1,17 @@
+# Depends: xfce4-panel meson
+description="A battery monitor panel plugin for Xfce4"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xfce4-battery-plugin
+version=1.2.0
+release=1
+source="https://gitlab.xfce.org/panel-plugins/$name/-/archive/$name-$version/$name-$name-$version.tar.gz"
+
+build() {
+
+	venom-meson $name-$name-$version build 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+
+}

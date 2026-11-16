@@ -1,0 +1,15 @@
+description="Library which provides a simple foundation for reading DVDs"
+homepage="https://www.videolan.org/developers/libdvdnav.html"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libdvdread
+version=7.0.1
+release=1
+source="https://code.videolan.org/videolan/libdvdread/-/archive/$version/$name-$version.tar.gz"
+
+build() {
+	venom-meson $name-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}
+

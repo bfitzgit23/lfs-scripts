@@ -1,0 +1,28 @@
+# Depends: fuse3 pipewire json-glib bubblewrap
+description="Desktop integration portals for sandboxed apps"
+homepage="https://github.com/flatpak/xdg-desktop-portal"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xdg-desktop-portal
+version=1.22.1
+release=1
+_glnx=ff64d52116ae74f0d25e24f089db28921ea171ff
+_gvdb=c6f2359cc1d00f16e0a0e2527fa0bc1882b8b5ab
+source="https://github.com/flatpak/xdg-desktop-portal/archive/$version/$name-$version.tar.gz
+	https://gitlab.gnome.org/GNOME/libglnx/-/archive/$_glnx/libglnx-$_glnx.tar.bz2
+	https://gitlab.gnome.org/GNOME/gvdb/-/archive/$_gvdb/gvdb-$_gvdb.tar.bz2"
+
+build() {
+	export MESON_PACKAGE_CACHE_DIR="$SRC"
+	mv libglnx-$_glnx $name-$version/subprojects/libglnx
+	mv gvdb-$_gvdb $name-$version/subprojects/gvdb
+
+	venom-meson $name-$version build \
+		--libexecdir=lib/$name \
+		-Dtests=disabled \
+		-Dsystemd=disabled 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+
+        rm -rf $PKG/usr/lib/systemd
+}

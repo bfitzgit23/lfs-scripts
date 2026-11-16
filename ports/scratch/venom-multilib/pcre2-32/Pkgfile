@@ -1,0 +1,33 @@
+# Depends: pcre2
+description="Perl Compatible Regular Expression libraries"
+homepage="https://github.com/PCRE2Project/pcre2"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=pcre2-32
+version=10.47
+release=1
+source="https://github.com/PCRE2Project/pcre2/releases/download/${name%-*}-$version/${name%-*}-$version.tar.bz2"
+
+build() {
+
+	export CC="gcc -m32"
+	export CXX="g++ -m32"
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+	cd ${name%-*}-$version
+	
+	./configure \
+		--prefix=/usr  \
+		--libdir=/usr/lib32 \
+		--enable-unicode \
+		--enable-jit \
+		--enable-pcre2-16 \
+		--enable-pcre2-32 \
+		--enable-pcre2grep-libz \
+		--disable-static
+	make
+	make DESTDIR=$PWD/DESTDIR install
+
+	mkdir -p $PKG/usr/lib32
+	cp -Rv DESTDIR/usr/lib32/* $PKG/usr/lib32
+}

@@ -1,0 +1,16 @@
+# Depends: libidn2 libunistring python3
+description="Library for accessing and resolving information from the Public Suffix List"
+homepage="https://github.com/rockdaboot/libpsl"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libpsl
+version=0.22.0
+release=1
+source="https://github.com/rockdaboot/libpsl/releases/download/$version/libpsl-$version.tar.gz"
+
+build() {
+	sed -i 's/env python/&3/' src/psl-make-dafsa
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+}

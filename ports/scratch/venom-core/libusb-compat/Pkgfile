@@ -1,0 +1,16 @@
+# Depends: libusb
+description="Library to enable user space application programs to communicate with USB devices "
+homepage="http://libusb.sourceforge.net/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libusb-compat
+version=0.1.9
+release=1
+source="https://github.com/libusb/libusb-compat-0.1/releases/download/v$version/libusb-compat-$version.tar.bz2"
+
+build() {
+	autoreconf -fvi
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

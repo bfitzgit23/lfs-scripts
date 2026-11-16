@@ -1,0 +1,24 @@
+# Depends: cmake ninja freetype2
+description="Rendering engine for graphite fonts"
+homepage="https://github.com/silnrsi/graphite"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=graphite2
+version=1.3.15
+release=1
+source="https://github.com/silnrsi/graphite/releases/download/$version/$name-$version.tgz"
+
+build() {
+
+  	sed -i '/cmptest/d' tests/CMakeLists.txt
+
+	cmake -B build -G Ninja \
+	        -DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+		-Wno-dev 
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+}

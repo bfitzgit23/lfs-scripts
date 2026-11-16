@@ -1,0 +1,19 @@
+# Depends: xcb-util-keysyms xcb-util
+description="Simple X hotkey daemon"
+homepage="https://github.com/baskerville/sxhkd"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=sxhkd
+version=0.6.3
+release=1
+source="https://github.com/baskerville/sxhkd/archive/$version/$name-$version.tar.gz"
+
+build() {
+
+	# https://wiki.gentoo.org/wiki/Gcc_10_porting_notes/fno_common
+	CFLAGS="$CFLAGS -fcommon"
+
+	make PREFIX=/usr
+	make PREFIX=/usr DESTDIR=$PKG install
+
+}

@@ -1,0 +1,15 @@
+# Depends: libwpe glib libepoxy wayland-protocols meson
+description="freedesktop.org backend for WPE WebKit"
+homepage="https://wpewebkit.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=wpebackend-fdo
+version=1.16.1
+release=1
+source="https://wpewebkit.org/releases/$name-$version.tar.xz"
+
+build() {
+	venom-meson $name-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

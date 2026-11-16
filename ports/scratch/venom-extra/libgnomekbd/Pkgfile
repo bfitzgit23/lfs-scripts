@@ -1,0 +1,15 @@
+# Depends: libxklavier gtk3 dconf gobject-introspection
+description="Keyboard management library "
+homepage="https://gitlab.gnome.org/GNOME/libgnomekbd"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libgnomekbd
+version=3.28.1
+release=1
+source="https://gitlab.gnome.org/GNOME/libgnomekbd/-/archive/$version/$name-$version.tar.gz"
+
+build() {
+	venom-meson $name-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

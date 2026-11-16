@@ -1,0 +1,12 @@
+description="Venom Linux inits stuffs"
+homepage="https://venomlinux.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=init
+version=1
+release=1
+source="modules-load"
+
+build() {
+	install -Dm755 $SRC/modules-load $PKG/usr/sbin/modules-load
+}

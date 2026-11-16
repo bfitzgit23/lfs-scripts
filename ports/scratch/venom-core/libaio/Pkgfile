@@ -1,0 +1,17 @@
+description="The Linux-native asynchronous I/O facility (aio) library"
+homepage="https://pagure.io/libaio"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libaio
+version=0.3.113
+release=1
+source="$name-$version.tar.gz::http://ftp.de.debian.org/debian/pool/main/liba/libaio/libaio_$version.orig.tar.gz"
+
+build() {
+
+	# disable the installation of the static library
+	sed '/install.*libaio.a/s/^/#/' src/Makefile
+
+	make
+	make prefix=$PKG/usr install
+}

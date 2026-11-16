@@ -1,0 +1,36 @@
+# Depends: cmake ninja nasm x265 numactl-32
+description="Library for encoding video streams into the H.265/HEVC format"
+homepage="https://bitbucket.org/multicoreware/x265_git"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=x265-32
+version=4.2
+release=1
+source="${name%-*}-$version.tar.gz::https://bitbucket.org/multicoreware/${name%-*}_git/downloads/${name%-*}_$version.tar.gz"
+
+build() {
+	export CC="gcc -m32"
+	export CXX="g++ -m32"
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+
+	sed -r '/cmake_policy.*(0025|0054)/d' -i ${name%-*}_$version/source/CMakeLists.txt
+
+	cmake -S ${name%-*}_$version/source -B build \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DLIB_INSTALL_DIR='lib32' \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_C_FLAGS="$CFLAGS" \
+		-DCMAKE_CXX_FLAGS="$CXXFLAGS" \
+		-DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" \
+		-DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS" \
+		-DCMAKE_POSITION_INDEPENDENT_CODE=OFF \
+		-DENABLE_PIC=OFF \
+		-DENABLE_ASSEMBLY=OFF \
+		-DGIT_ARCHETYPE=1 \
+		-Wno-dev
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+
+	rm -rf $PKG/usr/bin $PKG/usr/include $PKG/usr/share
+}

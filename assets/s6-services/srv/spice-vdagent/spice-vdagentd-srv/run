@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+foreground { mkdir -p /run/spice-vdagentd }
+fdmove -c 2 1
+spice-vdagentd -x -d

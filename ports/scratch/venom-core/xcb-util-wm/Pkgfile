@@ -1,0 +1,21 @@
+# Depends: libxcb
+description="libraries for XC Binding - client and window-manager helpers for ICCCM"
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xcb-util-wm
+version=0.4.2
+release=1
+source="https://xorg.freedesktop.org/archive/individual/xcb/xcb-util-wm-$version.tar.xz"
+
+build() {
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}
+

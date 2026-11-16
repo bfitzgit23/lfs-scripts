@@ -1,0 +1,15 @@
+# Depends: hicolor-icon-theme libfixposix sbcl webkitgtk
+description="Atlas Engineer Nyxt Browser"
+homepage="https://nyxt.atlas.engineer"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=nyxt
+version=3.12.0
+release=1
+source="$name-$version.tar.xz::https://github.com/atlas-engineer/nyxt/releases/download/$version/$name-$version-source-with-submodules.tar.xz"
+NO_STRIP="yes"
+
+build() {
+	make all
+	make PREFIX=/usr DESTDIR=$PKG install
+}

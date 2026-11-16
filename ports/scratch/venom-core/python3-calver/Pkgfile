@@ -1,0 +1,18 @@
+# Depends: python3-setuptools
+description="Setuptools extension for CalVer package versions"
+homepage="https://github.com/di/calver"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-calver
+version=2025.10.20
+release=1
+source="https://pypi.org/packages/source/c/calver/calver-$version.tar.gz"
+
+build() {
+  cd calver-$version
+
+  /usr/bin/python3 setup.py build
+  /usr/bin/python3 setup.py install --prefix=/usr \
+    --root=$PKG \
+    --skip-build
+}

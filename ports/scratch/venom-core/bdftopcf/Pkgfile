@@ -1,0 +1,21 @@
+# Depends: util-macros xorgproto
+description="Convert X font from Bitmap Distribution Format to Portable Compiled Format"
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=bdftopcf
+version=1.1.2
+release=1
+source="https://www.x.org/releases/individual/util/$name-$version.tar.xz"
+
+build() {
+
+	./configure \
+		--prefix=/usr \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --disable-static \
+		--disable-devel-docs
+	make
+	make DESTDIR=$PKG install
+}

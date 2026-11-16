@@ -1,0 +1,17 @@
+# Depends: gtk2 intltool
+description="Extra Themes for GNOME Applications"
+homepage="https://www.gnome.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=gnome-themes-extra
+version=3.28
+release=1
+source="https://download.gnome.org/sources/gnome-themes-extra/$version/$name-$version.tar.xz"
+
+build() {
+	./configure --prefix=/usr \
+		 --disable-nls
+	sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+	make
+	make DESTDIR=$PKG install
+}

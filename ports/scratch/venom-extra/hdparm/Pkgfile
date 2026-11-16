@@ -1,0 +1,13 @@
+description="A shell utility for manipulating Linux IDE drive/driver parameters"
+homepage="https://sourceforge.net/projects/hdparm/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=hdparm
+version=9.65
+release=1
+source="https://downloads.sourceforge.net/hdparm/$name-$version.tar.gz"
+
+build() {
+	make
+	make DESTDIR=$PKG install
+}

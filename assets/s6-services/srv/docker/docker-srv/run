@@ -1,0 +1,5 @@
+#!/bin/execlineb -P
+foreground { modprobe -q loop }
+foreground { sh -c "ulimit -c unlimited -n 1048576 -u unlimited" }
+fdmove -c 2 1
+dockerd --containerd=/run/containerd/containerd.sock

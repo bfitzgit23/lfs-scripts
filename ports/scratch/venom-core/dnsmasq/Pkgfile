@@ -1,0 +1,33 @@
+# Depends: nettle
+description="Lightweight, easy to configure DNS forwarder and DHCP server"
+homepage="http://www.thekelleys.org.uk/dnsmasq/doc.html"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=dnsmasq
+version=2.93
+release=1
+backup="etc/dnsmasq.conf"
+source="http://www.thekelleys.org.uk/$name/$name-$version.tar.xz
+	run.$name
+	rc.$name"
+
+_build_copts="-DHAVE_DNSSEC -DHAVE_DBUS"
+
+build() {
+
+	# need to pass COPTS here to avoid rebuilding the binary.
+	make COPTS="$_build_copts" PREFIX=/usr BINDIR=/usr/bin DESTDIR=$PKG install-i18n
+
+	install -Dm 644 dnsmasq.conf.example $PKG/etc/dnsmasq.conf
+	install -Dm 644 trust-anchors.conf $PKG/usr/share/dnsmasq/trust-anchors.conf
+
+	# runit service
+	scratch isinstalled runit && {
+		install -Dm755 $SRC/run.$name $PKG/etc/sv/$name/run
+		ln -s /run/runit/supervise.$name $PKG/etc/sv/$name/supervise
+	} || continue
+
+	# rc service
+	scratch isinstalled sysvinit && \
+		install -Dm755 $SRC/rc.$name $PKG/etc/rc.d/$name || continue
+}

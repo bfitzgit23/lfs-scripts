@@ -1,0 +1,20 @@
+# Depends: libsndfile
+description="Bauer stereophonic-to-binaural DSP effect library"
+homepage="http://bs2b.sourceforge.net/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+ 
+
+name=libbs2b
+version=3.1.0
+release=1
+source="https://downloads.sourceforge.net/sourceforge/bs2b/$name-$version.tar.lzma"
+
+build() {
+
+	sed -i 's/dist-lzma/dist-xz/g' configure.ac
+	
+	autoreconf -fvi
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

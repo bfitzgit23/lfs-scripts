@@ -1,0 +1,20 @@
+# Depends: libxext libxft libxrender libx11 libxmu
+description="Simple X server performance benchmarker"
+homepage="https://gitlab.freedesktop.org/xorg/test/x11perf"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=x11perf
+version=1.7.0
+release=1
+source="https://xorg.freedesktop.org/archive/individual/test/$name-$version.tar.xz"
+
+build() {
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}

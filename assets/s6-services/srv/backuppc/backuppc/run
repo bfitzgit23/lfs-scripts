@@ -1,0 +1,2 @@
+#!/bin/execlineb -P
+s6-setuidgid backuppc /usr/share/backuppc/bin/BackupPC

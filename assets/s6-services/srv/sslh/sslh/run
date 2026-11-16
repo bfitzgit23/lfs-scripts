@@ -1,0 +1,2 @@
+#!/bin/execlineb -P
+sslh -f -u nobody -F /etc/sslh.cfg

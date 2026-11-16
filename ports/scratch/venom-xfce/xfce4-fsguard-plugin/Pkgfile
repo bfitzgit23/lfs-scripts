@@ -1,0 +1,15 @@
+# Depends: xfce4-panel
+description="File system usage monitor plugin for the Xfce4 panel"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xfce4-fsguard-plugin
+version=1.2.0
+release=1
+source="https://gitlab.xfce.org/panel-plugins/$name/-/archive/$name-$version/$name-$name-$version.tar.gz"
+
+build() {
+	venom-meson $name-$name-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

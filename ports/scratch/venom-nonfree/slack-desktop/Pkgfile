@@ -1,0 +1,26 @@
+# Depends: libxtst nss libsecret gtk3 alsa-lib xdg-utils
+description="Slack Desktop (Beta) for Linux "
+homepage="https://slack.com/downloads"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=slack-desktop
+version=4.49.89
+release=1
+source="$name-$version.deb::https://downloads.slack-edge.com/desktop-releases/linux/x64/${version}/${name}-${version}-amd64.deb
+${name}.patch"
+
+build() {
+	bsdtar -O -xf "${name}-${version}"*.deb data.tar.xz | bsdtar -C "${PKG}" -xJf -
+
+	# Fix hardcoded icon path in .desktop file
+	patch -d "${PKG}" -p1 <"${name}".patch
+
+	# Permission fix
+	find "${PKG}" -type d -exec chmod 755 {} +
+
+	# Remove all unnecessary stuff
+	rm -rf "${PKG}/etc"
+	rm -rf "${PKG}/usr/lib/slack/src"
+	rm -rf "${PKG}/usr/share/lintian"
+	rm -rf "${PKG}/usr/share/doc"
+}

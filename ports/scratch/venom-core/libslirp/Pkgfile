@@ -1,0 +1,15 @@
+# Depends: meson glib
+description="A general purpose TCP-IP emulator"
+homepage="https://gitlab.freedesktop.org/slirp/libslirp"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libslirp
+version=4.9.3
+release=1
+source="$name-$version.tar.gz::https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v$version/$name-v$version.tar.gz"
+
+build() {
+        venom-meson $name-v$version build 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

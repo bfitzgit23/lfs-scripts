@@ -1,0 +1,21 @@
+# Depends: ncurses
+description="A tool to display dialog boxes from shell scripts"
+homepage="https://invisible-island.net/dialog/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=dialog
+version=1.3_20260107
+vrsn=$(printf "$version" | sed 's/_/-/')
+release=1
+source="https://invisible-mirror.net/archives/$name/$name-$vrsn.tgz"
+
+build () {
+	cd $name-$vrsn
+
+	./configure \
+		--prefix=/usr \
+		--with-ncursesw \
+		--with-libtool
+	make
+	make DESTDIR=$PKG install
+}

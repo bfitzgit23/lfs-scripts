@@ -1,0 +1,21 @@
+# Depends: freetype2
+description="A library and support programs used for configuring and customizing font access"
+homepage="https://www.freedesktop.org/wiki/Software/fontconfig/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=fontconfig
+version=2.18.1
+release=1
+source="https://gitlab.com/freedesktop-sdk/mirrors/freedesktop/fontconfig/fontconfig/-/archive/$version/$name-$version.tar.gz"
+
+build() {
+
+	./autogen.sh
+	./configure --prefix=/usr        \
+	            --sysconfdir=/etc    \
+	            --localstatedir=/var \
+	            --disable-docs \
+		    --with-default-fonts=/usr/share/fonts
+	make
+	make DESTDIR=$PKG install
+}

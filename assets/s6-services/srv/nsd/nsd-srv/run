@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+foreground { /usr/bin/nsd-checkconf }
+fdmove -c 2 1
+/usr/bin/nsd -d -c /etc/nsd/nsd.conf

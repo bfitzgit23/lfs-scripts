@@ -1,0 +1,16 @@
+# Depends: libxml2 libarchive libgcrypt gobject-introspection meson
+description="Simple GObject-based library to parse and save a host of playlist formats"
+homepage="https://gitlab.gnome.org/GNOME/totem-pl-parser"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=totem-pl-parser
+version=3.26.7
+vrsn=$(printf "$version" | sed 's/\./_/g')
+release=6
+source="$name-$version.tar.bz2::https://gitlab.gnome.org/GNOME/totem-pl-parser/-/archive/$version/$name-$version.tar.gz"
+
+build() {
+	venom-meson $name-$version build -D enable-gtk-doc=false
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

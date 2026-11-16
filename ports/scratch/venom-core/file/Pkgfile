@@ -1,0 +1,21 @@
+# Depends: zlib xz bzip2
+description="Utility for determining the type of a given file or files"
+homepage="https://www.darwinsys.com/file/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=file
+version=5.48
+release=1
+source="ftp://ftp.astron.com/pub/$name/$name-$version.tar.gz"
+
+build() {
+
+	./configure \
+		--prefix=/usr \
+		--enable-fsect-man5 \
+                --enable-static \
+                --disable-libseccomp \
+		--disable-zstdlib
+	make
+	make DESTDIR=$PKG install
+}

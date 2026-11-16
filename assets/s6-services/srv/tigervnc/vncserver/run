@@ -1,0 +1,5 @@
+#!/bin/execlineb -P
+envfile /etc/s6/config/tigervnc.conf
+importas -uD ":0" DISPLAY DISPLAY
+importas -uD "root" USER USER
+s6-fghack vncsession ${USER} ${DISPLAY}

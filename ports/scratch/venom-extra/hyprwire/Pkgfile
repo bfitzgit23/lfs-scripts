@@ -1,0 +1,23 @@
+# Depends: hyprutils libffi pugixml
+description="A fast and consistent wire protocol for IPC"
+homepage="https://github.com/hyprwm/hyprwire"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+ 
+
+name=hyprwire
+version=0.3.1
+release=1
+source="https://github.com/hyprwm/$name/archive/v$version/$name-$version.tar.gz"
+
+build() {
+	cmake -B build \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_INSTALL_LIBDIR=lib \
+		-DCMAKE_INSTALL_LIBEXECDIR=lib \
+		-DCMAKE_BUILD_TYPE=None \
+		-DCMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-Wno-dev
+	cmake --build build
+	DESTDIR="$PKG" cmake --install build
+}

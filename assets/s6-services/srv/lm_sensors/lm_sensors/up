@@ -1,0 +1,10 @@
+foreground { 
+	envfile -I /etc/conf.d/lm_sensors
+	redirfd -w 2 /dev/null importas -sCuD "" BUS_MODULES BUS_MODULES
+	modprobe -qa ${BUS_MODULES}
+}
+foreground {
+	envfile -I /etc/conf.d/lm_sensors
+	redirfd -w 2 /dev/null importas -sCuD "" HWMON_MODULES HWMON_MODULES
+	modprobe -qa ${HWMON_MODULES}
+}

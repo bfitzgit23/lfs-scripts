@@ -1,0 +1,18 @@
+# Depends: perl
+description="HTTP style message"
+homepage="https://metacpan.org/release/HTTP-Message/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=perl-http-message
+version=7.02
+release=1
+source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Message-$version.tar.gz"
+
+build() {
+        cd HTTP-Message-$version
+	perl -I. Makefile.PL INSTALLDIRS=vendor
+        make
+        make DESTDIR=$PKG install
+
+}
+

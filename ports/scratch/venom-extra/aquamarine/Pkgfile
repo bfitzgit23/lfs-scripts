@@ -1,0 +1,18 @@
+# Depends: hyprutils hyprwayland-scanner libdisplay-info pixman mesa wayland seatd libinput
+description="A very light linux rendering backend library"
+homepage="https://github.com/hyprwm/$name"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=aquamarine
+version=0.12.1
+release=1
+source="https://github.com/hyprwm/$name/archive/v$version/$name-$version.tar.gz"
+
+build() {
+	cmake -S $name-$version -B build \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_BUILD_TYPE=Release
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+}
+

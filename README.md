@@ -333,3 +333,34 @@ stormfs-linux converted to CRUX `Pkgfile` recipes:
 - Submodules: `.oh-my-bash`, `StormFS-grub-theme`, `adw-gtk3`,
   `tela-icon-theme`, `tela-circle-icon-theme`, `scratchpkg`.
   Initialise with `git submodule update --init --recursive`.
+
+## Upstream port trees (venomlinux) and chromium-bin
+
+`tools/sync-venom-ports.sh [repo ...]` clones or updates the venomlinux port
+trees into `$VENOM_SRC` (default `/tmp/venom`) and converts every `spkgbuild`
+into a CRUX `Pkgfile` at:
+
+```
+ports/scratch/venom-<repo>/<port>/Pkgfile
+```
+
+with the trees `core`, `extra`, `nonfree`, `multilib`, `kde-lxqt`, `mate` and
+`xfce`. The `venom-` prefix keeps them apart from the existing
+`ports/scratch/<category>` trees, which come from the stormfs port set. Each
+port's `depends` file becomes a `# Depends: a b c` header line, which is how
+`prt-get` reads dependencies from a Pkgfile.
+
+`s6-services` ships service definitions rather than ports (no `spkgbuild`
+files), so it is vendored under `assets/s6-services/`.
+
+`chromium-bin` (prebuilt Chromium) is the port at
+`ports/scratch/opt/chromium-bin`, converted from the stormfs `ports/opt` tree.
+
+## Config files
+
+- `etc/scratchpkg.conf` - scratchpkg global options plus the list of port trees
+  this repository provides, with the upstream each tree comes from.
+- `etc/scratchpkg.repo` - the same trees in scratchpkg's own repo format
+  (`<repo dir> <repo url> [branch]`) for `portsync`.
+- `ports/multilib` versions are kept in step with the venomlinux `multilib`
+  tree; `ports/multilib/REPO` marks the tree for `prt-get`.

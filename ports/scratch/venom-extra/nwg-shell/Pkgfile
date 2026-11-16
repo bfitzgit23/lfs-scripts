@@ -1,0 +1,16 @@
+# Depends: azote foot gopsuinfo gnome-themes-extra grim imagemagick jq l3afpad libappindicator network-manager-applet nwg-displays nwg-dock nwg-drawer nwg-look nwg-menu nwg-panel nwg-shell-config nwg-shell-wallpapers papirus-icon-theme polkit-gnome swappy sway swayidle swaylock swaync ttf-dejavu wlsunset xdg-user-dirs xdg-utils xwayland wl-clipboard
+description="nwg-shell meta-package"
+homepage="https://github.com/nwg-piotr/nwg-shell"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=nwg-shell
+version=0.5.50
+release=1
+#source="$name-$version.tar.gz::https://github.com/nwg-piotr/nwg-shell/releases/download/v$version/nwg-shell-v$version.tar.gz"
+source="$name-$version.tar.gz::https://github.com/nwg-piotr/nwg-shell/archive/refs/tags/v$version.tar.gz"
+
+build() {
+	python3 setup.py install --root=$PKG --optimize=1
+	install -D -t $PKG/usr/bin scripts/*
+	install -D -t $PKG/usr/share/backgrounds nwg-shell.jpg
+}

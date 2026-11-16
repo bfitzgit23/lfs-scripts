@@ -1,0 +1,3 @@
+fdmove -c 2 1
+redirfd -w 1 /dev/null
+intel-undervolt apply

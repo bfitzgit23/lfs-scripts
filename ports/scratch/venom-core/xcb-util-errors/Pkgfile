@@ -1,0 +1,15 @@
+# Depends: libxcb xorgproto
+description="XCB errors library "
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xcb-util-errors
+version=1.0.1
+release=1
+source="https://xcb.freedesktop.org/dist/xcb-util-errors-$version.tar.xz"
+
+build() {
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

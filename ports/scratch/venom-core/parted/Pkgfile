@@ -1,0 +1,16 @@
+# Depends: lvm2
+description="A program for creating, destroying, resizing, checking and copying partitions"
+homepage="https://www.gnu.org/software/parted/parted.html"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=parted
+version=3.7
+release=1
+source="https://ftp.gnu.org/gnu/$name/$name-$version.tar.xz"
+
+build() {
+	./configure --prefix=/usr --disable-static --disable-nls
+	make
+	make DESTDIR=$PKG install
+
+}

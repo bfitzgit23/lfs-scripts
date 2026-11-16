@@ -1,0 +1,25 @@
+#
+# /etc/scratchpkg.repo : scratchpkg repo file
+#
+# format:
+#    <repo directory> <repo url> <repo branch, "main" by default>
+#
+# The venomlinux trees below are converted to Pkgfile (pkgutils/prt-get) form
+# under ports/scratch/venom-<repo> by tools/spkgbuild2pkgfile.sh.
+#
+
+/usr/ports/core             https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/extra            https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/contrib          https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/multilib         https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/opt              https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/scratch          https://github.com/bfitzgit23/lfs-scripts
+
+/usr/ports/scratch/venom-core          https://codeberg.org/venomlinux/core
+/usr/ports/scratch/venom-extra         https://codeberg.org/venomlinux/extra
+/usr/ports/scratch/venom-nonfree       https://codeberg.org/venomlinux/nonfree
+/usr/ports/scratch/venom-multilib      https://codeberg.org/venomlinux/multilib
+/usr/ports/scratch/venom-kde-lxqt      https://codeberg.org/venomlinux/kde-lxqt
+/usr/ports/scratch/venom-mate          https://codeberg.org/venomlinux/mate
+/usr/ports/scratch/venom-xfce          https://codeberg.org/venomlinux/xfce
+/usr/ports/scratch/venom-s6-services   https://codeberg.org/venomlinux/s6-services

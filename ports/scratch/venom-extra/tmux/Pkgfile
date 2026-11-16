@@ -1,0 +1,16 @@
+# Depends: libevent ncurses
+description="Terminal multiplexer"
+homepage="https://github.com/tmux/tmux/wiki"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=tmux
+version=3.7
+release=1
+source="https://github.com/tmux/tmux/releases/download/${version}/${name}-${version}.tar.gz"
+
+build() {
+	cd ${name}-${version}
+	./configure --prefix=/usr 
+	make
+	make DESTDIR=$PKG install
+}

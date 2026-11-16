@@ -1,0 +1,17 @@
+# Depends: expat perl-file-sharedir perl-file-sharedir-install
+description="Expat-based XML parser module for perl"
+homepage="https://search.cpan.org/dist/XML-Parser/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=perl-xml-parser
+version=2.59
+release=1
+source="$name-$version.tar.gz::http://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-$version.tar.gz"
+
+build() {
+	cd XML-Parser-$version
+	perl Makefile.PL INSTALLDIRS=vendor
+	make
+	make DESTDIR=$PKG install
+}
+

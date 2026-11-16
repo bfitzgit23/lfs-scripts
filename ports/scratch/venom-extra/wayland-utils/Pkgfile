@@ -1,0 +1,15 @@
+# Depends: libdrm wayland-protocols
+description="Wayland utils tools"
+homepage="https://gitlab.freedesktop.org/wayland/wayland-utils"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=wayland-utils
+version=1.3.0
+release=1
+source="https://gitlab.freedesktop.org/wayland/wayland-utils/-/releases/$version/downloads/$name-$version.tar.xz"
+
+build() {
+	venom-meson $name-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

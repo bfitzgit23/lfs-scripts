@@ -1,0 +1,22 @@
+# Depends: alsa-lib gstreamer libgudev libtheora iso-codes mesa graphene
+description="Well-groomed and well-maintained collection of GStreamer plug-ins and elements"
+homepage="https://gstreamer.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=gst-plugins-base
+version=1.28.4
+release=1
+source="http://gstreamer.freedesktop.org/src/$name/$name-$version.tar.xz"
+
+build() {
+	venom-meson $name-$version build \
+		-Dalsa=enabled \
+		-Dintrospection=enabled \
+		-Dtests=disabled \
+		-Ddoc=disabled \
+		-Dlibvisual=disabled \
+		-Dtremor=disabled \
+		-Dpackage-name="GStreamer Base Plugins $version (Venom Linux)"		
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

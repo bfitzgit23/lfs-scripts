@@ -1,0 +1,16 @@
+# Depends: xfce4-panel
+description="Clipboard manager for Xfce"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xfce4-clipman-plugin
+version=1.7.0
+release=1
+source="https://archive.xfce.org/src/panel-plugins/$name/${version%.*}/$name-$version.tar.xz"
+
+build() {
+
+	venom-meson $name-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

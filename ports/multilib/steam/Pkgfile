@@ -1,7 +1,7 @@
 # Depends on: gtk-32 mesa-32 zenity
 
 name=steam
-version=1.0.0.78
+version=1.0.0.86
 release=1
 source=(http://repo.steampowered.com/steam/pool/steam/s/steam/steam_${version}.tar.gz)
 

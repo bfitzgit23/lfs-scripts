@@ -1,0 +1,14 @@
+description="Provides data for network services and protocols"
+homepage="https://www.iana.org/protocols"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=iana-etc
+version=20260617
+release=1
+source="services protocols update.sh"
+
+build() {
+	install -d -m 755 $PKG/etc
+	install -m 644 services $PKG/etc
+	install -m 644 protocols $PKG/etc
+}

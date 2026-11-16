@@ -1,0 +1,2 @@
+#!/bin/execlineb -P
+cgmanager -q -m name=systemd

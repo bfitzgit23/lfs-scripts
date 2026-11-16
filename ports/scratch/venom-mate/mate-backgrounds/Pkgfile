@@ -1,0 +1,14 @@
+description="Backgrounds for MATE"
+homepage="https://mate-desktop.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=mate-backgrounds
+version=1.28.0
+release=1
+source="https://pub.mate-desktop.org/releases/${version%.*}/$name-$version.tar.xz"
+
+build() {
+	./configure --prefix=/usr --disable-nls
+	make
+	make DESTDIR=$PKG install
+}

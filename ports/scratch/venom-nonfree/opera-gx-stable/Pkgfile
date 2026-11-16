@@ -1,0 +1,34 @@
+# Depends: at-spi2-core cups gnupg libxcomposite nss pango qt5
+description="Collection of modular and reusable compiler and toolchain technologies"
+homepage="https://llvm.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=opera-gx-stable
+version=132.0.5905.82
+release=1
+source="https://get.opera.com/pub/opera_gx/${version}/linux/${name}_${version}_amd64.deb
+         opera
+         default"
+build() {
+ 	sed -e "s/%name%/$name/g" \
+            -e "s/%operabin%/$name\/opera/g" \
+            -i "$SRC/opera"
+
+	bsdtar -xf "${name}_${version}_amd64.deb" -C "$SRC"
+	tar -xf data.tar.xz --exclude=usr/share/{lintian,menu} -C "$PKG/"
+
+	local libdir="$PKG/usr/lib/"
+	mv "$libdir/"*-linux-gnu/$name "$libdir"
+	rm -rf "$libdir/"*-linux-gnu
+
+	chmod 4755 "$PKG/usr/lib/$name/opera_sandbox"
+
+	install -Dm644 "$SRC/default" "$PKG/etc/$name/default"
+
+	rm -f "$PKG/usr/bin/$name"
+	install -Dm755 "$SRC/opera" "$PKG/usr/bin/$name"
+   
+	# The .deb ships a symlink to the old multiarch path, fix it so desktop
+	# entries with TryExec=opera-gx are not hidden.
+	ln -sf "$name" "$PKG/usr/bin/opera-gx"
+}

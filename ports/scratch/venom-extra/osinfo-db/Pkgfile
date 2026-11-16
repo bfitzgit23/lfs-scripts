@@ -1,0 +1,14 @@
+# Depends: osinfo-db-tools
+description="The osinfo database"
+homepage="https://libosinfo.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=osinfo-db
+version=20251212
+release=1
+source="https://releases.pagure.org/libosinfo/$name-$version.tar.xz"
+noextract="$name-$version.tar.xz"
+
+build() {
+	osinfo-db-import --root $PKG --system $name-$version.tar.xz
+}

@@ -1,0 +1,4 @@
+foreground {
+	if -t { test -e /var/lib/alsa/asound.state } 
+	redirfd -w 2 /dev/null alsactl restore
+}

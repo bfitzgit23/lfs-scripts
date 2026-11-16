@@ -1,0 +1,27 @@
+# Depends: gst-plugins-bad gst-plugins-base-32 libdvdread-32 libdvdnav-32 llvm-32 soundtouch-32 meson orc-32
+description="Set of plug-ins that aren't up to par compared to the rest"
+homepage="https://gstreamer.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=gst-plugins-bad-32
+version=1.28.4
+release=1
+source="https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-$version.tar.xz"
+
+build() {
+        export CC="gcc -m32"
+	export CXX="g++ -m32"
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+	venom-meson gst-plugins-bad-$version build -Db_lto=false \
+                --libdir=/usr/lib32 \
+		--libexecdir=/usr/lib32 \
+		-Ddoc=disabled \
+                -Dintrospection=disabled \
+		-Dpackage-name="GStreamer Bad Plugins $version (Venom Linux)" 
+	meson compile -C build
+	DESTDIR=$PWD/DESTDIR meson install --no-rebuild -C build
+
+	mkdir -p $PKG/usr/lib32
+	cp -Rv DESTDIR/usr/lib32/* $PKG/usr/lib32
+}

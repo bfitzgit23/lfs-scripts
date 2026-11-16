@@ -1,0 +1,15 @@
+# Depends: python3-typing_extensions python3-setuptools-rust python3-semantic-version python3-installer python3-build
+description="Build and publish crates with pyo3, rust-cpython and cffi bindings"
+homepage="https://github.com/PyO3/maturin"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=maturin
+version=1.14.1
+release=1
+source="https://github.com/PyO3/maturin/archive/v$version/$name-$version.tar.gz"
+
+build () {
+	cargo fetch --locked --target "x86_64-unknown-linux-gnu"
+	python3 -m build --wheel --no-isolation
+	python3 -m installer --destdir=$PKG dist/*.whl
+}

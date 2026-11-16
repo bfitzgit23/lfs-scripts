@@ -1,0 +1,17 @@
+# Depends: gtk2 intltool
+description="A notepad clone for GTK+ 2.0"
+homepage="http://tarot.freeshell.org/leafpad/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=leafpad
+version=0.8.19
+release=1
+source="http://savannah.nongnu.org/download/$name/$name-$version.tar.gz"
+
+build() {
+	./configure --prefix=/usr \
+		    --enable-chooser
+	make
+	make DESTDIR=$PKG install
+
+}

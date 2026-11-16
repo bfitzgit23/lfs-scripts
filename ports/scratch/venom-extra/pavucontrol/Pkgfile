@@ -1,0 +1,15 @@
+# Depends: gtkmm4 libsigc++ libcanberra pulseaudio json-glib
+description="PulseAudio Volume Control"
+homepage="https://gitlab.freedesktop.org/pulseaudio/pavucontrol"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=pavucontrol
+version=6.2
+release=1
+source="https://gitlab.freedesktop.org/pulseaudio/pavucontrol/-/archive/v$version/$name-v$version.tar.gz"
+
+build() {
+	venom-meson $name-v$version build -Dlynx=disabled
+	meson compile -C build
+	meson install -C build --destdir $PKG
+}

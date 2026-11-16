@@ -1,0 +1,16 @@
+# Depends: python3
+description="Heuristics-driven menu generator for Deskmenu, FluxBox, IceWM, OpenBox, WindowMaker and XFCE"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=menumaker
+version=0.99.14
+release=1
+source="https://downloads.sourceforge.net/$name/$name-$version.tar.gz"
+
+build() {
+	./configure --prefix=/usr --infodir=/usr/share/info
+	make
+	make -j1 DESTDIR=$PKG install
+
+}

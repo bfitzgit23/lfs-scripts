@@ -1,0 +1,15 @@
+# Depends: libcanberra zenity
+description="The MATE window manager, a fork of metacity"
+homepage="https://mate-desktop.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=marco
+version=1.29.0
+release=1
+source="$name-$version.tar.gz::https://github.com/mate-desktop/marco/archive/refs/tags/v$version.tar.gz"
+build() {
+	./autogen.sh
+	./configure --prefix=/usr --disable-update-mimedb --disable-nls
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,15 @@
+# Depends: libadwaita libnotify yelp-tools meson
+description="Display graphical dialog boxes from shell scripts"
+homepage="https://gitlab.gnome.org/GNOME/zenity"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=zenity
+version=4.2.2
+release=1
+source="https://ftp.gnome.org/pub/gnome/sources/zenity/${version%.*}/zenity-$version.tar.xz"
+
+build() {
+	venom-meson $name-$version build 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

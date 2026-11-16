@@ -1,0 +1,14 @@
+# Depends: elfutils libcap libmnl
+description="Programs for basic and advanced IPV4-based networking"
+homepage="https://git.kernel.org/pub/scm/network/iproute2/iproute2.git"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=iproute2
+version=7.1.0
+release=1
+source="https://www.kernel.org/pub/linux/utils/net/iproute2/$name-$version.tar.xz"
+
+build() {
+	make
+	make DESTDIR=$PKG install
+}

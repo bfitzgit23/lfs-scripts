@@ -1,0 +1,21 @@
+# Depends: acl
+description="Utility used to store, backup, and transport files"
+homepage="https://www.gnu.org/software/tar/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=tar
+version=1.35
+release=1
+source="https://ftp.gnu.org/gnu/$name/$name-$version.tar.xz"
+
+build() {
+
+	FORCE_UNSAFE_CONFIGURE=1  \
+	./configure --prefix=/usr \
+		    --libexecdir=/usr/lib/$name \
+	            --bindir=/bin \
+		    --disable-nls
+	make
+	make DESTDIR=$PKG install
+
+}

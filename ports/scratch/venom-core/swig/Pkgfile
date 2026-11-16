@@ -1,0 +1,19 @@
+# Depends: pcre2
+description="Generate scripting interfaces to C/C++ code"
+homepage="http://www.swig.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=swig
+version=4.4.1
+release=1
+source="$name-$version.tar.gz::https://github.com/swig/swig/archive/refs/tags/v$version.tar.gz"
+
+build() {
+	./autogen.sh
+	./configure \
+		--prefix=/usr                      \
+		--without-clisp                    \
+ 		--without-maximum-compile-warnings
+	make
+	make DESTDIR=$PKG install
+}

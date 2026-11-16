@@ -1,0 +1,17 @@
+# Depends: mate-common
+description="Faenza icon theme for MATE"
+homepage="https://mate-desktop.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=mate-icon-theme-faenza
+version=1.20.0
+release=1
+source="http://pub.mate-desktop.org/releases/${version%.*}/$name-$version.tar.xz"
+
+build() {
+
+	./autogen.sh
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

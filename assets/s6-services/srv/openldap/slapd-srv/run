@@ -1,0 +1,5 @@
+#!/bin/execlineb -P
+foreground { mkdir -p /run/openldap }
+foreground { chown ldap:ldap /run/openldap }
+fdmove -c 2 1
+slapd -u ldap -g ldap -d 0

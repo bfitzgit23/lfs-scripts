@@ -1,0 +1,19 @@
+description="Libraries for reading and writing GIFs as well as programs for converting and working with GIF files"
+homepage="https://giflib.sourceforge.net/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=giflib
+version=6.1.3
+release=1
+source="https://downloads.sourceforge.net/giflib/$name-$version.tar.gz"
+
+build() {
+
+	sed -i -e '/^install: all /s/ install-doc//' Makefile
+
+	make
+	make PREFIX=$PKG/usr install
+
+	install -vDm 640 doc/*.1 -t $PKG/usr/share/man/man1/
+	install -vDm 640 doc/*.7 -t $PKG/usr/share/man/man7/
+}

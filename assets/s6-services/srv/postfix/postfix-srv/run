@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+foreground { postfix check }
+fdmove -c 2 1
+/usr/lib/postfix/bin/master -d

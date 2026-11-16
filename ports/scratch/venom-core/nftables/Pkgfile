@@ -1,0 +1,51 @@
+# Depends: jansson libedit libgmp libnftnl python3-setuptools python3-wheel python3-gpep517
+description="Firewalling, NAT, and packet mangling for linux"
+homepage="https://netfilter.org/projects/nftables/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=nftables
+version=1.1.6
+release=2
+source="https://www.netfilter.org/pub/nftables/nftables-$version.tar.xz
+	nftables.nft nftables.run  rc.nftables "
+
+build() {
+
+    CONFIG_SHELL=/bin/bash ./configure \
+        --prefix=/usr \
+        --sbindir=/usr/bin \
+        --sysconfdir=/usr/share \
+        --with-cli=readline \
+        --with-json \
+        --disable-debug
+    make
+    make DESTDIR=$PKG install
+
+    cd py
+
+	    gpep517 build-wheel \
+		--wheel-dir $SRC/$name-$version/.dist \
+		--output-fd 3 3>&1 >&2
+
+	    python3 -m installer -d "$PKG" \
+		$SRC/$name-$version/.dist/*.whl
+
+
+    install -D -m 600 $SRC/nftables.nft $PKG/etc/nftables.nft
+
+
+    # runit service
+	scratch isinstalled runit && {
+		install -Dm755 $SRC/$name.run $PKG/etc/sv/$name/run
+		ln -s /run/runit/supervise.$name $PKG/etc/sv/$name/supervise
+	} || continue
+
+	# rc service
+	scratch isinstalled sysvinit && \
+		install -Dm755 $SRC/rc.$name $PKG/etc/rc.d/$name || continue
+
+    rm -r $PKG/usr/share/doc
+
+
+}
+

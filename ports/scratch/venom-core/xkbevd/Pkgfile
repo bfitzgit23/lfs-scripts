@@ -1,0 +1,21 @@
+# Depends: libxkbfile libx11
+description="XKB event daemon"
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xkbevd
+version=1.1.6
+release=1
+source="http://ftp.x.org/pub/individual/app/xkbevd-$version.tar.xz"
+
+build() {
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}
+

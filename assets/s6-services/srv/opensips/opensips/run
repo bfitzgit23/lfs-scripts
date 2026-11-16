@@ -1,0 +1,2 @@
+#!/bin/execlineb -P
+/usr/bin/opensips -F -f /etc/opensips/opensips.cfg -w /var/tmp 

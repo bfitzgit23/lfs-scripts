@@ -1,0 +1,20 @@
+# Depends: libxaw libxft libxkbfile
+description="Simple clock application which is used in the default xinit configuration"
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xclock
+version=1.2.0
+release=1
+source="http://ftp.x.org/pub/individual/app/$name-$version.tar.xz"
+
+build() {
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}

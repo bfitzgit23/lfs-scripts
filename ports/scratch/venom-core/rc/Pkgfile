@@ -1,0 +1,17 @@
+# Depends: sysvinit
+description="BSD-style init (CRUX inspired)"
+homepage="https://codeberg.org/venomlinux/rc"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=rc
+version=20241228
+release=1
+backup="etc/rc.conf etc/rc.local"
+source="$name-$version.tar.gz::https://codeberg.org/venomlinux/rc/archive/$version.tar.gz"
+
+build() {
+	cd $name
+	make DESTDIR=$PKG install
+	# from now on, modules-load provided by 'init' port, can be used across other inits
+	rm -fr $PKG/usr
+}

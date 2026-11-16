@@ -1,0 +1,15 @@
+# Depends: libtirpc
+description="LiSt Open Files"
+homepage="https://lsof.readthedocs.io/en/latest/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=lsof
+version=4.99.7
+release=1
+source="https://github.com/lsof-org/lsof/releases/download/$version/lsof-$version.tar.gz"
+
+build() {
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,42 @@
+# Depends: curl desktop-file-utils gtk3 hicolor-icon-theme nss shared-mime-info alsa-lib cups
+description="A fast and secure web browser"
+homepage="https://www.opera.com/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=opera
+version=132.0.5905.102
+release=1
+ffmpeg_ver=0.82.0
+source="$name-$version.deb::https://download3.operacdn.com/pub/opera/desktop/${version}/linux/${name}-stable_${version}_amd64.deb
+https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/$ffmpeg_ver/$ffmpeg_ver-linux-x64.zip
+ opera
+ default"
+
+build() {
+        
+        sed -e "s/%name%/$name/g" -i "$SRC/opera"
+        sed -e "s/%operabin%/$name-stable\/$name/g" \
+        -i "$SRC/opera"
+
+        bsdtar -xf ${name}-${version}.deb
+        tar xf data.tar.xz -C $PKG
+ 
+        rm -r $PKG/usr/share/lintian $PKG/usr/share/menu
+
+        mv $PKG/usr/lib/*-linux-gnu/opera-stable $PKG/usr/lib
+        rm -r $PKG/usr/lib/*-linux-gnu
+        
+        # suid opera_sandbox
+        chmod 4755 "$PKG/usr/lib/opera-stable/opera_sandbox"
+        
+        # install default options
+        install -Dm644 "$SRC/default" "$PKG/etc/opera/default"
+
+        # install opera wrapper
+        rm "$PKG/usr/bin/opera"
+        install -Dm644 "$SRC/opera" $PKG/usr/bin/opera
+        chmod 4755 "$PKG/usr/bin/opera"
+        
+        # support propietary codecs
+        install -Dm644 $SRC/libffmpeg.so -t $PKG/usr/lib/opera/
+}

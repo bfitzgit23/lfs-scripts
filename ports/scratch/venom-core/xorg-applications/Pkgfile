@@ -1,0 +1,13 @@
+# Depends: iceauth luit mkfontscale sessreg setxkbmap smproxy x11perf xauth xbacklight xcmsdb xcursorgen xdpyinfo xdriinfo xev xgamma xhost xinput xkbcomp xkbevd xkbutils xkill xlsatoms xlsclients xmessage xmodmap xpr xprop xrandr xrdb xrefresh xset xsetroot xvinfo xwd xwininfo xwud
+description="Meta port for Xorg applications"
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xorg-applications
+version=1.0
+release=2
+IGNORE_CHECKSUM="yes"
+
+build() {
+	mkdir -pv $PKG/etc
+}
