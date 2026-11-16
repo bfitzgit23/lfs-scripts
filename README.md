@@ -565,3 +565,34 @@ State is under `$LFS/var/lib/lfs-scripts`. The default `LFS` is
 reboot wipes both the toolchain and the record of what was built — nothing can
 be resumed across a reboot in that case. Put `LFS` on a real filesystem if you
 want resume to survive one. `./bootstrap.sh --status` prints the current state.
+
+## Compiler flag policy, and what the ports sweep found
+
+Stage 1 exports and stage 2 writes `pkgmk.conf` with:
+
+```
+CFLAGS="-O2 -std=gnu17 -Wno-error"            # stage 1 (plus -march/-pipe in 2)
+CXXFLAGS="$CFLAGS"
+```
+
+C17 is the substance: gcc 15+ defaults to C23, where `strchr()` returns a const
+pointer (libxcrypt), an empty parameter list means `(void)` (gmp's configure
+probes) and old-style definitions are gone. `-Wno-error` covers packages that
+compile with `-Werror` (libxcrypt); Automake puts `$(CFLAGS)` last on the
+compile line, so it overrides `AM_CFLAGS`' `-Werror`.
+
+Swept all `ports/**/Pkgfile` for the three ways that policy can be defeated:
+
+| pattern | hits | state |
+|---|---|---|
+| `Werror` in a recipe | 19 | all already neutralise it (`--disable-gcc-Werror`, `sed -i 's/-Werror//'`, or an upstream patch); none is in stage 1/2 |
+| `CFLAGS=`/`CXXFLAGS=` that drop the inherited value | 13 | only `ports/core/bc` was in a stage-1/2 set; fixed to append `-std=gnu99` instead of replacing with `-std=c99` |
+| `-std=` forced by a recipe | 16 | bc (fixed), cdrtools `-std=gnu89`, texlive `-std=gnu17`, protobuf-c and the KDE4/Qt ports `-std=c++*`; none of these is in stage 1/2 |
+
+Re-run the sweep after bumping versions:
+
+```sh
+grep -rn 'Werror' ports --include=Pkgfile
+grep -rn 'CFLAGS="[^$]\|CXXFLAGS="[^$]' ports --include=Pkgfile
+grep -rn '\-std=' ports --include=Pkgfile
+```

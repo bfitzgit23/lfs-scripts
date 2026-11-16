@@ -4,7 +4,10 @@ release=1
 source=(https://github.com/gavinhoward/$name/releases/download/$version/$name-$version.tar.xz)
 
 pkg_build() {
-	PREFIX=/usr CC=gcc CFLAGS="-std=c99" ./configure.sh -G -O3
+	# keep the bootstrap CFLAGS (C17, no -Werror) and use gnu99 rather than
+	# strict c99: strict ANSI hides the POSIX prototypes bc relies on, which
+	# gcc 14+ then reports as implicit declaration errors
+	PREFIX=/usr CC=gcc CFLAGS="$CFLAGS -std=gnu99" ./configure.sh -G -O3
 	#./configure --prefix=/usr -r
 	make
 	make install
