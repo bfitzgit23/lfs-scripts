@@ -1,4 +1,8 @@
-#!/bin/sh -e	
+#!/bin/sh -e
+
+# The ports, files/ and sources/ paths below are relative to the repository
+# root, so anchor on the script location instead of the caller's cwd.
+cd "$(dirname "$0")/.." || exit 1
 
 _ensure_toolchain_shims() {
 	# The base system starts from an empty rootfs and needs a handful of
@@ -60,6 +64,14 @@ _buildtoolchain() {
 	mkdir -p ${LFS}${TOOLS} $sourcedir
 	rm -f $TOOLS
 	ln -sf ${LFS}${TOOLS} $TOOLS
+
+	# A run that died part way can leave skip markers without a usable
+	# toolchain. Every package then takes the "already built" path, the loop
+	# does no work, and stage 1 still prints "completed".
+	if [ ! -x "$TOOLS/bin/env" ] && [ -n "$(ls -A "$TOOLS" 2>/dev/null)" ]; then
+		echo "stage 1: $TOOLS has no usable bin/ - clearing stale build markers"
+		for m in $toolchainpkg; do rm -f "$TOOLS/$m"; done
+	fi
 	
 	echo "
 export MAKEFLAGS=-j$(nproc)
@@ -82,18 +94,56 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 		rm -rf /tmp/pkgutils-5.40.10
 	fi
 	
+	n=0
+	built=0
+	skipped=0
+	empty=""
 	for i in $toolchainpkg; do
-		[ -f $TOOLS/$i ] && continue
+		n=$((n+1))
+		if [ -f "$TOOLS/$i" ]; then
+			echo "[$n] $i: already built, skipping"
+			skipped=$((skipped+1))
+			continue
+		fi
+		echo "[$n] $i: building"
 		export tcpkg="$i"
-		cd ports/core/${i%-pass*}
+		cd "ports/core/${i%-pass*}" || exit 1
 		mkdir -p /tmp/lfs-pkg
-		pkgmk -d -is -if -cf /tmp/bootstrap.conf
+		before=$(find "$TOOLS" -maxdepth 3 ! -name "$i" 2>/dev/null | wc -l)
+		# -f: without it pkgmk is free to answer "Package is up to date" and
+		# exit 0, which used to leave a skip marker and no toolchain.
+		if ! pkgmk -d -f -is -if -im -cf /tmp/bootstrap.conf; then
+			rm -rf /tmp/lfs-pkg
+			echo "error: pkgmk failed for '$i'" >&2
+			exit 1
+		fi
 		rm -rf /tmp/lfs-pkg
 		cd - >/dev/null 2>&1
-		touch $TOOLS/$i
+		after=$(find "$TOOLS" -maxdepth 3 ! -name "$i" 2>/dev/null | wc -l)
+		if [ "$after" -le "$before" ]; then
+			echo "warning: $i installed nothing into $TOOLS" >&2
+			empty="$empty $i"
+		fi
+		touch "$TOOLS/$i"
+		built=$((built+1))
 		unset tcpkg
 	done
 	rm -f /tmp/bootstrap.conf
+
+	missing=""
+	for f in bin/env bin/bash bin/make bin/tar bin/ld bin/gcc bin/sed; do
+		[ -x "$TOOLS/$f" ] || missing="$missing $f"
+	done
+	if [ -n "$missing" ] || [ -n "$empty" ]; then
+		echo >&2
+		echo "error: the temporary toolchain is incomplete." >&2
+		[ -n "$missing" ] && echo "       missing binaries:$missing" >&2
+		[ -n "$empty" ] && echo "       installed nothing:$empty" >&2
+		echo "       $built package(s) were built in this run, $skipped skipped." >&2
+		echo "       Remove ${LFS}${TOOLS} and run stage 1 again; the log above" >&2
+		echo "       shows the first package that failed to build." >&2
+		exit 1
+	fi
 	
 	TMPPWD=$PWD
 	cd $LFS
@@ -102,7 +152,7 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 	cd $TMPPWD
 	
 	echo
-	echo "toolchain build completed"
+	echo "toolchain build completed: $built package(s) built, $skipped already present"
 }
 
 _compressrootfs() {	
