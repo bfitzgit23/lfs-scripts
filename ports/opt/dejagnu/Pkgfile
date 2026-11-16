@@ -5,7 +5,7 @@ description="A stream oriented C library for parsing XML"
 name=dejagnu
 version=1.6.3
 release=1
-source="https://mirrors.kernel.org/gnu/dejagnu/dejagnu-$version.tar.gz"
+source="https://ftp.osuosl.org/pub/gnu/dejagnu/dejagnu-$version.tar.gz"
 
 build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

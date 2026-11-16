@@ -6,7 +6,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=help2man
 version=1.49.3
 release=2
-source="https://mirrors.kernel.org/gnu/$name/$name-$version.tar.xz"
+source="https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.xz"
 
 build() {
 

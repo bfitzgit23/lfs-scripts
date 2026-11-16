@@ -6,7 +6,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libtool-32
 version=2.5.4
 release=1
-source="https://mirrors.kernel.org/gnu/libtool/libtool-$version.tar.xz"
+source="https://ftp.osuosl.org/pub/gnu/libtool/libtool-$version.tar.xz"
 
 build() {
 	cd libtool-$version

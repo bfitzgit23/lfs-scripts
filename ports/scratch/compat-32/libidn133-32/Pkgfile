@@ -7,7 +7,7 @@ description="Provides support for IETF Internationalized Domain Names (IDN)."
 name=libidn133-32
 version=1.33
 release=3
-source="https://mirrors.kernel.org/gnu/libidn/libidn-$version.tar.gz"
+source="https://ftp.osuosl.org/pub/gnu/libidn/libidn-$version.tar.gz"
 
 build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1

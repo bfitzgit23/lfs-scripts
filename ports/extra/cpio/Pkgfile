@@ -1,7 +1,7 @@
 name=cpio
 version=2.14
 release=1
-source=(ftp://mirrors.kernel.org/gnu/$name/$name-$version.tar.bz2)
+source=(https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.bz2)
 
 post_build() {
 	rm $PKG/usr/lib/rmt

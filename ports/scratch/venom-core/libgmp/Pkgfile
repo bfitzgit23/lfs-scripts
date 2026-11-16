@@ -5,7 +5,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libgmp
 version=6.3.0
 release=2
-source="https://mirrors.kernel.org/gnu/gmp/gmp-$version.tar.xz"
+source="https://ftp.osuosl.org/pub/gnu/gmp/gmp-$version.tar.xz"
 
 build() {
 	cd gmp-$version

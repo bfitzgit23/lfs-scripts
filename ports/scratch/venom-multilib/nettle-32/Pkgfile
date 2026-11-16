@@ -6,7 +6,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nettle-32
 version=3.10.2
 release=1
-source="https://mirrors.kernel.org/gnu/nettle/nettle-$version.tar.gz"
+source="https://ftp.osuosl.org/pub/gnu/nettle/nettle-$version.tar.gz"
 
 build() {
 	cd nettle-$version

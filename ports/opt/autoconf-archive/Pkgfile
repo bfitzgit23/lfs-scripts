@@ -6,7 +6,7 @@ description="A collection of freely re-usable Autoconf macros"
 name=autoconf-archive
 version=2024.10.16
 release=1
-source="https://mirrors.kernel.org/gnu/$name/$name-$version.tar.xz"
+source="https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.xz"
 
 build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

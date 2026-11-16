@@ -1,4 +1,4 @@
 name=gzip
 version=1.14
 release=1
-source=(https://mirrors.kernel.org/gnu/$name/$name-$version.tar.xz)
+source=(https://ftp.osuosl.org/pub/gnu/$name/$name-$version.tar.xz)
