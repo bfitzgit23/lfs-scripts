@@ -3,3 +3,12 @@ version=1.5.7
 release=1
 source=(https://github.com/facebook/$name/releases/download/v$version/$name-$version.tar.gz)
 keep_static=1
+
+# zstd ships a plain Makefile and no ./configure, so the generic stage 1
+# recipe cannot build it. python's zstd module needs zstd.h (and libzstd) from
+# the temporary toolchain, so install into $TOOLS directly; make install
+# depends on install-includes, which is what puts zstd.h there.
+bootstrap_build() {
+	make -j1
+	make PREFIX=$TOOLS install
+}

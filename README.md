@@ -630,16 +630,26 @@ documented switch, which sets `EMACS=no`), so the byte-compile and
 `install-lispLISP` rules become unconditional no-ops. po-mode is a developer
 convenience, not something a bootstrap or a base system needs.
 
-### python needs zlib in the temporary toolchain
+### python needs the compression headers in the temporary toolchain
 
-`python` is built in stage 1 as well as in the base system, but the temporary
-toolchain originally had no `zlib`, so python stopped at:
+`python` is built in stage 1 as well as in the base system, and it builds its
+`zlib`, `bz2`, `lzma` and `zstd` modules against whatever headers exist in
+`$TOOLS/include` at that moment. The toolchain list originally had no `zlib`
+and no `zstd`, and `xz` came *after* python, which gave:
 
 ```
 fatal error: zlib.h: No such file or directory
+fatal error: zstd.h: No such file or directory
+fatal error: lzma.h: No such file or directory
 ```
 
-`zlib` is now in `toolchainpkg`, immediately before `python` (the stage 1 loop
-builds in list order). Its port has no `bootstrap_build`, so the generic
-recipe configures it with `--prefix=$TOOLS` and the header lands in
-`$TOOLS/include/zlib.h`, where the stage 1 compiler looks.
+`toolchainpkg` now lists `zlib xz zstd python` in that order (the stage 1 loop
+builds in list order, and bzip2 already comes earlier for `bzlib.h`). zlib and
+xz take the generic recipe, which configures with `--prefix=$TOOLS`; zstd has
+no `./configure`, so `ports/core/zstd` grew a `bootstrap_build` that runs
+`make PREFIX=$TOOLS install` (`make install` there pulls in `install-includes`,
+which is what installs `zstd.h`).
+
+Modules whose libraries appear later in the list (`_ssl`, `_sqlite3`,
+`readline`, `_ctypes`) are simply skipped by python's configure in stage 1;
+they are built properly in the base system, where the full order applies.

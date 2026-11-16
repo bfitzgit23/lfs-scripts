@@ -494,12 +494,13 @@ export TOOLS="${TOOLS:-/tmp/lfs-tools}"
 export LC_ALL=C
 export PATH=$TOOLS/bin:$PATH
 
-# zlib sits before python on purpose: python's zlib module needs zlib.h from
-# the temporary toolchain, and without it the build stops at
-# "fatal error: zlib.h: No such file or directory".
+# zlib, xz and zstd sit before python on purpose: python builds its zlib,
+# bz2, lzma and zstd modules in stage 1 and needs zlib.h, lzma.h and zstd.h
+# from the temporary toolchain (bzip2 already provides bzlib.h). Anything
+# after python is simply not visible to its configure.
 toolchainpkg="binutils-pass1 gmp mpfr mpc gcc-pass1 linux-headers glibc gcc-pass2 binutils-pass2 libxcrypt gcc-pass3 m4
-	ncurses bash bison bzip2 coreutils diffutils file findutils gawk gettext grep gzip make patch perl zlib python
-	sed tar texinfo xz openssl ca-certificates curl libarchive"
+	ncurses bash bison bzip2 coreutils diffutils file findutils gawk gettext grep gzip make patch perl zlib xz zstd python
+	sed tar texinfo openssl ca-certificates curl libarchive"
 	
 basepkg="aaa_filesystem linux-headers man-pages glibc tzdata zlib bzip2 xz file ncurses readline m4 bc binutils libxcrypt
 	gmp mpfr mpc attr acl shadow gcc pkgconf libcap sed psmisc iana-etc bison flex pcre2 grep bash dash
