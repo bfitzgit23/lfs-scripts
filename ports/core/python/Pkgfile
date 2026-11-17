@@ -25,6 +25,14 @@ pre_build() {
 	# resolves a source entry without a URL to the bare filename (a file in the
 	# port directory) and unpack_source() copies it into $PKGMK_WORK_DIR/src.
 
+	# make's module check loads every extension module and reports nothing when
+	# one of them segfaults: the whole build dies with "Makefile:
+	# checksharedmods: Segmentation fault" and no module name. Run it with
+	# --debug, which logs each module and its path before importing it, and
+	# with faulthandler, which dumps the Python stack on the crash.
+	sed -i 's|^	@$(RUNSHARED) $(PYTHON_FOR_BUILD) $(srcdir)/Tools/build/check_extension_modules.py$|	@$(RUNSHARED) $(PYTHON_FOR_BUILD) -X faulthandler $(srcdir)/Tools/build/check_extension_modules.py --debug|' Makefile.pre.in
+	export PYTHONFAULTHANDLER=1
+
 	# Remove tests
 	rm -rvf Lib/test Lib/*/test Lib/*/tests Lib/*/idle_test
 }
