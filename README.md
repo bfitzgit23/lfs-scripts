@@ -782,3 +782,27 @@ compared with the unmodified file, so they report false failures.
 `.gitattributes` pins `*.patch`/`*.diff` to `-text`: this repo is developed on
 Windows with `core.autocrlf=true`, and a CRLF-rewritten patch would not apply
 inside the build.
+### man-pages 6.18 refuses to run without `make -R`
+
+man-pages 6.18 ships a `GNUmakefile` (not `Makefile`) that opens with a make
+version gate:
+
+```make
+ifneq (4.4.999,$(firstword $(sort 4.4.999 $(MAKE_VERSION))))
+  ifneq (R,$(findstring R, $(firstword -$(MAKEFLAGS))))
+    $(error Please run make(1) with the '-R' option)
+  endif
+endif
+```
+
+The base system's make is 4.4.1, which sorts below that sentinel, so stage 2
+stops there. The flag has to be a capital `-R`: the test looks for an `R` in the
+first `MAKEFLAGS` word, so lowercase `-r` and `--no-builtin-rules` both still
+trip it. `ports/core/man-pages` now runs
+
+```
+make -R prefix=/usr DESTDIR=$PKG install
+```
+
+and the makefile adds `--no-builtin-rules` / `--no-builtin-variables` itself
+once the gate passes.
