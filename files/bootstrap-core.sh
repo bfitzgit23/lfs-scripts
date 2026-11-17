@@ -56,6 +56,33 @@ _chroot() {
 	chroot "$LFS" "$_env" -i PATH="$LFSPATH" LC_ALL="${LC_ALL:-C}" "$@"
 }
 
+# A rootfs glibc carries no compiled locale data of its own: the ports install
+# the C.UTF-8 the temporary toolchain needs (see the glibc port), but this
+# tree generates it with the build tree's loader, which does not necessarily
+# produce data this libc can load. bash then warns "setlocale: LC_ALL: cannot
+# change locale (C.UTF-8)" on every command, and readline's _rl_init_locale()
+# passes that same unusable name to setlocale(), which faults inside libc the
+# first time a module imports readline - python's build dies there with
+# "Makefile: checksharedmods: Segmentation fault". Regenerate the locale with
+# the rootfs' own localedef, and hand the chroot only a locale its libc can
+# really set.
+_ensure_chroot_locale() {
+	_chrootlocale=C
+	# /usr/bin/localedef exists only once the glibc package is installed
+	[ -x "$LFS/usr/bin/localedef" ] || return 0
+	if _chroot sh -c '[ "$(LC_ALL=C.UTF-8 /usr/bin/locale charmap 2>/dev/null)" = UTF-8 ]'; then
+		_chrootlocale=C.UTF-8
+		return 0
+	fi
+	_chroot sh -c 'rm -rf /usr/lib/locale/C.UTF-8 && /usr/bin/localedef -i C -f UTF-8 C.UTF-8' >/dev/null 2>&1 || true
+	if _chroot sh -c '[ "$(LC_ALL=C.UTF-8 /usr/bin/locale charmap 2>/dev/null)" = UTF-8 ]'; then
+		_chrootlocale=C.UTF-8
+	else
+		echo "stage: warning: the rootfs libc cannot load C.UTF-8, building with LC_ALL=C" >&2
+	fi
+	return 0
+}
+
 # Resume support. Every package that finishes is recorded under $LFS, so a run
 # that dies (bad source, compiler error, Ctrl-C, reboot) can be restarted and
 # skips the work already done instead of rebuilding the whole toolchain.
@@ -453,6 +480,7 @@ PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 	# resolved until it exists. Build both caches before the first build.
 	_chroot sh -c '[ -x /sbin/ldconfig ] && /sbin/ldconfig' >/dev/null 2>&1 || true
 	_chroot sh -c 'if [ -d /tmp/lfs-tools/etc ]; then grep -qx /usr/lib /tmp/lfs-tools/etc/ld.so.conf 2>/dev/null || echo /usr/lib >> /tmp/lfs-tools/etc/ld.so.conf; [ -x /sbin/ldconfig ] && /sbin/ldconfig -f /tmp/lfs-tools/etc/ld.so.conf -C /tmp/lfs-tools/etc/ld.so.cache; fi' >/dev/null 2>&1 || true
+	_ensure_chroot_locale
 	for i in $basepkg; do
 		if [ "$1" != rebuild ]; then
 			pkginfo -i -r $LFS | awk '{print $1}' | grep -qx $i && { _state_mark $_bstage "$i"; continue; }
@@ -492,6 +520,7 @@ grep found dummy.log >> /tmp/adjusttoolchainresult
 rm -v dummy.c a.out dummy.log
 EOF
 				_chroot sh /tmp/glibc-postinstall
+				_ensure_chroot_locale
 				rm -f $LFS/tmp/glibc-postinstall
 				;;
 			esac

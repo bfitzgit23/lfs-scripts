@@ -1078,3 +1078,56 @@ the patch has been applied because the patch touches `Lib/test/test_ssl.py`.
 This is also why every other port here reads port-local files as `$SRC/...` -
 see glibc's `ld.so.conf`, `nsswitch.conf`, `genlocales` and `pyconfig.h`.
 
+
+### python: `make: *** [Makefile:1763: checksharedmods] Segmentation fault`
+
+Every command in the stage 2 chroot printed
+
+```
+/bin/sh: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8): No such file or directory
+```
+
+and `make`'s module check then died without naming a module. `python`'s
+`pre_build` runs that check with faulthandler enabled, which named the module -
+the only one that touches the locale while it initialises:
+
+```
+File "<frozen importlib._bootstrap_external>", line 1053 in create_module
+Binary file ".../readline.cpython-314-x86_64-linux-gnu.so", at PyInit_readline+0x5ce
+Binary file "/usr/lib/libreadline.so.8", at _rl_init_locale+0x45
+Binary file "/lib/libc.so.6", at +0x173cd9
+```
+
+`readline-8.3/nls.c` reads the locale name out of the environment and hands it
+straight to libc:
+
+```c
+lspec = _rl_get_locale_var ("LC_CTYPE");  /* LC_ALL, then LC_CTYPE, then LANG */
+...
+ret = setlocale (LC_CTYPE, lspec);
+```
+
+The chroot's glibc has no `C.UTF-8` that it can load, so that `setlocale()`
+call faulted inside libc instead of returning NULL. Two separate things
+produced that environment:
+
+- the glibc port generates the rootfs `C.UTF-8` by running the installed
+  `localedef` through the build tree's loader, and ended the call with
+  `|| true` - a failure left no usable locale and no message;
+- `bootstrap-core.sh` picks the UTF-8 locale by running `$TOOLS/bin/locale`,
+  i.e. the *toolchain's* glibc, which does have `C.UTF-8` from the stage 1
+  glibc build, and then exported that name into `_chroot` calls that run the
+  rootfs glibc.
+
+`_ensure_chroot_locale()` now asks the chroot itself,
+`[ "$(LC_ALL=C.UTF-8 /usr/bin/locale charmap)" = UTF-8 ]`, regenerates
+`/usr/lib/locale/C.UTF-8` with the rootfs' own `/usr/bin/localedef` when that
+fails, and otherwise builds with `LC_ALL=C`; `_chroot` takes its `LC_ALL` from
+`_chrootlocale`. It runs before the package loop, so `--resume` repairs an
+existing tree, and again right after glibc is installed. The glibc port
+deletes a stale `C.UTF-8` before regenerating and reports a failure instead of
+swallowing it.
+
+python's `pre_build` no longer rewrites `Makefile.pre.in` for `--debug`; the
+`PYTHONFAULTHANDLER=1` export stays, because a crash in `make`'s module check
+is otherwise reported without a module name.

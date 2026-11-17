@@ -27,10 +27,8 @@ pre_build() {
 
 	# make's module check loads every extension module and reports nothing when
 	# one of them segfaults: the whole build dies with "Makefile:
-	# checksharedmods: Segmentation fault" and no module name. Run it with
-	# --debug, which logs each module and its path before importing it, and
-	# with faulthandler, which dumps the Python stack on the crash.
-	sed -i 's|^	@$(RUNSHARED) $(PYTHON_FOR_BUILD) $(srcdir)/Tools/build/check_extension_modules.py$|	@$(RUNSHARED) $(PYTHON_FOR_BUILD) -X faulthandler $(srcdir)/Tools/build/check_extension_modules.py --debug|' Makefile.pre.in
+	# checksharedmods: Segmentation fault" and no module name. faulthandler
+	# names the C function and the Python stack of the crash instead.
 	export PYTHONFAULTHANDLER=1
 
 	# Remove tests

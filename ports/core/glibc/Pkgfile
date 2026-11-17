@@ -91,11 +91,20 @@ pkg_build() {
 	# locales generator
 	install -Dm755 $SRC/genlocales $PKG/usr/bin/genlocales
 
-	LC_ALL=C ./elf/ld.so --library-path . $PKG/usr/bin/localedef \
-	--force --quiet \
-	--inputfile=$SRC/$name-$version/localedata/locales/C \
-	--charmap=$SRC/$name-$version/localedata/charmaps/UTF-8 \
-	$PKG/usr/lib/locale/C.UTF-8 || true
+	# The rootfs needs C.UTF-8 before stage 3 installs genlocales: libarchive
+	# gets no UTF-8 pathnames out of a pax archive without it, and readline's
+	# locale init hands LC_ALL to setlocale(). This used to hide behind
+	# "|| true", which leaves a half-written C.UTF-8 behind and is worse than
+	# no locale at all, so start from nothing and report a failure.
+	rm -rf $PKG/usr/lib/locale/C.UTF-8
+	if ! LC_ALL=C ./elf/ld.so --library-path . $PKG/usr/bin/localedef \
+		--force --quiet \
+		--inputfile=$SRC/$name-$version/localedata/locales/C \
+		--charmap=$SRC/$name-$version/localedata/charmaps/UTF-8 \
+		$PKG/usr/lib/locale/C.UTF-8; then
+		rm -rf $PKG/usr/lib/locale/C.UTF-8
+		echo "glibc: warning: localedef could not generate C.UTF-8" >&2
+	fi
 	
 	sed -i '/#C\.UTF-8 /d' $PKG/etc/locales
 	
