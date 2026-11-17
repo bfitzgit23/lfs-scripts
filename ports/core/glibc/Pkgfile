@@ -43,7 +43,10 @@ bootstrap_build() {
 	# falls back to ASCII and refuses to extract the UTF-8 pathnames in a
 	# pax archive - gcc-16.2.0.tar.xz has a few. C.UTF-8 is all it needs.
 	install -d "$TOOLS/lib/locale"
-	"$TOOLS/bin/localedef" --no-archive \n		-i ../localedata/locales/C \n		-f ../localedata/charmaps/UTF-8 \n		C.UTF-8
+	"$TOOLS/bin/localedef" --no-archive \
+		-i ../localedata/locales/C \
+		-f ../localedata/charmaps/UTF-8 \
+		C.UTF-8
 }
 
 pkg_build() {
