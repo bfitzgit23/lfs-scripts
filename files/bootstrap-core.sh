@@ -53,7 +53,12 @@ _chroot() {
 		echo "error: no env(1) inside $LFS; run stage 1 before stage 2" >&2
 		return 1
 	fi
-	chroot "$LFS" "$_env" -i PATH="$LFSPATH" LC_ALL="${LC_ALL:-C}" "$@"
+	# Never let the host's LC_ALL into the chroot: the probe at the end of this
+	# file exports a C.UTF-8 that only the temporary toolchain's libc can load,
+	# and readline hands the name straight to the rootfs libc's setlocale() -
+	# which is the call that crashed python's build. _ensure_chroot_locale()
+	# raises this to C.UTF-8 only once the rootfs itself has verified it.
+	chroot "$LFS" "$_env" -i PATH="$LFSPATH" LC_ALL="${_chrootlocale:-C}" "$@"
 }
 
 # A rootfs glibc carries no compiled locale data of its own: the ports install
@@ -74,7 +79,15 @@ _ensure_chroot_locale() {
 		_chrootlocale=C.UTF-8
 		return 0
 	fi
-	_chroot sh -c 'rm -rf /usr/lib/locale/C.UTF-8 && /usr/bin/localedef -i C -f UTF-8 C.UTF-8' >/dev/null 2>&1 || true
+	# The glibc port generates this locale with the build tree's localedef, and
+	# only while glibc itself is being built - a --resume run skips it, and the
+	# data that build tree left behind is exactly what this libc cannot load.
+	# Regenerate in place with the installed localedef and keep its complaint.
+	if ! _chroot sh -c 'rm -rf /usr/lib/locale/C.UTF-8 && /usr/bin/localedef -i C -f UTF-8 C.UTF-8' >"$LFS/tmp/localedef.log" 2>&1; then
+		echo "stage: warning: localedef could not generate C.UTF-8:" >&2
+		sed 's/^/    /' "$LFS/tmp/localedef.log" >&2
+	fi
+	rm -f "$LFS/tmp/localedef.log"
 	if _chroot sh -c '[ "$(LC_ALL=C.UTF-8 /usr/bin/locale charmap 2>/dev/null)" = UTF-8 ]'; then
 		_chrootlocale=C.UTF-8
 	else

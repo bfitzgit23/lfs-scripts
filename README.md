@@ -1131,3 +1131,11 @@ swallowing it.
 python's `pre_build` no longer rewrites `Makefile.pre.in` for `--debug`; the
 `PYTHONFAULTHANDLER=1` export stays, because a crash in `make`'s module check
 is otherwise reported without a module name.
+
+A `--resume` run does not rebuild glibc, and does not need to: the locale is
+data, not code, so `_ensure_chroot_locale()` repairs `/usr/lib/locale/C.UTF-8`
+in place before the package loop starts. The first attempt still crashed
+because `_chroot` passed the host's `LC_ALL` and ignored `_chrootlocale`, so
+the chroot kept receiving the toolchain-only name. `_chroot` now always starts
+at `C` and uses `C.UTF-8` only after the chroot's own `locale charmap`
+confirms it.
