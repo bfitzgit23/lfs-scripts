@@ -514,7 +514,7 @@ for _loc in C.UTF-8 C.utf8 en_US.UTF-8 en_US.utf8; do
 		break
 	fi
 done
-[ "$LC_ALL" = C ] && echo "stage: warning: no UTF-8 locale - bsdtar cannot" \n	"extract archives with non-ASCII pathnames (gcc-16.2.0.tar.xz)" >&2
+[ "$LC_ALL" = C ] && echo "stage: warning: no UTF-8 locale - bsdtar cannot extract archives with non-ASCII pathnames" >&2
 export PATH=$TOOLS/bin:$PATH
 
 # zlib, xz and zstd sit before python on purpose: python builds its zlib,
