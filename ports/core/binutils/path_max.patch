@@ -1,7 +1,6 @@
 --- a/ld/ldmain.c
 +++ b/ld/ldmain.c
-@@ -19,6 +19,13 @@
-    Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston,
+@@ -20,6 +20,12 @@
     MA 02110-1301, USA.  */
  
  #include "sysdep.h"
@@ -13,3 +12,4 @@
 +#endif
  #include "bfd.h"
  #include "bfdver.h"
+ #include "safe-ctype.h"
