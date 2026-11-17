@@ -5939,7 +5939,7 @@ For Btrfs layouts this usually means a required subvolume was not mounted. The i
                 chroot "$TARGET" /usr/bin/env -i \
                 HOME=/root \
                 TERM="${TERM:-linux}" \
-                PATH=/usr/bin:/usr/sbin:/bin:/sbin \
+                PATH=/usr/sbin:/usr/bin:/sbin:/bin \
                 LANG=C \
                 LC_ALL=C \
                 /bin/bash --login
@@ -7689,7 +7689,7 @@ write_chroot_installer() {
         cat > "$TARGET$CHROOT_INSTALLER" <<'CHROOT'
 #!/usr/bin/env bash
 set -Eeuo pipefail
-export PATH=/usr/bin:/usr/sbin:/bin:/sbin
+export PATH=/usr/sbin:/usr/bin:/sbin:/bin
 export LANG=C LC_ALL=C LANGUAGE=C
 export LFS_INSTALLER_RUNNING=yes
 if [[ -r /root/.lfs-installer-dialogrc ]]; then
@@ -10281,7 +10281,7 @@ run_chroot_installer() {
         if chroot "$TARGET" /usr/bin/env -i \
                 HOME=/root \
                 TERM="${TERM:-linux}" \
-                PATH=/usr/bin:/usr/sbin:/bin:/sbin \
+                PATH=/usr/sbin:/usr/bin:/sbin:/bin \
                 LANG=C \
                 LC_ALL=C \
                 /bin/bash "$CHROOT_INSTALLER"; then

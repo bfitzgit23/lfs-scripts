@@ -17,7 +17,9 @@
 #
 
 _run() {
-	live-chroot "$ROOT" "$@"
+	# The chroot inherits the live environment, and /usr/sbin - where useradd
+	# and the rest of shadow live - is not guaranteed to be in a live PATH.
+	PATH=/usr/sbin:/usr/bin:/sbin:/bin live-chroot "$ROOT" "$@"
 }
 
 # Hostname

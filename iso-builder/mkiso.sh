@@ -186,7 +186,8 @@ install -m644 files/liveiso.hook "$ROOTFS/tmp/liveiso.hook"
 touch "$ROOTFS/tmp/mkinitramfs.conf"
 
 msg "generating live initramfs..."
-./live-chroot "$ROOTFS" /tmp/mkinitramfs \
+# Give the chroot the target's PATH rather than the build host's.
+PATH=/usr/sbin:/usr/bin:/sbin:/bin ./live-chroot "$ROOTFS" /tmp/mkinitramfs \
 	-c /tmp/mkinitramfs.conf \
 	-k "$KERNELVER" \
 	-i /tmp/init \

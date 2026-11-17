@@ -71,8 +71,11 @@ Chroot into new extracted system
 # mkdir -p /mnt/lfs/boot/efi
 # mount /dev/<efi partition> /mnt/lfs/boot/efi
 
-# chroot /mnt/lfs env PS1="(chroot)# " /bin/bash
+# chroot /mnt/lfs env PATH=/usr/sbin:/usr/bin:/sbin:/bin PS1="(chroot)# " /bin/bash
 ```
+
+`PATH` is set explicitly here: `/usr/sbin` holds `useradd`, `passwd` and the
+other shadow tools, and the host environment a chroot inherits rarely has it.
 
 Setting hostname
 ```
