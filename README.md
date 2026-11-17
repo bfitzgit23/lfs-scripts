@@ -11,7 +11,7 @@ Heres is important point of `lfs-scripts` that follow my rules;
 - writing port is damn easy, a very minimal port only required url to source tarball, compiling is automatically handled.
 - dependencies handled by prt-get.
 - `/usr/libexec/` not use, use `/usr/lib/` instead.
-- use `runit` as main init by default.
+- use `openrc` as main init by default (ports can still ship runit service files with `sv=()`).
 - consolekit2 is used instead of elogind.
 - no systemd stuff.
 
@@ -144,12 +144,32 @@ You can reboot now
 # reboot
 ```
 
-# runit
-`lfs-scripts` is use `runit` as default init. Basically the initscripts is almost same as the one used in Void Linux, so no need headache to figure out how to use it. I will point some important point of `runit` used:
-- theres no runit config file (/etc/runit/rc.conf)
-- to enable service, just make symlink from `/etc/sv/<service>` to `/var/service`
-- ...
+# openrc
+`lfs-scripts` boots with OpenRC: `/sbin/init` is a symlink to `openrc-init`,
+which reads `/etc/inittab` for the `sysinit`, `boot` and `default` states plus
+the console gettys. Two ports provide it, both in `ports/core` so the stage 2
+chroot can build them:
 
+- `openrc` 0.63 - built with meson; installs `/sbin/openrc-init`, `/etc/inittab`
+  and the standard runlevel links OpenRC ships (`sysinit`: cgroups, devfs,
+  dmesg, sysfs; `boot`: bootmisc, fsck, hostname, localmount, loopback, root,
+  swap, sysctl, binfmt, hwclock, keymaps, modules, mtab, procfs, save-keymaps,
+  save-termencoding, seedrng, termencoding; `default`: local, netmount;
+  `shutdown`: savecache, killprocs, mount-ro).
+- `openrc-init-scripts` - `/etc/init.d` scripts for eudev and the optional
+  daemons (sshd, cups, networkmanager, sddm, ...), plus a `sysklogd` script for
+  the logger `basepkg` installs. It enables `udev` in `sysinit` and
+  `udev-postmount` and `sysklogd` in `default`.
+
+Manage services the usual way:
+```
+# rc-update add sshd default
+# rc-service sshd start
+```
+
+`runit` and `runit-rc` are still in the tree, and a port can still install
+runit service files with `sv=()` (see below), but a fresh bootstrap no longer
+installs them.
 # writing ports
 Writing ports is so damn easy, you can learn from existing ports or use `gentemplate.sh` script to generate a very basic port. 
 

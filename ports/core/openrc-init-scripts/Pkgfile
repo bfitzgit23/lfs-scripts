@@ -1,0 +1,39 @@
+# Depends: openrc
+name=openrc-init-scripts
+version=4
+release=1
+source=(networkmanager acpid bluetooth dbus gpm chronyd cups sshd samba
+	avahi-daemon nftables rsyncd krb5-kdc krb5-kadmind wpa_supplicant smartd
+	bfs-kernel-finalize sddm kdm lightdm lxdm plasmalogin consolekit virtlogd
+	libvirtd udev udev-postmount sysklogd
+	pipewire.desktop pipewire-pulse.desktop wireplumber.desktop)
+
+pkg_build() {
+	install -d -m0755 $PKG/etc/init.d $PKG/etc/xdg/autostart || return $?
+
+	# Optional services install unconditionally; they are enabled by an admin
+	# and fail cleanly when the matching package is not installed, e.g.
+	#   rc-update add sshd default
+	services="networkmanager acpid bluetooth dbus gpm chronyd
+		cups sshd samba avahi-daemon nftables rsyncd
+		krb5-kdc krb5-kadmind wpa_supplicant smartd
+		bfs-kernel-finalize sddm kdm lightdm lxdm plasmalogin
+		consolekit virtlogd libvirtd udev udev-postmount sysklogd"
+	for service in $services; do
+		install -m0755 $SRC/$service $PKG/etc/init.d/$service || return $?
+	done
+
+	# PipeWire is per-user; without a per-user service manager it is started
+	# from XDG autostart by the desktop session.
+	for entry in pipewire.desktop pipewire-pulse.desktop wireplumber.desktop; do
+		install -m0644 $SRC/$entry $PKG/etc/xdg/autostart/$entry || return $?
+	done
+
+	# OpenRC installs the standard sysinit/boot/shutdown services itself;
+	# these three come from this package. udev has to run in sysinit, before
+	# anything that expects /dev/input nodes.
+	install -d -m0755 $PKG/etc/runlevels/sysinit $PKG/etc/runlevels/default || return $?
+	ln -sfn /etc/init.d/udev $PKG/etc/runlevels/sysinit/udev || return $?
+	ln -sfn /etc/init.d/udev-postmount $PKG/etc/runlevels/default/udev-postmount || return $?
+	ln -sfn /etc/init.d/sysklogd $PKG/etc/runlevels/default/sysklogd || return $?
+}

@@ -1,0 +1,19 @@
+# Depends: meson ninja
+name=openrc
+version=0.63
+release=1
+# The lock patch is what makes uucp_group configurable; meson rejects
+# -D uucp_group below until the option exists.
+source=(https://github.com/OpenRC/openrc/archive/$version/openrc-$version.tar.gz
+	https://www.linuxfromscratch.org/glfs/view/dev/download/openrc/openrc-$version-lock-1.patch
+	inittab)
+build_opt="-D uucp_group=root"
+
+post_build() {
+	# openrc-init reads /etc/inittab for the sysinit/wait states and for the
+	# console gettys; without it the system never reaches a login prompt.
+	install -m0644 $SRC/inittab $PKG/etc/inittab || return $?
+
+	# /sbin/init has to be openrc-init, not a sysvinit binary.
+	ln -sfn /sbin/openrc-init $PKG/sbin/init || return $?
+}

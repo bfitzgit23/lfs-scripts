@@ -1,0 +1,12 @@
+#!/sbin/openrc-run
+description="System logger"
+
+command=/usr/sbin/syslogd
+command_args=""
+pidfile=/var/run/syslogd.pid
+
+depend() {
+	need localmount
+	after bootmisc clock
+	provide logger
+}
