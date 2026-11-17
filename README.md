@@ -966,3 +966,20 @@ telnet.c:724:9: error: implicit declaration of function 'tgetent'; did you mean 
 includes `<termcap.h>` when `__has_include` sees it (ncurses ships the header),
 for both `telnet/telnet.c` and `telnetd/utility.c`. `pkgmk` applies it
 automatically because the patch is listed in `source=()`.
+
+### kmod: `meson: command not found`
+
+kmod 34.2 ships two build systems: the autotools `configure` that LFS uses and a
+`meson.build`. `detect_buildtype` in `ports/core/pkgutils/extension` tests
+`meson.build` first, so the kmod port was routed to `_meson_build` even though
+stage 1 and stage 2 never install meson and the port `build_opt` is autotools
+syntax (`--with-openssl --with-xz --with-zlib`):
+
+```
+meson: command not found
+```
+
+`ports/core/kmod/Pkgfile` now pins `build_type=configure_build`, the same way
+`pkgconf` and `util-linux` do, so pkgmk skips detection and runs the configure
+script the tarball already contains.
+
