@@ -1028,3 +1028,30 @@ which is searched last, after the compiler's own headers, like a stock
 `/usr/include`, and leaves `#include_next` working. The
 `attr/error_context.h` fix from the acl failure still holds.
 
+### elfutils: `_FORTIFY_SOURCE requires compiling with optimization (-O)`
+
+elfutils is also the first package whose `configure` hardens the build: it
+probes for a `-D_FORTIFY_SOURCE` level that compiles and adds the winner to
+**both** flag variables.
+
+```
+CFLAGS="$fortified_cflags $save_CFLAGS"
+CXXFLAGS="$fortified_cflags $CXXFLAGS"
+```
+
+Its C++ sources are compiled with `-Werror` (`config/eu.am`), so a C++ compile
+that has no `-O` dies on glibc's own warning:
+
+```
+/usr/include/features.h:451:4: error: #warning _FORTIFY_SOURCE requires compiling with optimization (-O) [-Werror=cpp]
+```
+
+The C flags written to `/tmp/pkgmk.conf` are literal and always carry `-O2`,
+but the C++ ones were generated as `export CXXFLAGS="${CFLAGS}"`. That
+`${CFLAGS}` is expanded by the shell running `bootstrap.sh` while it writes the
+file, and a `./bootstrap.sh --resume` run reaches `basepkg` without
+`toolchainpkg` having exported `CFLAGS` in that shell, so it wrote an empty
+value and g++ compiled everything unoptimised. Both variables are now written
+out literally, and `CXXFLAGS` no longer inherits `-std=gnu17`, which is a C-only
+option that g++ can only warn about.
+

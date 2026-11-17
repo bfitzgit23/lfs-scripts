@@ -416,9 +416,17 @@ _buildbase() {
 	# which is what broke elfutils C++ sources with a missing stdlib.h.
 	mkdir -p $LFS/var/lib/pkgmk
 	cp ports/core/pkgutils/extension $LFS/var/lib/pkgmk
+		# Write both flag sets out. This text is expanded by the shell running
+	# bootstrap.sh, and a --resume run reaches basepkg without
+	# toolchainpkg having exported CFLAGS here, so "$CFLAGS" would be
+	# empty and g++ would compile without -O. elfutils' configure then
+	# adds -D_FORTIFY_SOURCE=3 to CXXFLAGS as well as CFLAGS, glibc's
+	# features.h warns that fortify needs -O, and elfutils builds C++
+	# with -Werror. Keep -std out of CXXFLAGS: gnu17 is a C-only option.
+	_bootstrap_flags="-O2 -march=x86-64 -pipe -Wno-error -idirafter /usr/include"
 	echo "
-export CFLAGS=\"-O2 -march=x86-64 -pipe -std=gnu17 -Wno-error -idirafter /usr/include\"
-export CXXFLAGS=\"${CFLAGS}\"
+export CFLAGS=\"$_bootstrap_flags -std=gnu17\"
+export CXXFLAGS=\"$_bootstrap_flags\"
 export CPPFLAGS=\"-idirafter /usr/include\"
 
 export JOBS=$(nproc)
