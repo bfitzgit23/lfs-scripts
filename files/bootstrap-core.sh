@@ -15,6 +15,13 @@ _ensure_toolchain_shims() {
 	# the chroot. These shims are recreated every run: an aborted stage 2
 	# leaves $LFS/var/lib/pkg/db behind, and gating on it used to skip the
 	# shims and fail later with "chroot: failed to run 'env'".
+	#
+	# A shim must never replace a file a base package already installed. The
+	# link works while building, but lfs-rootfs.tar.xz excludes $TOOLS, so once
+	# the tarball is unpacked anywhere else the link dangles - the chroot dies
+	# with "/usr/bin/env: No such file or directory" - and the binary it
+	# replaced is gone from the rootfs. Leave existing paths alone, and unpack
+	# the owning package again if an older run of this function clobbered one.
 	_tc="$LFS$TOOLS"
 	if [ ! -x "$_tc/bin/env" ]; then
 		echo "error: the temporary toolchain is missing: $_tc/bin/env" >&2
@@ -23,19 +30,73 @@ _ensure_toolchain_shims() {
 		return 1
 	fi
 	mkdir -p "$LFS/bin" "$LFS/usr/bin" "$LFS/usr/lib" "$LFS/etc" "$LFS/dev"
+
+	_stale=""
+	_shim() {
+		# $1 toolchain path, $2 path in the rootfs, $3 owning package ("-"
+		# for a shim no package ever replaces)
+		if [ -L "$2" ]; then
+			[ "$(readlink "$2")" = "$1" ] || return 0
+			[ "$3" = - ] && return 0
+			case " $_stale " in
+				*" $3 "*) ;;
+				*) _stale="$_stale $3" ;;
+			esac
+			return 0
+		fi
+		[ -e "$2" ] && return 0
+		ln -sfn "$1" "$2"
+	}
+
 	for i in bash cat chmod dd echo ln mkdir pwd rm stty; do
-		ln -sfn "$TOOLS/bin/$i" "$LFS/bin/$i"
+		case $i in
+			bash) _shim "$TOOLS/bin/$i" "$LFS/bin/$i" bash ;;
+			*)    _shim "$TOOLS/bin/$i" "$LFS/bin/$i" coreutils ;;
+		esac
 	done
-	for i in env install perl printf touch; do
-		ln -sfn "$TOOLS/bin/$i" "$LFS/usr/bin/$i"
+	for i in env install printf touch; do
+		_shim "$TOOLS/bin/$i" "$LFS/usr/bin/$i" coreutils
 	done
-	ln -sfn "$TOOLS/lib/libgcc_s.so" "$LFS/usr/lib/libgcc_s.so"
-	ln -sfn "$TOOLS/lib/libgcc_s.so.1" "$LFS/usr/lib/libgcc_s.so.1"
-	for i in libstdc++.a libstdc++.so libstdc++.so.6; do
-		ln -sfn "$TOOLS/lib/$i" "$LFS/usr/lib/$i"
+	_shim "$TOOLS/bin/perl" "$LFS/usr/bin/perl" perl
+	for i in libgcc_s.so libgcc_s.so.1 libstdc++.so libstdc++.so.6; do
+		_shim "$TOOLS/lib/$i" "$LFS/usr/lib/$i" gcc
 	done
-	ln -sfn bash "$LFS/bin/sh"
-	ln -sfn /proc/self/mounts "$LFS/etc/mtab"
+	# The extension drops static archives from packages, so nothing installs
+	# this one; _purge_toolchain_shims takes it out once the base is done.
+	_shim "$TOOLS/lib/libstdc++.a" "$LFS/usr/lib/libstdc++.a" -
+	[ -e "$LFS/bin/sh" ] || ln -sfn bash "$LFS/bin/sh"
+	[ -e "$LFS/etc/mtab" ] || ln -sfn /proc/self/mounts "$LFS/etc/mtab"
+
+	# pkgadd of an archive that is already built costs seconds; nothing is
+	# compiled again.
+	for _p in $_stale; do
+		pkginfo -i -r "$LFS" 2>/dev/null | awk '{print $1}' | grep -qx "$_p" ||
+			continue
+		_arch=$(ls -1 "$packagedir/$_p#"* 2>/dev/null | tail -n 1)
+		if [ -z "$_arch" ]; then
+			echo "stage: warning: $_p is installed, but $packagedir has no package" >&2
+			echo "       to restore the files its toolchain shim replaced" >&2
+			continue
+		fi
+		echo "stage: repairing $_p: restoring files a toolchain shim replaced" >&2
+		pkgadd -r "$LFS" -f "$_arch" || return 1
+	done
+	return 0
+}
+
+_purge_toolchain_shims() {
+	# A link into $TOOLS is fine while building and fatal afterwards: the
+	# rootfs tarball excludes the toolchain, so on the installed system the
+	# link points at nothing.
+	_dropped=""
+	for _l in "$LFS"/bin/* "$LFS"/usr/bin/* "$LFS"/usr/lib/*; do
+		[ -L "$_l" ] || continue
+		case "$(readlink "$_l")" in
+			"$TOOLS"/*) rm -f "$_l"; _dropped="$_dropped ${_l#"$LFS"}" ;;
+		esac
+	done
+	[ -n "$_dropped" ] &&
+		echo "stage: removed leftover toolchain shims:$_dropped" >&2
 	return 0
 }
 
@@ -371,6 +432,16 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 _compressrootfs() {	
 	TMPPWD=$PWD
 	cd $LFS
+	# Never package a rootfs that points into the temporary toolchain: the
+	# tarball below excludes it, so such a link is dead on the target system
+	# and the chroot fails with "/usr/bin/env: No such file or directory".
+	_broken=$(find . -type l -lname "$TOOLS/*" 2>/dev/null)
+	if [ -n "$_broken" ]; then
+		echo "error: the rootfs still links into $TOOLS:" >&2
+		printf '%s\n' "$_broken" | head -n 20 | sed 's/^/    /' >&2
+		echo "       resume stage 2 (or 3) to repair it, then compress again" >&2
+		exit 1
+	fi
 	rm -f "$TMPPWD/lfs-rootfs.tar.xz"
 	XZ_DEFAULTS='-T0' tar \
 		--exclude='./var/lib/pkg/rejected' \
@@ -403,6 +474,10 @@ _buildbase() {
 	_state_summary $_bstage
 
 	if [ -f "$(_state_dir)/stage$_bstage.complete" ]; then
+		# A tree built before the shims stopped overwriting base files may
+		# still carry those links; _ensure_toolchain_shims has restored the
+		# real files above, so drop whatever nothing replaces.
+		_purge_toolchain_shims
 		echo "stage $_bstage: already complete, nothing to do"
 		echo "         delete $(_state_dir) to rebuild from scratch"
 		return 0
@@ -558,7 +633,8 @@ EOF
 		_state_mark $_bstage "$i"
 	done
 	umountfs
-	
+
+	_purge_toolchain_shims
 	_state_complete $_bstage
 	echo
 	echo "base system build completed"
