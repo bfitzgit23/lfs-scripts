@@ -1,5 +1,12 @@
 name=tar
 version=1.35
 release=1
-source=(https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/tar-1.35.tar.xz)
+# libacl 2.4.0 added the acl_*_at() family with an extra at_flags argument.
+# tar 1.35 declares its own static copies of those three functions in
+# src/xattrs.c, so building against the new header fails with
+# "conflicting types for 'acl_get_file_at'". This is the fix LFS 13.1
+# requires; the port's generic _patch() applies any source entry ending
+# in .patch, so listing it is enough.
+source=(https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/tar-1.35.tar.xz
+	tar-1.35-acl_fix-1.patch)
 export FORCE_UNSAFE_CONFIGURE=1

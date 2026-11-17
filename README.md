@@ -1159,3 +1159,22 @@ for the build, and `post_build` removes `test`, `*/test`, `*/tests` and
 The three optional modules reported missing in the same log (`_tkinter`,
 `_uuid`, `_zstd`) are expected this early: tcl/tk is not in `basepkg` at all,
 and util-linux (libuuid) and zstd are built after python.
+
+### tar: `conflicting types for 'acl_get_file_at'`
+
+acl 2.4.0, the version this tree builds, added `acl_get_file_at()`,
+`acl_set_file_at()` and `acl_delete_def_file_at()` with an extra `at_flags`
+argument. tar 1.35 keeps its own static copies of those three names in
+`src/xattrs.c` as fallbacks, so `xattrs.o` no longer compiles and the build
+stops at
+
+```
+xattrs.c:142:14: error: conflicting types for 'acl_get_file_at'
+make[2]: *** [Makefile:1932: xattrs.o] Error 1
+```
+
+The port now carries LFS 13.1's required `tar-1.35-acl_fix-1.patch` (upstream
+commit `08c3fc2e` "Avoid acl_ prefix for functions", backported to 1.35), which
+renames the fallbacks to `tar_acl_*`. The pkgutils extension's `_patch()`
+applies every `source=()` entry ending in `.patch`, so listing the file in
+`source=()` is all the port needs.
