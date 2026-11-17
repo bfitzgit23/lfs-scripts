@@ -40,6 +40,26 @@ _shim_source() {
 	esac
 }
 
+_installed_packages() {
+	pkginfo -i -r "$LFS" 2>/dev/null | awk '{print $1}'
+}
+
+_clear_toolchain_shims() {
+	# $1 package. Drop the shims it is about to install over: the package's own
+	# file has to land in the rootfs, and a link left behind is what made the
+	# tarball unusable in the first place. pkgadd does unlink, but the install
+	# must not depend on that.
+	for _e in $_toolchain_shims; do
+		[ "${_e%%:*}" = "$1" ] || continue
+		_path=${_e#*:}
+		if [ -L "$LFS$_path" ] &&
+				[ "$(readlink "$LFS$_path")" = "$(_shim_source "$_path")" ]; then
+			rm -f "$LFS$_path"
+		fi
+	done
+	return 0
+}
+
 _repair_toolchain_shims() {
 	# A shim points into $TOOLS. That works while building, but
 	# lfs-rootfs.tar.xz excludes the toolchain, so once the tarball is unpacked
@@ -52,11 +72,13 @@ _repair_toolchain_shims() {
 	# _ensure_toolchain_shims calls this, and so does stage 4: a completed
 	# stage 2 cannot be resumed just to repair its rootfs, and stage 4 is what
 	# ships it.
+	_installed=$(_installed_packages)
 	_stale=""
 	for _e in $_toolchain_shims; do
 		_pkg=${_e%%:*}
 		_path=${_e#*:}
 		[ "$_pkg" = - ] && continue
+		echo "$_installed" | grep -qx "$_pkg" || continue
 		[ -L "$LFS$_path" ] || continue
 		[ "$(readlink "$LFS$_path")" = "$(_shim_source "$_path")" ] ||
 			continue
@@ -66,18 +88,27 @@ _repair_toolchain_shims() {
 		esac
 	done
 	for _pkg in $_stale; do
-		pkginfo -i -r "$LFS" 2>/dev/null | awk '{print $1}' | grep -qx "$_pkg" ||
-			continue
 		_arch=$(ls -1 "$packagedir/$_pkg#"* 2>/dev/null | tail -n 1)
 		if [ -z "$_arch" ]; then
 			echo "stage: warning: $_pkg is installed, but $packagedir has no" >&2
 			echo "       package to restore the files its toolchain shim replaced" >&2
-		else
-			echo "stage: repairing $_pkg: restoring files a toolchain shim replaced" >&2
-			# -u: the package is already in the db, and -f alone only
-			# overrides file conflicts. Together they replace the files.
-			pkgadd -r "$LFS" -u -f "$_arch" || return 1
+			continue
 		fi
+		_clear_toolchain_shims "$_pkg"
+		echo "stage: repairing $_pkg: restoring files a toolchain shim replaced" >&2
+		# -u: the package is already in the db, and -f alone only overrides
+		# file conflicts. Together they replace the files.
+		pkgadd -r "$LFS" -u -f "$_arch" || return 1
+		# pkgadd in upgrade mode only warns when a file cannot be extracted,
+		# so check the paths this package owns instead of trusting its status.
+		for _e in $_toolchain_shims; do
+			[ "${_e%%:*}" = "$_pkg" ] || continue
+			_path=${_e#*:}
+			if [ ! -f "$LFS$_path" ]; then
+				echo "error: pkgadd did not install $_path from $_arch" >&2
+				return 1
+			fi
+		done
 	done
 	return 0
 }
@@ -115,14 +146,23 @@ _ensure_toolchain_shims() {
 _purge_toolchain_shims() {
 	# A link into $TOOLS is fine while building and fatal afterwards: the
 	# rootfs tarball excludes the toolchain, so on the installed system the
-	# link points at nothing. The static libstdc++.a is the only shim left once
-	# the base packages are installed, because the extension strips .a files.
+	# link points at nothing. Only shims that nothing replaces are dropped: the
+	# static libstdc++.a, which the extension strips from packages, and shims
+	# for a package the base never built. A link whose package is installed
+	# means the repair failed, and deleting it would turn a broken link into a
+	# missing file the caller cannot see.
+	_installed=$(_installed_packages)
 	_dropped=""
-	for _l in "$LFS"/bin/* "$LFS"/usr/bin/* "$LFS"/usr/lib/*; do
-		[ -L "$_l" ] || continue
-		case "$(readlink "$_l")" in
-			"$TOOLS"/*) rm -f "$_l"; _dropped="$_dropped ${_l#"$LFS"}" ;;
-		esac
+	for _e in $_toolchain_shims; do
+		_pkg=${_e%%:*}
+		_path=${_e#*:}
+		[ -L "$LFS$_path" ] || continue
+		[ "$(readlink "$LFS$_path")" = "$(_shim_source "$_path")" ] || continue
+		if [ "$_pkg" != - ] && echo "$_installed" | grep -qx "$_pkg"; then
+			continue
+		fi
+		rm -f "$LFS$_path"
+		_dropped="$_dropped $_path"
 	done
 	[ -n "$_dropped" ] &&
 		echo "stage: removed leftover toolchain shims:$_dropped" >&2
@@ -616,6 +656,9 @@ PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 				echo "       fix the cause, then resume with: ./bootstrap.sh --resume" >&2
 				exit 1
 			}
+			# Install over the shim, not through it: the package's own file has
+			# to land in the rootfs.
+			_clear_toolchain_shims "$i"
 			pkgadd -r $LFS $_force $(ls -1 $packagedir/$i#* | tail -n1) || {
 				_state_fail $_bstage "$i"; umountfs
 				echo "error: $i failed to install (stage $_bstage)" >&2
