@@ -1139,3 +1139,23 @@ because `_chroot` passed the host's `LC_ALL` and ignored `_chrootlocale`, so
 the chroot kept receiving the toolchain-only name. `_chroot` now always starts
 at `C` and uses `C.UTF-8` only after the chroot's own `locale charmap`
 confirms it.
+
+### python: `./python: No module named test` (`profile-run-stamp`)
+
+With the locale fixed the build reached python's PGO step and stopped there:
+
+```
+LD_LIBRARY_PATH=... ./python -m test --pgo --timeout=
+.../python: No module named test
+make: *** [Makefile:1021: profile-run-stamp] Error 1
+```
+
+`build_opt` enables `--enable-optimizations`, and the last thing `make` does
+for it is profile the interpreter by running the test suite - but `pre_build`
+deleted `Lib/test` before `make` even started. The tests now stay in the tree
+for the build, and `post_build` removes `test`, `*/test`, `*/tests` and
+`*/idle_test` from `$PKG` instead, so the package still ships without them.
+
+The three optional modules reported missing in the same log (`_tkinter`,
+`_uuid`, `_zstd`) are expected this early: tcl/tk is not in `basepkg` at all,
+and util-linux (libuuid) and zstd are built after python.

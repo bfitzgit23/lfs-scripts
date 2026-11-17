@@ -19,7 +19,7 @@ pre_build() {
 	# This is the LFS 13.1 backport of the upstream fixes ("openssl_4"). It
 	# needs no explicit patch call here: the extension's _patch() walks
 	# source=() and applies it from $SRC before this runs, i.e. still before
-	# the tests are removed (the patch also touches Lib/test/test_ssl.py).
+	# post_build drops the tests (the patch also touches Lib/test/test_ssl.py).
 	# Patching it again from $PKGMK_SOURCE_DIR only fails, because pkgmk keeps
 	# port-local files in $SRC and never in $PKGMK_SOURCE_DIR: download_source()
 	# resolves a source entry without a URL to the bare filename (a file in the
@@ -31,8 +31,11 @@ pre_build() {
 	# names the C function and the Python stack of the crash instead.
 	export PYTHONFAULTHANDLER=1
 
-	# Remove tests
-	rm -rvf Lib/test Lib/*/test Lib/*/tests Lib/*/idle_test
+	# The test suite has to stay in the tree: build_opt enables
+	# --enable-optimizations, and make's last step there is a PGO pass -
+	# "make profile-run" runs "./python -m test --pgo", which dies with
+	# "No module named test" once Lib/test is gone. post_build takes the
+	# tests out of the package instead.
 }
 
 post_build() {
@@ -40,4 +43,11 @@ post_build() {
 	   $PKG/usr/include/python${version%.*}/pyconfig-64.h
 	install -m 0644 $SRC/pyconfig.h $PKG/usr/include/python${version%.*}/
 	ln -s python3 $PKG/usr/bin/python
+
+	# Dropped here rather than in pre_build: the PGO pass above needs
+	# them while make runs.
+	rm -rf $PKG/usr/lib/python${version%.*}/test \
+		$PKG/usr/lib/python${version%.*}/*/test \
+		$PKG/usr/lib/python${version%.*}/*/tests \
+		$PKG/usr/lib/python${version%.*}/*/idle_test
 }
