@@ -860,13 +860,22 @@ passes, put the two scripts where the driver looks for them:
 ```sh
 for d in /tmp/lfs-tools/lib /tmp/lfs-tools/lib32; do
   [ -d "$d" ] || continue
+  rm -f "$d/libgcc_s_asneeded.so"
   printf '/* GNU ld script
    Add DT_NEEDED entry for libgcc_s.so only if needed.  */
 INPUT ( AS_NEEDED ( -lgcc_s ) )
 ' > "$d/libgcc_s_asneeded.so"
-  [ -e "$d/libatomic.so" ] && printf '/* GNU ld script
+  if [ -e "$d/libatomic.so" ]; then
+    rm -f "$d/libatomic_asneeded.so"
+    printf '/* GNU ld script
    Add DT_NEEDED entry for libatomic only if needed.  */
 INPUT ( AS_NEEDED ( -latomic ) )
 ' > "$d/libatomic_asneeded.so"
+  fi
 done
 ```
+
+(The `rm -f` is there because an interactive shell with `set -C`/`noclobber` answers
+`cannot overwrite existing file` for a plain `>`. If the scripts already exist and
+look correct, `ld` is not searching that directory at all — check
+`gcc -print-search-dirs` from inside the build.)
