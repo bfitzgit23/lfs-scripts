@@ -1,0 +1,11 @@
+--- a/libpam/include/pam_inline.h
++++ b/libpam/include/pam_inline.h
+@@ -82,7 +82,7 @@
+ static inline void pam_overwrite_n(void *ptr, size_t len)
+ {
+ 	if (ptr)
+-		memset_explicit(ptr, len);
++		memset_explicit(ptr, \0, len);
+ }
+ #elif defined HAVE_EXPLICIT_BZERO
+ static inline void pam_overwrite_n(void *ptr, size_t len)

@@ -1178,3 +1178,24 @@ commit `08c3fc2e` "Avoid acl_ prefix for functions", backported to 1.35), which
 renames the fallbacks to `tar_acl_*`. The pkgutils extension's `_patch()`
 applies every `source=()` entry ending in `.patch`, so listing the file in
 `source=()` is all the port needs.
+
+### linux-pam: `too few arguments to function 'memset_explicit'`
+
+libpam's own `pam_inline.h` calls `memset_explicit(ptr, len)` with two
+arguments, but the C23 function takes three (`void *, int, size_t`), so every
+object that includes it fails:
+
+```
+./include/pam_inline.h:85:17: error: too few arguments to function 'memset_explicit'; expected 3, have 2
+make[2]: *** [Makefile:627: pam_end.lo] Error 1
+```
+
+It only shows up when `HAVE_MEMSET_EXPLICIT` is defined. configure's
+`AC_CHECK_FUNCS(explicit_bzero memset_explicit)` compiles `char
+memset_explicit();` without including `<string.h>`, so the probe succeeds even
+though the two-argument call in `pam_inline.h` could never compile, and the
+`explicit_bzero` branch that works is skipped.
+
+Upstream fixed the call by passing the fill byte, giving
+`memset_explicit(ptr, '\0', len)`. `ports/core/linux-pam/memset_explicit_3args.patch`
+is that one-line backport, applied through `source=()` like any other patch.
