@@ -155,7 +155,10 @@ chroot can build them:
   dmesg, sysfs; `boot`: bootmisc, fsck, hostname, localmount, loopback, root,
   swap, sysctl, binfmt, hwclock, keymaps, modules, mtab, procfs, save-keymaps,
   save-termencoding, seedrng, termencoding; `default`: local, netmount;
-  `shutdown`: savecache, killprocs, mount-ro).
+  `shutdown`: savecache, killprocs, mount-ro). Its `pre_build` drops `-std=`
+  from `CFLAGS`: `meson.build` pins `c_std=c99`, and the bootstrap's
+  `-std=gnu17` is appended after it, which re-enables GCC's predefined `unix`
+  macro and breaks the `struct sockaddr_un unix` member in `src/shared/misc.c`.
 - `openrc-init-scripts` - `/etc/init.d` scripts for eudev and the optional
   daemons (sshd, cups, networkmanager, sddm, ...), plus a `sysklogd` script for
   the logger `basepkg` installs. It enables `udev` in `sysinit` and

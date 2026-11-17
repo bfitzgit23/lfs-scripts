@@ -9,6 +9,18 @@ source=(https://github.com/OpenRC/openrc/archive/$version/openrc-$version.tar.gz
 	inittab)
 build_opt="-D uucp_group=root"
 
+pre_build() {
+	# GCC predefines unix and linux as macros in its GNU dialects, and openrc
+	# names a struct sockaddr_un member "unix" (src/shared/misc.c,
+	# notify_parse). That is why meson.build pins c_std=c99. pkgmk's CFLAGS end
+	# in -std=gnu17 and meson appends them after its own -std=c99, which
+	# re-enables the macro: misc.c then fails with "expected identifier or '('
+	# before numeric constant". Drop the -std= flag so the port builds in the
+	# dialect it asks for.
+	CFLAGS=$(printf '%s\n' "$CFLAGS" | sed -e 's/-std=[^ ]*//g')
+	export CFLAGS
+}
+
 post_build() {
 	# openrc-init reads /etc/inittab for the sysinit/wait states and for the
 	# console gettys; without it the system never reaches a login prompt.
