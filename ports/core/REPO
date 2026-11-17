@@ -133,7 +133,7 @@ f:ecfd2535c3ed609802bfe9e6cd78d99b:prt-get/prt-get.aliases
 f:ac8b4d3914a440375a33c26a39048a3f:prt-get/.md5sum
 f:8897c92b58de2bb63cfa8b39a06ca5d1:prt-get/prt-get.conf
 f:077fea960d8a490412eed744ce9bcc40:prt-get/.footprint
-f:3f146fd4d50061178f6a75c61e3cabf7:binutils/Pkgfile
+f:c12679ca4ece9a4fce77c193920e7052:binutils/Pkgfile
 f:1d176cd5b0a01ca2adf324faa99b4ade:binutils/.md5sum
 f:0c00d639bfd4290e0270351a271dc280:binutils/.footprint
 f:752bee0e64073b9032f74c25bd8202ea:tar/Pkgfile
