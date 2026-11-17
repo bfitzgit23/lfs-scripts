@@ -244,6 +244,26 @@ _ensure_chroot_locale() {
 	return 0
 }
 
+_sync_chroot_pkgmk_conf() {
+	# Stage 3 rebuilds through prt-get, and prt-get's pkgmk reads
+	# /etc/pkgmk.conf, not the /tmp/pkgmk.conf every other build here uses.
+	# The shipped file names no C standard, so gcc 15 and later fall back to
+	# gnu23 - where strchr() returns a const pointer - and a package that
+	# builds with -Werror fails on its own code: libxcrypt's
+	# crypt-sm3-yescrypt.c assigns that strchr() to a plain char *. Give the
+	# chroot the flags the rest of the base system is built with. pkgutils
+	# installs this file, so it is re-applied before every package.
+	[ -f "$LFS/etc/pkgmk.conf" ] || return 0
+	sed -i \
+		-e "s|^export CFLAGS=.*|export CFLAGS=\"$_bootstrap_flags -std=gnu17\"|" \
+		-e "s|^export CXXFLAGS=.*|export CXXFLAGS=\"$_bootstrap_flags\"|" \
+		-e "s|^export CPPFLAGS=.*|export CPPFLAGS=\"-idirafter /usr/include\"|" \
+		"$LFS/etc/pkgmk.conf"
+	grep -q '^export CPPFLAGS=' "$LFS/etc/pkgmk.conf" ||
+		printf 'export CPPFLAGS="-idirafter /usr/include"\n' >> "$LFS/etc/pkgmk.conf"
+	return 0
+}
+
 # Resume support. Every package that finishes is recorded under $LFS, so a run
 # that dies (bad source, compiler error, Ctrl-C, reboot) can be restarted and
 # skips the work already done instead of rebuilding the whole toolchain.
@@ -696,6 +716,7 @@ PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 		exit 1
 	}
 	for i in $basepkg; do
+		_sync_chroot_pkgmk_conf
 		if [ "$1" != rebuild ]; then
 			pkginfo -i -r $LFS | awk '{print $1}' | grep -qx $i && { _state_mark $_bstage "$i"; continue; }
 			unset _force
