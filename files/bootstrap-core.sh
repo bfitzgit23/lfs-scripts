@@ -53,7 +53,7 @@ _chroot() {
 		echo "error: no env(1) inside $LFS; run stage 1 before stage 2" >&2
 		return 1
 	fi
-	chroot "$LFS" "$_env" -i PATH="$LFSPATH" "$@"
+	chroot "$LFS" "$_env" -i PATH="$LFSPATH" LC_ALL="${LC_ALL:-C}" "$@"
 }
 
 # Resume support. Every package that finishes is recorded under $LFS, so a run
@@ -503,7 +503,18 @@ unmount() {
 
 export LFS="${LFS:-/tmp/lfs-rootfs}"
 export TOOLS="${TOOLS:-/tmp/lfs-tools}"
+# libarchive's bsdtar translates the UTF-8 pathnames in a pax archive into
+# the current charset and refuses to extract when that charset is ASCII.
+# gcc's tarball has a few non-ASCII pathnames, so extraction needs a UTF-8
+# locale; everything else keeps byte-order determinism either way.
 export LC_ALL=C
+for _loc in C.UTF-8 C.utf8 en_US.UTF-8 en_US.utf8; do
+	if LC_ALL=$_loc locale charmap >/dev/null 2>&1; then
+		export LC_ALL=$_loc
+		break
+	fi
+done
+[ "$LC_ALL" = C ] && echo "stage: warning: no UTF-8 locale - bsdtar cannot" \n	"extract archives with non-ASCII pathnames (gcc-16.2.0.tar.xz)" >&2
 export PATH=$TOOLS/bin:$PATH
 
 # zlib, xz and zstd sit before python on purpose: python builds its zlib,
