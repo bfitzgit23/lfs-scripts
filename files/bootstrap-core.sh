@@ -1,7 +1,9 @@
+#!/bin/sh -e
+
 HOSTPATH=$(printf "%s" "$PATH" | sed -e "s|$TOOLS/bin:||g" -e "s|:$TOOLS/bin||g")
 	# keep the toolchain last: bsdtar and friends live there, but the host as/ld
 	# must win
-	HOSTPATH="$HOSTPATH:$TOOLS/bin"#!/bin/sh -e
+	HOSTPATH="$HOSTPATH:$TOOLS/bin"
 
 # The ports, files/ and sources/ paths below are relative to the repository
 # root, so anchor on the script location instead of the caller's cwd.
