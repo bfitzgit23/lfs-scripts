@@ -47,6 +47,12 @@ bootstrap_build() {
 }
 
 pkg_build() {
+	# Same PATH_MAX problem as the bootstrap passes: this ld is built
+	# against the chroot's glibc 2.44, which no longer pulls in
+	# <limits.h> transitively.
+	[ -f "$PKGMK_SOURCE_DIR/path_max.patch" ] &&
+		patch -Np1 -i "$PKGMK_SOURCE_DIR/path_max.patch"
+	
 	mkdir -v build
 	cd       build
 
