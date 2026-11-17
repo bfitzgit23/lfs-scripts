@@ -1,0 +1,54 @@
+--- a/telnet/telnet.c
++++ b/telnet/telnet.c
+@@ -63,13 +63,23 @@
+ #include "types.h"
+ #include "general.h"
+ 
+-#ifdef HAVE_TERMCAP_TGETENT
++#if defined HAVE_TERMCAP_TGETENT
+ # include <termcap.h>
+ #elif defined HAVE_CURSES_TGETENT
+ # include <curses.h>
+ # ifndef _XOPEN_CURSES
+ #  include <term.h>
+ # endif
++#elif defined HAVE_TGETENT
++/* configure sets HAVE_TGETENT without HAVE_TERMCAP_TGETENT when tgetent()
++ * is found in ncurses (IU_LIB_TERMCAP takes LIBTERMCAP from LIBNCURSES),
++ * leaving tgetent() undeclared and telnet failing to compile. ncurses also
++ * installs <termcap.h>, so include it when it is available. */
++# ifdef __has_include
++#  if __has_include(<termcap.h>)
++#   include <termcap.h>
++#  endif
++# endif
+ #endif
+ 
+ #ifdef AUTHENTICATION
+--- a/telnetd/utility.c
++++ b/telnetd/utility.c
+@@ -35,13 +35,23 @@
+ # define NET_ENCRYPT()
+ #endif
+ 
+-#ifdef HAVE_TERMCAP_TGETENT
++#if defined HAVE_TERMCAP_TGETENT
+ # include <termcap.h>
+ #elif defined HAVE_CURSES_TGETENT
+ # include <curses.h>
+ # ifndef _XOPEN_CURSES
+ #  include <term.h>
+ # endif
++#elif defined HAVE_TGETENT
++/* configure sets HAVE_TGETENT without HAVE_TERMCAP_TGETENT when tgetent()
++ * is found in ncurses (IU_LIB_TERMCAP takes LIBTERMCAP from LIBNCURSES),
++ * leaving tgetent() undeclared and telnet failing to compile. ncurses also
++ * installs <termcap.h>, so include it when it is available. */
++# ifdef __has_include
++#  if __has_include(<termcap.h>)
++#   include <termcap.h>
++#  endif
++# endif
+ #endif
+ 
+ #if defined HAVE_STREAMSPTY && defined HAVE_GETMSG	\

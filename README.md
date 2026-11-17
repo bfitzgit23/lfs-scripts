@@ -947,3 +947,22 @@ Extraction then goes through the host's GNU tar while archive creation and
 everything else keep using the toolchain's libarchive. This is a recovery step
 for existing trees; fresh builds generate `C.UTF-8` as part of the stage-1 glibc
 install and do not need it.
+
+### inetutils: `tgetent` has no prototype in `telnet`
+
+inetutils 2.8 builds `telnet` and `telnetd` against termcap. `am/libcurses.m4`
+declares `tgetent()` for those files only through `HAVE_TERMCAP_TGETENT` (or
+`HAVE_CURSES_TGETENT`), which it defines when the function comes from libtermcap
+or libcurses. When ncurses is found first, `IU_LIB_TERMCAP` just takes
+`LIBTERMCAP="$LIBNCURSES"` and defines `HAVE_TGETENT` alone, so
+`telnet/telnet.c` compiles `tgetent (termbuf, tname)` with no declaration and
+gcc 16 stops the build:
+
+```
+telnet.c:724:9: error: implicit declaration of function 'tgetent'; did you mean 'getenv'?
+```
+
+`ports/core/inetutils/tgetent_include.patch` adds a `HAVE_TGETENT` branch that
+includes `<termcap.h>` when `__has_include` sees it (ncurses ships the header),
+for both `telnet/telnet.c` and `telnetd/utility.c`. `pkgmk` applies it
+automatically because the patch is listed in `source=()`.

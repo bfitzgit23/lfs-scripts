@@ -240,8 +240,9 @@ f:3ca449e5a5cd0da4a9616641efa931ea:perl/.footprint
 f:55c988aeb6b1ef72be5c2ef8836f6927:gdbm/Pkgfile
 f:b6ad83d0e52c0d40ac7ef742897008a9:gdbm/.md5sum
 f:2a987e57d2ce9fe6d67617199148a1ee:gdbm/.footprint
-f:b4428cfe4bcf83d25b4d52189c1fbf03:inetutils/Pkgfile
+f:bcf7706ff662d2b47ad8f3a3401bf1f2:inetutils/Pkgfile
 f:66a2c6a0dc3d51e3c9af568e979dc032:inetutils/.md5sum
+f:2637c9d93f13c019a481c496766f5010:inetutils/tgetent_include.patch
 f:9abe2f409d47f375391bab9b3efffb95:inetutils/.footprint
 f:33486aa46d6976d500d13f461a8c2f9a:libtool/Pkgfile
 f:1f89f719adbddc964f64ed7e8b74d3af:libtool/.md5sum

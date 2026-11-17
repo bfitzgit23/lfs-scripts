@@ -1,7 +1,8 @@
 name=inetutils
 version=2.8
 release=1
-source=(https://mirrorservice.org/sites/ftp.gnu.org/gnu/$name/$name-$version.tar.gz)
+source=(https://mirrorservice.org/sites/ftp.gnu.org/gnu/$name/$name-$version.tar.gz
+	tgetent_include.patch)
 build_opt="
 	--disable-logger
 	--disable-whois
