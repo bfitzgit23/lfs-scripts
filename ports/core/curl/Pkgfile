@@ -15,4 +15,5 @@ bootstrap_opt="
 	--disable-static \
 	--enable-threaded-resolver \
 	--with-openssl \
+	--without-libpsl \
 	--with-ca-bundle=$TOOLS/etc/ssl/cert.pem"

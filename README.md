@@ -743,6 +743,21 @@ Two details worth knowing:
   from curl, so the option no longer exists in `configure` (autoconf would only
   warn, but it is dead weight).
 
+### curl's stage-1 build needs `--without-libpsl`
+
+curl's `configure` defaults `OPT_LIBPSL=off`, which still *probes* libpsl: it
+asks pkg-config for `libpsl`, then falls back to `AC_CHECK_LIB(psl, psl_builtin)`,
+and hard-fails the run with
+
+```
+configure: error: libpsl libs and/or directories were not found!
+```
+
+`build_opt` already passed `--without-libpsl` for the base system, but the
+stage-1 `bootstrap_opt` did not, so stage 1 stopped at curl. Stage 1 has no
+libpsl (nothing built before curl ships it, and stage-1 pkg-config only sees
+`$TOOLS`), so the flag now sits in both option sets.
+
 ### python needs the LFS "openssl_4" backport for `_ssl`
 
 `ports/core/python` builds `_ssl` in the base system, where openssl 4.0.1 comes
