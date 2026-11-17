@@ -903,3 +903,32 @@ Verify the rebuilt driver before trusting it:
 ```sh
 /tmp/lfs-tools/bin/gcc -dumpspecs | grep asneeded    # must print nothing
 ```
+
+### Recovering a tree whose toolchain bsdtar cannot extract gcc
+
+`$TOOLS/lib/locale` is empty when the temporary glibc was installed before the
+`C.UTF-8` generation was added, and libarchive's bsdtar then has no UTF-8
+charset to convert the non-ASCII pathnames in `gcc-16.2.0.tar.xz` into. If
+generating the locale by hand does not clear it, stop asking libarchive to
+translate anything: GNU tar stores and restores the bytes as they are.
+
+```sh
+set +C
+T=/tmp/lfs-tools
+[ -f "$T/bin/bsdtar.real" ] || mv "$T/bin/bsdtar" "$T/bin/bsdtar.real"
+cat > "$T/bin/bsdtar" <<'SHIM'
+#!/bin/sh
+for a in "$@"; do
+	case "$a" in
+		-x*|--extract*) exec /usr/bin/tar "$@" ;;
+	esac
+done
+exec /tmp/lfs-tools/bin/bsdtar.real "$@"
+SHIM
+chmod +x "$T/bin/bsdtar"
+```
+
+Extraction then goes through the host's GNU tar while archive creation and
+everything else keep using the toolchain's libarchive. This is a recovery step
+for existing trees; fresh builds generate `C.UTF-8` as part of the stage-1 glibc
+install and do not need it.
