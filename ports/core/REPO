@@ -184,7 +184,7 @@ f:dd1945239dee66ceb9c5b7577c961bbc:grep/.footprint
 f:5ae7bf3dd16a567950be2ac5348d3497:zlib/Pkgfile
 f:5bc5acfa3ebb6cc3e77ab17ca9cf972e:zlib/.md5sum
 f:cd09faec0bffec7c2392ce5196b41493:zlib/.footprint
-f:f6a5cdd5c2097afe0d82149070728adb:glibc/Pkgfile
+f:34120357cd14be9caf983316b8e5c1e5:glibc/Pkgfile
 f:4a3e4243338481bb5e70b74281347ae8:glibc/reenable_DT_HASH.patch
 f:f02419b094ba90195ca922b34a86b0af:glibc/nsswitch.conf
 f:40c6d91aa2e2d92a4d70b4133b93ad88:glibc/.md5sum

@@ -14,9 +14,6 @@ bootstrap_build() {
 	cd       build32
 		
 	echo slibdir=$TOOLS/lib32 > configparms
-	# --enable-multi-arch on its own points libdir at the multiarch triplet
-	# directory (/usr/lib/x86_64-linux-gnu), which the dynamic linker then
-	# searches instead of /usr/lib -- where every other package installs.
 	../configure \
 		  --prefix=$TOOLS \
 		  --host=$LFS_TGT32 \
@@ -69,6 +66,9 @@ pkg_build() {
 	mkdir -v build
 	cd       build
 	
+	# --enable-multi-arch on its own points libdir at the multiarch triplet
+	# directory (/usr/lib/x86_64-linux-gnu), which the dynamic linker then
+	# searches instead of /usr/lib -- where every other package installs.
 	../configure \
 		--libexecdir=/usr/lib \
 		--libdir=/usr/lib \
