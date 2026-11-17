@@ -880,6 +880,18 @@ done
 look correct, `ld` is not searching that directory at all — check
 `gcc -print-search-dirs` from inside the build.)
 
+### Stage 2 cannot download a source: "unable to get local issuer certificate"
+
+Nothing inside the chroot provides a CA bundle until `ca-certificates` is
+built, which is near the end of `basepkg`, and the toolchain's own bundle is a
+Mozilla snapshot from 2023. Any source that stage 2 has to fetch before then
+therefore fails TLS verification. `bootstrap-core.sh` copies the freshest
+bundle it can find to `$LFS/etc/ssl/certs/bootstrap-ca-bundle.crt` and exports
+`CURL_CA_BUNDLE`/`SSL_CERT_FILE` in the chroot's `pkgin`/`pkgmk` config.
+
+To avoid the download entirely, put the tarball in `sources/` on the host;
+that directory is bind-mounted into the chroot at `/var/cache/pkg/sources`.
+
 ### Forcing a single stage-1 package to rebuild
 
 Stage 1 skips a package when *either* marker is present, so both have to go:

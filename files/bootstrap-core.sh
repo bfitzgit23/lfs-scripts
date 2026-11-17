@@ -393,6 +393,21 @@ _buildbase() {
 	cp files/pkgin $TOOLS/bin/pkgin
 	chmod +x $TOOLS/bin/pkgin
 	
+	# Nothing in the chroot has a CA bundle until ca-certificates is built
+	# (it is near the end of basepkg), and the toolchain's copy is a Mozilla
+	# bundle from 2023, so a source pkgmk has to download during stage 2
+	# fails with "unable to get local issuer certificate". Install the
+	# freshest bundle available and point curl at it below.
+	_ca_src=""
+	for _ca in /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt "$TOOLS/etc/ssl/certs/ca-certificates.crt" "$TOOLS/etc/ssl/cert.pem"; do
+		[ -s "$_ca" ] || continue
+		_ca_src="$_ca"
+		break
+	done
+	if [ -n "$_ca_src" ]; then
+		install -D -m644 "$_ca_src" "$LFS/etc/ssl/certs/bootstrap-ca-bundle.crt"
+	fi
+	
 	# pkgmk
 	mkdir -p $LFS/var/lib/pkgmk
 	cp ports/core/pkgutils/extension $LFS/var/lib/pkgmk
@@ -408,6 +423,10 @@ PKGMK_PACKAGE_DIR=\"/$pkgmkpkg\"
 PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 
 . /var/lib/pkgmk/extension" > $LFS/tmp/pkgmk.conf
+	if [ -s "$LFS/etc/ssl/certs/bootstrap-ca-bundle.crt" ]; then
+		echo 'export CURL_CA_BUNDLE=/etc/ssl/certs/bootstrap-ca-bundle.crt' >> $LFS/tmp/pkgmk.conf
+		echo 'export SSL_CERT_FILE=/etc/ssl/certs/bootstrap-ca-bundle.crt' >> $LFS/tmp/pkgmk.conf
+	fi
 	
 	LFSPATH=/bin:/usr/bin:/sbin:/usr/sbin	
 	if [ "$1" != rebuild ]; then
