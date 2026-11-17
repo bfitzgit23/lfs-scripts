@@ -412,8 +412,9 @@ _buildbase() {
 	mkdir -p $LFS/var/lib/pkgmk
 	cp ports/core/pkgutils/extension $LFS/var/lib/pkgmk
 	echo "
-export CFLAGS=\"-O2 -march=x86-64 -pipe -std=gnu17 -Wno-error\"
+export CFLAGS=\"-O2 -march=x86-64 -pipe -std=gnu17 -Wno-error -isystem /usr/include\"
 export CXXFLAGS=\"${CFLAGS}\"
+export CPPFLAGS=\"-isystem /usr/include\"
 
 export JOBS=$(nproc)
 export MAKEFLAGS=\"-j \$JOBS\"
