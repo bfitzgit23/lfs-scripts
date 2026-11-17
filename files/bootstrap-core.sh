@@ -489,6 +489,11 @@ EOF
 		# unknown to the loader and the next build dies on them (binutils'
 		# ar needs its own libbfd). Rebuild the cache after each package.
 		_chroot sh -c '[ -x /sbin/ldconfig ] && /sbin/ldconfig' >/dev/null 2>&1 || true
+		# Binaries linked with the toolchain's gcc use the toolchain's dynamic
+		# linker, which reads /tmp/lfs-tools/etc/ld.so.cache and searches
+		# /tmp/lfs-tools/lib -- so /usr/lib has to be registered there too, or
+		# the freshly installed binutils cannot load its own libbfd.
+		_chroot sh -c 'if [ -d /tmp/lfs-tools/etc ]; then grep -qx /usr/lib /tmp/lfs-tools/etc/ld.so.conf 2>/dev/null || echo /usr/lib >> /tmp/lfs-tools/etc/ld.so.conf; [ -x /sbin/ldconfig ] && /sbin/ldconfig -f /tmp/lfs-tools/etc/ld.so.conf -C /tmp/lfs-tools/etc/ld.so.cache; fi' >/dev/null 2>&1 || true
 		_state_mark $_bstage "$i"
 	done
 	umountfs
