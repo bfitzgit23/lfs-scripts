@@ -728,7 +728,16 @@ PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 				;;
 			esac
 		else
-			_chroot prt-get update -fr -if $i || {
+			# The ports in this tree were re-versioned to their LFS 13.1
+			# sources but their .md5sum files still name the versions they
+			# replaced, and the footprints were never regenerated either, so
+			# a rebuild has to skip both checks or it stops on the first
+			# package (linux-headers, whose 6.3.3 sum no longer matched the
+			# 7.3.4 tarball). Stage 2 always did: it calls pkgmk with
+			# -is -if -im. -f is spelled out here rather than using -fr
+			# because -fr is itself shorthand for --margs=-f, and two
+			# --margs cannot be relied on to accumulate.
+			_chroot prt-get update --margs="-f -if -im" $i || {
 				_state_fail $_bstage "$i"; umountfs
 				echo "error: $i failed to rebuild (stage $_bstage)" >&2
 				echo "       fix the cause, then resume with: ./bootstrap.sh --resume" >&2
