@@ -508,7 +508,13 @@ _compressrootfs() {
 	# clear the rest before packaging anything.
 	_repair_toolchain_shims || exit 1
 	_purge_toolchain_shims
-	_broken=$(find . -type l -lname "$TOOLS/*" 2>/dev/null)
+	# $LFS/tmp holds the toolchain during the build and the tar excludes it, so
+	# its own absolute links into $TOOLS (ld, for one) are not a problem. The
+	# mount points are pruned too: a stage 2 that died before umountfs would
+	# otherwise send find into the host's /proc.
+	_broken=$(find . \(
+		-path ./tmp -o -path ./proc -o -path ./sys -o -path ./dev -o -path ./run
+		\) -prune -o -type l -lname "$TOOLS/*" -print 2>/dev/null)
 	if [ -n "$_broken" ]; then
 		echo "error: the rootfs still links into $TOOLS:" >&2
 		printf '%s\n' "$_broken" | head -n 20 | sed 's/^/    /' >&2
