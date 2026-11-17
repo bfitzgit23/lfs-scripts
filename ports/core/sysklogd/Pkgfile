@@ -1,9 +1,7 @@
 name=sysklogd
 version=2.7.2
 release=1
-source=(https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
-	$name.run)
-sv=($name.run)
+source=(https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz)
 build_opt="--without-logger"
 
 post_build() {
