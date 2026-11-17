@@ -983,3 +983,19 @@ meson: command not found
 `pkgconf` and `util-linux` do, so pkgmk skips detection and runs the configure
 script the tarball already contains.
 
+
+### kmod: `scdoc` is not in the base system
+
+kmod 34 builds its man pages by default and its `configure` stops when scdoc is
+missing:
+
+```
+configure: error: *** scdoc needed for building manpages. Either install it or pass --disable-manpages
+```
+
+scdoc is a BLFS package and neither stage builds it, so the port
+`build_opt` now passes `--disable-manpages` the way LFS does and the build skips
+the man pages instead of the whole package. The checked-in `.md5sum` was also
+still naming `kmod-31.tar.xz`; it now covers the `kmod-34.2.tar.xz` the port
+actually downloads.
+

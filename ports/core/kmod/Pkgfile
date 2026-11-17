@@ -5,7 +5,7 @@ source=(https://www.kernel.org/pub/linux/utils/kernel/$name/$name-$version.tar.x
 build_type=configure_build
 # kmod 34 also ships a meson.build. pkgmk tests meson.build first, but the
 # base toolchain has no meson and build_opt below is autotools syntax.
-build_opt="--with-openssl --with-xz --with-zlib"
+build_opt="--disable-manpages --with-openssl --with-xz --with-zlib"
 
 post_build() {
 	mkdir -p $PKG/sbin $PKG/bin

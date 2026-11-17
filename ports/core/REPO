@@ -221,8 +221,8 @@ f:9558924caade6dc7158829305417a467:util-linux/Pkgfile
 f:4fbef79d68601c604c4bd81ac2a89479:util-linux/update
 f:d8a767e42c4b5f334d1b307c7280ddb8:util-linux/.md5sum
 f:1139ad94d8daa7652f861410ae5ab99a:util-linux/.footprint
-f:46c3dc16fc506e15d63d7cad5b8eea95:kmod/Pkgfile
-f:79d91605ddc0d12f7b721d1191036d7f:kmod/.md5sum
+f:d5e5451eaaad876c0ecb31e68f85f05b:kmod/Pkgfile
+f:f2c206b34e0fccd2906adcc2efdd2bca:kmod/.md5sum
 f:47149486bccbb0acf34482774e5d62f4:kmod/.footprint
 f:2750e8aab131a42a8bfe74fa2ff7cac9:check/Pkgfile
 f:a65f5099b3cd43c220381aa8f1ea592a:check/.md5sum
