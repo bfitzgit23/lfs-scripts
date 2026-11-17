@@ -5,6 +5,7 @@ source=(https://github.com/$name-maint/$name/releases/download/$version/$name-$v
 build_opt="--without-libpam
 	--with-group-name-max-length=32
 	--without-libbsd"
+	--disable-logind
 
 pre_build() {
 	sed -i 's/groups$(EXEEXT) //' src/Makefile.in
