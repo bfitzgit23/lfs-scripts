@@ -245,7 +245,13 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 		export tcpkg="$i"
 		cd "ports/core/${i%-pass*}" || exit 1
 		mkdir -p /tmp/lfs-pkg
-		before=$(find -L "$TOOLS" -maxdepth 3 ! -name "$i" 2>/dev/null | wc -l)
+		# A rebuild rewrites paths that are already in $TOOLS, so comparing
+		# file counts reports "installed nothing" for a package that was
+		# installed correctly. Compare timestamps: a file newer than this
+		# reference is one the build just put there.
+		ref="$(_state_dir)/.ref.$i"
+		mkdir -p "$(_state_dir)" 2>/dev/null
+	touch -d '2 seconds ago' "$ref" 2>/dev/null || : > "$ref"
 		# -f: without it pkgmk is free to answer "Package is up to date" and
 		# exit 0, which used to leave a skip marker and no toolchain.
 		_pkgmk_rc=0
@@ -283,8 +289,9 @@ PKGMK_PACKAGE_DIR=/tmp/lfs-pkg
 		fi
 		rm -rf /tmp/lfs-pkg
 		cd - >/dev/null 2>&1
-		after=$(find -L "$TOOLS" -maxdepth 3 ! -name "$i" 2>/dev/null | wc -l)
-		if [ "$after" -le "$before" ]; then
+		after=$(find -L "$TOOLS" -newer "$ref" ! -name ".ref.$i" 2>/dev/null | wc -l)
+		rm -f "$ref"
+		if [ "$after" -eq 0 ]; then
 			echo "warning: $i installed nothing into $TOOLS" >&2
 			empty="$empty $i"
 		fi
