@@ -484,6 +484,11 @@ EOF
 				exit 1
 			}
 		fi
+		# pkgadd -r installs into $LFS but cannot run the target's
+		# ldconfig, so shared libraries a package just put in /usr/lib stay
+		# unknown to the loader and the next build dies on them (binutils'
+		# ar needs its own libbfd). Rebuild the cache after each package.
+		_chroot sh -c '[ -x /sbin/ldconfig ] && /sbin/ldconfig' >/dev/null 2>&1 || true
 		_state_mark $_bstage "$i"
 	done
 	umountfs
