@@ -367,9 +367,9 @@ f:8dae1a1bd7394619836eed4edb32706a:aaa_filesystem/group
 f:5cbb5efc6adba814bafb91e534b09836:aaa_filesystem/locale.conf
 f:8a8fb1798e7264cbeff332551188efe6:aaa_filesystem/issue
 f:83cc87d4776f8019c78eec1764b92155:aaa_filesystem/.footprint
-f:209fc6bbdd1d66a873fca517aaf21eb9:expat/Pkgfile
+f:bab9b0742cd614769fa7a0049ce6a576:expat/Pkgfile
 f:52d05469640f05c494f94305f1fc5743:expat/update
-f:72ebef056c9e01e5cc05a57464c6bca2:expat/.md5sum
+f:9b3da810994864c74af79ad7301d64f6:expat/.md5sum
 f:8011b152ff249a1f1175072c112a856c:expat/.footprint
 f:2b437c83153815ea405c923a90c63c78:diffutils/Pkgfile
 f:e6cdffa69cbefe74670bce61e5883c38:diffutils/.md5sum
