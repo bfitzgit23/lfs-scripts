@@ -508,8 +508,13 @@ export TOOLS="${TOOLS:-/tmp/lfs-tools}"
 # gcc's tarball has a few non-ASCII pathnames, so extraction needs a UTF-8
 # locale; everything else keeps byte-order determinism either way.
 export LC_ALL=C
+# Test against the locale(1) that the toolchain binaries will use: their
+# own glibc only knows the locales generated into $TOOLS/lib/locale, and the
+# host's list says nothing about those.
+_lcbin=locale
+[ -x "$TOOLS/bin/locale" ] && _lcbin="$TOOLS/bin/locale"
 for _loc in C.UTF-8 C.utf8 en_US.UTF-8 en_US.utf8; do
-	if LC_ALL=$_loc locale charmap >/dev/null 2>&1; then
+	if LC_ALL=$_loc "$_lcbin" charmap >/dev/null 2>&1; then
 		export LC_ALL=$_loc
 		break
 	fi

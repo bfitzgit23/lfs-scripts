@@ -38,6 +38,12 @@ bootstrap_build() {
 		  --with-headers=$TOOLS/include
 	make
 	make install
+
+	# The toolchain glibc carries no locale data, so libarchive's bsdtar
+	# falls back to ASCII and refuses to extract the UTF-8 pathnames in a
+	# pax archive - gcc-16.2.0.tar.xz has a few. C.UTF-8 is all it needs.
+	install -d "$TOOLS/lib/locale"
+	"$TOOLS/bin/localedef" --no-archive \n		-i ../localedata/locales/C \n		-f ../localedata/charmaps/UTF-8 \n		C.UTF-8
 }
 
 pkg_build() {
