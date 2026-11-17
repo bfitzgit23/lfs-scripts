@@ -74,7 +74,9 @@ _repair_toolchain_shims() {
 			echo "       package to restore the files its toolchain shim replaced" >&2
 		else
 			echo "stage: repairing $_pkg: restoring files a toolchain shim replaced" >&2
-			pkgadd -r "$LFS" -f "$_arch" || return 1
+			# -u: the package is already in the db, and -f alone only
+			# overrides file conflicts. Together they replace the files.
+			pkgadd -r "$LFS" -u -f "$_arch" || return 1
 		fi
 	done
 	return 0
