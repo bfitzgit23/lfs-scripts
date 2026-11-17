@@ -828,3 +828,45 @@ If you ever re-check this patch on Windows, expect one reject for `ADVISORIES`:
 the hunk creates a file with that name while the tree has an `advisories/`
 directory, and NTFS is case-insensitive. On Linux both coexist and the hunk
 applies.
+
+### GCC 16 asks for `-lgcc_s_asneeded`, which the toolchain does not install
+
+GCC 16's `gcc/configure` sets `gcc_cv_ld_use_as_needed_ldscript=yes` whenever
+`ld --help` mentions `as-needed`, and the driver then links runtime support as
+
+```
+-lgcc_s_asneeded -latomic_asneeded
+```
+
+instead of the pre-16 `--push-state --as-needed -lgcc_s --pop-state`. Those
+names are not libraries: they are `INPUT ( AS_NEEDED ( -lgcc_s ) )` linker
+scripts (`libgcc_s_asneeded.so`, `libatomic_asneeded.so`) that libgcc's
+`t-slibgcc` rule writes next to the shared libgcc. `gcc-pass1` is built with
+`--disable-shared`, so it produces no shared libgcc and no script, yet its
+driver still carries the `_asneeded` specs — every link through it fails with
+
+```
+/tmp/lfs-tools/bin/ld: cannot find -lgcc_s_asneeded: No such file or directory
+/tmp/lfs-tools/bin/ld: cannot find -latomic_asneeded: No such file or directory
+```
+
+`ports/core/gcc` now pins the cache variable to `no` for `gcc-pass1`,
+`gcc-pass3` and the base-system build, which restores the push-state form the
+tree is otherwise built against.
+
+To unblock a tree that already has an affected gcc without rebuilding the three
+passes, put the two scripts where the driver looks for them:
+
+```sh
+for d in /tmp/lfs-tools/lib /tmp/lfs-tools/lib32; do
+  [ -d "$d" ] || continue
+  printf '/* GNU ld script
+   Add DT_NEEDED entry for libgcc_s.so only if needed.  */
+INPUT ( AS_NEEDED ( -lgcc_s ) )
+' > "$d/libgcc_s_asneeded.so"
+  [ -e "$d/libatomic.so" ] && printf '/* GNU ld script
+   Add DT_NEEDED entry for libatomic only if needed.  */
+INPUT ( AS_NEEDED ( -latomic ) )
+' > "$d/libatomic_asneeded.so"
+done
+```

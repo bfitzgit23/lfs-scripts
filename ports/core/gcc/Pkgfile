@@ -41,6 +41,7 @@ bootstrap_build() {
 		mkdir -v build
 		cd       build
 	
+		gcc_cv_ld_use_asneeded_ldscript=no \
 		../configure \
 			--with-gmp=$TOOLS \
 			--with-mpc=$TOOLS \
@@ -127,6 +128,7 @@ bootstrap_build() {
 		CXX=$LFS_TGT-g++ \
 		AR=$LFS_TGT-ar \
 		RANLIB=$LFS_TGT-ranlib \
+		gcc_cv_ld_use_asneeded_ldscript=no \
 		../configure \
 			--with-gmp=$TOOLS \
 			--with-mpc=$TOOLS \
@@ -155,6 +157,7 @@ pkg_build() {
 	cd       build
 
 	SED=sed \
+	gcc_cv_ld_use_asneeded_ldscript=no \
 	../configure \
 		--prefix=/usr \
 		--libexecdir=/usr/lib \
