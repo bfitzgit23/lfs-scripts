@@ -409,12 +409,17 @@ _buildbase() {
 	fi
 	
 	# pkgmk
+	# gcc keeps its native system headers in $TOOLS/include, so the chroot
+	# builds have to add /usr/include themselves. Use -idirafter, not
+	# -isystem: libstdc++ headers do "#include_next <stdlib.h>" and gcc loses
+	# that lookup when /usr/include was added with -isystem (gcc bug 70129),
+	# which is what broke elfutils C++ sources with a missing stdlib.h.
 	mkdir -p $LFS/var/lib/pkgmk
 	cp ports/core/pkgutils/extension $LFS/var/lib/pkgmk
 	echo "
-export CFLAGS=\"-O2 -march=x86-64 -pipe -std=gnu17 -Wno-error -isystem /usr/include\"
+export CFLAGS=\"-O2 -march=x86-64 -pipe -std=gnu17 -Wno-error -idirafter /usr/include\"
 export CXXFLAGS=\"${CFLAGS}\"
-export CPPFLAGS=\"-isystem /usr/include\"
+export CPPFLAGS=\"-idirafter /usr/include\"
 
 export JOBS=$(nproc)
 export MAKEFLAGS=\"-j \$JOBS\"
@@ -467,7 +472,7 @@ mv -v $TOOLS/bin/ld $TOOLS/bin/ld-old
 mv -v $TOOLS/$(uname -m)-pc-linux-gnu/bin/ld $TOOLS/$(uname -m)-pc-linux-gnu/bin/ld-old
 mv -v $TOOLS/bin/ld-new $TOOLS/bin/ld
 ln -sv $TOOLS/bin/ld $TOOLS/$(uname -m)-pc-linux-gnu/bin/ld
-gcc -dumpspecs | sed -e "s@$TOOLS@@g" -e "/\*startfile_prefix_spec:/{n;s@.*@/usr/lib/ @}" -e '/\*cpp:/{n;s@\$@ -isystem /usr/include@}' > \$(dirname \$(gcc --print-libgcc-file-name))/specs
+gcc -dumpspecs | sed -e "s@$TOOLS@@g" -e "/\*startfile_prefix_spec:/{n;s@.*@/usr/lib/ @}" -e '/\*cpp:/{n;s@\$@ -idirafter /usr/include@}' > \$(dirname \$(gcc --print-libgcc-file-name))/specs
 echo 'int main(){}' > dummy.c
 cc dummy.c -v -Wl,--verbose > dummy.log 2>&1
 readelf -l a.out | grep ': /lib' > /tmp/adjusttoolchainresult

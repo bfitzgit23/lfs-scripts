@@ -999,3 +999,32 @@ the man pages instead of the whole package. The checked-in `.md5sum` was also
 still naming `kmod-31.tar.xz`; it now covers the `kmod-34.2.tar.xz` the port
 actually downloads.
 
+
+### elfutils: `stdlib.h: No such file or directory`
+
+elfutils is the first stage 2 package that compiles C++ (`src/srcfiles.cxx`),
+and libstdc++ reaches the C library through `#include_next`:
+
+```
+/usr/include/c++/16.2.0/cstdlib:75:15: fatal error: stdlib.h: No such file or directory
+   75 | #include_next <stdlib.h>
+```
+
+The chroot `pkgmk.conf` added `/usr/include` with `-isystem`. That is the
+trigger for GCC bug 70129/70936: once `/usr/include` is a system directory,
+the follow-up lookup from `#include_next` finds nothing, so C++ code cannot
+reach `stdlib.h` at all. C packages never noticed, which is why acl built
+with the same flag.
+
+gcc here is built with `--with-native-system-header-dir=$TOOLS/include` (see
+the python section above), so `/usr/include` has to be added explicitly.
+Both the chroot `CFLAGS`/`CPPFLAGS` and the toolchain specs rewrite now use
+
+```
+-idirafter /usr/include
+```
+
+which is searched last, after the compiler's own headers, like a stock
+`/usr/include`, and leaves `#include_next` working. The
+`attr/error_context.h` fix from the acl failure still holds.
+
