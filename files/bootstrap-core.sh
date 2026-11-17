@@ -434,6 +434,11 @@ PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 	fi
 	
 	mountfs
+	# The toolchain loader's cache is missing on a fresh tree, and stage 2
+	# binaries carry that loader, so nothing installed in /usr/lib can be
+	# resolved until it exists. Build both caches before the first build.
+	_chroot sh -c '[ -x /sbin/ldconfig ] && /sbin/ldconfig' >/dev/null 2>&1 || true
+	_chroot sh -c 'if [ -d /tmp/lfs-tools/etc ]; then grep -qx /usr/lib /tmp/lfs-tools/etc/ld.so.conf 2>/dev/null || echo /usr/lib >> /tmp/lfs-tools/etc/ld.so.conf; [ -x /sbin/ldconfig ] && /sbin/ldconfig -f /tmp/lfs-tools/etc/ld.so.conf -C /tmp/lfs-tools/etc/ld.so.cache; fi' >/dev/null 2>&1 || true
 	for i in $basepkg; do
 		if [ "$1" != rebuild ]; then
 			pkginfo -i -r $LFS | awk '{print $1}' | grep -qx $i && { _state_mark $_bstage "$i"; continue; }
