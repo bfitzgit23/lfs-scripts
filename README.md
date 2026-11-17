@@ -920,7 +920,10 @@ cat > "$T/bin/bsdtar" <<'SHIM'
 #!/bin/sh
 for a in "$@"; do
 	case "$a" in
-		-x*|-t*|--extract*|--list*) exec /usr/bin/tar "$@" ;;
+		-x*|-t*|--extract*|--list*)
+			for t in /usr/bin/tar /tmp/lfs-tools/bin/tar /bin/tar; do
+				[ -x "$t" ] && exec "$t" "$@"
+			done ;;
 	esac
 done
 exec /tmp/lfs-tools/bin/bsdtar.real "$@"
