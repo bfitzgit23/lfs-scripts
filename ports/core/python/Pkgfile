@@ -16,11 +16,14 @@ pre_build() {
 	# OpenSSL 4.0 removed SSLv3_method()/TLSv1_method()/TLSv1_1_method()/
 	# TLSv1_2_method(), made ASN1_STRING opaque and constified several X509
 	# accessors, so Modules/_ssl.c in 3.14.7 no longer compiles against it.
-	# This is the LFS 13.1 backport of the upstream fixes ("openssl_4"), and it
-	# goes in before the tests are removed because it also patches
-	# Lib/test/test_ssl.py. -N makes a resume over an already patched tree a
-	# no-op instead of a failure.
-	patch -Np1 -i $PKGMK_SOURCE_DIR/Python-3.14.7-openssl_4-1.patch
+	# This is the LFS 13.1 backport of the upstream fixes ("openssl_4"). It
+	# needs no explicit patch call here: the extension's _patch() walks
+	# source=() and applies it from $SRC before this runs, i.e. still before
+	# the tests are removed (the patch also touches Lib/test/test_ssl.py).
+	# Patching it again from $PKGMK_SOURCE_DIR only fails, because pkgmk keeps
+	# port-local files in $SRC and never in $PKGMK_SOURCE_DIR: download_source()
+	# resolves a source entry without a URL to the bare filename (a file in the
+	# port directory) and unpack_source() copies it into $PKGMK_WORK_DIR/src.
 
 	# Remove tests
 	rm -rvf Lib/test Lib/*/test Lib/*/tests Lib/*/idle_test

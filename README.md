@@ -1055,3 +1055,26 @@ value and g++ compiled everything unoptimised. Both variables are now written
 out literally, and `CXXFLAGS` no longer inherits `-std=gnu17`, which is a C-only
 option that g++ can only warn about.
 
+### python: `Python-3.14.7-openssl_4-1.patch: No such file or directory`
+
+`pre_build` applied the OpenSSL 4 backport a second time, from
+`$PKGMK_SOURCE_DIR`:
+
+```
+patch -Np1 -i $PKGMK_SOURCE_DIR/Python-3.14.7-openssl_4-1.patch
+```
+
+pkgmk never copies a port's own files into `$PKGMK_SOURCE_DIR`; only archives
+it downloads land there. In `pkgutils-5.40.10/pkgmk.in`, `download_source`
+resolves a source entry with no URL to the bare filename - a file in the port
+directory - and `unpack_source` copies it to `$SRC` (`$PKGMK_WORK_DIR/src`).
+The extension's `_patch()` then applies every `*.patch` from `source=()` as
+`patch -t -p1 -i $SRC/<patch>` before `pre_build` runs, so the explicit call
+could only fail; with `-N` it would just have been skipped as already applied
+had pkgmk kept the file there.
+
+The duplicate is gone and `pre_build` only removes the test suite, still after
+the patch has been applied because the patch touches `Lib/test/test_ssl.py`.
+This is also why every other port here reads port-local files as `$SRC/...` -
+see glibc's `ld.so.conf`, `nsswitch.conf`, `genlocales` and `pyconfig.h`.
+
