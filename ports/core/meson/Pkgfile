@@ -1,0 +1,17 @@
+name=meson
+version=1.12.0
+release=1
+source=(https://github.com/mesonbuild/$name/releases/download/$version/$name-$version.tar.gz)
+
+# LFS installs Meson with pip3, but python in this tree is built with
+# --without-ensurepip, so the chroot has neither pip nor setuptools and
+# setup.py cannot run. Do by hand what pip would have done: mesonbuild into
+# site-packages and meson.py as the launcher.
+pkg_build() {
+	site=$(python3 -c 'import sysconfig; print(sysconfig.get_path("platlib"))') || return $?
+
+	mkdir -p "$PKG$site" || return $?
+	cp -r mesonbuild "$PKG$site/" || return $?
+	install -Dm755 meson.py $PKG/usr/bin/meson || return $?
+	install -Dm644 man/meson.1 $PKG/usr/share/man/man1/meson.1 || return $?
+}

@@ -1,28 +1,25 @@
 name=linux-pam
-version=1.5.3
+version=1.7.2
 release=1
-# pam_inline.h calls memset_explicit(ptr, len) with two arguments, but the
-# function takes three (void *, int, size_t). configure's AC_CHECK_FUNCS
-# probe still reports it present because that test does not include
-# <string.h>, so HAVE_MEMSET_EXPLICIT ends up defined and every libpam
-# object fails with "too few arguments to function 'memset_explicit'".
-# Upstream fixed the call by passing the fill byte; this is that backport.
+# 1.7.x is meson-only: the autotools flags this port used for 1.5.3 map onto
+# meson options. --disable-regenerate-docu becomes docs=disabled and
+# --enable-securedir=/lib/security becomes securedir; the extension already
+# passes --prefix=/usr and --libdir=/usr/lib to meson setup.
 source=(https://github.com/$name/$name/releases/download/v$version/Linux-PAM-$version.tar.xz
 	other
 	system-account
 	system-auth
 	system-password
-	system-session
-	memset_explicit_3args.patch)
-build_opt="--libdir=/usr/lib
-	--disable-regenerate-docu
-	--enable-securedir=/lib/security"
+	system-session)
+build_opt="-D docs=disabled -D securedir=/lib/security"
 
 post_build() {
-	chmod -v 4755 $PKG/sbin/unix_chkpwd
-	
-	install -v -m755 -d $PKG/etc/pam.d
+	# The helper goes to sbindir, i.e. /usr/sbin. The old autotools path here
+	# was $PKG/sbin, which never existed, so the setuid bit was never set.
+	chmod -v 4755 $PKG/usr/sbin/unix_chkpwd || return $?
+
+	install -v -m755 -d $PKG/etc/pam.d || return $?
 	for i in other system-account system-auth system-password system-session; do
-		install -m644 $SRC/$i $PKG/etc/pam.d/$i
+		install -m644 $SRC/$i $PKG/etc/pam.d/$i || return $?
 	done
 }

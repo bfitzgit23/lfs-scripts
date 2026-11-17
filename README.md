@@ -1197,5 +1197,23 @@ though the two-argument call in `pam_inline.h` could never compile, and the
 `explicit_bzero` branch that works is skipped.
 
 Upstream fixed the call by passing the fill byte, giving
-`memset_explicit(ptr, '\0', len)`. `ports/core/linux-pam/memset_explicit_3args.patch`
-is that one-line backport, applied through `source=()` like any other patch.
+`memset_explicit(ptr, '\0', len)`; 1.6.1 was the first release to contain it.
+
+The port no longer builds 1.5.3 at all: it tracks `linux-pam` 1.7.2, the version
+BLFS 13.1 builds on an LFS 13.1 platform, where the bug is gone. That bump had
+two consequences:
+
+- 1.7.x dropped autotools, so the old flags became meson options
+  (`-D docs=disabled` for `--disable-regenerate-docu`, `-D securedir=/lib/security`
+  for `--enable-securedir`). The extension still supplies `--prefix=/usr` and
+  `--libdir=/usr/lib` itself.
+- `basepkg` had no meson, so `ninja` 1.13.2 and `meson` 1.12.0 are now built
+  just before it. Ninja bootstraps itself with `configure.py --bootstrap`.
+  Meson is installed by hand because LFS uses `pip3` while python here is built
+  `--without-ensurepip`: the port copies `mesonbuild/` into site-packages and
+  installs `meson.py` as `/usr/bin/meson`.
+
+The bump also fixed a silent bug in `post_build`: it set the setuid bit on
+`$PKG/sbin/unix_chkpwd`, but autotools put the helper in `/usr/sbin` too, so
+that chmod had never matched anything.It now targets
+`/usr/sbin/unix_chkpwd` and fails loudly when the helper is missing.
