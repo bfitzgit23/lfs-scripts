@@ -1,0 +1,52 @@
+#!/bin/sh
+# LFS "Adjusting the Toolchain", run inside $LFS with the temporary toolchain
+# on PATH; see _adjust_toolchain in bootstrap-core.sh.
+#
+# binutils-pass2's ld is linked against the glibc just installed in the rootfs,
+# unlike the ld the toolchain was built with, and the specs are rewritten to
+# drop $TOOLS so everything compiled afterwards references the rootfs loader
+# and start files instead of the temporary toolchain.
+#
+# Idempotent on purpose: a stage 2 that died after pkgadd glibc leaves glibc
+# installed, so its package block never runs again. A guard on
+# $TOOLS/bin/ld-old used to skip this step for the rest of the build, which is
+# how the base system ended up with binaries carrying
+# "interpreter /tmp/lfs-tools/lib64/ld-linux-x86-64.so.2".
+set -e
+
+TOOLS=${TOOLS:-/tmp/lfs-tools}
+me=$(uname -m)-pc-linux-gnu
+specs=$(dirname "$(gcc --print-libgcc-file-name)")/specs
+
+# Already adjusted when the specs no longer mention the toolchain.
+if [ -f "$specs" ] && ! grep -qF "$TOOLS" "$specs"; then
+	exit 0
+fi
+
+if [ -x "$TOOLS/bin/ld-new" ]; then
+	mv -f "$TOOLS/bin/ld" "$TOOLS/bin/ld-old"
+	[ -e "$TOOLS/$me/bin/ld" ] && mv -f "$TOOLS/$me/bin/ld" "$TOOLS/$me/bin/ld-old"
+	mv -f "$TOOLS/bin/ld-new" "$TOOLS/bin/ld"
+	ln -sf "$TOOLS/bin/ld" "$TOOLS/$me/bin/ld"
+fi
+
+gcc -dumpspecs |
+	sed -e "s@$TOOLS@@g" \
+	    -e "/\*startfile_prefix_spec:/{n;s@.*@/usr/lib/ @}" \
+	    -e '/\*cpp:/{n;s@$@ -idirafter /usr/include@}' > "$specs"
+
+# Prove it instead of assuming it: a trivial build must name the rootfs loader.
+echo 'int main(){}' > /tmp/adjust-toolchain.c
+if ! cc /tmp/adjust-toolchain.c -o /tmp/adjust-toolchain -v -Wl,--verbose \
+		> /tmp/adjust-toolchain.log 2>&1; then
+	sed 's/^/    /' /tmp/adjust-toolchain.log >&2
+	rm -f /tmp/adjust-toolchain.c /tmp/adjust-toolchain.log
+	echo "error: a test build with the adjusted toolchain failed" >&2
+	exit 1
+fi
+if readelf -l /tmp/adjust-toolchain 2>/dev/null | grep -q "interpreter $TOOLS/"; then
+	rm -f /tmp/adjust-toolchain.c /tmp/adjust-toolchain /tmp/adjust-toolchain.log
+	echo "error: the toolchain still links against $TOOLS" >&2
+	exit 1
+fi
+rm -f /tmp/adjust-toolchain.c /tmp/adjust-toolchain /tmp/adjust-toolchain.log

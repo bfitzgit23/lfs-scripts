@@ -169,6 +169,24 @@ _purge_toolchain_shims() {
 	return 0
 }
 
+_adjust_toolchain() {
+	# LFS "Adjusting the Toolchain", and it has to run before any base package
+	# is compiled. A binary linked with unadjusted specs keeps
+	# "interpreter $TOOLS/lib64/ld-linux-x86-64.so.2" and cannot run once the
+	# rootfs is unpacked without the toolchain - shadow's useradd was exactly
+	# that. This used to run only from the glibc package block, so a resume on
+	# a tree where glibc was already installed skipped it for good.
+	[ -x "$LFS$TOOLS/bin/gcc" ] || return 0
+	[ -x "$LFS/lib64/ld-linux-x86-64.so.2" ] || return 0
+	install -m755 files/adjust-toolchain "$LFS/tmp/adjust-toolchain" || return 1
+	_chroot sh /tmp/adjust-toolchain || {
+		echo "error: the toolchain adjustment failed" >&2
+		return 1
+	}
+	rm -f "$LFS/tmp/adjust-toolchain"
+	return 0
+}
+
 _chroot() {
 	# chroot with a clean environment, using an env(1) that exists inside the
 	# target root rather than assuming one is on PATH there.
@@ -522,6 +540,26 @@ _compressrootfs() {
 		echo "       (nothing is rebuilt), then compress again" >&2
 		exit 1
 	fi
+	# A binary linked while the toolchain specs still pointed at $TOOLS keeps
+	# "interpreter $TOOLS/lib64/ld-linux-x86-64.so.2" and dies with
+	# "cannot execute: required file not found" on the installed system, so
+	# never package a rootfs that contains one.
+	_readelf=$(command -v readelf 2>/dev/null || echo "$TOOLS/bin/readelf")
+	_bad=""
+	if [ -x "$_readelf" ]; then
+		for _f in "$LFS"/bin/* "$LFS"/sbin/* "$LFS"/usr/bin/* "$LFS"/usr/sbin/*; do
+			[ -f "$_f" ] || continue
+			"$_readelf" -l "$_f" 2>/dev/null | grep -q "interpreter $TOOLS/" &&
+				_bad="$_bad ${_f#"$LFS"}"
+		done
+	fi
+	if [ -n "$_bad" ]; then
+		echo "error: these files are linked against the temporary toolchain:" >&2
+		printf '%s\n' $_bad | head -n 20 | sed 's/^/    /' >&2
+		echo "       run 'sudo ./bootstrap.sh 3' to rebuild the base system" >&2
+		echo "       with the adjusted toolchain, then compress again" >&2
+		exit 1
+	fi
 	rm -f "$TMPPWD/lfs-rootfs.tar.xz"
 	XZ_DEFAULTS='-T0' tar \
 		--exclude='./var/lib/pkg/rejected' \
@@ -649,6 +687,14 @@ PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 	_chroot sh -c '[ -x /sbin/ldconfig ] && /sbin/ldconfig' >/dev/null 2>&1 || true
 	_chroot sh -c 'if [ -d /tmp/lfs-tools/etc ]; then grep -qx /usr/lib /tmp/lfs-tools/etc/ld.so.conf 2>/dev/null || echo /usr/lib >> /tmp/lfs-tools/etc/ld.so.conf; [ -x /sbin/ldconfig ] && /sbin/ldconfig -f /tmp/lfs-tools/etc/ld.so.conf -C /tmp/lfs-tools/etc/ld.so.cache; fi' >/dev/null 2>&1 || true
 	_ensure_chroot_locale
+	# glibc is installed by now on a resumed tree, so the adjustment below
+	# would otherwise never run again; it is a no-op once the specs are clean.
+	_adjust_toolchain || {
+		_state_fail $_bstage "toolchain"
+		umountfs
+		echo "error: adjusting the toolchain failed" >&2
+		exit 1
+	}
 	for i in $basepkg; do
 		if [ "$1" != rebuild ]; then
 			pkginfo -i -r $LFS | awk '{print $1}' | grep -qx $i && { _state_mark $_bstage "$i"; continue; }
@@ -672,27 +718,13 @@ PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 				exit 1
 			}
 			case $i in
-				glibc) cat << EOF > $LFS/tmp/glibc-postinstall
-#!/bin/sh
-[ -f $TOOLS/bin/ld-old ] && exit 0
-mv -v $TOOLS/bin/ld $TOOLS/bin/ld-old
-mv -v $TOOLS/$(uname -m)-pc-linux-gnu/bin/ld $TOOLS/$(uname -m)-pc-linux-gnu/bin/ld-old
-mv -v $TOOLS/bin/ld-new $TOOLS/bin/ld
-ln -sv $TOOLS/bin/ld $TOOLS/$(uname -m)-pc-linux-gnu/bin/ld
-gcc -dumpspecs | sed -e "s@$TOOLS@@g" -e "/\*startfile_prefix_spec:/{n;s@.*@/usr/lib/ @}" -e '/\*cpp:/{n;s@\$@ -idirafter /usr/include@}' > \$(dirname \$(gcc --print-libgcc-file-name))/specs
-echo 'int main(){}' > dummy.c
-cc dummy.c -v -Wl,--verbose > dummy.log 2>&1
-readelf -l a.out | grep ': /lib' > /tmp/adjusttoolchainresult
-grep -o '/usr/lib.*/crt[1in].*succeeded' dummy.log >> /tmp/adjusttoolchainresult
-grep -B1 '^ /usr/include' dummy.log >> /tmp/adjusttoolchainresult
-grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g' >> /tmp/adjusttoolchainresult
-grep "/lib.*/libc.so.6 " dummy.log >> /tmp/adjusttoolchainresult
-grep found dummy.log >> /tmp/adjusttoolchainresult
-rm -v dummy.c a.out dummy.log
-EOF
-				_chroot sh /tmp/glibc-postinstall
+				glibc) _adjust_toolchain || {
+					_state_fail $_bstage "glibc"
+					umountfs
+					echo "error: adjusting the toolchain after glibc failed" >&2
+					exit 1
+				}
 				_ensure_chroot_locale
-				rm -f $LFS/tmp/glibc-postinstall
 				;;
 			esac
 		else
