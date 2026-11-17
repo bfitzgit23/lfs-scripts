@@ -103,7 +103,7 @@ f:861870c9b873d17ab552d16532b5e118:libffi/.footprint
 f:06ad455e11dc81403e46849f6037ec9f:vim/Pkgfile
 f:a235e414e6879c14b1f685649b4dfb37:vim/.md5sum
 f:c77e19c479d4f7b410e4933bf80374ce:vim/.footprint
-f:cb8ea752287e61cfb2ef1c4860c1afd1:curl/Pkgfile
+f:af74133075d25b9b9c34a58c54393c16:curl/Pkgfile
 f:74155cb54cb35aab8a274e9fad2a9812:curl/.md5sum
 f:ab5554f9437cbc8d81472495c083414d:curl/.footprint
 f:9c18eb7af2bb91638f583ff5c4d05358:readline/Pkgfile
@@ -153,7 +153,7 @@ f:60922bc85967ae2bf78e40611f4c3bfb:ports/contrib.httpup
 f:226abe6f8493acf66dfff3623bec18e6:ports/.md5sum
 f:568940de040f9f03da83928b2a038cb8:ports/.footprint
 f:b453a0690df9b03d5d66265511d45ef9:ports/extra.httpup
-f:8c70a64bb708ae94d7eb8e38cf63c78c:man-pages/Pkgfile
+f:7072f6fd15ce8a60a19dbe985e0421cd:man-pages/Pkgfile
 f:47453da2d88e6ef9f1dd1672e5ea4686:man-pages/.md5sum
 f:fa7bf6af673e886ed253e922a957ba32:man-pages/.footprint
 f:6ee463d8f0469e4a0f53526f689020ba:file/Pkgfile
@@ -184,12 +184,12 @@ f:dd1945239dee66ceb9c5b7577c961bbc:grep/.footprint
 f:5ae7bf3dd16a567950be2ac5348d3497:zlib/Pkgfile
 f:5bc5acfa3ebb6cc3e77ab17ca9cf972e:zlib/.md5sum
 f:cd09faec0bffec7c2392ce5196b41493:zlib/.footprint
-f:bbd9ac8ed541cd59e73638ac35bd393d:glibc/Pkgfile
+f:0146bea75c5720241545567c67c7467d:glibc/Pkgfile
 f:4a3e4243338481bb5e70b74281347ae8:glibc/reenable_DT_HASH.patch
 f:f02419b094ba90195ca922b34a86b0af:glibc/nsswitch.conf
-f:251e23cd4f749c543619f7ba65102977:glibc/.md5sum
+f:40c6d91aa2e2d92a4d70b4133b93ad88:glibc/.md5sum
 f:f87bc003e02b07545914e38ffd7eede4:glibc/ld.so.conf
-f:545977e0b5c341ba945cf4b5de92f1e2:glibc/glibc-2.38-upstream_fixes-3.patch
+f:990574184b25aa3029a2444e81865098:glibc/glibc-2.44-upstream_fixes-1.patch
 f:cabf312a0adc98de9d52a411b2c14baa:glibc/genlocales
 f:4170c91382e3df8d83d3937c361cb25b:glibc/.footprint
 f:633c31796a2ffd0a88c8cddfcfc7bdb5:flex/Pkgfile

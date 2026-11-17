@@ -806,3 +806,25 @@ make -R prefix=/usr DESTDIR=$PKG install
 
 and the makefile adds `--no-builtin-rules` / `--no-builtin-variables` itself
 once the gate passes.
+
+### glibc 2.44 was carrying the 2.38 upstream_fixes patch
+
+`ports/core/glibc` had been bumped to 2.44, but `source=` still listed
+`glibc-2.38-upstream_fixes-3.patch`, so patching failed on the first hunk and
+nothing built. It now ships `glibc-2.44-upstream_fixes-1.patch` from the LFS
+13.1 patch set: 100 files, applies cleanly to the pristine tarball, and it is
+the one that matters here (the `tanh` fix plus the parallel `make`
+build/install ordering that MLFS needs).
+
+`.md5sum` was stale in the same way — it still named `glibc-2.38.tar.xz` and the
+2.38 patch. Both entries now match 2.44:
+
+```
+7677da43ef759c68e005f5d4c37986a6  glibc-2.44.tar.xz
+990574184b25aa3029a2444e81865098  glibc-2.44-upstream_fixes-1.patch
+```
+
+If you ever re-check this patch on Windows, expect one reject for `ADVISORIES`:
+the hunk creates a file with that name while the tree has an `advisories/`
+directory, and NTFS is case-insensitive. On Linux both coexist and the hunk
+applies.

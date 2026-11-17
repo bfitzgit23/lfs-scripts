@@ -5,7 +5,7 @@ source=(https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/glibc-2.44.tar.xz
 	genlocales
 	ld.so.conf
 	nsswitch.conf
-	glibc-2.38-upstream_fixes-3.patch)
+	glibc-2.44-upstream_fixes-1.patch)
 #	reenable_DT_HASH.patch)
 keep_static=1
 
