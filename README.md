@@ -879,3 +879,27 @@ done
 `cannot overwrite existing file` for a plain `>`. If the scripts already exist and
 look correct, `ld` is not searching that directory at all — check
 `gcc -print-search-dirs` from inside the build.)
+
+### Forcing a single stage-1 package to rebuild
+
+Stage 1 skips a package when *either* marker is present, so both have to go:
+
+```sh
+TOOLS=$(readlink -f /tmp/lfs-tools)
+LFS=$(dirname "$(dirname "$TOOLS")")        # $LFS/tmp/lfs-tools -> $LFS
+STATE=$LFS/var/lib/lfs-scripts
+
+rm -f "$TOOLS/gcc-pass3" "$STATE/stage1.complete" "$STATE/stage1.failed"
+sed -i '/^gcc-pass3$/d' "$STATE/stage1.done"
+```
+
+`stage1.complete` is the one people forget: `_buildtoolchain` returns before the
+package loop when it exists, so deleting only the per-package marker changes
+nothing. No build directory has to be cleaned — `pkgmk` is invoked with `-f`,
+which extracts and rebuilds from scratch.
+
+Verify the rebuilt driver before trusting it:
+
+```sh
+/tmp/lfs-tools/bin/gcc -dumpspecs | grep asneeded    # must print nothing
+```
