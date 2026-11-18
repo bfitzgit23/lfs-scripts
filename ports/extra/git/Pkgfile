@@ -3,8 +3,9 @@ version=2.56.1
 release=1
 source=(https://www.kernel.org/pub/software/scm/$name/$name-$version.tar.xz)
 
-build() {
-	cd $name-$version
+pkg_build() {
+	# This tree's pkgutils runs pkg_build (the build() driver in the
+	# extension), so a plain build() here would never be called.
 
 	# git ships no configure script; `make configure` generates one with
 	# autoconf. Without it, fall back to make variables so the installed
@@ -23,12 +24,15 @@ build() {
 			--libexecdir=/usr/lib \
 			--with-gitconfig=/etc/gitconfig
 	else
-		build_opt="prefix=/usr sysconfdir=/etc mandir=/usr/share/man
-			gitexecdir=/usr/lib/git-core
+		build_opt="prefix=/usr sysconfdir=/etc localstatedir=/var
+			mandir=/usr/share/man gitexecdir=/usr/lib/git-core
 			template_dir=/usr/share/git-core/templates
 			localedir=/usr/share/locale"
 	fi
 
-	make $build_opt
-	make DESTDIR=$PKG $build_opt install
+	# 2.56 compiles a Rust library in unless NO_RUST is set, so the build
+	# stops with "missing cargo" on a system without a Rust toolchain. The
+	# Makefile keeps the C implementations when NO_RUST is defined.
+	make NO_RUST=1 $build_opt || return $?
+	make DESTDIR=$PKG NO_RUST=1 $build_opt install
 }
