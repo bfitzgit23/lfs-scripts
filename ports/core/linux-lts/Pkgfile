@@ -4,7 +4,7 @@ homepage="https://www.kernel.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=linux-lts
-version=6.18.37
+version=6.18.64
 release=1
 source=(https://cdn.kernel.org/pub/linux/kernel/v${version%%.*}.x/linux-${version%.0}.tar.xz
 	x86_64-dotconfig)

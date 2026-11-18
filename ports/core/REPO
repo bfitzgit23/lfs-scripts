@@ -1116,7 +1116,7 @@ f:c831924ec5a43872cd07d3b8770eca32:libyaml/Pkgfile
 f:69797821927c10ac9eb5c0e246ad3274:libzip/Pkgfile
 f:ee0f5b97692e397c6dd96e44a9f9a60e:lilv/Pkgfile
 f:82ad01325b4a40ad68cf97aeab13c686:linux-api-headers/Pkgfile
-f:a3239eb74398b796f77b2359b79113bd:linux-bin/Pkgfile
+f:727e65698b23cf7461cf4ce0d22f5c69:linux-bin/Pkgfile
 f:7c305734e00092edc95c11932c537baf:linux-headers/.footprint
 f:d2f5295402afde6ba33c41b7f3398d7d:linux-headers/.md5sum
 f:b8b85e327f5e795d0a274f70c2bbdeda:linux-headers/Pkgfile
@@ -1124,8 +1124,8 @@ f:6ff65fddaa2619ae41c38464567a6ed7:linux-libre-bin/Pkgfile
 f:0921f832dae17d480a413d4d820da7f1:linux-libre/Pkgfile
 f:0f301a2233c5a6b2585c4903b63c8cd1:linux-libre/x86_64-dotconfig
 f:fb3dbd334d1cfa00d0a7ed654d5eeac4:linux-lts-api-headers/Pkgfile
-f:37602d75779620739c75cd4455739859:linux-lts-bin/Pkgfile
-f:a327bb30f5d3c39bcc12a42f16025ccd:linux-lts/Pkgfile
+f:0d8f42816a2f5c77003033d30e673711:linux-lts-bin/Pkgfile
+f:b51c34e08d56645c20122196702c93fb:linux-lts/Pkgfile
 f:0f301a2233c5a6b2585c4903b63c8cd1:linux-lts/x86_64-dotconfig
 f:768bc8da2f16018ba17f6f0ef3ea1148:linux-pam/.footprint
 f:02c23f351110afd67fcef9c3c0705fbf:linux-pam/.md5sum

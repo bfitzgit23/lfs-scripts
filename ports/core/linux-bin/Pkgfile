@@ -1,32 +1,34 @@
 # Depends on: mkinitramfs
-description="Linux kernel, prebuilt image and modules (no compile)"
-homepage="https://www.kernel.org/"
+description="Linux kernel, Arch Linux prebuilt image and modules (no compile)"
+homepage="https://archlinux.org/packages/core/x86_64/linux/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=linux-bin
 version=7.3.4
 release=1
 
-# This port repackages the kernel the `linux` port built, so a machine
-# never has to spend 30-60 minutes compiling one. Nothing is downloaded:
-# build `linux` once, then drop the package pkgmk produced next to this
-# Pkgfile on every machine that should install the kernel without building it.
-#
-#   prt-get install linux
-#   cp /var/cache/pkg/packages/linux#7.3.4-1.pkg.tar.xz /usr/ports/core/linux-bin/
-#
-# pkgmk only looks for a source without a URL in the port directory itself.
-source=(linux#7.3.4-1.pkg.tar.xz)
+# This is Arch Linux's own 7.3.4 build, so a machine never has to spend 30-60
+# minutes compiling the kernel. pkgmk has no unpack rule for a .pkg.tar.zst, so
+# the archive is only copied into $SRC and unpacked in pkg_build. Arch keeps the
+# kernel image inside the module directory, so it is installed as
+# /boot/vmlinuz-linux too, where this distribution's boot loader looks for it.
+source=(https://geo.mirror.pkgbuild.com/core/os/x86_64/linux-7.3.4.arch1-2-x86_64.pkg.tar.zst)
 
 pkg_build() {
 	cd "$SRC" || return 1
 
-	if [ ! -f .PKGINFO ]; then
-		echo "$name: $SRC is not a built linux package, see the header" >&2
+	archive=$(ls *.pkg.tar.zst 2>/dev/null | head -n1)
+	if [ -z "$archive" ]; then
+		echo "$name: no Arch package in $SRC" >&2
 		return 1
 	fi
 
-	# drop the package metadata, pkgmk writes its own
+	bsdtar -xf "$archive" || return 1
+	rm -f "$archive" .PKGINFO .BUILDINFO .MTREE .INSTALL .Changelog
+
+	kver=$(ls usr/lib/modules | head -n1)
+	install -Dm644 usr/lib/modules/$kver/vmlinuz boot/vmlinuz-linux
+
 	for f in *; do
 		mv "$f" "$PKG"/
 	done
