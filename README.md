@@ -363,18 +363,22 @@ stormfs-linux converted to CRUX `Pkgfile` recipes:
 ## Upstream port trees (venomlinux) and chromium-bin
 
 `tools/sync-venom-ports.sh [repo ...]` clones or updates the venomlinux port
-trees into `$VENOM_SRC` (default `/tmp/venom`) and converts every `spkgbuild`
-into a CRUX `Pkgfile` at:
+trees into `$VENOM_SRC` (default `/tmp/venom`), converts every `spkgbuild` into
+a CRUX `Pkgfile`, and imports the recipes into the local trees:
 
 ```
-ports/venom-<repo>/<port>/Pkgfile
+core, extra, multilib             -> ports/{core,extra,multilib}
+nonfree, mate, xfce, kde-lxqt, s6 -> ports/{nonfree,mate,xfce,kde-lxqt,s6}
 ```
 
-with the trees `core`, `extra`, `nonfree`, `multilib`, `kde-lxqt`, `mate` and
-`xfce`. The `venom-` prefix keeps them apart from the existing
-`ports/scratch/<category>` trees, which come from the stormfs port set. Each
-port's `depends` file becomes a `# Depends: a b c` header line, which is how
-`prt-get` reads dependencies from a Pkgfile.
+There are no `venom-*` trees: the 2,418 upstream recipes live in the local
+collections (1,639 imported). A recipe is only imported when no local tree
+already provides that name - the local copy is the distribution's own (LFS 13.1
+pins, the source-mirror patches), and a second copy would change which recipe
+`prt-get` resolves. The 779 names the local trees already provided were left
+alone. Each port's `depends` file becomes a `# Depends: a b c` header line,
+which is how `prt-get` reads dependencies from a Pkgfile. The remaining
+`ports/scratch/<category>` trees still come from the stormfs port set.
 
 `s6-services` ships service definitions rather than ports (no `spkgbuild`
 files), so it is vendored under `assets/s6-services/`.
@@ -400,26 +404,26 @@ prtdir /usr/ports/core
 prtdir /usr/ports/extra
 prtdir /usr/ports/contrib
 prtdir /usr/ports/multilib
-prtdir /usr/ports/venom-core
+prtdir /usr/ports/opt
+prtdir /usr/ports/nonfree
 ...
 ```
 
-Port names are unique across the local trees (2,837 ports, 0 duplicates between
-them). The `ports/venom-*` trees carry all 2,418 upstream recipes, so a name can
-also appear there; `prt-get.conf` order decides, and the local trees are listed
-first.
-`ports/opt` used to be spkgbuild-only, which is why it was absent from the
-prt-get configuration; it is now a native Pkgfile tree with a `prtdir` line of
-its own.
-Where a name appeared in more than one tree, the prune kept the copy from the
-highest-precedence tree and removed the rest:
+Port names are unique across the ten local trees (2,598 ports, 0 duplicates
+between them). `ports/opt` used to be spkgbuild-only, which is why it was absent
+from the prt-get configuration; it is now a native Pkgfile tree with a `prtdir`
+line of its own, and `ports/nonfree`, `ports/mate`, `ports/xfce`,
+`ports/kde-lxqt` and `ports/s6` hold the venomlinux collections of those names.
+Where a name is provided by more than one source, the copy from the
+highest-precedence source was kept and the rest were removed:
 
 1. `ports/core`, `ports/extra`, `ports/contrib`, `ports/multilib`, `ports/opt`
-   - the distribution.s own ports: core/extra/contrib/multilib pinned to LFS
-   13.1, plus `ports/opt` converted from the stormfs spkgbuild set (306 ports,
+   - the distribution's own ports: core/extra/contrib/multilib pinned to LFS
+   13.1, plus `ports/opt` converted from the stormfs spkgbuild set (304 ports,
    including `chromium-bin`);
-2. `ports/venom-*` - the maintained upstream trees, whose recipes are
-   plain `Pkgfile` shell without the scratchpkg helper;
+2. the venomlinux recipes imported into those trees and into
+   `ports/{nonfree,mate,xfce,kde-lxqt,s6}` - plain `Pkgfile` shell without the
+   scratchpkg helper;
 3. the remaining imported `ports/scratch/*` trees - the older scratchpkg port
    set, kept for the ports nothing else provides.
 

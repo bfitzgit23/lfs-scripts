@@ -4,8 +4,9 @@
 # format:
 #    <repo directory> <repo url> <repo branch, "main" by default>
 #
-# The venomlinux trees below are converted to Pkgfile (pkgutils/prt-get) form
-# under ports/venom-<repo> by tools/spkgbuild2pkgfile.sh.
+# The venomlinux collections are converted to Pkgfile (pkgutils/prt-get) form
+# and imported into the trees below by tools/sync-venom-ports.sh. Every
+directory listed here lives in this repository.
 #
 
 /usr/ports/core             https://github.com/bfitzgit23/lfs-scripts
@@ -15,11 +16,8 @@
 /usr/ports/opt              https://github.com/bfitzgit23/lfs-scripts
 /usr/ports/scratch          https://github.com/bfitzgit23/lfs-scripts
 
-/usr/ports/venom-core          https://codeberg.org/venomlinux/core
-/usr/ports/venom-extra         https://codeberg.org/venomlinux/extra
-/usr/ports/venom-nonfree       https://codeberg.org/venomlinux/nonfree
-/usr/ports/venom-multilib      https://codeberg.org/venomlinux/multilib
-/usr/ports/venom-kde-lxqt      https://codeberg.org/venomlinux/kde-lxqt
-/usr/ports/venom-mate          https://codeberg.org/venomlinux/mate
-/usr/ports/venom-xfce         https://codeberg.org/venomlinux/xfce
-/usr/ports/venom-s6            https://codeberg.org/venomlinux/s6
+/usr/ports/nonfree          https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/mate             https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/xfce             https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/kde-lxqt         https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/s6               https://github.com/bfitzgit23/lfs-scripts
