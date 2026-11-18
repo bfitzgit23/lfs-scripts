@@ -7,7 +7,7 @@ description="Graphical installer configured for StormFS and selectable init prof
 name=calamares
 version=3.4.3
 release=11
-source="https://codeberg.org/Calamares/calamares/archive/calamares-$version.tar.gz branding.desc stylesheet.qss show.qml settings.conf partition.conf bootloader.conf grubcfg.conf users.conf locale.conf keyboard.conf mount.conf initramfs.conf StormFS-Wallpaper-01-Horizon.jpg StormFS-Wallpaper-02-Lightning.jpg StormFS-Wallpaper-03-Circuit.jpg StormFS-Wallpaper-04-Aurora.jpg StormFS-Wallpaper-05-Hex.jpg StormFS-Wallpaper-06-Orbit.jpg stormfs-logo.png calamares.desktop shellprocess.conf stormfs-write-rc-conf"
+source="https://codeberg.org/Calamares/calamares/archive/v$version.tar.gz branding.desc stylesheet.qss show.qml settings.conf partition.conf bootloader.conf grubcfg.conf users.conf locale.conf keyboard.conf mount.conf initramfs.conf StormFS-Wallpaper-01-Horizon.jpg StormFS-Wallpaper-02-Lightning.jpg StormFS-Wallpaper-03-Circuit.jpg StormFS-Wallpaper-04-Aurora.jpg StormFS-Wallpaper-05-Hex.jpg StormFS-Wallpaper-06-Orbit.jpg stormfs-logo.png calamares.desktop shellprocess.conf stormfs-write-rc-conf"
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

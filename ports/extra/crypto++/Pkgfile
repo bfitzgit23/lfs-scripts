@@ -1,7 +1,7 @@
 name=crypto++
 version=880
 release=1
-source=(https://www.cryptopp.com/cryptopp${version}.zip)
+source=(https://github.com/weidai11/cryptopp/releases/download/CRYPTOPP_8_8_0/cryptopp${version}.zip)
 
 pkg_build() {
 	export CXXFLAGS="$CXXFLAGS -DNDEBUG -fPIC"

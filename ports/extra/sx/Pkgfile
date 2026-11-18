@@ -4,10 +4,11 @@ homepage="https://github.com/Earnestly/sx"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=sx
-version=3.0.0
+version=3.0
 release=1
 source="https://github.com/Earnestly/$name/archive/$version/$name-$version.tar.gz"
 
 pkg_build() {
+	cd $name-$version
 	make PREFIX="/usr" DESTDIR="$PKG" install
 }

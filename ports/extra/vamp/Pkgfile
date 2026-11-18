@@ -4,9 +4,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=vamp
 version=2.10.0
-_dir=2691
 release=1
-source="https://code.soundsoftware.ac.uk/attachments/download/$_dir/$name-plugin-sdk-$version.tar.gz"
+source="http://deb.debian.org/debian/pool/main/v/vamp-plugin-sdk/$name-plugin-sdk_$version.orig.tar.gz"
 
 pkg_build() {
 	cd $name-plugin-sdk-$version

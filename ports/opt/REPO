@@ -369,7 +369,7 @@ f:aa41bdb0151b6d6b13eeb297bdb3dc54:broadcom-wl/patches/901-remove-already-backpo
 f:7965d0f32d93bf3d60038e4d84c94fbe:broadcom-wl/post-install
 f:9f69b69604dcce55ba46d7609879722a:bubblewrap/Pkgfile
 f:b824b9f27140f05319211d40b5992e74:cairomm-1.0/Pkgfile
-f:049c064cb0f85c087929e9d2d0c7c756:calamares/Pkgfile
+f:84b8474dfeaa88ec3d44c5939bbc5b66:calamares/Pkgfile
 f:df02f3a816d09641d679795347d7242b:calamares/StormFS-Wallpaper-01-Horizon.jpg
 f:534162a1cf08978de1cc77f89b920292:calamares/StormFS-Wallpaper-02-Lightning.jpg
 f:259a51e07d40d55d1196d505d2c840f7:calamares/StormFS-Wallpaper-03-Circuit.jpg

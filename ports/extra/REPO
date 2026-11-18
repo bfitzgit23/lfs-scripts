@@ -1062,7 +1062,7 @@ f:cb43fe870eb1bcb47f0b74aaf3df6569:acpica-unix/.pkgfiles
 f:5f62ed3284f39e8e73d7b1cebbf5a260:acpica-unix/Pkgfile
 f:8e931e92cf5e0c3b0f01aaa46d267040:adapta-gtk-theme/Pkgfile
 f:fae98d0b541ccbb9e0c904f3c6e51693:adobe-source-code-pro-fonts/Pkgfile
-f:e954d1d8147e54e56aa09bef37d16774:advcpmv/Pkgfile
+f:5226085c1d234dcd2a35070dfab08bcd:advcpmv/Pkgfile
 f:18b5442a46ad37af82d0664cfe76f113:adwaita-icon-theme/.footprint
 f:79424a3a64151e95439aec7917bcf78a:adwaita-icon-theme/.md5sum
 f:e02bd8e2f09f954e68f3d25a91ca88e4:adwaita-icon-theme/Pkgfile
@@ -1212,7 +1212,7 @@ f:b4927f8d5b9b8e08c7cbdcb8980f9d57:cpio/Pkgfile
 f:bd4f40edf0a308bc6f7976e603a55f3b:cpu-x/Pkgfile
 f:22055f82378e11a379bc0d0b5740c920:crypto++/.footprint
 f:968b844634a24c852851fbf4e6f531a8:crypto++/.md5sum
-f:3de1677c7ff4a180d400309f7fa1f05c:crypto++/Pkgfile
+f:631102e06a35e3c43f9c74c984b47f2b:crypto++/Pkgfile
 f:03af7d92e36b035dd6d6f5f3238c65ec:cryptsetup/.footprint
 f:bc27d54e71dee6c8851d538e3a12ae67:cryptsetup/.md5sum
 f:594fbd57040ef216f34a4aa43a3181c2:cryptsetup/Pkgfile
@@ -1621,7 +1621,7 @@ f:32e12e0cf66e884c11097cca27026969:icu/Pkgfile
 f:7e88743fa3197ba5e9e4a19dca07322a:icu/update
 f:3fa75da9b07f7132a744dc7500b9eec0:imagemagick/.footprint
 f:40d03129ee05fa80b2f48fe507b94624:imagemagick/.md5sum
-f:bb409ece6e0f6e377e984359f3069a02:imagemagick/Pkgfile
+f:97beeb8080d022967171547d013c9355:imagemagick/Pkgfile
 f:2f1440ce757a4b7d3727286243887897:imagemagick/update
 f:f0b65ec9f6119bc83010555f13b06b76:imake/Pkgfile
 f:ec4b34cca6278d442d49db9353a70c22:imath/.footprint
@@ -1698,9 +1698,8 @@ f:04e3a20f25493cdb737e058d166fd168:leafpad/Pkgfile
 f:b126eeb16ed1a38f95d1bcb8f8c0318b:leafpad/post-install
 f:0c885e434b40dcfeab7b58e1e9e198be:lemonbar-xft/Pkgfile
 f:7d21c77198e02da7506277f0a4035eaf:lemonbar/Pkgfile
-f:a2fa2cbc0e464484d15485d38241a0b6:liba52/.footprint
-f:4e98492b14c5ebaa30798c9c30e0c455:liba52/.md5sum
-f:05c3020707d31737dd38a900350b6ff8:liba52/Pkgfile
+f:2c3bd895dd005753541276523db8709b:liba52/.md5sum
+f:db3f2c92e72b202272a9c3b3ee63306f:liba52/Pkgfile
 f:e929dd91bdd49969909f07f667c7a357:libaio/.footprint
 f:57689933c38bc6df1b0c0ac47df9c55a:libaio/.md5sum
 f:9c6a580c402db12cc7f1bf6f35ae73ae:libaio/Pkgfile
@@ -2053,7 +2052,7 @@ f:069b564f600f31293105b429642b018c:links/.md5sum
 f:191148543485d3e8ec8a089440f4f5c1:links/Pkgfile
 f:63b08146b5e08a899c8d88d6c6574726:linux-firmware/.footprint
 f:0733cecab799a5c8f2513f429edd09bb:linux-firmware/.md5sum
-f:3f860016cc040f90de55f8629fe253dc:linux-firmware/Pkgfile
+f:5b4af32bf4866ff4b96089c20a2f672f:linux-firmware/Pkgfile
 f:6e3eb51e9d47a8c4a03ade6d4ea0e742:linux-firmware/update
 f:97ddcf22730745d2a311d7638e1793d9:linux/.footprint
 f:25ee3a5b20b77373070e94c6e9f895b2:linux/.md5sum
@@ -2390,8 +2389,8 @@ f:443bbb4be21bee6ea9738ca7fd18b731:paper-icon-theme/.footprint
 f:38aca9934986c0560529dfcf5919e23f:paper-icon-theme/.md5sum
 f:5939ca8435e5ebb169c6deaf08e10c68:paper-icon-theme/Pkgfile
 f:88bd9487ae750055ae8560f45b773a7a:paper-icon-theme/update
-f:b8d41481d9c413bcfb01f483975d60a1:papirus-icon-theme-dark/Pkgfile
-f:dcfd80543f530166b4febfbebe8b30d6:papirus-icon-theme-light/Pkgfile
+f:139cc757ad8eeeebbe6d1e165cfa3036:papirus-icon-theme-dark/Pkgfile
+f:15dc5801708502d9a75581594189335d:papirus-icon-theme-light/Pkgfile
 f:73df8ad2fb93561e08fc93702fbad664:papirus-icon-theme/Pkgfile
 f:721c7b9639bd3cb2efaae3e8dc768024:parallel/Pkgfile
 f:c30da3bb8ab51915b6582b70d450ab16:parted/.footprint
@@ -2556,7 +2555,7 @@ f:494a6ebf7c6b2883616aef2dcf668e8b:qt5pas/Pkgfile
 f:986126801b50cba04c65196ece72d2dc:qt6ct/Pkgfile
 f:faae1a3d7aa6db079232c81b4151bff2:quazip/Pkgfile
 f:15d43a658423530f2173c5ad8b8b1741:qutebrowser/Pkgfile
-f:3180670e6691af0627d83eef180ba76c:ragel/Pkgfile
+f:3b2f7bed5fdf5565486918129bd53ad8:ragel/Pkgfile
 f:5504b8788a90ef0a2951ef5497a2efdf:range-v3/Pkgfile
 f:56e4bcedcfcf25b3ebfefade91fc8d23:rar/Pkgfile
 f:c491b8ee86fe8205d47bb0bc90d94fc6:rawtherapee/Pkgfile
@@ -2631,7 +2630,7 @@ f:a7dcb80b1ddb4ac594f1c24eaf906cb0:scrot/.md5sum
 f:a63fe4f577be1649e665e6e6eacb940b:scrot/Pkgfile
 f:db112168947bdbf113098e24a00b72ad:scrot/update
 f:0ea6af7804b3df0d7a94a873dcb1bbd3:sdbus-cpp/Pkgfile
-f:fe01902285def0cb219d4b444df0ed45:sdhcp/Pkgfile
+f:ccd423d7d739334b8cda0d2bcb30e92e:sdhcp/Pkgfile
 f:f13124d821247a3151a5205129990282:sdl2/.footprint
 f:b7ddd813faeaa931853e29b4f3455d98:sdl2/.md5sum
 f:b70b4a6652c58eb20578af80525f7798:sdl2/Pkgfile
@@ -2711,7 +2710,7 @@ f:59427e371edda134e1816a764caca2e1:startup-notification/.footprint
 f:7a15c7a964fb6650bbe2b3d1462c560b:startup-notification/.md5sum
 f:7d69ae07a84d4843ca83a35a6afd21f5:startup-notification/Pkgfile
 f:f164720cbf0e2f5d2d3efde509100e6a:stemmer/Pkgfile
-f:0a762295f8acf08c520befa312f9f80f:stfl/Pkgfile
+f:d6dd3b9b46ab4757b9bfa65245fe19d9:stfl/Pkgfile
 f:f2353f4c0a165e989e3b72e1a05baeff:stow/Pkgfile
 f:2d6c693ed9c00b187c4d939e9796b9a3:strawberry/Pkgfile
 f:1b034ead3b0d627568a818fa5d26408d:streamlink/Pkgfile
@@ -2727,9 +2726,9 @@ f:178883579ae20fa79aae0b0726e34fa4:swig/.footprint
 f:d733f21e1360656809bce25c7982bafd:swig/.md5sum
 f:b94613cf9e95eb0a092c24b87f6e8b87:swig/Pkgfile
 f:496f19fc1b4a9b0b1d2fea29819e2773:swww/Pkgfile
-f:704e0ec28ecdfb6f2d28c16f4eed7f9b:sx/Pkgfile
+f:82637e95219887c8c7fba41f4b6c4149:sx/Pkgfile
 f:d527ba97f404dfd61e62bf33c3df735b:sxhkd/Pkgfile
-f:bdaa4f6d24a6edc89f8486087a244767:symbola/Pkgfile
+f:6e5bf7e017244b914b584718e08452b0:symbola/Pkgfile
 f:f37a18ebdc11802a11e6213b9fc6c9bc:syslinux/.footprint
 f:2a4125cbedfc43559cd9007a014f56e9:syslinux/.md5sum
 f:1ebb80d4903a77b43ac7e2e2a6e2706a:syslinux/Pkgfile
@@ -2844,7 +2843,7 @@ f:2065fdea27491fb12c0dff32c3e9e56f:vala/.footprint
 f:2d885dcc03d861903598a43f2dc9ebee:vala/.md5sum
 f:3875bb4851822c08fa64c2b8f4412647:vala/Pkgfile
 f:2c8fb629cb5fcbc5913e3d347fbb0fcb:vali/Pkgfile
-f:d0269abbc10fa8958d0a92ecd11b9bf6:vamp/Pkgfile
+f:4d00f8570a32fd20ef61d1534d5a5505:vamp/Pkgfile
 f:81334269124c02c930647df6dd267b04:venom-java-manager/Pkgfile
 f:0ee8762b8686c407e2a3803176b4655b:viewnior/.footprint
 f:ea8b53aca4492491ddf736f299ef4486:viewnior/.md5sum
@@ -2874,9 +2873,8 @@ f:b126eeb16ed1a38f95d1bcb8f8c0318b:vlc/post-install
 f:90cac3b43e1e6a591bd74ad7f457353f:volume_key/.footprint
 f:6bd21c5cd5432440394742cb10f29472:volume_key/.md5sum
 f:dd796f2297bc797221007405948d007c:volume_key/Pkgfile
-f:dde67d28f746bda62467d0ae2ea3d296:volumeicon/.footprint
-f:668ac4c0584f56ed21c86a38e31a4096:volumeicon/.md5sum
-f:d0270245687839717bb07781ff4c7fe8:volumeicon/Pkgfile
+f:93a8a9af8a3711f56a18cc09f9ad7109:volumeicon/.md5sum
+f:02ba6b4cfa615d3cb06b00cb306b788c:volumeicon/Pkgfile
 f:89774f3ea3a1f756d1a89399c0d45f50:volumeicon/update
 f:42022885a3af1c9848fdfa7a0804143b:vtclock/Pkgfile
 f:5b272f713263661682c491880fec5825:vte2/.footprint
@@ -2962,7 +2960,7 @@ f:0c169e82bb7b2d7aeda4f96f2a2f50ce:xbacklight/.footprint
 f:0252a4455739569ccb9cc62dfc8754f1:xbacklight/.md5sum
 f:034f782bcd8de1aed3bdf5193019e59c:xbacklight/Pkgfile
 f:837a1d9cdf29dc66db803aff6f0e3f44:xbanish/Pkgfile
-f:e2edeb5d5c780491663ab79b73985d77:xbindkeys/Pkgfile
+f:925459324d796590d98a6da1d1cc35d5:xbindkeys/Pkgfile
 f:df82ee3410fe68d0d3ad553e24f83aa7:xbitmaps/.footprint
 f:05d5a1bf3db121011bd3e482ac090056:xbitmaps/.md5sum
 f:a31a4d40d557c5ca0a817782dd010cc2:xbitmaps/Pkgfile
@@ -3070,9 +3068,8 @@ f:52967a22b7df0d8c93ce136101d3b54b:xlsfonts/Pkgfile
 f:6950b437abeb9b7e2bd0d2a69a21928a:xman/Pkgfile
 f:2f754ff35bb7574c4386180be9a224fd:xmessage/Pkgfile
 f:226ded7b4bab530139b9c8f534528abc:xmlstarlet/Pkgfile
-f:171776eab6d4cb63918d48ed41f20079:xmlto/.footprint
-f:5d13bab87b83153b81df0fb35e1b3520:xmlto/.md5sum
-f:9980ff142edb8dda9900b31517863e99:xmlto/Pkgfile
+f:dce4c522f3a923706d7d4f7fb1c1c9b6:xmlto/.md5sum
+f:00182ae84d8a629ce60f6e0b522a8744:xmlto/Pkgfile
 f:60d2238ddbdaca471325ccb89ac054d9:xmodmap/.footprint
 f:c22b3cf66c092a4ad824c134d3d17c0a:xmodmap/.md5sum
 f:58427428ba448389a76410e2e6a1e893:xmodmap/Pkgfile

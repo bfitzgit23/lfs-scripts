@@ -4,11 +4,11 @@ homepage="https://github.com/jarun/advcpmv"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=advcpmv
-version=0.9
-cuversion=9.5
+version=1.0
+cuversion=9.11
 release=1
-source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/coreutils/coreutils-$cuversion.tar.xz 
-	https://raw.githubusercontent.com/jarun/advcpmv/master/$name-$version-$cuversion.patch"
+source=(https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/coreutils-$cuversion.tar.xz
+	https://raw.githubusercontent.com/jarun/advcpmv/master/$name-$version-$cuversion.patch)
 
 pkg_build() {
 	cd coreutils-$cuversion

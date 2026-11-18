@@ -1,7 +1,15 @@
-# Depends on: alsa-lib gtk3 libnotify 
+# Depends on: alsa-lib gtk3 libnotify
 
 name=volumeicon
-version=0.5.1
+version=0.5.1+git20230228
 release=1
-source=(http://nullwise.com/files/$name/$name-$version.tar.gz)
+# nullwise.com is gone; Debian's orig tarball is the upstream tree.
+source=(http://deb.debian.org/debian/pool/main/v/volumeicon/volumeicon_0.5.1+git20230228.orig.tar.xz)
 build_opt="--enable-notify"
+
+pkg_build() {
+	cd volumeicon-master
+	./autogen.sh --prefix=/usr $build_opt
+	make
+	make DESTDIR=$PKG install
+}

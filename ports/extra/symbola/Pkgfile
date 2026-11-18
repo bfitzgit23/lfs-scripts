@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=symbola
 version=14.00
 release=1
-source="https://dn-works.com/wp-content/uploads/2021/UFAS121921/Symbola.pdf"
+# dn-works.com is gone, so take the last archived copy of the 14.00 PDF.
+source="https://web.archive.org/web/20240107144224if_/https://dn-works.com/wp-content/uploads/2021/UFAS121921/Symbola.pdf"
 
 pkg_build() {
 

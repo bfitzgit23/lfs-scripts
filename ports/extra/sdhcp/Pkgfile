@@ -5,9 +5,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=sdhcp
 version=git
 release=1
-source="https://gvp.cz/www/BILEKM/programming/ports/sources/sdhcp.tar"
+source="https://github.com/michaelforney/sdhcp/archive/refs/heads/master.tar.gz"
 
 pkg_build() {
-	cd $name
+	cd $name-master
 	make PREFIX=/usr DESTDIR=$PKG install
 }

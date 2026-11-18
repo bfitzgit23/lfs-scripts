@@ -6,9 +6,11 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libfakekey
 version=0.3
 release=1
-source="http://git.yoctoproject.org/cgit/cgit.cgi/$name/snapshot/$name-$version.tar.gz"
+# yoctoproject's cgit no longer snapshots this; Debian keeps the 0.3 tree.
+source="http://deb.debian.org/debian/pool/main/libf/libfakekey/libfakekey_0.3+git20170516.orig.tar.xz"
 
 pkg_build() {
+	cd libfakekey
 	./autogen.sh
 	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
 	make

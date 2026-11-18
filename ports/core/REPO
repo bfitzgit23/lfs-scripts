@@ -744,7 +744,7 @@ f:83018aa8f5016bfa333cb45f8e65b739:cabextract/Pkgfile
 f:06c8ff5e7025753fe3f6050f3b2d07ed:cairomm-gtk4/Pkgfile
 f:3447f230929ab5ad06057fce69f9bdaa:cargo-c/Pkgfile
 f:a86d88372ac7fa8fe7f3bef24011ba47:cdw/Pkgfile
-f:9f643f496101e11e739b7274d41b8e31:celt/Pkgfile
+f:e9cf2e28ee723de076584d9b87544140:celt/Pkgfile
 f:1a472639daa482fcbc93770e1d025ccd:cgroupfs-mount/Pkgfile
 f:41ef2f18407366234411010441b1b6d8:check/.footprint
 f:2dc403e5a1ab4504206d9723b58da3c3:check/.md5sum
@@ -1030,7 +1030,7 @@ f:5750a33798ea2a89ead86cf1c2f21b26:libdispatch/Pkgfile
 f:02224ccbcabd54ef9f879d81e2c2b8c0:libebml/Pkgfile
 f:60e026d8de695768e21df65a24243cac:libebur128/Pkgfile
 f:8a5001d5765ab04d884b5d7a8b534418:libetpan/Pkgfile
-f:7bd4fb3c71583d3999d79cd52a01ddfe:libfakekey/Pkgfile
+f:89fe210aaa760bf30df2af70556a4ad1:libfakekey/Pkgfile
 f:cbcade78d24b9737787eca3d34624c94:libffi/.footprint
 f:05d31784db7934736dbd2b5baf92558c:libffi/.md5sum
 f:63c765d5fcbc970d619011b2c07f1782:libffi/Pkgfile
@@ -1067,7 +1067,7 @@ f:8f340df7f5f4fb68e44870efe80a25c9:libnice/Pkgfile
 f:3de718cb7fe50076a5494c3c02a35bd2:libnsl/Pkgfile
 f:ba38579ba17671c0581e5ea767612cbe:liboauth/Pkgfile
 f:2ce579dfb760c9418e4c17db6a9647bc:libolm/Pkgfile
-f:57c08b9910d3985aafc54277349cd840:libotr/Pkgfile
+f:26368d51c6856bc01aeb4ba7db9adb11:libotr/Pkgfile
 f:2dda8dacdccf474972ca8a2bc706c429:libpeas/Pkgfile
 f:120c82a210e14f6fa12e52fa37227749:libpeas1/Pkgfile
 f:036895992fc12d5226100ca547cc4897:libpipeline/.footprint

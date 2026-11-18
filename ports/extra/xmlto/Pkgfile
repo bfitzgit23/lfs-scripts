@@ -3,5 +3,13 @@
 name=xmlto
 version=0.0.28
 release=1
-source=(https://releases.pagure.org/$name/$name-$version.tar.bz2)
+# releases.pagure.org no longer serves tarballs; Debian keeps the upstream one.
+source=(http://deb.debian.org/debian/pool/main/x/xmlto/xmlto_$version.orig.tar.bz2)
 export LINKS="/usr/bin/links"
+
+pkg_build() {
+	cd $name-$version
+	./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man
+	make
+	make DESTDIR=$PKG install
+}
