@@ -3,7 +3,7 @@ homepage="https://www.kernel.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=linux-api-headers
-version=7.1
+version=7.3
 release=1
 source="https://www.kernel.org/pub/linux/kernel/v${version%%.*}.x/linux-$version.tar.xz"
 

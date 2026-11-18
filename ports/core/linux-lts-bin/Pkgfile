@@ -30,6 +30,35 @@ pkg_build() {
 	kver=$(ls usr/lib/modules | head -n1)
 	install -Dm644 usr/lib/modules/$kver/vmlinuz boot/vmlinuz-linux-lts
 
+	# boot entry for grub-mkconfig
+	install -d $PKG/etc/grub.d
+	cat > $PKG/etc/grub.d/40_linux-lts-bin <<'EOT'
+#!/bin/sh
+# Boot entry for the linux-lts-bin kernel, read by grub-mkconfig.
+set -e
+
+. /usr/share/grub/grub-mkconfig_lib
+
+img=/boot/vmlinuz-linux-lts
+[ -f "$img" ] || exit 0
+
+kver=@KVER@
+
+initrd=/boot/initrd-$kver.img
+[ -f "$initrd" ] || initrd=/boot/initrd.img
+[ -f "$initrd" ] || initrd=
+
+echo "menuentry \"StormFS (linux-lts-bin $kver)\" --class linux --class os {"
+prepare_grub_to_access_device "$(grub-probe -t device /boot)" | sed "s/^/\t/"
+echo "\tlinux $(grub-mkrelpath "$img") root=UUID=$(grub-probe -t fs_uuid /) rw ${GRUB_CMDLINE_LINUX}"
+if [ -n "$initrd" ]; then
+	echo "\tinitrd $(grub-mkrelpath "$initrd")"
+fi
+echo "}"
+EOT
+	sed -i "s|@KVER@|$kver|g" $PKG/etc/grub.d/40_linux-lts-bin
+	chmod 755 $PKG/etc/grub.d/40_linux-lts-bin
+
 	for f in *; do
 		mv "$f" "$PKG"/
 	done

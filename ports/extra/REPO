@@ -2025,9 +2025,8 @@ f:a216746a9ca7b5a4b4e28947b410b62e:libxscrnsaver/Pkgfile
 f:8de81c76185a673691a8c63261cdd410:libxshmfence/.footprint
 f:8b3046a5fa8e21d9d36b0db2e90d48dd:libxshmfence/.md5sum
 f:e29729616e9e37451e31d3c3eec1d266:libxshmfence/Pkgfile
-f:36e78a0918946aa9d286cedcca8e45c2:libxslt/.footprint
-f:b02e67eb6b006ad549e7ee5827f938d1:libxslt/.md5sum
-f:28842f43bad6dc1d1dc0f5edb8165fc2:libxslt/Pkgfile
+f:978596d10db4857834c8a7414c28979a:libxslt/.md5sum
+f:ecfe764249377873ec217d70814f0dce:libxslt/Pkgfile
 f:d667b1c9dfedf5edbae8e907e83366d8:libxt/.footprint
 f:9575ffd3c5fad8b3a210481ec6f43628:libxt/.md5sum
 f:7568f3cd1d11bb5b4a003e35892b5805:libxt/Pkgfile
@@ -2060,7 +2059,7 @@ f:3f860016cc040f90de55f8629fe253dc:linux-firmware/Pkgfile
 f:6e3eb51e9d47a8c4a03ade6d4ea0e742:linux-firmware/update
 f:97ddcf22730745d2a311d7638e1793d9:linux/.footprint
 f:25ee3a5b20b77373070e94c6e9f895b2:linux/.md5sum
-f:fad3df28582bd1665cac119d1ab603f9:linux/Pkgfile
+f:4583bd9c10b58c0f781688162477db2c:linux/Pkgfile
 f:0f301a2233c5a6b2585c4903b63c8cd1:linux/dotconfig
 f:36848b643b7abae471aec4785b6d0c41:liquid-dsp/Pkgfile
 f:f212907fd906c597dda3dedd7f387413:llvm/.footprint

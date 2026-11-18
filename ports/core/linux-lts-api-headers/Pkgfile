@@ -3,7 +3,7 @@ homepage="https://www.kernel.org/pub/linux/kernel/v6.x/linux-$version.tar.xz"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=linux-lts-api-headers
-version=6.18.37
+version=6.18.64
 release=1
 source="https://www.kernel.org/pub/linux/kernel/v${version%%.*}.x/linux-$version.tar.xz"
 
