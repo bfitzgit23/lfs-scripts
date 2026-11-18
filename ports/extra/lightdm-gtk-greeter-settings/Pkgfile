@@ -1,0 +1,45 @@
+# Depends: lightdm-gtk-greeter python3-gobject3
+description="Settings editor for the LightDM GTK+ Greeter"
+homepage="https://github.com/xubuntu/lightdm-gtk-greeter-settings"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=lightdm-gtk-greeter-settings
+version=1.2.3
+release=1
+source=(https://github.com/Xubuntu/lightdm-gtk-greeter-settings/releases/download/$name-$version/$name-$version.tar.gz)
+
+pkg_build() {
+	# upstream setup.py needs DistUtilsExtra.auto, which extends the distutils
+	# package Python 3.14 dropped, so lay out what it installed by hand
+	pyver=$(python3 -c 'import site;print(site.getsitepackages()[0])')
+	pkgdir=lightdm_gtk_greeter_settings
+
+	install -d $PKG/$pyver/$pkgdir
+	install -m644 $pkgdir/*.py $PKG/$pyver/$pkgdir/
+	printf '__all__ = ["__config_path__", "__data_directory__", "__version__"]\n__config_path__ = "/etc/lightdm/lightdm-gtk-greeter.conf"\n__data_directory__ = "/usr/share/%s/"\n__version__ = "%s"\n' \
+		$name $version > $PKG/$pyver/$pkgdir/installation_config.py
+
+	install -Dm755 bin/$name $PKG/usr/bin/$name
+	install -Dm755 bin/$name-pkexec $PKG/usr/bin/$name-pkexec
+
+	install -d $PKG/usr/share/$name
+	install -m644 data/*.ui data/*.xml $PKG/usr/share/$name/
+	for icon in data/icons/*/apps/$name.*; do
+		size=${icon#data/icons/}
+		install -Dm644 $icon $PKG/usr/share/icons/hicolor/${size%%/*}/apps/${icon##*/}
+	done
+
+	sed 's/^_//' $name.desktop.in > $name.desktop
+	printf 'X-XfcePluggable=true\n' >> $name.desktop
+	install -Dm644 $name.desktop $PKG/usr/share/applications/$name.desktop
+
+	install -Dm644 com.ubuntu.pkexec.$name.policy.in $PKG/usr/share/polkit-1/actions/com.ubuntu.pkexec.$name.policy
+
+	if command -v msgfmt >/dev/null; then
+		for po in po/*.po; do
+			lang=$(basename $po .po)
+			install -d $PKG/usr/share/locale/$lang/LC_MESSAGES
+			msgfmt -o $PKG/usr/share/locale/$lang/LC_MESSAGES/$name.mo $po
+		done
+	fi
+}

@@ -1346,7 +1346,7 @@ f:a32ca641da4ab24ddd27296e2730b9f4:python3-geopy/Pkgfile
 f:46b0b60266891933c9af839a9087e6d9:python3-gi_docgen/Pkgfile
 f:4b5f9360fa17ba10d4b9bdd3eddbf380:python3-gobject/Pkgfile
 f:a4e700834e75daefac75d2fcb87165b9:python3-gobject3/Pkgfile
-f:0e45d7cecb8326c40a64eea5859ec62f:python3-gpep517/Pkgfile
+f:c4f334ac778240179fc6ab5137fcf086:python3-gpep517/Pkgfile
 f:403365091666c21e04a5ecd1e5c9a2d9:python3-gpep517/default.bytecode.level.patch
 f:15a61092702e706d306428263a443ec3:python3-gpep517/gpep517
 f:91ba0c933b07cc3920a4fcd3a7f45511:python3-greenlet/Pkgfile
@@ -1360,7 +1360,7 @@ f:a91a94fdbc8837a91a779b3f22ec3fb1:python3-imagesize/Pkgfile
 f:ce5f79abaa9720e59ea7a91397b5c191:python3-imdbpy/Pkgfile
 f:8c3297b985009ac16d0c38cad000c088:python3-importlib_metadata/Pkgfile
 f:145992e814684e270c23e86a3909c143:python3-inputs/Pkgfile
-f:1cf87d425d85b9ea198b5905d168e82e:python3-installer/Pkgfile
+f:202168ec7e2350ad12b3123bcf344501:python3-installer/Pkgfile
 f:c49ee688614b06f9b02f304fb5653528:python3-installer/default-bytecode-level.patch
 f:5080c5f424c45bc03c83d75cb3d65ff6:python3-iso-639/Pkgfile
 f:60bf25776b66ce9f69b627a513a11aad:python3-iso3166/Pkgfile

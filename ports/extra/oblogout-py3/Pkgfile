@@ -1,0 +1,48 @@
+# Depends: python3-gpep517 python3-installer python3-setuptools python3-pillow python3-gobject3
+description="Openbox Logout Menu, ported to Python 3."
+homepage="https://github.com/trizen/oblogout-py3"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=oblogout-py3
+version=0.03
+release=1
+url="https://github.com/trizen/${_pkgname}"
+backup="etc/oblogout.conf"
+source=("$name-$version.tar.gz::https://github.com/trizen/$name/archive/refs/tags/$version.tar.gz")
+
+pkg_build() {
+	# upstream setup.py imports DistUtilsExtra, which extends the distutils
+	# package Python 3.14 dropped; rebuild it with what setuptools still does
+	# and install the data files below
+	cat > setup.py <<-'EOF'
+	from setuptools import setup
+
+	setup(name='oblogout', version='0.03',
+	      description='Openbox Logout',
+	      author='Andrew Williams',
+	      url='http://launchpad.net/oblogout/',
+	      packages=['oblogout'],
+	      scripts=['data/oblogout'])
+	EOF
+
+	printf '[build-system]\nrequires = ["setuptools"]\nbuild-backend = "setuptools.build_meta:__legacy__"\n' > pyproject.toml
+
+	# setup.cfg sets distutils-extra's build options, which plain setuptools rejects
+	: > setup.cfg
+
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
+
+	install -d $PKG/usr/share/themes/foom/oblogout $PKG/usr/share/themes/oxygen/oblogout
+	cp data/themes/foom/oblogout/* $PKG/usr/share/themes/foom/oblogout/
+	cp data/themes/oxygen/oblogout/* $PKG/usr/share/themes/oxygen/oblogout/
+	install -Dm644 data/oblogout.conf $PKG/etc/oblogout.conf
+
+	if command -v msgfmt >/dev/null; then
+		for po in po/*.po; do
+			lang=$(basename $po .po)
+			install -d $PKG/usr/share/locale/$lang/LC_MESSAGES
+			msgfmt -o $PKG/usr/share/locale/$lang/LC_MESSAGES/oblogout.mo $po
+		done
+	fi
+}

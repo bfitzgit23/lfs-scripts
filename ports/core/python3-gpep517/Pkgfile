@@ -6,13 +6,12 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-gpep517
 version=23
 release=1
+# build() already chdirs into gpep517-$version, and the recipe patches there
+skip_patch=yes
 source=(https://github.com/mgorny/gpep517/archive/v$version/gpep517-v$version.tar.gz
 	default.bytecode.level.patch gpep517)
 
 pkg_build() {
-	cd gpep517-$version
-
-
 	patch -Np1 -i $SRC/default.bytecode.level.patch
 	pyver=$(python3 -c 'import site;print(site.getsitepackages()[0])')     
 
