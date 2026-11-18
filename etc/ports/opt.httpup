@@ -1,0 +1,8 @@
+#
+# /etc/ports/opt.httpup: opt's port collection
+#
+
+ROOT_DIR=/usr/ports/opt
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/opt
+
+# End of file

@@ -1,0 +1,8 @@
+#
+# /etc/ports/contrib.httpup: contrib's port collection
+#
+
+ROOT_DIR=/usr/ports/contrib
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/contrib
+
+# End of file

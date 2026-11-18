@@ -1,0 +1,8 @@
+#
+# /etc/ports/multilib.httpup: multilib's port collection
+#
+
+ROOT_DIR=/usr/ports/multilib
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/multilib
+
+# End of file

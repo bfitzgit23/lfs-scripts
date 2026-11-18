@@ -1,0 +1,8 @@
+#
+# /etc/ports/s6.httpup: s6's port collection
+#
+
+ROOT_DIR=/usr/ports/s6
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/s6
+
+# End of file

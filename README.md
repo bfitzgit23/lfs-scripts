@@ -392,8 +392,25 @@ files), so it is vendored under `assets/s6-services/`.
   this repository provides, with the upstream each tree comes from.
 - `etc/scratchpkg.repo` - the same trees in scratchpkg's own repo format
   (`<repo dir> <repo url> [branch]`) for `portsync`.
+- `etc/ports/*.httpup` - one httpup collection per port tree, installed to
+  `/etc/ports/` by the `ports` package; the canonical copies ship in
+  `ports/core/ports/` and `etc/ports/` mirrors them.
 - `ports/multilib` versions are kept in step with the venomlinux `multilib`
   tree; `ports/multilib/REPO` marks the tree for `prt-get`.
+
+### Synchronising the collections with `ports -u`
+
+Every tree is published as an httpup collection: `ports/core/ports/<tree>.httpup`
+(mirrored in `etc/ports/`) sets
+
+```
+ROOT_DIR=/usr/ports/<tree>
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/<tree>
+```
+
+`httpup` only fetches what a tree's `REPO` index lists, so after changing ports
+run `ports/repgen.sh <tree> ...` (a wrapper around `httpup-repgen`) and commit
+the regenerated `ports/<tree>/REPO` together with the change.
 
 ## prt-get configuration and duplicate pruning
 

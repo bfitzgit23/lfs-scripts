@@ -1,0 +1,8 @@
+#
+# /etc/ports/mate.httpup: mate's port collection
+#
+
+ROOT_DIR=/usr/ports/mate
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/mate
+
+# End of file

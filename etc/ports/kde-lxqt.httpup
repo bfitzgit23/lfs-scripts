@@ -1,0 +1,8 @@
+#
+# /etc/ports/kde-lxqt.httpup: kde-lxqt's port collection
+#
+
+ROOT_DIR=/usr/ports/kde-lxqt
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/kde-lxqt
+
+# End of file

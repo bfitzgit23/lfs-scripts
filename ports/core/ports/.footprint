@@ -2,6 +2,14 @@ drwxr-xr-x	root/root	etc/
 drwxr-xr-x	root/root	etc/ports/
 drwxr-xr-x	root/root	etc/ports/drivers/
 -rwxr-xr-x	root/root	etc/ports/drivers/git
+-rw-r--r--	root/root	etc/ports/contrib.httpup
+-rw-r--r--	root/root	etc/ports/core.httpup
+-rw-r--r--	root/root	etc/ports/extra.httpup
+-rw-r--r--	root/root	etc/ports/kde-lxqt.httpup
+-rw-r--r--	root/root	etc/ports/mate.httpup
+-rw-r--r--	root/root	etc/ports/multilib.httpup
+-rw-r--r--	root/root	etc/ports/nonfree.httpup
+-rw-r--r--	root/root	etc/ports/opt.httpup
 -rw-r--r--	root/root	etc/ports/venom-community.git
 -rw-r--r--	root/root	etc/ports/venom-core.git
 -rw-r--r--	root/root	etc/ports/venom-kde-lxqt.git
@@ -10,6 +18,7 @@ drwxr-xr-x	root/root	etc/ports/drivers/
 -rw-r--r--	root/root	etc/ports/venom-nonfree.git
 -rw-r--r--	root/root	etc/ports/venom-s6.git
 -rw-r--r--	root/root	etc/ports/venom-xfce.git
+-rw-r--r--	root/root	etc/ports/xfce.httpup
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
 -rwxr-xr-x	root/root	usr/bin/ports

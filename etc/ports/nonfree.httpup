@@ -1,0 +1,8 @@
+#
+# /etc/ports/nonfree.httpup: nonfree's port collection
+#
+
+ROOT_DIR=/usr/ports/nonfree
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/nonfree
+
+# End of file
