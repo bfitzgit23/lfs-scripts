@@ -1746,7 +1746,7 @@ f:5dc9675d0cb18d682cd4c502760716eb:libepoxy/.footprint
 f:9f3428102cb50ca4b03bb216140a01bb:libepoxy/.md5sum
 f:cbfe9999134ddfd822efba540b5129fd:libepoxy/Pkgfile
 f:d169f6a617ea82dd37a134242a32759f:liberation-fonts-ttf/.footprint
-f:385486b5c1e753d49297d3a27936fcbc:liberation-fonts-ttf/.md5sum
+f:7f44f61b28da9c34af841ed6633e9e4c:liberation-fonts-ttf/.md5sum
 f:61607e9207c238ee26bff281f5c4780a:liberation-fonts-ttf/30-0-liberation-mono.conf
 f:f19a03713d518d6ea0adac1c285c7039:liberation-fonts-ttf/30-0-liberation-sans.conf
 f:fa5691fd3ad39f7e8299a296809b87f2:liberation-fonts-ttf/30-0-liberation-serif.conf
@@ -2055,12 +2055,12 @@ f:0733cecab799a5c8f2513f429edd09bb:linux-firmware/.md5sum
 f:5b4af32bf4866ff4b96089c20a2f672f:linux-firmware/Pkgfile
 f:6e3eb51e9d47a8c4a03ade6d4ea0e742:linux-firmware/update
 f:97ddcf22730745d2a311d7638e1793d9:linux/.footprint
-f:25ee3a5b20b77373070e94c6e9f895b2:linux/.md5sum
+f:4a777a6924d85f01d064d20be7505f80:linux/.md5sum
 f:4583bd9c10b58c0f781688162477db2c:linux/Pkgfile
 f:0f301a2233c5a6b2585c4903b63c8cd1:linux/dotconfig
 f:36848b643b7abae471aec4785b6d0c41:liquid-dsp/Pkgfile
 f:f212907fd906c597dda3dedd7f387413:llvm/.footprint
-f:8247ceaa9a2cd720202cafb04b3bbe75:llvm/.md5sum
+f:b1788ecfc5cb916bd3d26f6d4f82f514:llvm/.md5sum
 f:0098cc9dfc89c0e74c21d8e6ed2945f9:llvm/Pkgfile
 f:9084fcc8bb8c64b09edfd60714adb8a8:llvm/clang-23.1.6-enable_default_ssp-1.patch
 f:99c1b56e3e633cdad56ad92c186f8690:llvm/llvm-config.h
