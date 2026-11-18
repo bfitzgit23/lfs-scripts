@@ -11,7 +11,7 @@ release=3
 build_opt="-D VOLK_INSTALL=True -Wno-dev"
 source="https://github.com/zeux/volk/archive/$_version/volk-$version.tar.gz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

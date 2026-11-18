@@ -10,7 +10,7 @@ release=3
 build_opt="--enable-unicode-properties --enable-pcre16 --enable-pcre32 --enable-jit --disable-pcregrep-libz --disable-pcregrep-libbz2 --disable-pcretest-libreadline"
 source="https://downloads.sourceforge.net/project/pcre/pcre/$version/pcre-$version.tar.bz2"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

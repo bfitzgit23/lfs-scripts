@@ -8,7 +8,7 @@ version=20260913
 release=1
 source="public_suffix_list-$version.dat"
 
-build() {
+pkg_build() {
 
   install -D -m 644 -t $PKG/usr/share/publicsuffix \
     public_suffix_list-$version.dat

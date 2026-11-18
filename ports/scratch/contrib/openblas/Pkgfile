@@ -9,7 +9,7 @@ release=4
 # Custom build required: upstream Make variables and BLAS compatibility links are package-specific
 source="https://github.com/OpenMathLib/OpenBLAS/archive/v$version/OpenBLAS-$version.tar.gz"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

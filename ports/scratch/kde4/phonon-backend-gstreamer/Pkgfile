@@ -8,7 +8,7 @@ version=4.9.1
 release=1
 source="https://download.kde.org/stable/phonon/phonon-backend-gstreamer/$version/phonon-backend-gstreamer-$version.tar.xz"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "phonon-gstreamer-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

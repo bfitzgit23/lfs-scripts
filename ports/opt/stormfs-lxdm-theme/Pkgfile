@@ -9,7 +9,7 @@ version=1.0
 release=1
 source="lxdm.conf index.theme gtkrc greeter.ui background.jpg login.svg session.png lang.png nobody.png README"
 
-build() {
+pkg_build() {
 	cd "$SRC" || return 1
 
 	install -d -m 0755 \

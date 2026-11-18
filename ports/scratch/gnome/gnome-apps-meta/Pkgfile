@@ -9,7 +9,7 @@ version=51.0
 release=2
 source=""
 
-build() {
+pkg_build() {
     install -d "$PKG/usr/share/doc/$name"
     cat > "$PKG/usr/share/doc/$name/README" <<'EOT'
 This meta package tracks the BFSOS GNOME 51 application set.

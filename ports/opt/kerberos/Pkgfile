@@ -10,7 +10,7 @@ version=1.22.2
 release=5
 source="https://kerberos.org/dist/krb5/${version%.*}/krb5-$version.tar.gz https://www.linuxfromscratch.org/patches/blfs/13.1/mitkrb-$version-upstream_fix-1.patch https://www.linuxfromscratch.org/patches/blfs/13.1/mitkrb-$version-security_fix-1.patch https://www.linuxfromscratch.org/patches/blfs/13.1/mitkrb-$version-openssl_4_fixes-1.patch krb5-$version-remove-openssl-1.0.patch"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

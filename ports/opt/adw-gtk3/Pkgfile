@@ -8,7 +8,7 @@ version=6.5
 release=1
 source="https://github.com/lassekongo83/adw-gtk3/releases/download/v$version/adw-gtk3v$version.tar.xz"
 
-build() {
+pkg_build() {
 	install -d "$PKG/usr/share/themes" || return 1
 	cp -a adw-gtk3 adw-gtk3-dark "$PKG/usr/share/themes/" || return 1
 }

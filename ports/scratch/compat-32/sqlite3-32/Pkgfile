@@ -13,7 +13,7 @@ release=3
 _version=$(printf "%i%.2i%.2i%.2i" $_ver_space)
 source="https://www.sqlite.org/2026/sqlite-autoconf-${_version}.tar.gz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	# The autoconf tarball unpacks as sqlite-autoconf-<numeric version>.

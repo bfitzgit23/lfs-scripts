@@ -9,7 +9,7 @@ version=620.70.06
 release=3
 source="https://us.download.nvidia.com/XFree86/Linux-x86_64/$version/NVIDIA-Linux-x86_64-$version.run"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
   (

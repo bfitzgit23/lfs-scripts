@@ -10,7 +10,7 @@ version=1.5.2
 release=4
 source="https://github.com/${name}/${name}/releases/download/v${version}/${name}-${version}.tar.gz https://www.linuxfromscratch.org/patches/blfs/svn/protobuf-c-${version}-protobuf34_fix-1.patch"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

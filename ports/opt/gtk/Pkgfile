@@ -9,7 +9,7 @@ version=2.24.33
 release=2
 source="https://download.gnome.org/sources/gtk%2B/2.24/gtk%2B-2.24.33.tar.xz 0001-Lower-severity-of-XID-collision-warnings.patch"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

@@ -11,7 +11,7 @@ release=3
 build_opt="--enable-alsa --disable-oss --disable-systemd --with-builtin=dso --with-pic"
 source="http://0pointer.de/lennart/projects/libcanberra/libcanberra-$version.tar.xz libcanberra-broadway-fix.patch libcanberra-multi-backend.patch"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

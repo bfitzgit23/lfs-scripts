@@ -16,7 +16,7 @@ build_work=disk
 nostrip="usr/lib/chromium/chrome-sandbox"
 source="https://archive.archlinux.org/packages/c/chromium/chromium-$version-1-x86_64.pkg.tar.zst"
 
-build() {
+pkg_build() {
     local _bfs_usr
 
     _bfs_usr=$(find . -mindepth 1 -maxdepth 2 -type d -name usr -print -quit)

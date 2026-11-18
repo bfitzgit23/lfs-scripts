@@ -8,7 +8,7 @@ version=7x
 release=4
 source=""
 
-build() {
+pkg_build() {
     mkdir -p "$PKG/usr/share/bfsos/meta-packages"
     printf '%s
 ' 'BFSOS X.Org libraries meta package'         > "$PKG/usr/share/bfsos/meta-packages/xorg-libs"

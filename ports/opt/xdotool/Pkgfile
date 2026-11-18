@@ -10,7 +10,7 @@ release=2
 # Upstream publishes no release asset, only the source archive for the tag.
 source="https://github.com/jordansissel/${name}/archive/refs/tags/v${version}/${name}-${version}.tar.gz"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

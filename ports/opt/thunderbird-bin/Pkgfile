@@ -11,7 +11,7 @@ source="https://archive.mozilla.org/pub/thunderbird/releases/$version/linux-x86_
 	policies.json
 	thunderbird.desktop"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname thunderbird -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

@@ -10,7 +10,7 @@ release=4
 build_opt="-Dgobject_types=true -Dintrospection=disabled -Dtests=false -Dinstalled_tests=false"
 source="https://github.com/ebassi/graphene/archive/$version/graphene-$version.tar.gz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

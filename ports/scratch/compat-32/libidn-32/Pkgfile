@@ -10,7 +10,7 @@ release=2
 build_opt="--disable-nls"
 source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/libidn/libidn-1.44.tar.gz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

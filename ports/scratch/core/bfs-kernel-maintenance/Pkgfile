@@ -8,7 +8,7 @@ version=1.0
 release=3
 source="bfs-kernel-maintenance README"
 
-build() {
+pkg_build() {
     install -Dm0755 "$SRC/bfs-kernel-maintenance" \
         "$PKG/usr/libexec/bfs-kernel-maintenance" || return 1
     install -Dm0644 "$SRC/README" \

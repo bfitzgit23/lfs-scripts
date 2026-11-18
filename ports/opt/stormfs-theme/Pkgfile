@@ -9,7 +9,7 @@ version=2026.08.24
 release=4
 source="https://github.com/bfitzgit23/StormFS-Linux/releases/download/theme-pack/StormFS-Recovered-Theme-Icons-Wallpapers-StormPkg.zip xfce-xsettings.xml xfce-xfwm4.xml gtk-settings.ini"
 
-build() {
+pkg_build() {
 	# pkgbuild extracts archive sources into $SRC before calling build().
 	cd "$SRC" || return 1
 

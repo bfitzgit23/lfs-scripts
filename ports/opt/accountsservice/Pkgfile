@@ -11,7 +11,7 @@ release=4
 skip_patch=1
 source="https://gitlab.freedesktop.org/accountsservice/accountsservice/-/archive/$version/accountsservice-$version.tar.bz2 openrc-no-logind.patch bfs-logind-stub.h"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

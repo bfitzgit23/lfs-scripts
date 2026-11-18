@@ -10,7 +10,7 @@ release=2
 build_opt="--disable-maintainer-mode --with-oniguruma=builtin --disable-gtk-doc"
 source="https://github.com/stedolan/jq/releases/download/jq-$version/jq-$version.tar.gz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

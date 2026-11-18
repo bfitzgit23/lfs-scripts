@@ -14,7 +14,7 @@ qtwebengine_debian="qtwebengine-opensource-src_5.15.19+dfsg2-7.debian.tar.xz"
 noextract="$qtwebengine_debian"
 source="https://download.qt.io/archive/qt/5.15/$version/submodules/qtwebengine-everywhere-opensource-src-$version.tar.xz https://deb.debian.org/debian/pool/main/q/qtwebengine-opensource-src/$qtwebengine_debian"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

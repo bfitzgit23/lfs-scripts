@@ -10,7 +10,7 @@ release=2
 build_opt="--enable-extra-optimization --disable-examples --disable-nls"
 source="https://github.com/Libvisual/libvisual/releases/download/libvisual-$version/libvisual-$version.tar.bz2"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

@@ -9,7 +9,7 @@ version=2026.10.28
 release=1
 source="https://github.com/ohmybash/oh-my-bash/archive/94c2977eda06f230aafa9628fcd869123f01896b.tar.gz profile.sh"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname 'oh-my-bash-*' -print -quit)
 	[ -n "$_bfs_src" ] || return 1
 	install -d "$PKG/usr/share/oh-my-bash" "$PKG/etc/profile.d" || return 1

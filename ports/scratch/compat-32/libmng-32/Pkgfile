@@ -10,7 +10,7 @@ release=3
 build_opt="--mandir=/usr/man"
 source="https://downloads.sourceforge.net/project/libmng//libmng-devel/$version/libmng-$version.tar.gz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

@@ -10,7 +10,7 @@ version=4.1.1
 release=2
 source="https://distfiles.gentoo.org/distfiles/c8/$name-$version.tar.bz2"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

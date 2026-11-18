@@ -10,7 +10,7 @@ version=4.14.3
 release=1
 source="https://download.kde.org/Attic/4.14.3/src/$_pkgname-$version.tar.xz"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$_pkgname-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

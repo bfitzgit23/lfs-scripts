@@ -9,7 +9,7 @@ version=20260301
 release=3
 source="https://texlive.info/historic/systems/texlive/2026/texlive-$version-source.tar.xz https://texlive.info/historic/systems/texlive/2026/texlive-$version-texmf.tar.xz https://texlive.info/historic/systems/texlive/2026/texlive-$version-extra.tar.xz"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

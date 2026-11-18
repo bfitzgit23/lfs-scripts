@@ -9,7 +9,7 @@ version=2026.09
 release=1
 source="flathub.flatpakrepo"
 
-build() {
+pkg_build() {
     # Ship the official Flathub repository file (including its GPG key) so
     # the remote can be enabled offline at post-install time.
     install -d -m 0755 "$PKG/usr/share/flatpak/remotes" || return 1

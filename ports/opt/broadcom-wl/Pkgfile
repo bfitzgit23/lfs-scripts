@@ -8,7 +8,7 @@ version=6.30.223.271
 release=5
 source="https://docs.broadcom.com/docs-and-downloads/docs/linux_sta/hybrid-v35_64-nodebug-pcoem-6_30_223_271.tar.gz patches/001-null-pointer-fix.patch patches/002-rdtscl.patch patches/003-linux407.patch patches/004-linux408.patch patches/005-debian-fix-kernel-warnings.patch patches/006-linux411.patch patches/007-linux412.patch patches/008-linux415.patch patches/009-fix_mac_profile_discrepancy.patch patches/010-linux506.patch patches/011-linux509.patch patches/012-linux517.patch patches/013-linux518.patch patches/014-linux414.patch patches/015-linux600.patch patches/016-linux601.patch patches/017-linux612.patch patches/018-linux613.patch patches/019-linux614.patch patches/020-linux615.patch patches/021-linux617.patch patches/022-linux701.patch patches/023-linux702.patch patches/024-linux704.patch patches/900-fixup-gcc-detection-logic.patch patches/901-remove-already-backported-eth_hw_addr_set-shim.patch"
 
-build() {
+pkg_build() {
     local kdir kver p built=0
 
     # The official Broadcom tarball is flat. Apply the maintained kernel

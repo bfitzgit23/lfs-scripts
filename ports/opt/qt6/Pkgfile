@@ -12,7 +12,7 @@ keep_static=1
 build_work=disk
 source="https://download.qt.io/official_releases/qt/6.11/$version/single/qt-everywhere-src-$version.tar.xz"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

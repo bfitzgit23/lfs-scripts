@@ -9,7 +9,7 @@ version=3.13.0
 release=1
 source="https://files.pythonhosted.org/packages/source/p/pyparted/pyparted-${version}.tar.gz"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "pyparted-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

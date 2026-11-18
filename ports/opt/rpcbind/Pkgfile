@@ -10,7 +10,7 @@ release=1
 build_opt="--enable-warmstarts"
 source="https://downloads.sourceforge.net/project/rpcbind/rpcbind/$version/rpcbind-$version.tar.bz2"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)

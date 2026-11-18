@@ -23,7 +23,7 @@ build_opt="\
 # identical upstream tarball archived by Debian.
 source="https://deb.debian.org/debian/pool/main/l/lightdm-gtk-greeter/lightdm-gtk-greeter_${version}.orig.tar.gz greeter.conf"
 
-build() {
+pkg_build() {
 	_bfs_greeter="$PWD/greeter.conf"
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

@@ -8,7 +8,7 @@ version=0.8.18
 release=4
 source=""
 
-build() {
+pkg_build() {
     install -d "$PKG/usr/share/bfsos/meta"
     printf '%s\n' \
         'BFSOS Compiz Reloaded 0.8.18 meta-package.' \

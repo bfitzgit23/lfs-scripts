@@ -10,7 +10,7 @@ version=1
 release=2
 source="dbus networkmanager acpid bluetooth gpm chronyd cups avahi sshd samba rsyncd krb5 nftables wpa_supplicant bfs-kernel-finalize virtlogd libvirtd xdm sysconfig-xdm consolekit lightdm lxdm sddm pipewire.desktop pipewire-pulse.desktop wireplumber.desktop"
 
-build() {
+pkg_build() {
     install -d -m 0755 "$PKG/etc/rc.d/init.d" \
                       "$PKG/etc/rc.d/rc0.d" \
                       "$PKG/etc/rc.d/rc1.d" \

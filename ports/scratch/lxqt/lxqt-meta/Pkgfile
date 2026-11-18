@@ -8,7 +8,7 @@ version=2.4.0
 release=5
 source=""
 
-build() {
+pkg_build() {
     install -d "$PKG/usr/share/doc/$name"
     printf '%s\n' 'BFSOS LXQt 2.4 desktop meta-package.' > "$PKG/usr/share/doc/$name/README"
 }

@@ -9,7 +9,7 @@ version=1.8.2
 release=1
 source="https://github.com/stedolan/jq/releases/download/jq-$version/jq-$version.tar.gz"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

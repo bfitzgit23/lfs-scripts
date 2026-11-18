@@ -16,7 +16,7 @@ build_opt="-DCMAKE_INSTALL_PREFIX=/usr
            -DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 source="https://github.com/Tencent/rapidjson/archive/$_commit/$name-$version.tar.gz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)

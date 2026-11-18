@@ -32,7 +32,7 @@ prepare() {
   done
 }
 
-build() {
+pkg_build() {
   # not using upstream's global makefile as it's trying to be too clever
   for tool in "${_tools[@]}"; do
     (

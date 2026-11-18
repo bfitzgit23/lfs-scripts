@@ -10,7 +10,7 @@ build_opt="--prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/libdbusmenu-gtk
 # Custom build required: only the GTK3 sublibrary is installed
 source="https://deb.debian.org/debian/pool/main/libd/libdbusmenu/libdbusmenu_18.10.20180917~bzr492+repack1.orig.tar.xz 0001_no-deprecated-gnome-common-macros.patch 0003_port-tools-dbusmenu-bench-to-py3.patch 0004_prevent-test-json-from-failing.patch"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

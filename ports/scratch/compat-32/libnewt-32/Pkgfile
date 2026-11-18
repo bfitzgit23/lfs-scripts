@@ -13,7 +13,7 @@ build_opt="--without-python --disable-nls"
 # byte-identical upstream archive (MD5 cca66ed1d8774fb9e3f6a33525de416d).
 source="https://anduin.linuxfromscratch.org/BLFS/newt/newt-$version.tar.gz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

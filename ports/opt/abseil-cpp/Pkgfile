@@ -12,7 +12,7 @@ build_opt="-DCMAKE_INSTALL_PREFIX=/usr
       -DBUILD_SHARED_LIBS=ON"
 source="https://github.com/abseil/${name}/releases/download/${version}/${name}-${version}.tar.gz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)

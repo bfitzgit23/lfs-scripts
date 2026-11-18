@@ -13,7 +13,7 @@ release=4
 # serves byte-identical archives.
 source="https://ftp.osuosl.org/pub/xiph/releases/speex/speex-$version.tar.gz https://ftp.osuosl.org/pub/xiph/releases/speex/speexdsp-$version.tar.gz"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

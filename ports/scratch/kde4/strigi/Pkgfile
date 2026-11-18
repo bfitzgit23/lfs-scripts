@@ -9,7 +9,7 @@ release=4
 # GitHub's archive omits Strigi's libstreams/libstreamanalyzer submodules.
 source="https://www.vandenoever.info/software/strigi/strigi-$version.tar.bz2 strigi-0.7.8-dbus-includes.patch.manual"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

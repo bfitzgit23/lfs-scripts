@@ -10,7 +10,7 @@ release=1
 nostrip="usr/share/rustdesk/rustdesk"
 source="$name-$version.tar.zst::https://github.com/rustdesk/rustdesk/releases/download/$version/rustdesk-$version-0-x86_64.pkg.tar.zst"
 
-build() {
+pkg_build() {
 	[ -x "$SRC/usr/share/rustdesk/rustdesk" ] || {
 		echo "rustdesk: prebuilt executable is missing" >&2
 		return 1

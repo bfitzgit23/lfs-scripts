@@ -8,7 +8,7 @@ version=51.0
 release=2
 source=""
 
-build() {
+pkg_build() {
     install -d "$PKG/usr/share/bfsos/meta-packages" || return 1
     cat > "$PKG/usr/share/bfsos/meta-packages/$name" <<'EOT'
 BFSOS complete GNOME 51 desktop meta package.

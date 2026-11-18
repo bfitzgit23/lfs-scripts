@@ -11,7 +11,7 @@ release=1
 build_work=disk
 source="LibreOffice_${version}_Linux_x86-64_deb.tar.gz::https://download.documentfoundation.org/libreoffice/stable/${version}/deb/x86_64/LibreOffice_${version}_Linux_x86-64_deb.tar.gz"
 
-build() {
+pkg_build() {
 	# The archive unpacks to a versioned directory whose fourth component is
 	# not part of the download name, so locate DEBS by content rather than by
 	# guessing the path.  Keep the path absolute: the loop below changes into

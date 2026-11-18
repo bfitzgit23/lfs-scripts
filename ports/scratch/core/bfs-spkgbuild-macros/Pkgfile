@@ -13,6 +13,6 @@ version=1
 release=1
 source=(helper.sh)
 
-build() {
+pkg_build() {
 	install -D -m 0755 "$SRC/helper.sh" "$PKG/usr/share/bfsos/spkgbuild.helper" || return 1
 }

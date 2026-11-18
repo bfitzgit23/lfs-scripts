@@ -7,7 +7,7 @@ version=0.38.1
 release=2
 source="https://files.pythonhosted.org/packages/source/p/python_dbusmock/python_dbusmock-${version}.tar.gz"
 
-build() {
+pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "python_dbusmock-0.38.1" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1

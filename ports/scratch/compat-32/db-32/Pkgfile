@@ -9,7 +9,7 @@ version=5.3.28
 release=4
 source="https://download.oracle.com/berkeley-db/db-$version.tar.gz 0001-atomic-Rename-local-__atomic_compare_exchange-to-avo.patch"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

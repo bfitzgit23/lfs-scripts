@@ -13,3 +13,8 @@ The conversion removes only what pkgutils makes redundant:
 Everything else, including `build_opt` (a plain shell variable read inside
 `build()`), is carried over unchanged, so multi-line arrays and quoted strings
 survive intact. CRs are stripped so heredocs terminate correctly.
+
+The hook is renamed as well: in this tree's `pkgutils` `build()` is the driver
+function in the extension, so a Pkgfile-level `build()` is never called and the
+recipe silently falls back to build-type detection. Every recipe therefore
+defines `pkg_build()`, the name the driver dispatches to.

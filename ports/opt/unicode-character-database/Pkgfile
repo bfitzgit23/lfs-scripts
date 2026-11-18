@@ -11,7 +11,7 @@ release=2
 noextract="UCD.zip Unihan.zip"
 source="https://www.unicode.org/Public/$version/ucd/UCD.zip https://www.unicode.org/Public/$version/ucd/Unihan.zip"
 
-build() {
+pkg_build() {
     for _f in UCD Unihan; do
         install -Dm644 "$SRC/$_f.zip" "$PKG/usr/share/unicode/$_f-$version.zip" || return 1
         bsdtar -C "$PKG/usr/share/unicode" -x --no-same-owner --no-same-permissions -f "$SRC/$_f.zip" || return 1

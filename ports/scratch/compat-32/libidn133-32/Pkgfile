@@ -9,7 +9,7 @@ version=1.33
 release=3
 source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/libidn/libidn-1.33.tar.gz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

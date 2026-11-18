@@ -9,7 +9,7 @@ version=16.10.0
 release=2
 source="http://archive.ubuntu.com/ubuntu/pool/universe/libi/libindicator/libindicator_${version}+18.04.20180321.1.orig.tar.gz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

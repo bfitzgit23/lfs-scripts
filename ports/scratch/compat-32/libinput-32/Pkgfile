@@ -10,7 +10,7 @@ release=3
 build_opt="-D debug-gui=false -D documentation=false -D tests=false -D libwacom=false -D udev-dir=/lib/udev -D zshcompletiondir=no"
 source="https://gitlab.freedesktop.org/libinput/libinput/-/archive/$version/libinput-$version.tar.bz2"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

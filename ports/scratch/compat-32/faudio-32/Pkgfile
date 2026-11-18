@@ -9,7 +9,7 @@ version=26.09
 release=3
 source="https://github.com/FNA-XNA/FAudio/archive/$version/faudio-$version.tar.gz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

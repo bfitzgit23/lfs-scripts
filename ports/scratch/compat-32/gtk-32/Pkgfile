@@ -10,7 +10,7 @@ release=4
 build_opt="--disable-cups"
 source="https://download.gnome.org/sources/gtk+/${version%.*}/gtk+-$version.tar.xz"
 
-build() {
+pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	bfs_compat32
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

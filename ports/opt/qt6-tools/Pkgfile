@@ -14,7 +14,7 @@ source=""
 # submodule here would collide with that payload, so this port only records the
 # dependency and proves the tools are present.  Keep $version in lockstep with
 # the qt6 port.
-build() {
+pkg_build() {
 	for _bfs_tool in Qt6LinguistTools/Qt6LinguistToolsConfig.cmake \
 	                 Qt6Designer/Qt6DesignerConfig.cmake \
 	                 Qt6Help/Qt6HelpConfig.cmake; do

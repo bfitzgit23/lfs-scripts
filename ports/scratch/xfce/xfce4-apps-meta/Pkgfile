@@ -8,7 +8,7 @@ version=4.20.0
 release=2
 source=""
 
-build() {
+pkg_build() {
     mkdir -p "$PKG/usr/share/bfsos/meta-packages"
     printf '%s
 ' 'BFSOS xfce4-apps-meta meta package' \
