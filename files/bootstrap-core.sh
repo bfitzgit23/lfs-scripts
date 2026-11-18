@@ -767,6 +767,15 @@ PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 				;;
 			esac
 		else
+			# A rebuild that dies part way leaves the packages it finished in
+			# stage3.done, exactly like stage 2, so re-running stage 3 picks up
+			# after the failure instead of rebuilding the whole list. Without
+			# this every resume started again at aaa_filesystem. Delete the
+			# state directory to force a full rebuild.
+			if _state_has $_bstage "$i"; then
+				echo "stage: $i already rebuilt, skipping"
+				continue
+			fi
 			# The ports in this tree were re-versioned to their LFS 13.1
 			# sources but their .md5sum files still name the versions they
 			# replaced, and the footprints were never regenerated either, so

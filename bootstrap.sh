@@ -183,6 +183,11 @@ resume_stage() {
         run_stage 1 "Temporary toolchain (resume)"
     elif [ ! -f "$state/stage2.complete" ]; then
         run_stage 2 "Base system (resume)"
+    elif [ ! -f "$state/stage3.complete" ] &&
+         { [ -f "$state/stage3.failed" ] || [ -s "$state/stage3.done" ]; }; then
+        # A rebuild that stopped part way is resumed like the other stages:
+        # stage 3 skips the packages already recorded in stage3.done.
+        run_stage 3 "Rebuild base system (resume)"
     else
         ui_info "Nothing to resume" \
             "Stages 1 and 2 are complete (${state}).\nUse Rebuild or Compress from the menu."
