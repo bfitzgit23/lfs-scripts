@@ -1,7 +1,0 @@
-#!/bin/sh
-T=/c/Users/bento/Downloads/StormFS-Linux/.tmp-lfs-scripts
-rm -f /tmp/val-venom-done.txt
-find "$T/ports/scratch" -path '*/venom-*' -name Pkgfile > /tmp/val-venom-list.txt
-: > /tmp/val-venom-fails.txt
-cat /tmp/val-venom-list.txt | xargs -P 16 -I{} sh -c 'bash -n "{}" 2>/dev/null || echo "{}"' >> /tmp/val-venom-fails.txt
-echo "VENOM VALIDATE DONE checked=$(wc -l < /tmp/val-venom-list.txt) fails=$(wc -l < /tmp/val-venom-fails.txt)" > /tmp/val-venom-done.txt
