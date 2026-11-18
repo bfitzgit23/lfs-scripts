@@ -1,9 +1,20 @@
 name=cpio
-version=2.14
+version=2.15
 release=1
-source=(https://mirrorservice.org/sites/ftp.gnu.org/gnu/cpio/cpio-2.14.tar.bz2)
+source=(https://mirrorservice.org/sites/ftp.gnu.org/gnu/cpio/$name-$version.tar.bz2)
 
-post_build() {
-	rm $PKG/usr/lib/rmt
-	rm $PKG/usr/share/man/man8/rmt.8
+pkg_build() {
+	# cpio 2.15 declares xstat with an empty parameter list; gcc 15 and later
+	# reject the two-argument calls that go through that pointer, so give it a
+	# real prototype (the same workaround BLFS 13.1 applies).
+	sed -e "/^extern int (\*xstat)/s/()/(const char * restrict,  struct stat * restrict)/" \
+		-i src/extern.h
+	sed -e "/^int (\*xstat)/s/()/(const char * restrict,  struct stat * restrict)/" \
+		-i src/global.c
+
+	# tar already installs /usr/lib/rmt, and --with-rmt stops cpio from
+	# building and installing a second copy of it.
+	./configure --prefix=/usr --with-rmt=/usr/lib/rmt
+	make
+	make DESTDIR=$PKG install
 }

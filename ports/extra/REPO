@@ -1206,9 +1206,9 @@ f:d95f39b9fa7251639d13eac08901ff79:consolekit2/Pkgfile
 f:ce59f9bb3e25ac7d5e91c174c39cc2ed:consolekit2/pam-foreground-compat.ck
 f:27109ae463570e093f29d05073159372:containerd/Pkgfile
 f:f4019f4076107373925cfa836bbdfe6a:cowsay/Pkgfile
-f:cd8376d841f65d8292f01b9d6f9ea66c:cpio/.footprint
-f:601b06b01f60d8340fc8334615be2fcd:cpio/.md5sum
-f:b6352e4ba4954751594655d52cb58119:cpio/Pkgfile
+f:774740ffa4333f4335d750f5ddc0897b:cpio/.footprint
+f:99fba7aa0cc92e115d72952b1ed8312f:cpio/.md5sum
+f:b4927f8d5b9b8e08c7cbdcb8980f9d57:cpio/Pkgfile
 f:bd4f40edf0a308bc6f7976e603a55f3b:cpu-x/Pkgfile
 f:22055f82378e11a379bc0d0b5740c920:crypto++/.footprint
 f:968b844634a24c852851fbf4e6f531a8:crypto++/.md5sum
