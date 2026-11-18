@@ -346,8 +346,8 @@ f:99f4e332cda94141d8ae8f31654f55a2:libxxf86vm-32/.md5sum
 f:720681c93c751507a37ec91452a62080:libxxf86vm-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:llvm-32/.32bit
 f:091234785153d490e26c3bea01bd4819:llvm-32/.footprint
-f:02a0285905ae7d1af89d6c04022f846c:llvm-32/.md5sum
-f:dc88db332d1f4677b686bb24d578688a:llvm-32/Pkgfile
+f:cd62290a0585d7b94d36efebf3bd9ff7:llvm-32/.md5sum
+f:38125d6e0ba377764cd6981581ad19e4:llvm-32/Pkgfile
 f:15b4feff57dc3ad36620c3ad48c1bdb9:lm_sensors-32/Pkgfile
 f:e19486927b8179fe94ac9890ac8ee003:lutris/Pkgfile
 f:040464ac8a92b8bf8f2a498116d40664:lz4-32/Pkgfile
