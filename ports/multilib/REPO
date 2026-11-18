@@ -315,8 +315,7 @@ f:360accad10b913f8ee699fd8e253ccd4:libxinerama-32/Pkgfile
 f:c9b180d2243b3228716f0f10646767af:libxkbcommon-32/Pkgfile
 f:a6b590ef25d37e9789da152ec6235642:libxkbfile-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:libxml2-32/.32bit
-f:2b60eee3b89d70bf24398854b8fd7fba:libxml2-32/.footprint
-f:01960d7f909da1f31bdd51a9cd6c4b6b:libxml2-32/.md5sum
+f:4e0bfe86520e25f58b282a8062651f7b:libxml2-32/.md5sum
 f:8f2b3478040615bcbd9551acffbcddb3:libxml2-32/Pkgfile
 f:f31a7fe7c0f8417d3e1117f2ddf4d32c:libxmu-32/Pkgfile
 f:79b335091ac5258576c7fe2274aea967:libxpm-32/Pkgfile

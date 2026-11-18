@@ -2006,9 +2006,8 @@ f:dbe9068a5a380ae0ada0ea5396293b9e:libxkbcommon/Pkgfile
 f:83150d403c3047483c6b8827334e2c10:libxkbfile/.footprint
 f:1953fc85092f3bef42db59f3aa2a094f:libxkbfile/.md5sum
 f:374028379edf7a43abb01936f9bccd5b:libxkbfile/Pkgfile
-f:7981974f79cfd76c3475ea82b60dd001:libxml2/.footprint
-f:01960d7f909da1f31bdd51a9cd6c4b6b:libxml2/.md5sum
-f:32b793bb1519b14f5031fe103d90e53b:libxml2/Pkgfile
+f:4e0bfe86520e25f58b282a8062651f7b:libxml2/.md5sum
+f:47c7afad329e0de245a3d26310a38ad2:libxml2/Pkgfile
 f:180321cc3ac24b55fb0f3c3fd21f9fae:libxmu/.footprint
 f:bd57c3a64ba054eee33871fc6de630e2:libxmu/.md5sum
 f:8c1f2e14bbfbb89b1ccd858d59c1c646:libxmu/Pkgfile
