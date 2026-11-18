@@ -1,13 +1,15 @@
 # Depends on: glib pcre2-32 libffi-32 zlib-32
 
 name=glib-32
-version=2.88.2
+version=2.90.1
 release=1
 source=(https://download.gnome.org/sources/glib/${version%.*}/glib-$version.tar.xz
 	0001-glib-compile-schemas-Remove-noisy-deprecation-warnin.patch)
+# glib 2.90 renamed -Dman/-Dgtk_doc to -Dman-pages/-Ddocumentation; the man
+# pages stay off here so they do not clash with the 64-bit glib package.
 build_opt="
-	-Dman=false
-	-Dgtk_doc=false
+	-Dman-pages=disabled
+	-Ddocumentation=false
 	-Dselinux=disabled
 	-Dtests=false
 "

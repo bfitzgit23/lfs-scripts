@@ -192,10 +192,9 @@ f:1f488c8d95e9415d8fb7fbb470df634b:gdk-pixbuf-32/Pkgfile
 f:690eb437f70aec95a591662a3d347093:glew-32/Pkgfile
 f:ef855c2e7f14333f358666dda8f2c7dd:glfw-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:glib-32/.32bit
-f:b36b14dc852e0484b7e1bc6142c68b77:glib-32/.footprint
-f:979c51ca9164779e68f103e1c58b4e1e:glib-32/.md5sum
+f:6284039c4848c1a080665940961624c7:glib-32/.md5sum
 f:81d3484a6698fb8d45d08f3c94b5a375:glib-32/0001-glib-compile-schemas-Remove-noisy-deprecation-warnin.patch
-f:6d9d81ce866b81358313766739044977:glib-32/Pkgfile
+f:d0616340400561f7423dcb68656f0fd9:glib-32/Pkgfile
 f:44a841822bbedf50898e51bc2f0a7228:glib-networking-32/Pkgfile
 f:394ff375a367d997ec05aef334988793:glu-32/Pkgfile
 f:ed6dfd99aa1e8a2f72848266ee5f8935:gnutls-32/Pkgfile
