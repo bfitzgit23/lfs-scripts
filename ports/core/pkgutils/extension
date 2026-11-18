@@ -24,7 +24,9 @@ detect_buildtype() {
 		build_type=configure_build
 	elif [ -f CMakeLists.txt ]; then
 		build_type=cmake_build
-	elif [ -f setup.py ] || [ -f pyproject.toml ]; then
+	elif [ -f setup.py ]; then
+		build_type=python3_build
+	elif [ -f pyproject.toml ]; then
 		build_type=python3_build
 	elif [ -f Makefile.PL ]; then
 		build_type=perlmodule_build
