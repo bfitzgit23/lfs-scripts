@@ -264,6 +264,23 @@ _sync_chroot_pkgmk_conf() {
 	return 0
 }
 
+_ensure_bin_sh() {
+	# LFS leaves /bin/sh as a link to bash, and the ports' makefiles assume it:
+	# dash's echo prints "-e" literally, so with dash on /bin/sh the recipe in
+	# procps-ng that writes local/capnames.h emitted "-e };" and the build died
+	# with "'e' undeclared (not in a function)". The dash port used to install
+	# bin/sh -> dash; it no longer does, so put the link back before anything
+	# is compiled, and heal a tree that already has it. A real /bin/sh file is
+	# left alone rather than replaced.
+	if [ -e "$LFS/bin/sh" ] && [ ! -L "$LFS/bin/sh" ]; then
+		return 0
+	fi
+	[ "$(readlink "$LFS/bin/sh" 2>/dev/null)" = bash ] && return 0
+	mkdir -p "$LFS/bin"
+	ln -sfn bash "$LFS/bin/sh"
+	return 0
+}
+
 # Resume support. Every package that finishes is recorded under $LFS, so a run
 # that dies (bad source, compiler error, Ctrl-C, reboot) can be restarted and
 # skips the work already done instead of rebuilding the whole toolchain.
@@ -717,6 +734,7 @@ PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 	}
 	for i in $basepkg; do
 		_sync_chroot_pkgmk_conf
+		_ensure_bin_sh
 		if [ "$1" != rebuild ]; then
 			pkginfo -i -r $LFS | awk '{print $1}' | grep -qx $i && { _state_mark $_bstage "$i"; continue; }
 			unset _force
@@ -765,6 +783,9 @@ PKGMK_WORK_DIR=\"/tmp/pkgmk-$name\"
 				exit 1
 			}
 		fi
+		# A package that ships its own bin/sh (dash did) must not leave the
+		# rootfs building with a shell that cannot do what makefiles expect.
+		_ensure_bin_sh
 		# pkgadd -r installs into $LFS but cannot run the target's
 		# ldconfig, so shared libraries a package just put in /usr/lib stay
 		# unknown to the loader and the next build dies on them (binutils'
