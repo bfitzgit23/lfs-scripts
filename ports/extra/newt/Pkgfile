@@ -1,10 +1,10 @@
 # Depends on: popt slang 
 
 name=newt
-version=0.52.23
+version=0.52.25
 release=1
-source=(https://releases.pagure.org/$name/$name-$version.tar.gz)
-build_opt="--with-gpm-support --with-python=python3.11"
+source=(https://anduin.linuxfromscratch.org/BLFS/newt/$name-$version.tar.gz)
+build_opt="--with-gpm-support --with-python=python3.14"
 
 pre_build() {
 	sed -e '/install -m 644 $(LIBNEWT)/ s/^/#/' \
