@@ -7,26 +7,27 @@ name=linux-bin
 version=7.3.4
 release=1
 
-# This port ships the kernel the `linux` port builds, so a machine never has to
-# spend 30-60 minutes compiling one. There is no URL on purpose: build `linux`
-# once on a machine with a toolchain, then pack the result.
+# This port repackages the kernel the `linux` port built, so a machine
+# never has to spend 30-60 minutes compiling one. Nothing is downloaded:
+# build `linux` once, then drop the package pkgmk produced next to this
+# Pkgfile on every machine that should install the kernel without building it.
 #
 #   prt-get install linux
-#   tar -cJpf linux-bin-7.3.4-1.tar.xz -C / \
-#           boot/vmlinuz-linux boot/config-linux lib/modules/7.3.4-LFS
+#   cp /var/cache/pkg/packages/linux#7.3.4-1.pkg.tar.xz /usr/ports/core/linux-bin/
 #
-# Copy that tarball into PKGMK_SOURCE_DIR (the port directory, unless
-# /etc/pkgmk.conf says otherwise) on every machine that should install the
-# kernel without building it. Give source= a URL if you publish it instead.
-source=($name-$version-$release.tar.xz)
+# pkgmk only looks for a source without a URL in the port directory itself.
+source=(linux#7.3.4-1.pkg.tar.xz)
 
 pkg_build() {
 	cd "$SRC" || return 1
 
-	if [ ! -d boot ] || [ ! -d lib ]; then
-		echo "$name: $SRC has no boot/ and lib/, see the tarball recipe above" >&2
+	if [ ! -f .PKGINFO ]; then
+		echo "$name: $SRC is not a built linux package, see the header" >&2
 		return 1
 	fi
 
-	mv boot lib "$PKG"/
+	# drop the package metadata, pkgmk writes its own
+	for f in *; do
+		mv "$f" "$PKG"/
+	done
 }

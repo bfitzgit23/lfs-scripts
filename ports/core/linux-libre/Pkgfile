@@ -6,9 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=linux-libre
 version=7.1.0
 release=1
-source="${name}-${version}.tar.xz::https://linux-libre.fsfla.org/pub/linux-libre/releases/${version%.0}-gnu/${name}-${version%.0}-gnu.tar.xz
-	x86-64-gnu
-        0001-scripts-Fix-libressl-check.patch"
+source=(https://linux-libre.fsfla.org/pub/linux-libre/releases/${version%.0}-gnu/${name}-${version%.0}-gnu.tar.xz
+	x86_64-dotconfig)
 NO_STRIP=yes
 
 pkg_build() {
@@ -18,28 +17,21 @@ pkg_build() {
 
 	make mrproper
 
-	cbuild_restore "$SRC/$name-${version%.*}/.config" || cp $SRC/x86-64-gnu .config
+	cp $SRC/x86_64-dotconfig .config
 
+	sed '/^CONFIG_LOCALVERSION=/d' -i .config
+	echo 'CONFIG_LOCALVERSION="-gnu-'$name'"' >> .config
 	make olddefconfig
 
 	#make menuconfig
 
-	# Defines build options exporting the value/values for the KCFLAGS and KCPPFLAGS before calling make.
-	# More info: https://docs.kernel.org/kbuild/kbuild.html
-
-	# CBUILD: add custom KCFLAGS and KCPPFLAGS, source linux.opt
-	CBUILD_LINUX_KCFLAGS="$CFLAGS"
-	CBUILD_LINUX_KCPPFLAGS="$CXXFLAGS"
-
-	cbuild_options
-
-	export KCFLAGS="$CBUILD_LINUX_KCFLAGS"
-	export KCPPFLAGS="$CBUILD_LINUX_KCPPFLAGS"
+	# KCFLAGS/KCPPFLAGS are the kbuild way to pass the flags from pkgmk.conf
+	# into the kernel build, see https://docs.kernel.org/kbuild/kbuild.html
+	export KCFLAGS="$CFLAGS"
+	export KCPPFLAGS="$CXXFLAGS"
 
 	make 
 	make INSTALL_MOD_PATH=$PKG modules_install
-
-	cbuild_save "$SRC/${name%-*}-${version%.0}/.config" 
 
 	mkdir -p $PKG/boot
 
@@ -84,7 +76,8 @@ pkg_build() {
 	done
 
 	kernver=$version-gnu-$name
-	rm $PKG/lib/modules/$kernver/build
+	rm -f $PKG/lib/modules/$kernver/build \
+	      $PKG/lib/modules/$kernver/source
 
 	mv $SRC/linux-${version%.0} $PKG/lib/modules/$kernver/build
 	ln -sv build $PKG/lib/modules/$kernver/source

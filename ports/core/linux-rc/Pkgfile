@@ -6,39 +6,30 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=linux-rc
 version=7.1.0
 release=6
-source="https://git.kernel.org/torvalds/t/${name%-*}-${version%.*}-rc$release.tar.gz
-	x86_64-dotconfig"
+source=(https://git.kernel.org/torvalds/t/${name%-*}-${version%.*}-rc$release.tar.gz
+	x86_64-dotconfig)
 
 pkg_build() {
 	cd ${name%-*}-${version%.0}-rc$release
 	
 	make mrproper
 
-	cbuild_restore "$SRC/${name%-*}-${version%.0}-rc$release/.config" || cp $SRC/x86_64-dotconfig .config
-
-	make oldconfig
+	cp $SRC/x86_64-dotconfig .config
 
 	sed '/^CONFIG_LOCALVERSION=/d' -i .config
 	echo 'CONFIG_LOCALVERSION="-'$name'"' >> .config
 
+	make olddefconfig
+
 	#make menuconfig
 
-	# Defines build options exporting the value/values for the KCFLAGS and KCPPFLAGS before calling make.
-	# More info: https://docs.kernel.org/kbuild/kbuild.html
-
-	# CBUILD: add custom KCFLAGS and KCPPFLAGS, source linux.opt
-	CBUILD_LINUX_KCFLAGS="$CFLAGS"
-	CBUILD_LINUX_KCPPFLAGS="$CXXFLAGS"
-
-	cbuild_options
-
-	export KCFLAGS="$CBUILD_LINUX_KCFLAGS"
-	export KCPPFLAGS="$CBUILD_LINUX_KCPPFLAGS"
+	# KCFLAGS/KCPPFLAGS are the kbuild way to pass the flags from pkgmk.conf
+	# into the kernel build, see https://docs.kernel.org/kbuild/kbuild.html
+	export KCFLAGS="$CFLAGS"
+	export KCPPFLAGS="$CXXFLAGS"
 	
 	make
 	make INSTALL_MOD_PATH=$PKG modules_install
-
-	cbuild_save "$SRC/${name%-*}-${version%.0}-rc$release/.config"
 
 	mkdir -p $PKG/boot
 	cp -iv arch/x86/boot/bzImage $PKG/boot/vmlinuz-$name
@@ -78,7 +69,8 @@ pkg_build() {
 	done
 
 	kernver=${version}-rc${release}-$name
-	rm -f $PKG/lib/modules/$kernver/build
+	rm -f $PKG/lib/modules/$kernver/build \
+	      $PKG/lib/modules/$kernver/source
 	mv $SRC/${name%-*}-${version%.0}-rc$release $PKG/lib/modules/$kernver/build
 	ln -sv build $PKG/lib/modules/$kernver/source
 
