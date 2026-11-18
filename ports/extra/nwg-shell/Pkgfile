@@ -1,4 +1,4 @@
-# Depends: azote foot gopsuinfo gnome-themes-extra grim imagemagick jq l3afpad libappindicator network-manager-applet nwg-displays nwg-dock nwg-drawer nwg-look nwg-menu nwg-panel nwg-shell-config nwg-shell-wallpapers papirus-icon-theme polkit-gnome swappy sway swayidle swaylock swaync ttf-dejavu wlsunset xdg-user-dirs xdg-utils xwayland wl-clipboard
+# Depends: azote foot gopsuinfo gnome-themes-extra grim imagemagick jq l3afpad libappindicator network-manager-applet nwg-displays nwg-dock nwg-drawer nwg-look nwg-menu nwg-panel nwg-shell-config nwg-shell-wallpapers papirus-icon-theme polkit-gnome swappy sway swayidle swaylock swaync ttf-dejavu wlsunset xdg-user-dirs xdg-utils xwayland wl-clipboard python3-gpep517 python3-installer python3-setuptools
 description="nwg-shell meta-package"
 homepage="https://github.com/nwg-piotr/nwg-shell"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -10,7 +10,8 @@ release=1
 source="$name-$version.tar.gz::https://github.com/nwg-piotr/nwg-shell/archive/refs/tags/v$version.tar.gz"
 
 pkg_build() {
-	python3 setup.py install --root=$PKG --optimize=1
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 	install -D -t $PKG/usr/bin scripts/*
 	install -D -t $PKG/usr/share/backgrounds nwg-shell.jpg
 }

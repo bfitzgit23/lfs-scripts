@@ -1,4 +1,4 @@
-# Depends: python3
+# Depends: python3 python3-gpep517 python3-installer python3-setuptools
 description="C-Extensions for Python3"
 homepage="https://cython.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -10,6 +10,6 @@ source="$name-$version.tar.gz::https://github.com/cython/cython/archive/$version
 
 pkg_build() {
 	cd cython-$version
-	python3 setup.py build
-	python3 setup.py install --root=$PKG --optimize=1
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 }

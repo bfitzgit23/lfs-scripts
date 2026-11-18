@@ -1,4 +1,4 @@
-# Depends: python3-setuptools
+# Depends: python3-setuptools python3-gpep517 python3-installer
 description="Description: A library implementing the 'SemVer' scheme"
 homepage="https://github.com/rbarrois/python-semanticversion"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -10,6 +10,6 @@ source="$name-$version.tar.gz::https://github.com/rbarrois/python-semanticversio
 
 pkg_build() {
 	cd python-semanticversion-$version
-	python3 setup.py build
-	python3 setup.py install --prefix=/usr --root=$PKG --optimize=1 --skip-build
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 }

@@ -1,4 +1,4 @@
-# Depends: python3-setuptools
+# Depends: python3-setuptools python3-gpep517 python3-installer
 description="A YouTube/Youku/Niconico video downloader written in Python 3"
 homepage="https://github.com/soimort/you-get"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -9,6 +9,6 @@ release=1
 source="https://github.com/soimort/you-get/archive/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	python3 setup.py build
-	python3 setup.py install --root="$PKG" --optimize=1 --skip-build
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 }

@@ -1,4 +1,4 @@
-# Depends: python3-setuptools
+# Depends: python3-setuptools python3-gpep517 python3-installer
 description="Portable command line archive file manager"
 homepage="https://wummel.github.io/patool/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -9,10 +9,8 @@ release=1
 source="https://github.com/wummel/$name/releases/download/$version/$name-$version.tar.gz"
 pkg_build() {
 	cd patool-$version
-	/usr/bin/python3 setup.py build
-	/usr/bin/python3 setup.py install \
-		--prefix=/usr \
-		--root=$PKG
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 
 	chmod -R go-w,a+r,u+w $PKG
 }

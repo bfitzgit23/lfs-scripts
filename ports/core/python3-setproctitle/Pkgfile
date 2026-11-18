@@ -1,4 +1,4 @@
-# Depends: python3 procps-ng
+# Depends: python3 procps-ng python3-gpep517 python3-installer python3-setuptools
 description="Allows a python process to change its process title "
 homepage="https://github.com/dvarrazzo/py-setproctitle"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -10,6 +10,6 @@ source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/s/
 
 pkg_build() {
 	cd setproctitle-$version
-	python3 setup.py build
-	python3 setup.py install --skip-build -O1 --root="$PKG"
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 }

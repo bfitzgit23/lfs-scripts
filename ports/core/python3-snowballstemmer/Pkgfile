@@ -1,4 +1,4 @@
-# Depends: python3-setuptools
+# Depends: python3-setuptools python3-gpep517 python3-installer
 description="Snowball stemming library collection for Python."
 homepage="https://github.com/shibukawa/snowball_py/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -11,6 +11,6 @@ source="$name-$version.tar.gz::https://pypi.org/packages/source/S/Snowballstemme
 pkg_build() {
 	cd ${name#*-}-$version
 
-	/usr/bin/python3 setup.py build
-	/usr/bin/python3 setup.py install --prefix=/usr --root=$PKG --optimize=1 --skip-build
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 }

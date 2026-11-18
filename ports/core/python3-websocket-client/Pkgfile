@@ -1,4 +1,4 @@
-# Depends: python3-six python3-setuptools
+# Depends: python3-six python3-setuptools python3-gpep517 python3-installer
 description="WebSocket client library for Python"
 homepage="https://github.com/websocket-client/websocket-client"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -13,6 +13,6 @@ pkg_build() {
 
 	sed -i "s/'backports.ssl_match_hostname'//" setup.py
 	
-	python3 setup.py build
-	python3 setup.py install --root=$PKG --optimize=1 --skip-build
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 }

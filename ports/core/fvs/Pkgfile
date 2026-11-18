@@ -1,4 +1,4 @@
-# Depends: python3-orjson
+# Depends: python3-orjson python3-gpep517 python3-installer python3-setuptools
 description="file versioning system with hash comparison, deduplication and data storage to create unlinked states that can be deleted"
 homepage="https://github.com/mirkobrombin/FVS"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -9,10 +9,8 @@ release=1
 source="https://github.com/mirkobrombin/FVS/archive/refs/tags/$version.tar.gz"
 pkg_build() {
 	cd "FVS-$version" 
-	/usr/bin/python3 setup.py build
-	/usr/bin/python3 setup.py install \
-		--prefix=/usr \
-		--root=$PKG
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 
 	chmod -R go-w,a+r,u+w $PKG
 }

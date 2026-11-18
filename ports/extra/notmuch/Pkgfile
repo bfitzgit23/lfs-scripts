@@ -1,4 +1,4 @@
-# Depends: gmime3 talloc xapian-core gnupg python3-cffi
+# Depends: gmime3 talloc xapian-core gnupg python3-cffi python3-gpep517 python3-installer python3-setuptools
 description="A fast, global-search and tag-based email system"
 homepage="https://notmuchmail.org"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -19,8 +19,8 @@ pkg_build() {
 	make DESTDIR=$PKG LIBDIR_IN_LDCONFIG=0 WITH_EMACS=0 install
 
 	cd bindings/python-cffi
-	/usr/bin/python3 setup.py build
-	/usr/bin/python3 setup.py install --root=$PKG --optimize=1 --skip-build
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 	cd -
 
 	make -C vim DESTDIR=$PKG prefix=/usr/share/vim install

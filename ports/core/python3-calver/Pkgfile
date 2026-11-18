@@ -1,4 +1,4 @@
-# Depends: python3-setuptools
+# Depends: python3-setuptools python3-gpep517 python3-installer
 description="Setuptools extension for CalVer package versions"
 homepage="https://github.com/di/calver"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -11,8 +11,6 @@ source="https://pypi.org/packages/source/c/calver/calver-$version.tar.gz"
 pkg_build() {
   cd calver-$version
 
-  /usr/bin/python3 setup.py build
-  /usr/bin/python3 setup.py install --prefix=/usr \
-    --root=$PKG \
-    --skip-build
+  gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+  python3 -m installer -d $PKG .dist/*.whl
 }

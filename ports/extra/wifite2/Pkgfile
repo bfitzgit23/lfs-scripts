@@ -1,4 +1,4 @@
-# Depends: python3-setuptools aircrack-ng iproute2 iw
+# Depends: python3-setuptools aircrack-ng iproute2 iw python3-gpep517 python3-installer
 description="Tool to attack multiple WEP and WPA encrypted networks at the same time"
 homepage="https://github.com/kimocoder/wifite2"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -11,6 +11,6 @@ source="https://github.com/kimocoder/$name/archive/$version/$name-$version.tar.g
 
 pkg_build() {
   sed 's|sbin|bin|g' -i setup.cfg
-  python3 setup.py build
-  python3 setup.py install --root=$PKG -O1 --skip-build
+  gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+  python3 -m installer -d $PKG .dist/*.whl
 }

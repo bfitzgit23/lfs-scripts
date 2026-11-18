@@ -24,7 +24,7 @@ detect_buildtype() {
 		build_type=configure_build
 	elif [ -f CMakeLists.txt ]; then
 		build_type=cmake_build
-	elif [ -f setup.py ]; then
+	elif [ -f setup.py ] || [ -f pyproject.toml ]; then
 		build_type=python3_build
 	elif [ -f Makefile.PL ]; then
 		build_type=perlmodule_build
@@ -79,8 +79,8 @@ _cmake_build() {
 }
 
 _python3_build() {
-	python3 setup.py build || return $?
-	python3 setup.py install --prefix=/usr --root=$PKG --optimize=1 --skip-build || return $?
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2 || return $?
+	python3 -m installer -d $PKG .dist/*.whl || return $?
 }
 
 _configure_build() {

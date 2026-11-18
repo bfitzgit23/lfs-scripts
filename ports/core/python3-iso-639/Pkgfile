@@ -1,4 +1,4 @@
-# Depends: python3-setuptools
+# Depends: python3-setuptools python3-gpep517 python3-installer
 description="Python library for ISO 639 standard"
 homepage="https://github.com/noumar/iso639"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -12,6 +12,6 @@ source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/$_
 
 pkg_build() {
 	cd ${name#*-}-$version
-	python3 setup.py build
-	python3 setup.py install --root=$PKG --optimize=1 --skip-build
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 }

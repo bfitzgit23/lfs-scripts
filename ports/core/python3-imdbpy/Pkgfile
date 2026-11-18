@@ -1,4 +1,4 @@
-# Depends: python3-lxml python3-setuptools python3-sqlalchemy python3-greenlet
+# Depends: python3-lxml python3-setuptools python3-sqlalchemy python3-greenlet python3-gpep517 python3-installer
 description="Python bindings for the Internet Movie Database (IMDb) "
 homepage="https://imdbpy.sourceforge.io/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -10,7 +10,7 @@ source="$name-$version.tar.gz::https://github.com/cinemagoer/cinemagoer/archive/
 
 pkg_build() {
 	cd cinemagoer-$version
-	python3 setup.py build
-	python3 setup.py install --skip-build --optimize=1 --root="${PKG}"
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 	
 }

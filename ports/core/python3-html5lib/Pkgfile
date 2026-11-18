@@ -1,4 +1,4 @@
-# Depends: python3-setuptools python3-packaging python3-webencodings
+# Depends: python3-setuptools python3-packaging python3-webencodings python3-gpep517 python3-installer
 description="A Python HTML parser/tokenizer based on the WHATWG HTML5 spec."
 homepage="https://github.com/html5lib/html5lib-python"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -18,8 +18,7 @@ pkg_build() {
 	# Fix build with setuptools
 	patch -Np1 -i $SRC/setuptools.patch
 
-	/usr/bin/python3 setup.py build
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 
-	/usr/bin/python3 setup.py install \
-		--prefix=/usr --root=$PKG --optimize=1 --skip-build
+	python3 -m installer -d $PKG .dist/*.whl
 }

@@ -1,4 +1,4 @@
-# Depends: dbus python3-setuptools python3-gobject3
+# Depends: dbus python3-setuptools python3-gobject3 python3-gpep517 python3-installer
 description="DBus library in Python 3"
 homepage="https://github.com/rhinstaller/dasbus"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -10,6 +10,6 @@ source="dasbus-$version.tar.gz::https://github.com/rhinstaller/dasbus/archive/v$
 
 pkg_build() {
 	cd dasbus-$version
-	python3 setup.py build
-	python3 setup.py install --root=$PKG --optimize=1 --skip-build
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 }

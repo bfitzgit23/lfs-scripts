@@ -1,4 +1,4 @@
-# Depends: python3-setuptools
+# Depends: python3-setuptools python3-gpep517 python3-installer
 description="Pure python module for (de)serialization to and from VDF that works just like json"
 homepage="https://github.com/ValvePython/vdf"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -10,7 +10,7 @@ source="$name-$version.tar.gz::https://pypi.python.org/packages/source/v/vdf/vdf
 
 pkg_build() {
 	cd vdf-$version
-	python3 setup.py build
-	python3 setup.py install -O2 --root=$PKG --skip-build
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 	chmod 644 $PKG/usr/lib/python3.*/site-packages/vdf-$version-*/*
 }

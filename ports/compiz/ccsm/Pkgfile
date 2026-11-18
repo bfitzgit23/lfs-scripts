@@ -1,3 +1,5 @@
+# Depends: python3-gpep517 python3-installer python3-setuptools
+
 # description	: CompizConfig graphical Settings Manager (GTK3/Python3)
 # homepage	: https://gitlab.com/compiz/ccsm
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
@@ -13,6 +15,6 @@ pkg_build() {
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1
 	cd "$_bfs_src" || return 1
-    python3 setup.py build || return 1
-    python3 setup.py install --root="$PKG" --prefix=/usr --optimize=1 || return 1
+    gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+    python3 -m installer -d $PKG .dist/*.whl
 }

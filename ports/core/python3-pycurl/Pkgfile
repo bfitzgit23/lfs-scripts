@@ -1,4 +1,4 @@
-# Depends: curl
+# Depends: curl python3-gpep517 python3-installer python3-setuptools
 description="A Python 3.x interface to libcurl"
 homepage="http://pycurl.sourceforge.net/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -11,7 +11,8 @@ source="$name-$version.tar.gz::https://github.com/pycurl/pycurl/archive/REL_${_v
 
 pkg_build() {
 	cd pycurl-REL_${_ver}
-	CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" \
-	python3 setup.py --with-openssl install --root=$PKG --skip-build
+	export PYCURL_SSL_LIBRARY=openssl
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 	rm -rf $PKG/usr/share/doc
 }

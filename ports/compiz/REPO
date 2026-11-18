@@ -10,7 +10,7 @@ d:emerald-decorator
 d:emerald-themes
 d:fusion-icon
 d:libcompizconfig
-f:1356851985fda30d86be01e5dac125ea:ccsm/Pkgfile
+f:935ad9c09625f567da62d58444a16dac:ccsm/Pkgfile
 f:c54e9ca97594dc7413c6b5d241d739ea:compiz-bcop/Pkgfile
 f:309f5486e0c60347cd00c6e6fa7bd8db:compiz-meta/Pkgfile
 f:375f099685be7384b7606cec7cfd152c:compiz-plugins-experimental/Pkgfile
@@ -20,5 +20,5 @@ f:299524c0ca138a8be0813f6c9287c55c:compiz/Pkgfile
 f:efc795244d1c1c806729d219389a97c4:compizconfig-python/Pkgfile
 f:8c36aa4308a943dda2574568f0fa7011:emerald-decorator/Pkgfile
 f:4a0bba1fe57cf4eac2b0b85fa9c9a6c7:emerald-themes/Pkgfile
-f:063281e88c61e1f40d09114119330c50:fusion-icon/Pkgfile
+f:37f3d4910f44dc5298b90d7ffa8410bd:fusion-icon/Pkgfile
 f:649919170c280bb61d62af23adcc022e:libcompizconfig/Pkgfile

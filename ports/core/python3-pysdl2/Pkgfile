@@ -1,4 +1,4 @@
-# Depends: sdl2-compat python3-setuptools
+# Depends: sdl2-compat python3-setuptools python3-gpep517 python3-installer
 description="Python ctypes wrapper around SDL2"
 homepage="https://github.com/py-sdl/py-sdl2"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -11,6 +11,6 @@ source="$name-$version.tar.gz::https://github.com/py-sdl/py-sdl2/archive/refs/ta
 pkg_build() {
 	cd py-sdl2-$version
 
-	python3 setup.py build
-	python3 setup.py install --root=$PKG --optimize=1 --skip-build
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 }

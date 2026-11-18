@@ -1,4 +1,4 @@
-# Depends: python3-setuptools
+# Depends: python3-setuptools python3-gpep517 python3-installer
 description="Python bindings for the Linux input subsystem "
 homepage="https://github.com/gvalkov/python-evdev"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -10,6 +10,6 @@ source="$name-$version.zip::https://github.com/gvalkov/python-evdev/archive/refs
 
 pkg_build() {
   cd python-evdev-$version
-  python3 setup.py build
-  python3 setup.py install --root="$PKG" --optimize=1 --skip-build
+  gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+  python3 -m installer -d $PKG .dist/*.whl
 }

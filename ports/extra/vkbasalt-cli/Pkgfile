@@ -1,4 +1,4 @@
-# Depends: python3-setuptools
+# Depends: python3-setuptools python3-gpep517 python3-installer
 description="Command-line utility for vkBasalt"
 homepage="https://gitlab.com/TheEvilSkeleton/vkbasalt-cli"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -11,6 +11,6 @@ source="https://gitlab.com/TheEvilSkeleton/vkbasalt-cli/-/archive/v$version/$nam
 
 pkg_build() {
 	cd $name-v$version
-	python3 setup.py build
-	python3 setup.py install --skip-build --optimize=1 --prefix=/usr --root=$PKG
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
  }

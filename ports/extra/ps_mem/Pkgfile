@@ -1,4 +1,4 @@
-# Depends: python3
+# Depends: python3 python3-gpep517 python3-installer python3-setuptools
 description="A utility to accurately report the in core memory usage for a program"
 homepage="https://github.com/pixelb/ps_mem"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -9,5 +9,6 @@ release=1
 source="$name-$version.tar.gz::https://github.com/pixelb/$name/archive/v$version/$name-v$version.tar.gz"
 
 pkg_build() {
-	python3 setup.py install --optimize=1 --root=$PKG
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG .dist/*.whl
 }

@@ -1,4 +1,4 @@
-# Depends: python3-six python3-psutil python3-setuptools
+# Depends: python3-six python3-psutil python3-setuptools python3-gpep517 python3-installer
 description="Command line interface to the freedesktop.org trashcan."
 homepage="https://github.com/andreafrancia/trash-cli"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -13,14 +13,14 @@ pkg_build() {
 	find tests -type f -name "*.py" -exec \
         sed -i 's/^import mock$/from unittest import mock/;s/from mock /from unittest.mock /;s/from mock.mock /from unittest.mock /' {} +
 
-	python3 setup.py build
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	    for cmd in trash-empty trash-list trash-restore trash-put trash; do
 		sed -i 's|python|python3|' $cmd
 		./$cmd --print-completion bash > ./$cmd-completion
 		./$cmd --print-completion zsh > ./_$cmd-completion
 	    done
 
-	python3 setup.py install --root=$PKG --optimize=1 --skip-build
+	python3 -m installer -d $PKG .dist/*.whl
 
 	    for cmd in trash-empty trash-list trash-restore trash-put trash; do
 		install -vDm 644 ./$cmd-completion $PKG/usr/share/bash-completion/completions/$cmd
