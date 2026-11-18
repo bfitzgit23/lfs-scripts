@@ -15,7 +15,7 @@ SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
 OUT="$ROOT/ports/scratch"
 CLONE_DIR=${VENOM_SRC:-/tmp/venom}
-TREES=${*:-"core extra nonfree multilib kde-lxqt mate xfce"}
+TREES=${*:-"core extra nonfree multilib kde-lxqt mate xfce s6 s6-services"}
 
 export CLONE_DIR OUT
 

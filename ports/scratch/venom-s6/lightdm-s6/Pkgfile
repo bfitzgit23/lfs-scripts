@@ -1,0 +1,19 @@
+# Depends: lightdm s6-scripts
+description="s6-rc service scripts for lightdm"
+homepage="https://codeberg.org/venomlinux/s6-services"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=lightdm-s6
+version=20260326
+release=1
+commit=2b193364ce70f46b0ec2b753aefd058e6d0618e5
+backup="etc/s6/config/${name%-s6}.conf"
+source="s6-services-$version-$commit.tar.gz::https://codeberg.org/venomlinux/s6-services/archive/$commit.tar.gz"
+
+build () {
+    cd s6-services
+    sh install.sh "${name%-*}" "${PKG}"
+    rm -f $PKG/etc/s6/sv/lightdm-srv/dependencies.d/logind
+    rm -f $PKG/etc/s6/sv/lightdm-srv/dependencies.d/tmpfiles-setup
+}
+

@@ -1,0 +1,52 @@
+# Depends: s6-scripts
+description="A tool to automate the creation of suitable stage 1 init binaries for s6-based Linux systems."
+homepage="https://skarnet.org/software/s6-linux-init/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=s6-linux-init
+version=1.2.0.1
+release=1
+backup="etc/s6/current/scripts/rc.init
+        etc/s6/current/scripts/rc.shutdown
+        etc/s6/current/scripts/rc.shutdown.final
+        etc/s6/current/scripts/runlevel"
+source="$name-$version.tar.gz::https://git.sr.ht/~skarnet/s6-linux-init/archive/v$version.tar.gz
+	rc.init
+	rc.shutdown
+	rc.shutdown.final
+	runlevel"
+
+build() {
+	cd $name-v$version
+	./configure \
+		--bindir=/bin \
+		--prefix=/usr \
+		--libdir=/usr/lib \
+		--libexecdir=/usr/lib \
+		--enable-shared \
+		--disable-static \
+		--disable-allstatic \
+		--disable-static-libc \
+		--skeldir=/etc/s6/skel
+	make
+	make DESTDIR=$PKG install
+
+	# install scripts
+	for i in rc.init runlevel rc.shutdown rc.shutdown.final ; do
+		cp -f "$SRC/$i" "$PKG/etc/s6/skel/"
+		chmod 0755 "$PKG/etc/s6/skel/$i"
+	done
+
+	# exec s6-linux-init-maker
+	./s6-linux-init-maker -1 \
+		-f $PKG/etc/s6/skel \
+		-G "/sbin/agetty -L -8 tty12 115200" \
+		-p "/usr/bin:/usr/sbin:/bin:/sbin" \
+		-c /etc/s6/current $PKG/etc/s6/current
+
+	mkdir -p -m 0755 $PKG/sbin $PKG/etc/s6/rc
+
+	for b in init halt poweroff reboot shutdown telinit ; do
+		ln -sf /etc/s6/current/bin/$b $PKG/sbin/$b
+	done
+}
