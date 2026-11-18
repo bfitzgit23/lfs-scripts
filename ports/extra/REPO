@@ -1497,9 +1497,8 @@ f:ab4b4aea12c64dd5fb0c1d71df5ae67b:gnutls/Pkgfile
 f:dc7e9503f0eced85a27aba5f6024dd2a:gnutls/update
 f:cd13f343ffcc4feffde106ad9b248427:go-md2man/Pkgfile
 f:3dda21abc8ff97a9c21a85e97a89991c:go-mtpfs/Pkgfile
-f:9abfc08d57a13ea320b216991d147434:gobject-introspection/.footprint
-f:f432c292d783dfc16cf62f5d24a96e88:gobject-introspection/.md5sum
-f:3415b945c66d6133f9dd7bbb758027b8:gobject-introspection/Pkgfile
+f:412ceb9c4cda9e5713450524b08fe97d:gobject-introspection/.md5sum
+f:227e848a432f84a605d4a05eedcdd218:gobject-introspection/Pkgfile
 f:11d3bf5218d8f7cfb91c02a0c93f45f0:goffice/Pkgfile
 f:5732b2ab3bf7a036e28755ddcd321e2f:gomuks/Pkgfile
 f:7b1cafe9836a77a12193ddf9613d1177:google-chrome/.footprint
