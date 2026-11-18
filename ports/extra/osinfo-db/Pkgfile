@@ -4,9 +4,11 @@ homepage="https://libosinfo.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=osinfo-db
-version=20251212
+version=20260812
 release=1
-source="https://releases.pagure.org/libosinfo/$name-$version.tar.xz"
+# releases.pagure.org stopped serving libosinfo files; the release tarballs now
+# hang off the GitLab release of the same date.
+source="https://gitlab.com/libosinfo/$name/-/releases/v$version/downloads/$name-$version.tar.xz"
 noextract="$name-$version.tar.xz"
 
 pkg_build() {

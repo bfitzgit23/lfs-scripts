@@ -1,4 +1,4 @@
-# Depends: xfce4-panel
+# Depends: xfce4-panel xfce4-dev-tools
 description="Shows the date and time in the xfce4 panel"
 homepage="https://xfce.org"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -6,10 +6,13 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=xfce4-datetime-plugin
 version=0.8.3
 release=1
-source="http://archive.xfce.org/src/panel-plugins/xfce4-datetime-plugin/${version%.*}/xfce4-datetime-plugin-$version.tar.bz2"
+# 0.8.3 never reached archive.xfce.org, so build from the tagged source; its
+# autogen.sh runs xdt-autogen, which turns configure.ac.in into configure.
+source="https://gitlab.xfce.org/panel-plugins/$name/-/archive/$name-$version/$name-$name-$version.tar.gz"
 
 pkg_build() {
-	./configure \
+	cd $name-$name-$version
+	./autogen.sh \
 		--prefix=/usr \
 		--sysconfdir=/etc \
 		--libexecdir=/usr/lib \

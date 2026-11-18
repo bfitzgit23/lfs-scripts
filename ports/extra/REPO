@@ -2139,7 +2139,8 @@ f:69d0fb0c75871402603049607a8ba15d:lzo/.footprint
 f:b68c0c29ed0e4b0c91830b92e386c7c6:lzo/.md5sum
 f:957dc6892425d187d5f72ee9cd1f5b2f:lzo/Pkgfile
 f:9bd39c256ab1026813885dfe4237091c:macchina/Pkgfile
-f:d4169935585e206e69f6b55b030d19bb:mailcap/Pkgfile
+f:59efbe302300ca1241d8956ff95fd2e8:mailcap/.md5sum
+f:eec1b3f3c523ae031b36d7c384b6f802:mailcap/Pkgfile
 f:5c291419a1fb72511bf772b3613b26fd:mangohud/Pkgfile
 f:178bada2eeabd493e46e03ff4ad1656a:mangowc/Pkgfile
 f:ece8c4bca127786c1740384f5aee0e32:mariadb/Pkgfile
@@ -2366,7 +2367,8 @@ f:4bb8de9891706a735f2b2bf8765f4776:os-prober/os-prober-1.79-fix-busy-umount-mess
 f:6fb1dbf483d66c808485daa4023cf1f3:os-prober/os-prober-1.79-mounted-boot-partition-fix.patch
 f:0d9f36a23bd8a834f552409ff850a45f:os-prober/os-prober-1.79-use-fstab-name.patch
 f:ccd94ba4ee56aef694d3491962c27055:osinfo-db-tools/Pkgfile
-f:00ad8553fa04b5a30e2de99b8d1f276e:osinfo-db/Pkgfile
+f:76653ea70489ea67fca488a223733c6f:osinfo-db/.md5sum
+f:e66d27b60c407f991e9665edb4ca1ccb:osinfo-db/Pkgfile
 f:df2982d1f404c9b862a82ce17bbc076d:osx-arc-theme/Pkgfile
 f:b08acf9c0868c3efe70521afebf6125a:outils/Pkgfile
 f:6ecbad2ebbaf82e671b163978333cba4:ovmf/Pkgfile
