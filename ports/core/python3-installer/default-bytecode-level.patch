@@ -1,0 +1,13 @@
+Optimize bytecode for level 1 by default, matching the tree's long-standing
+`--optimize=1` bytecode policy now that setup.py install is gone.
+--- a/installer/__main__.py
++++ b/installer/__main__.py
+@@ -94,7 +94,7 @@
+     if args.no_compile_bytecode:
+         bytecode_levels = []
+     elif not bytecode_levels:
+-        bytecode_levels = [0, 1]
++        bytecode_levels = [1]
+ 
+     for wheel in args.wheel:
+         with WheelFile.open(wheel) as source:

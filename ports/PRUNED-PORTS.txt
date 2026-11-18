@@ -2121,3 +2121,12 @@ this pass:
 
 NOTE: paths in this file are relative to the tree they were removed from;
 the former ports/scratch/<category> trees are now ports/<category>.
+
+# Retired with the Python 3.14 move off distutils
+
+- ports/core/python3-distutils-extra - it extends distutils, which Python 3.14
+  no longer ships, so it cannot build or be used any more.
+- ports/extra/lightdm-gtk-greeter-settings - setup.py requires DistUtilsExtra.auto
+  and a custom --xfce-integration install command; nothing to build it with.
+- ports/extra/oblogout-py3 - setup.py imports DistUtilsExtra.command on top of
+  distutils.core. Needs a setuptools port on data_files to come back.

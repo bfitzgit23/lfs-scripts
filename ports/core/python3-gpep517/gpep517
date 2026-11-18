@@ -1,0 +1,4 @@
+#!/bin/sh
+# gpep517 is installed as a plain package by this port, so provide the
+# console script that upstream's entry point would have generated.
+exec python3 -m gpep517 "$@"

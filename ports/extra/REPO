@@ -422,7 +422,6 @@ d:libxvmc
 d:libxxf86dga
 d:libxxf86vm
 d:libzen
-d:lightdm-gtk-greeter-settings
 d:limine
 d:links
 d:linux
@@ -555,7 +554,6 @@ d:nwg-shell-config
 d:nwg-shell-wallpapers
 d:nyxt
 d:obconf
-d:oblogout-py3
 d:obmenu-generator
 d:obs-studio
 d:ohsnap
@@ -2045,7 +2043,6 @@ f:2db1a9d97492bfb2c1939ee3cf39bf15:libxxf86vm/Pkgfile
 f:86757f492de8702b77313c78be4d194c:libzen/.footprint
 f:a82b420d0137be265f3446fe154e6c45:libzen/.md5sum
 f:80ad1fb4e4b2544c7434d4eae060ee20:libzen/Pkgfile
-f:c0b2b0a0a0fed351c96d8f0905bdcfad:lightdm-gtk-greeter-settings/Pkgfile
 f:460978f7c6a7889f154fe523420f5457:limine/Pkgfile
 f:e650c9c5de5086cc808bfcabd3c9c390:links/.footprint
 f:069b564f600f31293105b429642b018c:links/.md5sum
@@ -2316,7 +2313,6 @@ f:038d9f366e580e8dd126e9d22cb06f23:obconf/.footprint
 f:c38d1904ac2dbe6754d84e8c43e5cb15:obconf/.md5sum
 f:f0dab6030b2bf0e57db3a03cc0c3d768:obconf/Pkgfile
 f:24f4ae217d6a50883bc0181d5ae38bc5:obconf/post-install
-f:99505adb083279f7e588ddc4594e7b3d:oblogout-py3/Pkgfile
 f:9985074813fb5acafdd38f659d43489f:obmenu-generator/.footprint
 f:efeedca83d3ed4b06ddb08ad078ae816:obmenu-generator/.md5sum
 f:cd25d1f51c17140cf274f50e540dadaf:obmenu-generator/Pkgfile

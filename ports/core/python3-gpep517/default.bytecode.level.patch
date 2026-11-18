@@ -1,0 +1,13 @@
+Optimize bytecode for level 1 by default, matching the tree's long-standing
+`--optimize=1` bytecode policy now that setup.py install is gone.
+--- a/gpep517/__main__.py
++++ b/gpep517/__main__.py
+@@ -149,7 +149,7 @@
+                        f"(default: {sys.executable})")
+     group.add_argument("--optimize",
+                        type=parse_optimize_arg,
+-                       default=[],
++                       default=[1],
+                        help="Comma-separated list of optimization levels "
+                        "to compile bytecode for (default: none), pass 'all' "
+                        "to enable all known optimization levels (currently: "

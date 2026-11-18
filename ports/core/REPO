@@ -412,7 +412,6 @@ d:python3-dasbus
 d:python3-dbus
 d:python3-distlib
 d:python3-distro
-d:python3-distutils-extra
 d:python3-docopt
 d:python3-docutils
 d:python3-doxypypy
@@ -1334,7 +1333,6 @@ f:26f739f8ac8bd405619742a86ea3cd82:python3-dasbus/Pkgfile
 f:20cdb3cae2c50af4eea1cd4a245e276c:python3-dbus/Pkgfile
 f:ee78f13a73b0dc94927b1e37df871952:python3-distlib/Pkgfile
 f:37e8bc88e406efd5b247ed34f9a8870d:python3-distro/Pkgfile
-f:aadadc5d110282a2e97cb7a065c9f243:python3-distutils-extra/Pkgfile
 f:e36e4a90a30a0fb191d53b4223314a01:python3-docopt/Pkgfile
 f:1bbc0190946e26346faade5e7b3c96f8:python3-docutils/Pkgfile
 f:6eaa61cef6616417ac52dab41a1e0a85:python3-doxypypy/Pkgfile
@@ -1349,6 +1347,8 @@ f:46b0b60266891933c9af839a9087e6d9:python3-gi_docgen/Pkgfile
 f:4b5f9360fa17ba10d4b9bdd3eddbf380:python3-gobject/Pkgfile
 f:a4e700834e75daefac75d2fcb87165b9:python3-gobject3/Pkgfile
 f:0e45d7cecb8326c40a64eea5859ec62f:python3-gpep517/Pkgfile
+f:403365091666c21e04a5ecd1e5c9a2d9:python3-gpep517/default.bytecode.level.patch
+f:15a61092702e706d306428263a443ec3:python3-gpep517/gpep517
 f:91ba0c933b07cc3920a4fcd3a7f45511:python3-greenlet/Pkgfile
 f:5e3bd38205c1db50dc206cca8668439d:python3-hatch-fancy-pypi-readme/Pkgfile
 f:455647d69545de7aab5634aa4ec0bb0a:python3-hatch-vcs/Pkgfile
@@ -1361,6 +1361,7 @@ f:ce5f79abaa9720e59ea7a91397b5c191:python3-imdbpy/Pkgfile
 f:8c3297b985009ac16d0c38cad000c088:python3-importlib_metadata/Pkgfile
 f:145992e814684e270c23e86a3909c143:python3-inputs/Pkgfile
 f:1cf87d425d85b9ea198b5905d168e82e:python3-installer/Pkgfile
+f:c49ee688614b06f9b02f304fb5653528:python3-installer/default-bytecode-level.patch
 f:5080c5f424c45bc03c83d75cb3d65ff6:python3-iso-639/Pkgfile
 f:60bf25776b66ce9f69b627a513a11aad:python3-iso3166/Pkgfile
 f:b01e0cddf12e763d3a57a815cdc7ef4a:python3-isodate/Pkgfile
