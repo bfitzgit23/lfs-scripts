@@ -412,6 +412,15 @@ URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/<tree>
 run `ports/repgen.sh <tree> ...` (a wrapper around `httpup-repgen`) and commit
 the regenerated `ports/<tree>/REPO` together with the change.
 
+The venomlinux collections travel the other way, over git:
+`/etc/ports/venom-<collection>.git` clones into `/usr/ports/venom-<collection>`
+with `/etc/ports/drivers/git`. Those trees only ship `spkgbuild` recipes, so the
+driver converts every `spkgbuild` to a `Pkgfile` after the update (`build()`
+becomes `pkg_build()`, the `cd $name-$version` goes away, a `depends` file
+becomes a `# Depends:` header) - prt-get only reads Pkgfiles. `etc/prt-get.conf`
+lists the venom trees after all local ones, so wherever both provide a name the
+local recipe still wins.
+
 ## prt-get configuration and duplicate pruning
 
 `etc/prt-get.conf` lists every port tree with a `prtdir` line, in search order:

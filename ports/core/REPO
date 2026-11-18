@@ -1218,12 +1218,12 @@ f:3514c920b6049fe0422519019f0e9aca:pkgutils/pkgadd.conf
 f:990894ccf4551f383ba066f941d65f28:pkgutils/pkgmk.conf
 f:339eac50477b5401a4a6ce7c70147acb:poppler-qt6/Pkgfile
 f:759c433eb8cbce0980494a78d2e94d4a:ports/.footprint
-f:14f8e1bd1b45ece99d9a34fd979c01a4:ports/.md5sum
-f:077d1b0e27445a8c74ae81e8149e54d2:ports/Pkgfile
+f:85f69526b3bdff2c4d1aacbc651baed5:ports/.md5sum
+f:59169cc356c376d70961fe965cfa2780:ports/Pkgfile
 f:aee3d35d98f3e0e8c41c7e65ff0518cf:ports/contrib.httpup
 f:0c9e9f75bf5e01409364cd5d585180b5:ports/core.httpup
 f:712ee73f93ca3d83bfc0ac1685672152:ports/extra.httpup
-f:7ce0fe1b89de21ad7f08c85509b5959e:ports/git-driver
+f:ea911d9d8474280360f1766d60adc9eb:ports/git-driver
 f:ed4743317a8045c61bf053bc38fa2865:ports/kde-lxqt.httpup
 f:8dc82a55484b32d3339b807b3674bbc4:ports/mate.httpup
 f:57750bd934d3c8fcd8af9fc00cd8c822:ports/multilib.httpup

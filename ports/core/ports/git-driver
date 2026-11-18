@@ -7,6 +7,13 @@
 # synchronisable. A config file sets URL and NAME, and may override BRANCH
 # (default master) and LOCAL_REPOSITORY (default $PORTS_DIR/$NAME).
 #
+# The venomlinux collections ship spkgbuild recipes, which prt-get cannot read,
+# so after the update every spkgbuild in the tree is converted in place to a
+# Pkgfile: the cd into $name-$version and the empty backup/noextract strings are
+# dropped, spkgbuild's build() becomes pkg_build() (in pkgutils build() is the
+# driver script, so a Pkgfile build() would never run), and a depends file
+# becomes a "# Depends:" header line. The spkgbuild itself is left untouched.
+#
 
 if [ $# -ne 1 ]; then
 	echo "usage: $0 <file>" >&2
@@ -34,5 +41,40 @@ else
 	mkdir -p "$(dirname "$LOCAL_REPOSITORY")"
 	git clone -q --depth 1 --branch "$BRANCH" "$URL" "$LOCAL_REPOSITORY" || exit 3
 fi
+
+CONVERTER=$(mktemp) || exit 4
+trap 'rm -f "$CONVERTER"' EXIT
+cat > "$CONVERTER" <<'AWK'
+FNR == 1 {
+	p = FILENAME
+	sub(/\/spkgbuild$/, "/Pkgfile", p)
+	cur = p
+	dep = FILENAME
+	sub(/\/spkgbuild$/, "/depends", dep)
+	hdr = ""
+	while ((getline dl < dep) > 0) {
+		sub(/\r/, "", dl)
+		if (dl != "") hdr = (hdr == "" ? dl : hdr " " dl)
+	}
+	close(dep)
+	if (hdr != "") print "# Depends: " hdr > cur
+}
+{
+	line = $0
+	sub(/\r$/, "", line)
+	if (line ~ /^[ \t]*cd[ \t]+"?\$name-\$version"?[ \t]*;?[ \t]*$/) next
+	if (line ~ /^[ \t]*backup=""[ \t]*$/) next
+	if (line ~ /^[ \t]*noextract=""[ \t]*$/) next
+	if (line ~ /^[ \t]*build[ \t]*\(\)[ \t]*\{[ \t]*$/) {
+		print "pkg_build() {" > cur
+		next
+	}
+	print line > cur
+}
+END { if (cur != "") close(cur) }
+AWK
+
+find "$LOCAL_REPOSITORY" -name spkgbuild -print0 |
+	xargs -0 -r awk -f "$CONVERTER"
 
 # End of file.
