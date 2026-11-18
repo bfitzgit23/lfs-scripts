@@ -1454,10 +1454,9 @@ f:5f50d0bbc75d8599aabb36313d3788d9:glib-networking/.footprint
 f:320554eb3e5436070416c9c1ddfa461b:glib-networking/.md5sum
 f:c76aa2327dccf807c171b56a7ea983d6:glib-networking/Pkgfile
 f:825689b1b6eb09f031bd5324b8f3624c:glib-networking/post-install
-f:c6220f030a6004725aaf7b0a2414b1fb:glib/.footprint
-f:979c51ca9164779e68f103e1c58b4e1e:glib/.md5sum
+f:6284039c4848c1a080665940961624c7:glib/.md5sum
 f:81d3484a6698fb8d45d08f3c94b5a375:glib/0001-glib-compile-schemas-Remove-noisy-deprecation-warnin.patch
-f:729e919cfc9d428073259c5f12e8565f:glib/Pkgfile
+f:63b015da2fd3eeeeb0cfbc6b8416e3cb:glib/Pkgfile
 f:f53f65fac5b9812fec0ed306d6dff5af:glib/post-install
 f:dbe8863f8cf1685f0a696a005a32d517:glibmm/.footprint
 f:ccdfac13f524d4da8aa1ef8ddc0385af:glibmm/.md5sum

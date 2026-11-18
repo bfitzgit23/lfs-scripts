@@ -1,13 +1,15 @@
 # Depends on: pcre2 libxslt
 
 name=glib
-version=2.78.0
+version=2.90.1
 release=1
 source=(https://download.gnome.org/sources/$name/${version%.*}/$name-$version.tar.xz
 	0001-glib-compile-schemas-Remove-noisy-deprecation-warnin.patch)
+# glib 2.90 writes its man pages with rst2man: keep that optional so a build box
+# without python3-docutils still configures. gtk_doc is now called documentation.
 build_opt="
-	-Dman=true
-	-Dgtk_doc=false
+	-Dman-pages=auto
+	-Ddocumentation=false
 	-Dselinux=disabled
 	-Dtests=false
 "
