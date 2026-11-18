@@ -1,26 +1,25 @@
 name=ports
 version=1.6
-release=2
+release=3
 source=(https://crux.nu/files/tools/ports/$name-$version.tar.gz
 	repokey.pub
-	core.httpup
-	extra.httpup
-	multilib.httpup
-	contrib.httpup)
+	git-driver
+	venom-core.git
+	venom-community.git
+	venom-multilib.git
+	venom-nonfree.git
+	venom-mate.git
+	venom-kde-lxqt.git
+	venom-xfce.git
+	venom-s6.git)
 
 post_build() {
-	# pubkey
-	install -m 0644 $SRC/repokey.pub $PKG/etc/ports/core.pub
-	install -m 0644 $SRC/repokey.pub $PKG/etc/ports/extra.pub
-	install -m 0644 $SRC/repokey.pub $PKG/etc/ports/multilib.pub
+	# ports(8) picks a collection up by matching the driver name to the
+	# config suffix, so the git driver is what enables `ports -u` below.
+	install -D -m 0755 $SRC/git-driver $PKG/etc/ports/drivers/git
 
-	# httpup sync file
-	install -m 0644 $SRC/core.httpup $PKG/etc/ports/
-	install -m 0644 $SRC/extra.httpup $PKG/etc/ports/
-	install -m 0644 $SRC/multilib.httpup $PKG/etc/ports/
-	install -m 0644 $SRC/contrib.httpup $PKG/etc/ports/
-
-	# disable multilib & contrib by default
-	mv $PKG/etc/ports/multilib.httpup{,.inactive}
-	mv $PKG/etc/ports/contrib.httpup{,.inactive}
+	# venomlinux collections, synchronised with git
+	for collection in core community multilib nonfree mate kde-lxqt xfce s6; do
+		install -m 0644 $SRC/venom-$collection.git $PKG/etc/ports/
+	done
 }

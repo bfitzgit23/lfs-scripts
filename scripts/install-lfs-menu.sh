@@ -8376,7 +8376,6 @@ configure_venom_ports_repositories() {
 /usr/ports/venom-kde-lxqt https://codeberg.org/venomlinux/kde-lxqt.git main
 /usr/ports/venom-mate https://codeberg.org/venomlinux/mate.git main
 /usr/ports/venom-xfce https://codeberg.org/venomlinux/xfce.git main
-/usr/ports/venom-s6-services https://codeberg.org/venomlinux/s6-services.git main
 EOF_VENOM_PORTS
 
         # scratchpkg's portnews expects /usr/ports/main/NEWS, while LFS-SCRIPTS

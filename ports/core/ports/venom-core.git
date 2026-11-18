@@ -1,0 +1,8 @@
+#
+# /etc/ports/venom-core.git: Venom Linux core ports
+#
+URL=https://codeberg.org/venomlinux/core.git
+NAME=venom-core
+BRANCH=main
+
+# End of file

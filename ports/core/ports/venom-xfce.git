@@ -1,0 +1,8 @@
+#
+# /etc/ports/venom-xfce.git: Venom Linux XFCE ports
+#
+URL=https://codeberg.org/venomlinux/xfce.git
+NAME=venom-xfce
+BRANCH=main
+
+# End of file

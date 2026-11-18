@@ -1,0 +1,8 @@
+#
+# /etc/ports/venom-community.git: Venom Linux community ports
+#
+URL=https://codeberg.org/venomlinux/community.git
+NAME=venom-community
+BRANCH=main
+
+# End of file

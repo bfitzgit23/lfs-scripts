@@ -1,6 +1,11 @@
-aee3d35d98f3e0e8c41c7e65ff0518cf  contrib.httpup
-0c9e9f75bf5e01409364cd5d585180b5  core.httpup
-712ee73f93ca3d83bfc0ac1685672152  extra.httpup
-57750bd934d3c8fcd8af9fc00cd8c822  multilib.httpup
 902e3ddb9b4930975c7edb5c3c749c8c  ports-1.6.tar.gz
 0de7bd216b8233739cb7b96163837c03  repokey.pub
+7ce0fe1b89de21ad7f08c85509b5959e  git-driver
+40a268a8dd005468f8adf362a4a4a300  venom-community.git
+b7aa87217299d7be83e857f58fd6f241  venom-core.git
+0ca1c5227f8ef7ba3119b529b9ee9a45  venom-kde-lxqt.git
+15a8ace1ea171b48c72d480e8d6afa96  venom-mate.git
+f338cbb70088c62c137ad51f882369f1  venom-multilib.git
+da01598ab9520c330303d4ef11ac677f  venom-nonfree.git
+ba9d4f71db062926130a322cc4ab48a6  venom-s6.git
+029ec4ec2956605f74819a295c46695d  venom-xfce.git

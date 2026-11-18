@@ -1,0 +1,8 @@
+#
+# /etc/ports/venom-mate.git: Venom Linux MATE ports
+#
+URL=https://codeberg.org/venomlinux/mate.git
+NAME=venom-mate
+BRANCH=main
+
+# End of file

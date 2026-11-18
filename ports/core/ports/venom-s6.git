@@ -1,0 +1,8 @@
+#
+# /etc/ports/venom-s6.git: Venom Linux s6 ports
+#
+URL=https://codeberg.org/venomlinux/s6.git
+NAME=venom-s6
+BRANCH=main
+
+# End of file

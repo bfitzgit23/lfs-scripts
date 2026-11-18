@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# /etc/ports/drivers/git: git driver script for ports(8)
+#
+# ports(8) runs every executable /etc/ports/drivers/<suffix> against
+# /etc/ports/*.<suffix>, so this driver is what makes the .git collections
+# synchronisable. A config file sets URL and NAME, and may override BRANCH
+# (default master) and LOCAL_REPOSITORY (default $PORTS_DIR/$NAME).
+#
+
+if [ $# -ne 1 ]; then
+	echo "usage: $0 <file>" >&2
+	exit 1
+fi
+
+. $1
+
+if [ -z "$NAME" ]; then
+	echo "NAME not set in '$1'" >&2
+	exit 2
+fi
+if [ -z "$URL" ]; then
+	echo "URL not set in '$1'" >&2
+	exit 2
+fi
+
+BRANCH=${BRANCH:-master}
+LOCAL_REPOSITORY=${LOCAL_REPOSITORY:-$PORTS_DIR/$NAME}
+
+if [ -d "$LOCAL_REPOSITORY/.git" ]; then
+	git -C "$LOCAL_REPOSITORY" fetch -q --depth 1 origin "$BRANCH" || exit 3
+	git -C "$LOCAL_REPOSITORY" reset -q --hard FETCH_HEAD || exit 3
+else
+	mkdir -p "$(dirname "$LOCAL_REPOSITORY")"
+	git clone -q --depth 1 --branch "$BRANCH" "$URL" "$LOCAL_REPOSITORY" || exit 3
+fi
+
+# End of file.

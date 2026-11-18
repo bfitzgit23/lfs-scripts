@@ -1,0 +1,8 @@
+#
+# /etc/ports/venom-kde-lxqt.git: Venom Linux KDE/LXQt ports
+#
+URL=https://codeberg.org/venomlinux/kde-lxqt.git
+NAME=venom-kde-lxqt
+BRANCH=main
+
+# End of file

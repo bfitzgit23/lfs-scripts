@@ -1,0 +1,8 @@
+#
+# /etc/ports/venom-nonfree.git: Venom Linux non-free ports
+#
+URL=https://codeberg.org/venomlinux/nonfree.git
+NAME=venom-nonfree
+BRANCH=main
+
+# End of file

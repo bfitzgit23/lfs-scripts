@@ -1,0 +1,8 @@
+#
+# /etc/ports/venom-multilib.git: Venom Linux multilib ports
+#
+URL=https://codeberg.org/venomlinux/multilib.git
+NAME=venom-multilib
+BRANCH=main
+
+# End of file
