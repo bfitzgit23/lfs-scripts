@@ -1,0 +1,8 @@
+#
+# /etc/ports/xorg.httpup: xorg's port collection
+#
+
+ROOT_DIR=/usr/ports/xorg
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/xorg
+
+# End of file

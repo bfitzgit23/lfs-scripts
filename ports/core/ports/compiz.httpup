@@ -1,0 +1,8 @@
+#
+# /etc/ports/compiz.httpup: compiz's port collection
+#
+
+ROOT_DIR=/usr/ports/compiz
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/compiz
+
+# End of file

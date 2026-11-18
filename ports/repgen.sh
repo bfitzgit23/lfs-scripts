@@ -9,6 +9,7 @@
 # Usage: ports/repgen.sh [tree ...]
 
 TREES=${*:-"core extra contrib multilib opt nonfree mate xfce kde-lxqt s6"}
+TREES="$TREES compat-32 compiz gnome iso kde4 lxqt plasma xorg"
 
 for i in $TREES; do
 	httpup-repgen "$i" || exit 1

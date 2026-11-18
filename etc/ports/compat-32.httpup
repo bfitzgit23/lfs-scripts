@@ -1,0 +1,8 @@
+#
+# /etc/ports/compat-32.httpup: compat-32's port collection
+#
+
+ROOT_DIR=/usr/ports/compat-32
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/compat-32
+
+# End of file

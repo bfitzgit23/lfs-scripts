@@ -14,7 +14,14 @@ directory listed here lives in this repository.
 /usr/ports/contrib          https://github.com/bfitzgit23/lfs-scripts
 /usr/ports/multilib         https://github.com/bfitzgit23/lfs-scripts
 /usr/ports/opt              https://github.com/bfitzgit23/lfs-scripts
-/usr/ports/scratch          https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/compat-32        https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/compiz           https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/gnome            https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/iso              https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/kde4             https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/lxqt             https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/plasma           https://github.com/bfitzgit23/lfs-scripts
+/usr/ports/xorg             https://github.com/bfitzgit23/lfs-scripts
 
 /usr/ports/nonfree          https://github.com/bfitzgit23/lfs-scripts
 /usr/ports/mate             https://github.com/bfitzgit23/lfs-scripts

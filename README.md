@@ -326,19 +326,21 @@ can re-apply a version map after a book update.
 
 ## scratchpkg ports converted to Pkgfiles
 
-`ports/scratch/` contains the scratchpkg (spkgbuild) package set from
-stormfs-linux converted to CRUX `Pkgfile` recipes:
+The scratchpkg (spkgbuild) package set from stormfs-linux is converted to CRUX
+`Pkgfile` recipes, and each category is a top-level tree:
 
 - `tools/spkgbuild2pkgfile.sh` performs the conversion
   (`spkgbuild` -> `Pkgfile`, CRLF stripped, the redundant `cd $name-$version`
   removed because `pkgmk` already runs there, empty `backup`/`noextract`
-  dropped). `build_opt` and everything else is kept, so multi-line arrays and
-  quoted strings stay intact.
-- Categories are preserved (`core`, `extra`, `contrib`, `multilib`,
-  `compat-32`, `compiz`, `gnome`, ...), so a port is
-  `ports/scratch/<category>/<port>/Pkgfile`.
-- All 1429 recipes pass `bash -n`; `ports/scratch/CONVERSION-NOTES.md` records
-  what the conversion strips and lists no exceptions.
+  dropped, and `build()` renamed to `pkg_build()`, the hook pkgutils actually
+  dispatches). `build_opt` and everything else is kept, so multi-line arrays
+  and quoted strings stay intact.
+- Categories are preserved (`compat-32`, `compiz`, `gnome`, `iso`, `kde4`,
+  `lxqt`, `plasma`, `xorg`, plus the `core`, `contrib` and `xfce` recipes merged
+  into the trees of those names), so a port is
+  `ports/<category>/<port>/Pkgfile`.
+- All 1429 recipes pass `bash -n`; `ports/CONVERSION-NOTES.md` records what the
+  conversion strips and lists no exceptions.
 - Recipes keep scratchpkg's `build()` bodies, including their sourcing of
   `/usr/share/bfsos/spkgbuild.helper`. Building them with `pkgmk` needs that
   helper installed, or the helper calls replaced with explicit commands.
@@ -378,13 +380,14 @@ pins, the source-mirror patches), and a second copy would change which recipe
 `prt-get` resolves. The 779 names the local trees already provided were left
 alone. Each port's `depends` file becomes a `# Depends: a b c` header line,
 which is how `prt-get` reads dependencies from a Pkgfile. The remaining
-`ports/scratch/<category>` trees still come from the stormfs port set.
+stormfs collections (`compat-32`, `compiz`, `gnome`, `iso`, `kde4`, `lxqt`,
+`plasma`, `xorg`) are top-level trees of their own.
 
 `s6-services` ships service definitions rather than ports (no `spkgbuild`
 files), so it is vendored under `assets/s6-services/`.
 
 `chromium-bin` (prebuilt Chromium) is the port at
-`ports/scratch/opt/chromium-bin`, converted from the stormfs `ports/opt` tree.
+`ports/opt/chromium-bin`, converted from the stormfs `ports/opt` tree.
 
 ## Config files
 
@@ -450,8 +453,10 @@ highest-precedence source was kept and the rest were removed:
 2. the venomlinux recipes imported into those trees and into
    `ports/{nonfree,mate,xfce,kde-lxqt,s6}` - plain `Pkgfile` shell without the
    scratchpkg helper;
-3. the remaining imported `ports/scratch/*` trees - the older scratchpkg port
-   set, kept for the ports nothing else provides.
+3. the imported stormfs collections (`ports/compat-32`, `ports/compiz`,
+   `ports/gnome`, `ports/iso`, `ports/kde4`, `ports/lxqt`, `ports/plasma`,
+   `ports/xorg`) - the older scratchpkg port set, kept for the ports nothing
+   else provides.
 
 `ports/PRUNED-PORTS.txt` records every removed path with that rule, and a
 removed port can be recovered with `git log --diff-filter=D -- <path>`.
@@ -471,7 +476,7 @@ build() {
 ```
 
 The helper is not missing: it is a port in this tree.
-`ports/scratch/core/bfs-spkgbuild-macros` ships `helper.sh` and installs it to
+`ports/core/bfs-spkgbuild-macros` ships `helper.sh` and installs it to
 `/usr/share/bfsos/spkgbuild.helper`. It is plain POSIX shell and only reads
 `$SRC`, `$PKG`, `$name`, `$version`, `$build_opt` and `$CFLAGS`, all of which
 `pkgmk` provides, so it runs unchanged under `pkgutils`.

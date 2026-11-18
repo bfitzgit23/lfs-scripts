@@ -1,0 +1,8 @@
+#
+# /etc/ports/lxqt.httpup: lxqt's port collection
+#
+
+ROOT_DIR=/usr/ports/lxqt
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/lxqt
+
+# End of file

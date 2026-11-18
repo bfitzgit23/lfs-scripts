@@ -11,7 +11,7 @@
 #     once per URL, so give it time)
 #
 # Usage: tools/audit-ports.sh [--net] [tree ...]
-#   With no tree argument every tree under ports/ plus ports/scratch/* is used.
+#   With no tree argument every tree under ports/ is used.
 
 set -e
 
@@ -30,10 +30,16 @@ for arg in "$@"; do
 done
 
 if [ -z "$TREES" ]; then
-	TREES="core extra contrib multilib opt nonfree mate xfce kde-lxqt s6"
-	for d in ports/scratch/*/; do
+	for d in ports/*/; do
 		[ -d "$d" ] && TREES="$TREES ${d%/}"
 	done
+else
+	# Accept both "xorg" and "ports/xorg"
+	norm=
+	for t in $TREES; do
+		norm="$norm $( [ -d "$t" ] && echo "$t" || echo "ports/$t" )"
+	done
+	TREES=$norm
 fi
 
 total=0

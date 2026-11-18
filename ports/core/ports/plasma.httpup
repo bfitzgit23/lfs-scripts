@@ -1,0 +1,8 @@
+#
+# /etc/ports/plasma.httpup: plasma's port collection
+#
+
+ROOT_DIR=/usr/ports/plasma
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/plasma
+
+# End of file

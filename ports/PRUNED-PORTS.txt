@@ -2118,3 +2118,6 @@ this pass:
 - ports/scratch/venom-kde-lxqt/zxing-cpp
 - ports/scratch/venom-mate/engrampa
 - ports/scratch/venom-nonfree/discord
+
+NOTE: paths in this file are relative to the tree they were removed from;
+the former ports/scratch/<category> trees are now ports/<category>.

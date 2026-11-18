@@ -1,0 +1,8 @@
+#
+# /etc/ports/iso.httpup: iso's port collection
+#
+
+ROOT_DIR=/usr/ports/iso
+URL=https://raw.githubusercontent.com/bfitzgit23/lfs-scripts/master/ports/iso
+
+# End of file
