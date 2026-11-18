@@ -5,7 +5,7 @@
 #    <repo directory> <repo url> <repo branch, "main" by default>
 #
 # The venomlinux trees below are converted to Pkgfile (pkgutils/prt-get) form
-# under ports/scratch/venom-<repo> by tools/spkgbuild2pkgfile.sh.
+# under ports/venom-<repo> by tools/spkgbuild2pkgfile.sh.
 #
 
 /usr/ports/core             https://github.com/bfitzgit23/lfs-scripts

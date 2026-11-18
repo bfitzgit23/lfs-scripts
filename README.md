@@ -367,7 +367,7 @@ trees into `$VENOM_SRC` (default `/tmp/venom`) and converts every `spkgbuild`
 into a CRUX `Pkgfile` at:
 
 ```
-ports/scratch/venom-<repo>/<port>/Pkgfile
+ports/venom-<repo>/<port>/Pkgfile
 ```
 
 with the trees `core`, `extra`, `nonfree`, `multilib`, `kde-lxqt`, `mate` and
@@ -400,11 +400,14 @@ prtdir /usr/ports/core
 prtdir /usr/ports/extra
 prtdir /usr/ports/contrib
 prtdir /usr/ports/multilib
-prtdir /usr/ports/scratch/venom-core
+prtdir /usr/ports/venom-core
 ...
 ```
 
-Port names are unique across the whole repository (2837 ports, 0 duplicates).
+Port names are unique across the local trees (2,837 ports, 0 duplicates between
+them). The `ports/venom-*` trees carry all 2,418 upstream recipes, so a name can
+also appear there; `prt-get.conf` order decides, and the local trees are listed
+first.
 `ports/opt` used to be spkgbuild-only, which is why it was absent from the
 prt-get configuration; it is now a native Pkgfile tree with a `prtdir` line of
 its own.
@@ -415,7 +418,7 @@ highest-precedence tree and removed the rest:
    - the distribution.s own ports: core/extra/contrib/multilib pinned to LFS
    13.1, plus `ports/opt` converted from the stormfs spkgbuild set (306 ports,
    including `chromium-bin`);
-2. `ports/scratch/venom-*` - the maintained upstream trees, whose recipes are
+2. `ports/venom-*` - the maintained upstream trees, whose recipes are
    plain `Pkgfile` shell without the scratchpkg helper;
 3. the remaining imported `ports/scratch/*` trees - the older scratchpkg port
    set, kept for the ports nothing else provides.
