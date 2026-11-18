@@ -1,0 +1,36 @@
+Submitted By:            Xi Ruoyao <xry111 at xry111 dot site>
+Date:                    2023-03-19, rebased 2026-11-18
+Initial Package Version: 23.1.6
+Upstream Status:         unknown
+Origin:                  Archlinux (for Clang 14 and 15); rebased for Clang 16 by
+                         self; rebased for Clang 23.1.6 here.
+Description:             Enable -fstack-protector-strong by default for clang
+
+The 16.0.3 version of this patch also rewrote two of clang's own driver tests
+(clang/test/Driver/fsanitize.c and clang/test/Driver/stack-protector.c) so they
+expect the new default. Those hunks no longer apply to 23.1.6, and they do not
+affect the installed compiler, so only the driver change is carried here.
+GetDefaultStackProtectorLevel() is still the virtual the driver consults, and it
+still returns LangOptions::SSPOff for the Linux toolchain upstream.
+
+--- a/clang/lib/Driver/ToolChains/Linux.h
++++ b/clang/lib/Driver/ToolChains/Linux.h
+@@ -10,6 +10,7 @@
+ #define LLVM_CLANG_LIB_DRIVER_TOOLCHAINS_LINUX_H
+ 
+ #include "Gnu.h"
++#include "clang/Basic/LangOptions.h"
+ #include "clang/Driver/ToolChain.h"
+ 
+ namespace clang {
+@@ -51,6 +52,10 @@
+   IsAArch64OutlineAtomicsDefault(const llvm::opt::ArgList &Args) const override;
+   bool isPIEDefault(const llvm::opt::ArgList &Args) const override;
+   bool IsMathErrnoDefault() const override;
++  LangOptions::StackProtectorMode
++  GetDefaultStackProtectorLevel(bool KernelOrKext) const override {
++    return LangOptions::SSPStrong;
++  }
+   SanitizerMask
+   getSupportedSanitizers(BoundArch BA,
+                          Action::OffloadKind DeviceOffloadKind) const override;

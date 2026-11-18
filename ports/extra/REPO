@@ -2068,9 +2068,9 @@ f:f31cdda9f4ae4bd526d11de09c26d1b6:linux/Pkgfile
 f:0f301a2233c5a6b2585c4903b63c8cd1:linux/dotconfig
 f:36848b643b7abae471aec4785b6d0c41:liquid-dsp/Pkgfile
 f:f212907fd906c597dda3dedd7f387413:llvm/.footprint
-f:e7f5b36e22c3b2690db81dfe1d4c3c48:llvm/.md5sum
-f:06b535f2988aa35218eebad3dece02c4:llvm/Pkgfile
-f:98644cb33bb9ba55cb0ab1d89f694129:llvm/clang-16.0.3-enable_default_ssp-1.patch
+f:8247ceaa9a2cd720202cafb04b3bbe75:llvm/.md5sum
+f:0098cc9dfc89c0e74c21d8e6ed2945f9:llvm/Pkgfile
+f:9084fcc8bb8c64b09edfd60714adb8a8:llvm/clang-23.1.6-enable_default_ssp-1.patch
 f:99c1b56e3e633cdad56ad92c186f8690:llvm/llvm-config.h
 f:e3e550ab36cd4f39f25ddcabbd9ccf40:llvm/update
 f:e1d618a689463fba64910f6bd02a09f4:lm-sensors/.footprint

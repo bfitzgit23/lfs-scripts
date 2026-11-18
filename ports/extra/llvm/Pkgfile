@@ -1,16 +1,13 @@
 # Depends on: libxml2 
 
 name=llvm
-version=17.0.4
+version=23.1.6
 release=1
-source=(https://github.com/$name/$name-project/releases/download/llvmorg-$version/$name-$version.src.tar.xz
-	https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/cmake-$version.src.tar.xz
-	https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/third-party-$version.src.tar.xz
-	https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/clang-$version.src.tar.xz
+source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/llvm-project-$version.src.tar.xz
 	llvm-config.h
-	clang-16.0.3-enable_default_ssp-1.patch)
-patch_opt="-Np2 -d ../clang-${version}.src"
-build_opt="-DLLVM_ENABLE_FFI=ON
+	clang-$version-enable_default_ssp-1.patch)
+build_opt="-DLLVM_ENABLE_PROJECTS=clang
+	-DLLVM_ENABLE_FFI=ON
 	-DLLVM_BUILD_LLVM_DYLIB=ON
 	-DLLVM_LINK_LLVM_DYLIB=ON
 	-DLLVM_ENABLE_RTTI=ON
@@ -24,22 +21,17 @@ build_opt="-DLLVM_ENABLE_FFI=ON
 build_type=cmake_build
 
 pre_build() {
-	# The upstream expects them extracted at the same level as the llvm tarball, and 
-	# the extracted directories renamed to cmake and third-party:
+	# 23.x ships the llvm-project monorepo: clang/ already sits beside llvm/,
+	# cmake/ and third-party/, and clang is enabled with the build_opt above,
+	# so nothing is unpacked, moved or rewritten any more. Point scripts using
+	# /usr/bin/env python at the system python3, then configure from llvm/,
+	# which is the supported entry point (the monorepo root is a stub).
+	grep -rl '#!.*python' llvm clang | xargs -r sed -i '1s/python$/python3/'
 
-	mv ../cmake-${version}.src .
-	mv ../third-party-${version}.src .
-	mv ../clang-${version}.src tools/clang
-
-	sed "/LLVM_COMMON_CMAKE_UTILS/s@../cmake@cmake-${version}.src@" -i CMakeLists.txt                 
-	sed "/LLVM_THIRD_PARTY_DIR/s@../third-party@third-party-${version}.src@" \
-		-i cmake/modules/HandleLLVMOptions.cmake
-	
-	# Fix Python scripts which use /usr/bin/env python to access the system Python:
-	grep -rl '#!.*python' | xargs sed -i '1s/python$/python3/'
-	
 	export CC=gcc
 	export CXX=g++
+
+	cd llvm
 }
 
 post_build() {
