@@ -1,0 +1,19 @@
+# Depends: bamf libgee gnome-menus
+description="Elegant, simple, clean dock"
+homepage="https://launchpad.net/plank"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=plank
+version=0.11.89
+release=1
+source="https://launchpad.net/plank/1.0/$version/+download/plank-$version.tar.xz"
+
+pkg_build() {
+	./configure \
+	    --prefix=/usr \
+	    --sysconfdir=/etc \
+	    --disable-apport \
+	    --disable-nls
+	make
+	make DESTDIR=$PKG install
+}

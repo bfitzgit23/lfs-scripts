@@ -1,0 +1,15 @@
+# Depends: bc cpio elfutils linux-firmware mkinitramfs openssl xxhash
+description="Linux Libre kernel, sources and modules (binary version)"
+homepage="https://linux-libre.fsfla.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=linux-libre-bin
+version=7.1.0
+fileid=jtJ3xaaoyMxnwTF
+release=1
+source="$name-$version.tar.xz::https://nc.abetech.es/index.php/s/$fileid/download"
+
+pkg_build() {
+	mv "${SRC}"/* "${PKG}"/
+}
+

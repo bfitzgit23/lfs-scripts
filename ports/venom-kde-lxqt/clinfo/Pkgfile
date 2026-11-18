@@ -1,0 +1,15 @@
+# Depends: opencl-icd-loader
+description="Simple OpenCL application that enumerates all available platform and device properties"
+homepage="https://github.com/Oblomov/clinfo"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=clinfo
+version=3.0.25.02.14
+release=1
+source=" https://github.com/Oblomov/clinfo/archive/${version}/${name}-${version}.tar.gz"
+
+pkg_build() {
+     cd ${name}-${version}
+     make
+     make BINDIR=$PKG/usr/bin MANDIR=$PKG/usr/share/man  install
+}

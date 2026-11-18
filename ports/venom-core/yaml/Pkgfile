@@ -1,0 +1,14 @@
+description="C library for parsing and emitting YAML"
+homepage="https://pyyaml.org/wiki/LibYAML"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=yaml
+version=0.2.5
+release=1
+source="http://pyyaml.org/download/libyaml/$name-$version.tar.gz"
+
+pkg_build() {
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+}

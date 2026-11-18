@@ -1,0 +1,21 @@
+# Depends: python3-setuptools python3-calver python3-gpep517 python3-wheel
+description="Canonical source for classifiers on PyPI (pypi.org)"
+homepage="https://github.com/pypa/trove-classifiers"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-trove-classifiers
+version=2026.6.1.19
+release=1
+source="$name-$version.tar.gz::https://github.com/pypa/trove-classifiers/archive/refs/tags/$version.tar.gz"
+
+pkg_build() {
+  cd trove-classifiers-$version
+
+	gpep517 build-wheel \
+		--wheel-dir .dist \
+		--output-fd 3 3>&1 >&2
+
+	python3 -m installer -d "$PKG" \
+		.dist/*.whl
+
+}

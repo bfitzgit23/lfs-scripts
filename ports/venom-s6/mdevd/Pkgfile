@@ -1,0 +1,25 @@
+# Depends: skalibs
+description="mdevd is a small daemon managing kernel hotplug events, similarly to udevd."
+homepage="https://skarnet.org/software/mdevd/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=mdevd
+version=0.1.8.2
+release=1
+source="$name-$version.tar.gz::https://git.sr.ht/~skarnet/mdevd/archive/v$version.tar.gz"
+
+pkg_build() {
+	cd $name-v$version
+	./configure \
+		--bindir=/bin \
+		--prefix=/usr \
+		--libdir=/usr/lib \
+		--libexecdir=/usr/lib \
+		--datadir=/etc \
+		--enable-shared \
+		--disable-static \
+		--disable-allstatic \
+		--disable-static-libc
+	make
+	make DESTDIR=$PKG install
+}

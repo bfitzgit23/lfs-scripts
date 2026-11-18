@@ -1,0 +1,13 @@
+# Depends: acl attr autoconf automake bash binutils bison bzip2 coreutils dash dhcpcd diffutils e2fsprogs elfutils eudev expat file filesystem findutils flex gawk gcc gdbm gettext glibc gperf grep groff gzip iana-etc inetutils iproute2 kbd kmod less libcap libgmp libmpc libmpfr libpipeline libtool linux-api-headers m4 make man-db man-pages ncurses patch perl pkgconf procps-ng psmisc readline s6-linux-init scratchpkg sed shadow syslogd-s6 tar texinfo tzdata util-linux vim which xz zlib
+description="Meta port for base system"
+homepage="https://codeberg.org/venomlinux/s6-base"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=base-s6
+version=20241228
+release=1
+IGNORE_CHECKSUM="yes"
+
+pkg_build() {
+	mkdir -pv $PKG/usr
+}

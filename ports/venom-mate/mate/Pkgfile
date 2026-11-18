@@ -1,0 +1,12 @@
+# Depends: mate-common mate-desktop libmatekbd libmateweather mate-icon-theme caja marco mate-settings-daemon mate-session-manager mate-menus mate-panel mate-control-center mate-terminal pluma mate-themes mate-backgrounds mate-notification-daemon mate-polkit mate-user-guide
+description="Meta package for mate desktop"
+homepage="https://mate-desktop.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=mate
+version=1.28.0
+release=1
+
+pkg_build() {
+	mkdir -p $PKG/usr
+}

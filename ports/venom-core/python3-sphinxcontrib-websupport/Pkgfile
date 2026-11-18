@@ -1,0 +1,19 @@
+# Depends: python3-gpep517 python3-flit-core python3-setuptools
+description="Python API to easily integrate Sphinx documentation into web applications."
+homepage="https://github.com/sphinx-doc/sphinxcontrib-websupport/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-sphinxcontrib-websupport
+version=2.0.0
+release=2
+source="$name-$version.tar.gz::https://github.com/sphinx-doc/${name#*-}/archive/$version/${name#*-}-$version.tar.gz"
+
+pkg_build() {
+	cd ${name#python3-}-$version
+
+	    gpep517 build-wheel \
+		   --wheel-dir .dist \
+		   --output-fd 3 3>&1 >&2
+	    python3 -m installer -d $PKG \
+			.dist/*.whl
+}

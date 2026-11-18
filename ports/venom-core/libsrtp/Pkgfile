@@ -1,0 +1,14 @@
+description="Library for SRTP (Secure Realtime Transport Protocol)"
+homepage="https://github.com/cisco/libsrtp"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libsrtp
+version=2.8.0
+release=1
+source="https://github.com/cisco/libsrtp/archive/v$version/$name-$version.tar.gz"
+
+pkg_build() {
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

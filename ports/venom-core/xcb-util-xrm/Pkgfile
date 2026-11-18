@@ -1,0 +1,16 @@
+# Depends: xcb-util util-macros libx11
+description="XCB utility functions for the X resource manager"
+homepage="https://github.com/Airblader/xcb-util-xrm"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xcb-util-xrm
+version=1.3
+release=1
+source="https://github.com/Airblader/$name/releases/download/v$version/$name-$version.tar.gz"
+
+pkg_build() {
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

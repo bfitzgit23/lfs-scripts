@@ -1,0 +1,25 @@
+# Depends: kcrash kdbusaddons ki18n knotifications kwindowsystem polkit-qt
+description="Daemon providing a Polkit authentication UI for Plasma"
+homepage="https://invent.kde.org/plasma/polkit-kde-agent-1"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=polkit-kde-agent-1
+version=6.7.1
+release=1
+source="https://invent.kde.org/plasma/polkit-kde-agent-1/-/archive/v$version/polkit-kde-agent-1-v$version.tar.bz2"
+
+pkg_build() {
+	cmake -S $name-v$version -B build -G Ninja \
+	        -D CMAKE_INSTALL_PREFIX=/usr \
+	        -D CMAKE_INSTALL_LIBDIR=lib \
+	        -D CMAKE_INSTALL_LIBEXECDIR=lib/$name \
+	        -D CMAKE_BUILD_TYPE=Release \
+	        -D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+	        -D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+	        -Wno-dev
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+
+	rm -r $PKG/usr/share/locale $PKG/usr/lib/systemd
+
+}

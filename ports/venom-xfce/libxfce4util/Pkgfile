@@ -1,0 +1,17 @@
+# Depends: gobject-introspection vala xfce4-dev-tools
+description="Basic utility library for the Xfce desktop environment"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libxfce4util
+version=4.20.1
+release=1
+source="http://archive.xfce.org/src/xfce/$name/${version%.*}/$name-$version.tar.bz2"
+
+pkg_build() {
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+
+}

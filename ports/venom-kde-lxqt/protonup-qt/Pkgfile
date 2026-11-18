@@ -1,0 +1,22 @@
+# Depends: python3-inputs python3-requests python3-psutil python3-xdg python3-zstandard python3-steam pyside6
+description="Install and manage Proton-GE and Luxtorpeda for Steam and Wine-GE for Lutris"
+homepage="https://davidotek.github.io/protonup-qt"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=protonup-qt
+_name=net.davidotek.pupgui2
+version=2.15.1
+release=1
+source="$name-$version.tar.gz::https://github.com/DavidoTek/ProtonUp-Qt/archive/refs/tags/v$version.tar.gz
+	net.davidotek.pupgui2.sh"
+
+pkg_build() {
+	cd ProtonUp-Qt-$version
+	python3 -m build --wheel --no-isolation
+	python3 -m installer --destdir=$PKG dist/*.whl
+
+	cp -r share $PKG/usr/
+
+
+	ln -s /usr/bin/$name "$PKG/usr/bin/$_name"
+}

@@ -1,0 +1,16 @@
+# Depends: gtk3 gnupg libsecret openssh p11-kit
+description="Libraries used for displaying certificates and accessing key stores"
+homepage="https://gitlab.gnome.org/GNOME/gcr"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=gcr
+version=4.4.0.1
+release=1
+source="https://gitlab.gnome.org/GNOME/$name/-/archive/$version/$name-$version.tar.bz2"
+
+pkg_build() {
+	venom-meson $name-$version build -Dgtk_doc=false \
+		-Dgtk4=$(scratch isinstalled gtk4 && printf "true" || printf "false")
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

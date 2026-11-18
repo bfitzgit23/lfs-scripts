@@ -1,0 +1,29 @@
+# Depends: cmake ninja libtiff
+description="TIFF libraries and associated utilities"
+homepage="https://gitlab.com/libtiff/libtiff "
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libtiff-32
+version=4.7.1
+release=1
+source="https://gitlab.com/libtiff/libtiff/-/archive/v$version/${name%-*}-v$version.tar.gz"
+
+pkg_build() {
+	cd ${name%-*}-v$version
+
+	export CC="gcc -m32"
+	export CXX="g++ -m32"
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+	autoreconf -fvi
+	./configure \
+	    --prefix=/usr \
+	    --sysconfdir=/etc \
+	    --mandir=/usr/share/man \
+	    --libdir=/usr/lib32 \
+	    --includedir=/usr/include/libtiff32
+	make
+	make DESTDIR=$PKG install
+
+	rm -rf $PKG/usr/bin $PKG/usr/include $PKG/usr/share
+}

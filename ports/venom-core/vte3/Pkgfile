@@ -1,0 +1,21 @@
+# Depends: fmt gobject-introspection vala pango fribidi gnutls pcre2 zlib gtk3 at-spi2-core cairo gdk-pixbuf fast_float simdutf
+description="Termcap file implementation for terminal emulators"
+homepage="https://gitlab.gnome.org/GNOME/vte"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=vte3
+version=0.84.0
+release=1
+source="https://gitlab.gnome.org/GNOME/vte/-/archive/$version/vte-$version.tar.gz"
+pkg_build() {
+
+       venom-meson vte-$version build \
+	      -Db_lto=false \
+	      -Db_pie=false \
+	      -D_systemd=false \
+	      -Dgtk3=true \
+	      -Dgtk4=$(scratch isinstalled gtk4 && printf "true" || printf "false") 
+        meson compile -C build
+        DESTDIR=$PKG meson install --no-rebuild -C build
+
+}

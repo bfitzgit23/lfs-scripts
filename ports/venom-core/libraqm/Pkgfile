@@ -1,0 +1,15 @@
+# Depends: meson
+description="A library that encapsulates the logic for complex text layout"
+homepage="https://github.com/HOST-Oman/libraqm/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libraqm
+version=0.10.5
+release=1
+source="https://github.com/HOST-Oman/libraqm/releases/download/v$version/raqm-$version.tar.xz"
+
+pkg_build() {
+	venom-meson raqm-$version build -Ddocs=false
+	meson compile -C build
+	meson install -C build --destdir $PKG
+}

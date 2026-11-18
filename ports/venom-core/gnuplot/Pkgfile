@@ -1,0 +1,21 @@
+# Depends: libgd pango
+description="GNUPlot, a graph plotting software"
+homepage="http://www.gnuplot.info/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=gnuplot
+version=6.0.4
+release=1
+source=https://downloads.sourceforge.net/project/$name/$name/$version/$name-$version.tar.gz
+
+pkg_build() {
+	export CFLAGS="$CFLAGS -std=gnu17"
+	./configure \
+		--prefix=/usr \
+		--libexecdir=/usr/lib \
+		--with-x \
+		--with-qt=no
+	make
+	make DESTDIR=$PKG install
+	rm $PKG/usr/share/gnuplot/${version%.*}/js/README
+}

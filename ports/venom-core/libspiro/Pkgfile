@@ -1,0 +1,19 @@
+description="Simplifies the drawing of beautiful curves"
+homepage="https://github.com/fontforge/libspiro"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libspiro
+version=20240903
+release=1
+source="$name-$version.tar.gz::https://github.com/fontforge/$name/releases/download/$version/$name-dist-$version.tar.gz"
+
+pkg_build() {
+
+	autoreconf -i
+	automake --foreign -Wall
+
+	export LDFLAGS=
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,17 @@
+# Depends: gobject-introspection gperf gtk4 json-glib libsoup3 meson protobuf-c vala
+description="Map widget for GTK 4"
+homepage="https://mate-desktop.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libshumate
+version=1.6.1
+release=1
+source="https://gitlab.gnome.org/GNOME/libshumate/-/archive/$version/$name-$version.tar.gz"
+
+pkg_build() {
+	venom-meson $name-$version build \
+		-Dgtk_doc=false \
+		-Dvector_renderer=true 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

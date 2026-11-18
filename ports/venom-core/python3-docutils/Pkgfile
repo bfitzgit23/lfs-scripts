@@ -1,0 +1,19 @@
+# Depends: python3-build python3-installer python3-wheel python3-flit-core
+description="Set of tools for processing plaintext docs into formats such as HTML, XML, or LaTeX"
+homepage="https://docutils.sourceforge.io/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-docutils
+version=0.23
+release=1
+source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/d/docutils/docutils-$version.tar.gz"
+
+pkg_build() {
+	cd docutils-$version
+
+	# Remove include list https://github.com/pypa/wheel/issues/92
+	sed -i '/^include =/,/]/d' pyproject.toml
+
+	python3 -m build --wheel --skip-dependency-check --no-isolation
+	python3 -m installer --destdir=$PKG dist/*.whl
+}

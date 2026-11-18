@@ -1,0 +1,24 @@
+# Depends: ayatana-ido cmake glib ninja
+description="Ayatana Indicators Shared Library "
+homepage="https://github.com/AyatanaIndicators/libayatana-indicator"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libayatana-indicator
+version=0.9.5
+release=1
+source="https://github.com/AyatanaIndicators/libayatana-indicator/archive/$version/${name}-${version}.tar.gz"
+
+pkg_build() {
+	cmake -S $name-$version -B build -G Ninja \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_INSTALL_LIBDIR=lib \
+		-DCMAKE_INSTALL_LIBEXECDIR=lib \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-DBUILD_SHARED_LIBS=True \
+		-DENABLE_TESTS=OFF \
+		-Wno-dev
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+}

@@ -1,0 +1,25 @@
+# Depends: python3 swig
+description="A library for Linux that makes using posix capabilities easy"
+homepage="https://people.redhat.com/sgrubb/libcap-ng/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libcap-ng
+version=0.9.3
+release=1
+source="https://github.com/stevegrubb/libcap-ng/archive/v${version}/${name}-${version}.tar.gz"
+
+pkg_build() {
+	touch NEWS
+
+	autoreconf -fvi
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--mandir=/usr/share/man \
+		--infodir=/usr/share/info \
+		--without-python \
+		--without-python3 \
+		--enable-static=no 
+	make
+	make DESTDIR=$PKG install
+}

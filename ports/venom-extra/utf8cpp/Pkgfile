@@ -1,0 +1,19 @@
+# Depends: cmake
+description="UTF-8 with C++ in a Portable Way"
+homepage="https://github.com/nemtrif/utfcpp"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=utf8cpp
+version=4.1.0
+release=1
+source="https://github.com/nemtrif/utfcpp/archive/v$version/$name-$version.tar.gz"
+
+pkg_build() {
+  cmake -B build -S utfcpp-$version \
+    -DCMAKE_BUILD_TYPE=None \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DUTF8_TESTS=OFF
+  make -C build
+  make -C build DESTDIR=$PKG install
+}
+

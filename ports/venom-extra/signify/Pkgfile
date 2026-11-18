@@ -1,0 +1,23 @@
+# Depends: libbsd
+description="OpenBSD tool to signs and verify signatures on files"
+homepage="https://github.com/aperezdc/signify"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=signify
+version=33
+release=1
+source="$name-$version.tar.gz::https://codeberg.org/aperezdc/signify/archive/v$version.tar.gz"
+
+pkg_build() {
+	cd $name
+
+	make PREFIX=/usr \
+	LTO=1 \
+	EXTRA_CFLAGS="${CFLAGS} ${CPPFLAGS}" \
+	EXTRA_LDFLAGS="${LDFLAGS}" \
+	GIT_TAG=''
+	
+	make PREFIX=/usr \
+	DESTDIR="${PKG}" \
+	GIT_TAG='' install
+}

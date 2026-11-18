@@ -1,0 +1,22 @@
+# Depends: libglvnd mpv qt6-declarative
+description="A libmpv wrapper for QtQuick2 and QML"
+homepage="https://invent.kde.org/libraries/mpvqt"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=mpvqt
+version=1.2.0
+release=1
+source="https://download.kde.org/stable/$name/$name-$version.tar.xz"
+
+pkg_build() {
+	cmake -S $name-$version -B build -G Ninja \
+	        -D CMAKE_INSTALL_PREFIX=/usr \
+	        -D CMAKE_INSTALL_LIBDIR=lib \
+	        -D CMAKE_BUILD_TYPE=Release \
+	        -D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+	        -D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+	        -Wno-dev
+	 cmake --build build
+	 DESTDIR=$PKG cmake --install build
+
+}

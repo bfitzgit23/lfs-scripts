@@ -1,0 +1,14 @@
+description="A library for manipulating pipelines of subprocesses in a flexible and convenient way"
+homepage="https://nongnu.org/libpipeline/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libpipeline
+version=1.5.8
+release=1
+source="https://download.savannah.gnu.org/releases/$name/$name-$version.tar.gz"
+
+pkg_build() {
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

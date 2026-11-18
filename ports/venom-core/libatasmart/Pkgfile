@@ -1,0 +1,17 @@
+# Depends: eudev
+description="Disk reporting library. It only supports a subset of the ATA S.M.A.R.T. functionality"
+homepage="https://0pointer.de/blog/projects/being-smart.html"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libatasmart
+version=0.19
+release=1
+source="http://0pointer.de/public/$name-$version.tar.xz"
+
+pkg_build() {
+
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+
+}

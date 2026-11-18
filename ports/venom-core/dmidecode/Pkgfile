@@ -1,0 +1,15 @@
+description="System's hardware information of your BIOS according to SMBIOS/DMI standard."
+homepage="https://www.nongnu.org/dmidecode/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=dmidecode
+version=3.7
+release=1
+source="https://download.savannah.gnu.org/releases/$name/$name-$version.tar.xz"
+
+pkg_build() {
+
+	make prefix=/usr CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
+	make prefix=/usr DESTDIR=$PKG install
+	rm -r $PKG/usr/share/doc
+}

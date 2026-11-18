@@ -1,0 +1,21 @@
+# Depends: openssl xmlto
+description="HTTP and WebDAV client library, with a C interface"
+homepage="https://notroj.github.io/neon/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=neon
+version=0.37.1
+release=1
+source="https://notroj.github.io/$name/$name-$version.tar.gz"
+
+pkg_build() {
+
+	./configure --prefix=/usr \
+	            --with-ssl \
+	            --enable-shared \
+	            --disable-static \
+		    --disable-nls
+	make
+	make DESTDIR=$PKG install
+
+}

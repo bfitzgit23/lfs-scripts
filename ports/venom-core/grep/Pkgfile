@@ -1,0 +1,17 @@
+# Depends: pcre2
+description="Programs for searching through files"
+homepage="https://www.gnu.org/software/grep/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=grep
+version=3.12
+release=1
+source="https://ftp.gnu.org/gnu/$name/$name-$version.tar.xz"
+
+pkg_build() {
+
+	./configure --prefix=/usr --bindir=/bin
+	make
+	make DESTDIR=$PKG install
+
+}

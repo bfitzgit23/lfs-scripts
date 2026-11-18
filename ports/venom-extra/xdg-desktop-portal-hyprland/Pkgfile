@@ -1,0 +1,28 @@
+# Depends: hyprland inih pipewire sdbus-cpp
+description="xdg-desktop-portal backend for wlroots"
+homepage="https://github.com/fufexan/xdg-desktop-portal-hyprland"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xdg-desktop-portal-hyprland
+version=1.3.12
+_protocolver=4d29e48433270a2af06b8bc711ca1fe5109746cd
+release=1
+source="$name-$version.tar.gz::https://github.com/hyprwm/$name/archive/v$version/$name-$version.tar.gz
+	https://github.com/hyprwm/hyprland-protocols/archive/$_protocolver.tar.gz"
+
+pkg_build() {
+
+    cd $name-$version/subprojects
+
+	rm -rf hyprland-protocols sdbus-cpp
+	ln -sfT $SRC/hyprland-protocols-$_protocolver hyprland-protocols
+    cd ..
+
+	cmake -B build \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_INSTALL_LIBEXECDIR=/usr/lib \
+		-D CMAKE_BUILD_TYPE=Release
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+	rm -rf $PKG/usr/lib/systemd
+}

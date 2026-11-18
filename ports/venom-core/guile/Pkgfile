@@ -1,0 +1,22 @@
+# Depends: gc libunistring
+description="GNU Project's extension language library"
+homepage="https://www.gnu.org/software/guile/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=guile
+version=3.0.11
+release=1
+source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/guile/guile-3.0.11.tar.xz"
+
+pkg_build() {
+	
+	./configure \
+		--prefix=/usr    \
+		--disable-static \
+		--disable-error-on-warning
+	make
+	make DESTDIR=$PKG install
+
+	mkdir -p $PKG/usr/share/gdb/auto-load/usr/lib
+	mv $PKG/usr/lib/libguile-*-gdb.scm $PKG/usr/share/gdb/auto-load/usr/lib
+}

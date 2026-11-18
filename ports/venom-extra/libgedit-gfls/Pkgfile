@@ -1,0 +1,15 @@
+# Depends: gtk3
+description="A module dedicated to file loading and saving"
+homepage="https://github.com/gedit-technology/libgedit-gfls"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libgedit-gfls
+version=0.4.2
+release=1
+source="https://gitlab.gnome.org/World/gedit/libgedit-gfls/-/archive/$version/$name-$version.tar.bz2"
+
+pkg_build() {
+	venom-meson $name-$version build -Dgtk_doc=false
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

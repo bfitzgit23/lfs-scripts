@@ -1,0 +1,15 @@
+# Depends: libmd
+description="Provides useful functions commonly found on BSD systems like strlcpy()"
+homepage="https://libbsd.freedesktop.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libbsd
+version=0.12.2
+release=1
+source="https://libbsd.freedesktop.org/releases/$name-$version.tar.xz"
+
+pkg_build() {
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

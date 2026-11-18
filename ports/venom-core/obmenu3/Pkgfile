@@ -1,0 +1,13 @@
+# Depends: gtk2
+description="Openbox menu editor - replacement of obmenu"
+homepage="http://sourceforge.net/projects/obmenu3"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=obmenu3
+version=1.05
+release=1
+source="https://sourceforge.net/projects/obmenu3/files/1.05/obmenu3-1.05-x86_64.tgz"
+
+pkg_build() {
+  cp -R ./usr $PKG
+}

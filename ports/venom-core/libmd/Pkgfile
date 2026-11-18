@@ -1,0 +1,14 @@
+description="Message Digest functions from BSD systems"
+homepage="https://www.hadrons.org/software/libmd"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libmd
+version=1.2.0
+release=1
+source="https://libbsd.freedesktop.org/releases/libmd-$version.tar.xz"
+
+pkg_build() {
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

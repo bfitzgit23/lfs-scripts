@@ -1,0 +1,17 @@
+# Depends: glib gnutls libidn krb5 pkgconf intltool
+description="A lightweight Jabber client library written in C/Glib "
+homepage="https://mcabber.com/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=loudmouth
+version=1.5.4
+release=1
+source="https://mcabber.com/files/loudmouth/$name-$version.tar.bz2"
+
+pkg_build() {
+	./configure --prefix=/usr --disable-static --with-compile-warnings=no
+	sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+	make
+	make DESTDIR="${PKG}" install
+
+}

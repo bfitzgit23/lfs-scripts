@@ -1,0 +1,15 @@
+# Depends: python3-gobject3 gtk3 gtk-layer-shell python3-i3ipc
+description="Output management utility for sway and Hyprland Wayland compositors"
+homepage="https://github.com/nwg-piotr/nwg-displays"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=nwg-displays
+version=0.4.3
+release=1
+source="$name-$version.tar.gz::https://github.com/nwg-piotr/nwg-displays/archive/v$version.tar.gz"
+
+pkg_build() {
+	python3 setup.py install --root=$PKG --optimize=1
+	install -D -t $PKG/usr/share/pixmaps nwg-displays.svg
+	install -D -t $PKG/usr/share/applications nwg-displays.desktop
+}

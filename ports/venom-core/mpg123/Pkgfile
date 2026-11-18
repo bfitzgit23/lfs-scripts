@@ -1,0 +1,15 @@
+# Depends: alsa-lib
+description="Console based real time MPEG Audio Player for Layer 1, 2 and 3"
+homepage="https://mpg123.de/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=mpg123
+version=1.33.6
+release=1
+source="https://downloads.sourceforge.net/$name/$name-$version.tar.bz2"
+
+pkg_build() {
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

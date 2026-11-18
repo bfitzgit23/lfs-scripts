@@ -1,0 +1,15 @@
+# Depends: libsndfile python3
+description="The LV2 audio plugin specification"
+homepage="https://github.com/lv2/lv2"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=lv2
+version=1.18.10
+release=1
+source="$name-$version.tar.gz::https://github.com/lv2/lv2/archive/refs/tags/v$version.tar.gz"
+
+pkg_build() {
+	venom-meson $name-$version build
+	meson compile -C build
+	meson install --no-rebuild -C build --destdir $PKG
+}

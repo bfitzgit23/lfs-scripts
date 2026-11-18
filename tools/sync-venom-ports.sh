@@ -4,7 +4,7 @@
 #
 # Each upstream tree is cloned (or updated) into $VENOM_SRC, then every
 # spkgbuild is converted with tools/spkgbuild2pkgfile.sh rules into
-#   ports/scratch/venom-<repo>/<port>/Pkgfile
+#   ports/venom-<repo>/<port>/Pkgfile
 # A port's `depends` file, when present, becomes a `# Depends: ...` header line
 # because that is how prt-get reads dependencies from a Pkgfile.
 #
@@ -13,7 +13,7 @@ set -e
 
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
-OUT="$ROOT/ports/scratch"
+OUT="$ROOT/ports"
 CLONE_DIR=${VENOM_SRC:-/tmp/venom}
 TREES=${*:-"core extra nonfree multilib kde-lxqt mate xfce s6"}
 
@@ -35,6 +35,8 @@ done
 # ------------------------------------------------------------- converting ---
 # pkgmk cds into $name-$version itself, so the spkgbuild cd is dropped; empty
 # backup/noextract strings are dropped because pkgutils expects arrays.
+# The recipe hook is renamed: in this tree build() is the pkgutils driver, and
+# a Pkgfile build() is never called, so spkgbuild's build() becomes pkg_build().
 # build_opt and everything else is kept verbatim so multi-line arrays survive.
 AWK_PROG=$(mktemp)
 trap 'rm -f "$AWK_PROG"' EXIT
@@ -65,6 +67,10 @@ FNR == 1 {
     if (line ~ /^[ \t]*cd[ \t]+"?\$name-\$version"?[ \t]*;?[ \t]*$/) next
     if (line ~ /^[ \t]*backup=""[ \t]*$/) next
     if (line ~ /^[ \t]*noextract=""[ \t]*$/) next
+    if (line ~ /^[ \t]*build[ \t]*\(\)[ \t]*\{[ \t]*$/) {
+        print "pkg_build() {" > cur
+        next
+    }
     print line > cur
 }
 END { if (cur != "") close(cur) }

@@ -1,0 +1,16 @@
+# Depends: perl-json spirv-tools vulkan-icd-loader xcb-util-keysyms
+description="Direct3D 12 to Vulkan translation library By WineHQ."
+homepage="https://github.com/d3d12/vkd3d"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=vkd3d
+version=2.0
+release=1
+source="https://dl.winehq.org/vkd3d/source/$name-$version.tar.xz"
+
+pkg_build() {
+
+	./configure --prefix=/usr --with-spirv-tools
+	make
+	make DESTDIR=$PKG install
+}

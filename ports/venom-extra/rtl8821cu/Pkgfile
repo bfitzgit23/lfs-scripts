@@ -1,0 +1,17 @@
+description="Realtek RTL8811CU/RTL8821CU/RTL8731AU USB Wi-Fi adapter driver for Linux"
+homepage="https://github.com/morrownr/8821cu-20210118 "
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=rtl8821cu
+version=20210916
+release=1
+source="$name-$version.tar.gz::https://github.com/morrownr/8821cu-$version/archive/main.zip"
+
+pkg_build() {
+	cd 8821cu-$version-main
+
+	make
+	install -d $PKG/lib/modules/`uname -r`/kernel/drivers/net/wireless
+	install -p -m 644 8821cu.ko -t $PKG/lib/modules/`uname -r`/kernel/drivers/net/wireless
+}
+

@@ -1,0 +1,20 @@
+# Depends: libxi libxrandr libxinerama
+description="Small commandline tool to configure devices"
+homepage="https://xorg.freedesktop.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xinput
+version=1.6.4
+release=1
+source="http://ftp.x.org/pub/individual/app/xinput-$version.tar.xz"
+
+pkg_build() {
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}

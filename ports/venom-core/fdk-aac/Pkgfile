@@ -1,0 +1,15 @@
+description="Fraunhofer FDK AAC library, which is purported to be a high quality Advanced Audio Coding implementation"
+homepage="https://sourceforge.net/projects/opencore-amr/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=fdk-aac
+version=2.0.3
+release=2
+source="https://downloads.sourceforge.net/opencore-amr/$name-$version.tar.gz"
+
+pkg_build() {
+	autoreconf -fi
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+}

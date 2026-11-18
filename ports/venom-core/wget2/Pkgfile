@@ -1,0 +1,25 @@
+# Depends: ca-certificates openssl util-linux libidn2 pcre2 xz gperf
+description="Network utility to retrieve files from the Web"
+homepage="https://www.gnu.org/software/wget/wget.html"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+# optionals	: bzip2 zstd zlib
+
+name=wget2
+version=2.2.1
+release=1
+source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/wget/wget2-2.2.1.tar.gz"
+
+pkg_build() {
+
+  	./configure --prefix=/usr \
+	            --sysconfdir=/etc \
+	            --with-ssl=openssl \
+		    --without-libhsts \
+		    --without-libidn \
+		    --without-pcre
+	make
+	make DESTDIR=$PKG install
+	rm -f $PKG/usr/bin/wget2_noinstall
+	rm -f $PKG/usr/lib/libwget.a
+
+}

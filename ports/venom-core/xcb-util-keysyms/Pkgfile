@@ -1,0 +1,21 @@
+# Depends: libxcb
+description="Utility libraries for XC Binding - Standard X key constants and conversion to/from keycodes"
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xcb-util-keysyms
+version=0.4.1
+release=1
+source="https://xorg.freedesktop.org/archive/individual/xcb/xcb-util-keysyms-$version.tar.xz"
+
+pkg_build() {
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}
+

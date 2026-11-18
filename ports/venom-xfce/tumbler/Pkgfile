@@ -1,0 +1,17 @@
+# Depends: dbus-glib gdk-pixbuf ffmpegthumbnailer poppler
+description="Thumbnail service implementing the thumbnail management D-Bus specification"
+homepage="https://docs.xfce.org/xfce/tumbler/start"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=tumbler
+version=4.20.1
+release=1
+source="http://archive.xfce.org/src/xfce/$name/${version%.*}/$name-$version.tar.bz2"
+
+pkg_build() {
+
+	./configure --prefix=/usr --sysconfdir=/etc --disable-nls
+	make
+	make DESTDIR=$PKG install
+
+}

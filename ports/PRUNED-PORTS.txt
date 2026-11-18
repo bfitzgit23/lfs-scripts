@@ -9,6 +9,12 @@ Each port name is kept in exactly one tree, chosen by this precedence:
 The paths below were removed; the surviving copy of each port lives in a
 higher-precedence tree. `git log --diff-filter=D -- <path>` recovers one.
 
+The venomlinux trees have since moved from ports/scratch/venom-* to
+ports/venom-* and now carry every upstream port again, so every
+ports/scratch/venom-* entry below is historical: those trees are complete
+mirrors, and the local trees still win because etc/prt-get.conf lists them
+first.
+
 - ports/scratch/compat-32/alsa-lib-32
 - ports/scratch/compat-32/at-spi2-core-32
 - ports/scratch/compat-32/attr-32

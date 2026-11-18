@@ -1,0 +1,28 @@
+# Depends: hicolor-icon-theme libcanberra libnotify xfce4-panel
+description="Themable notification daemon with transparency effects"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xfce4-notifyd
+version=0.9.7
+release=1
+source="https://archive.xfce.org/src/apps/$name/${version%.*}/$name-$version.tar.bz2"
+
+pkg_build() {
+  cd $SRC/$name-$version
+
+  ./configure \
+    --prefix=/usr \
+    --disable-nls \
+    --libexecdir=/usr/lib/$name \
+    --disable-debug
+
+  make
+  make DESTDIR=$PKG install
+
+  rm $PKG/usr/lib/xfce4/panel/plugins/*.la
+  rm -rf $PKG/usr/share/locale
+  rm -rf $PKG/usr/share/doc
+  rm -rf $PKG/usr/lib/systemd
+
+}

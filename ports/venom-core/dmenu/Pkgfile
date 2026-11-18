@@ -1,0 +1,14 @@
+# Depends: freetype2 libxft libxinerama
+description="A generic menu for X"
+homepage="https://tools.suckless.org/dmenu/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=dmenu
+version=5.4
+release=1
+source="http://dl.suckless.org/tools/dmenu-$version.tar.gz"
+
+pkg_build() {
+	make
+	make DESTDIR=$PKG PREFIX=/usr install
+}

@@ -1,0 +1,17 @@
+# Depends: lz4 utf8proc serf
+description="A Modern Concurrent Version Control System"
+homepage="https://subversion.apache.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=subversion
+version=1.14.5
+release=1
+source="https://dlcdn.apache.org/$name/$name-$version.tar.gz"
+
+pkg_build() {
+    grep -rl '^#!.*python$' | xargs sed -i '1s/python/&3/'
+    ./autogen.sh
+    PYTHON=python3 ./configure --prefix=/usr --disable-static --disable-shared --with-serf --with-gnome-keyring=no
+    make
+    make DESTDIR=$PKG install
+}

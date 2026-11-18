@@ -1,0 +1,19 @@
+# Depends: gobject-introspection glib
+description="Implementation of the draft Desktop Menu Specification from freedesktop.org"
+homepage="https://www.gnome.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=gnome-menus
+version=3.38.1
+release=1
+source="http://ftp.gnome.org/pub/gnome/sources/gnome-menus/${version%.*}/gnome-menus-$version.tar.xz"
+
+pkg_build() {
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+
+}

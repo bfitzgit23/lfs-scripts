@@ -1,0 +1,17 @@
+# Depends: perl-module-build
+description="Simple percent Encoding/Decoding"
+homepage="https://metacpan.org/release/URI-Encode/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=perl-uri-encode
+version=1.1.1
+release=1
+source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/M/MI/MITHUN/URI-Encode-v$version.tar.gz"
+
+pkg_build() {
+	cd URI-Encode-v$version
+	perl Build.PL --installdirs=vendor
+	./Build
+	./Build install --destdir=$PKG
+	find $PKG \( -name perllocal.pod -o -name .packlist \) -delete
+}

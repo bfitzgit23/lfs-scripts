@@ -1,0 +1,14 @@
+description="A small run-time speech synthesis engine"
+homepage="https://github.com/festvox/flite/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=flite
+version=2.2
+release=1
+source="https://github.com/festvox/flite/archive/v${version}/flite-$version.tar.gz"
+
+pkg_build() {
+	./configure --prefix=/usr --enable-shared
+	make -j1
+	make DESTDIR=$PKG install
+}

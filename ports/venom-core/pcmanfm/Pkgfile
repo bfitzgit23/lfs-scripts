@@ -1,0 +1,26 @@
+# Depends: libfm adwaita-icon-theme lxmenu-data
+description="Extremely fast and lightweight file manager"
+homepage="https://lxde.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=pcmanfm
+version=1.4.0
+release=2
+source="https://github.com/lxde/$name/archive/refs/tags/$version.tar.gz
+	pcmanfm-desktop-onlyshowin.patch  pcmanfm-transient-dialog.patch"
+
+pkg_build() {
+
+	patch -Np1 -i $SRC/pcmanfm-desktop-onlyshowin.patch  
+	patch -Np1 -i $SRC/pcmanfm-transient-dialog.patch
+
+	autoreconf -fiv
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--with-gtk=3
+	make
+	make DESTDIR=$PKG install
+
+}

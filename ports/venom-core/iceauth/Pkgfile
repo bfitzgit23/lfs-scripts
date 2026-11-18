@@ -1,0 +1,21 @@
+# Depends: libice
+description="ICE authority file utility"
+homepage="https://gitlab.freedesktop.org/xorg/app/iceauth"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=iceauth
+version=1.0.11
+release=1
+source="http://ftp.x.org/pub/individual/app/iceauth-$version.tar.xz"
+
+pkg_build() {
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}
+

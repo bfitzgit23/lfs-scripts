@@ -1,0 +1,23 @@
+# Depends: geoip-database
+description="Non-DNS IP-to-country resolver C library & utils"
+homepage="https://www.maxmind.com/app/c"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=geoip
+version=1.6.12
+release=1
+source="$name-$version.tar.gz::https://github.com/maxmind/$name-api-c/archive/v$version/$name-$version.tar.gz"
+
+pkg_build() {
+	cd $name-api-c-$version
+
+	autoreconf -vi
+
+	./configure             \
+	--prefix=/usr           \
+	--mandir=/usr/share/man \
+	--sysconfdir=/etc/geoip
+
+	make
+	make DESTDIR=$PKG install
+}

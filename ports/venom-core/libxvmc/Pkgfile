@@ -1,0 +1,22 @@
+# Depends: libx11 libxext libxv
+description="X11 Video Motion Compensation extension library"
+homepage="https://gitlab.freedesktop.org/xorg/lib/libxvmc"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libxvmc
+version=1.0.15
+release=1
+source="$name-$version.tar.xz::http://ftp.x.org/pub/individual/lib/libXvMC-$version.tar.xz"
+
+pkg_build() {
+	cd libXvMC-$version
+
+	./configure \
+		--prefix=/usr \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --disable-static
+	make
+	make DESTDIR=$PKG install
+
+}

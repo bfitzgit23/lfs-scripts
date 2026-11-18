@@ -1,0 +1,15 @@
+description="A shell tool for executing jobs in parallel"
+homepage="https://www.gnu.org/software/parallel/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=parallel
+version=20260622
+release=1
+source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/parallel/parallel-20260622.tar.bz2"
+
+pkg_build() {
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,29 @@
+description="X transport library (32bit)"
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xtrans-32
+version=1.6.0
+release=1
+source="http://ftp.x.org/pub/individual/lib/xtrans-$version.tar.xz"
+
+pkg_build() {
+	cd xtrans-$version
+
+	export CC="gcc -m32"
+	export CXX="g++ -m32"
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+	sed -i -e 's,$(datadir)/pkgconfig,$(libdir)/pkgconfig,' Makefile.in
+
+	./configure \
+		--prefix=/usr \
+		--libdir=/usr/lib32 \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --disable-static
+	make
+	make DESTDIR=$PWD/DESTDIR install
+	mkdir -p $PKG/usr/lib32
+	cp -Rv DESTDIR/usr/lib32/* $PKG/usr/lib32
+}

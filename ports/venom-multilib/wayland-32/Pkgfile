@@ -1,0 +1,26 @@
+# Depends: libffi-32 libxml2-32 wayland expat-32
+description="A project to define a protocol for a compositor to talk to its clients as well as a library implementation of the protocol"
+homepage="https://wayland.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=wayland-32
+version=1.25.0
+release=1
+source="http://gitlab.freedesktop.org/${name%-*}/${name%-*}/-/archive/$version/${name%-*}-$version.tar.gz"
+
+pkg_build() {
+	export CC="gcc -m32"
+	export CXX="g++ -m32"
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+        venom-meson ${name%-*}-$version build \
+		--libdir=/usr/lib32 \
+		-Dtests=false \
+		-Ddocumentation=false \
+		-Ddtd_validation=false 
+	meson compile -C build
+	DESTDIR=$PWD/DESTDIR meson install --no-rebuild -C build
+
+	mkdir -p $PKG/usr/lib32
+	cp -Rv DESTDIR/usr/lib32/* $PKG/usr/lib32
+}

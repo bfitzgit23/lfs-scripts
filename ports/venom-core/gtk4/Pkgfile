@@ -1,0 +1,25 @@
+# Depends: gst-plugins-bad libepoxy librsvg libxkbcommon python3-gobject3 sassc shaderc vulkan-icd-loader
+description="A multi-platform toolkit for creating graphical user interfaces, version 4"
+homepage="https://www.gtk.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=gtk4
+version=4.22.4
+release=1
+source="https://gitlab.gnome.org/GNOME/gtk/-/archive/$version/gtk-$version.tar.bz2"
+
+pkg_build() {
+	export XML_CATALOG_FILES=/etc/xml/catalog
+	
+	venom-meson gtk-$version build \
+		-Dbroadway-backend=true \
+		-Dwayland-backend=$(scratch isinstalled wayland-protocols && printf "true" || printf "false") \
+		-D introspection=enabled \
+		-D man-pages=false \
+		-D build-tests=false \
+		-D build-testsuite=false \
+		-D build-examples=false \
+		-D build-demos=false
+        meson compile -C build
+        DESTDIR=$PKG meson install --no-rebuild -C build
+}

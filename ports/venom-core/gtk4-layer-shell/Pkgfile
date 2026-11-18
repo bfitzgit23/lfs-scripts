@@ -1,0 +1,15 @@
+# Depends: gtk4 libxkbcommon wayland-protocols
+description="Library to create Wayland desktop components using the Layer Shell protocol"
+homepage="https://github.com/wmww/gtk-layer-shell"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=gtk4-layer-shell
+version=1.3.0
+release=1
+source="https://github.com/wmww/gtk4-layer-shell/archive/v$version/$name-$version.tar.gz"
+
+pkg_build() {
+	venom-meson $name-$version build 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

@@ -1,0 +1,15 @@
+# Depends: popt
+description="Tools and library to manipulate EFI variables"
+homepage="https://github.com/rhboot/efivar"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=efivar
+version=39
+release=1
+source="$name-$version.tar.gz::https://github.com/rhboot/efivar/archive/$version.tar.gz"
+
+pkg_build() {
+	sed 's/docs//' -i Makefile
+	make ERRORS=
+	make LIBDIR=/usr/lib DESTDIR=$PKG install
+}

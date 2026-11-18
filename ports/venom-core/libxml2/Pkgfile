@@ -1,0 +1,24 @@
+# Depends: doxygen icu xz zlib
+description="Contains libraries and utilities used for parsing XML files"
+homepage="https://gitlab.gnome.org/GNOME/libxml2"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libxml2
+version=2.15.3
+release=1
+source="https://gitlab.gnome.org/GNOME/libxml2/-/archive/v$version/$name-v$version.tar.gz"
+
+pkg_build() {
+	venom-meson $name-v$version build \
+		-Dhistory=enabled \
+		-Dhttp=enabled \
+		-Dicu=enabled \
+		-Dlegacy=enabled \
+		-Dpython=enabled
+	meson compile -C build
+	DESTDIR=$PKG meson install -C build
+
+	# fix symlink to lixml2.so.2
+	ln -s libxml2.so.16 $PKG/usr/lib/libxml2.so.2
+}
+

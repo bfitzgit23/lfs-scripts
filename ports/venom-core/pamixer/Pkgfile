@@ -1,0 +1,16 @@
+# Depends: pulseaudio cxxopts
+description="Pulseaudio command-line mixer like amixer"
+homepage="https://github.com/cdemoulins/pamixer"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=pamixer
+version=1.6
+release=1
+source="https://github.com/cdemoulins/$name/archive/$version/$name-$version.tar.gz"
+
+pkg_build() {
+        venom-meson build
+        meson compile -C build
+        meson install --no-rebuild -C build --destdir=$PKG
+
+}

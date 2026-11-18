@@ -1,0 +1,22 @@
+# Depends: desktop-file-utils mate-settings-daemon polkit itstool mate-menus marco libmatekbd libgtop
+description="The MATE control center"
+homepage="https://mate-desktop.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=mate-control-center
+version=1.28.1
+release=1
+source="$name-$version.tar.gz::https://github.com/mate-desktop/$name/archive/refs/tags/v$version.tar.gz"
+
+pkg_build() {
+
+	    autoreconf -fvi
+	    ./configure --prefix=/usr \
+		--sysconfdir=/etc \
+		--disable-systemd \
+		--enable-static=no \
+		--disable-update-mimedb
+	make
+	make DESTDIR=$PKG install
+	rm $PKG/usr/share/applications/mimeinfo.cache
+}

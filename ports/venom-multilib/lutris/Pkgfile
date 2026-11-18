@@ -1,0 +1,15 @@
+# Depends: gnome-desktop webkitgtk python3-certifi python3-dbus python3-distro xrandr python3-evdev python3-gobject3 python3-pillow python3-requests cabextract attr-32 freeglut-32 gst-plugins-bad-32 gst-plugins-good-32 gst-plugins-ugly-32 lcms2-32 libtiff-32 libunwind-32 libxcomposite-32 libxcursor-32 libxinerama-32 libxkbcommon-32 libxslt-32 mpg123-32 pulseaudio-32 v4l-utils-32 vkd3d-32 vulkan-icd-loader-32 x265-32
+description="Lutris is an open gaming platform for Linux "
+homepage="https://lutris.net/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=lutris
+version=0.5.22
+release=1
+source="$name-$version.tar.gz::https://github.com/lutris/lutris/archive/v$version.tar.gz"
+
+pkg_build() {
+	venom-meson $name-$version build
+        meson compile -C build
+        DESTDIR="${PKG}" meson install -C build
+}

@@ -1,0 +1,19 @@
+# Depends: polkit gtk3
+description="PolicyKit integration for the MATE desktop"
+homepage="https://mate-desktop.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=mate-polkit
+version=1.28.1
+release=1
+source="https://pub.mate-desktop.org/releases/${version%.*}/$name-$version.tar.xz"
+
+pkg_build() {
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--libexecdir=/usr/lib/$name \
+		--disable-nls
+	make
+	make DESTDIR=$PKG install
+}

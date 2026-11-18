@@ -1,0 +1,16 @@
+# Depends: libpcap
+description="Powerful command-line packet analyzer"
+homepage="https://www.tcpdump.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=tcpdump
+version=4.99.6
+release=1
+source="http://www.tcpdump.org/release/$name-$version.tar.gz"
+
+pkg_build() {
+
+  	./configure --prefix=/usr --with-system-libpcap
+	make
+	make DESTDIR=$PKG install
+}

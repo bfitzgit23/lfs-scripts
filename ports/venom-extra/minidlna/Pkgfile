@@ -1,0 +1,22 @@
+# Depends: ffmpeg libexif flac taglib libid3tag libjpeg-turbo libvorbis x264 opus libmatroska
+description="ReadyMedia (formerly known as MiniDLNA) is a simple media server software"
+homepage="http://sourceforge.net/projects/minidlna/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=minidlna
+version=1.3.3
+release=2
+source="https://sourceforge.net/projects/$name/files/$name-$version.tar.gz
+	ffmpeg7.patch"
+
+pkg_build() {
+
+
+	# fix build with ffmpeg 7
+	patch -Np1 -i $SRC/ffmpeg7.patch
+
+	./autogen.sh
+	./configure --prefix=/usr 
+	 make
+	 make DESTDIR=$PKG install
+}

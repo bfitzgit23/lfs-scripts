@@ -1,0 +1,15 @@
+description="The GNU generic library support script"
+homepage="https://www.gnu.org/software/libtool"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libtool
+version=2.5.4
+release=1
+source="https://ftp.gnu.org/gnu/$name/$name-$version.tar.xz"
+
+pkg_build() {
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

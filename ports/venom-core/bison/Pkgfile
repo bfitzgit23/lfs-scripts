@@ -1,0 +1,16 @@
+description="A parser generator"
+homepage="https://www.gnu.org/software/bison/bison.html"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=bison
+version=3.8.2
+release=1
+source="https://ftp.gnu.org/gnu/$name/$name-$version.tar.xz"
+
+pkg_build() {
+
+	./configure --prefix=/usr --disable-nls
+	make
+	make DESTDIR=$PKG install
+
+}

@@ -1,0 +1,15 @@
+# Depends: wayland
+description="Wayland protocol extensions for wlroots and other compositors"
+homepage="https://gitlab.freedesktop.org/wlroots/wlr-protocols"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=wlr-protocols
+version=240126
+commit=2b8d43325b7012cc3f9b55c08d26e50e42beac7d
+release=1
+source="https://gitlab.freedesktop.org/wlroots/$name/-/archive/$commit/$name-$commit.tar.gz"
+
+pkg_build() {
+	cd $name-$commit
+	make DESTDIR=$PKG install
+}

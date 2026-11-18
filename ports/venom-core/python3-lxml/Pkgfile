@@ -1,0 +1,20 @@
+# Depends: python3-setuptools libxslt libxml2 python3-gpep517 python3-setuptools python3-wheel cython3
+description="Python3 bindings for libxslt and libxml2"
+homepage="https://lxml.de/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-lxml
+version=6.1.1
+release=1
+source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/l/lxml/lxml-$version.tar.gz"
+
+pkg_build() {
+	cd lxml-$version
+	export CFLAGS="$CFLAGS -flto=auto"
+	gpep517 build-wheel \
+		--wheel-dir .dist \
+		--output-fd 3 3>&1 >&2
+	python3 -m installer -d "$PKG" \
+		.dist/*.whl
+
+}

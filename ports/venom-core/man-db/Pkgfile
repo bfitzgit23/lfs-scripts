@@ -1,0 +1,24 @@
+# Depends: gdbm libpipeline zlib
+description="Tools for reading manual pages"
+homepage="https://gitlab.com/man-db/man-db"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=man-db
+version=2.13.1
+release=1
+source="https://download-mirror.savannah.gnu.org/releases/man-db/$name-$version.tar.xz"
+
+pkg_build() {
+
+	./configure --prefix=/usr \
+	            --sysconfdir=/etc \
+		    --libexecdir=/usr/lib \
+	            --disable-setuid \
+	            --disable-cache-owner \
+	            --with-systemdtmpfilesdir=no \
+		    --with-systemdsystemunitdir=no
+	make
+	make DESTDIR=$PKG install
+
+	install -d $PKG/var/cache/man
+}

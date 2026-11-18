@@ -1,0 +1,36 @@
+# Depends: vulkan-icd-loader
+description="Vulkan Installable Client Driver (ICD) Loader "
+homepage="https://www.khronos.org/vulkan/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=vulkan-icd-loader-32
+version=1.4.350.1
+release=1
+source="vulkan-icd-loader-$version.tar.gz::https://github.com/khronosgroup/vulkan-loader/archive/${name%%-*}-sdk-$version/Vulkan-Loader-$version.tar.gz"
+
+pkg_build() {
+	cd Vulkan-Loader-${name%%-*}-sdk-$version
+
+	export CC="gcc -m32"
+	export CFLAGS="-m32"
+	export CXXFLAGS="-m32"
+	export ASFLAGS="--32"
+	export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+	cmake -DCMAKE_INSTALL_PREFIX=/usr -B build \
+		-DVULKAN_HEADERS_INSTALL_DIR=/usr \
+		-DCMAKE_INSTALL_LIBDIR=lib32 \
+		-DCMAKE_INSTALL_SYSCONFDIR=/etc \
+		-DCMAKE_INSTALL_DATADIR=/share \
+		-DCMAKE_SKIP_RPATH=True \
+		-DBUILD_TESTS=Off \
+		-DBUILD_WSI_XCB_SUPPORT=On \
+		-DBUILD_WSI_XLIB_SUPPORT=On \
+		-DBUILD_WSI_WAYLAND_SUPPORT=On \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-Wno-dev 
+	make -C build
+	make DESTDIR=$PKG install -C build
+}

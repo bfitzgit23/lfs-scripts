@@ -1,0 +1,17 @@
+# Depends: gtk3 libnotify pango scdoc
+description="A Wayland native snapshot editing tool"
+homepage="https://github.com/jtheoof/swappy"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=swappy
+version=1.8.0
+release=1
+source="https://github.com/jtheoof/swappy/releases/download/v$version/$name-$version.tar.gz
+	no-git-version.patch"
+
+pkg_build() {
+	patch -d $name-$version -i $SRC/no-git-version.patch
+	venom-meson $name-$version build 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

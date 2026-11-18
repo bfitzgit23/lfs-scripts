@@ -1,0 +1,18 @@
+# Depends: python3-setuptools
+description="Utility library for gitignore style pattern matching of file paths"
+homepage="https://github.com/cpburnz/python-path-specification"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-pathspec
+version=1.1.1
+release=1
+source="https://pypi.io/packages/source/p/pathspec/pathspec-$version.tar.gz"
+
+pkg_build() {
+  cd pathspec-$version
+  /usr/bin/python3 setup.py build
+  /usr/bin/python3 setup.py install --prefix=/usr \
+    --root=$PKG \
+    --skip-build \
+    -O1
+}

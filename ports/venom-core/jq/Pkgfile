@@ -1,0 +1,19 @@
+# Depends: oniguruma autoconf automake bison flex python3
+description="Lightweight and flexible command-line JSON processor"
+homepage="https://jqlang.github.io/jq/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=jq
+version=1.8.2
+release=1
+source="https://github.com/stedolan/jq/releases/download/jq-$version/$name-$version.tar.gz"
+
+pkg_build() {
+
+	autoreconf -i
+	./configure --prefix=/usr --disable-docs
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/doc
+}

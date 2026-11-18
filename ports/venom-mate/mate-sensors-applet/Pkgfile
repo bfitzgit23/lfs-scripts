@@ -1,0 +1,19 @@
+# Depends: glib libx11 libxext mate-panel gtk3 libnotify
+description="A MATE Panel applet to display readings from hardware sensors, including CPU temperature, fan speeds and voltage readings"
+homepage="https://mate-desktop.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=mate-sensors-applet
+version=1.28.0
+release=1
+source="https://pub.mate-desktop.org/releases/${version%.*}/$name-$version.tar.xz
+	fix-build-locale-error.patch"
+
+pkg_build() {
+
+	patch -Np1 -i $SRC/fix-build-locale-error.patch
+
+	./configure --prefix=/usr --libexecdir=/usr/lib/$name --disable-nls
+	make
+	make DESTDIR=$PKG install
+}

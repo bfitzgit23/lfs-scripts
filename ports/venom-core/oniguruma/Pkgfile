@@ -1,0 +1,18 @@
+description="A regular expressions library"
+homepage="https://github.com/kkos/oniguruma"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=oniguruma
+version=6.9.10
+release=1
+source="https://github.com/kkos/oniguruma/releases/download/v$version/onig-$version.tar.gz"
+
+pkg_build() {
+	case $version in
+		*.*.*.*) version=${version%.*};;
+	esac
+	cd onig-$version
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

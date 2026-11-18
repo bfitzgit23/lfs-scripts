@@ -1,0 +1,20 @@
+# Depends: xcb-util-wm xcb-util-cursor xcb-util-keysyms
+description="Tiling window manager taking inspiration from dwm, bspwm, and xmonad"
+homepage="https://bitbucket.org/natemaia/dk"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=dk
+version=2.3
+release=1
+commit=f9365559d527
+source="$name-$version.tar.gz::https://bitbucket.org/natemaia/dk/get/v$version.tar.gz
+	dk.desktop"
+
+pkg_build() {
+	cd natemaia-dk-$commit
+	make PREFIX=/usr
+	make PREFIX=/usr DESTDIR=$PKG install
+	install -d 644 $PKG/usr/share/xsessions
+	install -Dm 644 $SRC/dk.desktop $PKG/usr/share/xsessions/dk.desktop
+}
+

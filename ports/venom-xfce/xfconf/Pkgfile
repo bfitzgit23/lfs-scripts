@@ -1,0 +1,17 @@
+# Depends: dbus-glib libxfce4util
+description="The configuration storage system for Xfce"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xfconf
+version=4.20.0
+release=1
+source="http://archive.xfce.org/src/xfce/$name/${version%.*}/$name-$version.tar.bz2"
+
+pkg_build() {
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+
+}

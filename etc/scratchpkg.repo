@@ -15,11 +15,11 @@
 /usr/ports/opt              https://github.com/bfitzgit23/lfs-scripts
 /usr/ports/scratch          https://github.com/bfitzgit23/lfs-scripts
 
-/usr/ports/scratch/venom-core          https://codeberg.org/venomlinux/core
-/usr/ports/scratch/venom-extra         https://codeberg.org/venomlinux/extra
-/usr/ports/scratch/venom-nonfree       https://codeberg.org/venomlinux/nonfree
-/usr/ports/scratch/venom-multilib      https://codeberg.org/venomlinux/multilib
-/usr/ports/scratch/venom-kde-lxqt      https://codeberg.org/venomlinux/kde-lxqt
-/usr/ports/scratch/venom-mate          https://codeberg.org/venomlinux/mate
-/usr/ports/scratch/venom-xfce         https://codeberg.org/venomlinux/xfce
-/usr/ports/scratch/venom-s6            https://codeberg.org/venomlinux/s6
+/usr/ports/venom-core          https://codeberg.org/venomlinux/core
+/usr/ports/venom-extra         https://codeberg.org/venomlinux/extra
+/usr/ports/venom-nonfree       https://codeberg.org/venomlinux/nonfree
+/usr/ports/venom-multilib      https://codeberg.org/venomlinux/multilib
+/usr/ports/venom-kde-lxqt      https://codeberg.org/venomlinux/kde-lxqt
+/usr/ports/venom-mate          https://codeberg.org/venomlinux/mate
+/usr/ports/venom-xfce         https://codeberg.org/venomlinux/xfce
+/usr/ports/venom-s6            https://codeberg.org/venomlinux/s6

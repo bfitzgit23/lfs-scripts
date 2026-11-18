@@ -1,0 +1,17 @@
+# Depends: xdg-desktop-portal dconf gnome-desktop
+description="A GTK+ backend for xdg-desktop-portal"
+homepage="https://github.com/flatpak/xdg-desktop-portal-gtk"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xdg-desktop-portal-gtk
+version=1.15.3
+release=1
+source="https://github.com/flatpak/xdg-desktop-portal-gtk/archive/$version/$name-$version.tar.gz"
+
+pkg_build() {
+	venom-meson $name-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install -C build
+
+	rm -fr $PKG/usr/lib/systemd
+}

@@ -1,0 +1,18 @@
+# Depends: protobuf
+description="Protocol Buffers implementation in C"
+homepage="https://github.com/protobuf-c/protobuf-c"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=protobuf-c
+version=1.5.2
+release=3
+source="https://github.com/protobuf-c/protobuf-c/releases/download/v$version/$name-$version.tar.gz
+	https://github.com/strophy/protobuf-c/commit/d39f001b4578966600de0aaf7fc665eec6e057e5.diff"
+
+
+pkg_build() {
+	patch -Np1 -i $SRC/d39f001b4578966600de0aaf7fc665eec6e057e5.diff
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+}

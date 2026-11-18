@@ -1,0 +1,17 @@
+# Depends: gtkglext hicolor-icon-theme
+description="The Fast Remote Desktop Application"
+homepage="https://anydesk.com"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=anydesk-bin
+version=8.0.3
+release=1
+source="https://download.anydesk.com/linux/anydesk-$version-amd64.tar.gz"
+
+pkg_build() {
+
+    install -Dm 755 "${SRC}/anydesk-${version}/anydesk" "${PKG}/usr/bin/anydesk"
+    install -Dm 644 "${SRC}/anydesk-${version}/anydesk.desktop" "${PKG}/usr/share/applications/anydesk.desktop" 
+    install -Dm 644 "${SRC}/anydesk-${version}/polkit-1/com.anydesk.anydesk.policy" "${PKG}/usr/share/polkit-1/actions/com.anydesk.anydesk.policy"
+    install -Dm 644 "${SRC}/anydesk-${version}/icons/hicolor/scalable/apps/anydesk.svg" "${PKG}/usr/share/pixmaps/anydesk.svg"
+}

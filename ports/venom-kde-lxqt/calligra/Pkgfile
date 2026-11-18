@@ -1,0 +1,27 @@
+# Depends: kcmutils kdiagram knotifyconfig phonon poppler-qt6 qtkeychain6 sonnet
+description="A set of applications for productivity and creative usage"
+homepage="https://calligra.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=calligra
+version=26.04.2
+release=1
+source="https://download.kde.org/stable/release-service/$version/src/$name-$version.tar.xz
+        https://invent.kde.org/office/calligra/-/commit/2ddb27bd.patch"
+
+pkg_build() {
+        patch -d $name-$version -p1 < 2ddb27bd.patch # poppler 26.04
+	cmake -S $name-$version -B build -G Ninja \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_INSTALL_LIBDIR=lib \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-DCMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-DRELEASE_BUILD=ON \
+		-DPRODUCTSET=DESKTOP \
+		-DBUILD_TESTING=OFF \
+		-Wno-dev
+	 cmake --build build
+	 DESTDIR=$PKG cmake --install build
+
+}

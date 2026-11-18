@@ -1,0 +1,26 @@
+# Depends: kpipewire kxmlgui layer-shell-qt opencv prison purpose zxing-cpp kquickimageeditor tesseract
+description="A simple application for capturing desktop screenshots"
+homepage="https://apps.kde.org/spectacle"
+
+name=spectacle
+version=6.7.1
+release=1
+
+source="https://download.kde.org/stable/plasma/$(echo $version | cut -d. -f1-3)/$name-$version.tar.xz"
+
+pkg_build() {
+
+    cmake -S $name-$version -B build -G Ninja \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_INSTALL_LIBDIR=lib \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+        -D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+        -Wno-dev
+    cmake --build build
+    DESTDIR=$PKG cmake --install build
+
+    rm -rf $PKG/usr/lib/systemd
+
+
+}

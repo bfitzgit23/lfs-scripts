@@ -1,0 +1,27 @@
+# Depends: cmake ninja gavl
+description="Minimalistic plugin API for video effects"
+homepage="https://frei0r.dyne.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=frei0r-plugins
+version=3.2.3
+release=1
+source="$name-$version.tar.gz::https://github.com/dyne/frei0r/archive/v$version.tar.gz"
+
+pkg_build() {
+	# Fix build with znver4 or newer
+	export CFLAGS="$CFLAGS -march=x86-64"
+
+	cmake  -S frei0r-$version -B build -G Ninja \
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+	        -DCMAKE_INSTALL_PREFIX=/usr \
+	        -DCMAKE_INSTALL_LIBDIR=lib \
+		-DCMAKE_INSTALL_LIBEXECDIR=lib \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-DWITHOUT_OPENCV=$(scratch isinstalled opencv && printf "OFF" || printf "ON") \
+		-Wno-dev
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+}

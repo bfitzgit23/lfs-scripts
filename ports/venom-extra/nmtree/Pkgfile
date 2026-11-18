@@ -1,0 +1,19 @@
+# Depends: libnbcompat
+description="NetBSD's mtree(8) utility"
+homepage="https://github.com/archiecobbs/nmtree"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=nmtree
+version=1.0.0
+release=1
+source="$name-$version.tar.gz::https://github.com/archiecobbs/nmtree/archive/refs/tags/${version}.tar.gz"
+
+pkg_build() {
+	./autogen.sh
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+	# mtree.5 also exists in libarchive
+	mv "$PKG/usr/share/man/man5/mtree.5" \
+		"$PKG/usr/share/man/man5/nmtree.5"
+}

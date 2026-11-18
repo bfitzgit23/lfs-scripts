@@ -1,0 +1,19 @@
+# Depends: python3 perl
+description="A library implementing a simple but powerful template language for C++ "
+homepage="https://github.com/olafvdspek/ctemplate"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=ctemplate
+version=2.4
+release=1
+source="https://github.com/OlafvdSpek/${name}/archive/${name}-${version}.tar.gz"
+
+pkg_build() {
+	cd ${name}-${name}-${version}
+
+	NOCONFIGURE=1 ./autogen.sh
+	./configure \
+		--prefix=/usr
+	make
+	make DESTDIR="${PKG}" install
+}

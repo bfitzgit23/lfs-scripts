@@ -1,0 +1,25 @@
+# Depends: kio qtkeychain6 sonnet syntax-highlighting
+description="Various text handling addons"
+homepage="https://invent.kde.org/libraries/ktextaddons"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=ktextaddons
+version=2.1.0
+release=1
+source="https://download.kde.org/stable/$name/$name-$version.tar.xz"
+
+pkg_build() {
+    cmake -S $name-$version -B build -G Ninja \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_INSTALL_LIBDIR=lib \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+        -D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+        -D QT_MAJOR_VERSION=6 \
+        -D BUILD_DESIGNERPLUGIN=ON \
+        -D BUILD_TESTING=OFF \
+        -Wno-dev
+    cmake --build build
+    DESTDIR=$PKG cmake --install build
+
+}

@@ -1,0 +1,15 @@
+# Depends: libxslt
+description="APN configuration presets for mobile broadband connections"
+homepage="https://gitlab.gnome.org/GNOME/mobile-broadband-provider-info"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=mobile-broadband-provider-info
+version=20251101
+release=1
+source="https://gitlab.gnome.org/GNOME/mobile-broadband-provider-info/-/archive/$version/$name-$version.tar.gz"
+
+pkg_build() {
+	venom-meson $name-$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

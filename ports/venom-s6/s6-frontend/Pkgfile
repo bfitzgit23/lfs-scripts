@@ -1,0 +1,30 @@
+# Depends: s6-linux-init
+description="A higher-level interface to the s6 ecosystem"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+homepage="https://skarnet.org/software/s6-frontend" 
+
+name=s6-frontend
+version=0.0.1.2
+release=1
+
+source="$name-$version.tar.gz::https://git.sr.ht/~skarnet/s6-frontend/archive/v$version.tar.gz
+	s6-frontend.conf"
+
+pkg_build() {
+	cd $name-v$version  
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--libexecdir=/usr/lib \
+		--enable-shared \
+		--disable-allstatic 
+#		--enable-pkgconfig \
+#		--with-pkgconfig 
+
+	make
+	make DESTDIR=$PKG install
+
+	install -v -d -m2755 "${PKG}"/etc/s6/repo
+	install -Dm644 "${SRC}"/s6-frontend.conf "${PKG}/etc/s6-frontend.conf"
+}

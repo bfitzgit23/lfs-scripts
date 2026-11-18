@@ -1,0 +1,17 @@
+# Depends: rsync gtk3 intltool
+description="GTK+ GUI for rsync to synchronize folders, files and make backups"
+homepage="http://www.opbyte.it/grsync/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=grsync
+version=1.3.1
+release=1
+source="http://www.opbyte.it/release/$name-$version.tar.gz"
+
+pkg_build() {
+	
+	./configure --prefix=/usr --disable-unity
+	make
+	make DESTDIR=$PKG install
+
+}

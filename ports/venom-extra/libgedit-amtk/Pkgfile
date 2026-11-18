@@ -1,0 +1,16 @@
+# Depends: gtk3 meson
+description="Basic GTKUIManager replacement based on GAction"
+homepage="https://gedit-technology.net/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libgedit-amtk
+version=5.10.0
+release=1
+source="https://gitlab.gnome.org/World/gedit/libgedit-amtk/-/archive/$version/$name-$version.tar.gz"
+
+pkg_build() {
+	venom-meson $name-$version build -Dgtk_doc=false
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+
+}

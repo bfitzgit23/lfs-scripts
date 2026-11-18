@@ -1,0 +1,21 @@
+# Depends: libxext libxtst libx11 libxcb libxxf86vm libxi libxrender libxcomposite libxinerama
+description="Display information utility for X"
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xdpyinfo
+version=1.4.0
+release=1
+source="http://ftp.x.org/pub/individual/app/xdpyinfo-$version.tar.gz"
+
+pkg_build() {
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}
+

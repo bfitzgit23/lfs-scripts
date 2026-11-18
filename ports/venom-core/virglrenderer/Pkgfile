@@ -1,0 +1,15 @@
+# Depends: libepoxy mesa libva
+description="A virtual 3D GPU library, that allows the guest operating system to use the host GPU to accelerate 3D rendering"
+homepage="https://gitlab.freedesktop.org/virgl/virglrenderer"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=virglrenderer
+version=1.3.0
+release=1
+source="https://gitlab.freedesktop.org/virgl/virglrenderer/-/archive/$version/$name-$version.tar.gz"
+
+pkg_build() {
+	venom-meson $name-$version build -Dvideo=true
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

@@ -1,0 +1,54 @@
+# Depends: boost fmt pcre2 meson ninja alsa-lib libsndfile ffmpeg
+description="Music playback daemon"
+homepage="https://www.musicpd.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=mpd
+version=0.24.12
+release=1
+source="$name-$version.tar.gz::https://github.com/MusicPlayerDaemon/MPD/archive/v$version.tar.gz
+	rc.mpd"
+
+
+pkg_build() {
+	venom-meson MPD-$version build  \
+		--auto-features disabled \
+		-Dadplug=disabled \
+		-Dcurl=enabled \
+		-Dbzip2=enabled \
+		-Diconv=enabled \
+		-Dipv6=enabled \
+		-Dpcre=enabled \
+		-Dsqlite=enabled \
+		-Dalsa=enabled \
+		-Dsndfile=enabled \
+		-Daudiofile=$(scratch isinstalled audiofile && printf "enabled" || printf "disabled") \
+		-Ddbus=$(scratch isinstalled dbus && printf "enabled" || printf "disabled") \
+		-Dflac=$(scratch isinstalled flac && printf "enabled" || printf "disabled") \
+		-Dfluidsynth=$(scratch isinstalled fluidsynth && printf "enabled" || printf "disabled") \
+		-Dicu=$(scratch isinstalled icu && printf "enabled" || printf "disabled") \
+		-Djack=$(scratch isinstalled jack && printf "enabled" || printf "disabled") \
+		-Dlame=$(scratch isinstalled lame && printf "enabled" || printf "disabled") \
+		-Dcdio_paranoia=$(scratch isinstalled libcdio-paranoia  && printf "enabled" || printf "disabled") \
+		-Did3tag=$(scratch isinstalled libid3tag && printf "enabled" || printf "disabled") \
+		-Diso9660=$(scratch isinstalled libisofs && printf "enabled" || printf "disabled") \
+		-Dmad=$(scratch isinstalled libmad && printf "enabled" || printf "disabled") \
+		-Dlibsamplerate=$(scratch isinstalled libsamplerate && printf "enabled" || printf "disabled") \
+		-Dsoxr=$(scratch isinstalled libsoxr && printf "enabled" || printf "disabled") \
+		-Dmpcdec=disabled \
+		-Dmpg123=$(scratch isinstalled mpg123 && printf "enabled" || printf "disabled") \
+		-Dpulse=$(scratch isinstalled pulseaudio && printf "enabled" || printf "disabled") \
+		-Dpipewire=$(scratch isinstalled pipewire && printf "enabled" || printf "disabled") \
+		-Dsmbclient=$(scratch isinstalled samba && printf "enabled" || printf "disabled") \
+		-Dtwolame=$(scratch isinstalled twolame && printf "enabled" || printf "disabled") \
+		-Dvorbis=$(scratch isinstalled libvorbis && printf "enabled" || printf "disabled") \
+		-Dwavpack=$(scratch isinstalled wavpack && printf "enabled" || printf "disabled") \
+		-Dhtml_manual=false
+	meson compile -C build 
+	DESTDIR=$PKG meson install --no-rebuild -C build
+
+	install -D $SRC/rc.mpd $PKG/etc/rc.d/mpd
+
+	rm -r $PKG/usr/share/doc
+}
+

@@ -1,0 +1,20 @@
+# Depends: python3-gpep517 python3-flit-core
+description="Python library for creating editable wheels"
+homepage="https://github.com/pfmoore/editables"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-editables
+version=0.6
+release=1
+source="https://pypi.org/packages/source/e/editables/editables-$version.tar.gz"
+
+pkg_build() {
+  cd editables-$version
+
+	gpep517 build-wheel \
+		--wheel-dir .dist \
+		--output-fd 3 3>&1 >&2
+
+	python3 -m installer -d $PKG \
+		.dist/*.whl	
+}

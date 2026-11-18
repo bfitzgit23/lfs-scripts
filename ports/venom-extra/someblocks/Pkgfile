@@ -1,0 +1,15 @@
+# Depends: somebar
+description="Modular status bar for somebar, based on dwmblocks.  "
+homepage="https://git.sr.ht/~raphi/someblocks/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=someblocks
+version=1.0.1
+release=1
+source="$name-$version.tar.gz::https://git.sr.ht/~raphi/someblocks/archive/$version.tar.gz
+	blocks.h"
+
+pkg_build() {
+	make
+	make DESTDIR=$PKG PREFIX=/usr install
+}

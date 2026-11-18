@@ -1,0 +1,18 @@
+# Depends: cairo fcft fontconfig libpng libxkbcommon pixman meson scdoc tllist wayland-protocols
+description="Application launcher for wlroots based Wayland compositors"
+homepage="https://codeberg.org/dnkl/fuzzel"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=fuzzel
+version=1.14.1
+release=1
+source="$name-$version.tar.gz::https://codeberg.org/dnkl/fuzzel/archive/$version.tar.gz"
+
+pkg_build() {
+	venom-meson $name build \
+		-Denable-cairo=enabled \
+		-Dpng-backend=libpng \
+		-Dsvg-backend=nanosvg
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

@@ -1,0 +1,27 @@
+# Depends: exo garcon libwnck3 libdbusmenu libdisplay-info libxfce4windowing
+description="Xfce4 Panel"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xfce4-panel
+version=4.20.7
+release=1
+source="https://archive.xfce.org/src/xfce/xfce4-panel/${version%.*}/$name-$version.tar.bz2"
+
+pkg_build() {
+
+	./configure\
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--enable-x11 \
+		--enable-wayland \
+		--enable-gio-unix \
+		--disable-debug
+	make
+	make DESTDIR=$PKG install
+
+	find $PKG/usr/lib/* -name "*.la" -type f|xargs rm -f
+	rm -r $PKG/usr/share/gtk-doc
+
+}

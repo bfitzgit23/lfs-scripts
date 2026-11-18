@@ -1,0 +1,19 @@
+description="Configuration tools for Linux networking"
+homepage="http://net-tools.sourceforge.net/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=net-tools
+version=2.10
+release=1
+source="https://downloads.sourceforge.net/project/net-tools/$name-$version.tar.xz"
+
+pkg_build() {
+
+	yes "" | make config
+	make
+	make DESTDIR=$PKG install
+	rm $PKG/bin/hostname
+	rm $PKG/bin/dnsdomainname
+	rm $PKG/usr/share/man/man1/dnsdomainname.1
+	rm $PKG/usr/share/man/man1/hostname.1
+}

@@ -1,0 +1,17 @@
+# Depends: libgpg-error
+description="Library used to make X.509 certificates as well as making the CMS (Cryptographic Message Syntax) easily accessible by other applications"
+homepage="https://www.gnupg.org/related_software/libksba/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libksba
+version=1.8.0
+release=1
+source="https://gnupg.org/ftp/gcrypt/libksba/$name-$version.tar.bz2"
+
+pkg_build() {
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+
+}

@@ -1,0 +1,16 @@
+# Depends: openssl
+description="A mini smtp client"
+homepage="https://marlam.de/msmtp/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=msmtp
+version=1.8.32
+release=1
+source="https://marlam.de/$name/releases/$name-$version.tar.xz"
+
+pkg_build() {
+    ./configure --prefix=/usr \
+                --with-tls=openssl
+    make
+    make DESTDIR=$PKG install
+}

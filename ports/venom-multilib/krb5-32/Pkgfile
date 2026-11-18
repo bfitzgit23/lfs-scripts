@@ -1,0 +1,44 @@
+# Depends: e2fsprogs-32 keyutils-32 krb5
+description="MIT Kerberos V5 is a network authentication protocol"
+homepage="https://web.mit.edu/kerberos/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=krb5-32
+version=1.22.2
+vrsn=$(printf "$version" | awk -F. '{print $1"."$2}')
+release=4
+source="https://kerberos.org/dist/${name%-*}/$vrsn/${name%-*}-$version.tar.gz
+        mitkrb-1.22.2-upstream_fix-1.patch"
+
+pkg_build() {
+	export CC="gcc -m32"
+	export CXX="g++ -m32"
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+	cd ${name%-*}-$version
+
+        patch -Np1 -i $SRC/mitkrb-1.22.2-upstream_fix-1.patch
+	sed -i "/KRB5ROOT=/s/\/local//" src/util/ac_check_krb5.m4
+
+	cd src
+ #	autoreconf -fi
+	./configure \
+		--prefix=/usr \
+	        --sysconfdir=/etc \
+	        --localstatedir=/var/lib \
+	        --libdir=/usr/lib32 \
+	        --enable-shared \
+        	--with-system-et \
+	        --with-system-ss \
+		--disable-aesni \
+	        --disable-rpath \
+	        --without-tcl \
+	        --enable-dns-for-realm \
+	        --without-system-verto
+	make
+	make DESTDIR=$PWD/DESTDIR install
+
+	mkdir -p $PKG/usr/lib32
+	cp -Rv DESTDIR/usr/lib32/* $PKG/usr/lib32
+
+}

@@ -1,0 +1,16 @@
+# Depends: perl
+description="Perl/CPAN Module Parse::Yapp : Generates OO LALR parser modules"
+homepage="https://search.cpan.org/dist/Parse-Yapp"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=perl-parse-yapp
+version=1.21
+release=2
+source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-$version.tar.gz"
+
+pkg_build() {
+	cd Parse-Yapp-$version
+	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
+	make
+	make DESTDIR=$PKG install
+}

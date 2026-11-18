@@ -1,0 +1,38 @@
+# Depends: glib libppd
+description="Helper daemon to browse the network for remote CUPS queues and IPP network printers"
+homepage="https://github.com/OpenPrinting/cups-browsed"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=cups-browsed
+version=2.1.1
+release=1
+source="https://github.com/OpenPrinting/$name/releases/download/$version/$name-$version.tar.xz
+	rc.cups-browsed
+	run.cups-browsed"
+
+pkg_build() {
+	
+	# disable avahi
+	scratch isinstalled avahi || OPTS=' --disable-avahi'
+
+	./configure $OPTS \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--runstatedir=/run \
+		--with-cups-rundir=/run/cups \
+		--without-rcdir
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/doc
+
+	# rc service
+	scratch isinstalled sysvinit && \
+		install -Dm755 $SRC/rc.$name $PKG/etc/rc.d/$name || continue
+	
+	# runit service
+	scratch isinstalled runit && {
+		install -Dm755 $SRC/run.$name $PKG/etc/sv/$name/run
+		ln -s /run/runit/supervise.$name $PKG/etc/sv/$name/supervise
+	} || continue
+}

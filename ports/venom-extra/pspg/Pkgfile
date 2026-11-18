@@ -1,0 +1,16 @@
+# Depends: ncurses
+description="Advanced postgres pager"
+homepage="https://github.com/okbob/pspg"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=pspg
+version=5.8.16
+release=1
+source="$name-$version.tar.gz::https://github.com/okbob/pspg/archive/refs/tags/$version.tar.gz"
+
+pkg_build() {
+	./autogen.sh
+	./configure --prefix=/usr 
+	make
+	make DESTDIR=$PKG install
+}

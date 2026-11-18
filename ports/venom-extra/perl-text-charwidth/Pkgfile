@@ -1,0 +1,17 @@
+# Depends: perl
+description="Text:CharWidth perl module"
+homepage="https://metacpan.org/pod/Text::CharWidth"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=perl-text-charwidth
+version=0.04
+release=1
+source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/K/KU/KUBOTA/Text-CharWidth-$version.tar.gz"
+
+pkg_build() {
+	cd Text-CharWidth-$version
+	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
+	make
+	make DESTDIR=$PKG install
+	find $PKG \( -name perllocal.pod -o -name .packlist \) -delete
+}

@@ -1,0 +1,16 @@
+# Depends: libxrandr libxft libxinerama mkfontscale libxcomposite libxdamage libxpm fribidi imlib2
+description="Window manager with the goals of speed, simplicity, and not getting in the user's way"
+homepage="https://ice-wm.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=icewm
+version=4.0.0
+release=1
+source="https://github.com/ice-wm/icewm/archive/$version/$name-$version.tar.gz"
+
+pkg_build() {
+	./autogen.sh
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

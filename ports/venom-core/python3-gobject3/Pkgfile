@@ -1,0 +1,19 @@
+# Depends: python3-cairo gobject-introspection
+description="Python3 bindings for PyGObject3"
+homepage="https://pygobject.gnome.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-gobject3
+version=3.56.3
+release=1
+source="$name-$version.tar.gz::https://gitlab.gnome.org/GNOME/pygobject/-/archive/$version/pygobject-$version.tar.gz"
+
+pkg_build() {
+	venom-meson pygobject-$version build \
+	    --wrap-mode=default \
+	    -Dpython=python3 \
+	    -Dpycairo=enabled \
+	    -Dtests=false
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

@@ -1,0 +1,20 @@
+# Depends: python3-setuptools python3-gpep517
+description="Python module for character encoding auto-detection"
+homepage="https://github.com/chardet/chardet"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-chardet
+_name=${name#*-}
+_n=${_name%${_name#?}}
+version=7.4.3
+release=1
+source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/$_n/${name#*-}/${name#*-}-$version.tar.gz"
+
+pkg_build() {
+	cd ${name#*-}-$version
+	gpep517 build-wheel \
+		    --wheel-dir .dist \
+		    --output-fd 3 3>&1 >&2
+	python3 -m installer -d $PKG \
+		    .dist/*.whl
+}

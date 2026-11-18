@@ -1,0 +1,24 @@
+# Depends: ninja python3-setuptools
+description="High productivity build system"
+homepage="https://mesonbuild.com/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=meson
+version=1.11.1
+release=1
+source="https://github.com/mesonbuild/meson/releases/download/$version/$name-$version.tar.gz
+	venom-meson
+	0001-Skip-broken-tests.patch
+	0002-Update-tests-to-work-with-CUDA-13.patch"
+
+pkg_build() {
+
+	patch -Np1 -i $SRC/0001-Skip-broken-tests.patch
+	patch -Np1 -i $SRC/0002-Update-tests-to-work-with-CUDA-13.patch
+	
+	python3 setup.py build
+	python3 setup.py install --root=$PKG
+
+	# meson build wrapper
+	install -Dm755 ../venom-meson $PKG/usr/bin
+}

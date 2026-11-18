@@ -1,0 +1,16 @@
+# Depends: bash
+description="A program for making large letters out of ordinary text"
+homepage="http://www.figlet.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=figlet
+version=2.2.5
+release=1
+source="ftp://ftp.figlet.org/pub/figlet/program/unix/$name-$version.tar.gz"
+
+pkg_build() {
+	make DEFAULTFONTDIR=/usr/share/figlet/fonts all
+	make DESTDIR=$PKG BINDIR=/usr/bin MANDIR=/usr/share/man \
+	    DEFAULTFONTDIR=/usr/share/figlet/fonts install
+}
+

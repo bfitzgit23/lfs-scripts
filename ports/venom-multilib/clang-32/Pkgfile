@@ -1,0 +1,45 @@
+# Depends: llvm-32
+description="Collection of modular and reusable compiler and toolchain technologies"
+homepage="https://clang.llvm.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=clang-32
+version=22.1.8
+release=1
+source="https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/llvm-project-$version.src.tar.xz"
+
+pkg_build() {
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+	# CBUILD: enable o disable LLVM_TARGETS_TO_BUILD, source CBUILD_LLVM_TARGETS from "llvm.opt" file
+	CBUILD_LLVM_TARGETS="AArch64;AMDGPU;ARM;AVR;BPF;Hexagon;Lanai;LoongArch;Mips;MSP430;NVPTX;PowerPC"
+	CBUILD_LLVM_TARGETS="${CBUILD_LLVM_TARGETS};RISCV;Sparc;SPIRV;SystemZ;VE;WebAssembly;X86;XCore"
+
+	cbuild_options "llvm"
+
+	mv llvm-project-$version.src/clang-tools-extra llvm-project-$version.src/clang/tools/extra
+	cmake -S llvm-project-$version.src/clang -B build -G Ninja \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DLLVM_LIBDIR_SUFFIX=32 \
+		-DCMAKE_C_FLAGS:STRING=-m32 \
+		-DCMAKE_CXX_FLAGS:STRING=-m32 \
+		-DLLVM_MAIN_SRC_DIR="$SRC/llvm-$version.src" \
+	 	-DCLANG_BUILD_EXAMPLES=OFF \
+		-DCLANG_DEFAULT_PIE_ON_LINUX=ON \
+		-DCLANG_INCLUDE_DOCS=OFF \
+		-DCLANG_INCLUDE_TESTS=OFF \
+		-DCLANG_LINK_CLANG_DYLIB=YES \
+		-DLLVM_ENABLE_EH=ON \
+		-DLLVM_ENABLE_LIBXML2=OFF \
+		-DLLVM_ENABLE_RTTI=ON \
+		-DLLVM_INCLUDE_TESTS=OFF \
+		-DLLVM_TARGETS_TO_BUILD="$CBUILD_LLVM_TARGETS" \
+		-Wno-dev
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+
+	# remove unneeded files
+	rm -rf $PKG/usr/bin $PKG/usr/include $PKG/usr/share $PKG/usr/lib $PKG/usr/libexec $PKG/usr/lib32/libear $PKG/usr/lib32/libscanbuild
+	rm -f $PKG/usr/lib32/clang/*analyze* $PKG/usr/lib32/clang/intercept* $PKG/usr/lib32/libclang*.a
+}

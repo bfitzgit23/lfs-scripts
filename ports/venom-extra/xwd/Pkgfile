@@ -1,0 +1,21 @@
+# Depends: libxkbfile
+description="X Window System image dumping utility"
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xwd
+version=1.0.9
+release=1
+source="http://ftp.x.org/pub/individual/app/xwd-$version.tar.xz"
+
+pkg_build() {
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}
+

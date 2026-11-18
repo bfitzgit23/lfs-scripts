@@ -1,0 +1,21 @@
+# Depends: libxslt docbook-xsl
+description="Front-end to an XSL toolchain"
+homepage="https://pagure.io/xmlto"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xmlto
+version=0.0.29
+release=1
+source="https://pagure.io/xmlto/archive/$version/xmlto-$version.tar.gz"
+
+pkg_build() {
+
+	export XML_CATALOG_FILES=/etc/xml/catalog
+
+
+	autoreconf -fvi
+	LINKS="/usr/bin/links" ./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}
+

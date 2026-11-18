@@ -1,0 +1,20 @@
+# Depends: python3-gpep517 python3-hatch-vcs python3-hatchling python3-hatch-fancy-pypi-readme
+description="Attributes without boilerplate"
+homepage="https://www.attrs.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-attrs
+version=26.1.0
+release=1
+source="$name-$version.tar.gz::https://pypi.io/packages/source/a/attrs/attrs-$version.tar.gz"
+pkg_build() {
+	cd attrs-$version
+
+	    gpep517 build-wheel \
+		    --wheel-dir .dist \
+		    --output-fd 3 3>&1 >&2
+	    python3 -m installer -d "$PKG" \
+		    .dist/*.whl
+
+
+}

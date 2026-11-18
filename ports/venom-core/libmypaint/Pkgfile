@@ -1,0 +1,16 @@
+# Depends: json-c glib gobject-introspection intltool
+description="Library for making brushstrokes which is used by MyPaint and other projects"
+homepage="http://mypaint.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libmypaint
+version=1.6.1
+release=1
+source="https://github.com/mypaint/libmypaint/releases/download/v$version/libmypaint-$version.tar.xz"
+
+pkg_build() {
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+
+}

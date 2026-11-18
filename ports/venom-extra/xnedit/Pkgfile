@@ -1,0 +1,15 @@
+# Depends: libxpm motif tcl
+description="Modernized fork of NEdit with unicode support and AA text rendering "
+homepage="https://sourceforge.net/projects/xnedit"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xnedit
+version=1.6.3
+release=1
+source="$name-$version.tar.gz::https://github.com/unixwork/xnedit/archive/refs/tags/v$version.tar.gz"
+
+pkg_build() {
+
+	make linux
+	make DESTDIR=$PKG install
+}

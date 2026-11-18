@@ -1,0 +1,21 @@
+# Depends: libxmu libx11
+description="Kill a client by its X resource"
+homepage="https://xorg.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=xkill
+version=1.0.7
+release=1
+source="http://ftp.x.org/pub/individual/app/xkill-$version.tar.xz"
+
+pkg_build() {
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}
+

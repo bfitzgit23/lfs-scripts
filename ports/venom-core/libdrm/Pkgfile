@@ -1,0 +1,19 @@
+# Depends: libpciaccess meson
+description="Provides a user space library for accessing the DRM, direct rendering manager, on operating systems that support the ioctl interface"
+homepage="https://dri.freedesktop.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libdrm
+version=2.4.134
+release=1
+source="https://dri.freedesktop.org/$name/$name-$version.tar.xz"
+
+pkg_build() {
+	venom-meson $name-$version build \
+		-D man-pages=disabled \
+		-D valgrind=disabled \
+		-D cairo-tests=disabled \
+		-D intel=enabled
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

@@ -1,0 +1,17 @@
+# Depends: libxfce4ui
+description="Freedesktop.org compliant menu implementation based on GLib and GIO"
+homepage="https://xfce.org"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=garcon
+version=4.20.0
+release=1
+source="http://archive.xfce.org/src/xfce/$name/${version%.*}/$name-$version.tar.bz2"
+
+pkg_build() {
+	   
+	./configure --prefix=/usr --sysconfdir=/etc --disable-nls
+	make
+	make DESTDIR=$PKG install
+
+}

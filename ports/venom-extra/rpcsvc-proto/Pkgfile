@@ -1,0 +1,14 @@
+description="rpcsvc protocol definitions from glibc"
+homepage="https://github.com/thkukuk/rpcsvc-proto"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=rpcsvc-proto
+version=1.4.4
+release=1
+source="https://github.com/thkukuk/rpcsvc-proto/releases/download/v$version/rpcsvc-proto-$version.tar.xz"
+
+pkg_build() {
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

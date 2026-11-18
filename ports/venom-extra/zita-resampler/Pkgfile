@@ -1,0 +1,25 @@
+# Depends: zita-resampler-libs
+description="A C++ library for resampling audio signals (apps)"
+homepage="https://kokkinizita.linuxaudio.org/linuxaudio/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=zita-resampler
+version=1.11.2
+release=1
+source="https://kokkinizita.linuxaudio.org/linuxaudio/downloads/zita-resampler-$version.tar.xz"
+
+pkg_build() {
+	cd zita-resampler-$version/apps
+
+	# strip march=native
+	sed -e '/native/d' -i Makefile
+
+	# fix use of BINDIR without preceeding DESTDIR
+	# fix use of MANDIR without preceeding DESTDIR
+	sed -e 's/\ $(BINDIR)/\ $(DESTDIR)$(BINDIR)/' \
+	    -e 's/\ $(MANDIR)/\ $(DESTDIR)$(MANDIR)/' \
+	    -i Makefile
+
+	make
+	make PREFIX=/usr DESTDIR=$PKG install
+}

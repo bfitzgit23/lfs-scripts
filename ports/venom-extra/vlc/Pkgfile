@@ -1,0 +1,23 @@
+# Depends: ffmpeg liba52 libgcrypt libmad lua libidn
+description="A media player, streamer, and encoder"
+homepage="https://www.videolan.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=vlc
+version=3.0.23
+release=3
+source="https://download.videolan.org/$name/$version/$name-$version.tar.xz"
+pkg_build() {
+
+	autoreconf -fv
+        ./configure \
+		--prefix=/usr \
+		--disable-jack \
+		--disable-sndio \
+		--disable-libplacebo \
+		--disable-opencv \
+		--disable-sftp \
+		--disable-gst-decode
+	make
+	make DESTDIR=$PKG install
+}

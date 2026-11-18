@@ -1,0 +1,19 @@
+# Depends: qt6-webengine python3-pyqt6 python3-sip python3-pyqt-builder
+description="Python bindings for QtWebEngine"
+homepage="https://www.riverbankcomputing.com/software/pyqtwebengine/intro"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=python3-pyqt6-webengine
+version=6.11.0
+release=1
+source="https://pypi.python.org/packages/source/p/pyqt6-webengine/pyqt6_webengine-$version.tar.gz
+	fix-build.patch"
+
+pkg_build() {
+	cd pyqt6_webengine-$version
+	patch -Np1 -i $SRC/fix-build.patch
+	sip-build --no-make --qmake=/usr/lib/qt6/bin/qmake6
+	cd build
+	make
+	make INSTALL_ROOT=$PKG install
+}

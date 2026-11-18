@@ -1,0 +1,26 @@
+# Depends: poppler-glib swig tcl
+description="Graph visualization software"
+homepage="https://www.graphviz.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=graphviz
+version=15.1.0
+release=1
+source="https://gitlab.com/graphviz/graphviz/-/archive/$version/$name-$version.tar.bz2"
+
+pkg_build() {
+
+	./autogen.sh NOCONFIG
+	./configure \
+		--prefix=/usr \
+		--libdir=/usr/lib \
+		--libexecdir=/usr/lib \
+		--disable-perl \
+		--disable-python \
+		--enable-python3=yes 
+	make
+	make DESTDIR=$PKG install
+
+	mv -f $PKG/usr/lib64/* $PKG/usr/lib/
+	rm -rf $PKG/usr/lib64
+}

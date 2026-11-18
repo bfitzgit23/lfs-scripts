@@ -1,0 +1,14 @@
+description="Password generator for creating easily memorable passwords"
+homepage="https://sourceforge.net/projects/pwgen/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=pwgen
+version=2.08
+release=1
+source="http://download.sourceforge.net/$name/$name-$version.tar.gz"
+
+pkg_build() {
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,21 @@
+# Depends: icu pango asciidoc leptonica
+description="Optical character recognition (OCR) engine"
+homepage="https://github.com/tesseract-ocr/tesseract"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=tesseract
+version=5.5.2
+release=1
+source="https://github.com/tesseract-ocr/${name}/archive/${version}.tar.gz"
+
+pkg_build() {
+  cd ${name}-${version}
+
+  ./autogen.sh
+
+  ./configure --prefix=/usr
+
+  make
+  make DESTDIR=${PKG} install
+
+  }

@@ -1,0 +1,18 @@
+description="Utility for monitoring a program's use of system resources"
+homepage="https://www.gnu.org/software/time/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=time
+version=1.10
+release=1
+source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/time/time-1.10.tar.gz"
+
+pkg_build() {
+
+	export CFLAGS="$CFLAGS -Wno-error=implicit-function-declaration -Wno-error=incompatible-pointer-types"
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+	rm -r $PKG/usr/share
+}

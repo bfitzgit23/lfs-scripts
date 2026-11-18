@@ -1,0 +1,51 @@
+# Depends: popt zstd
+description="Utilities for synchronizing large file archives over a network"
+homepage="https://rsync.samba.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=rsync
+version=3.4.4
+release=1
+backup="etc/rsyncd.conf"
+source="https://download.samba.org/pub/rsync/$name-$version.tar.gz
+	run.rsyncd
+	rc.rsyncd"
+
+pkg_build() {
+
+	./configure \
+		--prefix=/usr \
+		--with-included-popt=no \
+		--with-included-zlib=no \
+		--disable-xxhash
+	make
+	make DESTDIR=$PKG install
+
+mkdir -p $PKG/etc
+cat > $PKG/etc/rsyncd.conf << "EOF"
+# This is a basic rsync configuration file
+# It exports a single module without user authentication.
+
+motd file = /home/rsync/welcome.msg
+use chroot = yes
+
+[localhost]
+    path = /home/rsync
+    comment = Default rsync module
+    read only = yes
+    list = yes
+    uid = rsyncd
+    gid = rsyncd
+
+EOF
+
+	# runit service
+	scratch isinstalled runit && {
+		install -Dm755 $SRC/run.rsyncd $PKG/etc/sv/rsyncd/run
+		ln -s /run/runit/supervise.rsyncd $PKG/etc/sv/rsyncd/supervise
+	} || continue
+
+	# rc service
+	scratch isinstalled sysvinit && \
+		install -Dm755 $SRC/rc.rsyncd $PKG/etc/rc.d/rsyncd || continue
+}

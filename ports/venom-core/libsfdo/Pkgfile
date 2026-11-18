@@ -1,0 +1,15 @@
+# Depends: meson
+description="Collection of libraries which implement some of the freedesktop.org specifications"
+homepage="https://gitlab.freedesktop.org/vyivel/libsfdo"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libsfdo
+version=0.1.4
+release=1
+source="$name-$version.tar.gz::https://gitlab.freedesktop.org/vyivel/libsfdo/-/archive/v$version/$name-v$version.tar.gz"
+
+pkg_build() {
+	venom-meson $name-v$version build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

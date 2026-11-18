@@ -1,0 +1,17 @@
+# Depends: libgpg-error
+description="A general purpose crypto library based on the code used in GnuPG"
+homepage="https://www.gnupg.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libgcrypt
+version=1.12.2
+release=1
+source="https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-$version.tar.bz2"
+
+pkg_build() {
+
+  	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+
+}

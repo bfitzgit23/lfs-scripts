@@ -1,0 +1,17 @@
+# Depends: openssl
+description="Text and graphics mode WWW browser"
+homepage="http://links.twibright.com/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=links
+version=2.30
+release=2
+source="http://links.twibright.com/download/$name-$version.tar.bz2
+	0001-fix-build-with-recent-gcc.patch"
+
+pkg_build() {
+	patch -Np1 -i $SRC/0001-fix-build-with-recent-gcc.patch
+	./configure --prefix=/usr --mandir=/usr/share/man
+	make
+	make DESTDIR=$PKG install
+}

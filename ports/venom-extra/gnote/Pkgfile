@@ -1,0 +1,15 @@
+# Depends: desktop-file-utils gtkmm4 gspell libsecret yelp-tools meson
+description="A note taking application"
+homepage="https://wiki.gnome.org/Apps/Gnote"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=gnote
+version=50.1
+release=1
+source="https://gitlab.gnome.org/GNOME/gnote/-/archive/$version/$name-$version.tar.gz"
+
+pkg_build() {
+	venom-meson $name-$version build
+	meson compile -C build
+	meson install --no-rebuild -C build --destdir $PKG
+}

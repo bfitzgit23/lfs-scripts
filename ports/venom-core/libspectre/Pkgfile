@@ -1,0 +1,15 @@
+# Depends: ghostscript
+description="Library for rendering Postscript documents"
+homepage="https://www.freedesktop.org/wiki/Software/libspectre"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libspectre
+version=0.2.12
+release=1
+source="https://libspectre.freedesktop.org/releases/$name-$version.tar.gz"
+
+pkg_build() {
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

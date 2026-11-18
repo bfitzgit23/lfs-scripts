@@ -1,0 +1,16 @@
+# Depends: curl
+description="One way sync over http"
+homepage="https://github.com/nodejs/http-parser"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=httpup
+version=0.5.1
+release=2
+source="https://crux.nu/files/$name-$version.tar.xz"
+
+pkg_build() {
+	export CPPFLAGS="-Wno-error=mismatched-new-delete"
+	sed -i 's/Updating collection/Updating repository/' httpup.cpp
+	make
+	make DESTDIR=$PKG prefix=/usr mandir=/usr/share/man install
+}

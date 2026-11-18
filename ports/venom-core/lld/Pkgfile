@@ -1,0 +1,33 @@
+# Depends: llvm
+description="Linker from the LLVM project"
+homepage="https://lld.llvm.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=lld
+version=22.1.8
+release=1
+source="https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/llvm-project-$version.src.tar.xz
+	lld-import-compact_unwind_encoding.h-from-libu.patch"
+
+pkg_build() {
+	cd llvm-project-$version.src/lld
+
+	# CBUILD: enable o disable LLVM_TARGETS_TO_BUILD, source CBUILD_LLVM_TARGETS from "llvm.opt" file
+	CBUILD_LLVM_TARGETS="AArch64;AMDGPU;ARM;AVR;BPF;Hexagon;Lanai;LoongArch;Mips;MSP430;NVPTX;PowerPC"
+	CBUILD_LLVM_TARGETS="${CBUILD_LLVM_TARGETS};RISCV;Sparc;SPIRV;SystemZ;VE;WebAssembly;X86;XCore"
+
+	cbuild_options "llvm"
+
+	patch -p2 -i $SRC/lld-import-compact_unwind_encoding.h-from-libu.patch
+
+	cmake -B build -G Ninja \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-DLLVM_LINK_LLVM_DYLIB=ON \
+		-DLLVM_TARGETS_TO_BUILD="$CBUILD_LLVM_TARGETS" \
+		-Wno-dev
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+}

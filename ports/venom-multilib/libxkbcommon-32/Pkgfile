@@ -1,0 +1,26 @@
+# Depends: xkeyboard-config libxcb-32 meson libxml2-32
+description="keymap compiler and support library"
+homepage="https://xkbcommon.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libxkbcommon-32
+version=1.13.2
+release=1
+source="${name%-*}-$version.tar.gz::https://github.com/xkbcommon/libxkbcommon/archive/xkbcommon-$version.tar.gz"
+
+pkg_build() {
+        export CC="gcc -m32"
+	export CXX="g++ -m32"
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+	venom-meson ${name%-*}-xkbcommon-$version build \
+		--libdir=/usr/lib32 \
+	        --libexecdir=/usr/lib32 \
+		-Denable-tools=false \
+		-Denable-docs=false 
+	meson compile -C build
+	DESTDIR=$PWD/DESTDIR meson install --no-rebuild -C build
+
+	mkdir -p $PKG/usr/lib32
+	cp -Rv DESTDIR/usr/lib32/* $PKG/usr/lib32
+}

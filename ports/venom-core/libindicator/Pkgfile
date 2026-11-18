@@ -1,0 +1,27 @@
+# Depends: gtk3 python3
+description="Set of symbols and convenience functions for Ayatana indicators"
+homepage="https://launchpad.net/libindicator"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=libindicator
+version=12.10.1
+release=2
+source="https://launchpad.net/libindicator/${version%.*}/$version/+download/libindicator-$version.tar.gz"
+
+pkg_build() {
+
+	sed -i 's/-Werror//' libindicator/Makefile.am tools/Makefile.am
+	autoreconf -fi
+
+	./configure \
+		--prefix=/usr \
+		--localstatedir=/var \
+		--libexecdir=/usr/lib/libindicator \
+		--sysconfdir=/etc \
+		--with-gtk=3 \
+		--disable-static \
+		--disable-tests
+	sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+	make
+	make DESTDIR=$PKG install
+}

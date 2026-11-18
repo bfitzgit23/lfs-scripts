@@ -1,0 +1,14 @@
+description="A multi-purpose WAVE data processing and reporting utility "
+homepage="http://shnutils.freeshell.org/shntool/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=shntool
+version=3.0.10
+release=1
+source="http://shnutils.freeshell.org/shntool/dist/src/${name}-${version}.tar.gz"
+
+pkg_build() {
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

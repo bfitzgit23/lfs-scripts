@@ -1,0 +1,17 @@
+# Depends: papirus-icon-theme
+description="Deepin Icons "
+homepage="https://github.com/linuxdeepin/deepin-gtk-theme"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=deepin-icon-theme
+version=2026.02.27
+release=1
+source="https://github.com/linuxdeepin/$name/archive/$version/$name-$version.tar.gz"
+
+pkg_build() {
+	find $name-$version -name "* 2.svg" -delete
+	make hicolor-links
+	make DESTDIR="$PKG" install
+
+	cp -a ./Sea ./usr/share/icons/hicolor "$PKG"/usr/share/icons/
+}

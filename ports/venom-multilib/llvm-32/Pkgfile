@@ -1,0 +1,62 @@
+# Depends: zstd-32 libffi-32 llvm ncurses-32
+description="Collection of modular and reusable compiler and toolchain technologies"
+homepage="https://llvm.org/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=llvm-32
+version=22.1.8
+release=1
+source="https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/${name%-*}-project-$version.src.tar.xz"
+
+pkg_build() {
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+	cd ${name%-*}-project-$version.src/${name%-*}
+
+	# Fix Python scripts which use /usr/bin/env python to access the system Python:
+	grep -rl '#!.*python' | xargs sed -i '1s/python$/python3/'
+
+	# CBUILD: enable o disable LLVM_TARGETS_TO_BUILD, source CBUILD_LLVM_TARGETS from "llvm.opt" file
+	CBUILD_LLVM_TARGETS="AArch64;AMDGPU;ARM;AVR;BPF;Hexagon;Lanai;LoongArch;Mips;MSP430;NVPTX;PowerPC"
+	CBUILD_LLVM_TARGETS="${CBUILD_LLVM_TARGETS};RISCV;Sparc;SPIRV;SystemZ;VE;WebAssembly;X86;XCore"
+
+	cbuild_options "${name%-*}"
+
+	cmake -B build -G Ninja \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DLLVM_LIBDIR_SUFFIX=32 \
+		-DCMAKE_CXX_FLAGS:STRING=-m32 \
+		-DCMAKE_C_FLAGS:STRING=-m32 \
+		-DLLVM_DEFAULT_TARGET_TRIPLE="i686-pc-linux-gnu" \
+		-DLLVM_TARGET_ARCH:STRING=i686 \
+		-DLLVM_BUILD_DOCS=OFF \
+		-DLLVM_BUILD_LLVM_DYLIB=ON \
+		-DLLVM_BUILD_TESTS=OFF \
+		-DLLVM_ENABLE_ASSERTIONS=OFF \
+		-DLLVM_ENABLE_FFI=ON \
+		-DLLVM_ENABLE_LIBCXX=OFF \
+		-DLLVM_ENABLE_LIBEDIT=OFF \
+		-DLLVM_ENABLE_LIBXML2=OFF \
+		-DLLVM_ENABLE_RTTI=ON \
+		-DLLVM_ENABLE_SPHINX=OFF \
+		-DLLVM_INCLUDE_BENCHMARKS=OFF \
+		-DLLVM_INCLUDE_EXAMPLES=OFF \
+		-DLLVM_INSTALL_UTILS=ON \
+		-DLLVM_LINK_LLVM_DYLIB=ON \
+		-DLLVM_TARGETS_TO_BUILD="$CBUILD_LLVM_TARGETS" \
+		-Wno-dev
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+
+	# keep 32bit header and config
+	mkdir -p $SRC/keep
+	install -t $SRC/keep $PKG/usr/bin/llvm-config $PKG/usr/include/llvm/Config/llvm-config.h
+
+	# remove unneeded files
+	rm -rf $PKG/usr/bin $PKG/usr/include $PKG/usr/share $PKG/usr/libexec
+
+	# install 32bit header and config
+	install -m 0755 -D $SRC/keep/llvm-config $PKG/usr/bin/llvm-config-32
+	install -m 0644 -D $SRC/keep/llvm-config.h $PKG/usr/include/llvm/Config/llvm-config-32.h
+}

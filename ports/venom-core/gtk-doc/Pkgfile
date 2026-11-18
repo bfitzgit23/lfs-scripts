@@ -1,0 +1,18 @@
+# Depends: docbook-xml docbook-xsl itstool libxslt python3-pygments
+description="Documentation tool for public library API"
+homepage="https://www.gtk.org/gtk-doc/"
+maintainer="Venom Linux Team, venomlinux at disroot dot org"
+
+name=gtk-doc
+version=1.36.1
+release=1
+source="https://gitlab.gnome.org/GNOME/$name/-/archive/$version/$name-$version.tar.bz2"
+KEEP_DOC="yes"
+
+pkg_build() {
+	venom-meson $name-$version build \
+		-Dyelp_manual=false \
+		-Dtests=false
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}
