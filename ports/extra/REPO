@@ -1535,8 +1535,8 @@ f:e648e192522fef3bf6eb2d3be68ef62c:graphite2/.footprint
 f:dbccb6d3e76611542f50841d2bde8e51:graphite2/.md5sum
 f:4fbf5d4daa488d248104c1c773f4271e:graphite2/Pkgfile
 f:dfb46115b2ae82fd8732c7b3df3d77c9:grub-btrfs/Pkgfile
-f:f251d521ad66f64fda14256aa1074d48:grub-efi/.md5sum
-f:d34036eb1f87298e3150cd89f94440fa:grub-efi/Pkgfile
+f:8385821195c9e31096c9a56634c4edc7:grub-efi/.md5sum
+f:90b30ee276ce82d7686937d3631947d8:grub-efi/Pkgfile
 f:9e226dcf3b16be995a9524cc32818f8b:grub-efi/post-install
 f:42e7f6477b5eafbcea4c73487d82ed0c:grub/.md5sum
 f:55024e44d419283b7251afcb0b85ac7b:grub/Pkgfile
