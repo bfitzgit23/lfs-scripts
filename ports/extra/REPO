@@ -1336,7 +1336,7 @@ f:0e45385cf316157c884acfb67559613e:ffmpeg/Pkgfile
 f:edcbb2029122159c58fb0b37f7041cd2:ffmpeg/ffmpeg-6.0-binutils_2.41-1.patch
 f:490542e8696e699e59c3c0b03b657812:ffmpeg/ffmpeg-6.0-chromium_method-1.patch
 f:5c2bb6f472c45dd33322dd75bfa5ce07:ffmpeg/update
-f:6cd15168c4282688b77a5e7cf2c4d37a:figlet/Pkgfile
+f:bf97d21086d77e0b90e7459ccfcd814e:figlet/Pkgfile
 f:e9b70df4190d772aa05c9d09a7e332a9:filezilla/Pkgfile
 f:9f340153da22ec8bfe8a66e770a41416:firefox-esr/.footprint
 f:21dc90175d8bafce0cbbf4073fdf5de9:firefox-esr/.md5sum

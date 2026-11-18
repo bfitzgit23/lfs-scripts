@@ -320,7 +320,7 @@ f:8765f8cf2f61b398119de2ea03023feb:accountsservice/post-install
 f:aced6c1724315d0623bc8ae294c2d0df:acpica/Pkgfile
 f:92c23cd3c8bf583e387e5b36bde5d9bd:acpid/Pkgfile
 f:7012297806c339f888334a45bd533d74:adw-gtk3/Pkgfile
-f:1ac6a0fbf668772513e1c67ee11e2eed:alsa-plugins/Pkgfile
+f:ae3f2c4ef2721b22fc13b99a3fe9f982:alsa-plugins/Pkgfile
 f:000bb3d2bd9906d3bccf33f513a85752:alsa-tools/Pkgfile
 f:a38a96e824f8434a002fdde452c616a1:alsa-tools/install
 f:6b81859d7568c8d6cc6aa9bff8611425:alsa-ucm-conf/Pkgfile
@@ -663,7 +663,7 @@ f:b8151202ffa0a563cf571d44bad7f8a1:sdl12-compat/Pkgfile
 f:e225ead9bd69f83d25ae97ce594e2458:seatd/Pkgfile
 f:804f17b159572e179417b08e368795e7:sentry_sdk/Pkgfile
 f:aa5331efebe40696f7951454416b0588:serf/Pkgfile
-f:033fe8f0a5fdc9e344eb0b262a10846f:sgml-common/Pkgfile
+f:d1890e7cdf4d7c1f29632e7e4f33ef9f:sgml-common/Pkgfile
 f:0a821e0f597016ba0580221e42746e40:shaderc/Pkgfile
 f:dfdf04408ccd356c6b8a11ba2d225b32:shaderc/glslc.1
 f:59cd7dd9f2beb29a3ad705c723829e2f:signond/Pkgfile

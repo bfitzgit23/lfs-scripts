@@ -6,7 +6,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=figlet
 version=2.2.5
 release=1
-source="ftp://ftp.figlet.org/pub/figlet/program/unix/$name-$version.tar.gz"
+source="https://deb.debian.org/debian/pool/main/f/figlet/${name}_$version.orig.tar.gz"
 
 pkg_build() {
 	make DEFAULTFONTDIR=/usr/share/figlet/fonts all

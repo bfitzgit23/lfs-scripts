@@ -70,7 +70,7 @@ d:vulkan-utility-libraries-32
 d:vulkan-validation-layers-32
 d:xcb-util-32
 f:d41d8cd98f00b204e9800998ecf8427e:alsa-plugins-32/.32bit
-f:c6a6db0b0a5f856798aa15231e456d06:alsa-plugins-32/Pkgfile
+f:80f35db424847fba852b269541d4b056:alsa-plugins-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:avahi-32/.32bit
 f:e9e352e2b12dd64877c75253fc5addf3:avahi-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:cdparanoia-32/.32bit

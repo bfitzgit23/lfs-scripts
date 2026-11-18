@@ -6,7 +6,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=alsa-lib-32
 version=1.2.16.1
 release=1
-source="ftp://ftp.alsa-project.org/pub/lib/alsa-lib-$version.tar.bz2"
+source="https://www.alsa-project.org/files/pub/lib/alsa-lib-$version.tar.bz2"
 
 pkg_build() {
 	cd alsa-lib-$version
