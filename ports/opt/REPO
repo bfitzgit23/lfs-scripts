@@ -538,7 +538,7 @@ f:5c17659e4a675ea1556078ed49a927e1:libmpeg2/Pkgfile
 f:ff2f9633cbe69bb952d13d8747657fd2:libmusicbrainz/Pkgfile
 f:b5e64dd066dd3cbc0da50c79a702b0dd:libmusicbrainz5/Pkgfile
 f:f7ad6e6d22c01a3520c3d327356297cd:libnghttp2/Pkgfile
-f:9c4873e05d0adf24ddd1b8a1217300cc:libosinfo/Pkgfile
+f:2c997eb689ac06c0a65eca77ee0034c1:libosinfo/Pkgfile
 f:072fd7d5f618dea10a908e013294b372:libpaper/Pkgfile
 f:d876ad77ed698166328e04a404319861:libpcap/Pkgfile
 f:5f5acf785ca92bad7509a5676e3bcc96:libportal/Pkgfile
@@ -634,7 +634,7 @@ f:8226b98fd9aec49d376b774177217ec6:python3-gnupg/Pkgfile
 f:e941db099b232071a63f1a97eca1e70e:python3-pyparted/Pkgfile
 f:6d690e2b75ba41153b4a7f8679687363:python3-pyqt-builder/Pkgfile
 f:9f4380a5badfcfea97df3f5c69f01998:python3-pyqt5/Pkgfile
-f:7af9de39cc9ad9847db1c5ade512755d:python3-pyqt6/Pkgfile
+f:960aa287b386d20a24e26a5f7ed25fd7:python3-pyqt6/Pkgfile
 f:8d12924f24f7e989670bbb816253763f:python3-sip/Pkgfile
 f:00e8dc024d87dbf62788fc4215e10877:python3-unidecode/Pkgfile
 f:6089f31349e4012e160252d264b4a9fa:qca/Pkgfile

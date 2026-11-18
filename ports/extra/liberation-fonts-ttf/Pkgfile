@@ -1,9 +1,9 @@
 # Depends on: mkfontscale 
 
 name=liberation-fonts-ttf
-version=2.00.1
+version=2.1.5
 release=1
-source=(https://releases.pagure.org/liberation-fonts/$name-$version.tar.gz
+source=(https://github.com/liberationfonts/liberation-fonts/files/7261482/liberation-fonts-ttf-$version.tar.gz
 	30-0-liberation-mono.conf
 	30-0-liberation-sans.conf
 	30-0-liberation-serif.conf)

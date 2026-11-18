@@ -4,7 +4,7 @@ homepage="https://www.opera.com/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=opera
-version=132.0.5905.102
+version=140.0.6074.36
 release=1
 ffmpeg_ver=0.82.0
 source="$name-$version.deb::https://download3.operacdn.com/pub/opera/desktop/${version}/linux/${name}-stable_${version}_amd64.deb

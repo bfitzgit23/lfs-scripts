@@ -244,8 +244,8 @@ f:750f51a9b65f9567c11ec99c65104e02:libice-32/Pkgfile
 f:59b3208fbb07d9ee58e69a557e5dfe49:libidn2-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:libjpeg-turbo-32/.32bit
 f:3ff2bdb3a08241bc958aa625d547f6c5:libjpeg-turbo-32/.footprint
-f:c031ec5b6f129144fdbaca3cab69d425:libjpeg-turbo-32/.md5sum
-f:4e924845f0a86e116e19558efd2b367a:libjpeg-turbo-32/Pkgfile
+f:d108ba7b93c1be1ac59c67ab6d48279b:libjpeg-turbo-32/.md5sum
+f:47755168f646d79dbc17f97065e8d619:libjpeg-turbo-32/Pkgfile
 f:661e2f10415c3ed5af846625b600e361:libnghttp2-32/Pkgfile
 f:5a473ac79f0e010ff320731fc73b31fd:libogg-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:libpciaccess-32/.32bit
@@ -397,8 +397,8 @@ f:e45cd11689d948be042a74371f8705a6:spirv-llvm-translator-32/Pkgfile
 f:c0f65d71c43ac09c99838b7aca439fa8:spirv-tools-32/Pkgfile
 f:dd780f9530993a6c19d741395e9fd256:sqlite-32/Pkgfile
 f:8f5a6ec8d09e83cc06414868abe1ae5a:steam/.footprint
-f:c3c17850b5bdc84a2b5a23d7fdd1a37c:steam/.md5sum
-f:9b3b82e15a18b4271751f151f8c8f29e:steam/Pkgfile
+f:96cc88ad784460a2f7173ce3c38acd81:steam/.md5sum
+f:f0761e7870b99bbdf3fb3b43bc6b27ea:steam/Pkgfile
 f:781b1baf364cd144b104b840b6dec297:tdb-32/Pkgfile
 f:cb2d9582fba1de6c324aa85359e1daa4:util-linux-32/Pkgfile
 f:d37746fd34ef0da13a2e52729f7c6a0e:v4l-utils-32/Pkgfile

@@ -4,9 +4,9 @@ homepage="http://www.zsh.org"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=zsh
-version=5.9.1
+version=5.9.2
 release=1
-source="http://www.zsh.org/pub/$name-$version.tar.xz
+source="https://www.zsh.org/pub/$name-$version.tar.xz
 	"
 
 pkg_build() {

@@ -1,9 +1,9 @@
 # Depends on: gtk-32 mesa-32 zenity
 
 name=steam
-version=1.0.0.86
+version=1.0.0.87
 release=1
-source=(http://repo.steampowered.com/steam/pool/steam/s/steam/steam_${version}.tar.gz)
+source=(https://repo.steampowered.com/steam/pool/steam/s/steam/steam_${version}.tar.gz)
 
 post_build() {
 	# blank steamdeps because apt-get

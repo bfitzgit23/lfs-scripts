@@ -5,12 +5,12 @@
 
 description="Python bindings for the Qt 6 toolkit"
 name=python3-pyqt6
-version=6.11.0
+version=6.12.1
 release=1
-source="https://files.pythonhosted.org/packages/source/P/PyQt6/PyQt6-$version.tar.gz"
+source="https://files.pythonhosted.org/packages/61/5f/39d2cf3eabc36006a5c87df6e1ed34928025b4a1768d752859bf404ec341/pyqt6-$version.tar.gz"
 
 pkg_build() {
-	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "PyQt6-6.11.0" -print -quit)
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "PyQt6-6.12.1" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
 	[ -n "$_bfs_src" ] || return 1
 	cd "$_bfs_src" || return 1

@@ -5,7 +5,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=mlocate
 version=0.26
 release=2
-source="https://releases.pagure.org/$name/$name-$version.tar.xz
+source="https://deb.debian.org/debian/pool/main/m/mlocate/mlocate_$version.orig.tar.gz
 	mlocate 
 	updatedb.conf"
 

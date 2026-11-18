@@ -1,5 +1,5 @@
 name=acpica-unix
-version=20230628
+version=20260930
 release=1
-source="https://downloadmirror.intel.com/783534/$name-$version.tar.gz"
+source="https://github.com/acpica/acpica/releases/download/$version/acpica-unix-$version.tar.gz"
 export NOWERROR=TRUE

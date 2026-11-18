@@ -4,7 +4,7 @@ homepage="https://element.io"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=element-desktop-bin
-version=1.12.22
+version=1.12.35
 release=1
 source="https://packages.element.io/debian/pool/main/e/element-desktop/element-desktop_"${version}"_amd64.deb
                element-desktop-stable-bin.sh"

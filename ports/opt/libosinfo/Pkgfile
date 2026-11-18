@@ -11,7 +11,7 @@ build_opt=(
     -Denable-gtk-doc=false
     -Denable-tests=false
 )
-source="https://releases.pagure.org/libosinfo/libosinfo-$version.tar.xz"
+source="https://gitlab.com/libosinfo/libosinfo/-/archive/v$version/libosinfo-v$version.tar.gz"
 
 pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1
