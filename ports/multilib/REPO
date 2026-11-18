@@ -152,7 +152,7 @@ f:16bac4465f4cf3f7728e2668d5855e3d:bzip2-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:cairo-32/.32bit
 f:3148662908caf0557e4b357a52d69f16:cairo-32/.footprint
 f:10956a17707e0fde119c18c9d9d6d594:cairo-32/.md5sum
-f:54b7a2060c98cd959cf27e2af784be30:cairo-32/Pkgfile
+f:dfc98a38febf9b006aa6f2bc2af14de3:cairo-32/Pkgfile
 f:5ae651e8b6c6e9deedbe789b38ddab12:clang-32/Pkgfile
 f:3845e21d207091cc9b0b64a306e40a5e:curl-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:dbus-32/.32bit

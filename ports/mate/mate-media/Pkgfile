@@ -6,7 +6,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=mate-media
 version=1.28.1
 release=1
-source="https://pub.mate-desktop.org/releases/${version%.*}/$name-$version.tar.xz"
+source="https://github.com/mate-desktop/mate-media/releases/download/v$version/$name-$version.tar.xz"
 
 pkg_build() {
 	./configure \

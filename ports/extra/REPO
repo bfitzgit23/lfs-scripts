@@ -1265,7 +1265,7 @@ f:127890223213c6c67fa0f1b57d5961c1:djvulibre/Pkgfile
 f:78017c21e961c6897267358a9893bf2d:dk/Pkgfile
 f:f5f8c30114558c458ebddc723a141c2f:docbook-xml/.footprint
 f:da4d122a62f1cd3317f96d7e1e559077:docbook-xml/.md5sum
-f:9e67658fef3d8c562f90d423c9876368:docbook-xml/Pkgfile
+f:fa0f198c42f9ae98635a82b30ffa9b1b:docbook-xml/Pkgfile
 f:16030846deb5d3b8ff11c6c916ed0e07:docbook-xml/post-install
 f:3833ecc5201bfe3ec97f9e4d09f9cb1a:docbook-xsl/.footprint
 f:9db49665aa3f92cef7b59f13d40f8e7a:docbook-xsl/.md5sum
@@ -2060,7 +2060,7 @@ f:069b564f600f31293105b429642b018c:links/.md5sum
 f:191148543485d3e8ec8a089440f4f5c1:links/Pkgfile
 f:63b08146b5e08a899c8d88d6c6574726:linux-firmware/.footprint
 f:0733cecab799a5c8f2513f429edd09bb:linux-firmware/.md5sum
-f:b699e5f5a7c88636414280abbf3ed43c:linux-firmware/Pkgfile
+f:3f860016cc040f90de55f8629fe253dc:linux-firmware/Pkgfile
 f:6e3eb51e9d47a8c4a03ade6d4ea0e742:linux-firmware/update
 f:97ddcf22730745d2a311d7638e1793d9:linux/.footprint
 f:25ee3a5b20b77373070e94c6e9f895b2:linux/.md5sum
