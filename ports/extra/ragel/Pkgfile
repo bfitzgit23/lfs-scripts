@@ -8,7 +8,6 @@ release=1
 source="https://www.colm.net/files/$name/$name-$version.tar.gz"
 
 pkg_build() {
-	cd $name-$version
 	./configure --prefix=/usr
 	make
 	make DESTDIR=$PKG install

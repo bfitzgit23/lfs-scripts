@@ -4,7 +4,7 @@ homepage="https://python-pillow.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-pillow
-version=12.2.0
+version=13.0.0
 release=1
 source="$name-$version.tar.gz::https://github.com/python-pillow/Pillow/archive/refs/tags/$version.tar.gz
 	"

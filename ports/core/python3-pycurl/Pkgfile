@@ -4,7 +4,7 @@ homepage="http://pycurl.sourceforge.net/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-pycurl
-version=7.46.0
+version=7.49.0
 _ver=7_46_0
 release=1
 source="$name-$version.tar.gz::https://github.com/pycurl/pycurl/archive/REL_${_ver}/python-pycurl-$version.tar.gz"

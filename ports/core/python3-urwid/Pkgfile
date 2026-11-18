@@ -4,7 +4,7 @@ homepage="https://urwid.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-urwid
-version=4.0.3
+version=5.1.3
 release=1
 source="$name-$version.tar.gz::https://pypi.python.org/packages/source/u/urwid/urwid-$version.tar.gz"
 

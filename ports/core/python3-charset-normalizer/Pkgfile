@@ -4,7 +4,7 @@ homepage="https://github.com/Ousret/charset_normalizer"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-charset-normalizer
-version=3.4.7
+version=3.5.2
 release=1
 source="https://files.pythonhosted.org/packages/source/c/charset_normalizer/charset_normalizer-$version.tar.gz"
 

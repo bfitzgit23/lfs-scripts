@@ -10,7 +10,6 @@ release=1
 source="http://deb.debian.org/debian/pool/main/libf/libfakekey/libfakekey_0.3+git20170516.orig.tar.xz"
 
 pkg_build() {
-	cd libfakekey
 	./autogen.sh
 	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
 	make

@@ -8,7 +8,6 @@ source=(http://deb.debian.org/debian/pool/main/x/xmlto/xmlto_$version.orig.tar.b
 export LINKS="/usr/bin/links"
 
 pkg_build() {
-	cd $name-$version
 	./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man
 	make
 	make DESTDIR=$PKG install

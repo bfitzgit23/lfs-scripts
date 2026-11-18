@@ -6,7 +6,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-urllib3
 _name=${name#*-}
 _n=${_name%${_name#?}}
-version=2.7.0
+version=2.8.0
 release=1
 source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/$_n/${name#*-}/${name#*-}-$version.tar.gz"
 

@@ -9,7 +9,6 @@ commit=6c28805c56d562bec56cc0b31c0d5905ebb5a6ac
 release=1
 source="https://downloads.xiph.org/releases/celt/$name-$version.tar.gz"
 pkg_build() {
-	cd $name-$version
 	NOCONFIGURE=1 ./autogen.sh
 	./configure --prefix=/usr --enable-custom-modes --disable-static
 	make

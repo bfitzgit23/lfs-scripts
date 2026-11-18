@@ -5,7 +5,7 @@
 
 description="PEP 517 build backend for PyQt projects"
 name=python3-pyqt-builder
-version=1.19.1
+version=1.21.0
 release=1
 source="https://files.pythonhosted.org/packages/source/p/pyqt-builder/pyqt_builder-$version.tar.gz"
 

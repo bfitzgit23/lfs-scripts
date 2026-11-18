@@ -4,7 +4,7 @@ homepage="https://numpy.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-numpy
-version=2.5.0
+version=2.5.5
 release=1
 source="$name-$version.tar.gz::https://github.com/numpy/numpy/releases/download/v${version}/numpy-${version}.tar.gz"
 

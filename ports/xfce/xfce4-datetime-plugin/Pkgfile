@@ -11,7 +11,6 @@ release=1
 source="https://gitlab.xfce.org/panel-plugins/$name/-/archive/$name-$version/$name-$name-$version.tar.gz"
 
 pkg_build() {
-	cd $name-$name-$version
 	./autogen.sh \
 		--prefix=/usr \
 		--sysconfdir=/etc \

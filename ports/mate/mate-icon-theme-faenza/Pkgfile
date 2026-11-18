@@ -11,7 +11,6 @@ release=1
 source="https://github.com/mate-desktop-legacy-archive/$name/archive/refs/tags/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	cd $name-$version
 	./autogen.sh --prefix=/usr
 	make
 	make DESTDIR=$PKG install

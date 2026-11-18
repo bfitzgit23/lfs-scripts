@@ -4,7 +4,7 @@ homepage="https://github.com/shibukawa/imagesize_py/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-imagesize
-version=2.0.0
+version=2.0.1
 release=1
 source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/i/imagesize/${name#*-}-$version.tar.gz"
 

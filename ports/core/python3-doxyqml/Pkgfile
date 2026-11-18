@@ -3,7 +3,7 @@
 
 description="python3-doxyqml package"
 name=python3-doxyqml
-version=0.5.3
+version=0.6.0
 release=1
 source="https://files.pythonhosted.org/packages/source/d/doxyqml/doxyqml-${version}.tar.gz"
 

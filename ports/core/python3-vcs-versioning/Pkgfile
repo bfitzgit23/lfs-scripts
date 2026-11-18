@@ -4,7 +4,7 @@
 
 description="VCS-backed version management used by setuptools-scm"
 name=python3-vcs-versioning
-version=2.4.1
+version=2.6.0
 release=1
 source="https://files.pythonhosted.org/packages/source/v/vcs_versioning/vcs_versioning-$version.tar.gz"
 

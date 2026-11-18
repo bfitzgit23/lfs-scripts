@@ -5,7 +5,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-geopy
 nm=geopy
-version=2.4.1
+version=2.5.0
 release=3
 source="$name-$version.tar.gz::https://github.com/geopy/geopy/archive/$version.tar.gz"
 

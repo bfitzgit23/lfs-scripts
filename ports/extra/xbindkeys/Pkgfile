@@ -9,7 +9,6 @@ release=2
 source="http://deb.debian.org/debian/pool/main/x/xbindkeys/xbindkeys_$version.orig.tar.gz"
 
 pkg_build() {
-	cd $name-$version
 
 	# pick up new guile versions
 	autoreconf -vi

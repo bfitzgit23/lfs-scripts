@@ -4,7 +4,7 @@ homepage="https://github.com/sphinx-doc/sphinxcontrib-jsmath/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-sphinxcontrib-jsmath
-version=1.0.1
+version=2.0.0
 release=2
 source="$name-$version.tar.gz::https://github.com/sphinx-doc/${name#*-}/archive/$version/${name#*-}-$version.tar.gz"
 

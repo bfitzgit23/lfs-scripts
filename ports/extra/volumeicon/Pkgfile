@@ -8,7 +8,6 @@ source=(http://deb.debian.org/debian/pool/main/v/volumeicon/volumeicon_0.5.1+git
 build_opt="--enable-notify"
 
 pkg_build() {
-	cd volumeicon-master
 	./autogen.sh --prefix=/usr $build_opt
 	make
 	make DESTDIR=$PKG install

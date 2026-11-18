@@ -629,13 +629,13 @@ f:acb2f7dc246f631bd62ffaf5f171953a:pyqt-builder/Pkgfile
 f:c0a06ad494f616cbb5338fb5f75371d7:pyqt5-sip/Pkgfile
 f:730647d4b8262ac58ad0b49f435e8175:pyqt6-sip/Pkgfile
 f:53d6e985304a3c99f5bb68e53729b4a2:pyside6/Pkgfile
-f:0e60e976c4e1b8fb9f238e5537f3941a:python3-argcomplete/Pkgfile
-f:8226b98fd9aec49d376b774177217ec6:python3-gnupg/Pkgfile
+f:3ddfd86267405b5d042ece897c54b69d:python3-argcomplete/Pkgfile
+f:3963fe13afc3191f090ccf0a713c4f61:python3-gnupg/Pkgfile
 f:e941db099b232071a63f1a97eca1e70e:python3-pyparted/Pkgfile
-f:6d690e2b75ba41153b4a7f8679687363:python3-pyqt-builder/Pkgfile
+f:c3ab30492f91cd64eb9f79fd5e31a26e:python3-pyqt-builder/Pkgfile
 f:9f4380a5badfcfea97df3f5c69f01998:python3-pyqt5/Pkgfile
 f:960aa287b386d20a24e26a5f7ed25fd7:python3-pyqt6/Pkgfile
-f:8d12924f24f7e989670bbb816253763f:python3-sip/Pkgfile
+f:3eebb8f24a72fd331b825e5786c4bbaf:python3-sip/Pkgfile
 f:00e8dc024d87dbf62788fc4215e10877:python3-unidecode/Pkgfile
 f:6089f31349e4012e160252d264b4a9fa:qca/Pkgfile
 f:6f6c61160418e30a1eb36a0a495215e6:qpdf/Pkgfile

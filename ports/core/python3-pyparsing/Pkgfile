@@ -4,7 +4,7 @@ homepage="https://github.com/pyparsing/pyparsing/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-pyparsing
-version=3.3.2
+version=3.3.3
 release=1
 source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/p/${name#*-}/${name#*-}-$version.tar.gz"
 

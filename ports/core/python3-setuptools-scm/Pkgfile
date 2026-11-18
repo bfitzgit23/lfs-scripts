@@ -4,7 +4,7 @@ homepage="https://github.com/pypa/setuptools_scm"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-setuptools-scm
-version=9.2.2
+version=10.3.4
 release=1
 source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/s/setuptools_scm/setuptools_scm-$version.tar.gz"
 

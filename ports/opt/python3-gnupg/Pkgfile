@@ -5,9 +5,9 @@
 
 description="Python wrapper for GnuPG"
 name=python3-gnupg
-version=0.5.4
+version=0.5.7
 release=1
-source="https://files.pythonhosted.org/packages/source/p/python-gnupg/python-gnupg-${version}.tar.gz"
+source="https://files.pythonhosted.org/packages/source/p/python-gnupg/python_gnupg-${version}.tar.gz"
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "python-gnupg-$version" -print -quit)

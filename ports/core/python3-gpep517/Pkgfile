@@ -4,7 +4,7 @@ homepage="https://github.com/pypa/pep517"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-gpep517
-version=19
+version=23
 release=1
 source="https://github.com/mgorny/gpep517/archive/v$version/gpep517-v$version.tar.gz
 	default.bytecode.level.patch gpep517"

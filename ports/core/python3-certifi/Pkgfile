@@ -4,7 +4,7 @@ homepage="https://github.com/certifi/python-certifi"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-certifi
-version=2026.6.17
+version=2026.10.23
 release=1
 source="$name-$version.tar.gz::https://pypi.io/packages/source/c/certifi/certifi-$version.tar.gz"
 

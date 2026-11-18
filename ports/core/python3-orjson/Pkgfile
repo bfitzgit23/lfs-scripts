@@ -4,7 +4,7 @@ homepage="https://github.com/ijl/orjson"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-orjson
-version=3.11.9
+version=3.13.0
 release=1
 source="https://github.com/ijl/orjson/archive/$version/orjson-$version.tar.gz"
 

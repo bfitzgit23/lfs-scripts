@@ -4,7 +4,7 @@ homepage="https://github.com/websocket-client/websocket-client"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-websocket-client
-version=1.9.0
+version=1.9.2
 release=1
 source="$name-$version.tar.gz::https://pypi.io/packages/source/w/websocket-client/websocket_client-$version.tar.gz"
 

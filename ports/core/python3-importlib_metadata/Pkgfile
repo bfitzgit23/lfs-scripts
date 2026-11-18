@@ -4,7 +4,7 @@ homepage="https://pypi.org/project/importlib-metadata/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-importlib_metadata
-version=9.0.0
+version=10.2.0
 release=1
 source="https://pypi.python.org/packages/source/i/importlib_metadata/importlib_metadata-$version.tar.gz"
 

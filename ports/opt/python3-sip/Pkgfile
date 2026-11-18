@@ -5,7 +5,7 @@
 
 description="SIP bindings generator used by PyQt"
 name=python3-sip
-version=6.10.0
+version=6.17.3
 release=2
 source="https://files.pythonhosted.org/packages/source/s/sip/sip-$version.tar.gz"
 

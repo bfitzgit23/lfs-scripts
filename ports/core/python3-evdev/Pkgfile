@@ -4,7 +4,7 @@ homepage="https://github.com/gvalkov/python-evdev"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-evdev
-version=1.9.3
+version=2.0.0
 release=1
 source="$name-$version.zip::https://github.com/gvalkov/python-evdev/archive/refs/tags/v$version.tar.gz"
 

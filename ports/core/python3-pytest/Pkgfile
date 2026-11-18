@@ -4,7 +4,7 @@ homepage="https://pytest.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-pytest
-version=9.1.1
+version=9.2.0
 release=1
 source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/p/pytest/pytest-$version.tar.gz"
 

@@ -8,6 +8,5 @@ release=1
 source="https://github.com/michaelforney/sdhcp/archive/refs/heads/master.tar.gz"
 
 pkg_build() {
-	cd $name-master
 	make PREFIX=/usr DESTDIR=$PKG install
 }

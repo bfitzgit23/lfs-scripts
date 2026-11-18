@@ -4,7 +4,7 @@ homepage="https://pypi.org/project/markdown"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-markdown
-version=3.10.2
+version=3.11.3
 release=1
 source="$name-$version.tar.gz::https://github.com/Python-Markdown/markdown/archive/refs/tags/$version.tar.gz"
 pkg_build() {

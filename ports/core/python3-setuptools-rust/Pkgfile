@@ -4,7 +4,7 @@ homepage="https://github.com/PyO3/setuptools-rust"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-setuptools-rust
-version=1.12.1
+version=1.13.0
 release=1
 source="https://github.com/PyO3/setuptools-rust/archive/v$version/python-setuptools-rust-$version.tar.gz"
 

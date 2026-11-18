@@ -4,7 +4,7 @@ homepage="https://pypi.org/project/zipp/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-zipp
-version=4.1.0
+version=4.1.2
 release=1
 source="https://pypi.python.org/packages/source/z/zipp/zipp-$version.tar.gz"
 

@@ -10,12 +10,11 @@ pre_build() {
 }
 
 pkg_build() {
-	cd a52dec-$version
 	./configure --prefix=/usr $build_opt
 	make
 	make DESTDIR=$PKG install
 }
 
 post_build() {
-	cp a52dec-$version/liba52/a52_internal.h $PKG/usr/include/a52dec
+	cp liba52/a52_internal.h $PKG/usr/include/a52dec
 }
