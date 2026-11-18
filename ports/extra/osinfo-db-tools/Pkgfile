@@ -6,11 +6,11 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=osinfo-db-tools
 version=1.12.0
 release=1
-source="https://releases.pagure.org/libosinfo/$name-$version.tar.xz"
+source="https://gitlab.com/libosinfo/osinfo-db-tools/-/archive/v$version/$name-v$version.tar.gz"
 
 pkg_build() {
 
-	venom-meson $name-$version build
+	venom-meson $name-v$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 

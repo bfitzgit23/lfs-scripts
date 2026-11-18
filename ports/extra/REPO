@@ -2372,7 +2372,7 @@ f:3ad307342ed77d549de4b7a52967cb74:os-prober/os-prober-1.79-efi-chroot-blkid-fal
 f:4bb8de9891706a735f2b2bf8765f4776:os-prober/os-prober-1.79-fix-busy-umount-message.patch
 f:6fb1dbf483d66c808485daa4023cf1f3:os-prober/os-prober-1.79-mounted-boot-partition-fix.patch
 f:0d9f36a23bd8a834f552409ff850a45f:os-prober/os-prober-1.79-use-fstab-name.patch
-f:50f0eddc9658455658d0e3fa232824fd:osinfo-db-tools/Pkgfile
+f:ccd94ba4ee56aef694d3491962c27055:osinfo-db-tools/Pkgfile
 f:00ad8553fa04b5a30e2de99b8d1f276e:osinfo-db/Pkgfile
 f:df2982d1f404c9b862a82ce17bbc076d:osx-arc-theme/Pkgfile
 f:b08acf9c0868c3efe70521afebf6125a:outils/Pkgfile
