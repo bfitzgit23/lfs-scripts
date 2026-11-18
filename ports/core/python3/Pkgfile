@@ -4,14 +4,13 @@ homepage="https://www.python.org"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3
-version=3.14.6
+version=3.14.7
 release=1
-source=($name-$version.tar.xz::https://www.python.org/ftp/python/$version/Python-$version.tar.xz
+source=("$name-$version.tar.xz::https://www.python.org/ftp/python/$version/Python-$version.tar.xz"
+	Python-$version-openssl_4-1.patch
 	pyconfig.h)
 
 pkg_build() {
-	cd Python-$version
-
 	# Ensure that we are using the system copy of various libraries
 	rm -rv Modules/expat
 	#rm -rv Modules/_decimal/libmpdec
@@ -41,7 +40,7 @@ pkg_build() {
 
 	chmod -v 755 $PKG/usr/lib/libpython${version%.*}.so
 	chmod -v 755 $PKG/usr/lib/libpython3.so
-
+	
 	mv $PKG/usr/include/python${version%.*}/pyconfig.h \
 	   $PKG/usr/include/python${version%.*}/pyconfig-64.h
 	install -m 0644 $SRC/pyconfig.h $PKG/usr/include/python${version%.*}/

@@ -1449,7 +1449,10 @@ f:914d4c30aea0f2ae0f1fee4539e48a31:python3-xlib/Pkgfile
 f:b791a1d5e5e109538e570d7072e62e39:python3-yaml/Pkgfile
 f:fdad68786e39ddc641c1e91d58f42e3b:python3-zipp/Pkgfile
 f:453e3e574b81ecf3babf22cec4e081ee:python3-zstandard/Pkgfile
-f:4615f6fefa6114da7b8eb67b64520f93:python3/Pkgfile
+f:1ac77e25ffe1ee728b46c82b53ba880d:python3/.md5sum
+f:37c2d77e475ce15f1f948fa868f9a05d:python3/Pkgfile
+f:597d7737df1b4ea4e184c193da523050:python3/Python-3.14.7-openssl_4-1.patch
+f:1028380a8ef1a83c684f1e7e8c6f3805:python3/pyconfig.h
 f:ba40a5c7b46bb7cf9be93f41f21f15b2:qgpgme/Pkgfile
 f:2f82daed556733bf62af60e7d61cd5cd:qt6-3d/Pkgfile
 f:19758c4b15265b3dfd0e817e7585a21e:qt6-5compat/Pkgfile
