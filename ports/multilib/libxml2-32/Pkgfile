@@ -4,4 +4,12 @@ name=libxml2-32
 version=2.15.3
 release=1
 source=(https://download.gnome.org/sources/libxml2/${version%.*}/libxml2-$version.tar.xz)
-build_opt="--with-history PYTHON=/usr/bin/python3 --with-icu --without-python"
+
+# meson options, since 2.15 ships meson.build and pkgutils detects it first.
+# pkgmk sets PKGMK_ARCH=32 here, so the driver installs into /usr/lib32.
+build_opt="-D history=enabled -D icu=enabled -D python=disabled"
+
+pre_build() {
+	# see ports/extra/libxml2: the tarball does not need git
+	sed -i "/'git'/,+3d" meson.build
+}
