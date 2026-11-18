@@ -3,4 +3,4 @@
 name=libxrandr-32
 version=1.5.5
 release=1
-source=(ftp://ftp.x.org/pub/individual/lib/libXrandr-$version.tar.xz)
+source=(https://ftp.x.org/pub/individual/lib/libXrandr-$version.tar.xz)

@@ -3,4 +3,4 @@
 name=libxft
 version=2.3.8
 release=1
-source=(ftp://ftp.x.org/pub/individual/lib/libXft-$version.tar.xz)
+source=(https://ftp.x.org/pub/individual/lib/libXft-$version.tar.xz)

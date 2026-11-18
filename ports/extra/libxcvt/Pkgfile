@@ -1,4 +1,4 @@
 name=libxcvt
 version=0.1.2
 release=1
-source=(ftp://ftp.x.org/pub/individual/lib/$name-$version.tar.xz)
+source=(https://ftp.x.org/pub/individual/lib/$name-$version.tar.xz)

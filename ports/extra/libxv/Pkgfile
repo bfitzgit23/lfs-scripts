@@ -3,4 +3,4 @@
 name=libxv
 version=1.0.12
 release=1
-source=(ftp://ftp.x.org/pub/individual/lib/libXv-$version.tar.xz)
+source=(https://ftp.x.org/pub/individual/lib/libXv-$version.tar.xz)

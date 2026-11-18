@@ -3,4 +3,4 @@
 name=libxfixes-32
 version=6.0.2
 release=1
-source=(ftp://ftp.x.org/pub/individual/lib/libXfixes-$version.tar.xz)
+source=(https://ftp.x.org/pub/individual/lib/libXfixes-$version.tar.xz)
