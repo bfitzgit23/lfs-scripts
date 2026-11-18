@@ -783,7 +783,7 @@ f:c4f759cf1e69ab7b343f3faffb7fdfe0:dialog/Pkgfile
 f:aa93526e51abdfc574c0bcd4b80d7d2e:diffutils/.footprint
 f:310cf6b5ec607a0a90af83b26eef0bd0:diffutils/.md5sum
 f:31b9b4849d606433146bdcff9dfcb99d:diffutils/Pkgfile
-f:b28ae7aa73957dfe058703d7b8a43949:dkms/Pkgfile
+f:f3ce8d465ade8b45cd244ae0c39208db:dkms/Pkgfile
 f:607eb6030cf2148875de592d4747dd37:dmenu/Pkgfile
 f:57024db7dcbf2250a9539b82269507a6:dmg2img/Pkgfile
 f:11ae5418ada1c5cf8bd3b4a7bac072ac:dmidecode/Pkgfile
