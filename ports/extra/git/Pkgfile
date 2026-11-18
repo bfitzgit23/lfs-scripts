@@ -1,4 +1,34 @@
 name=git
-version=2.42.0
+version=2.56.1
 release=1
 source=(https://www.kernel.org/pub/software/scm/$name/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	# git ships no configure script; `make configure` generates one with
+	# autoconf. Without it, fall back to make variables so the installed
+	# tree still lands in /usr/bin and /usr/lib/git-core instead of git's
+	# built-in prefix=/usr/local + libexec/git-core defaults.
+	if command -v autoconf >/dev/null 2>&1; then
+		make configure
+	fi
+
+	if [ -x ./configure ]; then
+		./configure \
+			--prefix=/usr \
+			--sysconfdir=/etc \
+			--localstatedir=/var \
+			--mandir=/usr/share/man \
+			--libexecdir=/usr/lib \
+			--with-gitconfig=/etc/gitconfig
+	else
+		build_opt="prefix=/usr sysconfdir=/etc mandir=/usr/share/man
+			gitexecdir=/usr/lib/git-core
+			template_dir=/usr/share/git-core/templates
+			localedir=/usr/share/locale"
+	fi
+
+	make $build_opt
+	make DESTDIR=$PKG $build_opt install
+}
