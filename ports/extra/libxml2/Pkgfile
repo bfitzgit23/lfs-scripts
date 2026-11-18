@@ -1,3 +1,5 @@
+# Depends on: icu readline
+
 name=libxml2
 version=2.15.3
 release=1
@@ -5,6 +7,8 @@ source=(https://download.gnome.org/sources/$name/${version%.*}/$name-$version.ta
 
 # 2.15 ships meson.build, which pkgutils prefers over ./configure, so these have
 # to be meson options; the driver passes build_opt straight to meson setup.
+# Both features are required: meson looks icu-uc up through pkg-config and then
+# falls back to cmake, so the libraries have to be installed to build.
 build_opt="-D history=enabled -D icu=enabled"
 
 pre_build() {
