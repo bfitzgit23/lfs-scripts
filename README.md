@@ -131,9 +131,9 @@ You might wanna install packages before rebooting to your installed lfs like 'xo
 
 Enable some needed services
 ```
-# ln -sv /etc/sv/dbus /var/service
-# ln -sv /etc/sv/networkmanager /var/service
-# ln -sv /etc/sv/lxdm /var/service
+# rc-update add dbus default
+# rc-update add networkmanager default
+# rc-update add lxdm default
 ```
 
 You can run 'prt-get' to see the options on how to use it
