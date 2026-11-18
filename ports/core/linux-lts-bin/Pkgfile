@@ -1,15 +1,32 @@
-# Depends: bc cpio elfutils linux-firmware mkinitramfs openssl xxhash
-description="Linux LTS kernel, sources and modules (binary version)"
+# Depends on: mkinitramfs
+description="Linux LTS kernel, prebuilt image and modules (no compile)"
 homepage="https://www.kernel.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=linux-lts-bin
 version=6.18.37
-fileid=e3McqJX9rqTwgSk
 release=1
-source="$name-$version-$release.tar.xz::https://nc.abetech.es/index.php/s/$fileid/download"
+
+# This port ships the kernel the `linux-lts` port builds, so a machine never
+# has to spend 30-60 minutes compiling one. There is no URL on purpose: build
+# `linux-lts` once on a machine with a toolchain, then pack the result.
+#
+#   prt-get install linux-lts
+#   tar -cJpf linux-lts-bin-6.18.37-1.tar.xz -C / \
+#           boot/vmlinuz-linux-lts boot/config-linux-lts lib/modules/6.18.37-linux-lts
+#
+# Copy that tarball into PKGMK_SOURCE_DIR (the port directory, unless
+# /etc/pkgmk.conf says otherwise) on every machine that should install the
+# kernel without building it. Give source= a URL if you publish it instead.
+source=($name-$version-$release.tar.xz)
 
 pkg_build() {
-	mv "${SRC}"/* "${PKG}"/
-}
+	cd "$SRC" || return 1
 
+	if [ ! -d boot ] || [ ! -d lib ]; then
+		echo "$name: $SRC has no boot/ and lib/, see the tarball recipe above" >&2
+		return 1
+	fi
+
+	mv boot lib "$PKG"/
+}
