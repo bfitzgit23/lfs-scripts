@@ -6,7 +6,7 @@ description="Xfce applications meta package"
 name=xfce4-apps-meta
 version=4.20.0
 release=2
-source=""
+source=()
 
 pkg_build() {
     mkdir -p "$PKG/usr/share/bfsos/meta-packages"

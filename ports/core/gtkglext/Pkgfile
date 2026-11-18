@@ -6,11 +6,11 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=gtkglext
 version=1.2.0
 release=1
-source="http://downloads.sourceforge.net/project/$name/$name/$version/$name-$version.tar.gz
+source=(http://downloads.sourceforge.net/project/$name/$name/$version/$name-$version.tar.gz
 	name-conflict.patch
 	remove-deprecated-flags.patch
 	kill-pangox.patch
-	gtk2.20.patch" 
+	gtk2.20.patch) 
 
 pkg_build() {
 	patch -Np1 -i $SRC/name-conflict.patch

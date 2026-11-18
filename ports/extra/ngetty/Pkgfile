@@ -6,8 +6,8 @@ name=ngetty
 version=1.1.10
 _version=1.1-10
 release=1
-source="http://salsa.debian.org/debian/ngetty/-/archive/debian/${_version}/$name-debian-${_version}.tar.gz
-	Conf"
+source=(http://salsa.debian.org/debian/ngetty/-/archive/debian/${_version}/$name-debian-${_version}.tar.gz
+	Conf)
 
 pkg_build() {
 	cd $name-debian-${_version}

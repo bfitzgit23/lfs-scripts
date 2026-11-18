@@ -7,7 +7,7 @@ description="A collection of XSL stylesheets that are useful for performing tran
 name=docbook-xsl-nons
 version=1.79.2
 release=4
-source="https://github.com/docbook/xslt10-stylesheets/releases/download/release/$version/$name-$version.tar.bz2 https://www.linuxfromscratch.org/patches/blfs/svn/$name-$version-stack_fix-1.patch"
+source=(https://github.com/docbook/xslt10-stylesheets/releases/download/release/$version/$name-$version.tar.bz2 https://www.linuxfromscratch.org/patches/blfs/svn/$name-$version-stack_fix-1.patch)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

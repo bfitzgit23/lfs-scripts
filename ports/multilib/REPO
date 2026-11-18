@@ -159,7 +159,7 @@ f:d41d8cd98f00b204e9800998ecf8427e:dbus-32/.32bit
 f:ce29d6d7123a783f05e69484598d04f1:dbus-32/.footprint
 f:1b68bc9b4ca1e5c120fa0435239d944b:dbus-32/.md5sum
 f:8108ff34a4f773a7c80a1623b9249f5a:dbus-32/Pkgfile
-f:4b9c654834c61c6cfc79aed152ecdd43:dxvk-bin/Pkgfile
+f:864dd6e6138879510da07fdeed50a2f5:dxvk-bin/Pkgfile
 f:7b9927631e8a8231908a3b6fc55fa36f:e2fsprogs-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:elfutils-32/.32bit
 f:d1ab6f0c7c276bb361ad344e736c8464:elfutils-32/.footprint
@@ -215,7 +215,7 @@ f:d7d133d687f099c5bb0dcdc060dabb36:icu-32/Pkgfile
 f:0f1ee3c4cb8131baa7f12d8edcf5d930:json-c-32/Pkgfile
 f:3ab9d736f2724a2a113438f94343efe4:keyutils-32/Pkgfile
 f:9ce51b09ba4ac3e9714db962311a5190:kmod-32/Pkgfile
-f:b1c1a1c890a58ba2554252f3ee566f23:krb5-32/Pkgfile
+f:5f18ad35fdb2a489e15bb7b97afd1e91:krb5-32/Pkgfile
 f:e7ec17bccff964ddd36261e6831c0f71:lame-32/Pkgfile
 f:e0a7f1e7677ceab5ca6fe5bbdcaf1315:lcms2-32/Pkgfile
 f:6554ee885d2eb95d9a39f633879d8bdf:liba52-32/Pkgfile
@@ -261,7 +261,7 @@ f:77dc7f984659d9b39b12fcfb81817726:libtasn1-32/Pkgfile
 f:23b256d1f1a05dc00d3733414ef166fd:libtiff-32/Pkgfile
 f:e4a8faaf01d67471f6ea7e24707ddd13:libtool-32/Pkgfile
 f:9530a5acbb00d2d4fcf86ddce34298a7:libunistring-32/Pkgfile
-f:fc683759ee3d1da147db99257bba9f45:libunwind-32/Pkgfile
+f:1229b387fc2925159297c0423b1861b0:libunwind-32/Pkgfile
 f:f746fa7394a6b2bf4e0084b31c479719:libva-32/Pkgfile
 f:3f6bf22655e789e706ee8e6567c42f86:libvorbis-32/Pkgfile
 f:dd884d316800438cebba17a18d8aef40:libvpx-32/Pkgfile
@@ -344,7 +344,7 @@ f:d41d8cd98f00b204e9800998ecf8427e:llvm-32/.32bit
 f:091234785153d490e26c3bea01bd4819:llvm-32/.footprint
 f:cd62290a0585d7b94d36efebf3bd9ff7:llvm-32/.md5sum
 f:38125d6e0ba377764cd6981581ad19e4:llvm-32/Pkgfile
-f:15b4feff57dc3ad36620c3ad48c1bdb9:lm_sensors-32/Pkgfile
+f:c11b02965d4ebd3c12739fb0473b2295:lm_sensors-32/Pkgfile
 f:e19486927b8179fe94ac9890ac8ee003:lutris/Pkgfile
 f:040464ac8a92b8bf8f2a498116d40664:lz4-32/Pkgfile
 f:822db1817fa54e75b92f7e80c4412ba3:mangohud-32/Pkgfile
@@ -407,7 +407,7 @@ f:ec72466c6e2aeab375f32c608c4180c2:xcb-proto-32/Pkgfile
 f:b844da9c6058a5a2cd7c43b8f084bba2:xcb-util-keysyms-32/Pkgfile
 f:b8284dcf44ae3284264d71c53fe092dc:xorgproto-32/Pkgfile
 f:c2a6b814b6889d6f629f529809b06c8a:xtrans-32/Pkgfile
-f:05327c3a6a2d3fd697c66e273c344389:xz-32/Pkgfile
+f:792e005e0e4d3a53f762c72a949ab157:xz-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:zlib-32/.32bit
 f:8899fa9cc76c8f90d793b98c1f641ff3:zlib-32/.footprint
 f:48acf192215f79c6718aeeadadf10edd:zlib-32/.md5sum

@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=dbeaver-ce-jre-bin
 version=26.1.1
 release=1
-source="$name-$version.tar.gz::https://github.com/dbeaver/dbeaver/releases/download/$version/dbeaver-ce-$version-linux-x86_64.tar.gz
-	dbeaver-ce.desktop"
+source=($name-$version.tar.gz::https://github.com/dbeaver/dbeaver/releases/download/$version/dbeaver-ce-$version-linux-x86_64.tar.gz
+	dbeaver-ce.desktop)
 
 pkg_build() {
 	cd ${name%%-*}

@@ -21,7 +21,7 @@ build_opt="\
     --docdir=/usr/share/doc/lightdm-gtk-greeter-$version"
 # GitHub's release asset is intermittently returning 504; this is the
 # identical upstream tarball archived by Debian.
-source="https://deb.debian.org/debian/pool/main/l/lightdm-gtk-greeter/lightdm-gtk-greeter_${version}.orig.tar.gz greeter.conf"
+source=(https://deb.debian.org/debian/pool/main/l/lightdm-gtk-greeter/lightdm-gtk-greeter_${version}.orig.tar.gz greeter.conf)
 
 pkg_build() {
 	_bfs_greeter="$PWD/greeter.conf"

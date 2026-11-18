@@ -7,8 +7,8 @@ name=gedit
 version=50.0
 release=1
 libgd_commit="3cccf99234288a6121b3945a25cd4ec3b7445c74"
-source="https://gitlab.gnome.org/World/gedit/gedit/-/archive/$version/$name-$version.tar.gz
-	https://gitlab.gnome.org/GNOME/libgd/-/archive/$libgd_commit/libgd-$libgd_commit.tar.gz"
+source=(https://gitlab.gnome.org/World/gedit/gedit/-/archive/$version/$name-$version.tar.gz
+	https://gitlab.gnome.org/GNOME/libgd/-/archive/$libgd_commit/libgd-$libgd_commit.tar.gz)
 
 
 pkg_build() {

@@ -10,7 +10,7 @@ arch="x86_64"
 release=1
 _source1=https://mirror1.artixlinux.org/repos/galaxy/os/${arch}/${name%-bin}-${version}-${build}-${arch}.pkg.tar.zst 
 _source2=https://github.com/ungoogled-software/ungoogled-chromium-archlinux/releases/download/$version-$build/${name%-bin}-${version}-${build}-x86_64.pkg.tar.zst
-source="$name-$version-${build}.tar.zst::$_source2 chromium.desktop"
+source=($name-$version-${build}.tar.zst::$_source2 chromium.desktop)
 
 pkg_build() {
 	cp -R "${SRC}/usr/" "${PKG}/usr"

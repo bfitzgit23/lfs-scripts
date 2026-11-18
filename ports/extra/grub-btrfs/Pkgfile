@@ -7,10 +7,10 @@ name=grub-btrfs
 version=4.14
 release=1
 backup="etc/default/grub-btrfs/config"
-source="$name-$version.tar.gz::https://github.com/Antynea/grub-btrfs/archive/refs/tags/v$version.tar.gz
+source=($name-$version.tar.gz::https://github.com/Antynea/grub-btrfs/archive/refs/tags/v$version.tar.gz
 	run.grub-btrfs
 	rc.grub-btrfs
-	conf"
+	conf)
 
 pkg_build() {
 

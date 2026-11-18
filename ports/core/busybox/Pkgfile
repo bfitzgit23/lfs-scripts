@@ -6,9 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=busybox
 version=1.37.0
 release=1
-source="https://www.busybox.net/downloads/$name-$version.tar.bz2
+source=(https://www.busybox.net/downloads/$name-$version.tar.bz2
 	config
-	busybox-kernel-6.8-CBQ.patch"
+	busybox-kernel-6.8-CBQ.patch)
 
 pkg_build() {
 	patch -Np1 -i $SRC/busybox-kernel-6.8-CBQ.patch

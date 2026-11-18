@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=waterfox-bin
 version=6.6.15
 release=1
-source="https://cdn1.waterfox.net/waterfox/releases/$version/Linux_x86_64/waterfox-$version.tar.bz2
-	waterfox.desktop"
+source=(https://cdn1.waterfox.net/waterfox/releases/$version/Linux_x86_64/waterfox-$version.tar.bz2
+	waterfox.desktop)
 
 
 

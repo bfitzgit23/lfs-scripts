@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=freetype2
 version=2.14.3
 release=1
-source="https://downloads.sourceforge.net/freetype/freetype-$version.tar.xz
-	freetype2.sh"
+source=(https://downloads.sourceforge.net/freetype/freetype-$version.tar.xz
+	freetype2.sh)
 
 pkg_build() {
 	venom-meson freetype-$version build -Dfreetype2:default_library=shared

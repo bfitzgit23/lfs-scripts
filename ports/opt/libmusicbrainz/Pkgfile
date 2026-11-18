@@ -8,7 +8,7 @@ description="The libmusicbrainz package contains a library which allows you to a
 name=libmusicbrainz
 version=5.1.0
 release=2
-source="https://github.com/metabrainz/$name/releases/download/release-$version/$name-$version.tar.gz https://www.linuxfromscratch.org/patches/blfs/svn/$name-$version-cmake_fixes-1.patch"
+source=(https://github.com/metabrainz/$name/releases/download/release-$version/$name-$version.tar.gz https://www.linuxfromscratch.org/patches/blfs/svn/$name-$version-cmake_fixes-1.patch)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

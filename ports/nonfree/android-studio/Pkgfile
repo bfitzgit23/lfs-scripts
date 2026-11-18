@@ -7,8 +7,8 @@ name=android-studio
 version=2026.1.1.10
 _vername="quail1-patch2"
 release=1
-source="$name-$version.tar.gz::https://dl.google.com/dl/android/studio/ide-zips/$version/android-studio-$_vername-linux.tar.gz
-$name.desktop"
+source=($name-$version.tar.gz::https://dl.google.com/dl/android/studio/ide-zips/$version/android-studio-$_vername-linux.tar.gz
+$name.desktop)
 
 pkg_build() {
 	cd $name

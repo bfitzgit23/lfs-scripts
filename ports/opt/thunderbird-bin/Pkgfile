@@ -7,9 +7,9 @@ description="Thunderbird email client (prebuilt binary)"
 name=thunderbird-bin
 version=155.0.1
 release=1
-source="https://archive.mozilla.org/pub/thunderbird/releases/$version/linux-x86_64/en-US/thunderbird-$version.tar.xz
+source=(https://archive.mozilla.org/pub/thunderbird/releases/$version/linux-x86_64/en-US/thunderbird-$version.tar.xz
 	policies.json
-	thunderbird.desktop"
+	thunderbird.desktop)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname thunderbird -print -quit)

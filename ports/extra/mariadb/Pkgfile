@@ -6,9 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=mariadb
 version=12.3.2
 release=1
-source="https://downloads.mariadb.org/interstitial/$name-$version/source/$name-$version.tar.gz
+source=(https://downloads.mariadb.org/interstitial/$name-$version/source/$name-$version.tar.gz
 	mariadb.rc 
-	mariadb.pam"
+	mariadb.pam)
 
 pkg_build() {
 	cmake -S $name-$version -B build -G Ninja\

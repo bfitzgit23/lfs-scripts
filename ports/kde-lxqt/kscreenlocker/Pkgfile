@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=kscreenlocker
 version=6.7.1
 release=1
-source="https://download.kde.org/stable/plasma/$version/$name-$version.tar.xz \
-    kde.pam"
+source=(https://download.kde.org/stable/plasma/$version/$name-$version.tar.xz \
+    kde.pam)
 
 pkg_build() {
     cmake -S $name-$version -B build -G Ninja \

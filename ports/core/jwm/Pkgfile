@@ -7,8 +7,8 @@ name=jwm
 version=2.4.6
 release=1
 backup="etc/system.jwmrc"
-source="https://github.com/joewing/jwm/releases/download/v$version/jwm-$version.tar.xz
-	jwm.desktop"
+source=(https://github.com/joewing/jwm/releases/download/v$version/jwm-$version.tar.xz
+	jwm.desktop)
 
 pkg_build() {
 

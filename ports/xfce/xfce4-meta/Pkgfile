@@ -6,7 +6,7 @@ description="Complete BFSOS Xfce desktop meta package"
 name=xfce4-meta
 version=4.20.0
 release=6
-source=""
+source=()
 
 pkg_build() {
     install -d "$PKG/usr/share/bfsos/meta-packages" || return 1

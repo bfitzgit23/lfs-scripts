@@ -40,7 +40,7 @@ f:6ee081d79968cc1d838a6eb85259ceca:orage/Pkgfile
 f:4920e8b655cdae78ca5c0827f8588f3c:thunar-archive-plugin/Pkgfile
 f:1da8fe3c2142dff63b6ba50e71b6696a:thunar-media-tags-plugin/Pkgfile
 f:94e024de57cd15e2ec9e03c71d2b5014:wlr-protocols/Pkgfile
-f:3c84165313f4792727a78e4fcd9f2d7f:xfce4-apps-meta/Pkgfile
+f:28b9d3fa9ccb062ae901776d0224104f:xfce4-apps-meta/Pkgfile
 f:3f05437a429dcaa2e4f4b8e0fabe15d9:xfce4-battery-plugin/Pkgfile
 f:a1c9281cf589637769f05fd4f29461cb:xfce4-clipman-plugin/Pkgfile
 f:d8f040eb4ef1f4c84413a729ce0fce9d:xfce4-cpufreq-plugin/Pkgfile
@@ -55,7 +55,7 @@ f:cab6df949c770b37f4d2277dad9b4166:xfce4-fsguard-plugin/Pkgfile
 f:f741b83e2921705b1cf19404db40f727:xfce4-genmon-plugin/Pkgfile
 f:97c91aa13934bcab28cc00339beb5c24:xfce4-hotcorner-plugin/Pkgfile
 f:f85694495c3bbd76a7fdae60d252fcf3:xfce4-mailwatch-plugin/Pkgfile
-f:cc3d1965512da85e09b4cdf6ddbe4924:xfce4-meta/Pkgfile
+f:5ed73df4e85a9bd3f9e0f4e33bb9e54b:xfce4-meta/Pkgfile
 f:fce957027970013c8cf55222ad2f3f49:xfce4-mount-plugin/Pkgfile
 f:b0d7a15feaa7b373c5df5d04a1f1c769:xfce4-mpc-plugin/Pkgfile
 f:6c1b2510b3c583f3f776fd59ab804cea:xfce4-netload-plugin/Pkgfile

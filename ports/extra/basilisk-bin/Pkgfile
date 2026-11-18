@@ -7,8 +7,8 @@ name=basilisk-bin
 _buildid=20260415151706
 version=2026.06.12
 release=1
-source="https://dl.basilisk-browser.org/basilisk-${_buildid}.linux-x86_64-gtk3.tar.xz
-        basilisk.desktop"
+source=(https://dl.basilisk-browser.org/basilisk-${_buildid}.linux-x86_64-gtk3.tar.xz
+        basilisk.desktop)
 rev_ex_libs="libhunspell.so libxul.so libmozsqlite3.so libmozavutil.so liblgpllibs.so libmozgtk.so"
 
 pkg_build() {

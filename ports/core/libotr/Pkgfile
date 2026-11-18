@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libotr
 version=4.1.1
 release=1
-source="http://deb.debian.org/debian/pool/main/libo/libotr/${name}_${version}.orig.tar.gz
-	libotr-4.1.1-fix-build-with-libgcrypt-1.10.patch"
+source=(http://deb.debian.org/debian/pool/main/libo/libotr/${name}_${version}.orig.tar.gz
+	libotr-4.1.1-fix-build-with-libgcrypt-1.10.patch)
 
 pkg_build() {
 	patch -p1 < ../libotr-4.1.1-fix-build-with-libgcrypt-1.10.patch

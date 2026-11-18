@@ -6,10 +6,10 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=rxvt-unicode
 version=9.31
 release=4
-source="http://dist.schmorp.de/$name/Attic/$name-$version.tar.bz2
+source=(http://dist.schmorp.de/$name/Attic/$name-$version.tar.bz2
 	fix-for-tmux-34.patch
 	perl.5.38.patch
-	URxvt"
+	URxvt)
 
 pkg_build() {
 

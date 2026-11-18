@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=hackrf
 version=2026.01.3
 release=1
-source="$name-$version.tar.gz::https://github.com/greatscottgadgets/$name/archive/refs/tags/v$version.tar.gz
-	hackrf.conf"
+source=($name-$version.tar.gz::https://github.com/greatscottgadgets/$name/archive/refs/tags/v$version.tar.gz
+	hackrf.conf)
 
 pkg_build() {
 	cd $name-$version/host

@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-pyqt6-webengine
 version=6.140.1
 release=1
-source="https://pypi.python.org/packages/source/p/pyqt6-webengine/pyqt6_webengine-$version.tar.gz
-	fix-build.patch"
+source=(https://pypi.python.org/packages/source/p/pyqt6-webengine/pyqt6_webengine-$version.tar.gz
+	fix-build.patch)
 
 pkg_build() {
 	cd pyqt6_webengine-$version

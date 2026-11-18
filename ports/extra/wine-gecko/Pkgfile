@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=wine-gecko
 version=2.47.4
 release=1
-source="https://dl.winehq.org/wine/wine-gecko/$version/wine-gecko-$version-x86_64.msi
-	https://dl.winehq.org/wine/wine-gecko/$version/wine-gecko-$version-x86.msi"
+source=(https://dl.winehq.org/wine/wine-gecko/$version/wine-gecko-$version-x86_64.msi
+	https://dl.winehq.org/wine/wine-gecko/$version/wine-gecko-$version-x86.msi)
 
 pkg_build() {
 	install -Dm644 wine-gecko-$version-x86_64.msi $PKG/usr/share/wine/gecko/wine-gecko-$version-x86_64.msi

@@ -9,13 +9,13 @@ vgecko=2.47.4
 vmono=11.2.0
 release=2
 
-source="https://dl.winehq.org/wine/source/${version%%.*}.x/wine-${version}.tar.xz
+source=(https://dl.winehq.org/wine/source/${version%%.*}.x/wine-${version}.tar.xz
 	https://gitlab.winehq.org/wine/wine-staging/-/archive/v$version/wine-staging-v$version.tar.gz 
         https://dl.winehq.org/wine/wine-gecko/${vgecko}/wine-gecko-${vgecko}-x86.msi 
         https://dl.winehq.org/wine/wine-gecko/${vgecko}/wine-gecko-${vgecko}-x86_64.msi 
         https://dl.winehq.org/wine/wine-mono/${vmono}/wine-mono-${vmono}-x86.msi
 	30-win32-aliases.conf
-	wine-binfmt.conf"
+	wine-binfmt.conf)
 
 pkg_build() {
 	# apply staging patches

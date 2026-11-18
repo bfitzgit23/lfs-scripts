@@ -6,8 +6,8 @@ name=python3-installer
 version=1.1.0
 release=1
 noextract="installer-$version-py3-none-any.whl"
-source="https://files.pythonhosted.org/packages/py3/i/installer/installer-$version-py3-none-any.whl
-	default-bytecode-level.patch"
+source=(https://files.pythonhosted.org/packages/py3/i/installer/installer-$version-py3-none-any.whl
+	default-bytecode-level.patch)
 
 pkg_build() {
 

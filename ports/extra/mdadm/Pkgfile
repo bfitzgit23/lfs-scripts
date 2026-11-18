@@ -5,8 +5,8 @@ homepage="http://neil.brown.name/blog/mdadm"
 name=mdadm
 version=4.6
 release=1
-source="https://git.kernel.org/pub/scm/utils/mdadm/mdadm.git/snapshot/$name-$version.tar.gz
-	run.mdadm"
+source=(https://git.kernel.org/pub/scm/utils/mdadm/mdadm.git/snapshot/$name-$version.tar.gz
+	run.mdadm)
 
 pkg_build() {
 	make CXFLAGS="$CFLAGS" BINDIR=/usr/bin UDEVDIR=/usr/lib/udev everything

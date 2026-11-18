@@ -6,7 +6,7 @@ description="KDE Frameworks is a collection of libraries based on top of Qt6 and
 name=plasma-default-apps
 version=26.08.1
 release=2
-source=""
+source=()
 
 pkg_build() {
     install -d "$PKG/usr/share/bfsos/meta-packages"

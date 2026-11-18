@@ -7,8 +7,8 @@ name=hplip-plugin
 version=3.26.4
 release=1
 backup="var/lib/hp/hplip.state"
-source="$name-$version.run::https://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/${name%-*}-${version}-plugin.run
-	$name-$version.run.asc::https://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/${name%-*}-${version}-plugin.run.asc"
+source=($name-$version.run::https://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/${name%-*}-${version}-plugin.run
+	$name-$version.run.asc::https://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/${name%-*}-${version}-plugin.run.asc)
 
 pkg_build() {
 	sh "$name-$version.run" --target "$SRC/$name-$version" --noexec

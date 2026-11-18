@@ -6,10 +6,10 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libphonenumber
 version=9.0.33
 release=1
-source="https://github.com/google/libphonenumber/archive/v$version/$name-$version.tar.gz
+source=(https://github.com/google/libphonenumber/archive/v$version/$name-$version.tar.gz
 	0001-Use-find_package-for-protobuf.patch
 	0002-Remove-Werror.patch
-	0003-Fix-BUILD_STATIC_LIB-OFF.patch"
+	0003-Fix-BUILD_STATIC_LIB-OFF.patch)
 
 pkg_build() {
 	export PATH="/usr/lib/jvm/java-25-openjdk/bin:/usr/bin:/bin:/usr/sbin:/sbin"

@@ -6,8 +6,8 @@ homepage="https://djvu.sourceforge.net/djview4.html"
 name=djview
 version=4.12.3
 release=1
-source="https://downloads.sourceforge.net/djvu/$name-$version.tar.gz
-	djvulibre-djview4.appdata.xml"
+source=(https://downloads.sourceforge.net/djvu/$name-$version.tar.gz
+	djvulibre-djview4.appdata.xml)
 
 pkg_build() {
 

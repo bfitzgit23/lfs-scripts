@@ -6,9 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=opera-gx-stable
 version=139.0.6053.63
 release=1
-source="https://get.opera.com/pub/opera_gx/${version}/linux/${name}_${version}_amd64.deb
+source=(https://get.opera.com/pub/opera_gx/${version}/linux/${name}_${version}_amd64.deb
          opera
-         default"
+         default)
 pkg_build() {
  	sed -e "s/%name%/$name/g" \
             -e "s/%operabin%/$name\/opera/g" \

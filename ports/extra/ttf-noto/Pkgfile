@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ttf-noto
 version=2026.06.01
 release=1
-source="https://github.com/notofonts/notofonts.github.io/archive/refs/tags/noto-monthly-release-$version.tar.gz
-	66-noto-sans.conf 66-noto-serif.conf 66-noto-mono.conf"
+source=(https://github.com/notofonts/notofonts.github.io/archive/refs/tags/noto-monthly-release-$version.tar.gz
+	66-noto-sans.conf 66-noto-serif.conf 66-noto-mono.conf)
 
 pkg_build() {
 	cd notofonts.github.io-noto-monthly-release-$version

@@ -6,10 +6,10 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nvidia-legacy
 version=580.119.02
 release=1
-source="${name%-*}-$version.run::http://us.download.nvidia.com/XFree86/Linux-x86_64/$version/NVIDIA-Linux-x86_64-$version.run
+source=(${name%-*}-$version.run::http://us.download.nvidia.com/XFree86/Linux-x86_64/$version/NVIDIA-Linux-x86_64-$version.run
 	buildmodules-nvidia.sh
 	prime-run
-	10-nvidia-drm-outputclass.conf"
+	10-nvidia-drm-outputclass.conf)
 
 pkg_build() {
 	install_lib() {	install -Dm0755 $1 $PKG/usr/lib/$2/${1##*/}; }

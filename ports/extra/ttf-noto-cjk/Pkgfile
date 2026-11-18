@@ -7,9 +7,9 @@ version=2026.05.01
 _sans_version=2.004
 _serif_version=2.003
 release=1
-source="https://github.com/googlefonts/noto-cjk/releases/download/Sans${_sans_version}/03_NotoSansCJK-OTC.zip
+source=(https://github.com/googlefonts/noto-cjk/releases/download/Sans${_sans_version}/03_NotoSansCJK-OTC.zip
 	https://github.com/googlefonts/noto-cjk/releases/download/Serif${_serif_version}/04_NotoSerifCJKOTC.zip
-        70-noto-cjk.conf"
+        70-noto-cjk.conf)
 
 pkg_build() {
   install -Dm644 *.ttc -t $PKG/usr/share/fonts/noto-cjk

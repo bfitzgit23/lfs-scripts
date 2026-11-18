@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=signal-desktop-bin
 version=8.16.0
 release=1
-source="https://updates.signal.org/desktop/apt/pool/s/signal-desktop/${name%-*}_${version}_amd64.deb
-	signal-desktop-wayland"
+source=(https://updates.signal.org/desktop/apt/pool/s/signal-desktop/${name%-*}_${version}_amd64.deb
+	signal-desktop-wayland)
 
 pkg_build() {
 	bsdtar -xf ${name%-*}_${version}_amd64.deb

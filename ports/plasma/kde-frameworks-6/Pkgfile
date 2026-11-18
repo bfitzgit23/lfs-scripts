@@ -6,7 +6,7 @@ description="KDE Frameworks is a collection of libraries based on top of Qt6 and
 name=kde-frameworks-6
 version=6.30.0
 release=2
-source=""
+source=()
 
 pkg_build() {
     install -d "$PKG/usr/share/bfsos/metapackages" || return 1

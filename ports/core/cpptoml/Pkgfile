@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=cpptoml
 version=0.1.1
 release=3
-source="https://github.com/skystrife/cpptoml/archive/v$version/$name-$version.tar.gz
-	123.patch"
+source=(https://github.com/skystrife/cpptoml/archive/v$version/$name-$version.tar.gz
+	123.patch)
 
 pkg_build() {
 	patch -Np1 -d $name-$version -i $SRC/123.patch

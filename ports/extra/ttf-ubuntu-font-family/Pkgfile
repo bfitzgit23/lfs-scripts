@@ -5,8 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ttf-ubuntu-font-family
 version=0.83
 release=1
-source="https://assets.ubuntu.com/v1/fad7939b-ubuntu-font-family-$version.zip
-              81-ubuntu.conf"
+source=(https://assets.ubuntu.com/v1/fad7939b-ubuntu-font-family-$version.zip
+              81-ubuntu.conf)
 
 
 pkg_build() {

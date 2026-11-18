@@ -6,7 +6,7 @@ description="KDE 4 base artwork and branding"
 name=kde-base-artwork
 version=4.14.3
 release=4
-source="https://download.kde.org/Attic/4.14.3/src/kde-base-artwork-$version.tar.xz kde-base-artwork-4.14.3-cmake-minimum.patch.manual"
+source=(https://download.kde.org/Attic/4.14.3/src/kde-base-artwork-$version.tar.xz kde-base-artwork-4.14.3-cmake-minimum.patch.manual)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

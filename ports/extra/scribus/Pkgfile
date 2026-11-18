@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=scribus
 version=1.7.0
 release=1
-source="https://downloads.sourceforge.net/$name/$name-$version.tar.xz
-	scribus-1.6.1-findhyphen.patch"
+source=(https://downloads.sourceforge.net/$name/$name-$version.tar.xz
+	scribus-1.6.1-findhyphen.patch)
 
 pkg_build() {
 

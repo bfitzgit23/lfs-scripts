@@ -16,7 +16,7 @@ build_opt="-Dglycin-loaders=true \
 -Dlibglycin-gtk4=false \
 -Dintrospection=false \
 -Dcapi_docs=false"
-source="https://gitlab.gnome.org/GNOME/glycin/-/archive/$version/glycin-$version.tar.bz2 i686"
+source=(https://gitlab.gnome.org/GNOME/glycin/-/archive/$version/glycin-$version.tar.bz2 i686)
 
 pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1

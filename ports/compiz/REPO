@@ -12,11 +12,11 @@ d:fusion-icon
 d:libcompizconfig
 f:935ad9c09625f567da62d58444a16dac:ccsm/Pkgfile
 f:c54e9ca97594dc7413c6b5d241d739ea:compiz-bcop/Pkgfile
-f:309f5486e0c60347cd00c6e6fa7bd8db:compiz-meta/Pkgfile
-f:375f099685be7384b7606cec7cfd152c:compiz-plugins-experimental/Pkgfile
-f:ccaffcf4474ad2e2b27b8bce32c97bed:compiz-plugins-extra/Pkgfile
-f:7eb059c58d186b65b1b8f817bed5ac30:compiz-plugins-main/Pkgfile
-f:299524c0ca138a8be0813f6c9287c55c:compiz/Pkgfile
+f:cda3b1e8a03a12b262bb3efef547a9c0:compiz-meta/Pkgfile
+f:ce1fcf3a6871690ce34dbde2903b7b8c:compiz-plugins-experimental/Pkgfile
+f:416a484d6e88cb9c2194e925bee8466a:compiz-plugins-extra/Pkgfile
+f:5f38aec1b39bb8cd67a70f94e906643b:compiz-plugins-main/Pkgfile
+f:dcf01247e5f3119a2263845d3dab0ba5:compiz/Pkgfile
 f:efc795244d1c1c806729d219389a97c4:compizconfig-python/Pkgfile
 f:8c36aa4308a943dda2574568f0fa7011:emerald-decorator/Pkgfile
 f:4a0bba1fe57cf4eac2b0b85fa9c9a6c7:emerald-themes/Pkgfile

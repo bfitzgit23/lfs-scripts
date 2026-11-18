@@ -6,7 +6,7 @@ name=spectacle
 version=6.7.1
 release=1
 
-source="https://download.kde.org/stable/plasma/$(echo $version | cut -d. -f1-3)/$name-$version.tar.xz"
+source=(https://download.kde.org/stable/plasma/$(echo $version | cut -d. -f1-3)/$name-$version.tar.xz)
 
 pkg_build() {
 

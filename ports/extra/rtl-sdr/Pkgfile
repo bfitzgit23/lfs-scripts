@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=rtl-sdr
 version=2.0.2
 release=1
-source="$name-$version.tar.gz::https://gitea.osmocom.org/sdr/$name/archive/v$version.tar.gz
-	blacklist-dvb_usb_rtl28xxu.conf"
+source=($name-$version.tar.gz::https://gitea.osmocom.org/sdr/$name/archive/v$version.tar.gz
+	blacklist-dvb_usb_rtl28xxu.conf)
 
 pkg_build() {
 	cd $name

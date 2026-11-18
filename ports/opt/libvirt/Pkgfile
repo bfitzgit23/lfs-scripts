@@ -22,7 +22,7 @@ build_opt=(
     -Dstorage_scsi=enabled
     -Dtests=disabled
 )
-source="https://download.libvirt.org/libvirt-$version.tar.xz default-network.xml"
+source=(https://download.libvirt.org/libvirt-$version.tar.xz default-network.xml)
 
 pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1

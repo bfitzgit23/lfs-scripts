@@ -5,12 +5,12 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=geoip-database
 version=20260404
 release=1
-source="https://mailfud.org/geoip-legacy/GeoIP.dat.gz
+source=(https://mailfud.org/geoip-legacy/GeoIP.dat.gz
         https://mailfud.org/geoip-legacy/GeoIPv6.dat.gz
         https://mailfud.org/geoip-legacy/GeoIPCity.dat.gz
         https://mailfud.org/geoip-legacy/GeoIPCityv6.dat.gz
         https://mailfud.org/geoip-legacy/GeoIPASNum.dat.gz
-        https://mailfud.org/geoip-legacy/GeoIPASNumv6.dat.gz"
+        https://mailfud.org/geoip-legacy/GeoIPASNumv6.dat.gz)
 
 pkg_build() {
 	cd $SRC

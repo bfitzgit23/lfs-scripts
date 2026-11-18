@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ebook-tools
 version=0.2.2
 release=2
-source="http://downloads.sourceforge.net/sourceforge/$name/$name-$version.tar.gz
-	crash-fix.patch"
+source=(http://downloads.sourceforge.net/sourceforge/$name/$name-$version.tar.gz
+	crash-fix.patch)
 
 pkg_build() {
 	# https://sourceforge.net/p/ebook-tools/bugs/8/

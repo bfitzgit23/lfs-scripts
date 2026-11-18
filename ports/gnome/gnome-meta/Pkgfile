@@ -6,7 +6,7 @@ description="Complete BFSOS GNOME 51 desktop meta package"
 name=gnome-meta
 version=51.0
 release=2
-source=""
+source=()
 
 pkg_build() {
     install -d "$PKG/usr/share/bfsos/meta-packages" || return 1

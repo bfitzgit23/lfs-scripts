@@ -6,7 +6,7 @@ description="Automoc4 CMake helper for KDE 4"
 name=automoc4
 version=0.9.88
 release=2
-source="https://download.kde.org/Attic/automoc4/$version/automoc4-$version.tar.bz2 automoc4-0.9.88-cmake4.patch.manual"
+source=(https://download.kde.org/Attic/automoc4/$version/automoc4-$version.tar.bz2 automoc4-0.9.88-cmake4.patch.manual)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

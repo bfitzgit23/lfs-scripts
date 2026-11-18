@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=lld
 version=22.1.8
 release=1
-source="https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/llvm-project-$version.src.tar.xz
-	lld-import-compact_unwind_encoding.h-from-libu.patch"
+source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/llvm-project-$version.src.tar.xz
+	lld-import-compact_unwind_encoding.h-from-libu.patch)
 
 pkg_build() {
 	cd llvm-project-$version.src/lld

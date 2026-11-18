@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3
 version=3.14.6
 release=1
-source="$name-$version.tar.xz::https://www.python.org/ftp/python/$version/Python-$version.tar.xz
-	pyconfig.h"
+source=($name-$version.tar.xz::https://www.python.org/ftp/python/$version/Python-$version.tar.xz
+	pyconfig.h)
 
 pkg_build() {
 	cd Python-$version

@@ -7,8 +7,8 @@ name=xpdf
 version=4.06
 release=1
 backup="etc/xpdfrc"
-source="https://dl.xpdfreader.com/xpdf-$version.tar.gz
-	xpdf.desktop"
+source=(https://dl.xpdfreader.com/xpdf-$version.tar.gz
+	xpdf.desktop)
 
 pkg_build() {
 

@@ -6,8 +6,8 @@ name=opendoas
 version=6.8.2
 release=3
 backup="etc/doas.conf"
-source="https://github.com/Duncaen/OpenDoas/releases/download/v$version/opendoas-$version.tar.xz
-	better-wayland-support.patch"
+source=(https://github.com/Duncaen/OpenDoas/releases/download/v$version/opendoas-$version.tar.xz
+	better-wayland-support.patch)
 
 pkg_build() {
 

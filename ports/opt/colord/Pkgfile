@@ -6,7 +6,7 @@ description="colord package"
 name=colord
 version=1.4.8
 release=5
-source="https://mirror.freedif.org/pub/blfs/conglomeration/colord/colord-$version.tar.xz disable-udev-hwdb-tests.patch"
+source=(https://mirror.freedif.org/pub/blfs/conglomeration/colord/colord-$version.tar.xz disable-udev-hwdb-tests.patch)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

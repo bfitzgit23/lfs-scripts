@@ -9,7 +9,7 @@ release=2
 # Keep the archives packed: extracting them would scatter their data files
 # through the source directory, and pkgbuild has no way to rename them.
 noextract="UCD.zip Unihan.zip"
-source="https://www.unicode.org/Public/$version/ucd/UCD.zip https://www.unicode.org/Public/$version/ucd/Unihan.zip"
+source=(https://www.unicode.org/Public/$version/ucd/UCD.zip https://www.unicode.org/Public/$version/ucd/Unihan.zip)
 
 pkg_build() {
     for _f in UCD Unihan; do

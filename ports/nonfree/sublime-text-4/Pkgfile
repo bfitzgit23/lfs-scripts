@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=sublime-text-4
 version=4.4200
 release=1
-source="$name-$version.tar.xz::https://download.sublimetext.com/sublime_text_build_${version#*.}_x64.tar.xz
-sublime_text.desktop"
+source=($name-$version.tar.xz::https://download.sublimetext.com/sublime_text_build_${version#*.}_x64.tar.xz
+sublime_text.desktop)
 
 pkg_build() {
   cd "${SRC}"

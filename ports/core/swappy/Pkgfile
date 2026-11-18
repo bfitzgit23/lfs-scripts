@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=swappy
 version=1.8.0
 release=1
-source="https://github.com/jtheoof/swappy/releases/download/v$version/$name-$version.tar.gz
-	no-git-version.patch"
+source=(https://github.com/jtheoof/swappy/releases/download/v$version/$name-$version.tar.gz
+	no-git-version.patch)
 
 pkg_build() {
 	patch -d $name-$version -i $SRC/no-git-version.patch

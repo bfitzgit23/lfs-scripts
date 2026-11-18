@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=minidlna
 version=1.3.3
 release=2
-source="https://sourceforge.net/projects/$name/files/$name-$version.tar.gz
-	ffmpeg7.patch"
+source=(https://sourceforge.net/projects/$name/files/$name-$version.tar.gz
+	ffmpeg7.patch)
 
 pkg_build() {
 

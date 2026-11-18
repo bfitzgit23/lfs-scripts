@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=xcur2png
 version=0.7.1
 release=1
-source="https://github.com/eworm-de/$name/releases/download/$version/$name-$version.tar.gz
-	0001-fix-wrong-math.patch"
+source=(https://github.com/eworm-de/$name/releases/download/$version/$name-$version.tar.gz
+	0001-fix-wrong-math.patch)
 
 pkg_build() {
         export CFLAGS="${CFLAGS} -Wno-implicit-int"        

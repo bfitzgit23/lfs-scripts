@@ -10,11 +10,11 @@ backup="etc/s6/current/scripts/rc.init
         etc/s6/current/scripts/rc.shutdown
         etc/s6/current/scripts/rc.shutdown.final
         etc/s6/current/scripts/runlevel"
-source="$name-$version.tar.gz::https://git.sr.ht/~skarnet/s6-linux-init/archive/v$version.tar.gz
+source=($name-$version.tar.gz::https://git.sr.ht/~skarnet/s6-linux-init/archive/v$version.tar.gz
 	rc.init
 	rc.shutdown
 	rc.shutdown.final
-	runlevel"
+	runlevel)
 
 pkg_build() {
 	cd $name-v$version

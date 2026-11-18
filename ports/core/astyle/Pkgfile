@@ -5,8 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=astyle
 version=3.6.16
 release=1
-source="https://gitlab.com/saalen/astyle/-/archive/$version/$name-$version.tar.bz2
-	makefile-install.patch"
+source=(https://gitlab.com/saalen/astyle/-/archive/$version/$name-$version.tar.bz2
+	makefile-install.patch)
 
 pkg_build() {
 	cd $name-$version/AStyle/build/gcc

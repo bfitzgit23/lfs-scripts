@@ -9,9 +9,9 @@ version=1.126.0
 
 release=1
 IGNORE_MDSUM="yes"
-source="$name-$version.tar.gz::https://update.code.visualstudio.com/${version}/linux-x64/stable
+source=($name-$version.tar.gz::https://update.code.visualstudio.com/${version}/linux-x64/stable
 	$_name.desktop
-	$_name-url-handler.desktop"
+	$_name-url-handler.desktop)
 
 pkg_build() {
 	cd VSCode-linux-x64

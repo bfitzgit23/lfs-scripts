@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=calligra
 version=26.04.2
 release=1
-source="https://download.kde.org/stable/release-service/$version/src/$name-$version.tar.xz
-        https://invent.kde.org/office/calligra/-/commit/2ddb27bd.patch"
+source=(https://download.kde.org/stable/release-service/$version/src/$name-$version.tar.xz
+        https://invent.kde.org/office/calligra/-/commit/2ddb27bd.patch)
 
 pkg_build() {
         patch -d $name-$version -p1 < 2ddb27bd.patch # poppler 26.04

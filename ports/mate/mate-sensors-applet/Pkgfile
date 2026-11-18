@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=mate-sensors-applet
 version=1.28.0
 release=1
-source="https://github.com/mate-desktop/mate-sensors-applet/releases/download/v$version/$name-$version.tar.xz
-	fix-build-locale-error.patch"
+source=(https://github.com/mate-desktop/mate-sensors-applet/releases/download/v$version/$name-$version.tar.xz
+	fix-build-locale-error.patch)
 
 pkg_build() {
 

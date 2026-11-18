@@ -5,7 +5,7 @@ description="aalib package"
 name=aalib
 version=1.4rc5
 release=2
-source="https://downloads.sourceforge.net/aa-project/${name}-${version}.tar.gz aalib-aalinuxkbd-return.patch aalib-c99.patch aalib-mouse.patch aalib-fix-aarender.patch aalib-opaque-ncurses-fix.patch aalib-free-offset-pointer.patch aalib-key-down-OOB.patch"
+source=(https://downloads.sourceforge.net/aa-project/${name}-${version}.tar.gz aalib-aalinuxkbd-return.patch aalib-c99.patch aalib-mouse.patch aalib-fix-aarender.patch aalib-opaque-ncurses-fix.patch aalib-free-offset-pointer.patch aalib-key-down-OOB.patch)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

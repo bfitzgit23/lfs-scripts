@@ -6,10 +6,10 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=tor
 version=0.4.9.11
 release=1
-source="https://www.torproject.org/dist/$name-$version.tar.gz
+source=(https://www.torproject.org/dist/$name-$version.tar.gz
 	rc.tor
 	run.tor
-	torrc"
+	torrc)
 
 pkg_build() {
 

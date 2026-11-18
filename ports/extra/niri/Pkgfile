@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=niri
 version=26.04
 release=1
-source="https://github.com/niri-wm/$name/archive/v${version}/$name-$version.tar.gz
-        niri.desktop"
+source=(https://github.com/niri-wm/$name/archive/v${version}/$name-$version.tar.gz
+        niri.desktop)
 
 pkg_build() {
 

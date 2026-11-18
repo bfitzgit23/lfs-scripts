@@ -6,9 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=docker
 version=29.6.1
 release=1
-source="https://github.com/moby/moby/archive/docker-v${version}/moby-${version}.tar.gz
+source=(https://github.com/moby/moby/archive/docker-v${version}/moby-${version}.tar.gz
 	https://github.com/docker/cli/archive/v${version}/cli-${version}.tar.gz
-	rc.$name $name.conf"
+	rc.$name $name.conf)
 
 pkg_build() {
 	export GO111MODULE=auto

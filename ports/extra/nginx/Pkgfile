@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nginx
 version=1.31.2
 release=1
-source="http://nginx.org/download/$name-$version.tar.gz
-nginx.conf rc.nginx run.nginx"
+source=(http://nginx.org/download/$name-$version.tar.gz
+nginx.conf rc.nginx run.nginx)
 
 pkg_build() {
 	./configure --prefix=/etc/nginx \

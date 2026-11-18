@@ -6,9 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=newsboat
 version=2.44
 release=1
-source="https://newsboat.org/releases/$version/newsboat-$version.tar.xz
+source=(https://newsboat.org/releases/$version/newsboat-$version.tar.xz
 	newsboat.1.gz
-	podboat.1.gz"
+	podboat.1.gz)
 
 pkg_build() {
 	make prefix=/usr newsboat podboat

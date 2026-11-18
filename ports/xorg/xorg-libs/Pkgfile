@@ -6,7 +6,7 @@ description="The Xorg libraries provide library routines that are used within al
 name=xorg-libs
 version=7x
 release=4
-source=""
+source=()
 
 pkg_build() {
     mkdir -p "$PKG/usr/share/bfsos/meta-packages"

@@ -13,7 +13,7 @@ backup="etc/fstab
 	etc/passwd
 	etc/resolv.conf
 	etc/shells"
-source="fstab
+source=(fstab
 	group
 	hostname
 	hosts
@@ -23,7 +23,7 @@ source="fstab
 	os-release
 	passwd
 	resolv.conf
-	shells"
+	shells)
 
 pkg_build() {
 	#  root dirs

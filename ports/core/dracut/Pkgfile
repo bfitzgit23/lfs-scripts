@@ -12,7 +12,7 @@ build_opt=(
     --sysconfdir=/etc
     --disable-documentation
 )
-source="https://github.com/dracut-ng/dracut-ng/archive/refs/tags/$version.tar.gz bfs.conf bfsos-storage.conf bfsos-gpu.conf"
+source=(https://github.com/dracut-ng/dracut-ng/archive/refs/tags/$version.tar.gz bfs.conf bfsos-storage.conf bfsos-gpu.conf)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

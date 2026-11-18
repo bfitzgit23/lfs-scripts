@@ -33,7 +33,7 @@ f:589265b75876ab749c7a70da288bbec1:k3b/Pkgfile
 f:817d96f1309289022bc01221b7da114d:kactivities-stats/Pkgfile
 f:45fe27230952afc3fcd251293cf3b9bf:kactivities/Pkgfile
 f:cdb8d9b70f1a0c21ffd42022fc01e592:kapidox/Pkgfile
-f:509be20b0f7893bbb2e5115550719048:kde-frameworks-6/Pkgfile
+f:73cf703296d94a2eae0eb07c4036ecb4:kde-frameworks-6/Pkgfile
 f:ab4e6a5ad30565bc9206212e07c8419f:kdelibs4support/Pkgfile
 f:1b41a5becedd79e8467670444f13d918:kdesignerplugin/Pkgfile
 f:e34b90d5b59547cfae8083d3825b03a7:kdewebkit/Pkgfile
@@ -52,8 +52,8 @@ f:b79c84519f0bf338d7c77b262aa092ad:libdbusmenu-qt5/Pkgfile
 f:6217674f4d2bcc21ead0df2f3d9efa28:libkcddb/Pkgfile
 f:d784e30838a3b37968a5a91ba14c847f:oxygen-icons/Pkgfile
 f:a6437f81acb27bdaeaab1fb9bab5faba:phonon-backend-vlc/Pkgfile
-f:e548511b67f99e98a248b0b2010961ff:plasma-default-apps/Pkgfile
-f:0a4e5663b2f17929dddd328d3cd19528:plasma-login-manager/Pkgfile
+f:18b73c51df970b80c7e38f5a80a374d0:plasma-default-apps/Pkgfile
+f:aa75ad38bb4a833d7ee6d2b4097be5b0:plasma-login-manager/Pkgfile
 f:2d227233e8edb5467020b33a611a5a90:plasma-login-manager/bfs-display-manager
 f:85c28aa605e0d66b561f1f833bc26a6e:plasma-login-manager/openrc-no-systemd.patch
 f:517504d46cb886dac7f93596b0b39781:plasma-login-manager/plasmalogin-autologin.pam

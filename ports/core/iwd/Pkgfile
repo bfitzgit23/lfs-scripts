@@ -6,9 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=iwd
 version=3.12
 release=1
-source="https://www.kernel.org/pub/linux/network/wireless/$name-$version.tar.xz
+source=(https://www.kernel.org/pub/linux/network/wireless/$name-$version.tar.xz
 	run.$name
-	rc.$name"
+	rc.$name)
 
 pkg_build() {
 

@@ -16,7 +16,7 @@ build_opt=(
   --with-sphinx-build=no
   --with-saslauthd=/var/run/saslauthd
 )
-source="https://github.com/cyrusimap/${name}/releases/download/${name}-${version}/${name}-${version}.tar.gz gcc-c23-gcc15-c23.patch"
+source=(https://github.com/cyrusimap/${name}/releases/download/${name}-${version}/${name}-${version}.tar.gz gcc-c23-gcc15-c23.patch)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

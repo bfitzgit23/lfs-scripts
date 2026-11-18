@@ -6,7 +6,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=qemu-guest-agent
 version=10.2.0
 release=1
-source="https://download.qemu.org/qemu-$version.tar.xz qemu-ga.conf rc.$name run.$name"
+source=(https://download.qemu.org/qemu-$version.tar.xz qemu-ga.conf rc.$name run.$name)
 
 pkg_build() {
 cd qemu-$version

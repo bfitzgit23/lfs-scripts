@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=tor-browser-launcher
 version=0.3.9
 release=1
-source="torbrowser-launcher-$version.tar.gz::https://github.com/torproject/torbrowser-launcher/archive/v$version.tar.gz
-        pyproject.toml"
+source=(torbrowser-launcher-$version.tar.gz::https://github.com/torproject/torbrowser-launcher/archive/v$version.tar.gz
+        pyproject.toml)
 
 pkg_build() {
 	cd torbrowser-launcher-$version

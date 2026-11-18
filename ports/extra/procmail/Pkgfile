@@ -5,8 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=procmail
 version=3.24
 release=1
-source="http://ftp.osuosl.org/pub/blfs/conglomeration/${name}/${name}-${version}.tar.gz
-	gcc14.patch"
+source=(http://ftp.osuosl.org/pub/blfs/conglomeration/${name}/${name}-${version}.tar.gz
+	gcc14.patch)
 
 pkg_build() {
     cd ${name}-${version}

@@ -7,10 +7,10 @@ name=ttf-liberation
 _name=liberation-fonts
 version=2.1.5
 release=1
-source="https://github.com/liberationfonts/liberation-fonts/files/7261482/liberation-fonts-ttf-$version.tar.gz
+source=(https://github.com/liberationfonts/liberation-fonts/files/7261482/liberation-fonts-ttf-$version.tar.gz
 	30-0-liberation-mono.conf
         30-0-liberation-sans.conf 
-        30-0-liberation-serif.conf"
+        30-0-liberation-serif.conf)
 
 pkg_build() {
 	cd $_name-ttf-$version

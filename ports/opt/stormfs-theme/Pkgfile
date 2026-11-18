@@ -7,7 +7,7 @@ description="StormFS GTK theme, icon theme and wallpapers"
 name=stormfs-theme
 version=2026.08.24
 release=4
-source="https://github.com/bfitzgit23/StormFS-Linux/releases/download/theme-pack/StormFS-Recovered-Theme-Icons-Wallpapers-StormPkg.zip xfce-xsettings.xml xfce-xfwm4.xml gtk-settings.ini"
+source=(https://github.com/bfitzgit23/StormFS-Linux/releases/download/theme-pack/StormFS-Recovered-Theme-Icons-Wallpapers-StormPkg.zip xfce-xsettings.xml xfce-xfwm4.xml gtk-settings.ini)
 
 pkg_build() {
 	# pkgbuild extracts archive sources into $SRC before calling build().

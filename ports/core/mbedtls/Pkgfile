@@ -7,8 +7,8 @@ name=mbedtls
 version=3.6.6
 release=1
 _framework=893ad9e8450a8e7459679d952abd5d6df26c41c4
-source="https://github.com/ARMmbed/mbedtls/archive/v$version/$name-$version.tar.gz
-	https://github.com/Mbed-TLS/mbedtls-framework/archive/$_framework/mbedtls-framework-$_framework.tar.gz"
+source=(https://github.com/ARMmbed/mbedtls/archive/v$version/$name-$version.tar.gz
+	https://github.com/Mbed-TLS/mbedtls-framework/archive/$_framework/mbedtls-framework-$_framework.tar.gz)
 
 pkg_build() {
 	rm -rf $name-$version/framework

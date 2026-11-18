@@ -6,10 +6,10 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=thunderbird
 version=152.0
 release=1
-source="https://archive.mozilla.org/pub/thunderbird/releases/${version}/source/thunderbird-${version}.source.tar.xz
+source=(https://archive.mozilla.org/pub/thunderbird/releases/${version}/source/thunderbird-${version}.source.tar.xz
 	clang22-wasm32-wasip1.patch
 	metainfo.patch
-	missing-include.patch"
+	missing-include.patch)
 
 pkg_build() {
 	INITDIR=$PWD

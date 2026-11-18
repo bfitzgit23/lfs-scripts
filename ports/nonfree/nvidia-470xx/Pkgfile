@@ -6,12 +6,12 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nvidia-470xx
 version=470.256.02
 release=3
-source="$name-$version.run::http://us.download.nvidia.com/XFree86/Linux-x86_64/$version/NVIDIA-Linux-x86_64-$version.run
+source=($name-$version.run::http://us.download.nvidia.com/XFree86/Linux-x86_64/$version/NVIDIA-Linux-x86_64-$version.run
 	prime-run
 	gcc14.patch
 	linux.6.10.patch
 	buildmodules-nvidia.sh
-	10-nvidia-drm-outputclass.conf"
+	10-nvidia-drm-outputclass.conf)
 
 pkg_build() {
 	install_lib() {	install -Dm0755 $1 $PKG/usr/lib/$2/${1##*/}; }

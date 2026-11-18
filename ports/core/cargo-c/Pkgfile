@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=cargo-c
 version=0.10.23
 release=1
-source="https://github.com/lu-zero/cargo-c/archive/v${version}/${name}-${version}.tar.gz 
-	${name}-${version}.Cargo.lock::https://github.com/lu-zero/cargo-c/releases/download/v${version}/Cargo.lock"
+source=(https://github.com/lu-zero/cargo-c/archive/v${version}/${name}-${version}.tar.gz 
+	${name}-${version}.Cargo.lock::https://github.com/lu-zero/cargo-c/releases/download/v${version}/Cargo.lock)
 
 pkg_build() {
 	export RUSTUP_TOOLCHAIN='stable'

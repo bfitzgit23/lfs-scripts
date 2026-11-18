@@ -7,7 +7,7 @@ description="Library for passing menus over DBus - Common Files"
 name=libdbusmenu-gtk2-32
 version=18.10
 release=4
-source="http://cdn-fastly.deb.debian.org/debian/pool/main/libd/libdbusmenu/libdbusmenu_18.10.20180917~bzr492+repack1.orig.tar.xz 0001_no-deprecated-gnome-common-macros.patch 0003_port-tools-dbusmenu-bench-to-py3.patch 0004_prevent-test-json-from-failing.patch"
+source=(http://cdn-fastly.deb.debian.org/debian/pool/main/libd/libdbusmenu/libdbusmenu_18.10.20180917~bzr492+repack1.orig.tar.xz 0001_no-deprecated-gnome-common-macros.patch 0003_port-tools-dbusmenu-bench-to-py3.patch 0004_prevent-test-json-from-failing.patch)
 
 pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1

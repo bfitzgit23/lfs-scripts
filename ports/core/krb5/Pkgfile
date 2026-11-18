@@ -7,8 +7,8 @@ name=krb5
 version=1.22.2
 vrsn=$(printf "$version" | awk -F. '{print $1"."$2}')
 release=3
-source="https://kerberos.org/dist/krb5/${vrsn}/$name-$version.tar.gz
-	mitkrb-1.22.2-upstream_fix-1.patch"
+source=(https://kerberos.org/dist/krb5/${vrsn}/$name-$version.tar.gz
+	mitkrb-1.22.2-upstream_fix-1.patch)
 
 pkg_build() {
 	patch -d $name-$version -Np1 -i $SRC/mitkrb-1.22.2-upstream_fix-1.patch

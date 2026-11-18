@@ -7,11 +7,11 @@ name=jack
 version=1.9.22
 release=2
 backup="etc/security/limits.d/99-audio.conf"
-source="https://github.com/jackaudio/jack2/archive/v$version/$name-$version.tar.gz
+source=(https://github.com/jackaudio/jack2/archive/v$version/$name-$version.tar.gz
 	99-audio.conf
         40-hpet-permissions.rules
 	waf-escape-seq.patch
-	waf-imp.patch"
+	waf-imp.patch)
 
 pkg_build() {
 	cd ${name}2-$version

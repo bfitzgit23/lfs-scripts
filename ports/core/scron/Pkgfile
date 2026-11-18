@@ -5,8 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=scron
 version=0.4
 release=2
-source="https://dl.2f30.org/releases/$name-$version.tar.gz
-rc.crond"
+source=(https://dl.2f30.org/releases/$name-$version.tar.gz
+rc.crond)
 
 pkg_build() {
     make

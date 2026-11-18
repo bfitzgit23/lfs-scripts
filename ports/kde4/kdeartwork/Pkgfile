@@ -6,7 +6,7 @@ description="KDE 4 extra artwork, screensavers, and styles"
 name=kdeartwork
 version=4.14.3
 release=3
-source="https://download.kde.org/Attic/4.14.3/src/kdeartwork-$version.tar.xz kdeartwork-4.14.3-cmake-minimum.patch.manual"
+source=(https://download.kde.org/Attic/4.14.3/src/kdeartwork-$version.tar.xz kdeartwork-4.14.3-cmake-minimum.patch.manual)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

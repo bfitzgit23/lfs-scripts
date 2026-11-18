@@ -6,7 +6,7 @@ description="Phonon multimedia framework for Qt 4 and KDE 4"
 name=phonon4
 version=4.10.3
 release=2
-source="https://download.kde.org/Attic/phonon/$version/phonon-$version.tar.xz phonon-4.10.3-cmp0022.patch.manual"
+source=(https://download.kde.org/Attic/phonon/$version/phonon-$version.tar.xz phonon-4.10.3-cmp0022.patch.manual)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "phonon-$version" -print -quit)

@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=mpd
 version=0.24.12
 release=1
-source="$name-$version.tar.gz::https://github.com/MusicPlayerDaemon/MPD/archive/v$version.tar.gz
-	rc.mpd"
+source=($name-$version.tar.gz::https://github.com/MusicPlayerDaemon/MPD/archive/v$version.tar.gz
+	rc.mpd)
 
 
 pkg_build() {

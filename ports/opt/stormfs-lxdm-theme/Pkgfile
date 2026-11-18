@@ -7,7 +7,7 @@ description="StormFS theme and defaults for the LXDM display manager"
 name=stormfs-lxdm-theme
 version=1.0
 release=1
-source="lxdm.conf index.theme gtkrc greeter.ui background.jpg login.svg session.png lang.png nobody.png README"
+source=(lxdm.conf index.theme gtkrc greeter.ui background.jpg login.svg session.png lang.png nobody.png README)
 
 pkg_build() {
 	cd "$SRC" || return 1

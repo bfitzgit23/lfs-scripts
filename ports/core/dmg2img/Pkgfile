@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=dmg2img
 version=1.6.7
 release=1
-source="http://vu1tur.eu.org/tools/$name-$version.tar.gz
-	0001-openssl-1.1-compatibility.patch"
+source=(http://vu1tur.eu.org/tools/$name-$version.tar.gz
+	0001-openssl-1.1-compatibility.patch)
 
 
 pkg_build() {

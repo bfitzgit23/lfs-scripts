@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ly
 version=1.4.1
 release=1
-source="$name-$version.tar.gz::https://codeberg.org/fairyglade/ly/archive/v$version.tar.gz
-	config.ini setup.sh rc.ly"
+source=($name-$version.tar.gz::https://codeberg.org/fairyglade/ly/archive/v$version.tar.gz
+	config.ini setup.sh rc.ly)
 
 pkg_build() {
 	cd $name

@@ -6,7 +6,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=abiword
 version=3.0.8
 release=1
-source="$name-$version.tar.bz2::https://gitlab.gnome.org/World/AbiWord/-/archive/release-$version/AbiWord-release-$version.tar.bz2 enchant.patch"
+source=($name-$version.tar.bz2::https://gitlab.gnome.org/World/AbiWord/-/archive/release-$version/AbiWord-release-$version.tar.bz2 enchant.patch)
 
 _plugins="applix babelfish bmp clarisworks collab docbook command eml epub freetranslation garble \
 	gdict gimp google hancom hrtext iscii kword latex loadbindings mht mif mswrite openwriter \

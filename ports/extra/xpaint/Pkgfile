@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=xpaint
 version=3.1.4
 release=1
-source="https://downloads.sourceforge.net/sf-$name/$name-$version.tar.bz2
-	$name.desktop"
+source=(https://downloads.sourceforge.net/sf-$name/$name-$version.tar.bz2
+	$name.desktop)
 
 pkg_build() {
 

@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=gcolor3
 version=2.4.0
 release=1
-source="https://gitlab.gnome.org/World/$name/-/archive/v$version/$name-v$version.tar.gz
-	portal.patch"
+source=(https://gitlab.gnome.org/World/$name/-/archive/v$version/$name-v$version.tar.gz
+	portal.patch)
 
 pkg_build() {
 	cd $name-v$version

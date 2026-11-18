@@ -5,7 +5,7 @@ description="A stream oriented C library for parsing XML"
 name=stripping
 version=1.0
 release=1
-source="cleanup.sh stripping.sh"
+source=(cleanup.sh stripping.sh)
 
 pkg_build() {
 

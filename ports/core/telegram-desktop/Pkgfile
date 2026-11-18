@@ -7,9 +7,9 @@ name=telegram-desktop
 version=6.9.3
 release=1
 td_commit=51743dfd01dff6179e2d8f7095729caa4e2222e9
-source="https://github.com/telegramdesktop/tdesktop/releases/download/v$version/tdesktop-$version-full.tar.gz
+source=(https://github.com/telegramdesktop/tdesktop/releases/download/v$version/tdesktop-$version-full.tar.gz
 	https://github.com/tdlib/td/archive/$td_commit.tar.gz
-	"
+	)
 
 pkg_build() {
 

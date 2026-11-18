@@ -75,8 +75,8 @@ f:0b8604e1ae431248e43f68119914cd70:openssh-s6/Pkgfile
 f:aedf8efedb5d6b9899d2e76bc64be311:power-profiles-daemon-s6/Pkgfile
 f:e5dd14c4d05a65f232b66496dacc06fe:rsync-s6/Pkgfile
 f:a7b2e131fb2bbdad21c2e46b19b2cdba:s6-base/Pkgfile
-f:d3429129a26752f06fd633f2fc65ed0e:s6-frontend/Pkgfile
-f:58a760dfd37c1b4f9f2441dc2930fbef:s6-linux-init/Pkgfile
+f:00dc1a112339296e7da370fec8fe558d:s6-frontend/Pkgfile
+f:89c2f2f01b5f459d26985270668cd99f:s6-linux-init/Pkgfile
 f:81cccc7fd0c8bdf09bd500430b051a81:s6-rc/Pkgfile
 f:53294f4b103d3823d75876ed75a473ac:s6-scripts/Pkgfile
 f:20e2cd5d5ff614da407a9cf22cd50527:s6/Pkgfile

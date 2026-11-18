@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libappindicator
 version=12.10.0
 release=2
-source="https://launchpad.net/libappindicator/${version%.*}/$version/+download/libappindicator-$version.tar.gz
-	no-python.patch"
+source=(https://launchpad.net/libappindicator/${version%.*}/$version/+download/libappindicator-$version.tar.gz
+	no-python.patch)
 
 pkg_build() {
 

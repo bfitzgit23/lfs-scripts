@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=signon-ui
 version=0.17
 release=2
-source="https://gitlab.com/accounts-sso/signon-ui/-/archive/master/signon-ui-eef943f0edf3beee8ecb85d4a9dae3656002fc24.tar.bz2
-    fake-user-agent.patch"
+source=(https://gitlab.com/accounts-sso/signon-ui/-/archive/master/signon-ui-eef943f0edf3beee8ecb85d4a9dae3656002fc24.tar.bz2
+    fake-user-agent.patch)
 
 pkg_build() {
     cd $name-master-eef943f0edf3beee8ecb85d4a9dae3656002fc24

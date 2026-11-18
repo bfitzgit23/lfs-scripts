@@ -11,7 +11,7 @@ release=4
 # downloads.xiph.org intermittently truncates these transfers, which fails
 # extraction with an end-of-file error. OSUOSL mirrors Xiph's releases and
 # serves byte-identical archives.
-source="https://ftp.osuosl.org/pub/xiph/releases/speex/speex-$version.tar.gz https://ftp.osuosl.org/pub/xiph/releases/speex/speexdsp-$version.tar.gz"
+source=(https://ftp.osuosl.org/pub/xiph/releases/speex/speex-$version.tar.gz https://ftp.osuosl.org/pub/xiph/releases/speex/speexdsp-$version.tar.gz)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=zzzfm
 version=1.0.7
 release=5
-source="https://gitlab.com/antix-contribs/zzzfm/-/archive/$version-$release/$name-$version-$release.tar.gz
-	zzzfm-fix-wayland.patch"
+source=(https://gitlab.com/antix-contribs/zzzfm/-/archive/$version-$release/$name-$version-$release.tar.gz
+	zzzfm-fix-wayland.patch)
 
 pkg_build() {
 	export CFLAGS="$CFLAGS -Wno-incompatible-pointer-types"

@@ -6,9 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=sway
 version=1.12
 release=1
-source="https://github.com/swaywm/sway/releases/download/$version/$name-$version.tar.gz
+source=(https://github.com/swaywm/sway/releases/download/$version/$name-$version.tar.gz
 	sway-portals.conf
-	sway.desktop"
+	sway.desktop)
 
 pkg_build() {
 	# CBUILD: enable or disable options, source CBUILD_SWAY_OPTS from "sway.opt" file

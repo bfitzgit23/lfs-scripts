@@ -6,7 +6,7 @@ description="Default broadly useful X.Org input/video driver set for BFSOS"
 name=xorg-driver
 version=7x
 release=5
-source=""
+source=()
 
 pkg_build() {
     mkdir -p "$PKG/usr/share/bfsos/meta-packages"

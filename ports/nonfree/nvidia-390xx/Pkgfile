@@ -6,10 +6,10 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nvidia-390xx
 version=390.157
 release=2
-source="$name-$version.run::http://us.download.nvidia.com/XFree86/Linux-x86_64/$version/NVIDIA-Linux-x86_64-$version.run
+source=($name-$version.run::http://us.download.nvidia.com/XFree86/Linux-x86_64/$version/NVIDIA-Linux-x86_64-$version.run
 	buildmodules-nvidia.sh
 	kernel-6.6.patch
-	10-nvidia-drm-outputclass.conf"
+	10-nvidia-drm-outputclass.conf)
 
 pkg_build() {
 	install_lib() {	install -Dm0755 $1 $PKG/usr/lib/$2/${1##*/}; }

@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=xf86-video-vmware
 version=13.4.0
 release=1
-source="http://ftp.x.org/pub/individual/driver/$name-$version.tar.xz
-	gcc8.diff"
+source=(http://ftp.x.org/pub/individual/driver/$name-$version.tar.xz
+	gcc8.diff)
 
 pkg_build() {
 

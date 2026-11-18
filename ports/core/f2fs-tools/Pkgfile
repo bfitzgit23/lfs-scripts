@@ -5,7 +5,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=f2fs-tools
 version=1.16.0
 release=2
-source="https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-tools.git/snapshot/$name-$version.tar.gz gcc15.patch"
+source=(https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-tools.git/snapshot/$name-$version.tar.gz gcc15.patch)
 
 pkg_build() {
 

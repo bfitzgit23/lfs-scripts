@@ -7,8 +7,8 @@ name=fpc
 version=3.2.2
 release=1
 arch="x86_64"
-source="https://downloads.sourceforge.net/sourceforge/freepascal/Linux/$version/fpc-$version.$arch-linux.tar
-	https://downloads.sourceforge.net/sourceforge/freepascal/fpcbuild-$version.tar.gz"
+source=(https://downloads.sourceforge.net/sourceforge/freepascal/Linux/$version/fpc-$version.$arch-linux.tar
+	https://downloads.sourceforge.net/sourceforge/freepascal/fpcbuild-$version.tar.gz)
 
 pkg_build() {
 	# Bootstrap fpc

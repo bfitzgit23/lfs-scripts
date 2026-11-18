@@ -8,9 +8,9 @@ version=6.24.16
 release=1
 backup="etc/csh.cshrc
 	etc/csh.login"
-source="https://astron.com/pub/$name/$name-$version.tar.gz
+source=(https://astron.com/pub/$name/$name-$version.tar.gz
 	csh.cshrc
-	csh.login"
+	csh.login)
 
 pkg_build() {
 

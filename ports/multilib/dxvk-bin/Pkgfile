@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=dxvk-bin
 version=3.0
 release=1
-source="https://github.com/doitsujin/dxvk/releases/download/v$version/dxvk-$version.tar.gz
-	setup_dxvk.sh"
+source=(https://github.com/doitsujin/dxvk/releases/download/v$version/dxvk-$version.tar.gz
+	setup_dxvk.sh)
 
 pkg_build() {
         install -D dxvk-$version/x32/* -t $PKG/usr/share/dxvk/x32

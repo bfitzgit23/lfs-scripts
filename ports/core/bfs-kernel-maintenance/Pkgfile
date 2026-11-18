@@ -6,7 +6,7 @@ description="BFSOS safe kernel upgrade, rollback retention, and boot finalizatio
 name=bfs-kernel-maintenance
 version=1.0
 release=3
-source="bfs-kernel-maintenance README"
+source=(bfs-kernel-maintenance README)
 
 pkg_build() {
     install -Dm0755 "$SRC/bfs-kernel-maintenance" \

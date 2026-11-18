@@ -7,7 +7,7 @@ description="Library of PNG support functions with APNG support."
 name=libpng12-32
 version=1.2.59
 release=3
-source="https://sourceforge.net/projects/libpng/files/libpng-$version.tar.xz https://sourceforge.net/projects/libpng-apng/files/libpng12/$version/libpng-$version-apng.patch.gz"
+source=(https://sourceforge.net/projects/libpng/files/libpng-$version.tar.xz https://sourceforge.net/projects/libpng-apng/files/libpng12/$version/libpng-$version-apng.patch.gz)
 
 pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1

@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=bindutils
 version=9.20.16
 release=1
-source="https://ftp.isc.org/isc/bind9/$version/bind-$version.tar.xz
-    utils.patch"
+source=(https://ftp.isc.org/isc/bind9/$version/bind-$version.tar.xz
+    utils.patch)
 
 pkg_build() {
     cd bind-$version

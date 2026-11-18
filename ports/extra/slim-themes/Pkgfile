@@ -5,8 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=slim-themes
 version=20230821
 release=2
-source="https://github.com/adi1090x/slim_themes/archive/32898d6527a1d41fa8274cd047e80433cc181e89.tar.gz
-		authfail.patch"
+source=(https://github.com/adi1090x/slim_themes/archive/32898d6527a1d41fa8274cd047e80433cc181e89.tar.gz
+		authfail.patch)
 
 pkg_build() {
 	cd slim_themes-32898d6527a1d41fa8274cd047e80433cc181e89

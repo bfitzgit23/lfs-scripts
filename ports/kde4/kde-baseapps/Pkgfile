@@ -6,7 +6,7 @@ description="KDE 4 base applications (Dolphin, Konqueror, and related tools)"
 name=kde-baseapps
 version=4.14.3
 release=3
-source="https://download.kde.org/Attic/4.14.3/src/kde-baseapps-$version.tar.xz kde-baseapps-4.14.3-cmake-minimum.patch.manual"
+source=(https://download.kde.org/Attic/4.14.3/src/kde-baseapps-$version.tar.xz kde-baseapps-4.14.3-cmake-minimum.patch.manual)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

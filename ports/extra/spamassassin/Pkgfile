@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=spamassassin
 version=4.0.2
 release=1
-source="https://www.apache.org/dist/spamassassin/source/Mail-SpamAssassin-$version.tar.bz2
-spamd.rc"
+source=(https://www.apache.org/dist/spamassassin/source/Mail-SpamAssassin-$version.tar.bz2
+spamd.rc)
 
 pkg_build() {
   cd Mail-SpamAssassin-$version

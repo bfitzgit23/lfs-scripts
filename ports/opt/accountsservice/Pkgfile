@@ -9,7 +9,7 @@ name=accountsservice
 version=26.27.3
 release=4
 skip_patch=1
-source="https://gitlab.freedesktop.org/accountsservice/accountsservice/-/archive/$version/accountsservice-$version.tar.bz2 openrc-no-logind.patch bfs-logind-stub.h"
+source=(https://gitlab.freedesktop.org/accountsservice/accountsservice/-/archive/$version/accountsservice-$version.tar.bz2 openrc-no-logind.patch bfs-logind-stub.h)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

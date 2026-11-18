@@ -7,9 +7,9 @@ name=tinysparql
 version=3.11.1
 release=1
 
-source="${name}-${version}.tar.gz::https://gitlab.gnome.org/GNOME/${name}/-/archive/${version}/${name}-${version}.tar.gz
+source=(${name}-${version}.tar.gz::https://gitlab.gnome.org/GNOME/${name}/-/archive/${version}/${name}-${version}.tar.gz
     disable-cli-test.patch
-    gh-ci-timeout.patch"
+    gh-ci-timeout.patch)
 
 pkg_build() {
     cd ${name}-${version}

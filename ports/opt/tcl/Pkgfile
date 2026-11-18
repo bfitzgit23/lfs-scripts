@@ -10,7 +10,7 @@ release=1
 keep_static=1
 # use this to keep libtool files (*.la)
 keep_libtool=1
-source="https://downloads.sourceforge.net/tcl/tcl$version-src.tar.gz https://downloads.sourceforge.net/tcl/$name$version-html.tar.gz"
+source=(https://downloads.sourceforge.net/tcl/tcl$version-src.tar.gz https://downloads.sourceforge.net/tcl/$name$version-html.tar.gz)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

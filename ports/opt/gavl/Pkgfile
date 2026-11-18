@@ -8,7 +8,7 @@ description="Low-level audio/video support library used by multimedia applicatio
 name=gavl
 version=2.0.1
 release=2
-source="https://github.com/bplaum/gavl/archive/refs/tags/v$version.tar.gz gavl-2.0.1-nettle4-md5.patch"
+source=(https://github.com/bplaum/gavl/archive/refs/tags/v$version.tar.gz gavl-2.0.1-nettle4-md5.patch)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)

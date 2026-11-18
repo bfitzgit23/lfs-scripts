@@ -7,7 +7,7 @@ description="Masquerade directory to use ccache with mingw"
 name=mingw-ccache-bindings
 version=10.2.0
 release=1
-source=""
+source=()
 
 pkg_build() {
   install -d $PKG/usr/lib/ccache

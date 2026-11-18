@@ -7,7 +7,7 @@ description="Qt 6 assistant/designer/linguist tools (provided by the qt6 port)"
 name=qt6-tools
 version=6.11.2
 release=1
-source=""
+source=()
 
 # qttools is built from the qt-everywhere tarball by the qt6 port, which installs
 # Qt6LinguistTools/Qt6Designer/Qt6Assistant into /opt/qt6.  Rebuilding the

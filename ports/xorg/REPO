@@ -67,8 +67,8 @@ f:a034b6d8313470af9c4f6784aeac3986:xf86-video-openchrome/Pkgfile
 f:1435865d268296167d49ae43177d48ad:xf86-video-siliconmotion/Pkgfile
 f:1f7b4c97099ae79843bba6ace6b2e525:xf86-video-sis/Pkgfile
 f:35e4aa026b63c823ab09f69df223e619:xf86-video-vboxvideo/Pkgfile
-f:7298fbb641f69162b1118b0495170160:xorg-apps/Pkgfile
-f:4c5d108517e0f2f8a892eeb51518fcbc:xorg-driver/Pkgfile
+f:97b52d4ae53d676fd83664576e9a230b:xorg-apps/Pkgfile
+f:8d900a4c8b0085c09386a40934a2d7c7:xorg-driver/Pkgfile
 f:d196b570fd8f1b5a8967f6b3d4bdd500:xorg-font-adobe-100dpi/Pkgfile
 f:6f9ac5996007d16692b804e3ae8b9c76:xorg-font-adobe-100dpi/post-install
 f:a559b76c0b72fd05ca7b921280245d4a:xorg-font-adobe-75dpi/Pkgfile
@@ -142,6 +142,6 @@ f:f1060d21faf4909bb3aedc0fd96a1d5f:xorg-font-winitzki-cyrillic/Pkgfile
 f:426af16fc0ab898959f307065c8b3e90:xorg-font-winitzki-cyrillic/post-install
 f:9eae15d00e60561d07a4c607ddb1fefe:xorg-font-xfree86-type1/Pkgfile
 f:1100e76e795560d210791cc44fcd435e:xorg-font-xfree86-type1/post-install
-f:1691ac53cab8871e0bd4fd34c7b67d08:xorg-libs/Pkgfile
+f:9db3dee77117f35794cc6e1fdd1cd0d6:xorg-libs/Pkgfile
 f:48c6fc6194eb82a809a578cb06789b36:xscreensaver/Pkgfile
 f:718f18e105093982d279cf91cce136bf:xscreensaver/post-install

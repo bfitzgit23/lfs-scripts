@@ -5,8 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=compface
 version=1.5.2
 release=2
-source="http://mirrors.ibiblio.org/xemacs/aux/$name-$version.tar.gz
-        compface-1.5.2-build.patch"
+source=(http://mirrors.ibiblio.org/xemacs/aux/$name-$version.tar.gz
+        compface-1.5.2-build.patch)
 
 pkg_build() {
 

@@ -7,8 +7,8 @@ name=krb5-32
 version=1.22.2
 vrsn=$(printf "$version" | awk -F. '{print $1"."$2}')
 release=4
-source="https://kerberos.org/dist/${name%-*}/$vrsn/${name%-*}-$version.tar.gz
-        mitkrb-1.22.2-upstream_fix-1.patch"
+source=(https://kerberos.org/dist/${name%-*}/$vrsn/${name%-*}-$version.tar.gz
+        mitkrb-1.22.2-upstream_fix-1.patch)
 
 pkg_build() {
 	export CC="gcc -m32"

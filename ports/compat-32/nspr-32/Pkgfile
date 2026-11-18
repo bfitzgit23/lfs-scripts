@@ -8,7 +8,7 @@ name=nspr-32
 version=4.40
 release=3
 build_opt="--includedir=/usr/include/nspr --enable-optimize=$CFLAGS --disable-64bit --disable-debug"
-source="https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v$version/src/${name%-*}-$version.tar.gz nspr.pc.in"
+source=(https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v$version/src/${name%-*}-$version.tar.gz nspr.pc.in)
 
 pkg_build() {
 	. /usr/share/bfsos/spkgbuild.helper || return 1

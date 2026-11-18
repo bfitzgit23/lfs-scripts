@@ -7,7 +7,7 @@ description="Current BLFS GNOME applications meta package"
 name=gnome-apps-meta
 version=51.0
 release=2
-source=""
+source=()
 
 pkg_build() {
     install -d "$PKG/usr/share/doc/$name"

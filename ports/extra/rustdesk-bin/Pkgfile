@@ -6,8 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=rustdesk-bin
 version=1.4.8
 release=1
-source="$name-$version.tar.zst::https://github.com/rustdesk/rustdesk/releases/download/$version/${name%-*}-$version-0-x86_64.pkg.tar.zst
-	rc.rustdesk"
+source=($name-$version.tar.zst::https://github.com/rustdesk/rustdesk/releases/download/$version/${name%-*}-$version-0-x86_64.pkg.tar.zst
+	rc.rustdesk)
 
 pkg_build() {
 
