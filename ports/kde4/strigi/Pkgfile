@@ -1,6 +1,7 @@
 # description	: Strigi desktop search framework for KDE 4
 # homepage	: https://strigi.sourceforge.net/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: qt4 dbus zlib libxml2
 
 description="Strigi desktop search framework for KDE 4"
 name=strigi

@@ -1,6 +1,7 @@
 # description	: Phonon GStreamer backend for Qt 4 and KDE 4
 # homepage	: https://phonon.kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: phonon4 qt4 gstreamer gst-plugins-base
 
 description="Phonon GStreamer backend for Qt 4 and KDE 4"
 name=phonon-backend-gstreamer

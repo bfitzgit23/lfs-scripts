@@ -1,6 +1,7 @@
 # description	: KDE 4 base applications (Dolphin, Konqueror, and related tools)
 # homepage	: https://kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: kdelibs kde-runtime qt4
 
 description="KDE 4 base applications (Dolphin, Konqueror, and related tools)"
 name=kde-baseapps

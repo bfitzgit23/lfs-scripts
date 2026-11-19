@@ -1,6 +1,7 @@
 # description	: KDE 4 base artwork and branding
 # homepage	: https://kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: kdelibs
 
 description="KDE 4 base artwork and branding"
 name=kde-base-artwork

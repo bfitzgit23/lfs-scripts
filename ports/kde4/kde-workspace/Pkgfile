@@ -1,6 +1,7 @@
 # description	: KDE 4 Plasma workspace and window manager
 # homepage	: https://kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: kdelibs kde-runtime kdepimlibs akonadi4 soprano strigi attica4 phonon4 qt4 boost eudev upower glib fontconfig xorg-libs
 
 description="KDE 4 Plasma workspace and window manager"
 name=kde-workspace

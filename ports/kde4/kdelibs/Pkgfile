@@ -1,6 +1,7 @@
 # description	: KDE 4 core libraries
 # homepage	: https://kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: qt4 attica4 phonon4 shared-desktop-ontologies soprano strigi eudev acl mesa zlib libxml2
 
 description="KDE 4 core libraries"
 name=kdelibs

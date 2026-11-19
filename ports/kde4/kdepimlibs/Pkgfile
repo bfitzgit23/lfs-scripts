@@ -1,6 +1,7 @@
 # description	: KDE 4 PIM libraries
 # homepage	: https://kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: kdelibs akonadi4 libical1 qjson gpgme qt4
 
 description="KDE 4 PIM libraries"
 name=kdepimlibs

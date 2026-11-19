@@ -1,6 +1,7 @@
 # description	: Additional Plasma widgets and plugins for KDE 4
 # homepage	: https://kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: kdelibs kde-workspace kdepimlibs qt4
 
 description="Additional Plasma widgets and plugins for KDE 4"
 # Keep the KDE4 package name distinct from the KF6 package in ports/plasma.

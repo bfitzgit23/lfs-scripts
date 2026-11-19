@@ -1,6 +1,7 @@
 # description	: Soprano RDF framework for KDE 4
 # homepage	: https://sourceforge.net/projects/soprano/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: qt4
 
 description="Soprano RDF framework for KDE 4"
 name=soprano

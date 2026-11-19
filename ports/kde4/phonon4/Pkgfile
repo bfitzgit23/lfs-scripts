@@ -1,6 +1,7 @@
 # description	: Phonon multimedia framework for Qt 4 and KDE 4
 # homepage	: https://phonon.kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: qt4
 
 description="Phonon multimedia framework for Qt 4 and KDE 4"
 name=phonon4

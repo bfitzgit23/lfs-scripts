@@ -4,5 +4,25 @@ release=1
 # Depends: openssl zlib
 source=(https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
 	sshd.run)
-build_opt="--without-zlib-version-check"
+# Portable OpenSSH takes its config directory, host keys and moduli from
+# SSHDIR, which Makefile.in sets to sysconfdir.  The extension passes
+# --sysconfdir=/etc first, so repeat it here as /etc/ssh and keep the
+# daemon, ssh-keygen -A and the sshd service scripts looking at one place.
+#
+# The service scripts create /var/lib/sshd as the privilege-separation
+# chroot; point the daemon at that instead of the default /var/empty.
+build_opt="--without-zlib-version-check --sysconfdir=/etc/ssh --with-privsep-path=/var/lib/sshd"
 sv=(sshd.run)
+
+# sshd drops to the "sshd" account after authentication.  Nothing else in the
+# tree creates it, and without it the daemon refuses to start.  Keep the BLFS
+# ids so the account matches the rest of a BFSOS install.
+pre_build() {
+	getent group sshd >/dev/null 2>&1 || groupadd -g 50 sshd || return 1
+	id -u sshd >/dev/null 2>&1 || useradd \
+		-u 50 -g sshd -d /var/lib/sshd -s /bin/false \
+		-c "sshd PrivSep" sshd || return 1
+
+	# The privsep chroot has to exist and stay root-owned and unwritable.
+	install -d -o root -g root -m 0700 /var/lib/sshd || return 1
+}

@@ -1,6 +1,7 @@
 # description	: Akonadi personal information management service for KDE 4
 # homepage	: https://community.kde.org/Akonadi
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: qt4 kdelibs sqlite soprano boost
 
 description="Akonadi personal information management service for KDE 4"
 _pkgname=akonadi

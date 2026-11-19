@@ -1,6 +1,7 @@
 # description	: Automoc4 CMake helper for KDE 4
 # homepage	: https://download.kde.org/Attic/automoc4/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: qt4
 
 description="Automoc4 CMake helper for KDE 4"
 name=automoc4

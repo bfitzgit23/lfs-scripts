@@ -1,6 +1,7 @@
 # description	: KDE 4 activity manager
 # homepage	: https://kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: qt4 kdelibs
 
 description="KDE 4 activity manager"
 # Keep the KDE4 package name distinct from the KF5 package in ports/plasma.

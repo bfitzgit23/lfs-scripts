@@ -1,6 +1,7 @@
 # description	: Attica open collaboration services library for Qt 4
 # homepage	: https://api.kde.org/attica/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: qt4
 
 description="Attica open collaboration services library for Qt 4"
 name=attica4
