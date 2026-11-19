@@ -842,7 +842,9 @@ f:3a70f6c78a2f2991b01e8b506e729738:fontforge/Pkgfile
 f:5b3119a7a8b578199f6eb7840e640a46:foot/Pkgfile
 f:2bca3478b0a845c9368c83db0f9b9e9d:fpc-src/Pkgfile
 f:661fac9a4569894e9af142d532a99493:fpc/Pkgfile
+f:be820d9b70137dd7be31fe87ec73ea58:freetype2/.md5sum
 f:77ca3b450905bc2b5d41f6c9e17f8837:freetype2/Pkgfile
+f:552805b2cc1eaf981322d2403dbd830e:freetype2/freetype2.sh
 f:16720cc68c9e9395b339cdb39b3a132a:fstrcmp/Pkgfile
 f:e4783bef1bfadc843b8ae9e19e3b071f:fuse3/Pkgfile
 f:de9b011b149a97a9e748e3bddc930531:fuzzel/Pkgfile
