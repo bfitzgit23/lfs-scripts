@@ -11,7 +11,9 @@ release=1
 source="http://deb.debian.org/debian/pool/main/s/stfl/stfl_0.22.orig.tar.gz"
 
 pkg_build() {
-	cd $name-$version
+	if [ -d $name-$version ]; then
+		cd $name-$version
+	fi
 
 	sed -i 's|ncursesw/||' stfl_internals.h
 	make prefix=/usr FOUND_SWIG=0 DESTDIR=$PKG install

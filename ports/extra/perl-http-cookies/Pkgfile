@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Cookies-$version.
 renames=(perl-http-cookies-6.12.tar.gz)
 
 pkg_build() {
-        cd HTTP-Cookies-$version
+        if [ -d HTTP-Cookies-$version ]; then
+        	cd HTTP-Cookies-$version
+        fi
 	perl -I. Makefile.PL INSTALLDIRS=vendor
         make
         make DESTDIR=$PKG install

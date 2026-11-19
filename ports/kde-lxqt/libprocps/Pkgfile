@@ -9,7 +9,9 @@ release=1
 source="https://downloads.sourceforge.net/project/procps-ng/Production/procps-ng-${version}.tar.xz"
 
 pkg_build() {
-	cd procps-${version}
+	if [ -d procps-${version} ]; then
+		cd procps-${version}
+	fi
 
 	./configure \
 		--prefix=/usr \

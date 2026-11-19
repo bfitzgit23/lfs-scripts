@@ -10,7 +10,9 @@ source=(https://pypi.python.org/packages/source/p/pyqt6-webengine/pyqt6_webengin
 	fix-build.patch)
 
 pkg_build() {
-	cd pyqt6_webengine-$version
+	if [ -d pyqt6_webengine-$version ]; then
+		cd pyqt6_webengine-$version
+	fi
 	patch -Np1 -i $SRC/fix-build.patch
 	sip-build --no-make --qmake=/usr/lib/qt6/bin/qmake6
 	cd build

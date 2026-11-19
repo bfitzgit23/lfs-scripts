@@ -9,7 +9,9 @@ release=1
 source="https://downloads.sourceforge.net/lcms/lcms2-$version.tar.gz"
 
 pkg_build() {
-	cd lcms2-$version
+	if [ -d lcms2-$version ]; then
+		cd lcms2-$version
+	fi
 
 	export CC="gcc -m32"
 	export CXX="g++ -m32"

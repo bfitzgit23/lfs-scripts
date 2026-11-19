@@ -10,7 +10,9 @@ release=2
 source="https://files.pythonhosted.org/packages/source/p/$_name/$_name-$version.tar.gz"
 
 pkg_build() {
-  cd $_name-$version
+  if [ -d $_name-$version ]; then
+  	cd $_name-$version
+  fi
 	gpep517 build-wheel \
 		--wheel-dir .dist \
 		--output-fd 3 3>&1 >&2

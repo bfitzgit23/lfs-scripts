@@ -11,7 +11,9 @@ source=(https://github.com/sphinx-doc/sphinx/archive/v$version.tar.gz)
 renames=(python3-sphinx-9.2.0.tar.gz)
 
 pkg_build() {
-	cd $_name-$version
+	if [ -d $_name-$version ]; then
+		cd $_name-$version
+	fi
 
 	    gpep517 build-wheel \
 		   --wheel-dir .dist \

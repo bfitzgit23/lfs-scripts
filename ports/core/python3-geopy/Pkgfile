@@ -11,7 +11,9 @@ source=(https://github.com/geopy/geopy/archive/$version.tar.gz)
 renames=(python3-geopy-2.5.0.tar.gz)
 
 pkg_build() {
-	cd $nm-$version
+	if [ -d $nm-$version ]; then
+		cd $nm-$version
+	fi
 	    gpep517 build-wheel \
 		--wheel-dir .dist \
 		--output-fd 3 3>&1 >&2

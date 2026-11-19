@@ -11,7 +11,9 @@ source=(https://github.com/zeth/inputs/archive/refs/tags/v$version.zip
 renames=(python3-inputs-0.5.zip SKIP)
 
 pkg_build() {
-        cd inputs-$version
+        if [ -d inputs-$version ]; then
+        	cd inputs-$version
+        fi
 	patch -Np1 -i $SRC/3203c9e25f1e14c4316d85d59c536b4e407f569f.patch
 	    gpep517 build-wheel \
 		    --wheel-dir .dist \

@@ -10,7 +10,9 @@ source=(https://github.com/horejsek/python-fastjsonschema/archive/refs/tags/v$ve
 renames=(python3-fastjsonschema-2.22.3.tar.gz)
 
 pkg_build() {
-	cd python-fastjsonschema-$version
+	if [ -d python-fastjsonschema-$version ]; then
+		cd python-fastjsonschema-$version
+	fi
 
 	gpep517 build-wheel \
 		--wheel-dir .dist \

@@ -10,7 +10,9 @@ source=(https://files.pythonhosted.org/packages/source/t/toml/toml-$version.tar.
 renames=(python3-toml-0.10.2.tar.gz)
 
 pkg_build() {
-	cd toml-$version
+	if [ -d toml-$version ]; then
+		cd toml-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 }

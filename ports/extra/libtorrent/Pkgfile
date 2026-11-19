@@ -10,7 +10,9 @@ source=(https://github.com/rakshasa/$name/archive/refs/tags/v$version.tar.gz)
 renames=(libtorrent-0.16.28.tar.gz)
 
 pkg_build() {
-	cd libtorrent-$version
+	if [ -d libtorrent-$version ]; then
+		cd libtorrent-$version
+	fi
 
 	autoreconf -fiv
 

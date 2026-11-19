@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/O/OA/OALDERS/URI-$version.tar.gz)
 renames=(perl-uri-5.40.tar.gz)
 
 pkg_build() {
-	cd URI-$version
+	if [ -d URI-$version ]; then
+		cd URI-$version
+	fi
 
 	perl Makefile.PL
 	make

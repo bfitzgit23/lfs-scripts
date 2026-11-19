@@ -10,7 +10,9 @@ source=(https://github.com/numpy/numpy/releases/download/v${version}/numpy-${ver
 renames=(python3-numpy-2.5.5.tar.gz)
 
 pkg_build() {
-	cd numpy-$version
+	if [ -d numpy-$version ]; then
+		cd numpy-$version
+	fi
 sed -e "/meson-python/s/,<0.16.0//" -i pyproject.toml
 	CFLAGS="$CFLAGS -ffat-lto-objects" 
 	CXXFLAGS="$CXXFLAGS -ffat-lto-objects" 

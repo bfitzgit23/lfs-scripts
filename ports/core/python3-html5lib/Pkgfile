@@ -11,7 +11,9 @@ source=(https://github.com/html5lib/html5lib-python/archive/$version/html5lib-py
 renames=(python3-html5lib-1.1.tar.gz SKIP SKIP)
 
 pkg_build() {
-	cd html5lib-python-$version
+	if [ -d html5lib-python-$version ]; then
+		cd html5lib-python-$version
+	fi
 
 	#Fix build with python 3.14
 	patch -Np1 -i $SRC/python-3.14-compatibility.patch

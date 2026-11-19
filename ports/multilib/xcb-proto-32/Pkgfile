@@ -14,7 +14,9 @@ pkg_build() {
 
 	export PYTHON=/usr/bin/python3
 
-	cd xcb-proto-$version
+	if [ -d xcb-proto-$version ]; then
+		cd xcb-proto-$version
+	fi
 	
 	sed 's/datarootdir/libdir/' -i Makefile.am 
 

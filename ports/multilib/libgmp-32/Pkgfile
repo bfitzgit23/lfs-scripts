@@ -9,7 +9,9 @@ release=2
 source="https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/gmp-6.3.0.tar.xz"
 
 pkg_build() {
-	cd gmp-$version
+	if [ -d gmp-$version ]; then
+		cd gmp-$version
+	fi
 
 	export CC="gcc -m32"
 	export CXX="g++ -m32"

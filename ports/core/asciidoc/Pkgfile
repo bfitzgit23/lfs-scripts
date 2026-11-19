@@ -11,7 +11,9 @@ source="https://github.com/asciidoc/$name-py3/archive/$version/$name-py3-$versio
 pkg_build() {
 	export XML_CATALOG_FILES=/etc/xml/catalog
 
-	cd $name-py-$version
+	if [ -d $name-py-$version ]; then
+		cd $name-py-$version
+	fi
 
 	autoconf
 	./configure --prefix=/usr --sysconfdir=/etc

@@ -10,7 +10,9 @@ source=(http://ftp.x.org/pub/individual/lib/libXdmcp-$version.tar.xz)
 renames=(libxdmcp-1.1.5.tar.xz)
 
 pkg_build() {
-	cd libXdmcp-$version
+	if [ -d libXdmcp-$version ]; then
+		cd libXdmcp-$version
+	fi
 
 	export CC="gcc -m32"
 	export CXX="g++ -m32"

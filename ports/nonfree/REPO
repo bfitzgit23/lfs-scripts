@@ -20,11 +20,11 @@ f:7febcc5a7069ebbe9e51d968e8fede14:dropbox/Pkgfile
 f:820107a8537f8172ef81e830f721be56:internxt-bin/Pkgfile
 f:1fe185e196b6682fe82a5dde05d5b00f:microsoft-edge/Pkgfile
 f:ddbf5c628fe8e05969d2e00631258570:nv-codec-headers/Pkgfile
-f:56363736453eafdbdfba2d99c9619913:nvidia-390xx/Pkgfile
-f:c274d84d2c61257112daddfc1e507eff:nvidia-470xx/Pkgfile
+f:b85d640e855a0172600b61a37bbff636:nvidia-390xx/Pkgfile
+f:058ef83cc7df3542a3de34550bb49921:nvidia-470xx/Pkgfile
 f:3a82d21dca4b214a76425dbfe38a1636:opera-gx-stable/Pkgfile
 f:b0fcc41b1414b373606c0f413a4a80df:opera/Pkgfile
-f:6b15c6085c658a43d25657305fda2c01:pandoc-bin/Pkgfile
+f:e3e5da1a4a88ab7e7b6599ffb2c1de86:pandoc-bin/Pkgfile
 f:c96ed79f30c58b44ff3fdb5b749b0fba:slack-desktop/Pkgfile
 f:5ad176191f45161b0e306f7ae00b6888:spotify/Pkgfile
 f:65dac63125ad496cf14d18ed96c50201:sublime-text-4/Pkgfile

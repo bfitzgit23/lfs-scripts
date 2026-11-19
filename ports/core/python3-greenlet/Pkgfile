@@ -10,7 +10,9 @@ source=(https://files.pythonhosted.org/packages/source/g/greenlet/greenlet-$vers
 renames=(python3-greenlet-3.5.6.tar.gz)
 
 pkg_build() {
-	cd greenlet-$version
+	if [ -d greenlet-$version ]; then
+		cd greenlet-$version
+	fi
 
 	    gpep517 build-wheel \
 		--wheel-dir .dist \

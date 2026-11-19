@@ -10,7 +10,9 @@ source=(https://github.com/hukkin/tomli/archive/$version/tomli-$version.tar.gz)
 renames=(python3-tomli-2.5.0.tar.gz)
 
 pkg_build() {
-	cd tomli-$version
+	if [ -d tomli-$version ]; then
+		cd tomli-$version
+	fi
 	
 	gpep517 build-wheel \
 		--wheel-dir .dist \

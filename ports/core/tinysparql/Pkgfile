@@ -13,7 +13,9 @@ source=(https://gitlab.gnome.org/GNOME/${name}/-/archive/${version}/${name}-${ve
 renames=(tinysparql-3.11.1.tar.gz SKIP SKIP)
 
 pkg_build() {
-    cd ${name}-${version}
+    if [ -d ${name}-${version} ]; then
+    	cd ${name}-${version}
+    fi
 
     patch -Np1 -i "${SRC}/disable-cli-test.patch"
     patch -Np1 -i "${SRC}/gh-ci-timeout.patch"

@@ -10,7 +10,9 @@ source=(http://smarden.org/$name/$name-$version.tar.gz
 patch_opt="-Np0"
 
 pkg_build() {
-	cd $name-$version
+	if [ -d $name-$version ]; then
+		cd $name-$version
+	fi
 	# set default service path to /var/service
 	sed -i -e 's:^char \*varservice ="/service/";$:char \*varservice ="/var/service/";:' src/sv.c
 	

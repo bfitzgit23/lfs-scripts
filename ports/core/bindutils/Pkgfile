@@ -10,7 +10,9 @@ source=(https://ftp.isc.org/isc/bind9/$version/bind-$version.tar.xz
     utils.patch)
 
 pkg_build() {
-    cd bind-$version
+    if [ -d bind-$version ]; then
+    	cd bind-$version
+    fi
 
     patch -Np1 -i $SRC/utils.patch
 

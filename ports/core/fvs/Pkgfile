@@ -8,7 +8,9 @@ version=0.3.4
 release=1
 source="https://github.com/mirkobrombin/FVS/archive/refs/tags/$version.tar.gz"
 pkg_build() {
-	cd "FVS-$version" 
+	if [ -d FVS-$version ]; then
+		cd FVS-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 

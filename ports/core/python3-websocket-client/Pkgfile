@@ -10,7 +10,9 @@ source=(https://pypi.io/packages/source/w/websocket-client/websocket_client-$ver
 renames=(python3-websocket-client-1.9.2.tar.gz)
 
 pkg_build() {
-	cd websocket_client-$version
+	if [ -d websocket_client-$version ]; then
+		cd websocket_client-$version
+	fi
 
 	sed -i "s/'backports.ssl_match_hostname'//" setup.py
 	

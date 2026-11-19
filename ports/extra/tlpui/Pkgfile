@@ -10,7 +10,9 @@ source=(https://github.com/d4nj1/TLPUI/archive/refs/tags/$name-$version.tar.gz)
 renames=(tlpui-1.10.1.tar.gz)
 
 pkg_build() {
-	cd TLPUI-$name-$version
+	if [ -d TLPUI-$name-$version ]; then
+		cd TLPUI-$name-$version
+	fi
 	python3 -m build --wheel --no-isolation
 	python3 -m installer --destdir=$PKG dist/*.whl
 

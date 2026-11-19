@@ -10,7 +10,9 @@ source=(https://pypi.io/packages/source/P/PySocks/PySocks-$version.tar.gz)
 renames=(python3-pysocks-1.7.1.tar.gz)
 
 pkg_build() {
-	cd PySocks-$version
+	if [ -d PySocks-$version ]; then
+		cd PySocks-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 }

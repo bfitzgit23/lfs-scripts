@@ -10,7 +10,9 @@ source=(https://github.com/HandBrake/HandBrake/releases/download/$version/HandBr
 renames=(handbrake-1.11.2.tar.bz2)
 
 pkg_build() {
-	cd HandBrake-$version
+	if [ -d HandBrake-$version ]; then
+		cd HandBrake-$version
+	fi
 
 	ln -s "$SOURCE_DIR" download
 

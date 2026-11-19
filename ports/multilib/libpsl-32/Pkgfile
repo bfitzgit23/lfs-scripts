@@ -13,7 +13,9 @@ pkg_build() {
 	export CXX="g++ -m32"
 	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
 
-	cd libpsl-$version
+	if [ -d libpsl-$version ]; then
+		cd libpsl-$version
+	fi
 
 	sed -i 's/env python/&3/' src/psl-make-dafsa
 

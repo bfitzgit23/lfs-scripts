@@ -12,7 +12,9 @@ pkg_build() {
         export CC="gcc -m32"
 	export CXX="g++ -m32"
 	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
-	cd a52dec-$version
+	if [ -d a52dec-$version ]; then
+		cd a52dec-$version
+	fi
 
 	./configure --prefix=/usr \
                     --libdir=/usr/lib32 \

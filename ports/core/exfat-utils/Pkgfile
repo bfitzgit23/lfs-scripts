@@ -9,7 +9,9 @@ release=3
 source="https://github.com/relan/exfat/archive/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	cd exfat-$version
+	if [ -d exfat-$version ]; then
+		cd exfat-$version
+	fi
 
 	autoreconf -fiv
 	./configure --prefix=/usr

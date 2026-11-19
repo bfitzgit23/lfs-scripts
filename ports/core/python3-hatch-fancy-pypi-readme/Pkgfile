@@ -9,7 +9,9 @@ release=1
 source="https://github.com/hynek/hatch-fancy-pypi-readme/archive/$version/$name-$version.tar.gz"
 
 pkg_build() {
-    cd hatch-fancy-pypi-readme-$version
+    if [ -d hatch-fancy-pypi-readme-$version ]; then
+    	cd hatch-fancy-pypi-readme-$version
+    fi
 	gpep517 build-wheel \
 		--wheel-dir .dist \
 		--output-fd 3 3>&1 >&2

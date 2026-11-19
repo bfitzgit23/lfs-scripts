@@ -9,7 +9,9 @@ release=1
 source="https://github.com/Elinvention/efibootmgr-gui/archive/$version/$name-$version.tar.gz"
 
 pkg_build() {
-	cd efiboots-$version
+	if [ -d efiboots-$version ]; then
+		cd efiboots-$version
+	fi
 
 	install -d $PKG/usr/bin
 	install -d $PKG/usr/share/applications

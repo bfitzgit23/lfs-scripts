@@ -10,7 +10,9 @@ source=(https://github.com/maxmind/$name-api-c/archive/v$version/$name-$version.
 renames=(geoip-1.6.12.tar.gz)
 
 pkg_build() {
-	cd $name-api-c-$version
+	if [ -d $name-api-c-$version ]; then
+		cd $name-api-c-$version
+	fi
 
 	autoreconf -vi
 

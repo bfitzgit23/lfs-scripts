@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/L/LE/LEONT/Module-Build-$version.ta
 renames=(perl-module-build-0.4234.tar.gz)
 
 pkg_build() {
-	cd Module-Build-$version
+	if [ -d Module-Build-$version ]; then
+		cd Module-Build-$version
+	fi
 	perl Build.PL --installdirs=vendor
 	./Build
  	./Build install --destdir=$PKG 

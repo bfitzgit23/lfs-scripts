@@ -9,7 +9,9 @@ release=1
 source="https://pypi.org/packages/source/e/editables/editables-$version.tar.gz"
 
 pkg_build() {
-  cd editables-$version
+  if [ -d editables-$version ]; then
+  	cd editables-$version
+  fi
 
 	gpep517 build-wheel \
 		--wheel-dir .dist \

@@ -11,7 +11,9 @@ source=(https://gitlab.com/sane-project/backends/-/archive/$version/backends-$ve
 renames=(sane-1.4.0.tar.gz SKIP)
 
 pkg_build() {
-	cd backends-$version
+	if [ -d backends-$version ]; then
+		cd backends-$version
+	fi
 	patch -Np1 -i $SRC/d04d17b456d9847021b6df6eb08a3419a75172cf.patch
 	./autogen.sh
     	./configure \

@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/Unicode-LineBreak-$vers
 renames=(perl-unicode-linebreak-2019.001.tar.gz)
 
 pkg_build() {
-	cd Unicode-LineBreak-$version
+	if [ -d Unicode-LineBreak-$version ]; then
+		cd Unicode-LineBreak-$version
+	fi
         perl -I. Makefile.PL INSTALLDIRS=vendor
 	make DESTDIR=$PKG install
 }

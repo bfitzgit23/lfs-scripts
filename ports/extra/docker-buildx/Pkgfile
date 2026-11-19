@@ -16,7 +16,9 @@ pkg_build() {
 	export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
 	export GO111MODULE=on
 
-	cd buildx-$version
+	if [ -d buildx-$version ]; then
+		cd buildx-$version
+	fi
 	go build -mod=vendor -o docker-buildx -ldflags "-linkmode=external \
 		-X github.com/docker/buildx/version.Version=$version \
 		-X github.com/docker/buildx/version.Revision=1c1dbb2e4cb5363110f42102744a08d034c2300d \

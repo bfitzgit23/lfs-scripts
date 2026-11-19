@@ -10,7 +10,9 @@ source=(https://files.pythonhosted.org/packages/source/d/docutils/docutils-$vers
 renames=(python3-docutils-0.23.tar.gz)
 
 pkg_build() {
-	cd docutils-$version
+	if [ -d docutils-$version ]; then
+		cd docutils-$version
+	fi
 
 	# Remove include list https://github.com/pypa/wheel/issues/92
 	sed -i '/^include =/,/]/d' pyproject.toml

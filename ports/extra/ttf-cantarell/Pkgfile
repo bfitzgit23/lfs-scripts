@@ -11,7 +11,9 @@ source=(https://gitlab.gnome.org/GNOME/cantarell-fonts/-/archive/$version/$_name
 renames=(ttf-cantarell-0.311.tar.gz)
 
 pkg_build() {
-	cd $_name-$version
+	if [ -d $_name-$version ]; then
+		cd $_name-$version
+	fi
 	uv sync
 	. $SRC/$_name-$version/.venv/bin/activate
 	venom-meson build

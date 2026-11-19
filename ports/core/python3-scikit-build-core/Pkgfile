@@ -10,7 +10,9 @@ source=(https://github.com/scikit-build/scikit-build-core/archive/refs/tags/v$ve
 renames=(python3-scikit-build-core-1.1.2.tar.gz)
 
 pkg_build() {
-	cd scikit-build-core-$version
+	if [ -d scikit-build-core-$version ]; then
+		cd scikit-build-core-$version
+	fi
 
 	gpep517 build-wheel \
 		--wheel-dir .dist \

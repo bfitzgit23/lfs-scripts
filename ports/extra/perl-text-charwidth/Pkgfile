@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/K/KU/KUBOTA/Text-CharWidth-$version
 renames=(perl-text-charwidth-0.04.tar.gz)
 
 pkg_build() {
-	cd Text-CharWidth-$version
+	if [ -d Text-CharWidth-$version ]; then
+		cd Text-CharWidth-$version
+	fi
 	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
 	make
 	make DESTDIR=$PKG install

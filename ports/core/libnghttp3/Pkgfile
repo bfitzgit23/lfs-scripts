@@ -9,7 +9,9 @@ source=(https://github.com/ngtcp2/nghttp3/releases/download/v${version}/nghttp3-
 renames=(libnghttp3-1.17.0.tar.xz)
 
 pkg_build() {
-	cd nghttp3-$version
+	if [ -d nghttp3-$version ]; then
+		cd nghttp3-$version
+	fi
 	autoreconf -i
 	  ./configure \
 	    --prefix=/usr \

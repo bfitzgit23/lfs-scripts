@@ -11,7 +11,9 @@ source=(https://github.com/more-itertools/more-itertools/archive/refs/tags/v${ve
 renames=(python3-more-itertools-11.2.1.tar.gz SKIP)
 
 pkg_build() {
-	cd "more-itertools-${version}"
+	if [ -d more-itertools-${version} ]; then
+		cd more-itertools-${version}
+	fi
 	patch -Np1 -i $SRC/remove-version-constraint.patch
 	SETUPTOOLS_SCM_PRETEND_VERSION="${version}" python3 -m build --wheel --no-isolation
 	python3 -m installer --destdir="${PKG}" dist/*.whl

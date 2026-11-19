@@ -10,7 +10,9 @@ source=(https://files.pythonhosted.org/packages/source/t/tap_py/tap_py-${version
 renames=(python3-tappy-3.2.1.tar.gz)
 
 pkg_build() {
-    cd tap_py-${version}
+    if [ -d tap_py-${version} ]; then
+        cd tap_py-${version}
+    fi
 
     python3 -m build --wheel --no-isolation
     python3 -m unittest discover -v

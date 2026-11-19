@@ -10,7 +10,9 @@ source=(https://downloads.sourceforge.net/$name/docbook2X-$version.tar.gz
 	docbook2x.datadir.patch)
 
 pkg_build() {
-	cd docbook2X-$version
+	if [ -d docbook2X-$version ]; then
+		cd docbook2X-$version
+	fi
 	patch < ../$name.datadir.patch || exit 1
 	sed -e 's/AM_CONFIG_HEADER(/AC_CONFIG_HEADERS(/' -i configure.ac
     

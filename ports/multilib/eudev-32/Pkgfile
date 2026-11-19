@@ -10,7 +10,9 @@ source=(https://github.com/eudev-project/eudev/archive/v$version.tar.gz)
 renames=(eudev-3.2.14.tar.gz)
 
 pkg_build() {
-	cd eudev-$version
+	if [ -d eudev-$version ]; then
+		cd eudev-$version
+	fi
 
 	export XML_CATALOG_FILES=/etc/xml/catalog
 	export CC="gcc -m32"

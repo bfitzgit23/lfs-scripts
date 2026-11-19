@@ -9,7 +9,9 @@ source=(https://github.com/acpica/acpica/releases/download/$version/acpica-unix-
 renames=(iasl-20251212.tar.gz)
 
 pkg_build() {
-	cd acpica-unix-$version
+	if [ -d acpica-unix-$version ]; then
+		cd acpica-unix-$version
+	fi
 	export CFLAGS="$CFLAGS -Wno-dangling-pointer"
 	NOWERROR=TRUE make
 	make DESTDIR=$PKG install

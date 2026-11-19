@@ -10,7 +10,9 @@ source=(http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-SAX-Base-$version
 renames=(perl-xml-sax-base-1.09.tar.gz)
 
 pkg_build() {
-	cd XML-SAX-Base-$version
+	if [ -d XML-SAX-Base-$version ]; then
+		cd XML-SAX-Base-$version
+	fi
 
 	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
 	make

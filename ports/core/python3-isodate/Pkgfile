@@ -10,7 +10,9 @@ source=(https://files.pythonhosted.org/packages/source/i/isodate/isodate-$versio
 renames=(python3-isodate-0.7.2.tar.gz)
 
 pkg_build() {
-	cd isodate-$version
+	if [ -d isodate-$version ]; then
+		cd isodate-$version
+	fi
 
 	gpep517 build-wheel \
 		--wheel-dir .dist \

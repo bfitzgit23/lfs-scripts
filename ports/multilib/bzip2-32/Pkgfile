@@ -9,7 +9,9 @@ release=1
 source="https://www.sourceware.org/pub/bzip2/bzip2-$version.tar.gz"
 
 pkg_build() {
-	cd bzip2-$version
+	if [ -d bzip2-$version ]; then
+		cd bzip2-$version
+	fi
 
 	make CC="gcc -m32 $CFLAGS $LDFLAGS" -f Makefile-libbz2_so
 	make PREFIX=$PWD/DESTDIR/usr install

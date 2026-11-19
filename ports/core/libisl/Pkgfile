@@ -10,7 +10,9 @@ source=(https://libisl.sourceforge.io/isl-$version.tar.bz2)
 renames=(libisl-0.27.tar.bz2)
 
 pkg_build() {
-	cd isl-$version
+	if [ -d isl-$version ]; then
+		cd isl-$version
+	fi
 	./configure \
 		--prefix=/usr \
 		--mandir=/usr/share/man \

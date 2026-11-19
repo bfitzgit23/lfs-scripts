@@ -10,7 +10,9 @@ renames=(pop-icon-theme-3.5.1.tar.gz)
 
 pkg_build() {
 
-	cd icon-theme-$version
+	if [ -d icon-theme-$version ]; then
+		cd icon-theme-$version
+	fi
 	venom-meson build
 	meson compile -C build
 	DESTDIR=$PKG ninja -C build install

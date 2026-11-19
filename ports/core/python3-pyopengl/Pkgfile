@@ -10,7 +10,9 @@ source=(https://pypi.python.org/packages/source/P/PyOpenGL/pyopengl-${version}.t
 renames=(python3-pyopengl-3.1.10.tar.gz)
 
 pkg_build() {
-    cd pyopengl-$version
+    if [ -d pyopengl-$version ]; then
+        cd pyopengl-$version
+    fi
     gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
     python3 -m installer -d $PKG .dist/*.whl
 }

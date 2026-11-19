@@ -9,7 +9,9 @@ release=1
 source="http://ftp.x.org/pub/individual/lib/libICE-$version.tar.xz"
 
 pkg_build() {
-	cd libICE-$version
+	if [ -d libICE-$version ]; then
+		cd libICE-$version
+	fi
 
 	export CC="gcc -m32"
 	export CXX="g++ -m32"

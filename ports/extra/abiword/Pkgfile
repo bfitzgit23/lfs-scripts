@@ -14,7 +14,9 @@ _plugins="applix babelfish bmp clarisworks collab docbook command eml epub freet
 	openxml opml paint passepartout pdb pdf presentation s5 sdw t602 urldict wikipedia wml xslfo"
 
 pkg_build() {
-	cd AbiWord-release-$version
+	if [ -d AbiWord-release-$version ]; then
+		cd AbiWord-release-$version
+	fi
 
 	# fix build with GCC 14
 	export CFLAGS="$CFLAGS -Wno-incompatible-pointer-types"

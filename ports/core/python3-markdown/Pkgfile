@@ -9,7 +9,9 @@ release=1
 source=(https://github.com/Python-Markdown/markdown/archive/refs/tags/$version.tar.gz)
 renames=(python3-markdown-3.11.3.tar.gz)
 pkg_build() {
-	cd markdown-$version
+	if [ -d markdown-$version ]; then
+		cd markdown-$version
+	fi
 
 	gpep517 build-wheel \
 		--wheel-dir .dist \

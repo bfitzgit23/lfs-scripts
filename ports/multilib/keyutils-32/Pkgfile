@@ -13,7 +13,9 @@ pkg_build() {
 	export CXX="g++ -m32"
 	export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 	
-	cd keyutils-$version
+	if [ -d keyutils-$version ]; then
+		cd keyutils-$version
+	fi
 	
 	sed -i -e 's/^\(USR\)\?LIBDIR\s*:=.*$/\1LIBDIR=\/usr\/lib32/' Makefile
 

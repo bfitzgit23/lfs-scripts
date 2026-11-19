@@ -10,7 +10,9 @@ source=(https://assets.ubuntu.com/v1/fad7939b-ubuntu-font-family-$version.zip
 
 
 pkg_build() {
-        cd ubuntu-font-family-$version
+        if [ -d ubuntu-font-family-$version ]; then
+        	cd ubuntu-font-family-$version
+        fi
 	install -dm755 $PKG/usr/share/fontconfig/conf.default
 	install -Dm644 -t $PKG/usr/share/fonts/ubuntu *.ttf
 	install -Dm644 LICENCE.txt $PKG/usr/share/licenses/$pkgname/LICENCE

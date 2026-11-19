@@ -8,7 +8,9 @@ release=1
 source="http://ftp.x.org/pub/individual/lib/xtrans-$version.tar.xz"
 
 pkg_build() {
-	cd xtrans-$version
+	if [ -d xtrans-$version ]; then
+		cd xtrans-$version
+	fi
 
 	export CC="gcc -m32"
 	export CXX="g++ -m32"

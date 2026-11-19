@@ -15,7 +15,9 @@ pkg_build() {
 	ln -sf /etc/ssl/certs/ca-certificates.crt Mozilla-CA-$version/lib/Mozilla/CA/cacert.pem
 
 
-	cd Mozilla-CA-$version
+	if [ -d Mozilla-CA-$version ]; then
+		cd Mozilla-CA-$version
+	fi
 	PERL_MM_USE_DEFAULT=1 perl -I. Makefile.PL INSTALLDIRS=vendor
 	make
 	make DESTDIR=$PKG install

@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/G/GA/GAAS/GAAS/Unicode-String-$vers
 renames=(perl-unicode-string-2.10.tar.gz)
 
 pkg_build() {
-	cd Unicode-String-$version
+	if [ -d Unicode-String-$version ]; then
+		cd Unicode-String-$version
+	fi
 	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
 	make
 	make DESTDIR=$PKG install

@@ -10,7 +10,9 @@ source=(https://github.com/notofonts/notofonts.github.io/archive/refs/tags/noto-
 	66-noto-sans.conf 66-noto-serif.conf 66-noto-mono.conf)
 
 pkg_build() {
-	cd notofonts.github.io-noto-monthly-release-$version
+	if [ -d notofonts.github.io-noto-monthly-release-$version ]; then
+		cd notofonts.github.io-noto-monthly-release-$version
+	fi
 
 	# Remove duplicated fonts
 	rm -f \

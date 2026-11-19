@@ -10,7 +10,9 @@ source=(https://github.com/libsdl-org/SDL_ttf/releases/download/release-${versio
 renames=(sdl2_ttf-2.24.0.tar.gz)
 
 pkg_build() {
-    cd SDL2_ttf-$version
+    if [ -d SDL2_ttf-$version ]; then
+        cd SDL2_ttf-$version
+    fi
     ./configure --disable-static -prefix=/usr
     make
     make DESTDIR=$PKG install

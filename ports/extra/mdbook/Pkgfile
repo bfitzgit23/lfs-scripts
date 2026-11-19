@@ -9,7 +9,9 @@ release=1
 source="https://github.com/rust-lang-nursery/mdBook/archive/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	cd "mdBook-$version"
+	if [ -d mdBook-$version ]; then
+		cd mdBook-$version
+	fi
 	cargo build --release
 	install -Dm 755 "target/release/${name}" "${PKG}/usr/bin/${name}"
 }

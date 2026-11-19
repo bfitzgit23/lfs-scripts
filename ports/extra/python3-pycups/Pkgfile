@@ -10,7 +10,9 @@ source=(https://pypi.python.org/packages/source/p/pycups/pycups-$version.tar.gz)
 renames=(python3-pycups-2.0.4.tar.gz)
 
 pkg_build() {
-	cd pycups-$version
+	if [ -d pycups-$version ]; then
+		cd pycups-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 }

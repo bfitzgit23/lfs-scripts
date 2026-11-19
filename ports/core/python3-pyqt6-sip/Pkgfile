@@ -10,7 +10,9 @@ source=(https://pypi.python.org/packages/source/P/PyQt6-sip/pyqt6_sip-$version.t
 renames=(python3-pyqt6-sip-13.13.1.tar.gz)
 
 pkg_build() {
-	cd pyqt6_sip-$version
+	if [ -d pyqt6_sip-$version ]; then
+		cd pyqt6_sip-$version
+	fi
 	python3 -m build --wheel --no-isolation
 	python3 -m installer --destdir=$PKG dist/*.whl
 }

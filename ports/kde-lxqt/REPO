@@ -241,7 +241,7 @@ d:xdg-desktop-portal-lxqt
 d:yakuake
 d:zint
 f:29b0f8c706c6cacaa110a0121c7b5062:accounts-qml-module/Pkgfile
-f:cd066aae72e7c385c92bb5a70377fa5d:aha/Pkgfile
+f:a55d120f45336f7353a35a7ee133a2f6:aha/Pkgfile
 f:3bd4680a2ff545df80803a1e3c9ca5a7:akonadi-calendar/Pkgfile
 f:85a646a85ce126f754b401811b949de6:akonadi-contacts/Pkgfile
 f:7262e4fa53873ba10782a574b91524b3:akonadi-import-wizard/Pkgfile
@@ -262,7 +262,7 @@ f:c8750dfc5bc4a7dbae370ec30e7a62ff:breeze-gtk/Pkgfile
 f:e107d7107dc68b41bfe937de52738b79:breeze/Pkgfile
 f:5faf4e0e800ed7b82b5833b141ec68b4:calendarsupport/Pkgfile
 f:9918f28f7c933dd96aca3b490d55c6ca:calligra/Pkgfile
-f:c7790cc8c4e7fb14bba7e88ccc658fc4:clinfo/Pkgfile
+f:729f4aea81c2d19f74d7481add35dff4:clinfo/Pkgfile
 f:6e0d1eba69587a71a18ddaa2ef6fe3ca:crystal-dock/Pkgfile
 f:6c55cd4525bf8125a21b486730a12ee9:cunit/Pkgfile
 f:c4ee76ffffad35369435d5f52552ed45:discount/Pkgfile
@@ -415,12 +415,12 @@ f:de4c616dda5377492731147b18851d78:libktorrent/Pkgfile
 f:5e576c5c05aaf884dd23ef9133e4661d:libmysofa/Pkgfile
 f:b6fe3b6f068659406915a445de8874a7:libphonenumber/Pkgfile
 f:c4e65af487b0f40d0e83ebcb8e7c2879:libplasma/Pkgfile
-f:238f925307bba962a28af7927ee50315:libprocps/Pkgfile
+f:a7f75b7653ae837ce6adeb7ae34b7733:libprocps/Pkgfile
 f:d293a80dc42b730894298884e02cb288:libquotient/Pkgfile
 f:a3f82a53841430e0d693e64a7a133b5e:lxqt-wayland-session/Pkgfile
 f:3d61cf2d4a1c9486e2b46ba6bf88ba92:mailcommon/Pkgfile
 f:505701845fb4ecd88572637cde73350b:mailimporter/Pkgfile
-f:39860d9a332cfb605d2b7d315787b15f:mathjax/Pkgfile
+f:f2d3663daf84d8110d33357c7e12021f:mathjax/Pkgfile
 f:4f44e336f9c3bfde21d1a696cdb8c741:mbox-importer/Pkgfile
 f:9ffef148c6584704724f4bce30c2ebe7:messagelib/Pkgfile
 f:a5a90e9030bc06bc828789a05a186975:milou/Pkgfile
@@ -460,7 +460,7 @@ f:46f34bdf51b14906b30978639dc7f38c:polkit-kde-agent-1/Pkgfile
 f:c34799ff6a31b274d50eb4d3a0ebac77:powerdevil/Pkgfile
 f:c8dfcd2e8e600ecc18346c98339f1745:print-manager/Pkgfile
 f:a7afc5be23a197248bc87f76c38cdcaa:prison/Pkgfile
-f:610e4e2fecd0de99c803efae20f668eb:protonup-qt/Pkgfile
+f:8933302c1e2d227722bb33e83c332175:protonup-qt/Pkgfile
 f:f448239c1ef7df246690d039f649184c:pulseaudio-qt/Pkgfile
 f:a99a25b0c25d03df1b571c238fff8b9d:purpose/Pkgfile
 f:61b3ea620bf6f79968585b795787b0cc:qcoro/Pkgfile

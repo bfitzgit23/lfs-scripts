@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Date-$version.tar
 renames=(perl-http-date-6.08.tar.gz)
 
 pkg_build() {
-        cd HTTP-Date-$version
+        if [ -d HTTP-Date-$version ]; then
+        	cd HTTP-Date-$version
+        fi
 	perl -I. Makefile.PL INSTALLDIRS=vendor
         make
         make DESTDIR=$PKG install

@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/MIME-Charset-$version.t
 renames=(perl-mime-charset-1.013.1.tar.gz)
 
 pkg_build() {
-	cd MIME-Charset-$version
+	if [ -d MIME-Charset-$version ]; then
+		cd MIME-Charset-$version
+	fi
 	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
 	make
 	make DESTDIR=$PKG install

@@ -10,7 +10,9 @@ source=(https://files.pythonhosted.org/packages/source/s/setuptools_scm/setuptoo
 renames=(python3-setuptools-scm-10.3.4.tar.gz)
 
 pkg_build() {
-	cd setuptools_scm-$version
+	if [ -d setuptools_scm-$version ]; then
+		cd setuptools_scm-$version
+	fi
 	
 gpep517 build-wheel \
 		--wheel-dir .dist \

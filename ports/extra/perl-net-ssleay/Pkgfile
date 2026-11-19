@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/C/CH/CHRISN/Net-SSLeay-$version.tar
 renames=(perl-net-ssleay-1.96.tar.gz)
 
 pkg_build() {
-	cd Net-SSLeay-$version
+	if [ -d Net-SSLeay-$version ]; then
+		cd Net-SSLeay-$version
+	fi
 	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
 	make
 	make DESTDIR=$PKG install

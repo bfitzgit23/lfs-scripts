@@ -8,7 +8,9 @@ release=1
 source="https://github.com/$name/$name/archive/$name-$version.tar.gz"
 
 pkg_build() {
-	cd $name-$name-$version
+	if [ -d $name-$name-$version ]; then
+		cd $name-$name-$version
+	fi
 	./configure --prefix=/usr
 	make
 	make DESTDIR=$PKG install

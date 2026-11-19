@@ -10,7 +10,9 @@ source=(https://github.com/pypa/trove-classifiers/archive/refs/tags/$version.tar
 renames=(python3-trove-classifiers-2026.9.21.13.tar.gz)
 
 pkg_build() {
-  cd trove-classifiers-$version
+  if [ -d trove-classifiers-$version ]; then
+  	cd trove-classifiers-$version
+  fi
 
 	gpep517 build-wheel \
 		--wheel-dir .dist \

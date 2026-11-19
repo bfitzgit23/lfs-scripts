@@ -9,7 +9,9 @@ release=1
 source="https://github.com/spicetify/spicetify-cli/archive/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	cd cli-$version
+	if [ -d cli-$version ]; then
+		cd cli-$version
+	fi
 	export GOPATH=$SRC
 	go build -o spicetify
 	install -Dm755 ./spicetify $PKG/usr/share/${name}/spicetify

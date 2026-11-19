@@ -10,7 +10,9 @@ release=1
 source="https://github.com/todotxt/todo.txt-cli/releases/download/v${version}/$_name-${version}.tar.gz"
 
 pkg_build() {
-	cd $_name-$version
+	if [ -d $_name-$version ]; then
+		cd $_name-$version
+	fi
 	install -D -m644 todo.cfg $PKG/usr/share/$name/todo.cfg
 	install -D -m755 todo.sh $PKG/usr/bin/todo.sh
 

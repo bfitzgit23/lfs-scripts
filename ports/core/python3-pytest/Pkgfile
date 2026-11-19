@@ -10,7 +10,9 @@ source=(https://files.pythonhosted.org/packages/source/p/pytest/pytest-$version.
 renames=(python3-pytest-9.2.0.tar.gz)
 
 pkg_build() {
-	cd pytest-$version
+	if [ -d pytest-$version ]; then
+		cd pytest-$version
+	fi
 	sed -e "/^\[metadata\]/a version = $version" -i setup.cfg
 		gpep517 build-wheel \
 			--wheel-dir .dist \

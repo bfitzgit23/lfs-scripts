@@ -9,7 +9,9 @@ source=(https://github.com/KittyKatt/screenFetch/archive/v$version.tar.gz)
 renames=(screenfetch-3.9.9.tar.gz)
 
 pkg_build() {
-	cd screenFetch-$version
+	if [ -d screenFetch-$version ]; then
+		cd screenFetch-$version
+	fi
 
 	install -Dm755 $name-dev $PKG/usr/bin/$name
 	install -Dm644 $name.1   $PKG/usr/share/man/man1/$name.1 

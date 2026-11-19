@@ -10,7 +10,9 @@ source=(https://github.com/indygreg/python-zstandard/archive/$version.tar.gz)
 renames=(python3-zstandard-0.25.0.tar.gz)
 
 pkg_build() {
-	cd python-zstandard-$version
+	if [ -d python-zstandard-$version ]; then
+		cd python-zstandard-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 }

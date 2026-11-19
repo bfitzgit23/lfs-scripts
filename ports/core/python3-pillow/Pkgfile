@@ -10,7 +10,9 @@ source=(https://github.com/python-pillow/Pillow/archive/refs/tags/$version.tar.g
 renames=($name-$version.tar.gz)
 
 pkg_build() {
-	cd Pillow-$version
+	if [ -d Pillow-$version ]; then
+		cd Pillow-$version
+	fi
 
 	export CFLAGS="$CFLAGS -O2 -L/lib -flto=auto"
 	    gpep517 build-wheel \

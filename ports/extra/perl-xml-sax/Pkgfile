@@ -10,7 +10,9 @@ source=(http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-SAX-$version.tar.
 renames=(perl-xml-sax-1.02.tar.gz)
 
 pkg_build() {
-	cd XML-SAX-$version
+	if [ -d XML-SAX-$version ]; then
+		cd XML-SAX-$version
+	fi
 
 	#patch -Np1 -i $SRC/perl-xml-sax.patch
 

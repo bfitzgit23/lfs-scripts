@@ -10,7 +10,9 @@ source=(https://github.com/markreidvfx/pyaaf2/archive/refs/tags/v$version.tar.gz
 renames=(python3-aaf2-1.7.1.tar.gz)
 
 pkg_build() {
-	cd pyaaf2-$version	
+	if [ -d pyaaf2-$version ]; then
+		cd pyaaf2-$version
+	fi
 	python3 -m build --wheel --no-isolation
 	python3 -m installer --destdir="$PKG" dist/*.whl
 }

@@ -10,7 +10,9 @@ source=(https://www.cpan.org/authors/id/O/OA/OALDERS/HTML-Parser-$version.tar.gz
 renames=(perl-html-parser-3.87.tar.gz)
 
 pkg_build() {
-	cd HTML-Parser-$version
+	if [ -d HTML-Parser-$version ]; then
+		cd HTML-Parser-$version
+	fi
 	perl Makefile.PL INSTALLDIRS=vendor
 	make OPTIMIZE="$CFLAGS"
 	make DESTDIR=$PKG install

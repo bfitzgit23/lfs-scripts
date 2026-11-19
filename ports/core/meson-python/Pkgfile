@@ -9,7 +9,9 @@ release=1
 source="https://pypi.org/packages/source/m/meson_python/meson_python-$version.tar.gz"
 
 pkg_build() {
-	cd meson_python-$version
+	if [ -d meson_python-$version ]; then
+		cd meson_python-$version
+	fi
 	/usr/bin/python3 -m build --wheel --skip-dependency-check --no-isolation
 	/usr/bin/python3 -m installer --compile-bytecode 2 --destdir=$PKG dist/*.whl
 }

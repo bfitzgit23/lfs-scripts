@@ -9,7 +9,9 @@ release=1
 source=(https://pypi.io/packages/source/a/attrs/attrs-$version.tar.gz)
 renames=(python3-attrs-26.1.0.tar.gz)
 pkg_build() {
-	cd attrs-$version
+	if [ -d attrs-$version ]; then
+		cd attrs-$version
+	fi
 
 	    gpep517 build-wheel \
 		    --wheel-dir .dist \

@@ -14,7 +14,9 @@ source=(https://github.com/jackaudio/jack2/archive/v$version/$name-$version.tar.
 	waf-imp.patch)
 
 pkg_build() {
-	cd ${name}2-$version
+	if [ -d ${name}2-$version ]; then
+		cd ${name}2-$version
+	fi
 
 	patch -Np1 -i $SRC/waf-escape-seq.patch
 	patch -Np1 -i $SRC/waf-imp.patch

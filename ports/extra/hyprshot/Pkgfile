@@ -11,7 +11,9 @@ source=(https://github.com/Gustash/Hyprshot/archive/$version.tar.gz)
 renames=(hyprshot-1.3.0.tar.gz)
 
 pkg_build() {
-	cd Hyprshot-$version
+	if [ -d Hyprshot-$version ]; then
+		cd Hyprshot-$version
+	fi
 	mkdir -p $PKG/usr/bin
 	cp hyprshot $PKG/usr/bin/
 }

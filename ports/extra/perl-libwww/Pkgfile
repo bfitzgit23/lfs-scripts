@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/O/OA/OALDERS/libwww-perl-$version.t
 renames=(perl-libwww-6.83.tar.gz)
 
 pkg_build() {
-        cd libwww-perl-$version
+        if [ -d libwww-perl-$version ]; then
+        	cd libwww-perl-$version
+        fi
 	perl -I. Makefile.PL INSTALLDIRS=vendor
         make
         make DESTDIR=$PKG install

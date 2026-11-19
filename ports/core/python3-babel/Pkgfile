@@ -10,7 +10,9 @@ source="https://github.com/python-babel/babel/archive/v$version/$name-$version.t
 
 
 pkg_build() {
-  cd babel-$version
+  if [ -d babel-$version ]; then
+  	cd babel-$version
+  fi
 
 	/usr/bin/python3 setup.py import_cldr
 	gpep517 build-wheel \

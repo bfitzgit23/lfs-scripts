@@ -10,7 +10,9 @@ source=(https://downloads.sourceforge.net/openjade/OpenSP-$version.tar.gz)
 renames=(opensp-1.5.2.tar.gz)
 
 pkg_build() {
-	cd OpenSP-$version
+	if [ -d OpenSP-$version ]; then
+		cd OpenSP-$version
+	fi
 
 	sed -i 's/32,/253,/' lib/Syntax.cxx
 	for i in gensyntax.pl unicode.syn; do

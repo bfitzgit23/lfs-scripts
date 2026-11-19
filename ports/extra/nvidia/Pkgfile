@@ -8,7 +8,9 @@ source=(https://us.download.nvidia.com/XFree86/Linux-x86_64/$version/NVIDIA-Linu
 
 pkg_build() {
 	sh NVIDIA-Linux-x86_64-$version.run --extract-only
-	cd NVIDIA-Linux-x86_64-$version
+	if [ -d NVIDIA-Linux-x86_64-$version ]; then
+		cd NVIDIA-Linux-x86_64-$version
+	fi
 
 	# X driver and GLX extension
 	install -d $PKG/usr/lib/xorg/modules/{drivers,extensions}

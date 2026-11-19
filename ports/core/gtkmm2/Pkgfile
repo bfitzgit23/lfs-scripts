@@ -9,7 +9,9 @@ release=1
 source="https://ftp.gnome.org/pub/gnome/sources/gtkmm/${version%.*}/gtkmm-$version.tar.xz"
 
 pkg_build() {
-	cd gtkmm-$version
+	if [ -d gtkmm-$version ]; then
+		cd gtkmm-$version
+	fi
 
 	./configure --prefix=/usr
 	make

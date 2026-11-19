@@ -9,7 +9,9 @@ source=(https://search.cpan.org/CPAN/authors/id/P/PL/PLICEASE/Class-Inspector-$v
 renames=(perl-class-inspector-1.36.tar.gz)
 
 pkg_build() {
-	cd Class-Inspector-$version
+	if [ -d Class-Inspector-$version ]; then
+		cd Class-Inspector-$version
+	fi
 	perl Makefile.PL INSTALLDIRS=vendor
 	make
 	make DESTDIR=$PKG install

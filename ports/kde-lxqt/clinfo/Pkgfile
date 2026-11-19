@@ -9,7 +9,9 @@ release=1
 source=" https://github.com/Oblomov/clinfo/archive/${version}/${name}-${version}.tar.gz"
 
 pkg_build() {
-     cd ${name}-${version}
+     if [ -d ${name}-${version} ]; then
+          cd ${name}-${version}
+     fi
      make
      make BINDIR=$PKG/usr/bin MANDIR=$PKG/usr/share/man  install
 }

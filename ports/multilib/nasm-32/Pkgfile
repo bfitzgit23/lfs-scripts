@@ -12,7 +12,9 @@ pkg_build() {
 	export CXX="g++ -m32"
 	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
 
-	cd nasm-$version
+	if [ -d nasm-$version ]; then
+		cd nasm-$version
+	fi
 
 	./configure --prefix=/usr/lib32 \
           --libdir=/usr/lib32

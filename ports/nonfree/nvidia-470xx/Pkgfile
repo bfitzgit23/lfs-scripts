@@ -21,7 +21,9 @@ pkg_build() {
 	symlink_lib() { ln -s ${1%.so*}.so.$version $PKG/$1; }
 
 	sh $name-$version.run --extract-only
-	cd NVIDIA-Linux-x86_64-$version
+	if [ -d NVIDIA-Linux-x86_64-$version ]; then
+		cd NVIDIA-Linux-x86_64-$version
+	fi
 	cd kernel
 	patch -Np1 -i $SRC/gcc14.patch
 	patch -Np1 -i $SRC/linux.6.10.patch

@@ -10,7 +10,9 @@ source=(https://github.com/mgorny/pyproject2setuppy/archive/v$version/pyproject2
 renames=(python3-pyproject2setuppy-22.tar.gz)
 
 pkg_build() {
-	cd pyproject2setuppy-$version
+	if [ -d pyproject2setuppy-$version ]; then
+		cd pyproject2setuppy-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 }

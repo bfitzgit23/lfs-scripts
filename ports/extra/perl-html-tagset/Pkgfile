@@ -10,7 +10,9 @@ source=(https://www.cpan.org/authors/id/P/PE/PETDANCE/HTML-Tagset-$version.tar.g
 renames=(perl-html-tagset-3.24.tar.gz)
 
 pkg_build() {
-	cd HTML-Tagset-$version
+	if [ -d HTML-Tagset-$version ]; then
+		cd HTML-Tagset-$version
+	fi
 	perl Makefile.PL INSTALLDIRS=vendor
 	make
 	make DESTDIR=$PKG install

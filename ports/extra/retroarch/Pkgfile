@@ -10,7 +10,9 @@ source="https://github.com/libretro/RetroArch/archive/v$version/$name-$version.t
 "
 
 pkg_build() {
-	cd RetroArch-$version
+	if [ -d RetroArch-$version ]; then
+		cd RetroArch-$version
+	fi
 
 	./configure \
 		--prefix=/usr \

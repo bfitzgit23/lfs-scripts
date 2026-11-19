@@ -9,7 +9,9 @@ release=1
 source=https://php.net/distributions/php-$version.tar.xz
 
 pkg_build() {
-	cd php-$version
+	if [ -d php-$version ]; then
+		cd php-$version
+	fi
 
 	PHP_CONFIG="
 		--prefix=/usr \

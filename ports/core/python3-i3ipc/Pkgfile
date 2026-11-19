@@ -10,7 +10,9 @@ source=(https://github.com/altdesktop/i3ipc-python/archive/v$version.tar.gz)
 renames=(python3-i3ipc-2.2.1.tar.gz)
 
 pkg_build() {
-	cd i3ipc-python-$version
+	if [ -d i3ipc-python-$version ]; then
+		cd i3ipc-python-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 	install -Dm755 -t $PKG/usr/share/doc/$name/examples examples/*.py

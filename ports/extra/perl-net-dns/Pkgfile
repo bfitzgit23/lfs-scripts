@@ -9,7 +9,9 @@ release=1
 source="http://search.cpan.org/CPAN/authors/id/N/NL/NLNETLABS/Net-DNS-${version}.tar.gz"
 
 pkg_build() {
-	cd Net-DNS-$version
+	if [ -d Net-DNS-$version ]; then
+		cd Net-DNS-$version
+	fi
 
 	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
 	make OPTIMIZE="$CFLAGS" DESTDIR="$PKG" install

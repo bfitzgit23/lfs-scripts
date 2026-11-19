@@ -10,7 +10,9 @@ source=(https://codeberg.org/sox_ng/sox_ng/releases/download/${name}_ng-$version
 renames=(sox-14.9.0.tar.gz)
 
 pkg_build() {
-	cd ${name}_ng-$version
+	if [ -d ${name}_ng-$version ]; then
+		cd ${name}_ng-$version
+	fi
 	./configure \
 		--prefix=/usr \
 		--sysconfdir=/etc \

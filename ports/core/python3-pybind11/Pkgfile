@@ -10,7 +10,9 @@ source=(https://github.com/pybind/pybind11/archive/v$version.tar.gz)
 renames=(python3-pybind11-3.1.0.tar.gz)
 
 pkg_build() {
-	cd pybind11-$version
+	if [ -d pybind11-$version ]; then
+		cd pybind11-$version
+	fi
 
 	# fails with lto due to fortify-headers
 	export CXXFLAGS="$CXXFLAGS -U_FORTIFY_SOURCE "

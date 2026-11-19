@@ -10,7 +10,9 @@ source=(https://ftp.gnome.org/pub/gnome/sources/GConf/${version%.*}/GConf-$versi
 renames=(gconf-3.2.6.tar.xz)
 
 pkg_build() {
-	cd GConf-$version
+	if [ -d GConf-$version ]; then
+		cd GConf-$version
+	fi
 
 	# fix build with GCC 14
 	export CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types"

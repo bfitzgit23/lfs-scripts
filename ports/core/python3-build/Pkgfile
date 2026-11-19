@@ -10,7 +10,9 @@ source=(https://github.com/pypa/build/archive/refs/tags/$version/py3-build-$vers
 renames=(python3-build-1.6.1.tar.gz)
 
 pkg_build() {
-  cd build-$version
+  if [ -d build-$version ]; then
+  	cd build-$version
+  fi
 
 		gpep517 build-wheel \
 			--wheel-dir .dist \

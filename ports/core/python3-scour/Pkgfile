@@ -10,7 +10,9 @@ source=(https://github.com/scour-project/scour/archive/v$version/scour-v$version
 renames=(python3-scour-0.38.2.tar.gz)
 
 pkg_build() {
-	cd scour-$version
+	if [ -d scour-$version ]; then
+		cd scour-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 }

@@ -9,7 +9,9 @@ release=1
 source="https://pypi.io/packages/source/p/pathspec/pathspec-$version.tar.gz"
 
 pkg_build() {
-  cd pathspec-$version
+  if [ -d pathspec-$version ]; then
+    cd pathspec-$version
+  fi
   gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
   python3 -m installer -d $PKG .dist/*.whl
 }

@@ -10,7 +10,9 @@ source=(https://github.com/benjamimgois/pascube/archive/$version.tar.gz)
 renames=(pascube-1.7.0.tar.gz)
 
 pkg_build() {
-    cd "${name}-${version}"
+    if [ -d ${name}-${version} ]; then
+     cd ${name}-${version}
+    fi
     mkdir -p build
 
   # Compile missing PasVulkan LZMA object file

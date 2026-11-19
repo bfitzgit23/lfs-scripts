@@ -9,6 +9,8 @@ release=1
 source="https://github.com/MalteKiefer/bar/archive/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	cd bar-$version
+	if [ -d bar-$version ]; then
+		cd bar-$version
+	fi
 	make DESTDIR=$PKG install
 }

@@ -12,7 +12,9 @@ source=(https://github.com/linrunner/TLP/archive/$version/$name-$version.tar.gz
 	finish.tlpd)
 
 pkg_build() {
-	cd TLP-$version
+	if [ -d TLP-$version ]; then
+		cd TLP-$version
+	fi
 	make DESTDIR=$PKG install
 
 	rm -rf $PKG/usr/lib/systemd

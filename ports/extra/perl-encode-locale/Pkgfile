@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/G/GA/GAAS/Encode-Locale-$version.ta
 renames=(perl-encode-locale-1.05.tar.gz)
 
 pkg_build() {
-        cd Encode-Locale-$version
+        if [ -d Encode-Locale-$version ]; then
+        	cd Encode-Locale-$version
+        fi
 	perl -I. Makefile.PL INSTALLDIRS=vendor
         make
         make DESTDIR=$PKG install

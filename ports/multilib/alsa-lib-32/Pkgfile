@@ -9,7 +9,9 @@ release=1
 source="https://www.alsa-project.org/files/pub/lib/alsa-lib-$version.tar.bz2"
 
 pkg_build() {
-	cd alsa-lib-$version
+	if [ -d alsa-lib-$version ]; then
+		cd alsa-lib-$version
+	fi
         
         autoreconf -fi
         export CC="gcc -m32"

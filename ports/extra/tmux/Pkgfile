@@ -9,7 +9,9 @@ release=1
 source="https://github.com/tmux/tmux/releases/download/${version}/${name}-${version}.tar.gz"
 
 pkg_build() {
-	cd ${name}-${version}
+	if [ -d ${name}-${version} ]; then
+		cd ${name}-${version}
+	fi
 	./configure --prefix=/usr 
 	make
 	make DESTDIR=$PKG install

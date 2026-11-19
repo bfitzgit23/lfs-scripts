@@ -11,7 +11,9 @@ renames=(perl-io-socket-ssl-2.099.tar.gz)
 
 
 pkg_build() {
-	cd IO-Socket-SSL-$version
+	if [ -d IO-Socket-SSL-$version ]; then
+		cd IO-Socket-SSL-$version
+	fi
 	PERL_MM_USE_DEFAULT=1 perl -I. Makefile.PL INSTALLDIRS=vendor
 	make
 	make DESTDIR=$PKG install

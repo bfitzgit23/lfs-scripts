@@ -9,7 +9,9 @@ release=1
 source="http://ftp.x.org/pub/individual/lib/libSM-$version.tar.xz"
 
 pkg_build() {
-	cd libSM-$version
+	if [ -d libSM-$version ]; then
+		cd libSM-$version
+	fi
 
 	export CC="gcc -m32"
 	export CXX="g++ -m32"

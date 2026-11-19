@@ -10,7 +10,9 @@ source=(https://github.com/rbarrois/python-semanticversion/archive/$version/pyth
 renames=(python3-semantic-version-2.10.0.tar.gz)
 
 pkg_build() {
-	cd python-semanticversion-$version
+	if [ -d python-semanticversion-$version ]; then
+		cd python-semanticversion-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 }

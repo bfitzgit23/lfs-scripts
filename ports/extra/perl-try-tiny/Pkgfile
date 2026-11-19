@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/E/ET/ETHER/Try-Tiny-$version.tar.gz
 renames=(perl-try-tiny-0.32.tar.gz)
 
 pkg_build() {
-        cd Try-Tiny-$version
+        if [ -d Try-Tiny-$version ]; then
+        	cd Try-Tiny-$version
+        fi
 	perl -I. Makefile.PL INSTALLDIRS=vendor
         make
         make DESTDIR=$PKG install

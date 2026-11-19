@@ -8,7 +8,9 @@ release=1
 source="https://www.kernel.org/pub/linux/kernel/v${version%%.*}.x/linux-$version.tar.xz"
 
 pkg_build() {
-	cd linux-$version
+	if [ -d linux-$version ]; then
+		cd linux-$version
+	fi
 
 	make mrproper
 	make headers

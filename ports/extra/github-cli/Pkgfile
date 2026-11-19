@@ -9,7 +9,9 @@ release=1
 source="https://github.com/cli/cli/archive/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	cd cli-$version
+	if [ -d cli-$version ]; then
+		cd cli-$version
+	fi
 
 	export CGO_CPPFLAGS="${CPPFLAGS}"
 	export CGO_CFLAGS="${CFLAGS}"

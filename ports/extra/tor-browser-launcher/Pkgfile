@@ -11,7 +11,9 @@ source=(https://github.com/torproject/torbrowser-launcher/archive/v$version.tar.
 renames=(torbrowser-launcher-0.3.9.tar.gz SKIP)
 
 pkg_build() {
-	cd torbrowser-launcher-$version
+	if [ -d torbrowser-launcher-$version ]; then
+		cd torbrowser-launcher-$version
+	fi
 
 	[ ! -e pyproject.toml ] # remove our pyproject.toml if upstream already has one
 	cp ../pyproject.toml .

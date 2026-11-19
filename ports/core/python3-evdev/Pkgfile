@@ -10,7 +10,9 @@ source=(https://github.com/gvalkov/python-evdev/archive/refs/tags/v$version.tar.
 renames=(python3-evdev-2.0.0.zip)
 
 pkg_build() {
-  cd python-evdev-$version
+  if [ -d python-evdev-$version ]; then
+    cd python-evdev-$version
+  fi
   gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
   python3 -m installer -d $PKG .dist/*.whl
 }

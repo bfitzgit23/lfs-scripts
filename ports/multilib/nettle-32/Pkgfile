@@ -9,7 +9,9 @@ release=1
 source="https://mirrorservice.org/sites/ftp.gnu.org/gnu/nettle/nettle-3.10.2.tar.gz"
 
 pkg_build() {
-	cd nettle-$version
+	if [ -d nettle-$version ]; then
+		cd nettle-$version
+	fi
 
 	export CC="gcc -m32"
 	export CXX="g++ -m32"

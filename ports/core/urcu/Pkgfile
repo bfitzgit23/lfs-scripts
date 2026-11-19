@@ -8,7 +8,9 @@ release=1
 source="https://lttng.org/files/urcu/userspace-rcu-$version.tar.bz2"
 
 pkg_build() {
-	cd userspace-rcu-$version
+	if [ -d userspace-rcu-$version ]; then
+		cd userspace-rcu-$version
+	fi
 	./configure --prefix=/usr
 	make
 	make DESTDIR=$PKG install

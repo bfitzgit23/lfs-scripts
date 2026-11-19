@@ -10,7 +10,9 @@ source=(http://downloads.sourceforge.net/project/hplip/hplip/$version/hplip-$ver
 	hplip-gcc14.patch)
 
 pkg_build() {
-	cd hplip-$version
+	if [ -d hplip-$version ]; then
+		cd hplip-$version
+	fi
 
 	patch -Np1 -i $SRC/hplip-gcc14.patch
 

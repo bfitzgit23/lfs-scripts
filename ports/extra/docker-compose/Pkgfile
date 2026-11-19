@@ -12,7 +12,9 @@ pkg_build() {
 	export CGO_CFLAGS="${CFLAGS}"
 	export CGO_CPPFLAGS="${CXXFLAGS}"
 	export CGO_CXXFLAGS="${CXXFLAGS}"
-	cd compose-$version
+	if [ -d compose-$version ]; then
+		cd compose-$version
+	fi
 	make VERSION=v$version
 	install -Dm0755 bin/build/${name} ${PKG}/usr/bin/${name}
 	install -dm0755 ${PKG}/usr/lib/docker/cli-plugins

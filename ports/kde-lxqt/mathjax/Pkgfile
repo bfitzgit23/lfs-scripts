@@ -9,7 +9,9 @@ release=1
 source="https://github.com/mathjax/MathJax/archive/$version/MathJax-$version.tar.gz"
 
 pkg_build() {
-	cd MathJax-$version
+	if [ -d MathJax-$version ]; then
+		cd MathJax-$version
+	fi
 	mkdir -p $PKG/usr/share/mathjax
 	cp -ar * $PKG/usr/share/mathjax
 }

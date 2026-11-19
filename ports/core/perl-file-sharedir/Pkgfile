@@ -10,7 +10,9 @@ source=(https://cpan.org/modules/by-module/File/File-ShareDir-$version.tar.gz)
 renames=(perl-file-sharedir-1.118.tar.gz)
 
 pkg_build() {
-	cd File-ShareDir-$version
+	if [ -d File-ShareDir-$version ]; then
+		cd File-ShareDir-$version
+	fi
 	perl Makefile.PL INSTALLDIRS=vendor
 	make
 	make DESTDIR=$PKG install

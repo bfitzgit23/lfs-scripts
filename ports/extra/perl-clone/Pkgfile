@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/A/AT/ATOOMIC/Clone-$version.tar.gz)
 renames=(perl-clone-0.51.tar.gz)
 
 pkg_build() {
-        cd Clone-$version
+        if [ -d Clone-$version ]; then
+        	cd Clone-$version
+        fi
 	PERL_MM_USE_DEFAULT=1	perl -I. Makefile.PL INSTALLDIRS=vendor
         make
         make DESTDIR=$PKG install

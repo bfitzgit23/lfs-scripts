@@ -9,7 +9,9 @@ release=1
 source="https://github.com/storaged-project/udisks/releases/download/udisks-$version/udisks-$version.tar.bz2"
 
 pkg_build() {
-	cd udisks-$version
+	if [ -d udisks-$version ]; then
+		cd udisks-$version
+	fi
 
 	./configure --prefix=/usr \
 	            --sysconfdir=/etc \

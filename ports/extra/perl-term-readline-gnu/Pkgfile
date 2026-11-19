@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/H/HA/HAYASHI/Term-ReadLine-Gnu-$ver
 renames=(perl-term-readline-gnu-1.47.tar.gz)
 
 pkg_build() {
-	cd Term-ReadLine-Gnu-$version
+	if [ -d Term-ReadLine-Gnu-$version ]; then
+		cd Term-ReadLine-Gnu-$version
+	fi
 	perl -I. Makefile.PL INSTALLDIRS=vendor
         make
 	make DESTDIR=$PKG install

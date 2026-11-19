@@ -10,7 +10,9 @@ source=(https://botan.randombit.net/releases/Botan-$version.tar.xz)
 renames=(botan-3.12.0.tar.xz)
 
 pkg_build() {
-	cd Botan-$version
+	if [ -d Botan-$version ]; then
+		cd Botan-$version
+	fi
 
 	/usr/bin/python3 ./configure.py --prefix=/usr \
 		--with-bzip \

@@ -10,7 +10,9 @@ source="https://pypi.python.org/packages/source/z/zipp/zipp-$version.tar.gz"
 
 pkg_build() {
 
-	 cd zipp-$version
+	 if [ -d zipp-$version ]; then
+	 	cd zipp-$version
+	 fi
 	 export SETUPTOOLS_SCM_PRETEND_VERSION=$pkgver
         gpep517 build-wheel \
                 --wheel-dir .dist \

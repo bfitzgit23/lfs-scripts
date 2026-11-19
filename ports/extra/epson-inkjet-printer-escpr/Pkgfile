@@ -11,7 +11,9 @@ source="https://dev.alpinelinux.org/archive/epson-inkjet-printer-escpr/epson-ink
 pkg_build() {
 
         tar xzf "${name}-${version}-1.tar.gz"
-        cd "${name}-${version}"
+        if [ -d ${name}-${version} ]; then
+        	cd ${name}-${version}
+        fi
         autoreconf -vif 
 
 	export CFLAGS="$CFLAGS -Wno-implicit-function-declaration"

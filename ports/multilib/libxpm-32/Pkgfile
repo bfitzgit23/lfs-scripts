@@ -10,7 +10,9 @@ source=(http://ftp.x.org/pub/individual/lib/libXpm-$version.tar.xz)
 renames=(libxpm-3.5.19.tar.xz)
 
 pkg_build() {
-	cd libXpm-$version
+	if [ -d libXpm-$version ]; then
+		cd libXpm-$version
+	fi
 
 	export CC="gcc -m32"
 	export CXX="g++ -m32"

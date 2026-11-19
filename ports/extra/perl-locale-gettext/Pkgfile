@@ -9,7 +9,9 @@ release=1
 source="https://cpan.metacpan.org/authors/id/P/PV/PVANDRY/Locale-gettext-$version.tar.gz"
 
 pkg_build() {
-	cd Locale-gettext-$version
+	if [ -d Locale-gettext-$version ]; then
+		cd Locale-gettext-$version
+	fi
 	export CFLAGS=$(perl -MConfig -E 'say $Config{ccflags}')
 	PERL_MM_USE_DEFAULT=1 perl -I. Makefile.PL INSTALLDIRS=vendor
 	make

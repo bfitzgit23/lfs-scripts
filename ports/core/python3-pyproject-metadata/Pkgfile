@@ -9,7 +9,9 @@ release=1
 source="https://pypi.org/packages/source/p/pyproject_metadata/pyproject_metadata-$version.tar.gz"
 
 pkg_build() {
-  cd pyproject_metadata-$version
+  if [ -d pyproject_metadata-$version ]; then
+  	cd pyproject_metadata-$version
+  fi
 
 	gpep517 build-wheel \
 		--wheel-dir .dist \

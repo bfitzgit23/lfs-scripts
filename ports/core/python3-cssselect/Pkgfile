@@ -10,7 +10,9 @@ source=(https://github.com/scrapy/cssselect/archive/refs/tags/v${version}.tar.gz
 renames=(python3-cssselect-1.6.0.tar.gz)
 
 pkg_build() {
-	cd cssselect-$version
+	if [ -d cssselect-$version ]; then
+		cd cssselect-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d "$PKG" .dist/*.whl
 }

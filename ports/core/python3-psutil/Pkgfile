@@ -10,7 +10,9 @@ source=(https://github.com/giampaolo/psutil/archive/release-$version.tar.gz)
 renames=(python3-psutil-7.2.2.tar.gz)
 
 pkg_build() {
-	cd psutil-release-$version
+	if [ -d psutil-release-$version ]; then
+		cd psutil-release-$version
+	fi
 
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl

@@ -9,7 +9,9 @@ release=1
 source="https://www.zetetic.net/downloads/sqlcipher/verify/$version/$name-$version.zip"
 
 pkg_build() {
-	cd sqlcipher-$version
+	if [ -d sqlcipher-$version ]; then
+		cd sqlcipher-$version
+	fi
 
 	export CPPFLAGS="$CPPFLAGS \
 	    -DSQLITE_ENABLE_COLUMN_METADATA=1 \

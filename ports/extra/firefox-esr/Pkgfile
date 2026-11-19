@@ -6,7 +6,9 @@ release=1
 source=(https://archive.mozilla.org/pub/firefox/releases/${version}esr/source/firefox-${version}esr.source.tar.xz)
 
 pkg_build() {
-	cd firefox-$version
+	if [ -d firefox-$version ]; then
+		cd firefox-$version
+	fi
 
 cat > mozconfig << "EOF"
 # If you have a multicore machine, all cores will be used by default.

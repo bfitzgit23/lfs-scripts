@@ -9,7 +9,9 @@ source=(https://github.com/theZiz/aha/archive/$version.tar.gz)
 renames=(aha-0.5.1.tar.gz)
 
 pkg_build() {
-	cd ${name}-${version}
+	if [ -d ${name}-${version} ]; then
+		cd ${name}-${version}
+	fi
 	make
 	install -Dm 755 aha $PKG/usr/bin/aha
 	install -Dm 644 aha.1 $PKG/usr/share/man/man1/aha.1

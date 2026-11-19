@@ -9,7 +9,9 @@ release=1
 source="https://download.gnome.org/sources/gtksourceview/${version%.*}/gtksourceview-$version.tar.xz"
 
 pkg_build() {
-	cd gtksourceview-$version
+	if [ -d gtksourceview-$version ]; then
+		cd gtksourceview-$version
+	fi
 	venom-meson build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build

@@ -10,7 +10,9 @@ source=(https://pypi.python.org/packages/source/P/PyQt5-sip/pyqt5_sip-$version.t
 renames=(python3-sip-pyqt5-12.20.1.tar.gz)
 
 pkg_build() {
-	cd pyqt5_sip-$version
+	if [ -d pyqt5_sip-$version ]; then
+		cd pyqt5_sip-$version
+	fi
 
 	    gpep517 build-wheel \
 		   --wheel-dir .dist \

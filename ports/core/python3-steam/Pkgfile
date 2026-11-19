@@ -10,7 +10,9 @@ source=(https://github.com/solsticegamestudios/steam/archive/refs/tags/v$version
 renames=(python3-steam-1.6.1.tar.gz)
 
 pkg_build() {
-    cd steam-$version
+    if [ -d steam-$version ]; then
+        cd steam-$version
+    fi
     python3 -m build --wheel --no-isolation
     python3 -m installer --destdir=$PKG dist/*.whl
 }

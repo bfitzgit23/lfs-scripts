@@ -10,7 +10,9 @@ source=(https://pypi.org/packages/source/t/typing_extensions/typing_extensions-$
 renames=(python3-typing_extensions-4.16.0.tar.gz)
 
 pkg_build() {
-	cd typing_extensions-$version
+	if [ -d typing_extensions-$version ]; then
+		cd typing_extensions-$version
+	fi
 
 	gpep517 build-wheel \
                 --wheel-dir .dist \

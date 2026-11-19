@@ -11,7 +11,9 @@ source="https://github.com/PyO3/setuptools-rust/archive/v$version/python-setupto
 pkg_build() {
 	export SETUPTOOLS_SCM_PRETEND_VERSION=$version
 
-	cd setuptools-rust-$version
+	if [ -d setuptools-rust-$version ]; then
+		cd setuptools-rust-$version
+	fi
 
 	    gpep517 build-wheel \
                 --wheel-dir .dist \

@@ -10,7 +10,9 @@ source=(https://cpan.metacpan.org/authors/id/O/OA/OALDERS/LWP-Protocol-https-$ve
 renames=(perl-lwp-protocol-https-6.17.tar.gz)
 
 pkg_build() {
-	cd LWP-Protocol-https-$version
+	if [ -d LWP-Protocol-https-$version ]; then
+		cd LWP-Protocol-https-$version
+	fi
         perl -I. Makefile.PL INSTALLDIRS=vendor
 	make
         make DESTDIR=$PKG install

@@ -10,7 +10,9 @@ source=(https://ftp.gnome.org/pub/gnome/sources/libIDL/${version%.*}/libIDL-$ver
 renames=(libidl2-0.8.14.tar.bz2)
 
 pkg_build() {
-	cd libIDL-$version
+	if [ -d libIDL-$version ]; then
+		cd libIDL-$version
+	fi
 	./configure --prefix=/usr
 	make
 	make DESTDIR=$PKG install

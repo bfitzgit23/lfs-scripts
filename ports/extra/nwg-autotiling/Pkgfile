@@ -10,7 +10,9 @@ source=(https://github.com/nwg-piotr/autotiling/archive/v$version.tar.gz)
 renames=(nwg-autotiling-1.9.4.tar.gz)
 
 pkg_build() {
-	cd autotiling-$version
+	if [ -d autotiling-$version ]; then
+		cd autotiling-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 }

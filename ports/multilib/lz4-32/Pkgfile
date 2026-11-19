@@ -13,7 +13,9 @@ pkg_build() {
 	export CXX="g++ -m32"
 	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
 
-	cd lz4-$version
+	if [ -d lz4-$version ]; then
+		cd lz4-$version
+	fi
 	make -C lib PREFIX=/usr
         make -C programs PREFIX=/usr lz4 lz4c
         make install \

@@ -9,7 +9,9 @@ release=1
 source="http://download.netsurf-browser.org/netsurf/releases/source-full/netsurf-all-$version.tar.gz"
 
 pkg_build() {
-	cd $name-all-$version
+	if [ -d $name-all-$version ]; then
+		cd $name-all-$version
+	fi
 
 	CFLAGS="$CFLAGS -w -Os -funroll-loops" \
 	make \

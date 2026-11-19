@@ -9,7 +9,9 @@ source=(https://github.com/xiph/speexdsp/archive/refs/tags/SpeexDSP-1.2.1.tar.gz
 renames=(speexdsp-1.2.1.tar.gz)
 
 pkg_build() {
-	cd $name-SpeexDSP-$version
+	if [ -d $name-SpeexDSP-$version ]; then
+		cd $name-SpeexDSP-$version
+	fi
 	./autogen.sh
 	./configure --prefix=/usr --disable-static
 	make

@@ -8,7 +8,9 @@ release=1
 source="http://dl.mercurylang.org/release/${name}-srcdist-${version}.tar.gz"
 
 pkg_build() {
-	cd $name-srcdist-$version
+	if [ -d $name-srcdist-$version ]; then
+		cd $name-srcdist-$version
+	fi
 
 	./configure \
 		--prefix=/usr \

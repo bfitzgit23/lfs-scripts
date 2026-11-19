@@ -9,7 +9,9 @@ release=1
 source="https://pypi.python.org/packages/source/i/importlib_metadata/importlib_metadata-$version.tar.gz"
 
 pkg_build() {
-	cd importlib_metadata-$version
+	if [ -d importlib_metadata-$version ]; then
+		cd importlib_metadata-$version
+	fi
 
 	export SETUPTOOLS_SCM_PRETEND_VERSION=$version
 

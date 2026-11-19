@@ -13,7 +13,9 @@ source=(https://github.com/liberationfonts/liberation-fonts/files/7261482/libera
         30-0-liberation-serif.conf)
 
 pkg_build() {
-	cd $_name-ttf-$version
+	if [ -d $_name-ttf-$version ]; then
+		cd $_name-ttf-$version
+	fi
 	install -d $PKG/usr/share/fonts/TTF
 	cp *.ttf $PKG/usr/share/fonts/TTF/
 

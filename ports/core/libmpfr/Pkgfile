@@ -9,7 +9,9 @@ release=1
 source="https://www.mpfr.org/mpfr-$version/mpfr-$version.tar.xz"
 
 pkg_build() {
-	cd mpfr-$version
+	if [ -d mpfr-$version ]; then
+		cd mpfr-$version
+	fi
 
 	./configure --prefix=/usr        \
 	            --disable-static     \

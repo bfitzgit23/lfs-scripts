@@ -9,7 +9,9 @@ release=1
 source="https://www.cpan.org/modules/by-module/Digest/Digest-SHA1-$version.tar.gz"
 
 pkg_build() {
-	cd Digest-SHA1-$version
+	if [ -d Digest-SHA1-$version ]; then
+		cd Digest-SHA1-$version
+	fi
 
 	perl Makefile.PL
 	make OPTIMIZE="$CFLAGS"

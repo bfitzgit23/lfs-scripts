@@ -10,7 +10,9 @@ source=(http://search.cpan.org/CPAN/authors/id/P/PE/PERIGRIN/XML-NamespaceSuppor
 renames=(perl-xml-namespacesupport-1.12.tar.gz)
 
 pkg_build() {
-	cd XML-NamespaceSupport-$version
+	if [ -d XML-NamespaceSupport-$version ]; then
+		cd XML-NamespaceSupport-$version
+	fi
 
 	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
 	make

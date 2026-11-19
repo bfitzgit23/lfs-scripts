@@ -10,7 +10,9 @@ source=(https://github.com/rhinstaller/dasbus/archive/v${version}.tar.gz)
 renames=(dasbus-1.7.tar.gz)
 
 pkg_build() {
-	cd dasbus-$version
+	if [ -d dasbus-$version ]; then
+		cd dasbus-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 }

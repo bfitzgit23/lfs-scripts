@@ -12,7 +12,9 @@ source=(https://github.com/DavidoTek/ProtonUp-Qt/archive/refs/tags/v$version.tar
 renames=(protonup-qt-2.15.1.tar.gz SKIP)
 
 pkg_build() {
-	cd ProtonUp-Qt-$version
+	if [ -d ProtonUp-Qt-$version ]; then
+		cd ProtonUp-Qt-$version
+	fi
 	python3 -m build --wheel --no-isolation
 	python3 -m installer --destdir=$PKG dist/*.whl
 

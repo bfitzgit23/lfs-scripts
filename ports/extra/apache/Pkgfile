@@ -12,7 +12,9 @@ source=(https://archive.apache.org/dist/httpd/httpd-$version.tar.bz2
 	run.httpd)
 
 pkg_build() {
-	cd httpd-$version
+	if [ -d httpd-$version ]; then
+		cd httpd-$version
+	fi
 
 	# Forces the apxs utility to use absolute pathnames for modules, when instructed to do so
 	patch -Np1 -i $SRC/httpd-blfs_layout-1.patch

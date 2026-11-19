@@ -10,7 +10,9 @@ source=(https://pypi.io/packages/source/p/pytz/pytz-$version.tar.gz)
 renames=(python3-pytz-2026.6.tar.gz)
 
 pkg_build() {
-  cd pytz-$version
+  if [ -d pytz-$version ]; then
+    cd pytz-$version
+  fi
   gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
   python3 -m installer -d $PKG .dist/*.whl
 }

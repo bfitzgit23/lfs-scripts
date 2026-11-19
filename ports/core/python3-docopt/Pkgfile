@@ -10,7 +10,9 @@ source=(https://files.pythonhosted.org/packages/a2/55/8f8cab2afd404cf578136ef2cc
 renames=(python3-docopt-0.6.2.tar.gz)
 
 pkg_build() {
-	cd docopt-$version
+	if [ -d docopt-$version ]; then
+		cd docopt-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 }

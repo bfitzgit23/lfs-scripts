@@ -11,7 +11,9 @@ source=(https://www.x.org/archive/individual/lib/$_name-$version.tar.xz)
 renames=(libxpresent-1.0.2.tar.xz)
 
 pkg_build() {
-	cd $_name-$version
+	if [ -d $_name-$version ]; then
+		cd $_name-$version
+	fi
 	./configure \
 		--prefix=/usr \
 		--libexecdir /usr/lib \

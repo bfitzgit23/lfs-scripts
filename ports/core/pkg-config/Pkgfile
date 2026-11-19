@@ -9,7 +9,9 @@ source=(https://gitlab.freedesktop.org/pkg-config/pkg-config/-/archive/pkg-confi
 copy-m4.patch)
 
 pkg_build() {
-	cd $name-$name-$version
+	if [ -d $name-$name-$version ]; then
+		cd $name-$name-$version
+	fi
 
 	    patch -Np1 -i $SRC/copy-m4.patch
 

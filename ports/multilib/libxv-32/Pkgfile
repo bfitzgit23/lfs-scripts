@@ -10,7 +10,9 @@ source=(http://ftp.x.org/pub/individual/lib/libXv-$version.tar.xz)
 renames=(libxv-1.0.13.tar.xz)
 
 pkg_build() {
-	cd libXv-$version
+	if [ -d libXv-$version ]; then
+		cd libXv-$version
+	fi
 
 	export CC="gcc -m32"
 	export CXX="g++ -m32"

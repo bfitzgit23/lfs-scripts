@@ -10,7 +10,9 @@ source=(https://files.pythonhosted.org/packages/source/P/Pygments/pygments-$vers
 renames=($name-$version.tar.gz)
 
 pkg_build() {
-	cd pygments-$version
+	if [ -d pygments-$version ]; then
+		cd pygments-$version
+	fi
 
 	gpep517 build-wheel \
 		--wheel-dir .dist \

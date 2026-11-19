@@ -11,7 +11,9 @@ source=(https://github.com/madmalik/mononoki/archive/${version}.tar.gz
 renames=(ttf-mononoki-1.6.tar.gz SKIP SKIP)
 
 pkg_build() {
-	 cd mononoki-$version
+	 if [ -d mononoki-$version ]; then
+	 	cd mononoki-$version
+	 fi
 	
 	install -dm755 $PKG/etc/fonts/conf.avail
 	install -dm755 $PKG/etc/fonts/conf.d

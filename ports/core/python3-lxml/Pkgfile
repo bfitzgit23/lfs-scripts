@@ -10,7 +10,9 @@ source=(https://files.pythonhosted.org/packages/source/l/lxml/lxml-$version.tar.
 renames=(python3-lxml-6.1.3.tar.gz)
 
 pkg_build() {
-	cd lxml-$version
+	if [ -d lxml-$version ]; then
+		cd lxml-$version
+	fi
 	export CFLAGS="$CFLAGS -flto=auto"
 	gpep517 build-wheel \
 		--wheel-dir .dist \

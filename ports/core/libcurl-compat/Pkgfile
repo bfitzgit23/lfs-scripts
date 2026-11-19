@@ -10,7 +10,9 @@ source="https://curl.haxx.se/download/curl-$version.tar.xz"
 libver=4.8.0
 
 pkg_build() {
-	cd curl-$version
+	if [ -d curl-$version ]; then
+		cd curl-$version
+	fi
 	./configure \
 	    --prefix='/usr' \
 	    --disable-ldap \

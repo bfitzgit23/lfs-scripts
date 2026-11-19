@@ -10,7 +10,9 @@ source=(https://archive.mozilla.org/pub/firefox/releases/${version}esr/source/fi
 renames=(js128-128.14.0.tar.xz)
 
 pkg_build() {
-	cd firefox-$version
+	if [ -d firefox-$version ]; then
+		cd firefox-$version
+	fi
 
 	# fix build with ICU 76	
 	sed -i 's/icu-i18n/icu-uc &/' js/moz.configure

@@ -9,7 +9,9 @@ release=1
 source="https://github.com/mvdan/sh/archive/v$version/$name-v$version.tar.gz"
 
 pkg_build() {
-	cd sh-$version
+	if [ -d sh-$version ]; then
+		cd sh-$version
+	fi
 
 	go mod tidy
 

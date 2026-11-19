@@ -8,7 +8,9 @@ release=1
 source="https://gitlab.com/OldManProgrammer/unix-tree/-/archive/$version/unix-tree-$version.tar.gz"
 
 pkg_build() {
-	cd unix-$name-$version
+	if [ -d unix-$name-$version ]; then
+		cd unix-$name-$version
+	fi
 
   	make
 	make PREFIX=$PKG/usr MANDIR=$PKG/usr/share/man/man1 install

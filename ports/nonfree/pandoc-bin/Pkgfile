@@ -10,7 +10,9 @@ source=(https://github.com/jgm/pandoc/releases/download/$version/pandoc-$version
 	https://github.com/jgm/pandoc/archive/$version/pandoc-$version.tar.gz)
 
 pkg_build() {
-	cd pandoc-$version
+	if [ -d pandoc-$version ]; then
+		cd pandoc-$version
+	fi
 	mkdir -p $PKG/usr/share/pandoc
 	cp -R bin share $PKG/usr
 
