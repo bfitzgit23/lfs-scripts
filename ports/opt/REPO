@@ -416,7 +416,7 @@ f:236bbe02beb849d902794a07fb1e6e56:dnsmasq/Pkgfile
 f:039575203f4e4a76dba54faa67a440c0:docbook-xsl-nons/Pkgfile
 f:f77800752a4815cbcf138a3578032628:docbook-xsl-nons/non-recursive-string-subst.patch
 f:7b037fc877792d2fc7ad52702138f29e:docbook-xsl-nons/post-install
-f:e68a1d5de4cd127e84439d20dedab4af:doxygen/Pkgfile
+f:d9194914fde6e0c795f54dc10e1487f6:doxygen/Pkgfile
 f:328e018e100a809b51be40a793d726e2:dtc/Pkgfile
 f:0adb7d38b7e39de592980339d8906e17:dvd+rw-tools/Pkgfile
 f:53d8f59288e7f72eb338cad32e9d3e58:edk2-ovmf/Pkgfile
@@ -623,13 +623,13 @@ f:4005c9408a68bebc6570a38a37e57c14:pyqt-builder/Pkgfile
 f:4481fad06c575ecba2d800a01b6a94e5:pyqt5-sip/Pkgfile
 f:eec12e4a8c2ad8aa8628e64eb68e9b26:pyqt6-sip/Pkgfile
 f:09897ad463466ce65fa46fbd6ee135be:pyside6/Pkgfile
-f:0b137b1d0920fda06007ece208515555:python3-argcomplete/Pkgfile
+f:41181cc335682f20257324a2dd553a12:python3-argcomplete/Pkgfile
 f:780a704d002031e9f7150638e5dc2030:python3-gnupg/Pkgfile
 f:1aee7c40928ae2c2af2aaca63e90e3e6:python3-pyparted/Pkgfile
-f:0ebea02d0ec454bf69b18122209ed10b:python3-pyqt-builder/Pkgfile
+f:7f6249ea13bdc74c4e48613ddc3c1395:python3-pyqt-builder/Pkgfile
 f:8913b34afa32fba8181bd335576ebfb2:python3-pyqt5/Pkgfile
 f:3de19f0a831e8cf3ce9c46bc1f47705f:python3-pyqt6/Pkgfile
-f:0396038e538395a0b3b13e08708070d9:python3-sip/Pkgfile
+f:e96fd2bea1f8fa4ac3078a55e285fb75:python3-sip/Pkgfile
 f:32ff8701f6f3c304aedaf9b0667c1c17:python3-unidecode/Pkgfile
 f:5c72a17e788828a3a8c05f8632e844e8:qca/Pkgfile
 f:c7a230cd01b647d286a90ebfffde533c:qpdf/Pkgfile

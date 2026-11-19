@@ -8,7 +8,7 @@ release=1
 source="https://files.pythonhosted.org/packages/source/d/doxyqml/doxyqml-${version}.tar.gz"
 
 pkg_build() {
-	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "doxyqml-0.5.3" -print -quit)
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "doxyqml-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=.
 	[ -n "$_bfs_src" ] || return 1
 	cd "$_bfs_src" || return 1

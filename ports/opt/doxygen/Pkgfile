@@ -1,4 +1,4 @@
-# Depends: cmake git
+# Depends: bison cmake flex git python3
 # description	: Source code documentation generator tool
 # homepage	: https://www.doxygen.nl/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
@@ -8,7 +8,7 @@
 description="Source code documentation generator tool"
 name=doxygen
 version=1.18.0
-release=2
+release=3
 source="https://$name.nl/files/$name-$version.src.tar.gz"
 
 pkg_build() {
@@ -16,15 +16,18 @@ pkg_build() {
 	[ -n "$_bfs_src" ] || _bfs_src=.
 	[ -n "$_bfs_src" ] || return 1
 	cd "$_bfs_src" || return 1
-	grep -rl '^#!.*python$' | xargs sed -i '1s/python/&3/'
+	grep -rl '^#!.*python$' . | xargs -r sed -i '1s/python/&3/'
 	mkdir -p build
 	cd build
+	# 1.18 installs doxygen.1 itself; doxysearch, doxyindexer and doxywizard
+	# only exist with build_search/build_wizard, so keep both off instead of
+	# shipping man pages for binaries the package does not contain.
 	cmake -G "Unix Makefiles"         \
       -DCMAKE_BUILD_TYPE=Release  \
       -DCMAKE_INSTALL_PREFIX=/usr \
+      -Dbuild_search=OFF          \
+      -Dbuild_wizard=OFF          \
       -Wno-dev .. &&
 	make
 	make install DESTDIR=$PKG
-	mkdir -p $PKG/usr/share/man/man1
-	install -vm644 ../doc/*.1 $PKG/usr/share/man/man1
 }

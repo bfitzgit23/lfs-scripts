@@ -5,7 +5,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=imake
 version=1.0.11
-release=1
+release=2
 source=(https://xorg.freedesktop.org/archive/individual/util/imake-$version.tar.xz
         https://xorg.freedesktop.org/releases/individual/util/gccmakedep-1.0.4.tar.xz
         https://xorg.freedesktop.org/releases/individual/util/lndir-1.0.5.tar.xz
@@ -14,7 +14,8 @@ source=(https://xorg.freedesktop.org/archive/individual/util/imake-$version.tar.
         linuxconfig.patch)
 
 pkg_build() {
-	cd xorg-cf-files-1.0.8
+	cd "$SRC" || return 1
+	cd xorg-cf-files-1.0.8 || return 1
 	patch -p1 -i ../linuxconfig.patch
 	cd ..
 	for i in *; do
