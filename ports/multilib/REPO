@@ -239,7 +239,7 @@ f:7f7516db7889135b13361c75659c4e06:libgpg-error-32/Pkgfile
 f:5102fce70c8a33acf777cf4877b130aa:libice-32/Pkgfile
 f:59b3208fbb07d9ee58e69a557e5dfe49:libidn2-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:libjpeg-turbo-32/.32bit
-f:14a42db382f372b0a06bc5bd87726154:libjpeg-turbo-32/.footprint
+f:d6bbb5c1fed94e61fc7ef701c64279c7:libjpeg-turbo-32/.footprint
 f:d95bd503693c090fcb54f89f2d432c01:libjpeg-turbo-32/.md5sum
 f:e24eb624b39b9c5ec04bee9376a87712:libjpeg-turbo-32/Pkgfile
 f:858f141e939efd9c29c9afa3760ebd8b:libnghttp2-32/Pkgfile
