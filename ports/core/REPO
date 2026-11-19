@@ -1590,7 +1590,13 @@ f:921eba91b4fc461b12a69aebf07f7062:util-linux/.md5sum
 f:4a0ab4f24ab81a2270a5922c38d98711:util-linux/Pkgfile
 f:2fedcdaf8b70cb067275bb519d223ec9:util-linux/update
 f:db1be0bd46629e36f976a5c2c68de90d:util-macros/Pkgfile
-f:c530e2b52f1122616fb4a18f62af55ee:venom-zram/Pkgfile
+f:8c7ee102d958f056b505a58bc8dbee18:venom-zram/.md5sum
+f:2766b88282f950618845bc930058f32c:venom-zram/Pkgfile
+f:82cb6a55b9df9c192bee81b4b5d6516f:venom-zram/finish.zramd
+f:7689d3fcbc7780e7d9b39c0f7be462b2:venom-zram/rc.zramd
+f:f4ff43043c8c6b1665b3566602382aae:venom-zram/run.zramd
+f:06bdfba41f6a66adb7a0670a2372bf19:venom-zram/venom-zram
+f:cf416b521356b90db26aa99f94e55fa8:venom-zram/venom-zram.conf
 f:00879f9623a355ec14a0dfb62a87c0a7:vid.stab/Pkgfile
 f:7330ef604c652c925612fddb7f5a8056:vim/.footprint
 f:f37b3ecbd531d1454e81b6e19b019186:vim/.md5sum
