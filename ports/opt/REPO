@@ -413,7 +413,7 @@ f:7092258af6b891a7b7e4679511bb6e1a:dejagnu/Pkgfile
 f:6d64d62b879143e4f187ce42e068ed6a:directx-headers/Pkgfile
 f:e0a7041ee9cc6151b75739ceba5b4f98:discord/Pkgfile
 f:8b009f0f86ce7c63770a02ca1eb12425:dnsmasq/Pkgfile
-f:544c67b62025877c024536ed023313eb:docbook-xsl-nons/Pkgfile
+f:b7655074c0c41bbf3d9833d4f5e7528a:docbook-xsl-nons/Pkgfile
 f:f77800752a4815cbcf138a3578032628:docbook-xsl-nons/non-recursive-string-subst.patch
 f:7b037fc877792d2fc7ad52702138f29e:docbook-xsl-nons/post-install
 f:28589f79987691e60a12a6735637a371:doxygen/Pkgfile

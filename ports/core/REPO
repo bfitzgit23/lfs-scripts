@@ -732,8 +732,8 @@ f:8350d7bedcfde2620c63432e3328a384:bzip2/.footprint
 f:ff8d04faa5bba549788d7087d906da1d:bzip2/.md5sum
 f:7f97a2accf22dd9ec0d9afff1892bb89:bzip2/Pkgfile
 f:32e72fba9986cf4a87ec5508441dd0bc:ca-certificates/.footprint
-f:53978ebda91fcade79f737db2fc2f93d:ca-certificates/.md5sum
-f:5676ffb7c249dbfc1582e9a5780b1430:ca-certificates/Pkgfile
+f:8f8d45d85fb41c2fc0af36a3f34e9b44:ca-certificates/.md5sum
+f:8beefd750846f65691672184e9ea5f78:ca-certificates/Pkgfile
 f:2f04960eeac4172db44b064a5fe52b7f:ca-certificates/update
 f:83018aa8f5016bfa333cb45f8e65b739:cabextract/Pkgfile
 f:0500650f6a7f4941f23782651d6a8d7f:cairomm-gtk4/Pkgfile
