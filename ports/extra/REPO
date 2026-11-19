@@ -1846,9 +1846,8 @@ f:f3674c8fd23ba7c9e7cea719bbb1ab52:libinput/.footprint
 f:d7d8d490096cc155551ceb7533b7d442:libinput/.md5sum
 f:2873dc30db2aadb6eae03285fc460cda:libinput/Pkgfile
 f:9a49599be0a07ffdc702dbc995281a7c:libinput/update
-f:76504b75c665cc27de90a3f863e30e7c:libjpeg-turbo/.footprint
-f:c031ec5b6f129144fdbaca3cab69d425:libjpeg-turbo/.md5sum
-f:ab8f1fadfad7895613eea2145d8d8842:libjpeg-turbo/Pkgfile
+f:d95bd503693c090fcb54f89f2d432c01:libjpeg-turbo/.md5sum
+f:e789c867b3e60778ea45f13ef1295e40:libjpeg-turbo/Pkgfile
 f:164ee48c2e9b0213d702b39f523bc7ee:libksba/.footprint
 f:01ab7b207a91c5a07c817d3c729acfa6:libksba/.md5sum
 f:34738b3dd4943014f6b8ddf79827060e:libksba/Pkgfile

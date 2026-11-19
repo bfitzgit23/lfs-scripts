@@ -1,5 +1,5 @@
 name=libjpeg-turbo
-version=2.1.5.1
+version=3.2.1
 release=1
-source=(http://downloads.sourceforge.net/$name/$name-$version.tar.gz)
+source=(https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/$version/libjpeg-turbo-$version.tar.gz)
 build_opt="-DWITH_JPEG8=ON -DCMAKE_INSTALL_LIBDIR=/usr/lib"
