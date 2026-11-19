@@ -2,12 +2,14 @@
 
 name=mesa
 version=26.3.1
-release=1
+release=2
 source=(https://archive.mesa3d.org/$name-$version.tar.xz)
 
 [ -f /usr/lib/pkgconfig/wayland-client.pc ] && wayland=",wayland"
 
+# The shared meson wrapper builds with LTO; mesa refuses to build that way.
 build_opt="
+	-Db_lto=false
 	-Dplatforms=x11$wayland
 	-Dgallium-drivers=auto
 	-Dvulkan-drivers=""
