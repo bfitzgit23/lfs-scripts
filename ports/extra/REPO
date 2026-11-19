@@ -1191,9 +1191,8 @@ f:6bf3efc299fcbc02b2501ad92c882791:clipit/.footprint
 f:d4ee444e885636cb00710759d3020c9f:clipit/.md5sum
 f:c517762ba8b0b8081d743599ee31eef9:clipit/Pkgfile
 f:b126eeb16ed1a38f95d1bcb8f8c0318b:clipit/post-install
-f:cd35d45c20d12215d9ce78bb5d890546:cmake/.footprint
-f:b21507bbe1423aac8fd55884e036769c:cmake/.md5sum
-f:0db00bc4f05fd8f468a7059183e6ef3d:cmake/Pkgfile
+f:05bffefad3e9d00e9c3d5b8dbac088bf:cmake/.md5sum
+f:cecc9c931781fe80ad7972d22b171a42:cmake/Pkgfile
 f:5aceeb564cbf22d4bda8334517de4211:cmake/update
 f:91a9aea06202b99beb8d1839f3456e4c:cmatrix/Pkgfile
 f:cff7625754c37dd1f86eadd18710188a:cmus/.md5sum
