@@ -2,6 +2,6 @@
 
 name=libjpeg-turbo-32
 version=3.2.1
-release=1
+release=2
 source=(https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/$version/libjpeg-turbo-$version.tar.gz)
-build_opt="-DWITH_JPEG8=ON -DCMAKE_INSTALL_LIBDIR=/usr/lib32"
+build_opt="-DWITH_JPEG8=ON -DENABLE_STATIC=OFF -DCMAKE_INSTALL_LIBDIR=/usr/lib32"
