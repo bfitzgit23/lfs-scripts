@@ -5,13 +5,17 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=python3-yaml
 version=6.0.3
-release=1
+release=2
 source=(https://github.com/yaml/pyyaml/archive/$version.tar.gz)
 renames=(python3-yaml-6.0.3.tar.gz)
 
 pkg_build() {
 
-	cd pyyaml-$version
+	# build() already enters the extracted tree when the archive has a top-level directory,
+	# so only cd when it did not.
+	if [ -d pyyaml-$version ]; then
+		cd pyyaml-$version
+	fi
 	rm -f ext/_yaml.c
 
         gpep517 build-wheel \

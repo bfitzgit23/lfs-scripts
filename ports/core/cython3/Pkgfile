@@ -5,12 +5,16 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=cython3
 version=3.2.6
-release=1
+release=2
 source=(https://github.com/cython/cython/archive/$version.tar.gz)
 renames=(cython3-3.2.6.tar.gz)
 
 pkg_build() {
-	cd cython-$version
+	# build() already enters the extracted tree when the archive has a top-level directory,
+	# so only cd when it did not.
+	if [ -d cython-$version ]; then
+		cd cython-$version
+	fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 }
