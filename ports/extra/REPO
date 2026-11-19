@@ -2529,8 +2529,8 @@ f:11ed991ba6510b1b01619237617ba55d:python3-markupsafe/.md5sum
 f:556a9420fe5f1fba30d3dc171e2759bd:python3-markupsafe/Pkgfile
 f:09ffbc73d2b4a906d04fa6d94ae7fb68:python3-markupsafe/update
 f:e90a941b57b86d0fead722976eba5688:python3-pycups/Pkgfile
-f:e9e5568acc38972f14c8b8d2622f8e8e:python3-setuptools/.md5sum
-f:f1b4ff384a66b44498e639615c79adec:python3-setuptools/Pkgfile
+f:efe4770cd862d0cd83b2543af740988c:python3-setuptools/.md5sum
+f:fcd0377238322646580c852c93448ba0:python3-setuptools/Pkgfile
 f:5f7f879b6481d040bfcc0cfcf8aa6ede:qalculate-gtk/Pkgfile
 f:c3ca398ed3379bd90bf2f4936696428b:qbittorrent-nox/Pkgfile
 f:d3d8c6ea8739725ddec5496bd8e6f2dc:qbittorrent/Pkgfile
