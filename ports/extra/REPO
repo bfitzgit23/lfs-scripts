@@ -2931,7 +2931,9 @@ f:2fc926cd9a463d6881e233abc7a56c0b:vala/Pkgfile
 f:ebbeab7e8a08f9d112021ca2c9de229a:vala/vala-0.56.19-gcc16-const-strv.patch
 f:2c8fb629cb5fcbc5913e3d347fbb0fcb:vali/Pkgfile
 f:72703563bad97533ad6bc01efcb90a83:vamp/Pkgfile
+f:b2b9baf5e8c4f2a2abfbdbeb6a5f0586:venom-java-manager/.md5sum
 f:81334269124c02c930647df6dd267b04:venom-java-manager/Pkgfile
+f:2e63adf043a2e562d0b6f72a4c366f9e:venom-java-manager/venom-java-manager
 f:0ee8762b8686c407e2a3803176b4655b:viewnior/.footprint
 f:ea8b53aca4492491ddf736f299ef4486:viewnior/.md5sum
 f:c72d738d1146603ef2ce40b283f838f1:viewnior/Pkgfile

@@ -4,7 +4,7 @@ homepage="https://venomlinux.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=venom-zram
-version=0.1
+version=0.2
 release=1
 source=(venom-zram venom-zram.conf rc.zramd run.zramd finish.zramd)
 

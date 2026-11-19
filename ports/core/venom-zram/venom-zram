@@ -9,22 +9,26 @@
  [ -f /etc/venom-zram.conf ] && . /etc/venom-zram.conf
 
 # check if the compressor is set if not set it
- [ -z $COMP ] && COMP=lz4
+COMP=${COMP:-lz4}
 
 # MEM is total ram value
-MEM=$( free --mebi | awk '/Mem:/ {print $2}')
+MEM=$(( $(awk '/MemTotal:/{print $2}' /proc/meminfo) / 1024 ))
 
-# check if zram size is set if not set it
- [ -z $SIZE ] && ZRAM_SIZE=$MEM
+# zram size
+SIZE=${SIZE:-20}
 
 # seting zram size
- ZRAM_SIZE=$(( $MEM * $SIZE / 100 ))
+ZRAM_SIZE=$(( $MEM * $SIZE / 100 ))
+
+# check if zram size is set if not, set it
+ZRAM_SIZE=${ZRAM_SIZE:-$MEM}
+
 
 make() {
 		modprobe zram
 		zramctl -f -a $COMP  -s ${ZRAM_SIZE}MiB > /dev/null
 		mkswap --quiet --label zram0 /dev/zram0
-		swapon --priority 32767 /dev/zram0
+		swapon --discard --priority 32767 /dev/zram0
 }
 
 toss() {
