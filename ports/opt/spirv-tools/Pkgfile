@@ -5,14 +5,19 @@
 description="spirv-tools package"
 name=spirv-tools
 version=1.4.357.0
-release=2
+release=3
 source="https://github.com/KhronosGroup/SPIRV-Tools/archive/vulkan-sdk-${version}/SPIRV-Tools-${version}.tar.gz"
 
 pkg_build() {
-	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
-	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
-	[ -n "$_bfs_src" ] || return 1
-	cd "$_bfs_src" || return 1
+	# build() already enters the extracted tree when the archive has a top-level
+	# directory, so only search for it when it did not. Searching unconditionally
+	# picked an arbitrary subdirectory (tests/, tools/, cmake/) and cmake then ran
+	# outside the project.
+	if [ ! -f CMakeLists.txt ]; then
+		_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name*" -print -quit)
+		[ -n "$_bfs_src" ] || return 1
+		cd "$_bfs_src" || return 1
+	fi
 mkdir build &&
 cd    build &&
 cmake -D CMAKE_INSTALL_PREFIX=/usr     \
