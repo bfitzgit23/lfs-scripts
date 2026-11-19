@@ -1,20 +1,45 @@
-# Depends: meson vala bash-completion libxslt dbus
+# Depends: meson vala bash-completion libxslt dbus docbook-xml docbook-xsl
 description="Configuration database system"
 homepage="https://wiki.gnome.org/Projects/dconf"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=dconf
 version=0.40.0
-release=2
+release=3
 source="https://gitlab.gnome.org/GNOME/dconf/-/archive/$version/$name-$version.tar.bz2"
 
 pkg_build() {
+	# docs/meson.build generates dconf-service.1, dconf.1 and dconf.7 with
+	# xsltproc --nonet, asked for
+	# http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl,
+	# and each page's DOCTYPE points at the 4.2 DTD over http. Both only
+	# resolve through a catalog. docbook-xsl and docbook-xml write those
+	# rewrites into /etc/xml/catalog from a post-install script, and pkgmk
+	# and pkgadd have no such hook, so on this tree nothing ever writes it
+	# and the man targets fail with "failed to load external entity".
+	# Point xsltproc at a catalog of our own that maps the two network paths
+	# onto the files those ports install.
+	cat > "$SRC/man-catalog.xml" <<'EOF'
+<?xml version="1.0"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+	<public publicId="-//OASIS//DTD DocBook XML V4.2//EN"
+		uri="/usr/share/xml/docbook/xml-dtd-4.2/docbookx.dtd"/>
+	<rewriteSystem systemIdStartString="http://www.oasis-open.org/docbook/xml/4.2"
+		rewritePrefix="/usr/share/xml/docbook/xml-dtd-4.2/"/>
+	<rewriteURI uriStartString="http://www.oasis-open.org/docbook/xml/4.2"
+		rewritePrefix="/usr/share/xml/docbook/xml-dtd-4.2/"/>
+	<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/xsl/current"
+		rewritePrefix="/usr/share/xml/docbook/xsl-stylesheets/"/>
+	<rewriteURI uriStartString="http://docbook.sourceforge.net/release/xsl/current"
+		rewritePrefix="/usr/share/xml/docbook/xsl-stylesheets/"/>
+</catalog>
+EOF
+	export XML_CATALOG_FILES="$SRC/man-catalog.xml"
 
-	export XML_CATALOG_FILES=/etc/xml/catalog
 	venom-meson $SRC/$name-$version build \
-	--libexecdir=/usr/lib/$name
-	meson compile -C build
-	DESTDIR=$PKG meson install --no-rebuild -C build
+		--libexecdir=/usr/lib/$name || return $?
+	meson compile -C build || return $?
+	DESTDIR=$PKG meson install --no-rebuild -C build || return $?
 
-        rm -rf $PKG/usr/lib/systemd
+	rm -rf $PKG/usr/lib/systemd
 }
