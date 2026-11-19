@@ -1671,7 +1671,7 @@ f:4074d0778d84bfc1c909c6c2d4fd98a9:iso-codes/update
 f:062a038c76a7780cb037c4b8798dab3d:itch-bin/Pkgfile
 f:11a9c2192501bcacbc718782c1aba771:itstool/.footprint
 f:7b82eec860333829978c098700385796:itstool/.md5sum
-f:f4887b94011fb7e3353796e82446ffd9:itstool/Pkgfile
+f:2c8b33487f07b0c6a20674555d4f8d9d:itstool/Pkgfile
 f:20e65b258f5c7fa98bda1865bffe3e5c:itstool/update
 f:850d9823ea6317c4039b4b78af275050:jansson/.footprint
 f:76bff2577f984bc3915bf97fffa8e8cf:jansson/.md5sum
@@ -2025,7 +2025,7 @@ f:83150d403c3047483c6b8827334e2c10:libxkbfile/.footprint
 f:e78504fff025346794af72c4cb770fbd:libxkbfile/.md5sum
 f:bf70cf97bbfb3214843c38bb78d22be7:libxkbfile/Pkgfile
 f:7b3fe0eff82916030028f3d132511b25:libxml2/.md5sum
-f:03d07f14846d56cce2e6d82d4552400b:libxml2/Pkgfile
+f:5e874e83ebcbb23208b2f4035d4fa748:libxml2/Pkgfile
 f:180321cc3ac24b55fb0f3c3fd21f9fae:libxmu/.footprint
 f:99e965cc2315799b5326d2eaf6df2712:libxmu/.md5sum
 f:6371b63a972bebd3459aa491a26cdfe1:libxmu/Pkgfile

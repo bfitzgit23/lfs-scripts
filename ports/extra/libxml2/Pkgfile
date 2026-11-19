@@ -1,15 +1,20 @@
-# Depends on: icu readline
+# Depends on: doxygen icu python3 readline
 
 name=libxml2
 version=2.15.4
-release=1
+release=2
 source=(https://download.gnome.org/sources/$name/${version%.*}/$name-$version.tar.xz)
 
 # 2.15 ships meson.build, which pkgutils prefers over ./configure, so these have
 # to be meson options; the driver passes build_opt straight to meson setup.
 # Both features are required: meson looks icu-uc up through pkg-config and then
 # falls back to cmake, so the libraries have to be installed to build.
-build_opt="-D history=enabled -D icu=enabled"
+# The python bindings are not optional for this tree: itstool imports the
+# libxml2 module directly (`import libxml2`) and libxslt builds its python
+# module against it.  meson generates the module from the Doxygen XML, so
+# doxygen is a build dependency; python3 has to be installed or meson
+# silently skips the bindings (its find_installation() is not required).
+build_opt="-D history=enabled -D icu=enabled -D python=enabled"
 
 pre_build() {
 	# meson.build asks git for the version in a git tree. The release tarball
