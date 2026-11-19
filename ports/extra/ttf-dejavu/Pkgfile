@@ -10,8 +10,6 @@ source=(https://downloads.sourceforge.net/dejavu/dejavu/$version/dejavu-fonts-tt
 renames=(ttf-dejavu-2.37.tar.bz2)
 
 pkg_build() {
-	cd dejavu-fonts-ttf-$version
-
 	install -dm755 $PKG/etc/fonts/conf.avail
 	install -dm755 $PKG/etc/fonts/conf.d
 	install -dm755 $PKG/usr/share/fonts/TTF
