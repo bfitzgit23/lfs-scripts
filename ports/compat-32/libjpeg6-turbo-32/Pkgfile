@@ -6,7 +6,7 @@
 description="libjpeg derivative with accelerated baseline JPEG compression and decompression"
 name=libjpeg6-turbo-32
 version=1.5.3
-release=3
+release=4
 build_opt="--without-simd"
 source="https://downloads.sourceforge.net/project/libjpeg-turbo/$version/libjpeg-turbo-$version.tar.gz"
 
@@ -21,6 +21,10 @@ pkg_build() {
 	bfs_autobuild
 
 	rm -rf $PKG/usr/{bin,include,lib32/pkgconfig,share}
-	rm $PKG/usr/lib32/lib{jpeg.{a,so},turbojpeg.{a,so*}}
+	# Drop every artefact that would describe libraries this package does not
+	# ship: the cmake export, and the libtool archives naming the removed
+	# dev symlinks and the deleted libturbojpeg.
+	rm -rf $PKG/usr/lib32/cmake/libjpeg-turbo
+	rm -f $PKG/usr/lib32/lib{jpeg.{a,la,so},turbojpeg.{a,la,so*}}
 	bfs_compat32_validate || return 1
 }
