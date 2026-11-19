@@ -2088,7 +2088,7 @@ f:1820bf6b9cca479eaa5e6c1f13fed733:liquid-dsp/.md5sum
 f:ad17ad69fe617ab42d30ed49f8f06415:liquid-dsp/Pkgfile
 f:f212907fd906c597dda3dedd7f387413:llvm/.footprint
 f:b1788ecfc5cb916bd3d26f6d4f82f514:llvm/.md5sum
-f:58dfd8e0cba378c0d2fd282cdcbe94d6:llvm/Pkgfile
+f:541ae0ee98178f6e03486024f1fbe968:llvm/Pkgfile
 f:9084fcc8bb8c64b09edfd60714adb8a8:llvm/clang-23.1.6-enable_default_ssp-1.patch
 f:99c1b56e3e633cdad56ad92c186f8690:llvm/llvm-config.h
 f:e3e550ab36cd4f39f25ddcabbd9ccf40:llvm/update

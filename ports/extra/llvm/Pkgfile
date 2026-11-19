@@ -2,7 +2,7 @@
 
 name=llvm
 version=23.1.6
-release=2
+release=3
 source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/llvm-project-$version.src.tar.xz
 	llvm-config.h
 	clang-$version-enable_default_ssp-1.patch)
@@ -40,14 +40,15 @@ post_build() {
 	   $PKG/usr/include/llvm/Config/llvm-config-64.h
 	cp $SRC/llvm-config.h \
 	   $PKG/usr/include/llvm/Config/llvm-config.h	
-	# pkgmk removes every *.a from packages, so LLVM's static import targets point
-	# at files that no longer exist and find_package(LLVM) aborts with "The imported
-	# target ... references the file ... but this file does not exist". Drop the
-	# static exports and anything that includes them; consumers such as
-	# spirv-llvm-translator link libLLVM.so instead (LLVM_LINK_LLVM_DYLIB).
-	rm -f $PKG/usr/lib/cmake/llvm/LLVMStaticExports.cmake
-	for f in $PKG/usr/lib/cmake/llvm/*.cmake; do
-		[ -f "$f" ] || continue
-		sed -i '/LLVMStaticExports\.cmake/d' "$f"
+		# pkgmk deletes every *.a from a package, but the cmake exports LLVM installs
+	# (LLVMExports.cmake and its per-config file) list each component archive as
+	# an imported target and verify that the file exists, so find_package(LLVM)
+	# aborts with: The imported target \"LLVMDemangle\" references the file
+	# /usr/lib/libLLVMDemangle.a but this file does not exist. Disable only that
+	# verification - the targets stay defined, and since LLVMConfig.cmake ships
+	# LLVM_LINK_LLVM_DYLIB, consumers link the installed libLLVM.so instead.
+	for f in $PKG/usr/lib/cmake/llvm/LLVMExports*.cmake; do
+		[ -f \"$f\" ] || continue
+		sed -i 's/if *(NOT EXISTS *\"\${[A-Za-z_]*}\" *)/if(FALSE)/' \"$f\"
 	done
 }
