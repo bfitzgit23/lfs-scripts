@@ -1,0 +1,53 @@
+Vala's code generator emits `gchar**` for `unowned string[]`, but
+g_get_system_data_dirs() returns `const gchar * const *`. GCC 14 made
+incompatible-pointer-types an error and GCC 16 (this tree) rejects the
+assignment outright:
+
+    vala/valacodecontext.c:2669:33: error: assignment to 'gchar **' {aka
+    'char **'} from incompatible pointer type 'const gchar * const*'
+    [-Wincompatible-pointer-types]
+
+The returned string arrays are only read, never modified, so cast the
+return value at the four call sites that assign it to a `gchar**` local
+(the same fix OpenWrt carries for GCC 14). Release tarballs build the
+shipped generated C, so patching it here is enough.
+--- a/vala/valacodecontext.c
++++ b/vala/valacodecontext.c
+@@ -2544,7 +2544,7 @@
+ 		_g_free0 (girname);
+ 		return result;
+ 	}
+-	_tmp23_ = _tmp22_ = g_get_system_data_dirs ();
++	_tmp23_ = _tmp22_ = (gchar**) g_get_system_data_dirs ();
+ 	{
+ 		gchar** dir_collection = NULL;
+ 		gint dir_collection_length1 = 0;
+@@ -2834,7 +2834,7 @@
+ 	if (data_dir != NULL) {
+ 		gchar** _tmp3_;
+ 		gchar** _tmp4_;
+-		_tmp4_ = _tmp3_ = g_get_system_data_dirs ();
++		_tmp4_ = _tmp3_ = (gchar**) g_get_system_data_dirs ();
+ 		{
+ 			gchar** dir_collection = NULL;
+ 			gint dir_collection_length1 = 0;
+@@ -2865,7 +2865,7 @@
+ 	if (versioned_data_dir != NULL) {
+ 		gchar** _tmp8_;
+ 		gchar** _tmp9_;
+-		_tmp9_ = _tmp8_ = g_get_system_data_dirs ();
++		_tmp9_ = _tmp8_ = (gchar**) g_get_system_data_dirs ();
+ 		{
+ 			gchar** dir_collection = NULL;
+ 			gint dir_collection_length1 = 0;
+--- a/libvaladoc/api/tree.c
++++ b/libvaladoc/api/tree.c
+@@ -885,7 +885,7 @@
+ 			}
+ 		}
+ 	}
+-	_tmp5_ = _tmp4_ = g_get_system_data_dirs ();
++	_tmp5_ = _tmp4_ = (gchar**) g_get_system_data_dirs ();
+ 	{
+ 		gchar** dir_collection = NULL;
+ 		gint dir_collection_length1 = 0;
