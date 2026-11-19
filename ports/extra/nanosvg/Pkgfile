@@ -6,7 +6,8 @@ name=nanosvg
 version=20231229
 release=1
 commit=93ce879dc4c04a3ef1758428ec80083c38610b1f
-source="$name-$version.tar.gz::https://github.com/memononen/nanosvg/archive/$commit.tar.gz"
+source=(https://github.com/memononen/nanosvg/archive/$commit.tar.gz)
+renames=(nanosvg-20231229.tar.gz)
 
 pkg_build() {
 	cmake -S $name-$commit -B build \

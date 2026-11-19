@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=luajit
 version=2.1.20260415
 release=1
-source="$name-$version.tar.gz::https://github.com/openresty/luajit2/archive/v${version%.*}-${version##*.}.tar.gz"
+source=(https://github.com/openresty/luajit2/archive/v${version%.*}-${version##*.}.tar.gz)
+renames=(luajit-2.1.20260415.tar.gz)
 
 pkg_build() {
 	cd ${name}2-${version%.*}-${version##*.}

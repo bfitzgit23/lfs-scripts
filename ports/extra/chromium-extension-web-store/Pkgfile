@@ -6,7 +6,8 @@ name=chromium-extension-web-store
 version=1.5.5.3
 release=1
 noextract="$name-$version.crx"
-source="$name-$version.crx::https://github.com/NeverDecaf/chromium-web-store/releases/download/v$version/Chromium.Web.Store.crx"
+source=(https://github.com/NeverDecaf/chromium-web-store/releases/download/v$version/Chromium.Web.Store.crx)
+renames=(chromium-extension-web-store-1.5.5.3.crx)
 
 pkg_build() {
 

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-unicode-string
 version=2.10
 release=1
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/G/GA/GAAS/GAAS/Unicode-String-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/G/GA/GAAS/GAAS/Unicode-String-$version.tar.gz)
+renames=(perl-unicode-string-2.10.tar.gz)
 
 pkg_build() {
 	cd Unicode-String-$version

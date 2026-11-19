@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-cssselect
 version=1.6.0
 release=1
-source="$name-$version.tar.gz::https://github.com/scrapy/cssselect/archive/refs/tags/v${version}.tar.gz"
+source=(https://github.com/scrapy/cssselect/archive/refs/tags/v${version}.tar.gz)
+renames=(python3-cssselect-1.6.0.tar.gz)
 
 pkg_build() {
 	cd cssselect-$version

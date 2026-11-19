@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=keybase-bin
 version=6.6.3
 release=1
-source="$name-$version.rpm::https://prerelease.keybase.io/keybase_amd64.rpm"
+source=(https://prerelease.keybase.io/keybase_amd64.rpm)
+renames=(keybase-bin-6.6.3.rpm)
 
 pkg_build() {
 	#cd "$SRC"

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-net-ssleay
 version=1.96
 release=1
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/C/CH/CHRISN/Net-SSLeay-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/C/CH/CHRISN/Net-SSLeay-$version.tar.gz)
+renames=(perl-net-ssleay-1.96.tar.gz)
 
 pkg_build() {
 	cd Net-SSLeay-$version

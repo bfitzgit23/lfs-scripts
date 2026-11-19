@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=brave-bin
 version=1.91.180
 release=1
-source="$name-$version.deb::https://github.com/brave/brave-browser/releases/download/v$version/brave-browser_${version}_amd64.deb"
+source=(https://github.com/brave/brave-browser/releases/download/v$version/brave-browser_${version}_amd64.deb)
+renames=(brave-bin-1.91.180.deb)
 
 pkg_build() {
 	bsdtar -xf $name-$version.deb

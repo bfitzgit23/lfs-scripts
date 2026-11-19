@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-docutils
 version=0.23
 release=1
-source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/d/docutils/docutils-$version.tar.gz"
+source=(https://files.pythonhosted.org/packages/source/d/docutils/docutils-$version.tar.gz)
+renames=(python3-docutils-0.23.tar.gz)
 
 pkg_build() {
 	cd docutils-$version

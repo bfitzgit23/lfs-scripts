@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nmtree
 version=1.0.0
 release=1
-source="$name-$version.tar.gz::https://github.com/archiecobbs/nmtree/archive/refs/tags/${version}.tar.gz"
+source=(https://github.com/archiecobbs/nmtree/archive/refs/tags/${version}.tar.gz)
+renames=(nmtree-1.0.0.tar.gz)
 
 pkg_build() {
 	./autogen.sh

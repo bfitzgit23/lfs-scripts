@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=serd
 version=0.32.10
 release=1
-source="$name-$version.tar.gz::https://gitlab.com/drobilla/$name/-/archive/v$version/$name-v$version.tar.gz"
+source=(https://gitlab.com/drobilla/$name/-/archive/v$version/$name-v$version.tar.gz)
+renames=(serd-0.32.10.tar.gz)
 
 pkg_build() {
 	venom-meson $name-v$version build \

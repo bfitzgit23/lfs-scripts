@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=lutris
 version=0.5.22
 release=1
-source="$name-$version.tar.gz::https://github.com/lutris/lutris/archive/v$version.tar.gz"
+source=(https://github.com/lutris/lutris/archive/v$version.tar.gz)
+renames=(lutris-0.5.22.tar.gz)
 
 pkg_build() {
 	venom-meson $name-$version build

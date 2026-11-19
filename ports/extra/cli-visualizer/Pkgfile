@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=cli-visualizer
 version=1.8
 release=8
-source="$name-$version.tar.gz::https://github.com/dpayne/$name/archive/v$version.tar.gz"
+source=(https://github.com/dpayne/$name/archive/v$version.tar.gz)
+renames=(cli-visualizer-1.8.tar.gz)
 
 pkg_build() {
 	cmake -S $name-$version -B build \

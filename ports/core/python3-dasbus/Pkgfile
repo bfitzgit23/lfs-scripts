@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-dasbus
 version=1.7
 release=3
-source="dasbus-$version.tar.gz::https://github.com/rhinstaller/dasbus/archive/v${version}.tar.gz"
+source=(https://github.com/rhinstaller/dasbus/archive/v${version}.tar.gz)
+renames=(dasbus-1.7.tar.gz)
 
 pkg_build() {
 	cd dasbus-$version

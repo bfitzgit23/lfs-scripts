@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libspiro
 version=20240903
 release=1
-source="$name-$version.tar.gz::https://github.com/fontforge/$name/releases/download/$version/$name-dist-$version.tar.gz"
+source=(https://github.com/fontforge/$name/releases/download/$version/$name-dist-$version.tar.gz)
+renames=(libspiro-20240903.tar.gz)
 
 pkg_build() {
 

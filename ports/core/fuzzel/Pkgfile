@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=fuzzel
 version=1.14.1
 release=1
-source="$name-$version.tar.gz::https://codeberg.org/dnkl/fuzzel/archive/$version.tar.gz"
+source=(https://codeberg.org/dnkl/fuzzel/archive/$version.tar.gz)
+renames=(fuzzel-1.14.1.tar.gz)
 
 pkg_build() {
 	venom-meson $name build \

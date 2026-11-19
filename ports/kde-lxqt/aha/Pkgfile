@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=aha
 version=0.5.1
 release=1
-source="$name-$version.tar.gz::https://github.com/theZiz/aha/archive/$version.tar.gz"
+source=(https://github.com/theZiz/aha/archive/$version.tar.gz)
+renames=(aha-0.5.1.tar.gz)
 
 pkg_build() {
 	cd ${name}-${version}

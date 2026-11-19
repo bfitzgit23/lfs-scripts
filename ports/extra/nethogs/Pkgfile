@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nethogs
 version=0.8.8
 release=1
-source="$name-$version.tar.gz::https://github.com/raboof/nethogs/archive/v$version.tar.gz"
+source=(https://github.com/raboof/nethogs/archive/v$version.tar.gz)
+renames=(nethogs-0.8.8.tar.gz)
 
 pkg_build() {
 

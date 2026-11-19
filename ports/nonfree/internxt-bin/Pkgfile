@@ -7,7 +7,8 @@ name=internxt-bin
 version=2.5.4
 _name=Internxt-${version}.AppImage
 release=1
-source="${_name}::https://github.com/internxt/drive-desktop-linux/releases/download/v${version}/Internxt-${version}.AppImage"
+source=(https://github.com/internxt/drive-desktop-linux/releases/download/v${version}/Internxt-${version}.AppImage)
+renames=(Internxt-2.5.4.AppImage)
 
 pkg_build() {
 	chmod +x "${_name}"

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=lv2
 version=1.18.10
 release=1
-source="$name-$version.tar.gz::https://github.com/lv2/lv2/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/lv2/lv2/archive/refs/tags/v$version.tar.gz)
+renames=(lv2-1.18.10.tar.gz)
 
 pkg_build() {
 	venom-meson $name-$version build

@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-flit-core
 version=4.2.0
 release=1
-source=($name-$version.tar.gz::https://github.com/takluyver/flit/archive/$version/flit-$version.tar.gz
+source=(https://github.com/takluyver/flit/archive/$version/flit-$version.tar.gz
 	vendor-licence.patch)
+renames=(python3-flit-core-4.2.0.tar.gz SKIP)
 
 pkg_build() {
   rm flit-$version/tests/test_sdist.py

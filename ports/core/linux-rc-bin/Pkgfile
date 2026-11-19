@@ -7,7 +7,8 @@ name=linux-rc-bin
 version=7.1.0
 fileid=jYB5kXCSy64KTSp
 release=7
-source="$name-$version-rc$release.tar.xz::https://nc.abetech.es/index.php/s/$fileid/download"
+source=(https://nc.abetech.es/index.php/s/$fileid/download)
+renames=(linux-rc-bin-7.1.0-rc7.tar.xz)
 
 pkg_build() {
 	mv "${SRC}"/* "${PKG}"/

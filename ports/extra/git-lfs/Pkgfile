@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=git-lfs
 version=3.7.1
 release=1
-source="$name-$version.tar.gz::https://github.com/git-lfs/git-lfs/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/git-lfs/git-lfs/archive/refs/tags/v$version.tar.gz)
+renames=(git-lfs-3.7.1.tar.gz)
 
 pkg_build() {
 	export CGO_CPPFLAGS="${CPPFLAGS}"

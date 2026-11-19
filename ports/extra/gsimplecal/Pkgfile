@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=gsimplecal
 version=2.5.2
 release=1
-source="$name-$version.tar.gz::https://github.com/dmedvinsky/$name/archive/v$version.tar.gz"
+source=(https://github.com/dmedvinsky/$name/archive/v$version.tar.gz)
+renames=(gsimplecal-2.5.2.tar.gz)
 
 pkg_build() {
 	./autogen.sh

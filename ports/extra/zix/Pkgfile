@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=zix
 version=0.8.2
 release=1
-source="$name-$version.tar.gz::https://github.com/drobilla/zix/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/drobilla/zix/archive/refs/tags/v$version.tar.gz)
+renames=(zix-0.8.2.tar.gz)
 
 pkg_build() {
 	venom-meson $name-$version build \

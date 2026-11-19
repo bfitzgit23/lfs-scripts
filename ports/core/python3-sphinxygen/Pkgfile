@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-sphinxygen
 version=1.0.12
 release=1
-source="$name-$version.tar.bz2::https://gitlab.com/drobilla/sphinxygen/-/archive/v$version/${name#*-}-v$version.tar.gz"
+source=(https://gitlab.com/drobilla/sphinxygen/-/archive/v$version/${name#*-}-v$version.tar.gz)
+renames=(python3-sphinxygen-1.0.12.tar.bz2)
 
 pkg_build() {
 	cd ${name#*-}-v$version

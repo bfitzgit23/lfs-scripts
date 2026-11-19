@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=gtklock
 version=4.0.0
 release=1
-source="$name-$version.tar.gz::https://github.com/jovanlanik/gtklock/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/jovanlanik/gtklock/archive/refs/tags/v$version.tar.gz)
+renames=(gtklock-4.0.0.tar.gz)
 
 pkg_build() {
 	venom-meson $name-$version build

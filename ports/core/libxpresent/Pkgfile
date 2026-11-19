@@ -7,7 +7,8 @@ _name=libXpresent
 name=libxpresent
 version=1.0.2
 release=1
-source="$name-$version.tar.xz::https://www.x.org/archive/individual/lib/$_name-$version.tar.xz"
+source=(https://www.x.org/archive/individual/lib/$_name-$version.tar.xz)
+renames=(libxpresent-1.0.2.tar.xz)
 
 pkg_build() {
 	cd $_name-$version

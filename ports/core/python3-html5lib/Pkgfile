@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-html5lib
 version=1.1
 release=5
-source=($name-$version.tar.gz::https://github.com/html5lib/html5lib-python/archive/$version/html5lib-python-$version.tar.gz
+source=(https://github.com/html5lib/html5lib-python/archive/$version/html5lib-python-$version.tar.gz
 	python-3.14-compatibility.patch setuptools.patch)
+renames=(python3-html5lib-1.1.tar.gz SKIP SKIP)
 
 pkg_build() {
 	cd html5lib-python-$version

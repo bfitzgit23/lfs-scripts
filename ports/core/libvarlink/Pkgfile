@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libvarlink
 version=24.0.1
 release=1
-source="$name-$version.tar.gz::https://github.com/varlink/libvarlink/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/varlink/libvarlink/archive/refs/tags/v$version.tar.gz)
+renames=(libvarlink-24.0.1.tar.gz)
 
 pkg_build() {
 	venom-meson $name-$version build

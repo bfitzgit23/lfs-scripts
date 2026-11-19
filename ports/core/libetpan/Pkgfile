@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libetpan
 version=1.10.1
 release=1
-source="$name-$version.tar.gz::https://github.com/dinhviethoa/$name/archive/$version.tar.gz"
+source=(https://github.com/dinhviethoa/$name/archive/$version.tar.gz)
+renames=(libetpan-1.10.1.tar.gz)
 
 pkg_build() {
   

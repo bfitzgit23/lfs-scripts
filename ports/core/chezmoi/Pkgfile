@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=chezmoi
 version=2.70.5
 release=1
-source="$name-$version.tar.gz::https://github.com/twpayne/chezmoi/archive/v$version.tar.gz"
+source=(https://github.com/twpayne/chezmoi/archive/v$version.tar.gz)
+renames=(chezmoi-2.70.5.tar.gz)
 
 pkg_build() {
 

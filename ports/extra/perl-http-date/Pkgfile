@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-http-date
 version=6.07
 release=1
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Date-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Date-$version.tar.gz)
+renames=(perl-http-date-6.07.tar.gz)
 
 pkg_build() {
         cd HTTP-Date-$version

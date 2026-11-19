@@ -7,7 +7,8 @@ name=rc
 version=20241228
 release=1
 backup="etc/rc.conf etc/rc.local"
-source="$name-$version.tar.gz::https://codeberg.org/venomlinux/rc/archive/$version.tar.gz"
+source=(https://codeberg.org/venomlinux/rc/archive/$version.tar.gz)
+renames=(rc-20241228.tar.gz)
 
 pkg_build() {
 	cd $name

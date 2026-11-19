@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=brightnessctl
 version=0.5.1
 release=1
-source="$name-$version.tar.gz::https://github.com/Hummer12007/brightnessctl/archive/$version.tar.gz"
+source=(https://github.com/Hummer12007/brightnessctl/archive/$version.tar.gz)
+renames=(brightnessctl-0.5.1.tar.gz)
 
 pkg_build() {
 	make INSTALL_UDEV_RULES=1

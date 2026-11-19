@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=mps-youtube
 version=2.13.1
 release=1
-source="$name-$version.tar.gz::https://github.com/mps-youtube/yewtube/archive/v$version.tar.gz"
+source=(https://github.com/mps-youtube/yewtube/archive/v$version.tar.gz)
+renames=(mps-youtube-2.13.1.tar.gz)
 
 pkg_build() {
 	cd yewtube-$version

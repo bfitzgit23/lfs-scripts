@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-sqlalchemy
 version=2.1.9
 release=1
-source="$name-$version.tar.gz::https://pypi.org/packages/source/s/sqlalchemy/sqlalchemy-$version.tar.gz"
+source=(https://pypi.org/packages/source/s/sqlalchemy/sqlalchemy-$version.tar.gz)
+renames=(python3-sqlalchemy-2.1.9.tar.gz)
 
 pkg_build() {
 	cd sqlalchemy-$version

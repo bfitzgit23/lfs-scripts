@@ -6,9 +6,10 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=sbcl
 version=2.6.5
 release=1
-source=($name-$version.tar.bz2::https://sourceforge.net/projects/sbcl/files/$name/$version/$name-$version-source.tar.bz2
+source=(https://sourceforge.net/projects/sbcl/files/$name/$version/$name-$version-source.tar.bz2
 	https://sourceforge.net/projects/sbcl/files/$name/$version/$name-$version-x86-64-linux-binary.tar.bz2
 	fixes.lisp)
+renames=(sbcl-2.6.5.tar.bz2 SKIP SKIP)
 _bootstrap_lisp="sh ../sbcl-*-linux/run-sbcl.sh --no-sysinit --no-userinit --disable-debugger"
 
 pkg_build() {

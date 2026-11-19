@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=calc
 version=2.17.0.0
 release=1
-source="$name-$version.tar.gz::https://github.com/lcn2/calc/archive/refs/tags/v${version}.tar.gz"
+source=(https://github.com/lcn2/calc/archive/refs/tags/v${version}.tar.gz)
+renames=(calc-2.17.0.0.tar.gz)
 
 pkg_build() {
 	make clobber calc-dynamic-only BLD_TYPE=calc-dynamic-only PREFIX=$PKG

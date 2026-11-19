@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libxmu-32
 version=1.3.1
 release=1
-source="${name%-*}-$version.tar.xz::http://ftp.x.org/pub/individual/lib/libXmu-$version.tar.xz"
+source=(http://ftp.x.org/pub/individual/lib/libXmu-$version.tar.xz)
+renames=(libxmu-1.3.1.tar.xz)
 
 pkg_build() {
 	cd libXmu-$version

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=aircrack-ng
 version=1.7
 release=1
-source="$name-$version.tar.gz::https://github.com/aircrack-ng/aircrack-ng/archive/$version.tar.gz"
+source=(https://github.com/aircrack-ng/aircrack-ng/archive/$version.tar.gz)
+renames=(aircrack-ng-1.7.tar.gz)
 
 pkg_build() {
 

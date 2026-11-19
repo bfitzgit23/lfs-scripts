@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=microsoft-edge
 version=149.0.4022.98
 release=1
-source="$name-$version.deb::https://packages.microsoft.com/repos/edge/pool/main/m/$name-stable/$name-stable_${version}-${release}_amd64.deb"
+source=(https://packages.microsoft.com/repos/edge/pool/main/m/$name-stable/$name-stable_${version}-${release}_amd64.deb)
+renames=(microsoft-edge-149.0.4022.98.deb)
 
 
 pkg_build() {

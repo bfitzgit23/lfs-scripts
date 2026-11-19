@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=gtk-session-lock
 version=0.2.0
 release=1
-source="$name-$version.tar.gz::https://github.com/Cu3PO42/gtk-session-lock/archive/v${version}.tar.gz"
+source=(https://github.com/Cu3PO42/gtk-session-lock/archive/v${version}.tar.gz)
+renames=(gtk-session-lock-0.2.0.tar.gz)
 
 pkg_build() {
 	venom-meson $name-$version build

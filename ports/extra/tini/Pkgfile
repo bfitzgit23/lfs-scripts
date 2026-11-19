@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=tini
 version=0.19.0
 release=1
-source="$name-$version.tar.gz::https://github.com/krallin/$name/archive/v$version.tar.gz"
+source=(https://github.com/krallin/$name/archive/v$version.tar.gz)
+renames=(tini-0.19.0.tar.gz)
 
 pkg_build() {
 	cmake -S $name-$version -B build -G Ninja \

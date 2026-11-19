@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-scour
 version=0.38.2
 release=1
-source="$name-$version.tar.gz::https://github.com/scour-project/scour/archive/v$version/scour-v$version.tar.gz"
+source=(https://github.com/scour-project/scour/archive/v$version/scour-v$version.tar.gz)
+renames=(python3-scour-0.38.2.tar.gz)
 
 pkg_build() {
 	cd scour-$version

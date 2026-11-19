@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=marco
 version=1.29.0
 release=1
-source="$name-$version.tar.gz::https://github.com/mate-desktop/marco/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/mate-desktop/marco/archive/refs/tags/v$version.tar.gz)
+renames=(marco-1.29.0.tar.gz)
 pkg_build() {
 	./autogen.sh
 	./configure --prefix=/usr --disable-update-mimedb --disable-nls

@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=scdoc
 version=1.11.4
 release=1
-source="$name-$version.tar.gz::https://git.sr.ht/~sircmpwn/scdoc/archive/$version.tar.gz"
+source=(https://git.sr.ht/~sircmpwn/scdoc/archive/$version.tar.gz)
+renames=(scdoc-1.11.4.tar.gz)
 
 pkg_build() {
 

@@ -7,8 +7,9 @@ name=dk
 version=2.3
 release=1
 commit=f9365559d527
-source=($name-$version.tar.gz::https://bitbucket.org/natemaia/dk/get/v$version.tar.gz
+source=(https://bitbucket.org/natemaia/dk/get/v$version.tar.gz
 	dk.desktop)
+renames=(dk-2.3.tar.gz SKIP)
 
 pkg_build() {
 	cd natemaia-dk-$commit

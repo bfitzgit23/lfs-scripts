@@ -6,7 +6,8 @@ name=sbase
 version=20230729
 _commit=1b46d26362a6fcc525c1ea01ce49907ccb74f8c9
 release=1
-source="$name-$version.tar.gz::https://github.com/michaelforney/sbase/archive/$_commit.tar.gz"
+source=(https://github.com/michaelforney/sbase/archive/$_commit.tar.gz)
+renames=(sbase-20230729.tar.gz)
 
 pkg_build() {
 	cd $name-$_commit

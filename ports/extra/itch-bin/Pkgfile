@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=itch-bin
 version=26.13.0
 release=1
-source="itch-linux-amd64-$version.zip::https://broth.itch.zone/itch/linux-amd64/$version/archive/default"
+source=(https://broth.itch.zone/itch/linux-amd64/$version/archive/default)
+renames=(itch-linux-amd64-26.13.0.zip)
 
 pkg_build() {
 

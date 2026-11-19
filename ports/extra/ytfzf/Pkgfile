@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ytfzf
 version=2.6.2
 release=1
-source="$name-$version.tar.gz::https://github.com/pystardust/ytfzf/archive/v$version.tar.gz"
+source=(https://github.com/pystardust/ytfzf/archive/v$version.tar.gz)
+renames=(ytfzf-2.6.2.tar.gz)
 
 pkg_build() {
 	

@@ -7,7 +7,8 @@ name=simple-mtpfs
 version=0.4.0
 release=1
 commit=5dfd25c72caf83bc85fc636804f1456bc0f6c1c6
-source="$name-$version.tar.gz::https://github.com/phatina/simple-mtpfs/archive/$commit.tar.gz"
+source=(https://github.com/phatina/simple-mtpfs/archive/$commit.tar.gz)
+renames=(simple-mtpfs-0.4.0.tar.gz)
 
 pkg_build() {
 	cd $name-$commit

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-typing_extensions
 version=4.16.0
 release=1
-source="$name-$version.tar.gz::https://pypi.org/packages/source/t/typing_extensions/typing_extensions-$version.tar.gz"
+source=(https://pypi.org/packages/source/t/typing_extensions/typing_extensions-$version.tar.gz)
+renames=(python3-typing_extensions-4.16.0.tar.gz)
 
 pkg_build() {
 	cd typing_extensions-$version

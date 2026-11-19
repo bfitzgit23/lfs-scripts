@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=apulse
 version=0.1.14
 release=1
-source="$name-$version.tar.gz::https://github.com/i-rinat/apulse/archive/v$version.tar.gz"
+source=(https://github.com/i-rinat/apulse/archive/v$version.tar.gz)
+renames=(apulse-0.1.14.tar.gz)
 
 pkg_build() {
 	cmake -B build -S ${name}-${version} -G Ninja \

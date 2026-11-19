@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libsfdo
 version=0.1.4
 release=1
-source="$name-$version.tar.gz::https://gitlab.freedesktop.org/vyivel/libsfdo/-/archive/v$version/$name-v$version.tar.gz"
+source=(https://gitlab.freedesktop.org/vyivel/libsfdo/-/archive/v$version/$name-v$version.tar.gz)
+renames=(libsfdo-0.1.4.tar.gz)
 
 pkg_build() {
 	venom-meson $name-v$version build

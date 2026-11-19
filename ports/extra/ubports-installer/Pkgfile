@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ubports-installer
 version=0.11.2
 release=1
-source="$name-${version}_amd64.deb::https://github.com/ubports/ubports-installer/releases/download/$version/ubports-installer_${version}_linux_amd64.deb"
+source=(https://github.com/ubports/ubports-installer/releases/download/$version/ubports-installer_${version}_linux_amd64.deb)
+renames=(ubports-installer-0.11.2_amd64.deb)
 
 pkg_build() {
 	bsdtar -xvf ${name}-${version}_amd64.deb -C $SRC

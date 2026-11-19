@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=sc-im
 version=0.8.5
 release=1
-source="$name-$version.tar.gz::https://github.com/andmarti1424/sc-im/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/andmarti1424/sc-im/archive/refs/tags/v$version.tar.gz)
+renames=(sc-im-0.8.5.tar.gz)
 
 pkg_build() {
 	cd $name-$version/src

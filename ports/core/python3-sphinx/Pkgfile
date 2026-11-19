@@ -7,7 +7,8 @@ name=python3-sphinx
 _name=sphinx
 version=9.2.0
 release=1
-source="$name-$version.tar.gz::https://github.com/sphinx-doc/sphinx/archive/v$version.tar.gz"
+source=(https://github.com/sphinx-doc/sphinx/archive/v$version.tar.gz)
+renames=(python3-sphinx-9.2.0.tar.gz)
 
 pkg_build() {
 	cd $_name-$version

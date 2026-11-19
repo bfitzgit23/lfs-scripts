@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ibhagwan-picom
 version="Next"
 release=1
-source="$name-$version.tar.gz::https://github.com/ibhagwan/picom/archive/vNext.tar.gz"
+source=(https://github.com/ibhagwan/picom/archive/vNext.tar.gz)
+renames=(ibhagwan-picom-Next.tar.gz)
 pkg_build() {
 	venom-meson picom-v$version build --buildtype=release 
 	meson compile -C build

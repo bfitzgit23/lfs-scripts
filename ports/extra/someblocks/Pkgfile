@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=someblocks
 version=1.0.1
 release=1
-source=($name-$version.tar.gz::https://git.sr.ht/~raphi/someblocks/archive/$version.tar.gz
+source=(https://git.sr.ht/~raphi/someblocks/archive/$version.tar.gz
 	blocks.h)
+renames=(someblocks-1.0.1.tar.gz SKIP)
 
 pkg_build() {
 	make

@@ -5,9 +5,10 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ttf-nerd-fonts-symbols
 version=3.4.0
 release=1
-source=(SymbolsNerdFont-Regular-$version.ttf::https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v$version/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFont-Regular.ttf
-	SymbolsNerdFontMono-Regular-$version.ttf::https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v$version/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf
-	10-nerd-font-symbols-$version.conf::https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v$version/10-nerd-font-symbols.conf)
+source=(https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v$version/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFont-Regular.ttf
+	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v$version/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf
+	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v$version/10-nerd-font-symbols.conf)
+renames=(SymbolsNerdFont-Regular-3.4.0.ttf SymbolsNerdFontMono-Regular-3.4.0.ttf 10-nerd-font-symbols-3.4.0.conf)
 
 
 pkg_build() {

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libdispatch
 version=6.3.2
 release=1
-source="$name-$version.tar.gz::https://github.com/apple/swift-corelibs-libdispatch/archive/swift-${version}-RELEASE.tar.gz"
+source=(https://github.com/apple/swift-corelibs-libdispatch/archive/swift-${version}-RELEASE.tar.gz)
+renames=(libdispatch-6.3.2.tar.gz)
 pkg_build() {
 	export CC=clang
 	export CXX=clang++

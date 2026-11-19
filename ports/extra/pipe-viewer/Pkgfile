@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=pipe-viewer
 version=0.5.8
 release=1
-source="$name-$version.tar.gz::https://github.com/trizen/pipe-viewer/archive/$version.tar.gz"
+source=(https://github.com/trizen/pipe-viewer/archive/$version.tar.gz)
+renames=(pipe-viewer-0.5.8.tar.gz)
 
 pkg_build() {
 	perl Build.PL --gtk3

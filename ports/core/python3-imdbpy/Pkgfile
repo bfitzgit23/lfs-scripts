@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-imdbpy
 version=2023.05.01
 release=1
-source="$name-$version.tar.gz::https://github.com/cinemagoer/cinemagoer/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/cinemagoer/cinemagoer/archive/refs/tags/$version.tar.gz)
+renames=(python3-imdbpy-2023.05.01.tar.gz)
 
 pkg_build() {
 	cd cinemagoer-$version

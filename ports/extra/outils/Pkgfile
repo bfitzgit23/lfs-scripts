@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=outils
 version=0.14
 release=1
-source="$name-$version.tar.gz::https://github.com/leahneukirchen/outils/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/leahneukirchen/outils/archive/refs/tags/v$version.tar.gz)
+renames=(outils-0.14.tar.gz)
 
 pkg_build() {
 	make

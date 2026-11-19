@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=somebar
 version=1.0.3
 release=1
-source=($name-$version.tar.gz::https://git.sr.ht/~raphi/somebar/archive/1.0.3.tar.gz
+source=(https://git.sr.ht/~raphi/somebar/archive/1.0.3.tar.gz
 	config.hpp)
+renames=(somebar-1.0.3.tar.gz SKIP)
 _portdir=$PWD
 
 

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-snowballstemmer
 version=3.1.1
 release=1
-source="$name-$version.tar.gz::https://pypi.org/packages/source/S/Snowballstemmer/${name#*-}-$version.tar.gz"
+source=(https://pypi.org/packages/source/S/Snowballstemmer/${name#*-}-$version.tar.gz)
+renames=(python3-snowballstemmer-3.1.1.tar.gz)
 
 pkg_build() {
 	cd ${name#*-}-$version

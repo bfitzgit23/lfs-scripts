@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-clone
 version=0.50
 release=1
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/A/AT/ATOOMIC/Clone-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/A/AT/ATOOMIC/Clone-$version.tar.gz)
+renames=(perl-clone-0.50.tar.gz)
 
 pkg_build() {
         cd Clone-$version

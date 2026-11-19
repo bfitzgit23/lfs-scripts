@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-isodate
 version=0.7.2
 release=1
-source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/i/isodate/isodate-$version.tar.gz"
+source=(https://files.pythonhosted.org/packages/source/i/isodate/isodate-$version.tar.gz)
+renames=(python3-isodate-0.7.2.tar.gz)
 
 pkg_build() {
 	cd isodate-$version

@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ttf-firacode
 version=6.2
 release=1
-source="$name-$version.zip::https://github.com/tonsky/FiraCode/releases/download/${version}/Fira_Code_v${version}.zip"
+source=(https://github.com/tonsky/FiraCode/releases/download/${version}/Fira_Code_v${version}.zip)
+renames=(ttf-firacode-6.2.zip)
 
 pkg_build() {
 	mkdir -p "$PKG/usr/share/fonts/firacode"

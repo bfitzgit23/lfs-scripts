@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=zzz
 version=0.2.0
 release=1
-source="$name-$version.tar.gz::https://github.com/jirutka/zzz/archive/v$version.tar.gz"
+source=(https://github.com/jirutka/zzz/archive/v$version.tar.gz)
+renames=(zzz-0.2.0.tar.gz)
 
 pkg_build() {
   make CFLAGS="$CFLAGS -DZZZ_LOCK_FILE='\"/run/zzz.lock\"'"

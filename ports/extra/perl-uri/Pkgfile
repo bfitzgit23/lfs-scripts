@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-uri
 version=5.35
 release=1
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/O/OA/OALDERS/URI-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/O/OA/OALDERS/URI-$version.tar.gz)
+renames=(perl-uri-5.35.tar.gz)
 
 pkg_build() {
 	cd URI-$version

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=tk
 version=8.6.18
 release=1
-source="$name-$version.tar.gz::https://downloads.sourceforge.net/tcl/tk$version-src.tar.gz"
+source=(https://downloads.sourceforge.net/tcl/tk$version-src.tar.gz)
+renames=(tk-8.6.18.tar.gz)
 
 pkg_build() {
 	cd $name$version/unix

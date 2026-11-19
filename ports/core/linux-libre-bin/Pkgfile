@@ -7,7 +7,8 @@ name=linux-libre-bin
 version=7.1.0
 fileid=jtJ3xaaoyMxnwTF
 release=1
-source="$name-$version.tar.xz::https://nc.abetech.es/index.php/s/$fileid/download"
+source=(https://nc.abetech.es/index.php/s/$fileid/download)
+renames=(linux-libre-bin-7.1.0.tar.xz)
 
 pkg_build() {
 	mv "${SRC}"/* "${PKG}"/

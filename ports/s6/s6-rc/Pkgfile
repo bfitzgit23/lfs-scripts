@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=s6-rc
 version=0.6.1.1
 release=1
-source="$name-$version.tar.gz::https://git.sr.ht/~skarnet/s6-rc/archive/v$version.tar.gz"
+source=(https://git.sr.ht/~skarnet/s6-rc/archive/v$version.tar.gz)
+renames=(s6-rc-0.6.1.1.tar.gz)
 
 pkg_build() {
 	cd $name-v$version

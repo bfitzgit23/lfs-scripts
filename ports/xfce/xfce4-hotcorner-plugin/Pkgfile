@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=xfce4-hotcorner-plugin
 version=0.0.4
 release=1
-source="$name-$version.tar.gz::https://github.com/christopherkobayashi/$name/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/christopherkobayashi/$name/archive/refs/tags/$version.tar.gz)
+renames=(xfce4-hotcorner-plugin-0.0.4.tar.gz)
 
 pkg_build() {
 

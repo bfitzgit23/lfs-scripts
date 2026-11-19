@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libid3tag
 version=0.16.4
 release=1
-source="$name-$version.tar.gz::https://codeberg.org/tenacityteam/libid3tag/archive/$version.tar.gz"
+source=(https://codeberg.org/tenacityteam/libid3tag/archive/$version.tar.gz)
+renames=(libid3tag-0.16.4.tar.gz)
 
 pkg_build() {
 	cmake -S $name -B build -G Ninja \

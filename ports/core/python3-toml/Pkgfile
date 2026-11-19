@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-toml
 version=0.10.2
 release=1
-source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/t/toml/toml-$version.tar.gz"
+source=(https://files.pythonhosted.org/packages/source/t/toml/toml-$version.tar.gz)
+renames=(python3-toml-0.10.2.tar.gz)
 
 pkg_build() {
 	cd toml-$version

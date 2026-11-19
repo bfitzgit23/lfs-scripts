@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-pysdl2
 version=0.9.17
 release=2
-source="$name-$version.tar.gz::https://github.com/py-sdl/py-sdl2/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/py-sdl/py-sdl2/archive/refs/tags/$version.tar.gz)
+renames=(python3-pysdl2-0.9.17.tar.gz)
 
 pkg_build() {
 	cd py-sdl2-$version

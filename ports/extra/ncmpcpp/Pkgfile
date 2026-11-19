@@ -7,7 +7,8 @@ name=ncmpcpp
 version=0.10.1
 release=1
 commit=e8f1c4bd48350789300c5f87c5ea21ea4256cf6f
-source="$name-$version.tar.gz::https://github.com/ncmpcpp/ncmpcpp/archive/$version.tar.gz"
+source=(https://github.com/ncmpcpp/ncmpcpp/archive/$version.tar.gz)
+renames=(ncmpcpp-0.10.1.tar.gz)
 
 pkg_build() {
 

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=qt6-webchannel
 version=6.11.1
 release=1
-source="$name-$version.tar.xz::https://download.qt.io/official_releases/qt/${version%.*}/$version/submodules/qtwebchannel-everywhere-src-$version.tar.xz"
+source=(https://download.qt.io/official_releases/qt/${version%.*}/$version/submodules/qtwebchannel-everywhere-src-$version.tar.xz)
+renames=(qt6-webchannel-6.11.1.tar.xz)
 
 pkg_build() {
 	cmake -S qtwebchannel-everywhere-src-$version -B build -G Ninja \

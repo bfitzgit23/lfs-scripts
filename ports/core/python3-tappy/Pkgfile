@@ -6,7 +6,8 @@ maintainer="CELESTIFYX Team <celestifyx@gmail.com>"
 name=python3-tappy
 version=3.2.1
 release=1
-source="${name}-${version}.tar.gz::https://files.pythonhosted.org/packages/source/t/tap_py/tap_py-${version}.tar.gz"
+source=(https://files.pythonhosted.org/packages/source/t/tap_py/tap_py-${version}.tar.gz)
+renames=(python3-tappy-3.2.1.tar.gz)
 
 pkg_build() {
     cd tap_py-${version}

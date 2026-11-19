@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-pytest
 version=9.2.0
 release=1
-source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/p/pytest/pytest-$version.tar.gz"
+source=(https://files.pythonhosted.org/packages/source/p/pytest/pytest-$version.tar.gz)
+renames=(python3-pytest-9.2.0.tar.gz)
 
 pkg_build() {
 	cd pytest-$version

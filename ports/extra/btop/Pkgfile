@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=btop
 version=1.4.7
 release=1
-source="$name-$version.tar.gz::https://github.com/aristocratos/${name}/archive/refs/tags/v${version}.tar.gz"
+source=(https://github.com/aristocratos/${name}/archive/refs/tags/v${version}.tar.gz)
+renames=(btop-1.4.7.tar.gz)
 
 pkg_build() {
 	make PREFIX=/usr

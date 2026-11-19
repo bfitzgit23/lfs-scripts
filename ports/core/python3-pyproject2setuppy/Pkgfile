@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-pyproject2setuppy
 version=22
 release=1
-source="$name-$version.tar.gz::https://github.com/mgorny/pyproject2setuppy/archive/v$version/pyproject2setuppy-$version.tar.gz"
+source=(https://github.com/mgorny/pyproject2setuppy/archive/v$version/pyproject2setuppy-$version.tar.gz)
+renames=(python3-pyproject2setuppy-22.tar.gz)
 
 pkg_build() {
 	cd pyproject2setuppy-$version

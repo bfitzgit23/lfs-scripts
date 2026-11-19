@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-text-charwidth
 version=0.04
 release=1
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/K/KU/KUBOTA/Text-CharWidth-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/K/KU/KUBOTA/Text-CharWidth-$version.tar.gz)
+renames=(perl-text-charwidth-0.04.tar.gz)
 
 pkg_build() {
 	cd Text-CharWidth-$version

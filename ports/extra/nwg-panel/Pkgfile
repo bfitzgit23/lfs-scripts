@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nwg-panel
 version=0.10.15
 release=1
-source=($name-$version.tar.gz::https://github.com/nwg-piotr/$name/archive/refs/tags/v$version.tar.gz
+source=(https://github.com/nwg-piotr/$name/archive/refs/tags/v$version.tar.gz
 	config)
+renames=(nwg-panel-0.10.15.tar.gz SKIP)
 
 pkg_build() {
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2

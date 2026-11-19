@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=sfwbar
 version=1.0_beta17
 release=1
-source="$name-$version.tar.gz::https://github.com/LBCrion/sfwbar/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/LBCrion/sfwbar/archive/refs/tags/v$version.tar.gz)
+renames=(sfwbar-1.0_beta17.tar.gz)
 
 pkg_build() {
 	export CFLAGS="$CFLAGS -Wno-incompatible-pointer-types"

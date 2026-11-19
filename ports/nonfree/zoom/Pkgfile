@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=zoom
 version=7.1.0.3715
 release=1
-source="$name-$version.tar.xz::https://cdn.zoom.us/prod/$version/zoom_x86_64.pkg.tar.xz"
+source=(https://cdn.zoom.us/prod/$version/zoom_x86_64.pkg.tar.xz)
+renames=(zoom-7.1.0.3715.tar.xz)
 
 pkg_build() {
 

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libvpx-32
 version=1.16.0
 release=1
-source="libvpx-$version.tar.gz::https://github.com/webmproject/libvpx/archive/v$version.tar.gz"
+source=(https://github.com/webmproject/libvpx/archive/v$version.tar.gz)
+renames=(libvpx-1.16.0.tar.gz)
 
 
 pkg_build() {

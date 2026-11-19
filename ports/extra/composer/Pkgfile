@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=composer
 version=2.10.1
 release=1
-source="$name-$version.phar::https://github.com/composer/composer/releases/download/$version/composer.phar"
+source=(https://github.com/composer/composer/releases/download/$version/composer.phar)
+renames=(composer-2.10.1.phar)
 
 pkg_build() {
 	install -Dm755 composer-$version.phar "${PKG}/usr/bin/composer"

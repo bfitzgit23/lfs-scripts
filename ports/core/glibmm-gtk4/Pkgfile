@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=glibmm-gtk4
 version=2.88.0
 release=1
-source="$name-$version.tar.bz2::https://gitlab.gnome.org/GNOME/${name%-*}/-/archive/$version/${name%-*}-$version.tar.bz2"
+source=(https://gitlab.gnome.org/GNOME/${name%-*}/-/archive/$version/${name%-*}-$version.tar.bz2)
+renames=(glibmm-gtk4-2.88.0.tar.bz2)
 
 pkg_build() {
 	venom-meson ${name%-*}-$version build -Dmaintainer-mode=true

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libvncserver
 version=0.9.15
 release=2
-source="$name-$version.tar.gz::https://github.com/LibVNC/libvncserver/archive/LibVNCServer-$version.tar.gz"
+source=(https://github.com/LibVNC/libvncserver/archive/LibVNCServer-$version.tar.gz)
+renames=(libvncserver-0.9.15.tar.gz)
 
 pkg_build() {
     cmake -S $name-LibVNCServer-$version -B build -G Ninja \

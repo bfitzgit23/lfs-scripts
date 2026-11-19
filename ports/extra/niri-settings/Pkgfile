@@ -7,7 +7,8 @@ name=niri-settings
 version=20260326
 release=1
 _commit=d745e7845f69371089542b461a9a8e691655b131
-source="$name-$version.tar.gz::https://github.com/stefonarch/$name/archive/$_commit.tar.gz"
+source=(https://github.com/stefonarch/$name/archive/$_commit.tar.gz)
+renames=(niri-settings-20260326.tar.gz)
 
 pkg_build() {
 	cd $name-$_commit

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-io-socket-ssl
 version=2.099
 release=1
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/S/SU/SULLR/IO-Socket-SSL-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/S/SU/SULLR/IO-Socket-SSL-$version.tar.gz)
+renames=(perl-io-socket-ssl-2.099.tar.gz)
 
 
 pkg_build() {

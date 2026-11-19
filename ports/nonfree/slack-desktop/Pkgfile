@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=slack-desktop
 version=4.49.89
 release=1
-source=($name-$version.deb::https://downloads.slack-edge.com/desktop-releases/linux/x64/${version}/${name}-${version}-amd64.deb
+source=(https://downloads.slack-edge.com/desktop-releases/linux/x64/${version}/${name}-${version}-amd64.deb
 ${name}.patch)
+renames=(slack-desktop-4.49.89.deb SKIP)
 
 pkg_build() {
 	bsdtar -O -xf "${name}-${version}"*.deb data.tar.xz | bsdtar -C "${PKG}" -xJf -

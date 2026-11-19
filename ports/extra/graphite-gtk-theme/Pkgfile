@@ -8,8 +8,9 @@ rname=Graphite-gtk-theme
 version=2025.07.06
 vrsn=$(printf "$version" | sed 's/\./-/g')
 release=1
-source=($name-$version.tar.gz::https://github.com/vinceliuice/Graphite-gtk-theme/archive/refs/tags/$vrsn.tar.gz
+source=(https://github.com/vinceliuice/Graphite-gtk-theme/archive/refs/tags/$vrsn.tar.gz
 	Graphite-backgrounds.xml)
+renames=(graphite-gtk-theme-2025.07.06.tar.gz SKIP)
 
 pkg_build() {
 	cd Graphite-gtk-theme-${vrsn}

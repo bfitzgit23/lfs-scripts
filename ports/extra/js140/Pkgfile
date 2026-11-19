@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=js140
 version=140.2.0
 release=1
-source="$name-$version.tar.xz::https://archive.mozilla.org/pub/firefox/releases/${version}esr/source/firefox-${version}esr.source.tar.xz"
+source=(https://archive.mozilla.org/pub/firefox/releases/${version}esr/source/firefox-${version}esr.source.tar.xz)
+renames=(js140-140.2.0.tar.xz)
 
 pkg_build() {
 	cd firefox-$version

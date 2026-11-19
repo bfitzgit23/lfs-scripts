@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=wlsunset
 version=0.4.0
 release=1
-source="$name-$version.tar.gz::https://git.sr.ht/~kennylevinsen/wlsunset/archive/$version.tar.gz"
+source=(https://git.sr.ht/~kennylevinsen/wlsunset/archive/$version.tar.gz)
+renames=(wlsunset-0.4.0.tar.gz)
 
 pkg_build() {
 	venom-meson $name-$version build 

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-xml-sax
 version=1.02
 release=2
-source="$name-$version.tar.gz::http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-SAX-$version.tar.gz"
+source=(http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-SAX-$version.tar.gz)
+renames=(perl-xml-sax-1.02.tar.gz)
 
 pkg_build() {
 	cd XML-SAX-$version

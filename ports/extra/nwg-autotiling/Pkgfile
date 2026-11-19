@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nwg-autotiling
 version=1.9.3
 release=1
-source="$name-$version.tar.gz::https://github.com/nwg-piotr/autotiling/archive/v$version.tar.gz"
+source=(https://github.com/nwg-piotr/autotiling/archive/v$version.tar.gz)
+renames=(nwg-autotiling-1.9.3.tar.gz)
 
 pkg_build() {
 	cd autotiling-$version

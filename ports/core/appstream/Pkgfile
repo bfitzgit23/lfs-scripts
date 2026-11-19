@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=appstream
 version=1.1.3
 release=1
-source="$name-$version.tar.xz::https://www.freedesktop.org/software/appstream/releases/AppStream-$version.tar.xz"
+source=(https://www.freedesktop.org/software/appstream/releases/AppStream-$version.tar.xz)
+renames=(appstream-1.1.3.tar.xz)
 
 pkg_build() {
 	export XML_CATALOG_FILES=/etc/xml/catalog

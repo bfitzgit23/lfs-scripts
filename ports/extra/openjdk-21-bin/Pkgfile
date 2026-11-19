@@ -7,7 +7,8 @@ name=openjdk-21-bin
 version=21.0.11+10
 vrsn=$(printf "$version" | sed 's/+/_/g')
 release=1
-source="$name-$version.tar.gz::https://github.com/adoptium/temurin${version%%.*}-binaries/releases/download/jdk-$version/OpenJDK${version%%.*}U-jdk_x64_linux_hotspot_$vrsn.tar.gz"
+source=(https://github.com/adoptium/temurin${version%%.*}-binaries/releases/download/jdk-$version/OpenJDK${version%%.*}U-jdk_x64_linux_hotspot_$vrsn.tar.gz)
+renames=(openjdk-21-bin-21.0.11+10.tar.gz)
 
 pkg_build() {
 	install -dm 755 "${PKG}/usr/lib/jvm/java-${version%%.*}-openjdk"

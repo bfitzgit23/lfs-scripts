@@ -6,7 +6,8 @@ homepage="https://metacpan.org/dist/File-ShareDir"
 name=perl-file-sharedir
 version=1.118
 release=1
-source="$name-$version.tar.gz::https://cpan.org/modules/by-module/File/File-ShareDir-$version.tar.gz"
+source=(https://cpan.org/modules/by-module/File/File-ShareDir-$version.tar.gz)
+renames=(perl-file-sharedir-1.118.tar.gz)
 
 pkg_build() {
 	cd File-ShareDir-$version

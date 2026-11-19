@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-six
 version=1.17.0
 release=1
-source="$name-$version.tar.gz::https://pypi.io/packages/source/s/six/six-$version.tar.gz"
+source=(https://pypi.io/packages/source/s/six/six-$version.tar.gz)
+renames=(python3-six-1.17.0.tar.gz)
 
 pkg_build() {
 	cd six-$version

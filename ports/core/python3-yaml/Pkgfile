@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-yaml
 version=6.0.3
 release=1
-source="$name-$version.tar.gz::https://github.com/yaml/pyyaml/archive/$version.tar.gz"
+source=(https://github.com/yaml/pyyaml/archive/$version.tar.gz)
+renames=(python3-yaml-6.0.3.tar.gz)
 
 pkg_build() {
 

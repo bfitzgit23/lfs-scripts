@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=calf
 version=0.90.9
 release=1
-source="$name-$version.tar.gz::https://github.com/calf-studio-gear/calf/archive/$version.tar.gz"
+source=(https://github.com/calf-studio-gear/calf/archive/$version.tar.gz)
+renames=(calf-0.90.9.tar.gz)
 
 pkg_build() {
 	cmake -S $name-$version -B build -G Ninja \

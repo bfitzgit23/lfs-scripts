@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=utf8proc
 version=2.11.3
 release=1
-source="$name-$version.tar.gz::https://github.com/JuliaStrings/$name/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/JuliaStrings/$name/archive/refs/tags/v$version.tar.gz)
+renames=(utf8proc-2.11.3.tar.gz)
 
 pkg_build() {
 	cmake -S $name-$version -B build \

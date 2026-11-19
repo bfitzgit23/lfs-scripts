@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-distro
 version=1.9.0
 release=3
-source="$name-$version.tar.gz::https://github.com/nir0s/distro/archive/v${version}/python-distro-${version}.tar.gz"
+source=(https://github.com/nir0s/distro/archive/v${version}/python-distro-${version}.tar.gz)
+renames=(python3-distro-1.9.0.tar.gz)
 
 pkg_build() {
 	cd distro-$version

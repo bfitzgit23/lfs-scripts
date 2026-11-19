@@ -6,8 +6,9 @@ maintainer="CELESTIFYX Team <celestifyx@gmail.com>"
 name=python3-more-itertools
 version=11.2.1
 release=1
-source=(${name}-${version}.tar.gz::https://github.com/more-itertools/more-itertools/archive/refs/tags/v${version}.tar.gz
+source=(https://github.com/more-itertools/more-itertools/archive/refs/tags/v${version}.tar.gz
 	remove-version-constraint.patch)
+renames=(python3-more-itertools-11.2.1.tar.gz SKIP)
 
 pkg_build() {
 	cd "more-itertools-${version}"

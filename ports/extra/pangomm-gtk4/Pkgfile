@@ -7,7 +7,8 @@ name=pangomm-gtk4
 nm=pangomm
 version=2.56.1
 release=1
-source="$name-$version.tar.xz::https://ftp.gnome.org/pub/GNOME/sources/$nm/${version%.*}/$nm-$version.tar.xz"
+source=(https://ftp.gnome.org/pub/GNOME/sources/$nm/${version%.*}/$nm-$version.tar.xz)
+renames=(pangomm-gtk4-2.56.1.tar.xz)
 
 pkg_build() {
 	venom-meson $nm-$version build

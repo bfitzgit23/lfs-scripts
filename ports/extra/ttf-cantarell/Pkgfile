@@ -7,7 +7,8 @@ name=ttf-cantarell
 _name=cantarell-fonts
 version=0.311
 release=1
-source="$name-$version.tar.gz::https://gitlab.gnome.org/GNOME/cantarell-fonts/-/archive/$version/$_name-$version.tar.gz"
+source=(https://gitlab.gnome.org/GNOME/cantarell-fonts/-/archive/$version/$_name-$version.tar.gz)
+renames=(ttf-cantarell-0.311.tar.gz)
 
 pkg_build() {
 	cd $_name-$version

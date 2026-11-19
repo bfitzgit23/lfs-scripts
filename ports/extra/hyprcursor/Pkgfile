@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=hyprcursor
 version=0.1.13
 release=1
-source="${name}-${version}.tar.gz::https://github.com/hyprwm/hyprcursor/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/hyprwm/hyprcursor/archive/refs/tags/v$version.tar.gz)
+renames=(hyprcursor-0.1.13.tar.gz)
 
 pkg_build() {
 	cmake -S $name-$version -B build \

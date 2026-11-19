@@ -7,7 +7,8 @@ name=foomatic-db-engine
 version=20260209
 release=1
 commit=a2b12271e145fe3fd34c3560d276a57e928296cb
-source="$name-$version.tar.gz::https://github.com/OpenPrinting/foomatic-db-engine/archive/$commit.tar.gz"
+source=(https://github.com/OpenPrinting/foomatic-db-engine/archive/$commit.tar.gz)
+renames=(foomatic-db-engine-20260209.tar.gz)
 
 pkg_build() {
 	export LIB_CUPS="/usr/lib/cups"

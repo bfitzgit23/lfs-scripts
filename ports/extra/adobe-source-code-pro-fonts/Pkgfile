@@ -8,7 +8,8 @@ version=2.042u+1.062i+1.026vf
 _version=$(printf '%s' "$_relver" | sed 's/R-//g;s|/|+|g')
 _name=$(printf '%s' "$_relver" | sed 's|\/|-|g')
 release=1
-source="$name-$version.tar.gz::https://github.com/adobe-fonts/source-code-pro/archive/$_relver.tar.gz"
+source=(https://github.com/adobe-fonts/source-code-pro/archive/$_relver.tar.gz)
+renames=(adobe-source-code-pro-fonts-2.042u+1.062i+1.026vf.tar.gz)
 
 pkg_build() {
 	cd source-code-pro-$_name

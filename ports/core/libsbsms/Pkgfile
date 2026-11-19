@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libsbsms
 version=2.3.0
 release=1
-source="$name-$version.tar.gz::https://github.com/claytonotey/$name/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/claytonotey/$name/archive/refs/tags/$version.tar.gz)
+renames=(libsbsms-2.3.0.tar.gz)
 
 pkg_build() {
 	cmake -S $name-$version -B build \

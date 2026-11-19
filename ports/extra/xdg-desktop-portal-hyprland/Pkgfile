@@ -7,8 +7,9 @@ name=xdg-desktop-portal-hyprland
 version=1.3.12
 _protocolver=4d29e48433270a2af06b8bc711ca1fe5109746cd
 release=1
-source=($name-$version.tar.gz::https://github.com/hyprwm/$name/archive/v$version/$name-$version.tar.gz
+source=(https://github.com/hyprwm/$name/archive/v$version/$name-$version.tar.gz
 	https://github.com/hyprwm/hyprland-protocols/archive/$_protocolver.tar.gz)
+renames=(xdg-desktop-portal-hyprland-1.3.12.tar.gz SKIP)
 
 pkg_build() {
 

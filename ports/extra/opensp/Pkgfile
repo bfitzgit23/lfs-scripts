@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=opensp
 version=1.5.2
 release=2
-source="$name-$version.tar.gz::https://downloads.sourceforge.net/openjade/OpenSP-$version.tar.gz"
+source=(https://downloads.sourceforge.net/openjade/OpenSP-$version.tar.gz)
+renames=(opensp-1.5.2.tar.gz)
 
 pkg_build() {
 	cd OpenSP-$version

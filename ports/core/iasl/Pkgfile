@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=iasl
 version=20251212
 release=2
-source="$name-$version.tar.gz::https://github.com/acpica/acpica/releases/download/$version/acpica-unix-$version.tar.gz"
+source=(https://github.com/acpica/acpica/releases/download/$version/acpica-unix-$version.tar.gz)
+renames=(iasl-20251212.tar.gz)
 
 pkg_build() {
 	cd acpica-unix-$version

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-distlib
 version=0.4.4
 release=1
-source="$name-$version.tar.gz::https://github.com/pypa/distlib/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/pypa/distlib/archive/refs/tags/$version.tar.gz)
+renames=(python3-distlib-0.4.4.tar.gz)
 
 pkg_build() {
 	cd ${name#*-}-$version

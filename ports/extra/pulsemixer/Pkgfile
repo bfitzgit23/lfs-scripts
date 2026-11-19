@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=pulsemixer
 version=1.5.1
 release=1
-source="$name-$version.tar.gz::https://github.com/GeorgeFilipkin/pulsemixer/archive/$version.tar.gz"
+source=(https://github.com/GeorgeFilipkin/pulsemixer/archive/$version.tar.gz)
+renames=(pulsemixer-1.5.1.tar.gz)
 
 pkg_build() {
 	install -m 755 -d $PKG/usr/bin

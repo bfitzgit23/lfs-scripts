@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=glfw-32
 version=3.4
 release=1
-source="glfw-$version.tar.gz::https://github.com/glfw/glfw/archive/$version.tar.gz"
+source=(https://github.com/glfw/glfw/archive/$version.tar.gz)
+renames=(glfw-3.4.tar.gz)
 
 pkg_build() {
           cd $SRC/glfw-$version

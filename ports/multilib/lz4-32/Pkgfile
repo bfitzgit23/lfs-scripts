@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=lz4-32
 version=1.10.0
 release=1
-source="lz4-$version.tar.gz::https://github.com/lz4/lz4/archive/v$version.tar.gz"
+source=(https://github.com/lz4/lz4/archive/v$version.tar.gz)
+renames=(lz4-1.10.0.tar.gz)
 
 pkg_build() {
 	export CC="gcc -m32"

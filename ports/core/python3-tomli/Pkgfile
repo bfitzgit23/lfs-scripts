@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-tomli
 version=2.5.0
 release=1
-source="$name-$version.tar.gz::https://github.com/hukkin/tomli/archive/$version/tomli-$version.tar.gz"
+source=(https://github.com/hukkin/tomli/archive/$version/tomli-$version.tar.gz)
+renames=(python3-tomli-2.5.0.tar.gz)
 
 pkg_build() {
 	cd tomli-$version

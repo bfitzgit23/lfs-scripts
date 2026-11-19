@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=scratchpkg
 version=20260628
 release=1
-source="$name-$version.tar.gz::https://codeberg.org/venomlinux/scratchpkg/archive/$version.tar.gz"
+source=(https://codeberg.org/venomlinux/scratchpkg/archive/$version.tar.gz)
+renames=(scratchpkg-20260628.tar.gz)
 backup="etc/scratchpkg.conf
 	etc/scratchpkg.alias
 	etc/scratchpkg.repo

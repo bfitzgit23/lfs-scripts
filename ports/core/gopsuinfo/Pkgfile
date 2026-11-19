@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=gopsuinfo
 version=0.1.9
 release=1
-source="$name-$version.tar.gz::https://github.com/nwg-piotr/gopsuinfo/archive/v$version.tar.gz"
+source=(https://github.com/nwg-piotr/gopsuinfo/archive/v$version.tar.gz)
+renames=(gopsuinfo-0.1.9.tar.gz)
 
 pkg_build() {
 	export CGO_LDFLAGS="${LDFLAGS}"

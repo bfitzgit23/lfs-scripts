@@ -13,7 +13,7 @@ _mipi_commit=370b5944c046bab043dd8b133727b2135af7747a
 _mbedtls_commit=8c89224991adff88d53cd380f42a2baa36f91454
 _libspdm_commit=d6f4b0b6b0a37f53031b7707cafa349b1512dc0d
 release=1
-source=($name-$version.tar.gz::https://github.com/tianocore/edk2/archive/$_realversion.tar.gz
+source=(https://github.com/tianocore/edk2/archive/$_realversion.tar.gz
 	https://github.com/MIPI-Alliance/public-mipi-sys-t/archive/${_mipi_commit}.tar.gz
 	https://github.com/Mbed-TLS/mbedtls/archive/${_mbedtls_commit}.tar.gz
 	https://www.openssl.org/source/openssl-$_sslversion.tar.gz
@@ -22,6 +22,7 @@ source=($name-$version.tar.gz::https://github.com/tianocore/edk2/archive/$_realv
 	0008-BaseTools-do-not-build-BrotliCompress-RH-only.patch
 	0009-MdeModulePkg-remove-package-private-Brotli-include-p.patch
 	)
+renames=(ovmf-0.0.202602.tar.gz SKIP SKIP SKIP SKIP SKIP SKIP SKIP)
 
 pkg_build() {
 

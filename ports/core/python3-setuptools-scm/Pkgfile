@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-setuptools-scm
 version=10.3.4
 release=1
-source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/s/setuptools_scm/setuptools_scm-$version.tar.gz"
+source=(https://files.pythonhosted.org/packages/source/s/setuptools_scm/setuptools_scm-$version.tar.gz)
+renames=(python3-setuptools-scm-10.3.4.tar.gz)
 
 pkg_build() {
 	cd setuptools_scm-$version

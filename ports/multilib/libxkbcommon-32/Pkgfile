@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libxkbcommon-32
 version=1.13.2
 release=1
-source="${name%-*}-$version.tar.gz::https://github.com/xkbcommon/libxkbcommon/archive/xkbcommon-$version.tar.gz"
+source=(https://github.com/xkbcommon/libxkbcommon/archive/xkbcommon-$version.tar.gz)
+renames=(libxkbcommon-1.13.2.tar.gz)
 
 pkg_build() {
         export CC="gcc -m32"

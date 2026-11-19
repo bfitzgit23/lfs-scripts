@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-evdev
 version=2.0.0
 release=1
-source="$name-$version.zip::https://github.com/gvalkov/python-evdev/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/gvalkov/python-evdev/archive/refs/tags/v$version.tar.gz)
+renames=(python3-evdev-2.0.0.zip)
 
 pkg_build() {
   cd python-evdev-$version

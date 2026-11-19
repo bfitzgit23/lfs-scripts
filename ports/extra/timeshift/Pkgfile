@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=timeshift
 version=25.12.4
 release=1
-source="$name-$version.tar.gz::https://github.com/linuxmint/timeshift/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/linuxmint/timeshift/archive/refs/tags/$version.tar.gz)
+renames=(timeshift-25.12.4.tar.gz)
 
 pkg_build() {
 

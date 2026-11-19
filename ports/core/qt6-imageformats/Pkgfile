@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=qt6-imageformats
 version=6.11.1
 release=1
-source=($name-$version.tar.xz::https://download.qt.io/official_releases/qt/${version%.*}/$version/submodules/qtimageformats-everywhere-src-$version.tar.xz
+source=(https://download.qt.io/official_releases/qt/${version%.*}/$version/submodules/qtimageformats-everywhere-src-$version.tar.xz
 	fix.build.patch)
+renames=(qt6-imageformats-6.11.1.tar.xz SKIP)
 
 pkg_build() {
 

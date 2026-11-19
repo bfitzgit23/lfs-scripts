@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=liboauth
 version=1.0.3
 release=2
-source=($name-$version.tar.gz::https://github.com/x42/liboauth/archive/refs/tags/v$version.tar.gz
+source=(https://github.com/x42/liboauth/archive/refs/tags/v$version.tar.gz
 	openssl.patch)
+renames=(liboauth-1.0.3.tar.gz SKIP)
 
 pkg_build() {
 

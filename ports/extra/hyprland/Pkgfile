@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=hyprland
 version=0.55.4
 release=1
-source=($name-$version.tar.gz::https://github.com/hyprwm/$name/releases/download/v$version/source-v$version.tar.gz
+source=(https://github.com/hyprwm/$name/releases/download/v$version/source-v$version.tar.gz
         hyprland.desktop)
+renames=(hyprland-0.55.4.tar.gz SKIP)
 
 pkg_build() {
 	rm -fv hyprland-source/scripts/generateVersion.sh

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=x265-32
 version=4.2
 release=1
-source="${name%-*}-$version.tar.gz::https://bitbucket.org/multicoreware/${name%-*}_git/downloads/${name%-*}_$version.tar.gz"
+source=(https://bitbucket.org/multicoreware/${name%-*}_git/downloads/${name%-*}_$version.tar.gz)
+renames=(x265-4.2.tar.gz)
 
 pkg_build() {
 	export CC="gcc -m32"

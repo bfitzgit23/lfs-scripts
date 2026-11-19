@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=wlrobs
 version=1.2
 release=1
-source="$name-$version.tar.gz::https://hg.sr.ht/~scoopta/wlrobs/archive/v$version.tar.gz"
+source=(https://hg.sr.ht/~scoopta/wlrobs/archive/v$version.tar.gz)
+renames=(wlrobs-1.2.tar.gz)
 
 pkg_build() {
 	venom-meson ${name}-v$version build

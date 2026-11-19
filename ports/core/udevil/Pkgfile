@@ -7,11 +7,12 @@ name=udevil
 version=0.4.4
 release=2
 backup=/etc/udevil/udevil.conf
-source=($name-$version.tar.gz::https://github.com/IgnorantGuru/udevil/archive/$version.tar.gz
+source=(https://github.com/IgnorantGuru/udevil/archive/$version.tar.gz
 	udevil-0.4.3-flags.patch
 	udevil-0.4.4-include-sysmacros.patch
 	udevil-0.4.4-no-libtool.patch
 	udevil-0.4.4-stat.patch)
+renames=(udevil-0.4.4.tar.gz SKIP SKIP SKIP SKIP)
 
 pkg_build() {
 

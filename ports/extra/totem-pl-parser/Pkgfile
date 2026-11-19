@@ -7,7 +7,8 @@ name=totem-pl-parser
 version=3.26.7
 vrsn=$(printf "$version" | sed 's/\./_/g')
 release=6
-source="$name-$version.tar.bz2::https://gitlab.gnome.org/GNOME/totem-pl-parser/-/archive/$version/$name-$version.tar.gz"
+source=(https://gitlab.gnome.org/GNOME/totem-pl-parser/-/archive/$version/$name-$version.tar.gz)
+renames=(totem-pl-parser-3.26.7.tar.bz2)
 
 pkg_build() {
 	venom-meson $name-$version build -D enable-gtk-doc=false

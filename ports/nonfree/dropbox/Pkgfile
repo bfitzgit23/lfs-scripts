@@ -6,9 +6,10 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=dropbox
 version=258.4.3749
 release=1
-source=($name-$version.tar.gz::https://clientupdates.dropboxstatic.com/dbx-releng/client/dropbox-lnx.x86_64-$version.tar.gz
+source=(https://clientupdates.dropboxstatic.com/dbx-releng/client/dropbox-lnx.x86_64-$version.tar.gz
 	dropbox.desktop
 	dropbox.png)
+renames=(dropbox-258.4.3749.tar.gz SKIP SKIP)
 
 pkg_build() {
 	install -d $PKG/opt

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=xnedit
 version=1.6.3
 release=1
-source="$name-$version.tar.gz::https://github.com/unixwork/xnedit/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/unixwork/xnedit/archive/refs/tags/v$version.tar.gz)
+renames=(xnedit-1.6.3.tar.gz)
 
 pkg_build() {
 

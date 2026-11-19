@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=cjson
 version=1.7.19
 release=1
-source="$name-$version.tar.gz::https://github.com/DaveGamble/cJSON/archive/v$version.tar.gz"
+source=(https://github.com/DaveGamble/cJSON/archive/v$version.tar.gz)
+renames=(cjson-1.7.19.tar.gz)
 
 pkg_build() {
 	cmake -S cJSON-$version -B build \

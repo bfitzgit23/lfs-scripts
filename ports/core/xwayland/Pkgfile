@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=xwayland
 version=24.1.12
 release=1
-source="$name-$version.tar.gz::https://gitlab.freedesktop.org/xorg/xserver/-/archive/$name-$version/xserver-$name-$version.tar.gz "
+source=(https://gitlab.freedesktop.org/xorg/xserver/-/archive/$name-$version/xserver-$name-$version.tar.gz)
+renames=($name-$version.tar.gz)
 
 pkg_build() {
 

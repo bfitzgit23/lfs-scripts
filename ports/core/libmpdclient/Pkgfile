@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libmpdclient
 version=2.25
 release=1
-source="name-$version.tar.gz::https://github.com/MusicPlayerDaemon/libmpdclient/archive/v$version.tar.gz"
+source=(https://github.com/MusicPlayerDaemon/libmpdclient/archive/v$version.tar.gz)
+renames=(name-2.25.tar.gz)
 
 pkg_build() {
 	venom-meson build

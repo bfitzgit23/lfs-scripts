@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ksh
 version=1.0.10
 release=1
-source="$name-$version.tar.gz::https://github.com/ksh93/ksh/archive/v$version.tar.gz"
+source=(https://github.com/ksh93/ksh/archive/v$version.tar.gz)
+renames=(ksh-1.0.10.tar.gz)
 
 pkg_build() {
 

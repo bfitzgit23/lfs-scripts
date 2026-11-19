@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-pycparser
 version=3.12
 release=1
-source="$name-$version.tar.gz::https://github.com/eliben/${name#*-*}/archive/release_v$version.tar.gz"
+source=(https://github.com/eliben/${name#*-*}/archive/release_v$version.tar.gz)
+renames=(python3-pycparser-3.12.tar.gz)
 
 pkg_build() {
 	cd ${name#*-}-release_v$version

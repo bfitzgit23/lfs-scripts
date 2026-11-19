@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-cffi
 version=2.1.1
 release=1
-source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/c/${name#*-}/${name#*-}-$version.tar.gz"
+source=(https://files.pythonhosted.org/packages/source/c/${name#*-}/${name#*-}-$version.tar.gz)
+renames=(python3-cffi-2.1.1.tar.gz)
 
 pkg_build() {
 	cd ${name#*-}-$version

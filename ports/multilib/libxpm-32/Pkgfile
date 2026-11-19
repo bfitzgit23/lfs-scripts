@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libxpm-32
 version=3.5.19
 release=1
-source="${name%-*}-$version.tar.xz::http://ftp.x.org/pub/individual/lib/libXpm-$version.tar.xz"
+source=(http://ftp.x.org/pub/individual/lib/libXpm-$version.tar.xz)
+renames=(libxpm-3.5.19.tar.xz)
 
 pkg_build() {
 	cd libXpm-$version

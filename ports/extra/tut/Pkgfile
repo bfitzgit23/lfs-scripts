@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=tut
 version=2.0.1
 release=1
-source="$name-$version.tar.gz::https://github.com/RasmusLindroth/$name/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/RasmusLindroth/$name/archive/refs/tags/$version.tar.gz)
+renames=(tut-2.0.1.tar.gz)
 
 pkg_build() {
 	go build \

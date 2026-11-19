@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-atspi
 version=2.58.2
 release=1
-source="$name-$version.tar.gz::https://download.gnome.org/sources/pyatspi/${version%.*}/pyatspi-$version.tar.xz"
+source=(https://download.gnome.org/sources/pyatspi/${version%.*}/pyatspi-$version.tar.xz)
+renames=(python3-atspi-2.58.2.tar.gz)
 
 pkg_build() {
 	venom-meson pyatspi-$version build

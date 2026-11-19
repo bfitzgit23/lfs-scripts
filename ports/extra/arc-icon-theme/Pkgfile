@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=arc-icon-theme
 version=20161122
 release=1
-source="$name-$version.tar.gz::https://github.com/horst3180/$name/archive/$version.tar.gz"
+source=(https://github.com/horst3180/$name/archive/$version.tar.gz)
+renames=(arc-icon-theme-20161122.tar.gz)
 
 pkg_build() {
 	./autogen.sh --prefix=/usr

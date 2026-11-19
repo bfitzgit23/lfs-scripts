@@ -5,7 +5,8 @@ homepage="https://search.cpan.org/dist/File-ShareDir-Install"
 name=perl-file-sharedir-install
 version=0.14
 release=1
-source="$name-$version.tar.gz::https://cpan.org/modules/by-module/File/File-ShareDir-Install-$version.tar.gz"
+source=(https://cpan.org/modules/by-module/File/File-ShareDir-Install-$version.tar.gz)
+renames=(perl-file-sharedir-install-0.14.tar.gz)
 
 pkg_build() {
 	cd File-ShareDir-Install-$version

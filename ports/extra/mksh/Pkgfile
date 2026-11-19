@@ -7,7 +7,8 @@ version=20260220
 commit=341752823184238dc9b2b0a22b48da984f25442d
 release=1
 backup="etc/mkshrc"
-source="$name-$version.tar.gz::https://github.com/MirBSD/mksh/archive/$commit.tar.gz"
+source=(https://github.com/MirBSD/mksh/archive/$commit.tar.gz)
+renames=(mksh-20260220.tar.gz)
 
 pkg_build() {
 	cd ${name%-*}-$commit

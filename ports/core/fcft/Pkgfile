@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=fcft
 version=3.3.3
 release=1
-source="$name-$version.tar.gz::https://codeberg.org/dnkl/fcft/archive/$version.tar.gz"
+source=(https://codeberg.org/dnkl/fcft/archive/$version.tar.gz)
+renames=(fcft-3.3.3.tar.gz)
 
 pkg_build() {
 	venom-meson $name build  -Dgrapheme-shaping=enabled -Drun-shaping=enabled

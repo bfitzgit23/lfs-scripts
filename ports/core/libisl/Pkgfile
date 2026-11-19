@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libisl
 version=0.27
 release=1
-source="$name-$version.tar.bz2::https://libisl.sourceforge.io/isl-$version.tar.bz2"
+source=(https://libisl.sourceforge.io/isl-$version.tar.bz2)
+renames=(libisl-0.27.tar.bz2)
 
 pkg_build() {
 	cd isl-$version

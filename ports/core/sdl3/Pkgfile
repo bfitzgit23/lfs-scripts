@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=sdl3
 version=3.4.10
 release=1
-source="$name-$version.tar.gz::https://github.com/libsdl-org/SDL/releases/download/release-$version/SDL3-$version.tar.gz"
+source=(https://github.com/libsdl-org/SDL/releases/download/release-$version/SDL3-$version.tar.gz)
+renames=(sdl3-3.4.10.tar.gz)
 
 pkg_build() {
 

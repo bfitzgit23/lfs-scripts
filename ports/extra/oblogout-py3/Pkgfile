@@ -8,7 +8,8 @@ version=0.03
 release=1
 url="https://github.com/trizen/${_pkgname}"
 backup="etc/oblogout.conf"
-source=("$name-$version.tar.gz::https://github.com/trizen/$name/archive/refs/tags/$version.tar.gz")
+source=(https://github.com/trizen/$name/archive/refs/tags/$version.tar.gz)
+renames=($name-$version.tar.gz)
 
 pkg_build() {
 	# upstream setup.py imports DistUtilsExtra, which extends the distutils

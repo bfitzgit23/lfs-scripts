@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=glfw
 version=3.4
 release=1
-source="$name-$version.tar.gz::https://github.com/$name/$name/archive/$version.tar.gz"
+source=(https://github.com/$name/$name/archive/$version.tar.gz)
+renames=(glfw-3.4.tar.gz)
 
 pkg_build() {
 

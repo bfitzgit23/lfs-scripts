@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=sane
 version=1.4.0
 release=2
-source=($name-$version.tar.gz::https://gitlab.com/sane-project/backends/-/archive/$version/backends-$version.tar.bz2
+source=(https://gitlab.com/sane-project/backends/-/archive/$version/backends-$version.tar.bz2
 	$homepage/-/commit/d04d17b456d9847021b6df6eb08a3419a75172cf.patch)
+renames=(sane-1.4.0.tar.gz SKIP)
 
 pkg_build() {
 	cd backends-$version

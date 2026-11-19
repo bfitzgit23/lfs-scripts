@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=numactl-32
 version=2.0.19
 release=1
-source="${name%-*}-${version}.tar.gz::https://github.com/numactl/numactl/archive/refs/tags/v${version}.tar.gz"
+source=(https://github.com/numactl/numactl/archive/refs/tags/v${version}.tar.gz)
+renames=(numactl-2.0.19.tar.gz)
 
 
 pkg_build() {

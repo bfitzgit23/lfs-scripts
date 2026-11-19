@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=portsmf
 version=239
 release=2
-source="$name-$version.tar.gz::https://codeberg.org/tenacityteam/$name/archive/$version.tar.gz"
+source=(https://codeberg.org/tenacityteam/$name/archive/$version.tar.gz)
+renames=(portsmf-239.tar.gz)
 
 pkg_build() {
 	cmake -S $name -B build \

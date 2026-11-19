@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=gtest
 version=1.17.0
 release=1
-source="$name-$version.tar.gz::https://github.com/google/googletest/archive/v$version.tar.gz"
+source=(https://github.com/google/googletest/archive/v$version.tar.gz)
+renames=(gtest-1.17.0.tar.gz)
 
 pkg_build() {
 	cmake -S googletest-$version -B build -G Ninja \

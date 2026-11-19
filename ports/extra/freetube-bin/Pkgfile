@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=freetube-bin
 version=0.24.1
 release=1
-source="$name-$version.deb::https://github.com/FreeTubeApp/FreeTube/releases/download/v$version-beta/freetube_${version}_beta_amd64.deb"
+source=(https://github.com/FreeTubeApp/FreeTube/releases/download/v$version-beta/freetube_${version}_beta_amd64.deb)
+renames=(freetube-bin-0.24.1.deb)
 
 pkg_build() {
 	bsdtar -xf $name-${version}.deb

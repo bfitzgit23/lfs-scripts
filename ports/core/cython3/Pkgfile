@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=cython3
 version=3.2.6
 release=1
-source="$name-$version.tar.gz::https://github.com/cython/cython/archive/$version.tar.gz"
+source=(https://github.com/cython/cython/archive/$version.tar.gz)
+renames=(cython3-3.2.6.tar.gz)
 
 pkg_build() {
 	cd cython-$version

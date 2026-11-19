@@ -6,7 +6,8 @@ name=i3blocks
 version=1.5
 release=1
 backup="etc/i3blocks.conf"
-source="$name-$version.tar.gz::https://github.com/vivien/i3blocks/archive/$version.tar.gz"
+source=(https://github.com/vivien/i3blocks/archive/$version.tar.gz)
+renames=(i3blocks-1.5.tar.gz)
 
 pkg_build() {
 

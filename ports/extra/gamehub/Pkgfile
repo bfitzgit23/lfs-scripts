@@ -7,7 +7,8 @@ name=gamehub
 vrsn=0.16.3-2
 version=0.16.3.2
 release=1
-source="$name-$vesion.tar.gz::https://github.com/tkashkin/GameHub/archive/${vrsn}-master/$name-${vrsn}-master.tar.gz"
+source=(https://github.com/tkashkin/GameHub/archive/${vrsn}-master/$name-${vrsn}-master.tar.gz)
+renames=(gamehub-.tar.gz)
 
 pkg_build() {
 	venom-meson GameHub-${vrsn}-master build

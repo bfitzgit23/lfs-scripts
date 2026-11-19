@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=swaync
 version=0.12.6
 release=1
-source="$name-$version.tar.gz::https://github.com/ErikReider/SwayNotificationCenter/archive/v$version.tar.gz"
+source=(https://github.com/ErikReider/SwayNotificationCenter/archive/v$version.tar.gz)
+renames=(swaync-0.12.6.tar.gz)
 
 pkg_build() {
 	venom-meson SwayNotificationCenter-$version build \

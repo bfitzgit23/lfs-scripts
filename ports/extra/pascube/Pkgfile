@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=pascube
 version=1.7.0
 release=4
-source="$name-$version.tar.gz::https://github.com/benjamimgois/pascube/archive/$version.tar.gz"
+source=(https://github.com/benjamimgois/pascube/archive/$version.tar.gz)
+renames=(pascube-1.7.0.tar.gz)
 
 pkg_build() {
     cd "${name}-${version}"

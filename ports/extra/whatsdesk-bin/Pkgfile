@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=whatsdesk-bin
 version=0.3.12
 release=1
-source="${name}-${version}_amd64.deb::https://zerkc.gitlab.io/whatsdesk/whatsdesk_${version}_amd64.deb"
+source=(https://zerkc.gitlab.io/whatsdesk/whatsdesk_${version}_amd64.deb)
+renames=(whatsdesk-bin-0.3.12_amd64.deb)
 
 pkg_build() {
 	bsdtar -xvf ${name}-${version}_amd64.deb -C $SRC

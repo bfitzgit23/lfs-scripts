@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-pefile
 version=2024.8.26
 release=2
-source="$name-$version.tar.gz::https://github.com/erocarrera/pefile/archive/v$version/python-setuptools-$version.tar.gz"
+source=(https://github.com/erocarrera/pefile/archive/v$version/python-setuptools-$version.tar.gz)
+renames=(python3-pefile-2024.8.26.tar.gz)
 
 pkg_build() {
 	cd pefile-$version

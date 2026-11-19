@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=wlopm
 version=1.0.0
 release=1
-source="$name-$version.tar.gz::https://git.sr.ht/~leon_plickat/wlopm/archive/v$version.tar.gz"
+source=(https://git.sr.ht/~leon_plickat/wlopm/archive/v$version.tar.gz)
+renames=(wlopm-1.0.0.tar.gz)
 
 pkg_build() {
     

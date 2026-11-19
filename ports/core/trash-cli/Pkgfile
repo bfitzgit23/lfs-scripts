@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=trash-cli
 version=0.24.5.26
 release=2
-source="$name-$version.tar.gz::https://github.com/andreafrancia/trash-cli/archive/${version}.tar.gz"
+source=(https://github.com/andreafrancia/trash-cli/archive/${version}.tar.gz)
+renames=(trash-cli-0.24.5.26.tar.gz)
 
 pkg_build() {
 

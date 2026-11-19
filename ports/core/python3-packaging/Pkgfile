@@ -8,7 +8,8 @@ _name=${name#*-}
 _n=${_name%${_name#?}}
 version=26.3
 release=1
-source="$name-$version.tar.gz::https://github.com/pypa/packaging/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/pypa/packaging/archive/refs/tags/$version.tar.gz)
+renames=(python3-packaging-26.3.tar.gz)
 
 pkg_build() {
 	cd ${name#*-}-$version

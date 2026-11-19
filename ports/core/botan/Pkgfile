@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=botan
 version=3.12.0
 release=1
-source="$name-$version.tar.xz::https://botan.randombit.net/releases/Botan-$version.tar.xz"
+source=(https://botan.randombit.net/releases/Botan-$version.tar.xz)
+renames=(botan-3.12.0.tar.xz)
 
 pkg_build() {
 	cd Botan-$version

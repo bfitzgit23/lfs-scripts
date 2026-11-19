@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=pspg
 version=5.8.16
 release=1
-source="$name-$version.tar.gz::https://github.com/okbob/pspg/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/okbob/pspg/archive/refs/tags/$version.tar.gz)
+renames=(pspg-5.8.16.tar.gz)
 
 pkg_build() {
 	./autogen.sh

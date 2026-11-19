@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-mozilla-ca
 version=20250602
 release=1
-source="$name-$version.tar.gz::https://search.cpan.org/CPAN/authors/id/L/LW/LWP/Mozilla-CA-$version.tar.gz"
+source=(https://search.cpan.org/CPAN/authors/id/L/LW/LWP/Mozilla-CA-$version.tar.gz)
+renames=(perl-mozilla-ca-20250602.tar.gz)
 
 pkg_build() {
 

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=mdevd
 version=0.1.8.2
 release=1
-source="$name-$version.tar.gz::https://git.sr.ht/~skarnet/mdevd/archive/v$version.tar.gz"
+source=(https://git.sr.ht/~skarnet/mdevd/archive/v$version.tar.gz)
+renames=(mdevd-0.1.8.2.tar.gz)
 
 pkg_build() {
 	cd $name-v$version

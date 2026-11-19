@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=grex
 version=1.4.6
 release=1
-source="$name-$version.tar.gz::https://github.com/pemistahl/grex/archive/v$version.tar.gz"
+source=(https://github.com/pemistahl/grex/archive/v$version.tar.gz)
+renames=(grex-1.4.6.tar.gz)
 
 pkg_build() {
 

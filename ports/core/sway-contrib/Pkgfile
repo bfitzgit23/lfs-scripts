@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=sway-contrib
 version=1.11
 release=1
-source="$name-$version.tar.gz::https://github.com/OctopusET/sway-contrib/archive/$version.tar.gz"
+source=(https://github.com/OctopusET/sway-contrib/archive/$version.tar.gz)
+renames=(sway-contrib-1.11.tar.gz)
 
 pkg_build() {
 	

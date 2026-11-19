@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-msgpack
 version=1.2.4
 release=1
-source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/m/msgpack/msgpack-$version.tar.gz"
+source=(https://files.pythonhosted.org/packages/source/m/msgpack/msgpack-$version.tar.gz)
+renames=(python3-msgpack-1.2.4.tar.gz)
 
 pkg_build() {
 	cd msgpack-$version

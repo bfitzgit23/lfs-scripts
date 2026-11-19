@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libspng
 version=0.7.4
 release=1
-source="$name-$version.tar.gz::https://github.com/randy408/libspng/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/randy408/libspng/archive/refs/tags/v$version.tar.gz)
+renames=(libspng-0.7.4.tar.gz)
 
 pkg_build() {
 	venom-meson $name-$version build \

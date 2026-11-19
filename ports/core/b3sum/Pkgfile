@@ -6,7 +6,8 @@ name=b3sum
 version=1.5.0
 release=1
 commit=d995c3d31b42d09a568a0a658bcbcd3814164ca9
-source="$name-$version.tar.gz::https://git.sr.ht/~mcf/b3sum/archive/$commit.tar.gz"
+source=(https://git.sr.ht/~mcf/b3sum/archive/$commit.tar.gz)
+renames=(b3sum-1.5.0.tar.gz)
 
 pkg_build() {
 	cd $name-$commit

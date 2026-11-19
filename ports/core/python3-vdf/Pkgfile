@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-vdf
 version=3.4
 release=1
-source="$name-$version.tar.gz::https://pypi.python.org/packages/source/v/vdf/vdf-$version.tar.gz"
+source=(https://pypi.python.org/packages/source/v/vdf/vdf-$version.tar.gz)
+renames=(python3-vdf-3.4.tar.gz)
 
 pkg_build() {
 	cd vdf-$version

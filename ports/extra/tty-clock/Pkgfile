@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=tty-clock
 version=2.3
 release=1
-source="$name-$version.tar.gz::https://github.com/xorg62/tty-clock/archive/v$version.tar.gz"
+source=(https://github.com/xorg62/tty-clock/archive/v$version.tar.gz)
+renames=(tty-clock-2.3.tar.gz)
 
 pkg_build() {
 	make

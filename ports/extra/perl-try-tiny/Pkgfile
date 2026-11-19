@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-try-tiny
 version=0.32
 release=1
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/E/ET/ETHER/Try-Tiny-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/E/ET/ETHER/Try-Tiny-$version.tar.gz)
+renames=(perl-try-tiny-0.32.tar.gz)
 
 pkg_build() {
         cd Try-Tiny-$version

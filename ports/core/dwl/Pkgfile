@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=dwl
 version=0.8
 release=2
-source="$name-$version.tar.gz::https://codeberg.org/dwl/dwl/archive/v$version.tar.gz"
+source=(https://codeberg.org/dwl/dwl/archive/v$version.tar.gz)
+renames=(dwl-0.8.tar.gz)
 
 pkg_build() {
 	cd $name

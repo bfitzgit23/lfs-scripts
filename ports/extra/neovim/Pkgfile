@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=neovim
 version=0.12.3
 release=1
-source="$name-$version.tar.gz::https://github.com/$name/$name/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/$name/$name/archive/refs/tags/v$version.tar.gz)
+renames=(neovim-0.12.3.tar.gz)
 
 pkg_build() {
 	make CMAKE_INSTALL_PREFIX=/usr USE_BUNDLED=1 CMAKE_BUILD_TYPE=Release

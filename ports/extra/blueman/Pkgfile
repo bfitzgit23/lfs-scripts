@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=blueman
 version=2.4.6
 release=1
-source="$name-$version.tar.gz::https://github.com/blueman-project/blueman/archive/$version.tar.gz"
+source=(https://github.com/blueman-project/blueman/archive/$version.tar.gz)
+renames=(blueman-2.4.6.tar.gz)
 
 pkg_build() {
 	./autogen.sh

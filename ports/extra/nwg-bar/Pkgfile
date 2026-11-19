@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nwg-bar
 version=0.1.6
 release=1
-source="$name-$version.tar.gz::https://github.com/nwg-piotr/nwg-bar/archive/v$version.tar.gz"
+source=(https://github.com/nwg-piotr/nwg-bar/archive/v$version.tar.gz)
+renames=(nwg-bar-0.1.6.tar.gz)
 
 pkg_build() {
 

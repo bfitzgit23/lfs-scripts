@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ps_mem
 version=3.14
 release=1
-source="$name-$version.tar.gz::https://github.com/pixelb/$name/archive/v$version/$name-v$version.tar.gz"
+source=(https://github.com/pixelb/$name/archive/v$version/$name-v$version.tar.gz)
+renames=(ps_mem-3.14.tar.gz)
 
 pkg_build() {
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2

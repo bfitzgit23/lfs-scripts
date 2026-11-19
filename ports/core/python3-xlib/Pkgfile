@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-xlib
 version=0.33
 release=2
-source="$name-$version.tar.gz::https://github.com/python-xlib/python-xlib/archive/$version/python-$version.tar.gz"
+source=(https://github.com/python-xlib/python-xlib/archive/$version/python-$version.tar.gz)
+renames=(python3-xlib-0.33.tar.gz)
 
 pkg_build() {
 	cd python-xlib-$version

@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=heimdall
 version=2.2.2
 release=1
-source=($name-v$version.tar.gz::https://git.sr.ht/~grimler/Heimdall/archive/v$version.tar.gz
+source=(https://git.sr.ht/~grimler/Heimdall/archive/v$version.tar.gz
 	heimdall.desktop)
+renames=(heimdall-v2.2.2.tar.gz SKIP)
 
 pkg_build() {
 	cmake -S Heimdall-v$version -B build -G Ninja \

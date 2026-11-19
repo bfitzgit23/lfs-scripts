@@ -6,12 +6,13 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=spacefm
 version=1.0.6
 release=1
-source=($name-$version.tar.gz::https://github.com/IgnorantGuru/spacefm/archive/$version.tar.gz
+source=(https://github.com/IgnorantGuru/spacefm/archive/$version.tar.gz
 	dash.patch
 	fix-build-gcc14.patch
 	fix-wayland.patch
 	fno-common.patch
 	include-sysmacros.patch)
+renames=(spacefm-1.0.6.tar.gz SKIP SKIP SKIP SKIP SKIP)
 
 pkg_build() {
 

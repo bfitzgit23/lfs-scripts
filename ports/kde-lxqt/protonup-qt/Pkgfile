@@ -7,8 +7,9 @@ name=protonup-qt
 _name=net.davidotek.pupgui2
 version=2.15.1
 release=1
-source=($name-$version.tar.gz::https://github.com/DavidoTek/ProtonUp-Qt/archive/refs/tags/v$version.tar.gz
+source=(https://github.com/DavidoTek/ProtonUp-Qt/archive/refs/tags/v$version.tar.gz
 	net.davidotek.pupgui2.sh)
+renames=(protonup-qt-2.15.1.tar.gz SKIP)
 
 pkg_build() {
 	cd ProtonUp-Qt-$version

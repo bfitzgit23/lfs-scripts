@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=swww
 version=0.11.2
 release=1
-source="$name-$version.tar.gz::https://github.com/LGFae/$name/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/LGFae/$name/archive/refs/tags/v$version.tar.gz)
+renames=(swww-0.11.2.tar.gz)
 
 pkg_build() {
 	export CARGO_HOME="$SOURCE_DIR/cargo"

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=avidemux
 version=2.8.1
 release=1
-source="$name-$version.tar.gz::https://sourceforge.net/projects/avidemux/files/avidemux/${version}/avidemux_${version}.tar.gz"
+source=(https://sourceforge.net/projects/avidemux/files/avidemux/${version}/avidemux_${version}.tar.gz)
+renames=(avidemux-2.8.1.tar.gz)
 
 pkg_build() {
 	cd ${name}_${version}

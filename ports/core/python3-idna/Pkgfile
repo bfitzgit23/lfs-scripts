@@ -8,7 +8,8 @@ _name=${name#*-}
 _n=${_name%${_name#?}}
 version=3.20
 release=1
-source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/$_n/${name#*-}/${name#*-}-$version.tar.gz"
+source=(https://files.pythonhosted.org/packages/source/$_n/${name#*-}/${name#*-}-$version.tar.gz)
+renames=(python3-idna-3.20.tar.gz)
 
 pkg_build() {
 	cd ${name#*-}-$version

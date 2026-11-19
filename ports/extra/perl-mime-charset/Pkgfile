@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-mime-charset
 version=1.013.1
 release=1
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/MIME-Charset-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/MIME-Charset-$version.tar.gz)
+renames=(perl-mime-charset-1.013.1.tar.gz)
 
 pkg_build() {
 	cd MIME-Charset-$version

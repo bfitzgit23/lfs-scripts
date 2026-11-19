@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=goverlay
 version=1.8.4
 release=1
-source="$name-$version.tar.gz::https://github.com/benjamimgois/goverlay/archive/$version.tar.gz"
+source=(https://github.com/benjamimgois/goverlay/archive/$version.tar.gz)
+renames=(goverlay-1.8.4.tar.gz)
 
 pkg_build() {
         make LAZBUILDOPTS=--lazarusdir=/usr/lib/lazarus

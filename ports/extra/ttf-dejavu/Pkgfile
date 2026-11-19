@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ttf-dejavu
 version=2.37
 release=1
-source="$name-$version.tar.bz2::https://downloads.sourceforge.net/dejavu/dejavu/$version/dejavu-fonts-ttf-$version.tar.bz2"
+source=(https://downloads.sourceforge.net/dejavu/dejavu/$version/dejavu-fonts-ttf-$version.tar.bz2)
+renames=(ttf-dejavu-2.37.tar.bz2)
 
 pkg_build() {
 	cd dejavu-fonts-ttf-$version

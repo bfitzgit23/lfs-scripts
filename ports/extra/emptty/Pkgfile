@@ -7,9 +7,10 @@ name=emptty
 version=0.16.1
 release=2
 backup="etc/emptty/conf"
-source=($name-$version.tar.gz::https://github.com/tvrzna/emptty/archive/v${version}.tar.gz
+source=(https://github.com/tvrzna/emptty/archive/v${version}.tar.gz
 	rc.$name
 	run.$name)
+renames=(emptty-0.16.1.tar.gz SKIP SKIP)
 
 pkg_build() {
            make build

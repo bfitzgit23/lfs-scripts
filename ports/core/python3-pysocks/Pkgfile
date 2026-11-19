@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-pysocks
 version=1.7.1
 release=1
-source="$name-$version.tar.gz::https://pypi.io/packages/source/P/PySocks/PySocks-$version.tar.gz"
+source=(https://pypi.io/packages/source/P/PySocks/PySocks-$version.tar.gz)
+renames=(python3-pysocks-1.7.1.tar.gz)
 
 pkg_build() {
 	cd PySocks-$version

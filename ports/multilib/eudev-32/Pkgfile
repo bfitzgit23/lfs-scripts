@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=eudev-32
 version=3.2.14
 release=1
-source="${name%-*}-$version.tar.gz::https://github.com/eudev-project/eudev/archive/v$version.tar.gz"
+source=(https://github.com/eudev-project/eudev/archive/v$version.tar.gz)
+renames=(eudev-3.2.14.tar.gz)
 
 pkg_build() {
 	cd eudev-$version

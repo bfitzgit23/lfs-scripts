@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libtorrent
 version=0.16.15
 release=1
-source="$name-$version.tar.gz::https://github.com/rakshasa/$name/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/rakshasa/$name/archive/refs/tags/v$version.tar.gz)
+renames=(libtorrent-0.16.15.tar.gz)
 
 pkg_build() {
 	cd libtorrent-$version

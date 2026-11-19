@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=sysvinit
 version=3.18
 release=1
-source="$name-$version.tar.gz::https://codeberg.org/thejessesmith/sysvinit/archive/$version.tar.gz"
+source=(https://codeberg.org/thejessesmith/sysvinit/archive/$version.tar.gz)
+renames=(sysvinit-3.18.tar.gz)
 
 pkg_build() {
 	cd $name

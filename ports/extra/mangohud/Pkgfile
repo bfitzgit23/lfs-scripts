@@ -8,7 +8,8 @@ nm=MangoHud
 version=0.8.4
 vrsn="${version}-1"
 release=1
-source="$name-$version.tar.xz::https://github.com/flightlessmango/MangoHud/releases/download/v${version}/${nm}-v${version}-Source.tar.xz"
+source=(https://github.com/flightlessmango/MangoHud/releases/download/v${version}/${nm}-v${version}-Source.tar.xz)
+renames=(mangohud-0.8.4.tar.xz)
 
 pkg_build() {
 	cd ${nm}-v${version} 

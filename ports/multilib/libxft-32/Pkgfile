@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libxft-32
 version=2.3.9
 release=1
-source="${name%-*}-$version.tar.xz::http://ftp.x.org/pub/individual/lib/libXft-$version.tar.xz"
+source=(http://ftp.x.org/pub/individual/lib/libXft-$version.tar.xz)
+renames=(libxft-2.3.9.tar.xz)
 
 pkg_build() {
 	cd libXft-$version

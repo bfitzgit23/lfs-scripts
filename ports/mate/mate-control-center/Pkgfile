@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=mate-control-center
 version=1.28.1
 release=1
-source="$name-$version.tar.gz::https://github.com/mate-desktop/$name/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/mate-desktop/$name/archive/refs/tags/v$version.tar.gz)
+renames=(mate-control-center-1.28.1.tar.gz)
 
 pkg_build() {
 

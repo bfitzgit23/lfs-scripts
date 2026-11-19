@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=opencl-icd-loader
 version=2026.05.29
 release=1
-source="$name-$version.tar.gz::https://github.com/KhronosGroup/OpenCL-ICD-Loader/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/KhronosGroup/OpenCL-ICD-Loader/archive/refs/tags/v$version.tar.gz)
+renames=(opencl-icd-loader-2026.05.29.tar.gz)
 
 pkg_build() {
 	cmake -S OpenCL-ICD-Loader-$version -B build \

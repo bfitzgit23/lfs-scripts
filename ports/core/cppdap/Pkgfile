@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=cppdap
 version=1.58.0
 release=1
-source=($name-$version.tar.gz::https://github.com/google/cppdap/archive/dap-${version}-a.tar.gz
+source=(https://github.com/google/cppdap/archive/dap-${version}-a.tar.gz
         6a3cc9a8.patch)
+renames=(cppdap-1.58.0.tar.gz SKIP)
 
 pkg_build() {
 	patch -d cppdap-dap-${version}-a -p1 < 6a3cc9a8.patch # Build shared lib

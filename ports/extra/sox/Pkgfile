@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=sox
 version=14.8.0.1
 release=1
-source="$name-$version.tar.gz::https://codeberg.org/sox_ng/sox_ng/releases/download/${name}_ng-$version/${name}_ng-$version.tar.gz"
+source=(https://codeberg.org/sox_ng/sox_ng/releases/download/${name}_ng-$version/${name}_ng-$version.tar.gz)
+renames=(sox-14.8.0.1.tar.gz)
 
 pkg_build() {
 	cd ${name}_ng-$version

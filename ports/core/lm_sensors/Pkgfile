@@ -7,7 +7,8 @@ _name=$(echo $name | sed 's/_/-/g')
 version=3.6.2
 _version=$(printf '%s' "$version" | sed 's/\./-/g')
 release=1
-source="$name-$version.tar.gz::https://github.com/hramrach/lm-sensors/archive/refs/tags/V$_version.tar.gz"
+source=(https://github.com/hramrach/lm-sensors/archive/refs/tags/V$_version.tar.gz)
+renames=(lm_sensors-3.6.2.tar.gz)
 
 pkg_build() {
 	cd $_name-$_version

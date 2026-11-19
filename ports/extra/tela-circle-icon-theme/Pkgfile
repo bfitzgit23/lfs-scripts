@@ -7,8 +7,9 @@ name=tela-circle-icon-theme
 version=25.02.10
 ver="2025-02-10"
 release=1
-source=($name-$version.tar.gz::https://github.com/vinceliuice/Tela-circle-icon-theme/archive/refs/tags/$ver.tar.gz
+source=(https://github.com/vinceliuice/Tela-circle-icon-theme/archive/refs/tags/$ver.tar.gz
 	no-cache-files.patch)
+renames=(tela-circle-icon-theme-25.02.10.tar.gz SKIP)
 
 pkg_build() {
 	cd Tela-circle-icon-theme-${ver}

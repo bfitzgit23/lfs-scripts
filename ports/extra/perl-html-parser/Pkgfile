@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-html-parser
 version=3.85
 release=1
-source="$name-$version.tar.gz::https://www.cpan.org/authors/id/O/OA/OALDERS/HTML-Parser-$version.tar.gz"
+source=(https://www.cpan.org/authors/id/O/OA/OALDERS/HTML-Parser-$version.tar.gz)
+renames=(perl-html-parser-3.85.tar.gz)
 
 pkg_build() {
 	cd HTML-Parser-$version

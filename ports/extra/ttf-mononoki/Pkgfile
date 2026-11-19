@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ttf-mononoki
 version=1.6
 release=1
-source=($name-$version.tar.gz::https://github.com/madmalik/mononoki/archive/${version}.tar.gz
+source=(https://github.com/madmalik/mononoki/archive/${version}.tar.gz
 	45-mononoki.conf  65-mononoki.conf)
+renames=(ttf-mononoki-1.6.tar.gz SKIP SKIP)
 
 pkg_build() {
 	 cd mononoki-$version

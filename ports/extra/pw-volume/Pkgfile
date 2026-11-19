@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=pw-volume
 version=0.5.0
 release=1
-source="$name-$version.tar.gz::https://github.com/smasher164/pw-volume/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/smasher164/pw-volume/archive/refs/tags/v$version.tar.gz)
+renames=(pw-volume-0.5.0.tar.gz)
 
 pkg_build() {
 	cargo fetch --locked 

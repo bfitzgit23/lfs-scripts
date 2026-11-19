@@ -6,7 +6,8 @@ homepage="https://github.com/wlrfx/scenefx"
 name=scenefx
 version=0.4.1
 release=1
-source="$name-$version.tar.gz::https://github.com/wlrfx/scenefx/archive/refs/tags/${version}.tar.gz"
+source=(https://github.com/wlrfx/scenefx/archive/refs/tags/${version}.tar.gz)
+renames=(scenefx-0.4.1.tar.gz)
 
 pkg_build() {
 	venom-meson $name-$version build \

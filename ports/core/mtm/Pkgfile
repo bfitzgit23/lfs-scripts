@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=mtm
 version=1.2.1
 release=1
-source="$name-$version.tar.gz::https://github.com/deadpixi/$name/archive/$version.tar.gz"
+source=(https://github.com/deadpixi/$name/archive/$version.tar.gz)
+renames=(mtm-1.2.1.tar.gz)
 
 pkg_build() {
 

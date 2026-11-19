@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=crystal-dock
 version=2.16
 release=1
-source="$name-$version.tar.gz::https://github.com/dangvd/crystal-dock/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/dangvd/crystal-dock/archive/refs/tags/v$version.tar.gz)
+renames=(crystal-dock-2.16.tar.gz)
 pkg_build() {
 	mkdir -p build
 	cd build

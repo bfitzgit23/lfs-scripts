@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=icoextract
 version=0.3.0
 release=1
-source="$name-$version.tar.gz::https://github.com/jlu5/icoextract/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/jlu5/icoextract/archive/refs/tags/$version.tar.gz)
+renames=(icoextract-0.3.0.tar.gz)
 
 pkg_build() {
 	python3 -m build --wheel --no-isolation

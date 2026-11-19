@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-sip-pyqt5
 version=12.20.1
 release=1
-source="$name-$version.tar.gz::https://pypi.python.org/packages/source/P/PyQt5-sip/pyqt5_sip-$version.tar.gz"
+source=(https://pypi.python.org/packages/source/P/PyQt5-sip/pyqt5_sip-$version.tar.gz)
+renames=(python3-sip-pyqt5-12.20.1.tar.gz)
 
 pkg_build() {
 	cd pyqt5_sip-$version

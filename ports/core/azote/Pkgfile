@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=azote
 version=1.16.0
 release=1
-source="$name-$version.tar.gz::https://github.com/nwg-piotr/$name/archive/v$version.tar.gz"
+source=(https://github.com/nwg-piotr/$name/archive/v$version.tar.gz)
+renames=(azote-1.16.0.tar.gz)
 
 pkg_build() {
 

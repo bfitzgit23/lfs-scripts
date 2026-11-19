@@ -7,7 +7,8 @@ name=libreoffice-bin-es
 version=26.2.7
 release=1
 lang="es"
-source="$name-$version-$lang.tar.gz::https://download.documentfoundation.org/libreoffice/stable/${version}/rpm/x86_64/LibreOffice_${version}_Linux_x86-64_rpm_langpack_${lang}.tar.gz"
+source=(https://download.documentfoundation.org/libreoffice/stable/${version}/rpm/x86_64/LibreOffice_${version}_Linux_x86-64_rpm_langpack_${lang}.tar.gz)
+renames=(libreoffice-bin-es-26.2.7-es.tar.gz)
 
 pkg_build() {
 	for rpm in $SRC/LibreOffice_${version}*/RPMS/*.rpm; do

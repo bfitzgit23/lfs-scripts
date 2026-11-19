@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=moka-icon-theme
 version=5.4.0
 release=1
-source="${name}-$version.tar.gz::https://github.com/moka-project/$name/archive/v$version.tar.gz"
+source=(https://github.com/moka-project/$name/archive/v$version.tar.gz)
+renames=(moka-icon-theme-5.4.0.tar.gz)
 
 pkg_build() {
   install -d -m 755 "${PKG}"/usr/share/icons/Moka

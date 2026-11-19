@@ -425,7 +425,7 @@ f:02f0572eb6352992dafd9cb614267dd6:dtc/Pkgfile
 f:944aae4068024a97ca1981cbf7f7c5c1:dvd+rw-tools/Pkgfile
 f:60cf81d0024041225a69ea87c90d56cf:edk2-ovmf/Pkgfile
 f:40c5badc12bec96bcab4e817307fc660:emerald/Pkgfile
-f:2eb200354a43e44738640030d0a411f6:enchant/Pkgfile
+f:b2b5a7c3d0b86499f604abf27123bff3:enchant/Pkgfile
 f:df88c42e3e6a72995c564e5ccc1df82e:engrampa/Pkgfile
 f:6a9925234abb726d2c4b5b2b1d7ed10d:exempi/Pkgfile
 f:da1adf28a5d356f63f98fa649564be5d:expect/Pkgfile
@@ -546,7 +546,7 @@ f:d487ecaf2f55260b3d85f0aa311932c5:libppd/Pkgfile
 f:1fd46448d0429cf2a92fefc7eb1fde96:libproxy/Pkgfile
 f:39f46e983497b5b9c50eb23b8337c3f4:libqalculate/Pkgfile
 f:5f0dec5bf317a0b1905ce136c3cb78cd:libqrtr-glib/Pkgfile
-f:1dc6c97d4e77165880b311b008a4b18b:libreoffice-bin/Pkgfile
+f:de7dacdfbdfbfccf373da82561865b47:libreoffice-bin/Pkgfile
 f:e56ebd50952521c4e4c4d66c6a755569:libsamplerate/Pkgfile
 f:24bf59609313fc938657893c57d6e17c:libseccomp/Pkgfile
 f:4e27da714a742a8dd30c87fe6c30f484:libsigc++2/Pkgfile
@@ -656,7 +656,7 @@ f:e210979889e018f1991b643bb7d5effb:rtkit/Pkgfile
 f:2d07e9518dc71b7efe30d94d98e00c44:ruby/Pkgfile
 f:dbcab8a782b0c4b28a7779f3f7877dc3:rust-bindgen/Pkgfile
 f:6a49dc36a238bfdee2ee80efd267ab8b:rustc/Pkgfile
-f:e0320a30cc369865e309aff310e9fc31:rustdesk/Pkgfile
+f:ba61cfad8ec450f9aed7d5682fe5b7c0:rustdesk/Pkgfile
 f:6acb895b32d928dacb4f593b94b8f297:sbc/Pkgfile
 f:6be79a511e1b880dd3622ca30cc1cec9:scons/Pkgfile
 f:b8151202ffa0a563cf571d44bad7f8a1:sdl12-compat/Pkgfile
@@ -751,7 +751,7 @@ f:e18d247072df395305a0a03230cae9ee:virt-manager/Pkgfile
 f:b19520efcf97e643dbb9646f36cf5c1b:virt-manager/post-install
 f:821d34f11907da7b05bc2a6f7da5fdf9:virt-viewer/Pkgfile
 f:5a38898ef05b680304bb219aeff96a46:volk/Pkgfile
-f:2eb093ac8c3c731ead0a1797ef245c28:vulkan-loader/Pkgfile
+f:d998e3b9581383a1dca33065e81950ef:vulkan-loader/Pkgfile
 f:1f656e4146ed5a88c65262fb8a92995e:vulkan-utility-libraries/Pkgfile
 f:c68bc6f3fbbefb1587d1dbad23365d58:vulkan-validation-layers/Pkgfile
 f:4429b06f7d64d41149bc4e21b90a86ce:webp-pixbuf-loader/Pkgfile

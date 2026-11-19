@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-lwp-protocol-https
 version=6.15
 release=1
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/O/OA/OALDERS/LWP-Protocol-https-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/O/OA/OALDERS/LWP-Protocol-https-$version.tar.gz)
+renames=(perl-lwp-protocol-https-6.15.tar.gz)
 
 pkg_build() {
 	cd LWP-Protocol-https-$version

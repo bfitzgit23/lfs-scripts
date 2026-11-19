@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=supertux
 version=0.7.0
 release=1
-source="$name-$version.tar.gz::https://github.com/SuperTux/supertux/releases/download/v${version}/SuperTux-v${version}-Source.tar.gz"
+source=(https://github.com/SuperTux/supertux/releases/download/v${version}/SuperTux-v${version}-Source.tar.gz)
+renames=(supertux-0.7.0.tar.gz)
               
 pkg_build() {
 	cd "SuperTux-v${version}-Source"

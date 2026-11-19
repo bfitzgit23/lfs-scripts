@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=simde
 version=0.8.2
 release=3
-source="$name-$version.tar.gz::https://github.com/simd-everywhere/simde/archive/v$version/$name-v$version.tar.gz"
+source=(https://github.com/simd-everywhere/simde/archive/v$version/$name-v$version.tar.gz)
+renames=(simde-0.8.2.tar.gz)
 
 pkg_build() {
 	# Fix build with znver4 or newer

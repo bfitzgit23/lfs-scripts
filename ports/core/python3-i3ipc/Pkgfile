@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-i3ipc
 version=2.2.1
 release=3
-source="$name-$version.tar.gz::https://github.com/altdesktop/i3ipc-python/archive/v$version.tar.gz"
+source=(https://github.com/altdesktop/i3ipc-python/archive/v$version.tar.gz)
+renames=(python3-i3ipc-2.2.1.tar.gz)
 
 pkg_build() {
 	cd i3ipc-python-$version

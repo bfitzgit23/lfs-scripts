@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=chromium-widevine
 version=149.0.7827.196
 release=1
-source="$name-$version.deb::https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_$version-1_amd64.deb"
+source=(https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_$version-1_amd64.deb)
+renames=(chromium-widevine-149.0.7827.196.deb)
 
 pkg_build() {
 	ar x $name-$version.deb

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-semantic-version
 version=2.10.0
 release=2
-source="$name-$version.tar.gz::https://github.com/rbarrois/python-semanticversion/archive/$version/python-semantic-version-$version.tar.gz"
+source=(https://github.com/rbarrois/python-semanticversion/archive/$version/python-semantic-version-$version.tar.gz)
+renames=(python3-semantic-version-2.10.0.tar.gz)
 
 pkg_build() {
 	cd python-semanticversion-$version

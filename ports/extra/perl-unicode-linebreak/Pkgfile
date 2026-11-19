@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-unicode-linebreak
 version=2019.001
 release=7
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/Unicode-LineBreak-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/Unicode-LineBreak-$version.tar.gz)
+renames=(perl-unicode-linebreak-2019.001.tar.gz)
 
 pkg_build() {
 	cd Unicode-LineBreak-$version

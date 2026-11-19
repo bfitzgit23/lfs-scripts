@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=alacritty
 version=0.17.0
 release=1
-source="$name-$version.tar.gz::https://github.com/alacritty/alacritty/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/alacritty/alacritty/archive/refs/tags/v$version.tar.gz)
+renames=(alacritty-0.17.0.tar.gz)
 pkg_build() {
 	
 	export CARGO_HOME="$PWD/cargo"

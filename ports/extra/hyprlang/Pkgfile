@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=hyprlang
 version=0.6.8
 release=1
-source="$name-$version.tar.gz::https://github.com/hyprwm/$name/archive/v$version/$name-$version.tar.gz"
+source=(https://github.com/hyprwm/$name/archive/v$version/$name-$version.tar.gz)
+renames=(hyprlang-0.6.8.tar.gz)
 
 pkg_build() {
 	cmake -B build \

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-steam
 version=1.6.1
 release=1
-source="$name-$version.tar.gz::https://github.com/solsticegamestudios/steam/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/solsticegamestudios/steam/archive/refs/tags/v$version.tar.gz)
+renames=(python3-steam-1.6.1.tar.gz)
 
 pkg_build() {
     cd steam-$version

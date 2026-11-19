@@ -7,8 +7,9 @@ homepage="https://gitlab.com/apparmor/apparmor/wikis/home"
 name=apparmor
 version=5.0.1
 release=1
-source=($name-$version.tar.gz::https://gitlab.com/apparmor/apparmor/-/archive/v$version/$name-v$version.tar.gz
+source=(https://gitlab.com/apparmor/apparmor/-/archive/v$version/$name-v$version.tar.gz
 	rc.apparmor)
+renames=(apparmor-5.0.1.tar.gz SKIP)
 
 pkg_build() {
 

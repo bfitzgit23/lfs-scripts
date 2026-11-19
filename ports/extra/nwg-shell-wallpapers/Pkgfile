@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nwg-shell-wallpapers
 version=1.5
 release=1
-source="$name-$version.tar.gz::https://github.com/nwg-piotr/nwg-shell-wallpapers/archive/v$version.tar.gz"
+source=(https://github.com/nwg-piotr/nwg-shell-wallpapers/archive/v$version.tar.gz)
+renames=(nwg-shell-wallpapers-1.5.tar.gz)
 
 pkg_build() {
 	cd $SRC

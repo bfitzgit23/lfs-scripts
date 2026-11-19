@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ttf-nerd-jetbrains-mono
 version=3.4.0
 release=1
-source="$name-$version.zip::https://github.com/ryanoasis/nerd-fonts/releases/download/v$version/JetBrainsMono.zip"
+source=(https://github.com/ryanoasis/nerd-fonts/releases/download/v$version/JetBrainsMono.zip)
+renames=(ttf-nerd-jetbrains-mono-3.4.0.zip)
 
 pkg_build() {
 	find . -iname "*.otf" -not -iname "*Windows Compatible.otf" -execdir install -Dm644 {} "$PKG/usr/share/fonts/OTF/{}" \;

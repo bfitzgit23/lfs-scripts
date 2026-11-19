@@ -8,7 +8,8 @@ version=3.3.40.1
 _ver=${version%.*}
 _sion=${version##*.}
 release=1
-source="$name-$version.tar.gz::https://codeberg.org/smxi/inxi/archive/${_ver}-${_sion}.tar.gz"
+source=(https://codeberg.org/smxi/inxi/archive/${_ver}-${_sion}.tar.gz)
+renames=(inxi-3.3.40.1.tar.gz)
 
 pkg_build() {
 	cd $name

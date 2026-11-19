@@ -7,7 +7,8 @@ name=python3-sphinxcontrib-htmlhelp
 _name=sphinxcontrib_htmlhelp
 version=2.1.0
 release=2
-source="$name-$version.tar.gz::https://pypi.org/packages/source/s/$_name/$_name-$version.tar.gz"
+source=(https://pypi.org/packages/source/s/$_name/$_name-$version.tar.gz)
+renames=(python3-sphinxcontrib-htmlhelp-2.1.0.tar.gz)
 
 pkg_build() {
 	cd $_name-$version

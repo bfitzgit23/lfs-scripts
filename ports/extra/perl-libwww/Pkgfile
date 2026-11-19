@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-libwww
 version=6.83
 release=1
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/O/OA/OALDERS/libwww-perl-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/O/OA/OALDERS/libwww-perl-$version.tar.gz)
+renames=(perl-libwww-6.83.tar.gz)
 
 pkg_build() {
         cd libwww-perl-$version

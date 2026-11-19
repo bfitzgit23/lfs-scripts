@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libplacebo
 version=7.360.1
 release=1
-source="$name-$version.tar.gz::https://github.com/haasn/libplacebo/archive/v$version.tar.gz"
+source=(https://github.com/haasn/libplacebo/archive/v$version.tar.gz)
+renames=(libplacebo-7.360.1.tar.gz)
 
 pkg_build() {
 	CXXFLAGS="$CXXFLAGS -I/usr/include/glslang"

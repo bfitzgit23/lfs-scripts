@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ttf-ionicons
 version=7.1.2
 release=1
-source="$name-$version.tar.gz::https://github.com/ionic-team/ionicons/archive/v$version.tar.gz"
+source=(https://github.com/ionic-team/ionicons/archive/v$version.tar.gz)
+renames=(ttf-ionicons-7.1.2.tar.gz)
 
 pkg_build() {
 	cd "ionicons-$version"

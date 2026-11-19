@@ -8,7 +8,8 @@ version=4.4
 release=1
 lz_tag=3_8
 lz_version=3.8.0
-source="lazarus-$lz_version.tar.bz2::https://gitlab.com/freepascal.org/lazarus/lazarus/-/archive/lazarus_${lz_tag}/lazarus-lazarus_${lz_tag}.tar.bz2"
+source=(https://gitlab.com/freepascal.org/lazarus/lazarus/-/archive/lazarus_${lz_tag}/lazarus-lazarus_${lz_tag}.tar.bz2)
+renames=(lazarus-3.8.0.tar.bz2)
 
 pkg_build() {
     cd lazarus-lazarus_${lz_tag}/lcl/interfaces/qt5/cbindings

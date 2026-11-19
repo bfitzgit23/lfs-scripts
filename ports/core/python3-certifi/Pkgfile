@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-certifi
 version=2026.10.23
 release=1
-source="$name-$version.tar.gz::https://pypi.io/packages/source/c/certifi/certifi-$version.tar.gz"
+source=(https://pypi.io/packages/source/c/certifi/certifi-$version.tar.gz)
+renames=(python3-certifi-2026.10.23.tar.gz)
 
 pkg_build() {
 	

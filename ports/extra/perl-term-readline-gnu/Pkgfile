@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-term-readline-gnu
 version=1.47
 release=1
-source="$name-$version.tar.gz::https://cpan.metacpan.org/authors/id/H/HA/HAYASHI/Term-ReadLine-Gnu-$version.tar.gz"
+source=(https://cpan.metacpan.org/authors/id/H/HA/HAYASHI/Term-ReadLine-Gnu-$version.tar.gz)
+renames=(perl-term-readline-gnu-1.47.tar.gz)
 
 pkg_build() {
 	cd Term-ReadLine-Gnu-$version

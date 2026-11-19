@@ -7,7 +7,8 @@ name=osx-arc-theme
 version=1.4.7
 release=1
 noextract="$name-$version.deb"
-source="$name-$version.deb::https://gitlab.com/LinxGem33/X-Arc-White/uploads/26bccc81678392584149afa3167f8e78/osx-arc-collection_${version}_amd64.deb"
+source=(https://gitlab.com/LinxGem33/X-Arc-White/uploads/26bccc81678392584149afa3167f8e78/osx-arc-collection_${version}_amd64.deb)
+renames=(osx-arc-theme-1.4.7.deb)
 
 pkg_build() {
 	bsdtar xf $name-$version.deb

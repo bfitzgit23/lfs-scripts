@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=macchina
 version=6.4.0
 release=1
-source="$name-$version.tar.gz::https://github.com/Macchina-CLI/$name/archive/v$version.tar.gz"
+source=(https://github.com/Macchina-CLI/$name/archive/v$version.tar.gz)
+renames=(macchina-6.4.0.tar.gz)
 
 pkg_build() {
 

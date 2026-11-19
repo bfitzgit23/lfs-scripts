@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=android-udev
 version=20260423
 release=1
-source="android-udev-$version.zip::https://github.com/M0Rf30/android-udev-rules/archive/$version.zip"
+source=(https://github.com/M0Rf30/android-udev-rules/archive/$version.zip)
+renames=(android-udev-20260423.zip)
 
 pkg_build() {
   cd android-udev-rules-$version

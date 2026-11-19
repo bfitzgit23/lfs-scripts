@@ -19,7 +19,8 @@ backup="etc/s6/rc.local
         etc/s6/config/hwclock.conf
         etc/s6/config/mount-tmpfs.conf
         etc/s6/config/udevd.conf"
-source="$name-$version-$commit.tar.gz::https://codeberg.org/venomlinux/s6-base/archive/$commit.tar.gz"
+source=(https://codeberg.org/venomlinux/s6-base/archive/$commit.tar.gz)
+renames=(s6-base-20250126-1d5f8b65bfef227e43aa7b7bd54072500ecb0ba2.tar.gz)
 
 pkg_build() {
 	cd $name

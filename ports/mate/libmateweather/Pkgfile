@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libmateweather
 version=1.28.2
 release=1
-source="$name-$version.tar.gz::https://github.com/mate-desktop/libmateweather/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/mate-desktop/libmateweather/archive/refs/tags/v$version.tar.gz)
+renames=(libmateweather-1.28.2.tar.gz)
 
 pkg_build() {
 

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-numpy
 version=2.5.5
 release=1
-source="$name-$version.tar.gz::https://github.com/numpy/numpy/releases/download/v${version}/numpy-${version}.tar.gz"
+source=(https://github.com/numpy/numpy/releases/download/v${version}/numpy-${version}.tar.gz)
+renames=(python3-numpy-2.5.5.tar.gz)
 
 pkg_build() {
 	cd numpy-$version

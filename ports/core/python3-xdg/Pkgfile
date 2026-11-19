@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-xdg
 version=0.28
 release=2
-source="$name-$version.tar.gz::https://pypi.org/packages/source/p/pyxdg/pyxdg-$version.tar.gz"
+source=(https://pypi.org/packages/source/p/pyxdg/pyxdg-$version.tar.gz)
+renames=(python3-xdg-0.28.tar.gz)
 
 pkg_build() {
 	cd pyxdg-$version

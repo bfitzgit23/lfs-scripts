@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=i3status-rust
 version=0.36.1
 release=1
-source="$name-$version.tar.gz::https://github.com/greshake/$name/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/greshake/$name/archive/refs/tags/v$version.tar.gz)
+renames=(i3status-rust-0.36.1.tar.gz)
 
 pkg_build() {
 	

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=brother-mfc-l2710dw
 version=4.0.0
 release=1
-source="$name-$version.rpm::http://download.brother.com/welcome/dlf103525/mfcl2710dwpdrv-$version-$release.i386.rpm"
+source=(http://download.brother.com/welcome/dlf103525/mfcl2710dwpdrv-$version-$release.i386.rpm)
+renames=(brother-mfc-l2710dw-4.0.0.rpm)
 
 pkg_build() {
   _model="MFCL2710DW"

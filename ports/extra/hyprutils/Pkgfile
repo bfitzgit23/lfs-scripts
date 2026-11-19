@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=hyprutils
 version=0.13.1
 release=1
-source="$name-$version.tar.gz::https://github.com/hyprwm/hyprutils/archive/v$version.tar.gz"
+source=(https://github.com/hyprwm/hyprutils/archive/v$version.tar.gz)
+renames=(hyprutils-0.13.1.tar.gz)
 
 pkg_build() {
         cmake -S  $name-$version -B build -G Ninja \

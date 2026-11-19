@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=cli11
 version=2.6.2
 release=1
-source="$name-$version.tar.gz::https://github.com/CLIUtils/CLI11/archive/v$version/CLI11-$version.tar.gz"
+source=(https://github.com/CLIUtils/CLI11/archive/v$version/CLI11-$version.tar.gz)
+renames=(cli11-2.6.2.tar.gz)
 
 pkg_build() {
     cmake -S CLI11-$version -B build -G Ninja \

@@ -7,7 +7,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=hyprpaper
 version=0.8.4
 release=1
-source="$name-$version.tar.gz::https://github.com/hyprwm/hyprpaper/archive/v$version.tar.gz"
+source=(https://github.com/hyprwm/hyprpaper/archive/v$version.tar.gz)
+renames=(hyprpaper-0.8.4.tar.gz)
 
 pkg_build() {
 	cmake -B build \

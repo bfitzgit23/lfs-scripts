@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=tuba
 version=0.10.3
 release=1
-source="$name-$version.tar.gz::https://github.com/GeopJr/Tuba/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/GeopJr/Tuba/archive/refs/tags/v$version.tar.gz)
+renames=(tuba-0.10.3.tar.gz)
 
 pkg_build() {
 	venom-meson Tuba-$version build

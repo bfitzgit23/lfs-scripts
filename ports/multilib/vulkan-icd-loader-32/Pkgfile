@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=vulkan-icd-loader-32
 version=1.4.350.1
 release=1
-source="vulkan-icd-loader-$version.tar.gz::https://github.com/khronosgroup/vulkan-loader/archive/${name%%-*}-sdk-$version/Vulkan-Loader-$version.tar.gz"
+source=(https://github.com/khronosgroup/vulkan-loader/archive/${name%%-*}-sdk-$version/Vulkan-Loader-$version.tar.gz)
+renames=(vulkan-icd-loader-1.4.350.1.tar.gz)
 
 pkg_build() {
 	cd Vulkan-Loader-${name%%-*}-sdk-$version

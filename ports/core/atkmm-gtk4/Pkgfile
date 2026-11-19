@@ -7,7 +7,8 @@ name=atkmm-gtk4
 nm=atkmm
 version=2.36.4
 release=1
-source="$name-$version.tar.xz::https://gitlab.gnome.org/GNOME/${name%-*}/-/archive/$version/${name%-*}-$version.tar.bz2"
+source=(https://gitlab.gnome.org/GNOME/${name%-*}/-/archive/$version/${name%-*}-$version.tar.bz2)
+renames=(atkmm-gtk4-2.36.4.tar.xz)
 
 pkg_build() {
 	venom-meson ${name%-*}-$version build \

@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libolm
 version=3.2.16
 release=2
-source="$name-$version.tar.bz2::https://gitlab.matrix.org/matrix-org/olm/-/archive/$version/olm-$version.tar.bz2"
+source=(https://gitlab.matrix.org/matrix-org/olm/-/archive/$version/olm-$version.tar.bz2)
+renames=(libolm-3.2.16.tar.bz2)
 
 pkg_build() {
   cmake -S olm-$version -B build -G Ninja \

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=fuse3
 version=3.18.2
 release=1
-source="$name-$version.tar.gz::https://github.com/libfuse/libfuse/archive/refs/tags/fuse-${version}.tar.gz"
+source=(https://github.com/libfuse/libfuse/archive/refs/tags/fuse-${version}.tar.gz)
+renames=(fuse3-3.18.2.tar.gz)
 
 pkg_build() {
 	

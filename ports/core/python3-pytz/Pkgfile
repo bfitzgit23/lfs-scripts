@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-pytz
 version=2026.6
 release=1
-source="$name-$version.tar.gz::https://pypi.io/packages/source/p/pytz/pytz-$version.tar.gz"
+source=(https://pypi.io/packages/source/p/pytz/pytz-$version.tar.gz)
+renames=(python3-pytz-2026.6.tar.gz)
 
 pkg_build() {
   cd pytz-$version

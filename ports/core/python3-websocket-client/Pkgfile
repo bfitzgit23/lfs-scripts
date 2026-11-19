@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-websocket-client
 version=1.9.2
 release=1
-source="$name-$version.tar.gz::https://pypi.io/packages/source/w/websocket-client/websocket_client-$version.tar.gz"
+source=(https://pypi.io/packages/source/w/websocket-client/websocket_client-$version.tar.gz)
+renames=(python3-websocket-client-1.9.2.tar.gz)
 
 pkg_build() {
 	cd websocket_client-$version

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=opencl-headers
 version=2026.05.29
 release=1
-source="$name-$version.tar.gz::https://github.com/KhronosGroup/OpenCL-Headers/archive/v$version.tar.gz"
+source=(https://github.com/KhronosGroup/OpenCL-Headers/archive/v$version.tar.gz)
+renames=(opencl-headers-2026.05.29.tar.gz)
 
 pkg_build() {
 	cmake -S OpenCL-Headers-$version -B build -G Ninja \

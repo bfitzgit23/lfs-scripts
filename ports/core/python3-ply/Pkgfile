@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-ply
 version=3.11
 release=3
-source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/e5/69/882ee5c9d017149285cab114ebeab373308ef0f874fcdac9beb90e0ac4da/ply-$version.tar.gz"
+source=(https://files.pythonhosted.org/packages/e5/69/882ee5c9d017149285cab114ebeab373308ef0f874fcdac9beb90e0ac4da/ply-$version.tar.gz)
+renames=(python3-ply-3.11.tar.gz)
 
 pkg_build() {
 	cd ${name##python3-}-$version

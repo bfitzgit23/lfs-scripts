@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=wxgtk3
 version=3.2.10
 release=1
-source="$name-$version.tar.gz::https://github.com/wxWidgets/wxWidgets/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/wxWidgets/wxWidgets/archive/refs/tags/v$version.tar.gz)
+renames=(wxgtk3-3.2.10.tar.gz)
 
 pkg_build() {
 	cmake -B build -S wxWidgets-$version \

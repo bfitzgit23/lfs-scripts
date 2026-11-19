@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=whois
 version=5.6.6
 release=1
-source="$name-$version.tar.xz::https://ftp.debian.org/debian/pool/main/w/whois/whois_$version.tar.xz"
+source=(https://ftp.debian.org/debian/pool/main/w/whois/whois_$version.tar.xz)
+renames=(whois-5.6.6.tar.xz)
 
 pkg_build() {
 	cd work

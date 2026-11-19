@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=keychain
 version=2.9.8
 release=1
-source="$name-$version.tar.gz::https://github.com/funtoo/keychain/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/funtoo/keychain/archive/refs/tags/$version.tar.gz)
+renames=(keychain-2.9.8.tar.gz)
 
 pkg_build() {
 	make

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=imv
 version=5.0.1
 release=1
-source="$name-$version.tar.gz::https://git.sr.ht/~exec64/imv/archive/v$version.tar.gz"
+source=(https://git.sr.ht/~exec64/imv/archive/v$version.tar.gz)
+renames=(imv-5.0.1.tar.gz)
 
 pkg_build() {
 	venom-meson build $name-v$version -Dlibnsgif=disabled 

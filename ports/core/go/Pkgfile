@@ -6,8 +6,9 @@ name=go
 version=1.26.4
 release=1
 noextract="${name}-${version}.linux-amd64.tar.gz"
-source=($name-${version}.src.tar.gz::https://golang.org/dl/go${version}.src.tar.gz 
-	${name}-${version}.linux-amd64.tar.gz::https://golang.org/dl/go${version}.linux-amd64.tar.gz)
+source=(https://golang.org/dl/go${version}.src.tar.gz 
+	https://golang.org/dl/go${version}.linux-amd64.tar.gz)
+renames=(go-1.26.4.src.tar.gz go-1.26.4.linux-amd64.tar.gz)
 NO_STRIP=yes
 
 pkg_build() {

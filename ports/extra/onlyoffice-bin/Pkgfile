@@ -6,8 +6,9 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=onlyoffice-bin
 version=9.4.0
 release=1
-source=(onlyoffice-bin-${version}.deb::https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v${version}/onlyoffice-desktopeditors_amd64.deb
+source=(https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v${version}/onlyoffice-desktopeditors_amd64.deb
         010-onlyoffice-bin-fix-document-opening.patch)
+renames=(onlyoffice-bin-9.4.0.deb SKIP)
 
 pkg_build() {
 	mkdir -p "onlyoffice-${version}/pkg"

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=cowsay
 version=3.8.4
 release=1
-source="$name-$version.tar.gz::https://github.com/cowsay-org/cowsay/archive/v$version.tar.gz"
+source=(https://github.com/cowsay-org/cowsay/archive/v$version.tar.gz)
+renames=(cowsay-3.8.4.tar.gz)
 
 pkg_build() {
 	make DESTDIR=$PKG install prefix=/usr

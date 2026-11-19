@@ -8,7 +8,8 @@ version=20241211
 release=1
 commit=72afa5c8ac728b882d5fef49bf1c01ef8625d321
 backup=" etc/s6/s6-db-reload.conf "
-source="$name-$version.tar.gz::https://codeberg.org/venomlinux/s6-scripts/archive/$commit.tar.gz"
+source=(https://codeberg.org/venomlinux/s6-scripts/archive/$commit.tar.gz)
+renames=(s6-scripts-20241211.tar.gz)
 
 pkg_build() {
 	make -C $name

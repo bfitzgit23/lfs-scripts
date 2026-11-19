@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-cairo
 version=1.29.0
 release=1
-source="$name-$version.tar.gz::https://github.com/pygobject/pycairo/releases/download/v$version/pycairo-$version.tar.gz"
+source=(https://github.com/pygobject/pycairo/releases/download/v$version/pycairo-$version.tar.gz)
+renames=(python3-cairo-1.29.0.tar.gz)
 
 pkg_build() {
 

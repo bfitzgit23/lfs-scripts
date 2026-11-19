@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=yetris
 version=2.3.0
 release=1
-source="$name-$version.tar.gz::https://github.com/alexdantas/$name/archive/v$version.tar.gz"
+source=(https://github.com/alexdantas/$name/archive/v$version.tar.gz)
+renames=(yetris-2.3.0.tar.gz)
 
 pkg_build() {
 	

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=numix-icon-theme-circle
 version=26.02.21
 release=2
-source="$name-$version.tar.gz::https://github.com/numixproject/numix-icon-theme-circle/archive/$version.tar.gz"
+source=(https://github.com/numixproject/numix-icon-theme-circle/archive/$version.tar.gz)
+renames=(numix-icon-theme-circle-26.02.21.tar.gz)
 
 pkg_build() {
 	install -dm 755 $PKG/usr/share/icons

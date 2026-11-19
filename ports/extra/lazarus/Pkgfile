@@ -7,7 +7,8 @@ name=lazarus
 version=4.8
 release=1
 lz_tag=$(echo $version | sed 's/\./_/')
-source="$name-$version.tar.bz2::https://gitlab.com/freepascal.org/lazarus/lazarus/-/archive/lazarus_${lz_tag}/lazarus-lazarus_${lz_tag}.tar.bz2"
+source=(https://gitlab.com/freepascal.org/lazarus/lazarus/-/archive/lazarus_${lz_tag}/lazarus-lazarus_${lz_tag}.tar.bz2)
+renames=(lazarus-4.8.tar.bz2)
 
 pkg_build() {
 	cd lazarus-lazarus_${lz_tag}

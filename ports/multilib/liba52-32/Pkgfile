@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=liba52-32
 version=0.8.0
 release=1
-source="${name%-*}-$version.tar.gz::https://distfiles.adelielinux.org/source/a52dec/a52dec-$version.tar.gz"
+source=(https://distfiles.adelielinux.org/source/a52dec/a52dec-$version.tar.gz)
+renames=(liba52-0.8.0.tar.gz)
 
 pkg_build() {
         export CC="gcc -m32"

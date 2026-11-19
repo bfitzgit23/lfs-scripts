@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-dbus
 version=1.4.0
 release=1
-source="$name-$version.tar.gz::http://dbus.freedesktop.org/releases/dbus-python/dbus-python-$version.tar.xz"
+source=(http://dbus.freedesktop.org/releases/dbus-python/dbus-python-$version.tar.xz)
+renames=(python3-dbus-1.4.0.tar.gz)
 
 pkg_build() {
 	export PYTHON=/usr/bin/python3

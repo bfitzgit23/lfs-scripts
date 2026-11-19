@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=portaudio
 version=19.7.0
 release=1
-source="$name-$version.tar.gz::https://github.com/PortAudio/portaudio/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/PortAudio/portaudio/archive/refs/tags/v$version.tar.gz)
+renames=(portaudio-19.7.0.tar.gz)
 
 pkg_build() {
     ./configure --prefix=/usr --enable-cxx --enable-static=no

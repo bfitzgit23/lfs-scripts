@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=screenfetch
 version=3.9.9
 release=1
-source="$name-$version.tar.gz::https://github.com/KittyKatt/screenFetch/archive/v$version.tar.gz"
+source=(https://github.com/KittyKatt/screenFetch/archive/v$version.tar.gz)
+renames=(screenfetch-3.9.9.tar.gz)
 
 pkg_build() {
 	cd screenFetch-$version

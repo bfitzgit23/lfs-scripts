@@ -6,7 +6,8 @@ homepage="https://mangowm.github.io/"
 name=mangowc
 version=0.14.0
 release=1
-source="$name-$version.tar.gz::https://github.com/DreamMaoMao/mangowc/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/DreamMaoMao/mangowc/archive/refs/tags/$version.tar.gz)
+renames=(mangowc-0.14.0.tar.gz)
 
 pkg_build() {
 	venom-meson mango-$version build 

@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=bspwm-rounded
 version=0.9.10
 release=1
-source="$name-$version.tar.gz::https://github.com/phuhl/bspwm-rounded/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/phuhl/bspwm-rounded/archive/refs/tags/$version.tar.gz)
+renames=(bspwm-rounded-0.9.10.tar.gz)
 
 pkg_build() {
 

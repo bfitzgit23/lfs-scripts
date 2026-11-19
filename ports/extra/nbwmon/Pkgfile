@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nbwmon
 version=0.5.2
 release=1
-source="$name-$version.tar.gz::https://github.com/causes-/$name/archive/$version.tar.gz"
+source=(https://github.com/causes-/$name/archive/$version.tar.gz)
+renames=(nbwmon-0.5.2.tar.gz)
 
 pkg_build() {
 

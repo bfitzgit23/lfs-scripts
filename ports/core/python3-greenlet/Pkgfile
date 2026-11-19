@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-greenlet
 version=3.5.6
 release=1
-source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/g/greenlet/greenlet-$version.tar.gz"
+source=(https://files.pythonhosted.org/packages/source/g/greenlet/greenlet-$version.tar.gz)
+renames=(python3-greenlet-3.5.6.tar.gz)
 
 pkg_build() {
 	cd greenlet-$version

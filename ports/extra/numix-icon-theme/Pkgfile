@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=numix-icon-theme
 version=25.10.26
 release=2
-source="$name-$version.tar.gz::https://github.com/numixproject/numix-icon-theme/archive/$version.tar.gz"
+source=(https://github.com/numixproject/numix-icon-theme/archive/$version.tar.gz)
+renames=(numix-icon-theme-25.10.26.tar.gz)
 
 pkg_build() {
 	install -dm 755 $PKG/usr/share/icons

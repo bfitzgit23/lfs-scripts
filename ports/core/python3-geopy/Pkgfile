@@ -7,7 +7,8 @@ name=python3-geopy
 nm=geopy
 version=2.5.0
 release=3
-source="$name-$version.tar.gz::https://github.com/geopy/geopy/archive/$version.tar.gz"
+source=(https://github.com/geopy/geopy/archive/$version.tar.gz)
+renames=(python3-geopy-2.5.0.tar.gz)
 
 pkg_build() {
 	cd $nm-$version

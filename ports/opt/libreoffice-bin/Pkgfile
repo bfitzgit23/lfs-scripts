@@ -9,7 +9,8 @@ name=libreoffice-bin
 version=26.2.7
 release=1
 build_work=disk
-source="LibreOffice_${version}_Linux_x86-64_deb.tar.gz::https://download.documentfoundation.org/libreoffice/stable/${version}/deb/x86_64/LibreOffice_${version}_Linux_x86-64_deb.tar.gz"
+source=(https://download.documentfoundation.org/libreoffice/stable/${version}/deb/x86_64/LibreOffice_${version}_Linux_x86-64_deb.tar.gz)
+renames=(LibreOffice_26.2.7_Linux_x86-64_deb.tar.gz)
 
 pkg_build() {
 	# The archive unpacks to a versioned directory whose fourth component is

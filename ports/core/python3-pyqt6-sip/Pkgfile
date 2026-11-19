@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-pyqt6-sip
 version=13.13.1
 release=1
-source="$name-$version.tar.gz::https://pypi.python.org/packages/source/P/PyQt6-sip/pyqt6_sip-$version.tar.gz"
+source=(https://pypi.python.org/packages/source/P/PyQt6-sip/pyqt6_sip-$version.tar.gz)
+renames=(python3-pyqt6-sip-13.13.1.tar.gz)
 
 pkg_build() {
 	cd pyqt6_sip-$version

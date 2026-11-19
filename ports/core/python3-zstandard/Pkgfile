@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-zstandard
 version=0.25.0
 release=1
-source="$name-$version.tar.gz::https://github.com/indygreg/python-zstandard/archive/$version.tar.gz"
+source=(https://github.com/indygreg/python-zstandard/archive/$version.tar.gz)
+renames=(python3-zstandard-0.25.0.tar.gz)
 
 pkg_build() {
 	cd python-zstandard-$version

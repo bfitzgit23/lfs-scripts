@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=wf-recorder
 version=0.6.0
 release=1
-source="$name-$version.tar.gz::https://github.com/ammen99/wf-recorder/archive/v$version.tar.gz"
+source=(https://github.com/ammen99/wf-recorder/archive/v$version.tar.gz)
+renames=(wf-recorder-0.6.0.tar.gz)
 
 pkg_build() {
 	venom-meson $name-$version build

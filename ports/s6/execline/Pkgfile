@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=execline
 version=2.9.9.1
 release=1
-source="$name-$version.tar.gz::https://git.sr.ht/~skarnet/execline/archive/v$version.tar.gz"
+source=(https://git.sr.ht/~skarnet/execline/archive/v$version.tar.gz)
+renames=(execline-2.9.9.1.tar.gz)
 
 pkg_build() {
 	cd $name-v$version

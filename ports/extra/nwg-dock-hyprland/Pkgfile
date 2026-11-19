@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=nwg-dock-hyprland
 version=0.4.11
 release=1
-source="$name-$version.tar.gz::https://github.com/nwg-piotr/nwg-dock-hyprland/archive/v$version.tar.gz"
+source=(https://github.com/nwg-piotr/nwg-dock-hyprland/archive/v$version.tar.gz)
+renames=(nwg-dock-hyprland-0.4.11.tar.gz)
 
 pkg_build() {
 

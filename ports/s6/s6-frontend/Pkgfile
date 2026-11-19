@@ -7,8 +7,9 @@ name=s6-frontend
 version=0.0.1.2
 release=1
 
-source=($name-$version.tar.gz::https://git.sr.ht/~skarnet/s6-frontend/archive/v$version.tar.gz
+source=(https://git.sr.ht/~skarnet/s6-frontend/archive/v$version.tar.gz
 	s6-frontend.conf)
+renames=(s6-frontend-0.0.1.2.tar.gz SKIP)
 
 pkg_build() {
 	cd $name-v$version  

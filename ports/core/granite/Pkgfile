@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=granite
 version=7.8.1
 release=1
-source="$name-$version.tar.gz::https://github.com/elementary/granite/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/elementary/granite/archive/refs/tags/$version.tar.gz)
+renames=(granite-7.8.1.tar.gz)
 
 pkg_build() {
 	

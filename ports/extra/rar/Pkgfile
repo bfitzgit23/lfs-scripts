@@ -7,7 +7,8 @@ version=7.22
 _version=722
 release=1
 backup="etc/rarfiles.lst"
-source="$name-$version.tar.gz::https://www.rarlab.com/rar/rarlinux-x64-${_version}.tar.gz"
+source=(https://www.rarlab.com/rar/rarlinux-x64-${_version}.tar.gz)
+renames=(rar-7.22.tar.gz)
 
 pkg_build() {
 	cd $name

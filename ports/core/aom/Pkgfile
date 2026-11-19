@@ -7,7 +7,8 @@ name=aom
 version=3.14.1
 release=1
 IGNORE_MDSUM=yes
-source="$name-$version.tar.gz::https://storage.googleapis.com/aom-releases/libaom-$version.tar.gz"
+source=(https://storage.googleapis.com/aom-releases/libaom-$version.tar.gz)
+renames=(aom-3.14.1.tar.gz)
 
 pkg_build() {
 	

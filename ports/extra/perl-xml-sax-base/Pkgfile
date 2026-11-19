@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=perl-xml-sax-base
 version=1.09
 release=2
-source="$name-$version.tar.gz::http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-SAX-Base-$version.tar.gz"
+source=(http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-SAX-Base-$version.tar.gz)
+renames=(perl-xml-sax-base-1.09.tar.gz)
 
 pkg_build() {
 	cd XML-SAX-Base-$version

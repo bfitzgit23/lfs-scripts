@@ -7,7 +7,8 @@ name=cronie-s6
 version=20260326
 release=1
 commit=2b193364ce70f46b0ec2b753aefd058e6d0618e5
-source="s6-services-$version-$commit.tar.gz::https://codeberg.org/venomlinux/s6-services/archive/$commit.tar.gz"
+source=(https://codeberg.org/venomlinux/s6-services/archive/$commit.tar.gz)
+renames=(s6-services-20260326-2b193364ce70f46b0ec2b753aefd058e6d0618e5.tar.gz)
 
 pkg_build() {
     cd s6-services

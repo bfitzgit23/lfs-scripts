@@ -242,7 +242,7 @@ d:xdg-desktop-portal-lxqt
 d:yakuake
 d:zint
 f:29b0f8c706c6cacaa110a0121c7b5062:accounts-qml-module/Pkgfile
-f:609467f627b4f27fb3825b40cf6f6970:aha/Pkgfile
+f:cd066aae72e7c385c92bb5a70377fa5d:aha/Pkgfile
 f:3bd4680a2ff545df80803a1e3c9ca5a7:akonadi-calendar/Pkgfile
 f:85a646a85ce126f754b401811b949de6:akonadi-contacts/Pkgfile
 f:7262e4fa53873ba10782a574b91524b3:akonadi-import-wizard/Pkgfile
@@ -264,8 +264,8 @@ f:e107d7107dc68b41bfe937de52738b79:breeze/Pkgfile
 f:5faf4e0e800ed7b82b5833b141ec68b4:calendarsupport/Pkgfile
 f:9918f28f7c933dd96aca3b490d55c6ca:calligra/Pkgfile
 f:c7790cc8c4e7fb14bba7e88ccc658fc4:clinfo/Pkgfile
-f:d32fc2ef84ae76340072516afcfaa010:crystal-dock/Pkgfile
-f:00b119324979bff9e65a4e6dd4b829f8:cunit/Pkgfile
+f:6e0d1eba69587a71a18ddaa2ef6fe3ca:crystal-dock/Pkgfile
+f:6c55cd4525bf8125a21b486730a12ee9:cunit/Pkgfile
 f:c4ee76ffffad35369435d5f52552ed45:discount/Pkgfile
 f:762bce7722f87b25479e1e515fbe7e47:discover/Pkgfile
 f:13e19adbd8ab0057741bf1d05efcf67f:dlpack/Pkgfile
@@ -273,7 +273,7 @@ f:8ee8a0e041203d7273a25986d050bea5:docbook-xsl1/Pkgfile
 f:a457356f836a5e343196cf5ff5d9ca3f:dolphin-plugins/Pkgfile
 f:d1ca33e166b1f90aa1223099eea78659:dolphin/Pkgfile
 f:6f683f5b26e716a3d51a597851d4e55e:dragon/Pkgfile
-f:ee96775dba9a4582ecee14ff472810fd:easyeffects/Pkgfile
+f:cf3e34337e245d01e838ff0a2ce38cf6:easyeffects/Pkgfile
 f:5c0a6e22f901fd30dda072f1a4b6ae15:ebook-tools/Pkgfile
 f:d5cd04459bb7f0c173bbc226960b2fb0:eventviews/Pkgfile
 f:85a74fee5654837f1e0ccd03ffecae08:falkon/Pkgfile
@@ -462,7 +462,7 @@ f:46f34bdf51b14906b30978639dc7f38c:polkit-kde-agent-1/Pkgfile
 f:c34799ff6a31b274d50eb4d3a0ebac77:powerdevil/Pkgfile
 f:c8dfcd2e8e600ecc18346c98339f1745:print-manager/Pkgfile
 f:a7afc5be23a197248bc87f76c38cdcaa:prison/Pkgfile
-f:e95132cf6cb242c808023af8ee88038c:protonup-qt/Pkgfile
+f:610e4e2fecd0de99c803efae20f668eb:protonup-qt/Pkgfile
 f:f448239c1ef7df246690d039f649184c:pulseaudio-qt/Pkgfile
 f:a99a25b0c25d03df1b571c238fff8b9d:purpose/Pkgfile
 f:61b3ea620bf6f79968585b795787b0cc:qcoro/Pkgfile
@@ -475,7 +475,7 @@ f:2f30ada2e4f7370016e558c86533f0aa:signon-ui/Pkgfile
 f:fc54d0a65213c4b5898d0f2131579cf2:skanlite/Pkgfile
 f:e3a6d41a83ff19ec2887aa670ac70a0b:sonnet/Pkgfile
 f:e4171b16585aca7bfba28954c9211245:spectacle/Pkgfile
-f:2846a7b755e8c29fd030464c66216fe5:stb/Pkgfile
+f:bbabe5182f56822ea7ba8c83053f189d:stb/Pkgfile
 f:cb05f5cfe184feb269dd8a35af91f892:syndication/Pkgfile
 f:ff5e31e2128b5ac3e3325355f1359831:syntax-highlighting/Pkgfile
 f:92fc8389da2ee5c282c31d4a4d72ed3d:systemsettings/Pkgfile

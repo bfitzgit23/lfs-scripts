@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=remind
 version=06.02.07
 release=1
-source="$name-$version.tar.gz::https://dianne.skoll.ca/projects/$name/download/$name-$version.tar.gz"
+source=(https://dianne.skoll.ca/projects/$name/download/$name-$version.tar.gz)
+renames=(remind-06.02.07.tar.gz)
 
 
 pkg_build() {

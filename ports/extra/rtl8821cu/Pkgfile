@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=rtl8821cu
 version=20210916
 release=1
-source="$name-$version.tar.gz::https://github.com/morrownr/8821cu-$version/archive/main.zip"
+source=(https://github.com/morrownr/8821cu-$version/archive/main.zip)
+renames=(rtl8821cu-20210916.tar.gz)
 
 pkg_build() {
 	cd 8821cu-$version-main

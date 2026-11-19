@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-trove-classifiers
 version=2026.9.21.13
 release=1
-source="$name-$version.tar.gz::https://github.com/pypa/trove-classifiers/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/pypa/trove-classifiers/archive/refs/tags/$version.tar.gz)
+renames=(python3-trove-classifiers-2026.9.21.13.tar.gz)
 
 pkg_build() {
   cd trove-classifiers-$version

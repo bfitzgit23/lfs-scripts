@@ -7,8 +7,9 @@ name=spectrwm
 version=3.7.0
 _version=$(printf '%s' "$version" | tr '.' '_')
 release=1
-source=($name-$version.tar.gz::https://github.com/conformal/spectrwm/archive/SPECTRWM_$_version.tar.gz
+source=(https://github.com/conformal/spectrwm/archive/SPECTRWM_$_version.tar.gz
 	baraction.sh)
+renames=(spectrwm-3.7.0.tar.gz SKIP)
 
 pkg_build() {
 	cd $name-SPECTRWM_$_version

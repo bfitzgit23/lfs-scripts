@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=ada
 version=3.4.4
 release=1
-source="$name-$version.tar.gz::https://github.com/ada-url/ada/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/ada-url/ada/archive/refs/tags/v$version.tar.gz)
+renames=(ada-3.4.4.tar.gz)
 
 pkg_build() {
 	cmake -S $name-$version -B build \

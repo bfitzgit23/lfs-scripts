@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=protonplus
 version=0.5.21
 release=1
-source="$name-$version.tar.gz::https://github.com/Vysp3r/ProtonPlus/archive/refs/tags/v$version.tar.gz"
+source=(https://github.com/Vysp3r/ProtonPlus/archive/refs/tags/v$version.tar.gz)
+renames=(protonplus-0.5.21.tar.gz)
 
 pkg_build() {
   venom-meson "ProtonPlus-$version" build

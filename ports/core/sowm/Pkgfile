@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=sowm
 version=1.6
 release=1
-source="$name-$version.tar.gz::https://github.com/dylanaraps/$name/archive/refs/tags/$version.tar.gz"
+source=(https://github.com/dylanaraps/$name/archive/refs/tags/$version.tar.gz)
+renames=(sowm-1.6.tar.gz)
 
 pkg_build() {
 

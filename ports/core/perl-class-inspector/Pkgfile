@@ -5,7 +5,8 @@ homepage="https://search.cpan.org/dist/Class-Inspector"
 name=perl-class-inspector
 version=1.36
 release=1
-source="$name-$version.tar.gz::https://search.cpan.org/CPAN/authors/id/P/PL/PLICEASE/Class-Inspector-$version.tar.gz"
+source=(https://search.cpan.org/CPAN/authors/id/P/PL/PLICEASE/Class-Inspector-$version.tar.gz)
+renames=(perl-class-inspector-1.36.tar.gz)
 
 pkg_build() {
 	cd Class-Inspector-$version

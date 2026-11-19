@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=vivaldi-stable
 version=8.0.4033.54
 release=1
-source="$name-$version.deb::https://downloads.vivaldi.com/stable/vivaldi-stable_${version}-${release}_amd64.deb"
+source=(https://downloads.vivaldi.com/stable/vivaldi-stable_${version}-${release}_amd64.deb)
+renames=(vivaldi-stable-8.0.4033.54.deb)
 
 pkg_build() {
 	bsdtar -xf ${name}-${version}.deb

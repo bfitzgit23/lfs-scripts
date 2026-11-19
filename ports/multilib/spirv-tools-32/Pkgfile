@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=spirv-tools-32
 version=1.4.350.1
 release=1
-source="${name%-*}-$version.tar.gz::https://github.com/KhronosGroup/SPIRV-Tools/archive/vulkan-sdk-$version.tar.gz"
+source=(https://github.com/KhronosGroup/SPIRV-Tools/archive/vulkan-sdk-$version.tar.gz)
+renames=(spirv-tools-1.4.350.1.tar.gz)
 
 pkg_build() {
 	export CC="gcc -m32"

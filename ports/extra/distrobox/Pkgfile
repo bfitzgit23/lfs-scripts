@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=distrobox
 version=1.8.2.5
 release=1
-source="$name-$version.tar.gz::https://github.com/89luca89/$name/archive/$version.tar.gz"
+source=(https://github.com/89luca89/$name/archive/$version.tar.gz)
+renames=(distrobox-1.8.2.5.tar.gz)
 
 pkg_build() {
 	install -dm755  $PKG/usr

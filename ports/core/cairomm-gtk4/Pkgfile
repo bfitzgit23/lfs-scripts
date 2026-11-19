@@ -7,7 +7,8 @@ name=cairomm-gtk4
 nm=cairomm
 version=1.18.1
 release=1
-source="$name-$version.tar.xz::https://cairographics.org/releases/$nm-$version.tar.xz"
+source=(https://cairographics.org/releases/$nm-$version.tar.xz)
+renames=(cairomm-gtk4-1.18.1.tar.xz)
 
 pkg_build() {
 	venom-meson $nm-$version build

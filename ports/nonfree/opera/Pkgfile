@@ -7,10 +7,11 @@ name=opera
 version=140.0.6074.36
 release=1
 ffmpeg_ver=0.82.0
-source=($name-$version.deb::https://download3.operacdn.com/pub/opera/desktop/${version}/linux/${name}-stable_${version}_amd64.deb
+source=(https://download3.operacdn.com/pub/opera/desktop/${version}/linux/${name}-stable_${version}_amd64.deb
 https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/$ffmpeg_ver/$ffmpeg_ver-linux-x64.zip
  opera
  default)
+renames=(opera-140.0.6074.36.deb SKIP SKIP SKIP)
 
 pkg_build() {
         

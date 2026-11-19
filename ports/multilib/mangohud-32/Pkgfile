@@ -8,7 +8,8 @@ name=mangohud-32
 version=0.8.4
 
 release=1
-source="${name%-*}-$version.tar.xz::https://github.com/flightlessmango/MangoHud/releases/download/v$version/MangoHud-v$version-Source.tar.xz"
+source=(https://github.com/flightlessmango/MangoHud/releases/download/v$version/MangoHud-v$version-Source.tar.xz)
+renames=(mangohud-0.8.4.tar.xz)
 
 pkg_build() {
 	export CC="gcc -m32"

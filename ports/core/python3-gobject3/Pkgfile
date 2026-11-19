@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-gobject3
 version=3.56.3
 release=1
-source="$name-$version.tar.gz::https://gitlab.gnome.org/GNOME/pygobject/-/archive/$version/pygobject-$version.tar.gz"
+source=(https://gitlab.gnome.org/GNOME/pygobject/-/archive/$version/pygobject-$version.tar.gz)
+renames=(python3-gobject3-3.56.3.tar.gz)
 
 pkg_build() {
 	venom-meson pygobject-$version build \

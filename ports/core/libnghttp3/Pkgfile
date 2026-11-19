@@ -5,7 +5,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=libnghttp3
 version=1.17.0
 release=1
-source="$name-$version.tar.xz::https://github.com/ngtcp2/nghttp3/releases/download/v${version}/nghttp3-${version}.tar.xz"
+source=(https://github.com/ngtcp2/nghttp3/releases/download/v${version}/nghttp3-${version}.tar.xz)
+renames=(libnghttp3-1.17.0.tar.xz)
 
 pkg_build() {
 	cd nghttp3-$version

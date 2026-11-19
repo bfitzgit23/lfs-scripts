@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=python3-imagesize
 version=2.0.1
 release=1
-source="$name-$version.tar.gz::https://files.pythonhosted.org/packages/source/i/imagesize/${name#*-}-$version.tar.gz"
+source=(https://files.pythonhosted.org/packages/source/i/imagesize/${name#*-}-$version.tar.gz)
+renames=(python3-imagesize-2.0.1.tar.gz)
 
 pkg_build() {
 	cd ${name#*-}-$version

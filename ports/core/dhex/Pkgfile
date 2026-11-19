@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=dhex
 version=0.69
 release=1
-source="$name-$version.tar.gz::http://www.dettus.net/$name/${name}_${version}.tar.gz"
+source=(http://www.dettus.net/$name/${name}_${version}.tar.gz)
+renames=(dhex-0.69.tar.gz)
 
 pkg_build() {
 	cd ${name}_${version}

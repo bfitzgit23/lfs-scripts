@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=wiremix
 version=0.11.0
 release=1
-source="$name-$version.tar.gz::https://github.com/tsowell/wiremix/archive/v$version.tar.gz"
+source=(https://github.com/tsowell/wiremix/archive/v$version.tar.gz)
+renames=(wiremix-0.11.0.tar.gz)
 
 pkg_build() {
 	cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"

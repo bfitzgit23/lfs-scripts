@@ -6,7 +6,8 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 name=yash
 version=2.61
 release=1
-source="$name-$version.tar.gz::https://github.com/magicant/${name}/archive/${version}.tar.gz"
+source=(https://github.com/magicant/${name}/archive/${version}.tar.gz)
+renames=(yash-2.61.tar.gz)
 
 pkg_build() {
 
