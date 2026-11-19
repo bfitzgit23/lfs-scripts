@@ -103,7 +103,7 @@ f:b1bd9a7a28f349a64dc7173d87f06453:oxygen-icons4/Pkgfile
 f:511cf44981ac59c4f80e6c62fe62a278:phonon-backend-gstreamer/Pkgfile
 f:197974897a40b615589ea3c1d6fe387a:phonon4/Pkgfile
 f:c003b99fdeed4620950e1467b5ef1dc5:phonon4/phonon-4.10.3-cmp0022.patch.manual
-f:69127888a547a36900e885ae90f4ece4:qjson/Pkgfile
+f:144c3933493330c367d353cfaa193c5b:qjson/Pkgfile
 f:1526878ef0f3dd15a7aba8082673b8be:qt4/Pkgfile
 f:790cf802012e90f41fd3a0639b8747ef:qt4/qt4-4.8.7-linguist-pointer-compare.patch.manual
 f:04012dbd13bf1bcee73751ce78925386:qt4/qt4-4.8.7-qforeach-gcc9.patch.manual

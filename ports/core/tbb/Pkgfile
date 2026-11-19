@@ -4,12 +4,12 @@ homepage="https://www.threadingbuildingblocks.org"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=tbb
-version=2023.0.0
+version=2023.2.0
 release=1
 source="https://github.com/oneapi-src/oneTBB/archive/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	cd oneTBB-$version
+	cd $SRC/oneTBB-$version
 
 	cmake -B build -G Ninja \
 		-D CMAKE_INSTALL_PREFIX=/usr \

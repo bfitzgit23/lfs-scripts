@@ -294,9 +294,8 @@ f:74bd20976208ee8e4158153a05c4a100:pcmanfm-qt/.footprint
 f:3e2768ab9f069cd9d3d6af9ad6a8a8d7:pcmanfm-qt/.md5sum
 f:4a02cbf364cae9e9acec4aaa47e4ccb0:pcmanfm-qt/Pkgfile
 f:b126eeb16ed1a38f95d1bcb8f8c0318b:pcmanfm-qt/post-install
-f:2cedebc173676a4eeb669e8299e79569:plasma-wayland-protocols/.footprint
-f:8a384219c003714002227015dde968bd:plasma-wayland-protocols/.md5sum
-f:4908a9f9cdd29c402cb0c6ae9271aca4:plasma-wayland-protocols/Pkgfile
+f:426a7b474eea9a25f7d465545ef66d5f:plasma-wayland-protocols/.md5sum
+f:699dd30a8d0828df6b3cccc67d3090c6:plasma-wayland-protocols/Pkgfile
 f:d0c51b51558204486dc995f5b1f32079:polkit-qt/.footprint
 f:c4f39c01d3846f9c3cab5ba9d0edfb1c:polkit-qt/.md5sum
 f:dc4f38f83e9541c1262b9ba8c881d8c9:polkit-qt/Pkgfile

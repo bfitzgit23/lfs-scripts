@@ -1530,7 +1530,7 @@ f:b126eeb16ed1a38f95d1bcb8f8c0318b:gparted/post-install
 f:dadff0e3692253dcbc182b806ffbad88:gpgme/.footprint
 f:5d2245f0b38814bffdb916110d6ad016:gpgme/.md5sum
 f:0dee6b29fb5c0c7589c6472a919730a5:gpgme/Pkgfile
-f:bc7f3cb49ca4fbadbf2e0abb8e497d84:gpick/Pkgfile
+f:e075586a04897e134a726f7095bf2fce:gpick/Pkgfile
 f:b800c1e38d3efb4f6728ecdfa8dda0e2:gpicview/.footprint
 f:83d9b47ca96ed22eb43125e78496fbd4:gpicview/.md5sum
 f:512879c18c858cdac178c3ae7cc4e532:gpicview/Pkgfile
@@ -3091,7 +3091,7 @@ f:a03d1e6b41c5e2b794e0ab3a0c595467:xcursorgen/.md5sum
 f:e2842368a7a129ecdc8af93586e82568:xcursorgen/Pkgfile
 f:cab9d2259a1928c555334b41ba4879f1:xdelta3/.md5sum
 f:2bcc809592a06299b02b4c5ed29f4660:xdelta3/Pkgfile
-f:796d64d0c7f9785a86cbc065ae7da345:xdg-desktop-portal-hyprland/Pkgfile
+f:85cbf0efb4449791bcf579571de913a5:xdg-desktop-portal-hyprland/Pkgfile
 f:3704e55800836a2919b2b31239adf9c1:xdg-user-dirs/.footprint
 f:a0c3ad015cdb4742b32b0a53b681eaf2:xdg-user-dirs/.md5sum
 f:2c868b2e998bcc60cccd130b9e8f1092:xdg-user-dirs/Pkgfile

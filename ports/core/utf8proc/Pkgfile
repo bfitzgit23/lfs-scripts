@@ -3,13 +3,13 @@ homepage="https://github.com/JuliaStrings"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=utf8proc
-version=2.11.3
+version=2.12.0
 release=1
 source=(https://github.com/JuliaStrings/$name/archive/refs/tags/v$version.tar.gz)
-renames=(utf8proc-2.11.3.tar.gz)
+renames=(utf8proc-2.12.0.tar.gz)
 
 pkg_build() {
-	cmake -S $name-$version -B build \
+	cmake -S $SRC/$name-$version -B build \
 	        -DCMAKE_INSTALL_PREFIX=/usr \
 	        -DCMAKE_INSTALL_LIBDIR=lib \
 		-DCMAKE_INSTALL_LIBEXECDIR=lib \

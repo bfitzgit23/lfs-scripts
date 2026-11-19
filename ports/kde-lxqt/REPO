@@ -267,11 +267,11 @@ f:6e0d1eba69587a71a18ddaa2ef6fe3ca:crystal-dock/Pkgfile
 f:6c55cd4525bf8125a21b486730a12ee9:cunit/Pkgfile
 f:c4ee76ffffad35369435d5f52552ed45:discount/Pkgfile
 f:762bce7722f87b25479e1e515fbe7e47:discover/Pkgfile
-f:13e19adbd8ab0057741bf1d05efcf67f:dlpack/Pkgfile
+f:e2616910a609056b6cd13b0748dbe329:dlpack/Pkgfile
 f:a457356f836a5e343196cf5ff5d9ca3f:dolphin-plugins/Pkgfile
 f:d1ca33e166b1f90aa1223099eea78659:dolphin/Pkgfile
 f:6f683f5b26e716a3d51a597851d4e55e:dragon/Pkgfile
-f:cf3e34337e245d01e838ff0a2ce38cf6:easyeffects/Pkgfile
+f:646d5b4a151faf3527579380936c35ac:easyeffects/Pkgfile
 f:5c0a6e22f901fd30dda072f1a4b6ae15:ebook-tools/Pkgfile
 f:d5cd04459bb7f0c173bbc226960b2fb0:eventviews/Pkgfile
 f:85a74fee5654837f1e0ccd03ffecae08:falkon/Pkgfile
@@ -305,7 +305,7 @@ f:5945acf29ea18fc0775948331b54647d:kcontacts/Pkgfile
 f:75ac3a6b04ee10fd2979485b131bceae:kcrash/Pkgfile
 f:bc80f13d013fdea8dbff92e6f6269587:kdav/Pkgfile
 f:96d3d93308095224db11509c4830d63b:kdbusaddons/Pkgfile
-f:d39b1f09fd9b1c1ff94d9cee459bef26:kddockwidgets/Pkgfile
+f:b91759ae86a7851db425c6d435604705:kddockwidgets/Pkgfile
 f:4ff53cf3040fe8936f37c6c5dd8640fa:kde-cli-tools/Pkgfile
 f:df34d046d256ecddaca28f2a10e9829d:kde-gtk-config/Pkgfile
 f:00a35cbb6c1fc8dad4a23b94ca03d0aa:kdeclarative/Pkgfile
@@ -337,7 +337,7 @@ f:dc434a883a4eb1c57ca194dec7ab3d38:kinfocenter/Pkgfile
 f:04fa99c6ed737da9f56b5af7b787abae:kio-admin/Pkgfile
 f:27edb42460b175fe6bf339851af6b43d:kio-extras/Pkgfile
 f:c6be3ba8301f0b8747860ea1f2ff082a:kio/Pkgfile
-f:b3a2c9c068cecf00ff5e8904869b1052:kirigami-addons/Pkgfile
+f:04a4ed02fac03d0610a0ed2561f7742e:kirigami-addons/Pkgfile
 f:ac39af960d6221674b0e349e255752b1:kirigami/Pkgfile
 f:f9ba15540877bf2a1817974e71b34ade:kitemmodels/Pkgfile
 f:76fd1d7908813841a8e79cf674b4f22e:kitemviews/Pkgfile
@@ -382,7 +382,7 @@ f:5c25914594456d224662d71e872db03a:ksshaskpass/Pkgfile
 f:97f005de0529f698f085c32509f43eb0:kstatusnotifieritem/Pkgfile
 f:69899e7b37f0b537791650c01be7d32f:ksvg/Pkgfile
 f:85c335db6b76b7c48b23a8d8ec9b9982:ksystemstats/Pkgfile
-f:389121daf589fef733ee873111ba3d09:ktextaddons/Pkgfile
+f:5a74d3d4a465a100acbd25b4545697e2:ktextaddons/Pkgfile
 f:5d958404a01cdf8a39a239908418a3ff:ktexteditor/Pkgfile
 f:0fd5b07797fa08e418828cb4d5beea9b:ktexttemplate/Pkgfile
 f:5b017f07fc83c006a3b59fb150765d5e:ktextwidgets/Pkgfile
@@ -401,7 +401,7 @@ f:f714bb8f9dd009049b3d8e776a4ec60c:kwin/Pkgfile
 f:590806280e0589f183507ecdee14354a:kwrited/Pkgfile
 f:819cdb9e15d386905e0cad5b5fcb1170:kxmlgui/Pkgfile
 f:3dc8eb9d7851a357160ffb0580959920:layer-shell-qt/Pkgfile
-f:357a1c2d7b50c9c5a240ad1f245cbcab:libdbusmenu-lxqt/Pkgfile
+f:898bf177ffc7bf379a956cf9777147b5:libdbusmenu-lxqt/Pkgfile
 f:bb82112eff20e22da4be114089729384:libgravatar/Pkgfile
 f:a3044db6127bc0e0e009e048725f8c1f:libkdcraw/Pkgfile
 f:1bbd2aa31f3d97dfbb23248d535af735:libkdepim/Pkgfile
@@ -412,12 +412,12 @@ f:d5978b3953cdedc2752d4f73d34b8991:libksane/Pkgfile
 f:9b73b6e2995facceb58b32e437e19bd1:libksieve/Pkgfile
 f:e601009ec047203eaedf7c073ed2691c:libksysguard/Pkgfile
 f:de4c616dda5377492731147b18851d78:libktorrent/Pkgfile
-f:aeb4d32816f21e0d3b735f547b2d3733:libmysofa/Pkgfile
+f:5e576c5c05aaf884dd23ef9133e4661d:libmysofa/Pkgfile
 f:b6fe3b6f068659406915a445de8874a7:libphonenumber/Pkgfile
 f:c4e65af487b0f40d0e83ebcb8e7c2879:libplasma/Pkgfile
 f:238f925307bba962a28af7927ee50315:libprocps/Pkgfile
 f:d293a80dc42b730894298884e02cb288:libquotient/Pkgfile
-f:21e8a2ac305bece8f34f84b2a10aac07:lxqt-wayland-session/Pkgfile
+f:a3f82a53841430e0d693e64a7a133b5e:lxqt-wayland-session/Pkgfile
 f:3d61cf2d4a1c9486e2b46ba6bf88ba92:mailcommon/Pkgfile
 f:505701845fb4ecd88572637cde73350b:mailimporter/Pkgfile
 f:39860d9a332cfb605d2b7d315787b15f:mathjax/Pkgfile
@@ -426,7 +426,7 @@ f:9ffef148c6584704724f4bce30c2ebe7:messagelib/Pkgfile
 f:a5a90e9030bc06bc828789a05a186975:milou/Pkgfile
 f:81f53b25979f1865fa1da1d881dab6b5:mimetreeparser/Pkgfile
 f:197023b233e4cf6c09c88b575a5d3dff:modemmanager-qt/Pkgfile
-f:988345ec2a7e16bb9101e140430155c8:mpvqt/Pkgfile
+f:61642758a10080002eb97b3b5ded9943:mpvqt/Pkgfile
 f:6bccba1557e4b4b802ade1ef7d2434da:neochat/Pkgfile
 f:6e30c3119fde4a49f610e25582a98c42:networkmanager-qt/Pkgfile
 f:fc5c1f4ca62dcc4db9b34aa4cd03eff4:ocean-sound-theme/Pkgfile
@@ -465,7 +465,7 @@ f:f448239c1ef7df246690d039f649184c:pulseaudio-qt/Pkgfile
 f:a99a25b0c25d03df1b571c238fff8b9d:purpose/Pkgfile
 f:61b3ea620bf6f79968585b795787b0cc:qcoro/Pkgfile
 f:5e05f5d9047f76dd818b788b611ba009:qqc2-desktop-style/Pkgfile
-f:9d6720aa8adf34608fbef13913006eeb:qtkeychain6/Pkgfile
+f:fd5e6d6c7a0ab6b261773422945da0fb:qtkeychain6/Pkgfile
 f:7000386bcc88cd4c3871a7fc930ac0c5:sddm-kcm/Pkgfile
 f:2e3734b7bc6af0d2457b057b0af08892:signon-kwallet-extension/Pkgfile
 f:d218d7b76d2c58993e68e841033b7952:signon-plugin-oauth2/Pkgfile
@@ -479,6 +479,6 @@ f:ff5e31e2128b5ac3e3325355f1359831:syntax-highlighting/Pkgfile
 f:92fc8389da2ee5c282c31d4a4d72ed3d:systemsettings/Pkgfile
 f:9d99c9f427f7837dc805609272548a97:threadweaver/Pkgfile
 f:78e834c7fa06261c96372a2704e7d1c0:xdg-desktop-portal-kde/Pkgfile
-f:a844672a25300b6949547c5c164d85e9:xdg-desktop-portal-lxqt/Pkgfile
+f:0c0013462aff90e55e30aff692fa0118:xdg-desktop-portal-lxqt/Pkgfile
 f:68bcfda9c7a56350aa1c912c438ec39e:yakuake/Pkgfile
 f:22ea59773788313e5b2fde67c19dc72c:zint/Pkgfile

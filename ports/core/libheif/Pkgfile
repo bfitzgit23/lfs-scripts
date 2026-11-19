@@ -4,12 +4,12 @@ homepage="https://github.com/strukturag/libheif/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=libheif
-version=1.23.1
+version=1.23.7
 release=1
 source="https://github.com/strukturag/$name/releases/download/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	cmake -S $name-$version -B build -G Ninja \
+	cmake -S $SRC/$name-$version -B build -G Ninja \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DCMAKE_INSTALL_LIBDIR=lib \
 		-DCMAKE_INSTALL_LIBEXECDIR=lib \

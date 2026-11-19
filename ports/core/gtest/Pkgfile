@@ -4,13 +4,13 @@ homepage="https://github.com/google/googletest"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=gtest
-version=1.17.0
+version=1.18.0
 release=1
 source=(https://github.com/google/googletest/archive/v$version.tar.gz)
-renames=(gtest-1.17.0.tar.gz)
+renames=(gtest-1.18.0.tar.gz)
 
 pkg_build() {
-	cmake -S googletest-$version -B build -G Ninja \
+	cmake -S $SRC/googletest-$version -B build -G Ninja \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DCMAKE_INSTALL_LIBDIR=lib \

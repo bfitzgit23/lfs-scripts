@@ -4,7 +4,7 @@ homepage="http://www.gpick.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=gpick
-version=0.3
+version=0.4
 release=1
 source=(https://github.com/thezbyg/gpick/releases/download/v$version/$name-$version.tar.gz
 	boost-version.patch
@@ -14,7 +14,7 @@ pkg_build() {
 	patch -d $name-$version -Np1 -i $SRC/boost-version.patch
 	patch -d $name-$version -Np1 -i $SRC/revert-cpp-lua.patch
 
-	cmake -S $name-$version -B build -G Ninja \
+	cmake -S $SRC/$name-$version -B build -G Ninja \
 	        -DCMAKE_INSTALL_PREFIX=/usr \
 	        -DCMAKE_INSTALL_LIBDIR=lib \
 		-DCMAKE_INSTALL_LIBEXECDIR=lib \

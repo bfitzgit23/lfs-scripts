@@ -4,13 +4,13 @@ homepage="https://github.com/dirkvdb/ffmpegthumbnailer"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=ffmpegthumbnailer
-version=2.3.0
+version=2.4.2
 release=1
 source=(https://github.com/dirkvdb/ffmpegthumbnailer/archive/refs/tags/v$version.tar.gz)
-renames=(ffmpegthumbnailer-2.3.0.tar.gz)
+renames=(ffmpegthumbnailer-2.4.2.tar.gz)
 
 pkg_build() {
-	cmake  -S $name-$version -B build -G Ninja \
+	cmake  -S $SRC/$name-$version -B build -G Ninja \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DCMAKE_INSTALL_LIBDIR=lib \
 		-DCMAKE_INSTALL_LIBEXECDIR=lib \

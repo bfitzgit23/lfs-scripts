@@ -4,15 +4,12 @@
 
 description="freerdp package"
 name=freerdp
-version=3.31.1
+version=3.33.1
 release=1
 source="https://github.com/${name}/${name}/archive/${version}/FreeRDP-${version}.tar.gz"
 
 pkg_build() {
-	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
-	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
-	[ -n "$_bfs_src" ] || return 1
-	cd "$_bfs_src" || return 1
+	cd "$SRC/FreeRDP-3.33.1" || return 1
 mkdir build &&
 cd    build &&
 

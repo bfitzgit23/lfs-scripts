@@ -4,12 +4,12 @@ homepage="https://acoustid.org/chromaprint"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=chromaprint
-version=1.6.0
+version=1.6.2
 release=1
 source="https://github.com/acoustid/$name/releases/download/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	cmake -S $name-$version -B build -G Ninja \
+	cmake -S $SRC/$name-$version -B build -G Ninja \
 		-D CMAKE_INSTALL_PREFIX=/usr \
 		-D CMAKE_BUILD_TYPE=RELEASE \
 		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \

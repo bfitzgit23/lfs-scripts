@@ -426,8 +426,8 @@ f:df88c42e3e6a72995c564e5ccc1df82e:engrampa/Pkgfile
 f:6a9925234abb726d2c4b5b2b1d7ed10d:exempi/Pkgfile
 f:da1adf28a5d356f63f98fa649564be5d:expect/Pkgfile
 f:0ca4d6bb8d572fbcdb13cb36cd34833e:expect/expect-5.45.4-gcc15-1.patch
-f:242a6b2e05d1a733d6b90eb73edd435a:faad2/Pkgfile
-f:6ce3888e96a72f2f17a639e23b16a932:faudio/Pkgfile
+f:f24338c4bcac7dd607b8d9dc78cc782b:faad2/Pkgfile
+f:6d88c77a10e3236572cc2fd6f9da5202:faudio/Pkgfile
 f:adfd4629d2ec45823538bd1ccc46ebd9:fftw/Pkgfile
 f:8628b33b256fcdb950cf7afd41265959:firefox-bin/Pkgfile
 f:90bc5feaa0bc272c11f4828c1a0be428:firefox-bin/firefox-bin
@@ -451,8 +451,8 @@ f:0b51223c7e6d725b8945cbdc2246a3e1:flatpak/Pkgfile
 f:a78829b15a68379adc119e4b6e5d7cb0:flite/Pkgfile
 f:8b158c062608a0a66bfacfed3fa7cac1:fltk/Pkgfile
 f:8cf19ed8cd4e5eaea86d9106c8e11dbd:freeglut/Pkgfile
-f:c1840c5b278da604a361a1f8106f4d6b:freerdp/Pkgfile
-f:33c5fab78f7b2c6fe3cdd0ca586b12ca:frei0r-plugins/Pkgfile
+f:1c2e58f3767e49e77c9c27e215ec25ed:freerdp/Pkgfile
+f:8a8675abcc0cc81a1fef92f5e017c37d:frei0r-plugins/Pkgfile
 f:4295a2ebbe13a59b447704984ac468be:ftjam/Pkgfile
 f:ba8ab77b1d02ddfd4d9ad5ddbf47646e:gavl/Pkgfile
 f:e26de6087ffb8c39fb1390d97bc2640c:gavl/gavl-2.0.1-nettle4-md5.patch
@@ -467,7 +467,7 @@ f:beb04dddbea17536f45d048db9a4827a:glycin/Pkgfile
 f:bcce1f4b98be28cb035fde2cb7e63ce0:gn/Pkgfile
 f:180d9d44fc4ffaebc785a0e09a7e5584:gpgmepp/Pkgfile
 f:dccd97916e7bd8b7be67efac8449b575:grantlee/Pkgfile
-f:03eccfe1168ae1d8165de7e608992b87:graphviz/Pkgfile
+f:dfb21304f9e20ee6ecea3ce47a641290:graphviz/Pkgfile
 f:173b75841a4cfcace50ae77886966a7a:gspell/Pkgfile
 f:25327d9948888d1ebfc1877af92b547d:gst-libav/Pkgfile
 f:b2014063acd62c2954a2f7a41a0deb6e:gst-plugins-ugly/Pkgfile
@@ -595,7 +595,7 @@ f:9e1af73e130ea8b0218d3bae5ecde691:oh-my-bash/Pkgfile
 f:7db825bede09ba53d7e493bf2c39eadd:oh-my-bash/profile.sh
 f:827cbe91d2f94a9987f22616a0014827:oniguruma/Pkgfile
 f:9370be723516f6eac92a4f87625cf6d5:openal/Pkgfile
-f:84d1b0f64f516a2c6fa997b971164b88:opencv/Pkgfile
+f:bb67f350c1a305081e115a14a7ffd088:opencv/Pkgfile
 f:74da7bcc74840855b666cd34d4b70f4d:openh264/Pkgfile
 f:d40d47a2376d0e08d2a7954bbe39ad8a:openjpeg2/Pkgfile
 f:c8c61b9992720df1c57fadd888ba222f:openldap/Pkgfile
@@ -658,10 +658,10 @@ f:e225ead9bd69f83d25ae97ce594e2458:seatd/Pkgfile
 f:804f17b159572e179417b08e368795e7:sentry_sdk/Pkgfile
 f:aa5331efebe40696f7951454416b0588:serf/Pkgfile
 f:0a9020b607d5f67014ee526ca018d728:sgml-common/Pkgfile
-f:b8c4da81c6d7a42749551b44a4a1f0de:shaderc/Pkgfile
+f:6e70546644f4095fbb408334b19e5c81:shaderc/Pkgfile
 f:dfdf04408ccd356c6b8a11ba2d225b32:shaderc/glslc.1
 f:59cd7dd9f2beb29a3ad705c723829e2f:signond/Pkgfile
-f:25243339d107546fbbee109b1e2b200a:simdutf/Pkgfile
+f:866b50a95f7c5112b1c4b15b3ec2caa1:simdutf/Pkgfile
 f:775dba7e6044712f781a9f08fe8f3985:smartypants/Pkgfile
 f:0536a17b51aa1633dd4b33cd44113043:snapper/Pkgfile
 f:b6e0e830ac90a1e7d2c79edb39ae92df:socat/Pkgfile
@@ -670,7 +670,7 @@ f:2b9e8f73e3a0c136cc508bf783d2ba34:spice-gtk/Pkgfile
 f:290f8f636ca66e21c463940862a8c9d0:spice-protocol/Pkgfile
 f:692a6e214902d99a6ff4b7cf07b39e61:spice/Pkgfile
 f:de61caa2e46231f76dbbd44db12f263b:spirv-headers/Pkgfile
-f:5c7172a78c97a4e1a59f0b6ca24983dd:spirv-llvm-translator/Pkgfile
+f:6a3b9f8fc554f6b3d6b75ee6290c7d90:spirv-llvm-translator/Pkgfile
 f:2abc8af13262777f0c39f60fa4660b39:spirv-tools/Pkgfile
 f:5f8b3f52dcd228053cbcc89910e0630b:stormfs-lxdm-theme/Pkgfile
 f:58884de2e69444c17ca1b58949d8addf:stormfs-lxdm-theme/README
@@ -690,7 +690,7 @@ f:b47d9791b09a5df5e88a5da4a846cff5:stormfs-theme/xfce-xfwm4.xml
 f:c41c9d7dceca30ca47d51befd8f9ffd2:stormfs-theme/xfce-xsettings.xml
 f:9a8d8784bcf2354d8ae2834aa77fa0e9:strace/Pkgfile
 f:57f2b9bd735d86be76438c9cb3949c93:subversion/Pkgfile
-f:c3504afcd021f978b1e19b54c8679b1d:svt-av1/Pkgfile
+f:777751c5eb90e83f937d0022ebbd0838:svt-av1/Pkgfile
 f:0d878e6019a649bc9e2b2a277ce7308e:swaylock/Pkgfile
 f:906f00bb0ffb8cab86b0234f67b5834f:swtpm/Pkgfile
 f:5caf5129f8969b8620d57e4c46ad20aa:sysvinit-init-scripts/Pkgfile

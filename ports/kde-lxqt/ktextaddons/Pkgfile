@@ -4,12 +4,12 @@ homepage="https://invent.kde.org/libraries/ktextaddons"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=ktextaddons
-version=2.1.0
+version=2.3.0
 release=1
 source="https://download.kde.org/stable/$name/$name-$version.tar.xz"
 
 pkg_build() {
-    cmake -S $name-$version -B build -G Ninja \
+    cmake -S $SRC/$name-$version -B build -G Ninja \
         -D CMAKE_INSTALL_PREFIX=/usr \
         -D CMAKE_INSTALL_LIBDIR=lib \
         -D CMAKE_BUILD_TYPE=Release \

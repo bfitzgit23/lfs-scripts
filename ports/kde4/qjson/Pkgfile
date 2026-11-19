@@ -4,15 +4,12 @@
 
 description="QJson JSON parsing and serialisation library for Qt 4"
 name=qjson
-version=0.8.1
+version=0.9.0
 release=1
 source="https://github.com/flavio/qjson/archive/refs/tags/$version.tar.gz"
 
 pkg_build() {
-	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
-	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
-	[ -n "$_bfs_src" ] || return 1
-	cd "$_bfs_src" || return 1
+	cd "$SRC/qjson-0.9.0" || return 1
 
 	export CMAKE_PREFIX_PATH="/opt/qt4:/usr"
 	export PATH="/opt/qt4/bin:$PATH"

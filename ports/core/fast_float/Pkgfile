@@ -4,12 +4,12 @@ homepage="https://github.com/fastfloat/fast_float"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=fast_float
-version=8.2.10
+version=8.3.3
 release=1
 source="https://github.com/fastfloat/fast_float/archive/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	cmake -S $name-$version -B build -G Ninja \
+	cmake -S $SRC/$name-$version -B build -G Ninja \
 		-D CMAKE_INSTALL_PREFIX=/usr \
 		-D CMAKE_BUILD_TYPE=Release \
 		-D CMAKE_C_FLAGS_RELEASE="${CFLAGS}" \

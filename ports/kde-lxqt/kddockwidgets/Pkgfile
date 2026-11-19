@@ -4,12 +4,12 @@ homepage="https://github.com/KDAB/KDDockWidgets/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=kddockwidgets
-version=2.4.0
+version=2.5.1
 release=1
 source="https://github.com/KDAB/KDDockWidgets/releases/download/v$version/kddockwidgets-$version.tar.gz"
 
 pkg_build() {
-	cmake -S KDDockWidgets-$version -B build -G Ninja \
+	cmake -S $SRC/KDDockWidgets-$version -B build -G Ninja \
 	        -D CMAKE_INSTALL_PREFIX=/usr \
 	        -D CMAKE_INSTALL_LIBDIR=lib \
 	        -D CMAKE_BUILD_TYPE=Release \
