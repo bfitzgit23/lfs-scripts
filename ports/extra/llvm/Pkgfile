@@ -2,7 +2,7 @@
 
 name=llvm
 version=23.1.6
-release=1
+release=2
 source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/llvm-project-$version.src.tar.xz
 	llvm-config.h
 	clang-$version-enable_default_ssp-1.patch)
@@ -40,4 +40,14 @@ post_build() {
 	   $PKG/usr/include/llvm/Config/llvm-config-64.h
 	cp $SRC/llvm-config.h \
 	   $PKG/usr/include/llvm/Config/llvm-config.h	
+	# pkgmk removes every *.a from packages, so LLVM's static import targets point
+	# at files that no longer exist and find_package(LLVM) aborts with "The imported
+	# target ... references the file ... but this file does not exist". Drop the
+	# static exports and anything that includes them; consumers such as
+	# spirv-llvm-translator link libLLVM.so instead (LLVM_LINK_LLVM_DYLIB).
+	rm -f $PKG/usr/lib/cmake/llvm/LLVMStaticExports.cmake
+	for f in $PKG/usr/lib/cmake/llvm/*.cmake; do
+		[ -f "$f" ] || continue
+		sed -i '/LLVMStaticExports\.cmake/d' "$f"
+	done
 }
