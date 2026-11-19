@@ -5,12 +5,16 @@ maintainer="CELESTIFYX Team <celestifyx@gmail.com>"
 
 name=python3-pyaml
 version=26.7.0
-release=1
+release=2
 source=(https://github.com/mk-fg/pretty-yaml/archive/refs/tags/${version}.tar.gz)
 renames=(python3-pyaml-26.7.0.tar.gz)
 
 pkg_build() {
-    cd pretty-yaml-${version}
+    # build() already enters the extracted tree when the archive has a top-level directory,
+    # so only cd when it did not.
+    if [ -d pretty-yaml-${version} ]; then
+        cd pretty-yaml-${version}
+    fi
 
     python3 -m build --wheel --no-isolation
     python3 -m installer --destdir="${PKG}" dist/*.whl
