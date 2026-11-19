@@ -2541,7 +2541,7 @@ f:0260d237b14fc0101c815cd190461b07:polkit-gnome/polkit-gnome-0.105-consolidated_
 f:5fb46236b91e065cc7a39eee56589020:polkit-gnome/update
 f:4c097fbe1ee03aa6644bbabd47470a84:polkit/.footprint
 f:d0f43296d2c954b3e860e66926f5845a:polkit/.md5sum
-f:5ebd2dfcc61ba17eb9d4a627aa501665:polkit/Pkgfile
+f:03568081e3584947d14be01a33850738:polkit/Pkgfile
 f:683dd671bef2ecb2f55adf1624610f2e:polkit/post-install
 f:3f5a5a7a28746aa5030c80ebe8eabc58:polybar/Pkgfile
 f:baf5bce73673b71280dd7ffb217ee587:pop-icon-theme/Pkgfile

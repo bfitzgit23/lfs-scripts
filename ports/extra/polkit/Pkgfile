@@ -1,4 +1,4 @@
-# Depends on: glib duktape gobject-introspection libxslt linux-pam 
+# Depends on: glib duktape gobject-introspection libxslt linux-pam docbook-xml docbook-xsl
 
 name=polkit
 version=122
@@ -9,3 +9,33 @@ build_opt="
 	-Dtests=false
 	-Dos_type=lfs
 "
+
+pkg_build() {
+	# The man pages are generated with xsltproc --nonet, given the DocBook
+	# network paths (http://docbook.sourceforge.net/.../docbook.xsl and the
+	# 4.1.2 DTD in the <!DOCTYPE>), which only resolve through a catalog.
+	# docbook-xml and docbook-xsl ship post-install scripts that register
+	# those in /etc/xml/catalog, but pkgmk/pkgadd have no post-install hook,
+	# so nothing ever writes it. Give xsltproc a catalog of our own that
+	# points the two paths at the stylesheets and DTDs already installed.
+	cat > "$SRC/man-catalog.xml" <<'EOF'
+<?xml version="1.0"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+	<public publicId="-//OASIS//DTD DocBook XML V4.1.2//EN"
+		uri="/usr/share/xml/docbook/xml-dtd-4.2/docbookx.dtd"/>
+	<rewriteSystem systemIdStartString="http://www.oasis-open.org/docbook/xml/4.1.2"
+		rewritePrefix="/usr/share/xml/docbook/xml-dtd-4.2/"/>
+	<rewriteURI uriStartString="http://www.oasis-open.org/docbook/xml/4.1.2"
+		rewritePrefix="/usr/share/xml/docbook/xml-dtd-4.2/"/>
+	<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/xsl/current"
+		rewritePrefix="/usr/share/xml/docbook/xsl-stylesheets/"/>
+	<rewriteURI uriStartString="http://docbook.sourceforge.net/release/xsl/current"
+		rewritePrefix="/usr/share/xml/docbook/xsl-stylesheets/"/>
+</catalog>
+EOF
+	export XML_CATALOG_FILES="$SRC/man-catalog.xml"
+
+	venom-meson $SRC/polkit-$version build $build_opt || return $?
+	meson compile -C build || return $?
+	DESTDIR=$PKG meson install --no-rebuild -C build || return $?
+}
