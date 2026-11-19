@@ -13,7 +13,7 @@ source="https://github.com/vinceliuice/Tela-icon-theme/archive/refs/tags/$_tag.t
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "Tela-icon-theme-$_tag" -print -quit)
-	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=.
 	[ -n "$_bfs_src" ] || return 1
 	cd "$_bfs_src" || return 1
 	bash ./install.sh -d "$PKG/usr/share/icons"

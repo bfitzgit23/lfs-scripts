@@ -10,7 +10,7 @@ source="https://www.x.org/releases/individual/font/font-bh-lucidatypewriter-100d
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
-	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=.
 	[ -n "$_bfs_src" ] || return 1
 	cd "$_bfs_src" || return 1
 

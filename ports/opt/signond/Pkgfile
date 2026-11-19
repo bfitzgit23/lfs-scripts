@@ -12,7 +12,7 @@ source="https://gitlab.com/nicolasfella/$name/-/archive/$_commit/$name-$_commit.
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
-	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=.
 	[ -n "$_bfs_src" ] || return 1
 	cd "$_bfs_src" || return 1
     "$QT6DIR/bin/qmake" PREFIX=/usr LIBDIR=/usr/lib CONFIG+=rtti CONFIG+=release || return 1

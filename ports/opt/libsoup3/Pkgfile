@@ -12,7 +12,7 @@ source="https://ftp.gnome.org/pub/gnome/sources/libsoup/${version%.*}/libsoup-$v
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
-	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=.
 	[ -n "$_bfs_src" ] || return 1
 	cd "$_bfs_src" || return 1
   sed 's/apiversion/soup_version/' -i docs/reference/meson.build

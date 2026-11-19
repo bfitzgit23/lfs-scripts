@@ -12,7 +12,7 @@ source="https://gcc.gnu.org/pub/gcc/releases/gcc-$version/gcc-$version.tar.xz"
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
-	[ -n "$_bfs_src" ] || _bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=.
 	[ -n "$_bfs_src" ] || return 1
 	cd "$_bfs_src" || return 1
         for T in i686-w64-mingw32 x86_64-w64-mingw32; do
