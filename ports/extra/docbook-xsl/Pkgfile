@@ -1,3 +1,4 @@
+# Depends: libxslt docbook-xml
 name=docbook-xsl
 version=1.79.2
 release=2

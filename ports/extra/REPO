@@ -1270,7 +1270,7 @@ f:da4d122a62f1cd3317f96d7e1e559077:docbook-xml/.md5sum
 f:b0c70507aeaa981204769117b1a57d52:docbook-xml/Pkgfile
 f:16030846deb5d3b8ff11c6c916ed0e07:docbook-xml/post-install
 f:9db49665aa3f92cef7b59f13d40f8e7a:docbook-xsl/.md5sum
-f:a902456a2f17fe094f628ceda7c70487:docbook-xsl/Pkgfile
+f:52f0eb9c8be842be6c0fc25134dff02b:docbook-xsl/Pkgfile
 f:55b4ebfd110b80edf9648e5c5ff74886:docbook-xsl/non-recursive-string-subst.patch
 f:a10093b9a1db06c8bce939e383980ab2:docbook-xsl/post-install
 f:1a18faf497ff394c832967749efccec3:docbook-xsl/update
