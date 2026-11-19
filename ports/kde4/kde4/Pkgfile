@@ -1,11 +1,12 @@
 # description	: KDE Software Compilation 4.14 desktop stack
 # homepage	: https://kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: kdelibs kde-runtime kde-workspace fontconfig ttf-dejavu
 
 description="KDE Software Compilation 4.14 desktop stack"
 name=kde4
 version=4.14.3
-release=3
+release=4
 source="kde-plasma.desktop"
 
 pkg_build() {

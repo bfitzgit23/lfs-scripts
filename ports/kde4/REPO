@@ -58,7 +58,7 @@ f:59f69f2490226632d6b13904b7e2de3e:kde-workspace/kde-workspace-4.11.14-taskmanag
 f:279f4472b548602fc923e151e57ec3e8:kde-workspace/kde-workspace-4.11.14-unique-test-names.patch.manual
 f:f2509138bdf345fcd3d7953804507bd7:kde-workspace/kde-workspace-4.11.14-window-selection-contains.patch.manual
 f:259ec81f598decbbeff932b11408c97f:kde-workspace/org.kde.ksysguard.processlisthelper.policy
-f:f455a44fce7fa0021c020439a9bb9c94:kde4/Pkgfile
+f:4c5937602fa59d83c70d390461981674:kde4/Pkgfile
 f:f82acd072b5df945a96fb94b4f1f2add:kde4/kde-plasma.desktop
 f:1f3c44407f27ae381feb638f59f4fe17:kdeartwork/Pkgfile
 f:413139c16bbdeda585b37586a9fb5e8a:kdeartwork/kdeartwork-4.14.3-cmake-minimum.patch.manual
@@ -104,7 +104,7 @@ f:511cf44981ac59c4f80e6c62fe62a278:phonon-backend-gstreamer/Pkgfile
 f:197974897a40b615589ea3c1d6fe387a:phonon4/Pkgfile
 f:c003b99fdeed4620950e1467b5ef1dc5:phonon4/phonon-4.10.3-cmp0022.patch.manual
 f:144c3933493330c367d353cfaa193c5b:qjson/Pkgfile
-f:1526878ef0f3dd15a7aba8082673b8be:qt4/Pkgfile
+f:a61b0add87f9cafaf5346b7d6f59dca3:qt4/Pkgfile
 f:790cf802012e90f41fd3a0639b8747ef:qt4/qt4-4.8.7-linguist-pointer-compare.patch.manual
 f:04012dbd13bf1bcee73751ce78925386:qt4/qt4-4.8.7-qforeach-gcc9.patch.manual
 f:45b1bb94398cb8187c4ed9c223ba1902:qt4/qt4-gcc-requires.patch.manual

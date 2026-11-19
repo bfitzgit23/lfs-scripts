@@ -1,6 +1,7 @@
 name=openssh
-version=9.5p1
+version=10.6p2
 release=1
+# Depends: openssl zlib
 source=(https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
 	sshd.run)
 build_opt="--without-zlib-version-check"

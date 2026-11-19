@@ -1,12 +1,13 @@
 # description	: Qt 4.8 compatibility framework for KDE 4
 # homepage	: https://www.qt.io/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: zlib libpng libjpeg-turbo libtiff libmng sqlite dbus openssl freetype2 fontconfig
 # optional	: cups
 
 description="Qt 4.8 compatibility framework for KDE 4"
 name=qt4
 version=4.8.7
-release=5
+release=6
 source=(https://download.qt.io/archive/qt/4.8/$version/qt-everywhere-opensource-src-$version.tar.gz qt4-gcc-requires.patch.manual qt4-4.8.7-qforeach-gcc9.patch.manual qt4-4.8.7-linguist-pointer-compare.patch.manual qt4-openssl-1.1.patch.manual qt4-openssl4.patch.manual)
 
 pkg_build() {
@@ -49,6 +50,10 @@ pkg_build() {
 	# build-tree lib directory in the linker's rpath-link search path.
 	export LDFLAGS="${LDFLAGS:+$LDFLAGS }-Wl,-rpath-link,$PWD/lib"
 
+	# Qt4 built without fontconfig keeps no font database outside the Qt
+	# prefix, so the KDE 4 session aborts while it initialises
+	# QFontDatabase.  Link the system FreeType and fontconfig so Qt sees the
+	# fonts the rest of the system installs.
 	./configure \
 		-prefix /opt/qt4 \
 		-sysconfdir /etc/xdg \
@@ -61,6 +66,8 @@ pkg_build() {
 		-system-libjpeg \
 		-system-libtiff \
 		-system-libmng \
+		-fontconfig \
+		-system-freetype \
 		-system-sqlite \
 		-dbus-linked \
 		-openssl-linked \
