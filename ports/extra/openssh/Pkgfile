@@ -1,7 +1,7 @@
 name=openssh
 version=10.6p2
 release=1
-# Depends: openssl zlib
+# Depends: openssl zlib linux-pam
 source=(https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
 	sshd.run)
 # Portable OpenSSH takes its config directory, host keys and moduli from
@@ -11,7 +11,7 @@ source=(https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.
 #
 # The service scripts create /var/lib/sshd as the privilege-separation
 # chroot; point the daemon at that instead of the default /var/empty.
-build_opt="--without-zlib-version-check --sysconfdir=/etc/ssh --with-privsep-path=/var/lib/sshd"
+build_opt="--without-zlib-version-check --sysconfdir=/etc/ssh --with-privsep-path=/var/lib/sshd --with-pam"
 sv=(sshd.run)
 
 # sshd drops to the "sshd" account after authentication.  Nothing else in the
@@ -25,4 +25,35 @@ pre_build() {
 
 	# The privsep chroot has to exist and stay root-owned and unwritable.
 	install -d -o root -g root -m 0700 /var/lib/sshd || return 1
+}
+
+post_build() {
+	# The shipped sshd_config is upstream's, and only its /etc paths get
+	# rewritten at install time, so it still names helpers this tree installs
+	# under /usr/lib (libexecdir=/usr/lib).
+	CONF="$PKG/etc/ssh/sshd_config"
+	[ -f "$CONF" ] || { echo "$name: $CONF is missing" >&2; return 1; }
+	sed -i \
+		-e 's|^Subsystem[[:space:]]\+sftp[[:space:]].*|Subsystem\tsftp\t/usr/lib/sftp-server|' \
+		-e 's|^#PidFile .*|PidFile /run/sshd.pid|' \
+		-e 's|^#UsePAM .*|UsePAM yes|' \
+		"$CONF" || return 1
+
+	# Both init systems read /run/sshd.pid and deny logins through PAM.
+	grep -q '^PidFile /run/sshd.pid$' "$CONF" &&
+		grep -q '^UsePAM yes$' "$CONF" &&
+		grep -q '^Subsystem[[:space:]]sftp[[:space:]]/usr/lib/sftp-server$' "$CONF" || {
+		echo "$name: sshd_config was not updated as expected" >&2
+		return 1
+	}
+
+	install -d -m 0755 "$PKG/etc/pam.d" || return 1
+	cat > "$PKG/etc/pam.d/sshd" <<'EOF' || return 1
+#%PAM-1.0
+auth       requisite    pam_nologin.so
+auth       include      system-auth
+account    include      system-account
+password   include      system-password
+session    include      system-session
+EOF
 }

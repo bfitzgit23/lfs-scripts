@@ -2,7 +2,7 @@
 
 name=docbook-xml
 version=4.5
-release=1
+release=2
 source=(https://www.oasis-open.org/docbook/xml/$version/$name-$version.zip
         https://www.oasis-open.org/docbook/xml/4.4/$name-4.4.zip
         https://www.oasis-open.org/docbook/xml/4.3/$name-4.3.zip
@@ -63,4 +63,28 @@ pkg_build() {
 	# fix permissions and delete junk files
 	find $PKG -type f  \( -perm -g=r -o -perm -g=w \) -exec chmod -g=rw '{}' +
 	find $PKG \( -name "README" -o -name "ChangeLog" \) -delete
+
+	# No post-install hook exists, so build the master catalogue here.  It
+	# delegates to this package's own catalogue and to the one docbook-xsl
+	# installs, which keeps the two packages from owning the same file.
+	MASTER="$PKG/etc/xml/catalog"
+	xmlcatalog --noout --create "$MASTER" || return 1
+	xmlcatalog --noout --add "delegatePublic" \
+		"-//OASIS//ENTITIES DocBook XML" \
+		"file:///etc/xml/$name" "$MASTER" || return 1
+	xmlcatalog --noout --add "delegatePublic" \
+		"-//OASIS//DTD DocBook XML" \
+		"file:///etc/xml/$name" "$MASTER" || return 1
+	xmlcatalog --noout --add "delegateSystem" \
+		"http://www.oasis-open.org/docbook/" \
+		"file:///etc/xml/$name" "$MASTER" || return 1
+	xmlcatalog --noout --add "delegateURI" \
+		"http://www.oasis-open.org/docbook/" \
+		"file:///etc/xml/$name" "$MASTER" || return 1
+	xmlcatalog --noout --add "delegateSystem" \
+		"http://docbook.sourceforge.net/release/xsl/" \
+		"file:///etc/xml/docbook-xsl" "$MASTER" || return 1
+	xmlcatalog --noout --add "delegateURI" \
+		"http://docbook.sourceforge.net/release/xsl/" \
+		"file:///etc/xml/docbook-xsl" "$MASTER" || return 1
 }

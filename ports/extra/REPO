@@ -1266,13 +1266,11 @@ f:586c28191b40c5966c717a4b23ecf061:distrobox/Pkgfile
 f:5df143e7610733ba4cc3d61e5d741c5c:djview/Pkgfile
 f:127890223213c6c67fa0f1b57d5961c1:djvulibre/Pkgfile
 f:9745c30eb4db071bc63f9cfd36ce1e85:dk/Pkgfile
-f:f5f8c30114558c458ebddc723a141c2f:docbook-xml/.footprint
 f:da4d122a62f1cd3317f96d7e1e559077:docbook-xml/.md5sum
-f:fa0f198c42f9ae98635a82b30ffa9b1b:docbook-xml/Pkgfile
+f:b0c70507aeaa981204769117b1a57d52:docbook-xml/Pkgfile
 f:16030846deb5d3b8ff11c6c916ed0e07:docbook-xml/post-install
-f:3833ecc5201bfe3ec97f9e4d09f9cb1a:docbook-xsl/.footprint
 f:9db49665aa3f92cef7b59f13d40f8e7a:docbook-xsl/.md5sum
-f:84cc3e72a482a9299f85e1d4e9660653:docbook-xsl/Pkgfile
+f:a902456a2f17fe094f628ceda7c70487:docbook-xsl/Pkgfile
 f:55b4ebfd110b80edf9648e5c5ff74886:docbook-xsl/non-recursive-string-subst.patch
 f:a10093b9a1db06c8bce939e383980ab2:docbook-xsl/post-install
 f:1a18faf497ff394c832967749efccec3:docbook-xsl/update
@@ -2389,7 +2387,7 @@ f:c66b29c36e78f509413889d6a1acc3c1:openmsx/Pkgfile
 f:9639b54ca03ac2ccadb7baa47505dba1:openresolv/Pkgfile
 f:a9e40712984cde5add4a573767c82f88:opensp/Pkgfile
 f:c88874f323bd8d17e80899592231db03:openssh/.md5sum
-f:292b15eff5ef233cff629f1884683a7f:openssh/Pkgfile
+f:9f6d040e581eea33689b7881608ead8d:openssh/Pkgfile
 f:1a5acefb626892426fa4a560f1e57c36:openssh/sshd.run
 f:84d0dfcac9b2775107d6349bfebe1c0b:openvpn/.md5sum
 f:88d68941827e5397abaa064d0858571b:openvpn/Pkgfile

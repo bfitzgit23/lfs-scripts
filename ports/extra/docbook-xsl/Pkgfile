@@ -1,6 +1,6 @@
 name=docbook-xsl
 version=1.79.2
-release=1
+release=2
 source=(https://github.com/docbook/xslt10-stylesheets/releases/download/release/$version/$name-nons-$version.tar.bz2 non-recursive-string-subst.patch)
 patch_opt="-Np2"
 
@@ -19,4 +19,19 @@ pkg_build() {
 	ln -sf xsl-stylesheets-$version $PKG/usr/share/xml/docbook/xsl-stylesheets
 
 	find $PKG \( -name "NEWS*" -o -name "README*" -o -name "ChangeLog*" \) -delete
+
+	# Same missing post-install hook as docbook-xml: write the stylesheet
+	# catalogue into the package instead of into /etc/xml/catalog.
+	install -d "$PKG/etc/xml" || return 1
+	XSL_CATALOG="$PKG/etc/xml/docbook-xsl"
+	xmlcatalog --noout --create "$XSL_CATALOG" || return 1
+	for base in "http://docbook.sourceforge.net/release/xsl/$version" \
+			"http://docbook.sourceforge.net/release/xsl/current"; do
+		xmlcatalog --noout --add "rewriteSystem" "$base" \
+			"/usr/share/xml/docbook/xsl-stylesheets-$version" \
+			"$XSL_CATALOG" || return 1
+		xmlcatalog --noout --add "rewriteURI" "$base" \
+			"/usr/share/xml/docbook/xsl-stylesheets-$version" \
+			"$XSL_CATALOG" || return 1
+	done
 }
