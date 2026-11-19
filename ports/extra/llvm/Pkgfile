@@ -2,7 +2,7 @@
 
 name=llvm
 version=23.1.6
-release=3
+release=4
 source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/llvm-project-$version.src.tar.xz
 	llvm-config.h
 	clang-$version-enable_default_ssp-1.patch)
@@ -41,14 +41,20 @@ post_build() {
 	cp $SRC/llvm-config.h \
 	   $PKG/usr/include/llvm/Config/llvm-config.h
 	# pkgmk deletes every *.a from a package, but the cmake exports LLVM installs
-	# (LLVMExports.cmake and its per-config file) list each component archive as
-	# an imported target and verify that the file exists, so find_package(LLVM)
-	# aborts with: The imported target "LLVMDemangle" references the file
-	# /usr/lib/libLLVMDemangle.a but this file does not exist. Disable only that
-	# verification - the targets stay defined, and since LLVMConfig.cmake ships
+	# list each component archive as an imported target and verify that the file
+	# exists, so find_package(LLVM) aborts with: The imported target "LLVMDemangle"
+	# references the file /usr/lib/libLLVMDemangle.a but this file does not exist.
+	# CMake writes that verification as the last block of LLVMExports.cmake and
+	# opens it with a fixed marker comment, so drop everything from the marker to
+	# the end of the file - matching the loop body instead breaks whenever CMake
+	# renames its internal variables - and neutralise any leftover existence
+	# test. The imported targets stay defined, and since LLVMConfig.cmake ships
 	# LLVM_LINK_LLVM_DYLIB, consumers link the installed libLLVM.so instead.
 	for f in $PKG/usr/lib/cmake/llvm/LLVMExports*.cmake; do
 		[ -f "$f" ] || continue
-		sed -i 's/if *(NOT EXISTS *"\${[A-Za-z_]*}" *)/if(FALSE)/' "$f"
+		sed -i '/# Loop over all imported files and verify that they actually exist/,$d' "$f"
+		sed -i 's/if *( *NOT EXISTS *"\${[A-Za-z_]*}" *)/if(FALSE)/' "$f"
+		n=$(grep -c 'NOT EXISTS' "$f" || true)
+		echo "  $name: ${f##*/} still has $n existence checks"
 	done
 }
