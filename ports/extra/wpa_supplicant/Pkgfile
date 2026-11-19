@@ -1,4 +1,4 @@
-# Depends on: dbus libnl 
+# Depends on: dbus libnl openssl
 
 name=wpa_supplicant
 version=2.12
