@@ -10,7 +10,7 @@ source=(https://github.com/emersion/slurp/archive/refs/tags/v$version.tar.gz)
 renames=(slurp-1.5.0.tar.gz)
 
 pkg_build() {
-	venom-meson $name-$version build
+	venom-meson $SRC/$name-$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build 
 }

@@ -9,7 +9,7 @@ release=1
 source="https://gitlab.xfce.org/panel-plugins/$name/-/archive/$name-$version/$name-$name-$name.tar.gz"
 
 pkg_build() {
-	venom-meson $name-$name-$version-d6a659bdc10ded1c1b074261ac58b7524c363f1f build
+	venom-meson $SRC/$name-$name-$version-d6a659bdc10ded1c1b074261ac58b7524c363f1f build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

@@ -11,7 +11,7 @@ release=1
 source="https://gitlab.gnome.org/GNOME/libpeas/-/archive/$_name-$version/$_name-$version.tar.gz"
 
 pkg_build() {
-	venom-meson $_name-$_name-$version-$commit build \
+	venom-meson $SRC/$_name-$_name-$version-$commit build \
 		-Dgtk_doc=false \
 		-Dlua51=false
 	meson compile -C build

@@ -10,7 +10,7 @@ source=(https://codeberg.org/dnkl/fcft/archive/$version.tar.gz)
 renames=(fcft-3.3.3.tar.gz)
 
 pkg_build() {
-	venom-meson $name build  -Dgrapheme-shaping=enabled -Drun-shaping=enabled
+	venom-meson $SRC/$name build  -Dgrapheme-shaping=enabled -Drun-shaping=enabled
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 

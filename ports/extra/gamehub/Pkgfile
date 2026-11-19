@@ -11,7 +11,7 @@ source=(https://github.com/tkashkin/GameHub/archive/${vrsn}-master/$name-${vrsn}
 renames=(gamehub-.tar.gz)
 
 pkg_build() {
-	venom-meson GameHub-${vrsn}-master build
+	venom-meson $SRC/GameHub-${vrsn}-master build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

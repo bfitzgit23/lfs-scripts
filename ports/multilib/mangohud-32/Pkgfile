@@ -16,7 +16,7 @@ pkg_build() {
 	export CXX="g++ -m32"
 	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
 
-	venom-meson MangoHud-v$version build \
+	venom-meson $SRC/MangoHud-v$version build \
         --libdir=/usr/lib32 \
 	--libexecdir=/usr/lib32 \
         -Dinclude_doc=false \

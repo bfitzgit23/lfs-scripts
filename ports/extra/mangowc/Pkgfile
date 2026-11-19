@@ -10,7 +10,7 @@ source=(https://github.com/DreamMaoMao/mangowc/archive/refs/tags/$version.tar.gz
 renames=(mangowc-0.18.6.tar.gz)
 
 pkg_build() {
-	venom-meson mango-$version build 
+	venom-meson $SRC/mango-$version build 
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

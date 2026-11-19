@@ -10,7 +10,7 @@ source=(https://github.com/jovanlanik/gtklock/archive/refs/tags/v$version.tar.gz
 renames=(gtklock-4.0.0.tar.gz)
 
 pkg_build() {
-	venom-meson $name-$version build
+	venom-meson $SRC/$name-$version build
 	meson compile -C build
         DESTDIR=$PKG meson install -C build
 }

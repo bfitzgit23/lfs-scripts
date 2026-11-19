@@ -10,7 +10,7 @@ source=(https://github.com/Vysp3r/ProtonPlus/archive/refs/tags/v$version.tar.gz)
 renames=(protonplus-0.6.8.tar.gz)
 
 pkg_build() {
-  venom-meson "ProtonPlus-$version" build
+  venom-meson "$SRC/ProtonPlus-$version" build
   meson compile -C build
   DESTDIR=$PKG meson install --no-rebuild -C build
 }

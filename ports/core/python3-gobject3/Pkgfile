@@ -10,7 +10,7 @@ source=(https://gitlab.gnome.org/GNOME/pygobject/-/archive/$version/pygobject-$v
 renames=(python3-gobject3-3.56.3.tar.gz)
 
 pkg_build() {
-	venom-meson pygobject-$version build \
+	venom-meson $SRC/pygobject-$version build \
 	    --wrap-mode=default \
 	    -Dpython=python3 \
 	    -Dpycairo=enabled \

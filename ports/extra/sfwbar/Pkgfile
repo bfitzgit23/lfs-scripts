@@ -13,7 +13,7 @@ pkg_build() {
 	export CFLAGS="$CFLAGS -Wno-incompatible-pointer-types"
 	export LDFLAGS="-Wl,-O1,--as-needed"
 
-	venom-meson $name-$version build -Db_lto=false
+	venom-meson $SRC/$name-$version build -Db_lto=false
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 

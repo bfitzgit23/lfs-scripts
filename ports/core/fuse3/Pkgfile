@@ -11,7 +11,7 @@ renames=(fuse3-3.18.2.tar.gz)
 
 pkg_build() {
 	
-	venom-meson libfuse-fuse-$version build
+	venom-meson $SRC/libfuse-fuse-$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 	rm -r $PKG/dev $PKG/etc/fuse.conf

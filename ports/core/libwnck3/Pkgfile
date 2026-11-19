@@ -9,7 +9,7 @@ release=1
 source="https://gitlab.gnome.org/GNOME/libwnck/-/archive/$version/libwnck-$version.tar.gz"
 
 pkg_build() {
-	venom-meson libwnck-$version build -Dgtk_doc=false
+	venom-meson $SRC/libwnck-$version build -Dgtk_doc=false
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

@@ -8,7 +8,7 @@ version=2.23.0
 release=1
 source="https://github.com/intel/libva-utils/archive/$version/$name-$version.tar.gz"
 pkg_build() {
-	venom-meson $name-$version build -Dtests=false
+	venom-meson $SRC/$name-$version build -Dtests=false
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

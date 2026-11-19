@@ -11,7 +11,7 @@ renames=(python3-cairo-1.29.0.tar.gz)
 
 pkg_build() {
 
-	venom-meson pycairo-$version build \
+	venom-meson $SRC/pycairo-$version build \
 	-Dtests=false
 	meson compile -C build
 	DESTDIR=$PKG meson install -C build

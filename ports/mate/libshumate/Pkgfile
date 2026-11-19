@@ -9,7 +9,7 @@ release=1
 source="https://gitlab.gnome.org/GNOME/libshumate/-/archive/$version/$name-$version.tar.gz"
 
 pkg_build() {
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		-Dgtk_doc=false \
 		-Dvector_renderer=true 
 	meson compile -C build

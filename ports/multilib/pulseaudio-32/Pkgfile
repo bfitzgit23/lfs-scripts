@@ -12,7 +12,7 @@ pkg_build() {
         export CC="gcc -m32"
 	export CXX="g++ -m32"
 	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
-	venom-meson ${name%-*}-$version build \
+	venom-meson $SRC/${name%-*}-$version build \
 		--libdir=/usr/lib32 \
 		-D daemon=false \
 		-D tests=false \

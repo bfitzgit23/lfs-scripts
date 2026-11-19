@@ -9,7 +9,7 @@ release=1
 source="https://github.com/swaywm/$name/releases/download/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		-Dbash-completions=$(scratch isinstalled bash-completions && printf "true" || printf "false") \
 		-Dfish-completions=$(scratch isinstalled fish-completions && printf "true" || printf "false") \
 		-Dzsh-completions=$(scratch isinstalled zsh-completions && printf "true" || printf "false") \

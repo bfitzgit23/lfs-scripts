@@ -9,7 +9,7 @@ release=1
 source=(https://github.com/ibhagwan/picom/archive/vNext.tar.gz)
 renames=(ibhagwan-picom-Next.tar.gz)
 pkg_build() {
-	venom-meson picom-v$version build --buildtype=release 
+	venom-meson $SRC/picom-v$version build --buildtype=release 
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

@@ -11,7 +11,7 @@ source=(https://github.com/mpv-player/mpv/archive/v$version/$name-$version.tar.g
 
 pkg_build() {
 	patch -d $name-$version -Np1 -i $SRC/0001-clipboard-wayland-prevent-reading-from-hung-up-fd.patch
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		-D libmpv=true \
 		-D libarchive=enabled \
 		-D cdda=enabled \

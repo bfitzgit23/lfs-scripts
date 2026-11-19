@@ -9,7 +9,7 @@ source=(https://gitlab.com/drobilla/$name/-/archive/v$version/$name-v$version.ta
 renames=(serd-0.32.10.tar.gz)
 
 pkg_build() {
-	venom-meson $name-v$version build \
+	venom-meson $SRC/$name-v$version build \
 		-Ddocs=disabled \
 		-Dhtml=disabled \
 		-Dsinglehtml=disabled \

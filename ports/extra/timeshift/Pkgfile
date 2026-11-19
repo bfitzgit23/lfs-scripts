@@ -19,7 +19,7 @@ EOF
 chmod +x which
 export PATH=$PATH:$PWD
 
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 	-D xapp=false 
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build

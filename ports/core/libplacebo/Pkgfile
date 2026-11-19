@@ -11,7 +11,7 @@ renames=(libplacebo-7.360.1.tar.gz)
 
 pkg_build() {
 	CXXFLAGS="$CXXFLAGS -I/usr/include/glslang"
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		-Dvulkan=enabled \
 		-Dshaderc=enabled \
 		-Dlcms=enabled \

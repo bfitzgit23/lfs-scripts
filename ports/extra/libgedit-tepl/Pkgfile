@@ -9,7 +9,7 @@ release=1
 source="https://gitlab.gnome.org/World/gedit/libgedit-tepl/-/archive/$version/$name-$version.tar.gz"
 
 pkg_build() {
-	venom-meson $name-$version build -Db_lto=false -Dgtk_doc=false
+	venom-meson $SRC/$name-$version build -Db_lto=false -Dgtk_doc=false
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

@@ -10,7 +10,7 @@ source="https://gitlab.com/libosinfo/osinfo-db-tools/-/archive/v$version/$name-v
 
 pkg_build() {
 
-	venom-meson $name-v$version build
+	venom-meson $SRC/$name-v$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 

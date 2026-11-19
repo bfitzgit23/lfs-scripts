@@ -12,7 +12,7 @@ pkg_build() {
 
 	export XML_CATALOG_FILES=/etc/xml/catalog
 
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		-Dgettext=true \
 		-Dhtml-highlight=true \
 		-Dbacktrace=false \

@@ -11,7 +11,7 @@ renames=(basu-0.2.1.tar.gz)
 
 pkg_build() {
 
-	venom-meson $name-v$version build \
+	venom-meson $SRC/$name-v$version build \
 		-Dsystem-bus-address="unix:path=/run/dbus/system_bus_socket" \
 		-Ddefault_library=both 
 

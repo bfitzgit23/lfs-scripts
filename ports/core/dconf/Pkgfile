@@ -11,7 +11,7 @@ source="https://gitlab.gnome.org/GNOME/dconf/-/archive/$version/$name-$version.t
 pkg_build() {
 
 	export XML_CATALOG_FILES=/etc/xml/catalog
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 	--libexecdir=/usr/lib/$name
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build

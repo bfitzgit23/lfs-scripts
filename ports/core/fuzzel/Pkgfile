@@ -10,7 +10,7 @@ source=(https://codeberg.org/dnkl/fuzzel/archive/$version.tar.gz)
 renames=(fuzzel-1.14.1.tar.gz)
 
 pkg_build() {
-	venom-meson $name build \
+	venom-meson $SRC/$name build \
 		-Denable-cairo=enabled \
 		-Dpng-backend=libpng \
 		-Dsvg-backend=nanosvg

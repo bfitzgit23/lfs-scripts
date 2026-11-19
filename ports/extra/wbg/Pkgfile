@@ -10,7 +10,7 @@ source=(https://codeberg.org/dnkl/wbg/archive/$version.tar.gz)
 renames=(wbg-1.3.0.tar.gz)
 
 pkg_build() {
-	venom-meson $name build \
+	venom-meson $SRC/$name build \
 		-Djpeg=enabled \
 		-Dpng=enabled
 	meson compile -C build

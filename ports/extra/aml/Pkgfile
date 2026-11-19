@@ -10,7 +10,7 @@ source=(https://github.com/any1/aml/archive/refs/tags/v$version.tar.gz)
 renames=(aml-1.0.0.tar.gz)
 
 pkg_build() {
-	venom-meson $name-$version build
+	venom-meson $SRC/$name-$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

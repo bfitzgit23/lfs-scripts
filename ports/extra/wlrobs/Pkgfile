@@ -10,7 +10,7 @@ source=(https://hg.sr.ht/~scoopta/wlrobs/archive/v$version.tar.gz)
 renames=(wlrobs-1.2.tar.gz)
 
 pkg_build() {
-	venom-meson ${name}-v$version build
+	venom-meson $SRC/${name}-v$version build
 	meson compile -C build
 	mkdir -p ${PKG}/usr/lib/obs-plugins
 	install -D -m 0644 build/libwlrobs.so ${PKG}/usr/lib/obs-plugins/${name}.so

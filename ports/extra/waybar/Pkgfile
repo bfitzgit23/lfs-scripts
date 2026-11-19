@@ -13,7 +13,7 @@ source=(https://github.com/Alexays/Waybar/archive/$version.tar.gz)
 renames=(waybar-0.16.0.tar.gz)
 
 pkg_build() {
-	venom-meson Waybar-$version build \
+	venom-meson $SRC/Waybar-$version build \
 		-Dcpp_std=c++20 \
 		-Dexperimental=true \
 		-Dcava=disabled \

@@ -9,7 +9,7 @@ release=1
 source="https://ftp.gnome.org/pub/gnome/sources/gtkmm/${version%.*}/gtkmm-$version.tar.xz"
 
 pkg_build() {
-	venom-meson gtkmm-$version build
+	venom-meson $SRC/gtkmm-$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

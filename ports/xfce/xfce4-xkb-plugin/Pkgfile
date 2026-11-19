@@ -10,7 +10,7 @@ source="https://archive.xfce.org/src/panel-plugins/$name/${version%.*}/$name-$ve
 
 pkg_build() {
 
-	venom-meson $name-$version build
+	venom-meson $SRC/$name-$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 	

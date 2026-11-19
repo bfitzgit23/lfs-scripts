@@ -10,7 +10,7 @@ source=(https://download.gnome.org/sources/pyatspi/${version%.*}/pyatspi-$versio
 renames=(python3-atspi-2.58.2.tar.gz)
 
 pkg_build() {
-	venom-meson pyatspi-$version build
+	venom-meson $SRC/pyatspi-$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

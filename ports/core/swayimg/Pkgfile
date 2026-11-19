@@ -10,7 +10,7 @@ source="https://github.com/artemsen/$name/archive/v$version/$name-$version.tar.g
 
 pkg_build() {
 
-    venom-meson $name-$version build \
+    venom-meson $SRC/$name-$version build \
 		-D jpeg=enabled \
 		-D png=enabled \
 		-D heif=$(scratch isinstalled libheif && printf "enabled" || printf "disabled") \

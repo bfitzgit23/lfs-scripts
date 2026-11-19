@@ -24,7 +24,7 @@ pkg_build() {
 	"
 	cbuild_options "sway"
 
-	venom-meson $name-$version build -Dsd-bus-provider=basu \
+	venom-meson $SRC/$name-$version build -Dsd-bus-provider=basu \
 		-Dwerror=false $CBUILD_SWAY_OPTS
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build

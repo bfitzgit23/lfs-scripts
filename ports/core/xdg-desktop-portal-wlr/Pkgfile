@@ -9,7 +9,7 @@ release=1
 source="https://github.com/emersion/xdg-desktop-portal-wlr/archive/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	venom-meson $name-$version build -Dsd-bus-provider=basu
+	venom-meson $SRC/$name-$version build -Dsd-bus-provider=basu
 	meson compile -C build
 	DESTDIR=$PKG meson install -C build
 }

@@ -9,7 +9,7 @@ release=1
 source="https://github.com/intel/intel-vaapi-driver/archive/$version/$name-$version.tar.gz"
 
 pkg_build() {
-	venom-meson intel-vaapi-driver-$version build
+	venom-meson $SRC/intel-vaapi-driver-$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

@@ -9,7 +9,7 @@ release=1
 source="https://gitlab.gnome.org/GNOME/librest/-/archive/$version/$name-$version.tar.gz"
 
 pkg_build() {
-	venom-meson $name-$version build -Dgtk_doc=false -Dvapi=true
+	venom-meson $SRC/$name-$version build -Dgtk_doc=false -Dvapi=true
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build 
 }

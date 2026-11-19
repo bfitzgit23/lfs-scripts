@@ -9,7 +9,7 @@ release=1
 source="https://pwmt.org/projects/girara/download/$name-$version.tar.xz"
 
 pkg_build() {
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		--libexecdir=/usr/lib/$name \
 		-Ddocs=disabled \
 		-Dtests=disabled 

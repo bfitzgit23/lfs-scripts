@@ -10,7 +10,7 @@ source=(https://gitlab.freedesktop.org/vyivel/libsfdo/-/archive/v$version/$name-
 renames=(libsfdo-0.1.4.tar.gz)
 
 pkg_build() {
-	venom-meson $name-v$version build
+	venom-meson $SRC/$name-v$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

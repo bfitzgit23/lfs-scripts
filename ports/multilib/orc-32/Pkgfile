@@ -13,7 +13,7 @@ pkg_build() {
 	export CXX="g++ -m32"
 	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
 
-	venom-meson orc-$version build \
+	venom-meson $SRC/orc-$version build \
                --prefix=/usr \
                --libdir=/usr/lib32 \
 		-D tests=disabled

@@ -10,7 +10,7 @@ source=(https://github.com/ammen99/wf-recorder/archive/v$version.tar.gz)
 renames=(wf-recorder-0.6.0.tar.gz)
 
 pkg_build() {
-	venom-meson $name-$version build
+	venom-meson $SRC/$name-$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

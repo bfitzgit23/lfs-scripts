@@ -11,7 +11,7 @@ source=(https://github.com/libsigcplusplus/libsigcplusplus/archive/$version.tar.
 renames=(libsigc++3-3.8.1.tar.gz)
 
 pkg_build() {
-	venom-meson libsigcplusplus-$version build \
+	venom-meson $SRC/libsigcplusplus-$version build \
 		-Dbuild-documentation=false \
 		-Dbuild-examples=false \
 		-Dbuild-tests=false

@@ -10,7 +10,7 @@ source=(https://github.com/hboetes/swaylock-effects/archive/refs/tags/v$version.
 renames=(swaylock-effects-1.8.1.tar.gz)
 
 pkg_build() {
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		-D pam=enabled \
 		-Dbash-completions=$(scratch isinstalled bash-completions && printf "true" || printf "false") \
 		-Dfish-completions=$(scratch isinstalled fish-completions && printf "true" || printf "false") \

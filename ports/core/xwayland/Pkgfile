@@ -11,7 +11,7 @@ renames=($name-$version.tar.gz)
 
 pkg_build() {
 
-        venom-meson xserver-$name-$version build \
+        venom-meson $SRC/xserver-$name-$version build \
 		-Db_lto=true \
 		-Dipv6=true \
 		-Dxvfb=false \

@@ -11,7 +11,7 @@ source="https://github.com/irssi/irssi/releases/download/$version/$name-$version
 
 pkg_build() {
 
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		-Dwith-perl-lib=vendor \
 		-Dwith-proxy=yes \
 		-Dwith-perl=yes \

@@ -10,7 +10,7 @@ source=(https://github.com/lv2/lv2/archive/refs/tags/v$version.tar.gz)
 renames=(lv2-1.18.10.tar.gz)
 
 pkg_build() {
-	venom-meson $name-$version build
+	venom-meson $SRC/$name-$version build
 	meson compile -C build
 	meson install --no-rebuild -C build --destdir $PKG
 }

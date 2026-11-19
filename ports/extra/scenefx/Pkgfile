@@ -10,7 +10,7 @@ source=(https://github.com/wlrfx/scenefx/archive/refs/tags/${version}.tar.gz)
 renames=(scenefx-0.5.tar.gz)
 
 pkg_build() {
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		-Dwerror=false \
 		-Db_ndebug=false
 	meson compile -C build

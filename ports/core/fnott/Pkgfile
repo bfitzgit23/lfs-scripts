@@ -10,7 +10,7 @@ source=(https://codeberg.org/dnkl/fnott/archive/$version.tar.gz)
 renames=(fnott-1.8.0.tar.gz)
 
 pkg_build() {
-	venom-meson $name build 
+	venom-meson $SRC/$name build 
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

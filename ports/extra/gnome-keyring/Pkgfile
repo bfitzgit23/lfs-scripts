@@ -9,7 +9,7 @@ release=1
 source="https://github.com/GNOME/gnome-keyring/archive/$version/$name-$version.tar.gz"
 
 pkg_build() {
-	venom-meson $name-$version build -Dselinux=disabled -Dsystemd=disabled
+	venom-meson $SRC/$name-$version build -Dselinux=disabled -Dsystemd=disabled
 	meson compile -C build
 	DESTDIR=$PKG meson install -C build
 }

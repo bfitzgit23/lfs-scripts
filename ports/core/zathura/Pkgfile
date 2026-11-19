@@ -9,7 +9,7 @@ release=1
 source="https://github.com/pwmt/zathura/archive/$version/$name-$version.tar.gz"
 pkg_build() {
 
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		-Dconvert-icon=disabled \
 		-Dmanpages=disabled \
 		-Dseccomp=disabled \

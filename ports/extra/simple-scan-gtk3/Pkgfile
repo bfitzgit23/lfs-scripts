@@ -9,7 +9,7 @@ release=1
 source="http://packages.linuxmint.com/pool/upstream/s/${name%-*}/${name%-*}_${version}-${release}+wilma.tar.xz"
 
 pkg_build() {
-	venom-meson ${name%-*} build 
+	venom-meson $SRC/${name%-*} build 
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build 
 }

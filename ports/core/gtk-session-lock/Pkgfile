@@ -10,7 +10,7 @@ source=(https://github.com/Cu3PO42/gtk-session-lock/archive/v${version}.tar.gz)
 renames=(gtk-session-lock-0.2.0.tar.gz)
 
 pkg_build() {
-	venom-meson $name-$version build
+	venom-meson $SRC/$name-$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

@@ -10,7 +10,7 @@ source=(https://github.com/GeopJr/Tuba/archive/refs/tags/v$version.tar.gz)
 renames=(tuba-0.10.3.tar.gz)
 
 pkg_build() {
-	venom-meson Tuba-$version build
+	venom-meson $SRC/Tuba-$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 	ln -s /usr/bin/dev.geopjr.Tuba $PKG/usr/bin/tuba

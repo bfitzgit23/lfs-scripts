@@ -10,7 +10,7 @@ source=(https://github.com/drobilla/zix/archive/refs/tags/v$version.tar.gz)
 renames=(zix-0.8.2.tar.gz)
 
 pkg_build() {
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		-Ddocs=disabled \
 		-Dhtml=disabled \
 		-Dtests=disabled \

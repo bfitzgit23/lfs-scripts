@@ -11,7 +11,7 @@ renames=(tllist-1.1.0.tar.gz)
 
 pkg_build() {
 
-  venom-meson $name build 
+  venom-meson $SRC/$name build 
   meson compile -C build
   DESTDIR=$PKG meson install --no-rebuild -C build
   rm -r $PKG/usr/share

@@ -10,7 +10,7 @@ source="https://gitlab.gnome.org/Archive/$name/-/archive/$version/$name-$version
 
 pkg_build() {
 
-	venom-meson $name-$version build 
+	venom-meson $SRC/$name-$version build 
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

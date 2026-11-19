@@ -13,7 +13,7 @@ pkg_build() {
 	export PYTHON=/usr/bin/python3
 
 
-	venom-meson dbus-python-$version build \
+	venom-meson $SRC/dbus-python-$version build \
 		-Dtests=false
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build

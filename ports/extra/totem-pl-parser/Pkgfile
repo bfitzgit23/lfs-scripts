@@ -11,7 +11,7 @@ source=(https://gitlab.gnome.org/GNOME/totem-pl-parser/-/archive/$version/$name-
 renames=(totem-pl-parser-3.26.7.tar.bz2)
 
 pkg_build() {
-	venom-meson $name-$version build -D enable-gtk-doc=false
+	venom-meson $SRC/$name-$version build -D enable-gtk-doc=false
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

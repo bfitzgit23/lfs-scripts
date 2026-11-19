@@ -10,7 +10,7 @@ source=(https://github.com/altdesktop/playerctl/archive/v$version.tar.gz)
 renames=(playerctl-2.4.1.tar.gz)
 
 pkg_build() {
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		-Dgtk-doc=false \
                 -Dbash-completions=true \
 		-Dintrospection=true 

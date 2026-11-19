@@ -10,7 +10,7 @@ source=(https://github.com/lutris/lutris/archive/v$version.tar.gz)
 renames=(lutris-0.5.22.tar.gz)
 
 pkg_build() {
-	venom-meson $name-$version build
+	venom-meson $SRC/$name-$version build
         meson compile -C build
         DESTDIR="${PKG}" meson install -C build
 }

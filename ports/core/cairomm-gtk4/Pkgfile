@@ -11,7 +11,7 @@ source=(https://cairographics.org/releases/$nm-$version.tar.xz)
 renames=(cairomm-gtk4-1.18.1.tar.xz)
 
 pkg_build() {
-	venom-meson $nm-$version build
+	venom-meson $SRC/$nm-$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

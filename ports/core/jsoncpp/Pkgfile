@@ -10,7 +10,7 @@ source="https://github.com/open-source-parsers/jsoncpp/archive/$version/$name-$v
 pkg_build() {
 	echo ${version} > $name-$version/version
 
-	venom-meson $name-$version build \
+	venom-meson $SRC/$name-$version build \
 		--default-library shared
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build

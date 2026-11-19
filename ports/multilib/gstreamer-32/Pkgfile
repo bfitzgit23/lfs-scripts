@@ -13,7 +13,7 @@ pkg_build() {
 	export CXX="g++ -m32"
 	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
 
-        venom-meson gstreamer-$version build \
+        venom-meson $SRC/gstreamer-$version build \
 		--libdir=/usr/lib32 \
 		--libexecdir=/usr/lib32 \
 	 	-Ddbghelp=disabled \

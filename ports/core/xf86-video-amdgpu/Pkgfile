@@ -10,7 +10,7 @@ source="https://www.x.org/pub/individual/driver/$name-$version.tar.xz"
 
 pkg_build() {
 
-	venom-meson $name-$version build
+	venom-meson $SRC/$name-$version build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }
