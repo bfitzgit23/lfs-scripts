@@ -1,0 +1,25 @@
+#!/sbin/openrc-run
+description="Restore the ALSA mixer state at boot and store it at shutdown"
+
+# alsactl reads and writes /var/lib/alsa/asound.state, so /var has to be up.
+depend() {
+	after localmount
+}
+
+start() {
+	ebegin "Restoring the ALSA mixer state"
+	if [ -s /var/lib/alsa/asound.state ]; then
+		/usr/sbin/alsactl restore
+		eend $? "Failed to restore the ALSA mixer state"
+	else
+		# First boot: nothing has been stored yet, and alsactl treats a
+		# missing state file as an error.
+		eend 0
+	fi
+}
+
+stop() {
+	ebegin "Storing the ALSA mixer state"
+	/usr/sbin/alsactl store
+	eend $? "Failed to store the ALSA mixer state"
+}

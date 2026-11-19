@@ -1,8 +1,8 @@
 # Depends: openrc
 name=openrc-init-scripts
 version=4
-release=1
-source=(networkmanager acpid bluetooth dbus gpm chronyd cups sshd samba
+release=2
+source=(networkmanager acpid alsa bluetooth dbus gpm chronyd cups sshd samba
 	avahi-daemon nftables rsyncd krb5-kdc krb5-kadmind wpa_supplicant smartd
 	bfs-kernel-finalize sddm kdm lightdm lxdm plasmalogin consolekit virtlogd
 	libvirtd udev udev-postmount sysklogd
@@ -14,7 +14,7 @@ pkg_build() {
 	# Optional services install unconditionally; they are enabled by an admin
 	# and fail cleanly when the matching package is not installed, e.g.
 	#   rc-update add sshd default
-	services="networkmanager acpid bluetooth dbus gpm chronyd
+	services="networkmanager acpid alsa bluetooth dbus gpm chronyd
 		cups sshd samba avahi-daemon nftables rsyncd
 		krb5-kdc krb5-kadmind wpa_supplicant smartd
 		bfs-kernel-finalize sddm kdm lightdm lxdm plasmalogin

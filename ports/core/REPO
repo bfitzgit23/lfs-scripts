@@ -1189,8 +1189,9 @@ f:9b99fd120b3a52c3340b1f9da21e282d:opencl-headers/Pkgfile
 f:85b3d7bdbf14969c6a7b5c42156c5d0d:opencl-icd-loader/Pkgfile
 f:10ea02b5d493725e2f592490a772b73f:opendoas/Pkgfile
 f:fc7249c9eed9852b17d1e099ce0496f7:openmp/Pkgfile
-f:29adbf9fafbc9d70fcf76a6e361662a9:openrc-init-scripts/Pkgfile
+f:1daddf6ca89a8b4f178d4d12c8c265b0:openrc-init-scripts/Pkgfile
 f:df467fb17fe9e5a838e8f7125023f4fd:openrc-init-scripts/acpid
+f:feb91cbcfa2b11ebffe7e3b3b3656af5:openrc-init-scripts/alsa
 f:1dd63593816470fb2c8d4cca1670d318:openrc-init-scripts/avahi-daemon
 f:90ef7c501b292d102adc2ae16ddaab37:openrc-init-scripts/bfs-kernel-finalize
 f:7b19af5197c9caf9e49c4ed55db73169:openrc-init-scripts/bluetooth
