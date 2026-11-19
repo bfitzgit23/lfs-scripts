@@ -1,4 +1,4 @@
-# Depends: kguiaddons knotifications libksysguard plasma-workspace
+# Depends: kguiaddons knotifications libksysguard
 description="Migration aids for KF5 -> KF6 migration"
 homepage="https://kde.org/plasma-desktop/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
