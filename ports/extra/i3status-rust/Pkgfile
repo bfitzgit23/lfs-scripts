@@ -4,10 +4,10 @@ homepage="https://github.com/greshake/i3status-rust"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=i3status-rust
-version=0.36.1
+version=0.40.1
 release=1
 source=(https://github.com/greshake/$name/archive/refs/tags/v$version.tar.gz)
-renames=(i3status-rust-0.36.1.tar.gz)
+renames=(i3status-rust-0.40.1.tar.gz)
 
 pkg_build() {
 	

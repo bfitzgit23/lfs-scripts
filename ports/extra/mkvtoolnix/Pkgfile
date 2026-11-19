@@ -4,7 +4,7 @@ homepage="https://mkvtoolnix.download/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=mkvtoolnix
-version=99.0
+version=103.0
 release=1
 source="https://mkvtoolnix.download/sources/$name-$version.tar.xz"
 
@@ -14,9 +14,7 @@ pkg_build() {
 		--prefix=/usr \
 		--disable-precompiled-headers \
 		--disable-update-check \
-		--enable-gui \
-		--disable-qt5 \
-		--enable-qt6
+		--enable-gui
 
 	rake --multitask --jobs=${MAKEFLAGS}
 	rake DESTDIR=$PKG install

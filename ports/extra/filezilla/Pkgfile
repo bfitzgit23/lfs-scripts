@@ -4,7 +4,7 @@ homepage="https://filezilla-project.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=filezilla
-version=3.70.6
+version=3.72.1
 release=1
 source="https://sources.archlinux.org/other/filezilla/$name-$version.tar.xz"
 

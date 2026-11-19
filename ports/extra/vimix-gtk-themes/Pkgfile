@@ -1,4 +1,4 @@
-# Depends: gtk-engine-murrine gtk-engines
+# Depends: murrine gtk-engines
 description="Vimix is a flat Material Design theme for GTK 3, GTK 2 and Gnome-Shell"
 homepage="https://github.com/vinceliuice/vimix-gtk-themes"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

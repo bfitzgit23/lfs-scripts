@@ -1,4 +1,4 @@
-# Depends: bubblewrap cairo enchant flite gst-plugins-bad harfbuzz-icu libjxl libnotify libseccomp libsecret libsoup3 libwebp openjpeg2 ruby unifdef which wpebackend-fdo xdg-dbus-proxy gtk3
+# Depends: bubblewrap cairo enchant flite gst-plugins-bad harfbuzz libjxl libnotify libseccomp libsecret libsoup3 libwebp openjpeg2 ruby unifdef which wpebackend-fdo xdg-dbus-proxy gtk3
 description="Web content engine for GTK"
 homepage="https://webkitgtk.org"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

@@ -4,7 +4,7 @@ homepage="http://search.cpan.org/~nlnetlabs/Net-DNS/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=perl-net-dns
-version=1.55
+version=1.57
 release=1
 source="http://search.cpan.org/CPAN/authors/id/N/NL/NLNETLABS/Net-DNS-${version}.tar.gz"
 

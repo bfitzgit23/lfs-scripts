@@ -1,4 +1,4 @@
-# Depends: gnome-themes-extra gtk-engine-murrine sassc
+# Depends: gnome-themes-extra murrine sassc
 description="A GTK theme based on the Catppuccin colour palette"
 homepage="https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

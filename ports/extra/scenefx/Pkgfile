@@ -4,10 +4,10 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 homepage="https://github.com/wlrfx/scenefx"
 
 name=scenefx
-version=0.4.1
+version=0.5
 release=1
 source=(https://github.com/wlrfx/scenefx/archive/refs/tags/${version}.tar.gz)
-renames=(scenefx-0.4.1.tar.gz)
+renames=(scenefx-0.5.tar.gz)
 
 pkg_build() {
 	venom-meson $name-$version build \

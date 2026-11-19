@@ -4,10 +4,10 @@ homepage="https://github.com/junegunn/fzf/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=fzf
-version=0.73.1
+version=0.75.0
 release=1
 source=(https://github.com/junegunn/fzf/archive/v$version.tar.gz)
-renames=(fzf-0.73.1.tar.gz)
+renames=(fzf-0.75.0.tar.gz)
 
 pkg_build() {
 	go build -o fzf

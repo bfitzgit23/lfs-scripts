@@ -4,10 +4,10 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 homepage="https://github.com/astral-sh/uv" 
 
 name=uv
-version=0.11.25
+version=0.13.9
 release=1
 source=(https://github.com/astral-sh/uv/archive/refs/tags/$version.tar.gz)
-renames=(uv-0.11.25.tar.gz)
+renames=(uv-0.13.9.tar.gz)
 
 pkg_build() {
 

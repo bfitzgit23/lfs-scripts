@@ -177,7 +177,7 @@ f:9a6d6d30d978f9d41b42cb7de06a990a:freeglut-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:freetype-32/.32bit
 f:17586180d35ba9f894bb8e3f98d356f7:freetype-32/.footprint
 f:cc09efbab940d15772b04464c149a9f6:freetype-32/.md5sum
-f:2959bf487032b1b0b20540b5c2272c1e:freetype-32/Pkgfile
+f:30fe78649d9d1f2fe1ac04fe7014482f:freetype-32/Pkgfile
 f:9453570699f9ba8eaf0a0d58c4cdbcdd:freetype2-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:fribidi-32/.32bit
 f:574a63e617aa65c2eb2410cf0a0157ec:fribidi-32/.footprint
@@ -198,7 +198,7 @@ f:394ff375a367d997ec05aef334988793:glu-32/Pkgfile
 f:ed6dfd99aa1e8a2f72848266ee5f8935:gnutls-32/Pkgfile
 f:5a8f6d72baadf2ff0a9afa61d6d2e1b1:gst-plugins-bad-32/Pkgfile
 f:ab4855f8786ba7676654e124088ce80f:gst-plugins-base-32/Pkgfile
-f:059cf15265708f64aabb24848d08d64c:gst-plugins-good-32/Pkgfile
+f:73ec0c78da7f8c85d6eafaa11a430505:gst-plugins-good-32/Pkgfile
 f:692d95e88faa7b4ebcf5a1c227a79e39:gst-plugins-ugly-32/Pkgfile
 f:9acd83e0bb0a6ef9e95f0c669c784755:gstreamer-32/Pkgfile
 f:d41d8cd98f00b204e9800998ecf8427e:gtk2-32/.32bit

@@ -1,4 +1,4 @@
-# Depends: liburcu libuv openssl zlib openssl
+# Depends: urcu libuv openssl zlib openssl
 description="Bind tools"
 homepage="https://www.isc.org/bind/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

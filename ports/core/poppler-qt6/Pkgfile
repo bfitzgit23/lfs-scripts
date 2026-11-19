@@ -4,7 +4,7 @@ homepage="https://poppler.freedesktop.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=poppler-qt6
-version=26.06.0
+version=26.11.0
 release=1
 source="https://poppler.freedesktop.org/poppler-$version.tar.xz"
 

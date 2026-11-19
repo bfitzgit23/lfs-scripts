@@ -4,10 +4,10 @@ homepage="https://github.com/hyprwm/hyprgraphics"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=hyprgraphics
-version=0.5.1
+version=0.6.0
 release=1
 source=(https://github.com/hyprwm/hyprgraphics/archive/v$version.tar.gz)
-renames=(hyprgraphics-0.5.1.tar.gz)
+renames=(hyprgraphics-0.6.0.tar.gz)
 
 pkg_build() {
 	cmake -S $name-$version -B build -G Ninja \

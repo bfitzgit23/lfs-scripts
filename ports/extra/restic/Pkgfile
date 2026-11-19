@@ -4,7 +4,7 @@ homepage="https://github.com/restic/restic"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=restic
-version=0.19.0
+version=0.19.1
 release=1
 source="https://github.com/restic/$name/archive/v${version}/$name-$version.tar.gz"
 

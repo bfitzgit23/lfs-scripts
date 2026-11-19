@@ -26,7 +26,6 @@ d:cunit
 d:discount
 d:discover
 d:dlpack
-d:docbook-xsl1
 d:dolphin
 d:dolphin-plugins
 d:dragon
@@ -269,7 +268,6 @@ f:6c55cd4525bf8125a21b486730a12ee9:cunit/Pkgfile
 f:c4ee76ffffad35369435d5f52552ed45:discount/Pkgfile
 f:762bce7722f87b25479e1e515fbe7e47:discover/Pkgfile
 f:13e19adbd8ab0057741bf1d05efcf67f:dlpack/Pkgfile
-f:8ee8a0e041203d7273a25986d050bea5:docbook-xsl1/Pkgfile
 f:a457356f836a5e343196cf5ff5d9ca3f:dolphin-plugins/Pkgfile
 f:d1ca33e166b1f90aa1223099eea78659:dolphin/Pkgfile
 f:6f683f5b26e716a3d51a597851d4e55e:dragon/Pkgfile

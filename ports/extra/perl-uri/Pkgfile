@@ -4,10 +4,10 @@ homepage="https://search.cpan.org/dist/URI/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=perl-uri
-version=5.35
+version=5.40
 release=1
 source=(https://cpan.metacpan.org/authors/id/O/OA/OALDERS/URI-$version.tar.gz)
-renames=(perl-uri-5.35.tar.gz)
+renames=(perl-uri-5.40.tar.gz)
 
 pkg_build() {
 	cd URI-$version

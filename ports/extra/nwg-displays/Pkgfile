@@ -4,10 +4,10 @@ homepage="https://github.com/nwg-piotr/nwg-displays"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=nwg-displays
-version=0.4.3
+version=0.5.0
 release=1
 source=(https://github.com/nwg-piotr/nwg-displays/archive/v$version.tar.gz)
-renames=(nwg-displays-0.4.3.tar.gz)
+renames=(nwg-displays-0.5.0.tar.gz)
 
 pkg_build() {
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2

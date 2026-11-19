@@ -4,10 +4,10 @@ homepage="https://github.com/eza-community/eza"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=eza
-version=0.23.4
+version=0.23.5
 release=1
 source=(https://github.com/eza-community/$name/archive/v$version/$name_x86_64-unknown-linux-gnu.tar.gz)
-renames=(eza-0.23.4.tar.gz)
+renames=(eza-0.23.5.tar.gz)
 
 pkg_build() {
   	mkdir rust || true

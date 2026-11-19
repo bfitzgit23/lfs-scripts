@@ -35,7 +35,6 @@ d:consolekit
 d:corrosion
 d:cups-filters
 d:cyrus-sasl
-d:dbus-python
 d:dejagnu
 d:directx-headers
 d:discord
@@ -93,13 +92,11 @@ d:highway
 d:hwdata
 d:hyphen
 d:ibus
-d:isl
 d:jasper
 d:jq
 d:kdsoap
 d:kdsoap-ws-discovery-client
 d:kerberos
-d:keybinder-3.0
 d:labwc
 d:lapack
 d:leptonica
@@ -395,8 +392,8 @@ f:eabc82e185d1e5ee45b46d87a957e6a0:calamares/users.conf
 f:ff268ab6078566c83bb95688bb292351:cdparanoia/Pkgfile
 f:b6271f8526aa864f9cea6bb6eb4da8d1:cdrdao/Pkgfile
 f:871448dcc531729fa14afcd2de222f56:cdrtools/Pkgfile
-f:60b89b3220b1b6b6b5f6989d63c01ac8:chromium-bin/Pkgfile
-f:a4bb9dae0ba863b8e5abc68732444c04:chromium/Pkgfile
+f:9004a5a48333e3e9109c35b650538978:chromium-bin/Pkgfile
+f:095d9d183f15bdc6f5ad013cbc923767:chromium/Pkgfile
 f:d4b4fbb1050b88dfa48bdc21dd133de1:chrony/Pkgfile
 f:e729547f006a82717a3a0c6bdb6fed2f:chrony/pre-install
 f:d66015079fb811d5a45cccf50b58a05f:cifs-utils/Pkgfile
@@ -412,7 +409,6 @@ f:4bb45ac789d73b7d9b3f6960c211f195:corrosion/Pkgfile
 f:de4285de823742bbba7c1dc9ac85cf95:cups-filters/Pkgfile
 f:a0c67153b89d12b273604b288d9cc1bc:cyrus-sasl/Pkgfile
 f:1f4ef7e3c92c53d95af65f9013ae048b:cyrus-sasl/gcc-c23-gcc15-c23.patch
-f:a0a62292a1035ccb3599ad1d04555400:dbus-python/Pkgfile
 f:7092258af6b891a7b7e4679511bb6e1a:dejagnu/Pkgfile
 f:6d64d62b879143e4f187ce42e068ed6a:directx-headers/Pkgfile
 f:e0a7041ee9cc6151b75739ceba5b4f98:discord/Pkgfile
@@ -460,7 +456,7 @@ f:33c5fab78f7b2c6fe3cdd0ca586b12ca:frei0r-plugins/Pkgfile
 f:4295a2ebbe13a59b447704984ac468be:ftjam/Pkgfile
 f:ba8ab77b1d02ddfd4d9ad5ddbf47646e:gavl/Pkgfile
 f:e26de6087ffb8c39fb1390d97bc2640c:gavl/gavl-2.0.1-nettle4-md5.patch
-f:67ac9b846685260d4a79d4fa218bcc47:gdb/Pkgfile
+f:4943dfff4a243bcf96f8186ce90c2aa0:gdb/Pkgfile
 f:c26ae3dc4a43460c604507cc2c86a210:geoclue/Pkgfile
 f:801e38db4f4e9d25bffab5ae45fdecf5:geoclue/post-install
 f:e37f039ba242f38043c0df90f5ad6d89:ghostscript/Pkgfile
@@ -490,14 +486,12 @@ f:4758a05b2b349e6e4f0d99efb941c348:hwdata/Pkgfile
 f:ac3724cb3163df93f985417055dc4a8e:hyphen/Pkgfile
 f:f58a4b2ee82fc92b1cc3b6ce8866a7b6:ibus/Pkgfile
 f:b45acd1670f5c8171b29e0108801d82a:ibus/post-install
-f:c9927f337cf4b56a2dbcfd5572b2658c:isl/Pkgfile
 f:6124549c583286514bee5823010c2769:jasper/Pkgfile
 f:5c53177845424a1f57b6c58a2e86b8cb:jq/Pkgfile
 f:0570f1319959735d6c0abcd46413b4f9:kdsoap-ws-discovery-client/Pkgfile
 f:0aa3834982b1c1131ab058fd15863b72:kdsoap/Pkgfile
 f:df72e0616240df54df523f8eec447252:kerberos/Pkgfile
 f:62ea44c308bdfec5616599a9a5d5dd01:kerberos/krb5-1.22.2-remove-openssl-1.0.patch
-f:168c8664336295dd5b1d997ddc8a2787:keybinder-3.0/Pkgfile
 f:f05c19fb5bc032b97aaabd00bc4e66b0:labwc/Pkgfile
 f:f256015122509fd0614d70f4936ebc33:lapack/Pkgfile
 f:3469509f681c1d140d07257f5895f13f:leptonica/Pkgfile
@@ -698,7 +692,7 @@ f:9a8d8784bcf2354d8ae2834aa77fa0e9:strace/Pkgfile
 f:57f2b9bd735d86be76438c9cb3949c93:subversion/Pkgfile
 f:c3504afcd021f978b1e19b54c8679b1d:svt-av1/Pkgfile
 f:0d878e6019a649bc9e2b2a277ce7308e:swaylock/Pkgfile
-f:8fa1b516a3e8a11cd5bc1d7a72274826:swtpm/Pkgfile
+f:906f00bb0ffb8cab86b0234f67b5834f:swtpm/Pkgfile
 f:5caf5129f8969b8620d57e4c46ad20aa:sysvinit-init-scripts/Pkgfile
 f:f907f91f986e5d83fe32aa5e1656d9e9:sysvinit-init-scripts/acpid
 f:1c279aabb7c5d89029dbad5195e4a811:sysvinit-init-scripts/avahi
@@ -731,7 +725,7 @@ f:a9644bd291eed30c2268b49e9572909c:tcl/Pkgfile
 f:3b16e6472cf535eae6aaa8759518c204:tcl/pre-install
 f:55e3667a8da51bb622e818cdcb3cfe35:tela-icon-theme/Pkgfile
 f:c44eed20168a67d7b828d2cc37167220:tesseract/Pkgfile
-f:91f86fb1062b967c76dc2ef7478d4c1b:texlive/Pkgfile
+f:e8c37bfd835b7eef33d4f206d09f4f84:texlive/Pkgfile
 f:3577e0c3943f427147fc2d28040cea95:texlive/post-install
 f:43458dfcf0d124889de2ed0ef7b39f0f:texlive/pre-install
 f:85d9a28badf0967c2b3a29aa5a320e4f:texlive/tabu.sty.diff

@@ -4,7 +4,7 @@ homepage="https://wummel.github.io/patool/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=patool
-version=4.0.5
+version=4.1.0
 release=1
 source="https://github.com/wummel/$name/releases/download/$version/$name-$version.tar.gz"
 pkg_build() {

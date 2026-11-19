@@ -1,7 +1,7 @@
 # Depends on: dbus libnl 
 
 name=wpa_supplicant
-version=2.10
+version=2.12
 release=1
 source=(https://w1.fi/releases/$name-$version.tar.gz)
 

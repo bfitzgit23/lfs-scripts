@@ -5,7 +5,7 @@ homepage="https://sw.kovidgoyal.net/kitty/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=kitty
-version=0.47.4
+version=0.51.0
 release=1
 source="https://github.com/kovidgoyal/kitty/releases/download/v$version/$name-$version.tar.xz"
 

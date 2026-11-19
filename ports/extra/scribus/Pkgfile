@@ -1,4 +1,4 @@
-# Depends: boost cups harfbuzz-icu hunspell poppler qt5
+# Depends: boost cups harfbuzz hunspell poppler qt5
 description="Desktop publishing software"
 homepage="https://www.scribus.net/ "
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

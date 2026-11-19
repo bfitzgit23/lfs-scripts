@@ -4,10 +4,10 @@ homepage="github.com/trizen/pipe-viewer"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=pipe-viewer
-version=0.5.8
+version=0.5.9
 release=1
 source=(https://github.com/trizen/pipe-viewer/archive/$version.tar.gz)
-renames=(pipe-viewer-0.5.8.tar.gz)
+renames=(pipe-viewer-0.5.9.tar.gz)
 
 pkg_build() {
 	perl Build.PL --gtk3

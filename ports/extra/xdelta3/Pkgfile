@@ -3,7 +3,7 @@ homepage="http://xdelta.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=xdelta3
-version=3.1.0
+version=3.2.2
 release=1
 source="https://github.com/jmacd/xdelta/archive/v$version/$name-$version.tar.gz"
 

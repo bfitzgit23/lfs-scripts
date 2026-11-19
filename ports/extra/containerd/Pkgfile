@@ -4,11 +4,11 @@ homepage="https://containerd.io/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=containerd
-version=2.3.2
+version=2.4.2
 release=1
 commit=091922f03c2762540fd057fba91260237ff86acb
 source=(https://github.com/containerd/containerd/archive/refs/tags/v$version.tar.gz)
-renames=(containerd-2.3.2.tar.gz)
+renames=(containerd-2.4.2.tar.gz)
 
 pkg_build() {
 	export GOFLAGS="$GOFLAGS -modcacherw -mod=readonly"

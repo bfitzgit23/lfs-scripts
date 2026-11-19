@@ -4,7 +4,7 @@ homepage="https://www.tcpdump.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=tcpdump
-version=4.99.6
+version=4.99.7
 release=1
 source="http://www.tcpdump.org/release/$name-$version.tar.gz"
 

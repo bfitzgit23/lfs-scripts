@@ -4,7 +4,7 @@ homepage="https://github.com/cli/cli"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=github-cli
-version=2.95.0
+version=2.105.0
 release=1
 source="https://github.com/cli/cli/archive/v$version/$name-$version.tar.gz"
 

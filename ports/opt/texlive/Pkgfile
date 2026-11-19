@@ -1,4 +1,4 @@
-# Depends: cairo fontconfig freetype graphite2 harfbuzz icu libpaper libpng
+# Depends: cairo fontconfig freetype2 graphite2 harfbuzz icu libpaper libpng
 # description	: TeX Live typesetting system built from source
 # homepage	: https://www.tug.org/texlive/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

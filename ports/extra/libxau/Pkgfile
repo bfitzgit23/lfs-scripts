@@ -1,6 +1,6 @@
 # Depends on: xorgproto 
 
 name=libxau
-version=1.0.11
+version=1.0.12
 release=1
 source=(https://ftp.x.org/pub/individual/lib/libXau-$version.tar.xz)

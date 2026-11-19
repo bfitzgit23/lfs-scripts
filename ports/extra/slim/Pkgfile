@@ -1,4 +1,4 @@
-# Depends on: libx11 freetype libjpeg-turbo fontconfig libxft libxrandr libxmu consolekit2 
+# Depends on: libx11 freetype2 libjpeg-turbo fontconfig libxft libxrandr libxmu consolekit2
 
 name=slim
 version=1.4.0

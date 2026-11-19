@@ -4,10 +4,10 @@ homepage="https://dmedvinsky.github.io/gsimplecal/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=gsimplecal
-version=2.5.2
+version=2.5.4
 release=1
 source=(https://github.com/dmedvinsky/$name/archive/v$version.tar.gz)
-renames=(gsimplecal-2.5.2.tar.gz)
+renames=(gsimplecal-2.5.4.tar.gz)
 
 pkg_build() {
 	./autogen.sh

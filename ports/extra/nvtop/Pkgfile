@@ -4,7 +4,7 @@ homepage="https://github.com/Syllo/nvtop"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=nvtop
-version=3.3.2
+version=3.4.0
 release=1
 source="https://github.com/Syllo/nvtop/archive/$version/nvtop-$version.tar.gz"
 pkg_build() {

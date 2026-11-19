@@ -4,7 +4,7 @@ homepage="https://github.com/gnome-terminator/terminator"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=terminator
-version=2.1.5
+version=2.1.6
 release=1
 source="https://github.com/gnome-terminator/terminator/releases/download/v$version/$name-$version.tar.gz"
 

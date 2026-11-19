@@ -142,7 +142,6 @@ d:glibc
 d:glibmm-gtk4
 d:glm
 d:gmime3
-d:gmp
 d:gnu-netcat
 d:gnuplot
 d:go
@@ -168,7 +167,6 @@ d:gvfs-mtp
 d:gvfs-nfs
 d:gvfs-smb
 d:gzip
-d:harfbuzz-icu
 d:help2man
 d:herbe
 d:herbstluftwm
@@ -352,7 +350,6 @@ d:mlocate
 d:mpc
 d:mpd
 d:mpdecimal
-d:mpfr
 d:mpv
 d:mtm
 d:mypaint-brushes
@@ -473,7 +470,6 @@ d:python3-pypeg2
 d:python3-pyproject-hooks
 d:python3-pyproject-metadata
 d:python3-pyproject2setuppy
-d:python3-pyproject_metadata
 d:python3-pyqt6-sip
 d:python3-pyqt6-webengine
 d:python3-pysdl2
@@ -677,7 +673,7 @@ f:f76b2fd4c9aed0d650fc18129194aee1:acpi/Pkgfile
 f:90c903d9ec437de99bd2af26b51e15be:ada/Pkgfile
 f:37234d3056bc4f93433a8a15916d2e63:alsa-topology-conf/Pkgfile
 f:11eb394cd9883230ebca23c5bdac8440:aom/Pkgfile
-f:9c39097970b587172c7f15ddca058f97:appstream/Pkgfile
+f:54a09c74b87a52f6657c6b668f48cc8e:appstream/Pkgfile
 f:3b17ea23e9562ddb21f1e0248836e7d5:apr/Pkgfile
 f:a7932586d551e027affd474ea834a5b6:argtable/Pkgfile
 f:1d7f349b6ba60460da101a2ce16f6e58:asciidoc/Pkgfile
@@ -720,7 +716,7 @@ f:3ae2c8572456dba8ca6ee6e4fc901105:bfs-kernel-maintenance/post-install
 f:89a0bedbb211939bcbac1ecd0fe12086:bfs-spkgbuild-macros/Pkgfile
 f:4b4b11308f8c82f0a7f240367f3e64c6:bfs-spkgbuild-macros/helper.sh
 f:4a3a8c6c2a2f420637f6dc5f96020393:bgs/Pkgfile
-f:09d48ccb3a0610d35665ddd715e09447:bindutils/Pkgfile
+f:55b6a6031d4d4bbd8f916f570a8c0b75:bindutils/Pkgfile
 f:a51f930541c9cca1be9bb1f44226d4c3:binutils/.footprint
 f:cf87528335ef27158531503ad1539b4a:binutils/.md5sum
 f:80ed813631fe4b852f54087e3d9832f3:binutils/Pkgfile
@@ -894,9 +890,6 @@ f:0aefdd42865d58403c734c2169913615:glibc/reenable_DT_HASH.patch
 f:46f0221543c0b513b9191bd136b26a7c:glibmm-gtk4/Pkgfile
 f:1ca169591f3e256e7011d861a98912d3:glm/Pkgfile
 f:6464071a14be567b1c26b610250e72b4:gmime3/Pkgfile
-f:c9d2400ba3dcfd3df6bbf30a515f1d91:gmp/.footprint
-f:6d3a25056ec9eceb72ab6d7e36a317ad:gmp/.md5sum
-f:8ed74eaf42dd8915e7d9d408b75982d3:gmp/Pkgfile
 f:fb28cef1af0bb3c20cecf74454a10634:gnu-netcat/Pkgfile
 f:57289786a0235e324dd82be741d1491d:gnuplot/Pkgfile
 f:163348491259f0c61369e91f4354b3d2:go/Pkgfile
@@ -930,7 +923,6 @@ f:12b037e3cab4fd0808bb21a702a780b9:gvfs-smb/Pkgfile
 f:83a047d02982b67a307a81322a7d61f1:gzip/.footprint
 f:ab192be145486595ef469c3faf1ae588:gzip/.md5sum
 f:137a709a55e6f76771f08e29019ac747:gzip/Pkgfile
-f:1664c350f8f9de096d70c1e141d93b98:harfbuzz-icu/Pkgfile
 f:ff4be9785673cb3419950dcb7ee7d8c2:help2man/Pkgfile
 f:58da9532a14737d8bb25c7c3676333c7:herbe/Pkgfile
 f:e30e571d4771179f1cc4dc15b9f6e5d1:herbstluftwm/Pkgfile
@@ -1175,9 +1167,6 @@ f:5b702d872eb73f709c888592e97408a9:mpc/.md5sum
 f:66bee2586f08a72ac4c792c19e969106:mpc/Pkgfile
 f:53018e196497357bfa3bc4afcfe80e59:mpd/Pkgfile
 f:079ba70684f7f245c70541a786a2af60:mpdecimal/Pkgfile
-f:54f2ab4e512e9975ea1187b1344dd114:mpfr/.footprint
-f:758ce7227000cd9995cdba30411a7dd5:mpfr/.md5sum
-f:62543bba41c7c118eb9dbaf60777d38f:mpfr/Pkgfile
 f:785e3e010c184022cc81abef14f23cb2:mpv/Pkgfile
 f:8688fb7122f5a668e7b1a5f148cecf69:mtm/Pkgfile
 f:0d095406784c7dfaf9a112258533839a:mypaint-brushes/Pkgfile
@@ -1262,7 +1251,8 @@ f:2762159eee2184042ebb4b4b5aa590a7:pkgutils/Pkgfile
 f:059a1e88ba2f4de32e40cb11a6e6f8a8:pkgutils/extension
 f:3514c920b6049fe0422519019f0e9aca:pkgutils/pkgadd.conf
 f:990894ccf4551f383ba066f941d65f28:pkgutils/pkgmk.conf
-f:339eac50477b5401a4a6ce7c70147acb:poppler-qt6/Pkgfile
+f:c2e8fb9b19509c195556bef3c51fb3dc:poppler-qt6/.md5sum
+f:34d2d8aa0d524513147228dbfda24d6d:poppler-qt6/Pkgfile
 f:bf9e2abeef98a90f4ea7ce977286a0f6:ports/.footprint
 f:2d49b73be0fc18d992fe8e3b89fe5e02:ports/.md5sum
 f:4d589778c1cef569ce24aeba4ef93ee2:ports/Pkgfile
@@ -1397,7 +1387,6 @@ f:7d5daab1b02a41ddd31c596b3cbf273a:python3-pypeg2/Pkgfile
 f:40bb4f706de8853c8ef998389b9e3ec8:python3-pyproject-hooks/Pkgfile
 f:f8aea58581ca4e77f163c3da57a9b5f8:python3-pyproject-metadata/Pkgfile
 f:bea4b689ea41719be259a0ff7bfe7815:python3-pyproject2setuppy/Pkgfile
-f:542bfe7ad6434a33c4c80d0642e1c11d:python3-pyproject_metadata/Pkgfile
 f:0e1301d8325c7e1fa3206fab1f408f8d:python3-pyqt6-sip/Pkgfile
 f:d064fc04a7606ebeb01433b3e751da5b:python3-pyqt6-webengine/Pkgfile
 f:0012c9e410d0d259a5feace9afcc7191:python3-pysdl2/Pkgfile
@@ -1553,7 +1542,7 @@ f:b05a4729a089107dc492f658d39c2ad7:st/Pkgfile
 f:f5a0696a43f97c1c0c31bf1a6355a97e:stripping/Pkgfile
 f:98ce4fee336d080f0366d1e7d5efc76b:stripping/cleanup.sh
 f:db09442c289465e594255e94cc6404b7:stripping/stripping.sh
-f:3dbb3cce93a3f4b9ad500563f6b1fbdf:surf/Pkgfile
+f:ca8a18ef39c8b9b6ee73f3c73772f356:surf/Pkgfile
 f:13ad52bab008239f588029e68cd50743:swappy/Pkgfile
 f:56f75a17743db1630086641b2b479389:sway-contrib/Pkgfile
 f:b1ef60846b2269e67714d26c2209853f:sway/Pkgfile
@@ -1604,7 +1593,7 @@ f:f37b3ecbd531d1454e81b6e19b019186:vim/.md5sum
 f:aaff348cf7538545512b51b243a1b242:vim/Pkgfile
 f:f769269e9cdc1f985f9183a23cbddc3a:vsv/Pkgfile
 f:a88ba2f5e90f5b15c52c27f3ed5fef14:vte3/Pkgfile
-f:df0036b723e51611eb0640a5aa631c4a:webkitgtk/Pkgfile
+f:a419907b3bfe88a321595f3e59a82d40:webkitgtk/Pkgfile
 f:17ac25b98850c5b39556ecf8954fda52:wget2/Pkgfile
 f:319d69d5c553f09fe278e41bb53a36d3:which/.footprint
 f:5e5f50a29a26178fa66b1d34766ec04d:which/.md5sum

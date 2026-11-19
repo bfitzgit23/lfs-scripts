@@ -1,6 +1,6 @@
 # Depends on: libunistring 
 
 name=libidn2
-version=2.3.4
+version=2.3.8
 release=1
 source=(https://mirrorservice.org/sites/ftp.gnu.org/gnu/libidn/libidn2-2.3.4.tar.gz)

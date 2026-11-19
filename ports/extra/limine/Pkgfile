@@ -4,7 +4,7 @@ homepage="https://limine-bootloader.org "
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=limine
-version=12.3.3
+version=12.10.0
 release=1
 source="https://github.com/Limine-Bootloader/Limine/releases/download/v$version/$name-$version.tar.xz"
 

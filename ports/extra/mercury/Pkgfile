@@ -3,7 +3,7 @@ homepage="https://mercurylang.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=mercury
-version=22.01.8
+version=22.01.9
 release=1
 source="http://dl.mercurylang.org/release/${name}-srcdist-${version}.tar.gz"
 

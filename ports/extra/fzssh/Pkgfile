@@ -4,7 +4,7 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
 homepage="https://filezilla-project.org"
 
 name=fzssh
-version=1.3.0
+version=1.5.2
 release=1
 source="https://sources.archlinux.org/other/packages/${name}/${name}-${version}.tar.xz"
 

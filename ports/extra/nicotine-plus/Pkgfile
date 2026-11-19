@@ -4,7 +4,7 @@ homepage="https://github.com/Nicotine-Plus/nicotine-plus"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=nicotine-plus
-version=3.3.10
+version=3.3.11
 release=1
 source="https://github.com/Nicotine-Plus/$name/archive/$version.tar.gz"
 

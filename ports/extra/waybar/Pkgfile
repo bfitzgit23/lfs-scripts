@@ -5,12 +5,12 @@ maintainer="Venom Linux Team, venomlinux at disroot dot org"
  
 
 name=waybar
-version=0.15.0
+version=0.16.0
 release=1
 backup=/etc/xdg/waybar/config
 backup=/etc/xdg/waybar/style.css
 source=(https://github.com/Alexays/Waybar/archive/$version.tar.gz)
-renames=(waybar-0.15.0.tar.gz)
+renames=(waybar-0.16.0.tar.gz)
 
 pkg_build() {
 	venom-meson Waybar-$version build \

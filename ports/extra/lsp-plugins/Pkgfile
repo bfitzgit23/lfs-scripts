@@ -4,7 +4,7 @@ homepage="https://lsp-plug.in/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=lsp-plugins
-version=1.2.33
+version=1.2.37
 release=1
 source="https://github.com/lsp-plugins/lsp-plugins/releases/download/$version/$name-src-$version.tar.gz"
 

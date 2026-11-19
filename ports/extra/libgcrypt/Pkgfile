@@ -1,6 +1,6 @@
 # Depends on: libgpg-error 
 
 name=libgcrypt
-version=1.10.2
+version=1.12.4
 release=1
 source=(https://www.gnupg.org/ftp/gcrypt/$name/$name-$version.tar.bz2)

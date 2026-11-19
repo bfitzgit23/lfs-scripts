@@ -4,10 +4,10 @@ homepage="https://github.com/nwg-piotr/autotiling"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=nwg-autotiling
-version=1.9.3
+version=1.9.4
 release=1
 source=(https://github.com/nwg-piotr/autotiling/archive/v$version.tar.gz)
-renames=(nwg-autotiling-1.9.3.tar.gz)
+renames=(nwg-autotiling-1.9.4.tar.gz)
 
 pkg_build() {
 	cd autotiling-$version

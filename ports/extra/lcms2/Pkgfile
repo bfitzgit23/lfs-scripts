@@ -1,6 +1,6 @@
 # Depends on: libjpeg-turbo tiff 
 
 name=lcms2
-version=2.15
+version=2.20
 release=1
 source=(https://github.com/mm2/Little-CMS/releases/download/$name.${version#*.}/$name-$version.tar.gz)

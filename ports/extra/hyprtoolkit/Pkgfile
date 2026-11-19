@@ -4,7 +4,7 @@ homepage="https://github.com/hyprwm/hyprland-qtutils"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=hyprtoolkit
-version=0.5.4
+version=0.6.0
 release=1
 source="https://github.com/hyprwm/$name/archive/v$version/$name-$version.tar.gz"
 

@@ -4,7 +4,7 @@ homepage="https://openvpn.net/index.php/open-source.html"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=openvpn
-version=2.7.4
+version=2.7.9
 release=1
 source="https://github.com/OpenVPN/openvpn/archive/v$version/$name-$version.tar.gz"
 

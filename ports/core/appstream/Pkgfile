@@ -1,4 +1,4 @@
-# Depends: bash-completion docbook-xsl itstool libfyaml librsvg libsoup libxmlb libxslt lmdb stemmer zstd
+# Depends: bash-completion docbook-xsl itstool libfyaml librsvg libsoup3 libxmlb libxslt lmdb stemmer zstd
 description="Provides a standard for creating app stores across distributions"
 homepage="https://www.freedesktop.org/wiki/Distributions/AppStream/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

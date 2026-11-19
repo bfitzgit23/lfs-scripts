@@ -1,6 +1,6 @@
 # Depends on: lvm2 
 
 name=parted
-version=3.6
+version=3.8
 release=1
 source=(https://mirrorservice.org/sites/ftp.gnu.org/gnu/parted/parted-3.6.tar.xz)

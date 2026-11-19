@@ -4,7 +4,7 @@ homepage="https://github.com/rust-lang/mdBook"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=mdbook
-version=0.5.3
+version=0.5.4
 release=1
 source="https://github.com/rust-lang-nursery/mdBook/archive/v$version/$name-$version.tar.gz"
 

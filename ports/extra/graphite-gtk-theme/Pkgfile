@@ -1,4 +1,4 @@
-# Depends: gnome-themes-extra gtk-engine-murrine sassc
+# Depends: gnome-themes-extra murrine sassc
 description="Graphite gtk theme"
 homepage="https://github.com/vinceliuice/Graphite-gtk-theme"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

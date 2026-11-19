@@ -4,7 +4,7 @@ homepage="https://github.com/gapan/xdgmenumaker"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=xdgmenumaker
-version=2.4
+version=2.5
 release=1
 source="https://github.com/gapan/xdgmenumaker/archive/$version/$name-$version.tar.gz"
 

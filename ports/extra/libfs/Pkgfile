@@ -1,6 +1,6 @@
 # Depends on: xorgproto xtrans 
 
 name=libfs
-version=1.0.9
+version=1.0.10
 release=1
 source=(https://ftp.x.org/pub/individual/lib/libFS-$version.tar.xz)

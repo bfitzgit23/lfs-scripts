@@ -4,7 +4,7 @@ homepage="https://github.com/rrthomas/recode"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=recode
-version=3.7.15
+version=3.7.17
 release=1
 source="https://github.com/rrthomas/recode/releases/download/v$version/$name-$version.tar.gz"
 

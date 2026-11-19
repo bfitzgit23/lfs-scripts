@@ -4,11 +4,11 @@ homepage="https://rclone.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=rclone
-version=1.74.3
+version=1.76.0
 release=1
 noextract="$name-$version.tar.gz"
 source=(https://github.com/rclone/rclone/archive/refs/tags/v$version.tar.gz)
-renames=(rclone-1.74.3.tar.gz)
+renames=(rclone-1.76.0.tar.gz)
 
 pkg_build() {
 	

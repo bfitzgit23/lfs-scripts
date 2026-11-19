@@ -4,7 +4,7 @@ homepage="https://github.com/labwc/labwc-tweaks"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=labwc-tweaks
-version=0.1.0
+version=0.2.0
 release=1
 source="https://github.com/labwc/$name/archive/$version/$name-$version.tar.gz"
 

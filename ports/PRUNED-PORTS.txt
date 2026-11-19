@@ -2122,6 +2122,41 @@ this pass:
 NOTE: paths in this file are relative to the tree they were removed from;
 the former ports/scratch/<category> trees are now ports/<category>.
 
+# Duplicate ports resolved against the local trees
+
+Some packages were reachable through two recipes, or two names, in the same
+tree. One copy of each is kept (the newer or the one the rest of the tree
+already depends on) and the dependencies were repointed at it:
+
+- ports/extra/meson - same port as ports/core/meson, which is newer (1.12.0 vs 1.2.2)
+- ports/extra/ninja - same port as ports/core/ninja, which is newer (1.13.2 vs 1.11.1)
+- ports/extra/freetype - same upstream as ports/core/freetype2 (2.14.3 vs 2.13.2);
+  every dependency now names freetype2
+- ports/extra/libsoup - another libsoup 3 recipe, superseded by ports/opt/libsoup3
+  (3.6.6 vs 3.4.3; libsoup3 already builds the vapi bindings); every dependency
+  now names libsoup3
+- ports/extra/liburcu - same upstream as ports/core/urcu (0.15.6 vs 0.14.0);
+  bindutils and xfsprogs now depend on urcu
+- ports/extra/gtk-engine-murrine - same upstream as ports/extra/murrine (0.98.2);
+  the gtk theme ports now depend on murrine
+- ports/extra/simplescreenrecorder - same upstream as ports/extra/ssr (0.4.4);
+  ssr is kept because it ships the post-install that registers the desktop entry
+- ports/opt/keybinder-3.0 - same package as ports/core/keybinder3 (0.3.2), which
+  terminator already depends on
+- ports/opt/dbus-python - same package as ports/core/python3-dbus (1.4.0)
+- ports/core/python3-pyproject_metadata - misspelled twin of
+  ports/core/python3-pyproject-metadata, which meson-python and python3-dbus use
+- ports/core/harfbuzz-icu - it built all of harfbuzz a second time and then kept
+  only the ICU files; ports/extra/harfbuzz now configures -Dicu=enabled, and
+  webkitgtk and scribus depend on harfbuzz
+- ports/core/gmp - same release as ports/core/libgmp, which base depends on;
+  swtpm now depends on libgmp
+- ports/core/mpfr - same release as ports/core/libmpfr, which base depends on;
+  gdb now depends on libmpfr
+- ports/opt/isl - same library as ports/core/libisl (0.27)
+- ports/kde-lxqt/docbook-xsl1 - a second port whose name is docbook-xsl;
+  ports/extra/docbook-xsl is kept
+
 # Retired with the Python 3.14 move off distutils
 
 - ports/core/python3-distutils-extra - it extends distutils, which Python 3.14

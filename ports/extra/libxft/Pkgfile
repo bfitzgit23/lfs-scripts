@@ -1,6 +1,6 @@
-# Depends on: libx11 libxrender freetype fontconfig 
+# Depends on: libx11 libxrender freetype2 fontconfig
 
 name=libxft
-version=2.3.8
+version=2.3.9
 release=1
 source=(https://ftp.x.org/pub/individual/lib/libXft-$version.tar.xz)

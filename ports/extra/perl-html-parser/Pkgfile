@@ -4,10 +4,10 @@ homepage="https://metacpan.org/dist/HTML-Parser"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=perl-html-parser
-version=3.85
+version=3.87
 release=1
 source=(https://www.cpan.org/authors/id/O/OA/OALDERS/HTML-Parser-$version.tar.gz)
-renames=(perl-html-parser-3.85.tar.gz)
+renames=(perl-html-parser-3.87.tar.gz)
 
 pkg_build() {
 	cd HTML-Parser-$version

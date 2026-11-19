@@ -4,7 +4,7 @@ homepage="https://github.com/hyprwm/hyprland-qtutils"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=hyprland-guiutils
-version=0.2.1
+version=0.2.2
 release=1
 source="https://github.com/hyprwm/$name/archive/v$version/$name-$version.tar.gz"
 

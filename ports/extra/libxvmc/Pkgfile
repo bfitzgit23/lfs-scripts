@@ -1,6 +1,6 @@
 # Depends on: libx11 libxext libxv 
 
 name=libxvmc
-version=1.0.13
+version=1.0.15
 release=1
 source=(https://ftp.x.org/pub/individual/lib/libXvMC-$version.tar.xz)

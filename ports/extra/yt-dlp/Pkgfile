@@ -4,7 +4,7 @@ homepage="https://github.com/yt-dlp/yt-dlp"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=yt-dlp
-version=2026.06.09
+version=2026.10.26
 release=1
 source="https://github.com/yt-dlp/yt-dlp/archive/$version/$name-$version.tar.gz"
 

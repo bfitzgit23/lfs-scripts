@@ -4,7 +4,7 @@ homepage="https://gohugo.io/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=hugo
-version=0.163.3
+version=0.170.1
 release=1
 source="https://github.com/gohugoio/$name/archive/v$version/$name-$version.tar.gz"
 

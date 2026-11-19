@@ -4,10 +4,10 @@ homepage="https://github.com/nwg-piotr/nwg-drawer"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=nwg-drawer
-version=0.7.5
+version=0.7.6
 release=1
 source=(https://github.com/nwg-piotr/nwg-drawer/archive/v$version.tar.gz)
-renames=(nwg-drawer-0.7.5.tar.gz)
+renames=(nwg-drawer-0.7.6.tar.gz)
 
 pkg_build() {
 	export CGO_LDFLAGS="${LDFLAGS}"

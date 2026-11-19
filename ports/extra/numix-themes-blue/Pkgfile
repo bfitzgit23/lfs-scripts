@@ -1,4 +1,4 @@
-# Depends: gtk-engine-murrine ruby-sass ruby-rb-fsevent ruby-sass-listen
+# Depends: murrine ruby-sass ruby-rb-fsevent ruby-sass-listen
 description="A flat and light theme with a modern look"
 homepage="https://github.com/shimmerproject/Numix"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

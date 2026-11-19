@@ -1,6 +1,0 @@
-name=gmp
-version=6.3.0
-release=1
-source=(https://ftp.osuosl.org/pub/lfs/lfs-packages/13.1/gmp-6.3.0.tar.xz)
-build_opt="--enable-cxx"
-bootstrap_opt="$build_opt"

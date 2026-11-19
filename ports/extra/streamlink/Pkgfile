@@ -4,7 +4,7 @@ homepage="https://streamlink.github.io/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=streamlink
-version=8.4.0
+version=8.6.3
 release=1
 source="https://github.com/$name/$name/releases/download/$version/$name-$version.tar.gz"
 

@@ -1,4 +1,4 @@
-# Depends: libsoup gtk3
+# Depends: libsoup3 gtk3
 description="A library for accessing weather information from online services"
 homepage="https://mate-desktop.org"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

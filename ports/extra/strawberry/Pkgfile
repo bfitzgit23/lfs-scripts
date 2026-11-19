@@ -4,7 +4,7 @@ homepage="https://www.strawberrymusicplayer.org/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=strawberry
-version=1.2.20
+version=1.2.31
 release=1
 source="https://files.strawberrymusicplayer.org/$name-$version.tar.xz"
 

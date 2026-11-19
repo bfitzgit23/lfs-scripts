@@ -1,4 +1,4 @@
-# Depends: python3-six expat mpfr readline texinfo xz zlib
+# Depends: python3-six expat libmpfr readline texinfo xz zlib
 # description	: gdb package
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
 

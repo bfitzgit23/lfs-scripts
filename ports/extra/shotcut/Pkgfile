@@ -4,10 +4,10 @@ homepage="https://www.shotcut.org"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=shotcut
-version=26.6.25
+version=26.11.15
 release=1
 source=(https://github.com/mltframework/shotcut/archive/v${version}.tar.gz)
-renames=(shotcut-26.6.25.tar.gz)
+renames=(shotcut-26.11.15.tar.gz)
 
 pkg_build() {
 	cmake -S $name-$version -B build -G Ninja \

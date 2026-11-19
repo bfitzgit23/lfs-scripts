@@ -4,7 +4,7 @@ homepage="https://google.github.io/snappy/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=snappy
-version=1.2.2
+version=1.3.1
 release=1
 source="https://github.com/google/snappy/archive/$version/$name-$version.tar.gz"
 

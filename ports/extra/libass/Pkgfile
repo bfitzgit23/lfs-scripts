@@ -1,6 +1,6 @@
-# Depends on: freetype fribidi harfbuzz
+# Depends on: freetype2 fribidi harfbuzz
 
 name=libass
-version=0.17.1
+version=0.17.5
 release=1
 source=(https://github.com/$name/$name/releases/download/$version/$name-$version.tar.xz)

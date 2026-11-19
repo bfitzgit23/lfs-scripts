@@ -4,10 +4,10 @@ homepage="https://github.com/hyprwm/hyprutils"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=hyprutils
-version=0.13.1
+version=0.14.4
 release=1
 source=(https://github.com/hyprwm/hyprutils/archive/v$version.tar.gz)
-renames=(hyprutils-0.13.1.tar.gz)
+renames=(hyprutils-0.14.4.tar.gz)
 
 pkg_build() {
         cmake -S  $name-$version -B build -G Ninja \

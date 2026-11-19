@@ -4,7 +4,7 @@ homepage="http://netpbm.sourceforge.net/ "
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=netpbm
-version=11.14.1
+version=11.16.2
 release=1
 source="https://github.com/ceamac/$name-make-dist/releases/download/v$version/$name-$version.tar.xz"
 

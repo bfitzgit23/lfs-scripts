@@ -4,7 +4,7 @@ homepage="https://github.com/opencontainers/runc"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=runc
-version=1.5.0
+version=1.5.3
 release=1
 source="https://github.com/opencontainers/runc/archive/v${version}/$name-${version}.tar.gz"
 

@@ -1,4 +1,4 @@
 name=libtasn1
-version=4.19.0
+version=4.21.0
 release=1
 source=(https://mirrorservice.org/sites/ftp.gnu.org/gnu/libtasn1/libtasn1-4.19.0.tar.gz)

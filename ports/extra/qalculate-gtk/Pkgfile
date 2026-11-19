@@ -4,10 +4,10 @@ homepage="https://qalculate.github.io/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
 
 name=qalculate-gtk
-version=5.11.0
+version=5.13.0
 release=1
 source=(https://github.com/Qalculate/qalculate-gtk/archive/refs/tags/v$version.tar.gz)
-renames=(qalculate-gtk-5.11.0.tar.gz)
+renames=(qalculate-gtk-5.13.0.tar.gz)
 
 pkg_build() {
 	autoreconf -fvi
