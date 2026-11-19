@@ -2,7 +2,7 @@
 
 name=llvm
 version=23.1.6
-release=4
+release=5
 source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/llvm-project-$version.src.tar.xz
 	llvm-config.h
 	clang-$version-enable_default_ssp-1.patch)
@@ -44,16 +44,22 @@ post_build() {
 	# list each component archive as an imported target and verify that the file
 	# exists, so find_package(LLVM) aborts with: The imported target "LLVMDemangle"
 	# references the file /usr/lib/libLLVMDemangle.a but this file does not exist.
-	# CMake writes that verification as the last block of LLVMExports.cmake and
-	# opens it with a fixed marker comment, so drop everything from the marker to
-	# the end of the file - matching the loop body instead breaks whenever CMake
-	# renames its internal variables - and neutralise any leftover existence
-	# test. The imported targets stay defined, and since LLVMConfig.cmake ships
+	# CMake emits that verification as one self-contained block: a fixed
+	# marker comment, the loop, and an endforeach() at column zero closing it.
+	# Delete exactly that range. Dropping to the end of the file also removes
+	# CMake's trailing set(CMAKE_IMPORT_FILE_VERSION)/cmake_policy(POP) footer,
+	# and every consumer then dies with "cmake_policy PUSH without matching
+	# POP". The imported targets stay defined, and since LLVMConfig.cmake ships
 	# LLVM_LINK_LLVM_DYLIB, consumers link the installed libLLVM.so instead.
 	for f in $PKG/usr/lib/cmake/llvm/LLVMExports*.cmake; do
 		[ -f "$f" ] || continue
-		sed -i '/# Loop over all imported files and verify that they actually exist/,$d' "$f"
+		sed -i '/^# Loop over all imported files and verify that they actually exist/,/^endforeach()$/d' "$f"
 		sed -i 's/if *( *NOT EXISTS *"\${[A-Za-z_]*}" *)/if(FALSE)/' "$f"
+		# repair export files that release 4 truncated past the footer
+		if grep -q 'cmake_policy *( *PUSH *)' "$f" &&
+		   ! grep -q 'cmake_policy *( *POP *)' "$f"; then
+			printf 'set(CMAKE_IMPORT_FILE_VERSION)\ncmake_policy(POP)\n' >> "$f"
+		fi
 		n=$(grep -c 'NOT EXISTS' "$f" || true)
 		echo "  $name: ${f##*/} still has $n existence checks"
 	done
