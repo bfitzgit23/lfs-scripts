@@ -10,7 +10,7 @@ source=(https://downloads.sourceforge.net/freetype/freetype-$version.tar.xz
 	freetype2.sh)
 
 pkg_build() {
-	venom-meson freetype-$version build -Dfreetype2:default_library=shared
+	venom-meson build -Dfreetype2:default_library=shared
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 
