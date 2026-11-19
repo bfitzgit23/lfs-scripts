@@ -1161,7 +1161,9 @@ f:1194215b7f284bb2fc8b03bef1a2e93c:mbedtls/Pkgfile
 f:86daac1fce53ff34365b89b26b16b558:mc/Pkgfile
 f:7711839b1e075520a4af7afe540c307e:mcabber/Pkgfile
 f:c251e216ace21045e2c479f689a2405c:meson-python/Pkgfile
-f:a55cfb936787aca553b590ae72c71d41:meson/Pkgfile
+f:c4fdc2cd9444690fb3c26dc07cc162a2:meson/.md5sum
+f:b8ff0feabe021b2efe93324aab084e5d:meson/Pkgfile
+f:104c8712a884ed94471835b1e1b12faf:meson/venom-meson
 f:7b8c7e63ed32de119d2a14d08f5e830d:mimalloc/Pkgfile
 f:0a72daa30d39a45a374c557e253893be:mlocate/Pkgfile
 f:6184c0dec8f6960f567562e00dcc329a:mpc/.footprint
