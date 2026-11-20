@@ -1,12 +1,24 @@
 # Depends: at-spi2-core gdk-pixbuf pango
 name=gtk2
 version=2.24.33
-release=2
+release=3
 source=(https://download.gnome.org/sources/gtk+/${version%.*}/gtk+-$version.tar.xz)
 # GTK+ 2's GIR annotations predate current gobject-introspection, whose
 # scanner rejects them ("missing ":" at column"), and no package here
 # needs the Gtk-2.0 typelibs.
 build_opt="--disable-introspection"
+
+pre_build() {
+	# GCC 14 promotes these from warnings to errors by default, and GTK+ 2.24
+	# predates that: gtkcellrendererspin.c:210 assigns g_object_ref_sink()'s
+	# GObject * to a GtkAdjustment * without a cast, and more of the tree does
+	# the same.  -Wno-error does not undo a default-on error, so name them.
+	export CFLAGS="$CFLAGS -Wno-error=incompatible-pointer-types"
+	export CFLAGS="$CFLAGS -Wno-error=int-conversion"
+	export CFLAGS="$CFLAGS -Wno-error=implicit-function-declaration"
+	export CFLAGS="$CFLAGS -Wno-error=implicit-int"
+	export CFLAGS="$CFLAGS -Wno-error=return-mismatch"
+}
 
 post_build() {
 	rm -f $PKG/usr/bin/gtk-update-icon-cache
