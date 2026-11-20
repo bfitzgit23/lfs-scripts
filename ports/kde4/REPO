@@ -43,7 +43,7 @@ f:478e3ff7f52bda92afb25a688ad5dd8e:kde-runtime/kde-runtime-4.14.3-skip-html-thum
 f:8be86d628b4b682eea81a9ae17eeb297:kde-runtime/kde-runtime-4.14.3-unit-test-args.patch.manual
 f:cfceec0ad556cc3e5e42cca2daac7d4a:kde-wallpapers/Pkgfile
 f:6f390846d0a01092f9dbff6566eefe7c:kde-wallpapers/kde-wallpapers-4.14.3-cmake-minimum.patch.manual
-f:031d55f38a657d1337de07c4c3e408cb:kde-workspace/Pkgfile
+f:89e2b286daeae76c8c7d4a38f93ae6ab:kde-workspace/Pkgfile
 f:388d003eee30699347669a07bfe85e7a:kde-workspace/kde-workspace-4.11.14-bbcukmet-contains.patch.manual
 f:f7ec821b2d83c224d36f1516e90267ed:kde-workspace/kde-workspace-4.11.14-fontconfig-freetype-header.patch.manual
 f:d33f237d047c6b193a809d09d4402c7d:kde-workspace/kde-workspace-4.11.14-joystick-strict-ansi.patch.manual

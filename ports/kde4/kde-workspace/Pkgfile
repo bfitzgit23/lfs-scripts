@@ -1,12 +1,12 @@
 # description	: KDE 4 Plasma workspace and window manager
 # homepage	: https://kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
-# Depends: kdelibs kde-runtime kdepimlibs akonadi4 soprano strigi attica4 phonon4 qt4 boost eudev upower glib fontconfig xorg-libs libxcomposite libxdamage libxrender libxfixes libxrandr libxcursor libxkbfile libxtst xcb-util-image xcb-util-keysyms xcb-util-renderutil
+# Depends: kdelibs kde-runtime kdepimlibs kactivities4 akonadi4 soprano strigi attica4 phonon4 qt4 boost eudev upower glib fontconfig xorg-libs libxcomposite libxdamage libxrender libxfixes libxrandr libxcursor libxkbfile libxtst xcb-util-image xcb-util-keysyms xcb-util-renderutil
 
 description="KDE 4 Plasma workspace and window manager"
 name=kde-workspace
 version=4.11.14
-release=24
+release=25
 source=(https://download.kde.org/Attic/4.14.3/src/kde-workspace-$version.tar.xz kde-workspace-4.11.14-optional-qtdeclarative.patch.manual kde-workspace-4.11.14-optional-webkit.patch.manual kde-workspace-4.11.14-optional-dbusmenu-blitz.patch.manual kde-workspace-4.11.14-optional-qml-sweep.patch.manual kde-workspace-4.11.14-optional-qml-shell.patch.manual kde-workspace-4.11.14-unique-test-names.patch.manual kde-workspace-4.11.14-window-selection-contains.patch.manual kde-workspace-4.11.14-fontconfig-freetype-header.patch.manual kde-workspace-4.11.14-taskmanager-contains.patch.manual kde-workspace-4.11.14-joystick-strict-ansi.patch.manual kde-workspace-4.11.14-kdm-c99.patch.manual kde-workspace-4.11.14-kdm-qimageblitz-fallback.patch.manual kde-workspace-4.11.14-bbcukmet-contains.patch.manual kde-workspace-4.11.14-plasma-akonadi-cxx11.patch.manual kde-workspace-4.11.14-rss-cxx11.patch.manual org.kde.ksysguard.processlisthelper.policy)
 
 pkg_build() {
@@ -113,6 +113,22 @@ pkg_build() {
 			return 1
 		fi
 	done
+
+	# kde-workspace requires KActivities 6.0.0: the KDE 4 branch versions its
+	# library 6.x, while the port is called kactivities4 so it does not collide
+	# with the KF5 kactivities in ports/plasma.  It installs
+	# KActivitiesConfig.cmake under lib/cmake, where CONFIG mode finds it.
+	_bfs_kactivities=
+	for _bfs_kact_dir in /usr/lib /usr/lib64; do
+		if [ -f "$_bfs_kact_dir/cmake/KActivities/KActivitiesConfig.cmake" ]; then
+			_bfs_kactivities=$_bfs_kact_dir
+			break
+		fi
+	done
+	if [ -z "$_bfs_kactivities" ]; then
+		echo "$name: KActivities 6.0.0 was not found; build and install kactivities4 first." >&2
+		return 1
+	fi
 
 	cmake -S . -B build -G Ninja \
 		-DCMAKE_INSTALL_PREFIX=/usr \
