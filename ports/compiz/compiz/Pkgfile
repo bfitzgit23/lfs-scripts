@@ -1,3 +1,4 @@
+# Depends: glib glu gtk3 libpng libwnck libx11 libxcomposite libxcursor libxdamage libxext libxfixes libxi libxinerama libice libxrandr libxrender libsm libxml2 mesa startup-notification
 # description	: Compiz Reloaded compositing window manager (0.8.x series)
 # homepage	: https://gitlab.com/compiz/compiz-core
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>

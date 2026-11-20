@@ -1,4 +1,4 @@
-# Depends on: mesa
+# Depends: mesa
 
 name=glu
 version=9.0.3

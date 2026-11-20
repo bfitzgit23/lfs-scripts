@@ -1,4 +1,4 @@
-# Depends: xfce4-panel libical popt libnotify
+# Depends: libical libnotify libxfce4ui popt xfce4-panel
 description="A simple calendar application with reminders for Xfce"
 homepage="https://xfce.org"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

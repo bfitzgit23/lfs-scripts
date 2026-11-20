@@ -1,4 +1,4 @@
-# Depends on: fuse2
+# Depends: fuse2
 
 name=ntfs-3g
 version=2022.10.3

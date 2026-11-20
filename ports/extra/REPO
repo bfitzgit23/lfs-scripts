@@ -1477,7 +1477,7 @@ f:b913a847e4a0208db2a9dd2abeecd4d1:glslang/.md5sum
 f:8fde0a142926a1f0d062dfd9f6031297:glslang/Pkgfile
 f:67eb1561f9484a641022381c7f261862:glu/.footprint
 f:dc57e05eeaec33169c275904ef72cb06:glu/.md5sum
-f:85f58f7095f5fe4c6c64da4e8a201d48:glu/Pkgfile
+f:d43ac192cdea62ddbef582bb0e0c03ec:glu/Pkgfile
 f:4584f76942128e97ebb6d8c309f91641:gmrun/.footprint
 f:70b360e245684bddbeab8f0a754a9dde:gmrun/.md5sum
 f:e21341918ff26e424e2f39239426b75a:gmrun/Pkgfile
@@ -2207,7 +2207,7 @@ f:74168b424fbc9726790580e94c72fd01:minisign/Pkgfile
 f:80fdab31ad754303e17bb870770f63be:miniupnpc/.footprint
 f:0e94afb21d51f7bfdc5febe0d0eead89:miniupnpc/.md5sum
 f:a96fa94a5ac9c1375f7af120130672e8:miniupnpc/Pkgfile
-f:9c3f0b4c6620a97bdab8db37ab0797d7:mintstick/Pkgfile
+f:b70e71a70b18b56b0bd9e8d184b09d1c:mintstick/Pkgfile
 f:185ea8bb269f7fb9d7c5daa0d4a9d0d3:mjwm/Pkgfile
 f:5b62cdf5c2a471c55e8d4d341f9700b3:mkfontscale/.footprint
 f:31d23dcafe09b0939041ed895be2678d:mkfontscale/.md5sum
@@ -2319,7 +2319,7 @@ f:f8a7ce473bd61792ef182cf0fb2d359a:nss/nss-3.92-standalone-1.patch
 f:68d1634cd2c2bec5f5291e3c1c34f93d:nss/update
 f:f1a703f32f9f56d0813a3db3c9695687:ntfs-3g/.footprint
 f:83d55796cc2aa196ced05defd1d3bb82:ntfs-3g/.md5sum
-f:64fbd807bfb8da5fa96bdba35d6b92aa:ntfs-3g/Pkgfile
+f:24c86b0d0e0921024128b0834fdb74ba:ntfs-3g/Pkgfile
 f:adf4e1f7f28d8e1c24a3c1345213b3e2:ntp/Pkgfile
 f:c4c6d47175cf214ead0e6143fd95903a:numactl/Pkgfile
 f:7d645b8feec1378513a9edd4b2cac53b:numix-icon-theme-circle/Pkgfile
