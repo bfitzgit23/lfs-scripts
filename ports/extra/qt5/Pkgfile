@@ -1,11 +1,9 @@
 # Depends: alsa-lib dbus double-conversion glib harfbuzz icu libjpeg-turbo libpng tiff libwebp libxkbcommon mesa mtdev pcre2 wayland xcb-util-image xcb-util-keysyms xcb-util-renderutil xcb-util-wm openssl sqlite
 
 name=qt5
-version=5.15.11
-release=2
-source=(https://download.qt.io/archive/qt/${version%.*}/$version/single/qt-everywhere-opensource-src-$version.tar.xz
-	qt-everywhere-opensource-src-5.15.11-kf5-1.patch
-	qt-5.15.11-xkbcommon160.patch)
+version=5.15.19
+release=1
+source=(https://download.qt.io/archive/qt/${version%.*}/$version/single/qt-everywhere-opensource-src-$version.tar.xz)
 keep_static=1
 
 pkg_build() {
@@ -27,8 +25,8 @@ pkg_build() {
 		-opensource \
 		-dbus-linked \
 		-openssl-linked \
-		-system-harfbuzz \
-		-system-sqlite \
+		-harfbuzz system \
+		-sqlite system \
 		-nomake examples \
 		-no-rpath \
 		-syslog \
