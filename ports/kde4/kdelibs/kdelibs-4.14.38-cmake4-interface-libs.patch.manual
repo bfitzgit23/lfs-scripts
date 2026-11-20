@@ -15,3 +15,11 @@
     endif (NOT ${_group} STREQUAL ${_install_NAME} )
  
  endmacro (_KDE4_ADD_ICON_INSTALL_RULE)
+@@ -1103,7 +1103,6 @@
+    # This reduces inter-package dependencies and makes it easier to remove
+    # dependencies of shared libraries without breaking binary compatibility.
+    if(NOT "${_add_lib_param}" STREQUAL "STATIC")
+-      set_target_properties(${_target_NAME} PROPERTIES LINK_INTERFACE_LIBRARIES "" )
+       set_target_properties(${_target_NAME} PROPERTIES INTERFACE_LINK_LIBRARIES "" )
+    endif(NOT "${_add_lib_param}" STREQUAL "STATIC")
+ 

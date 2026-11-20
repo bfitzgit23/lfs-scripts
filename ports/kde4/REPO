@@ -63,12 +63,12 @@ f:6f87eabc600c4bc9fbef781160f98929:kde4/Pkgfile
 f:f82acd072b5df945a96fb94b4f1f2add:kde4/kde-plasma.desktop
 f:145a5b575cb10f29624e744386613124:kdeartwork/Pkgfile
 f:413139c16bbdeda585b37586a9fb5e8a:kdeartwork/kdeartwork-4.14.3-cmake-minimum.patch.manual
-f:1e659baef577cbd2572a7101c24e70c9:kdelibs/Pkgfile
+f:d0ae4c146015449ddeca91dd95009b96:kdelibs/Pkgfile
 f:a2c351e5c4d5bef39865e5fc1a39219a:kdelibs/kdelibs-4.14.3-archlinux-menu.patch.manual
 f:2b30cc3e382e99333e7ff388943473e9:kdelibs/kdelibs-4.14.3-kde-applications-menu.patch.manual
 f:0651e75557cbbbb399b0efd36e30013f:kdelibs/kdelibs-4.14.3-no-kdewebkit.patch.manual
 f:496341950c7f4c6098a8da19b2ed25cb:kdelibs/kdelibs-4.14.3-qt4-qmake.patch.manual
-f:630f61b294e9781b53af25fd7175750b:kdelibs/kdelibs-4.14.38-cmake4-interface-libs.patch.manual
+f:8c93ab03e1d7e4e72c48f7f83b470872:kdelibs/kdelibs-4.14.38-cmake4-interface-libs.patch.manual
 f:04c99a134874024c1500a7ed094814fc:kdelibs/kdelibs-4.14.38-cmake4.patch.manual
 f:b6c5285782ae47b1afb28544db511233:kdelibs/kdelibs-4.14.38-fake-kauth-backend.patch.manual
 f:7b486cc49205ae27128209ccbe292660:kdelibs/kdelibs-4.14.38-jasper-exported.patch.manual

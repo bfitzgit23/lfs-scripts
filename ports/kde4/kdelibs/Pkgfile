@@ -6,7 +6,7 @@
 description="KDE 4 core libraries"
 name=kdelibs
 version=4.14.38
-release=2
+release=3
 source=(https://download.kde.org/Attic/applications/17.08.3/src/kdelibs-$version.tar.xz kdelibs-4.14.38-cmake4.patch.manual kdelibs-4.14.38-cmake4-interface-libs.patch.manual kdelibs-4.14.38-no-tests.patch.manual kdelibs-4.14.38-fake-kauth-backend.patch.manual kdelibs-4.14.38-klocale-bool-comparison.patch.manual kdelibs-4.14.38-optional-dbusmenuqt.patch.manual kdelibs-4.14.38-optional-declarative.patch.manual kdelibs-4.14.38-ordered.patch.manual kdelibs-4.14.38-jasper-exported.patch.manual kdelibs-4.14.38-openssl-1.1.patch.manual kdelibs-4.14.38-kauth-action-target.patch.manual kdelibs-4.14.38-no-qtwebkit-probes.patch.manual)
 
 pkg_build() {
@@ -27,7 +27,10 @@ pkg_build() {
 	# - guard the icon install rule with CMP0177, because its DESTINATION
 	#   carries a "." or l10n/ component;
 	# - drop the kdewebkit module, its designer plugin and plasma's WebView
-	#   sources, since Qt 4 is built without QtWebKit.
+	#   sources, since Qt 4 is built without QtWebKit;
+	# - stop KDE4_ADD_LIBRARY from setting the old-style
+	#   LINK_INTERFACE_LIBRARIES property, because CMake 4 refuses to export
+	#   a target that still carries it, even when it is only set to "".
 	#
 	# 4.14.38 marks only targets created with the TEST argument
 	# EXCLUDE_FROM_ALL, so the no-tests patch keeps the test directories of
