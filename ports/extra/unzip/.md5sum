@@ -1,3 +1,4 @@
 14c119ef7019f769497363e5cec306e0  unzip-6.0-consolidated_fixes-1.patch
 74c2c3961722c7fbaa98d432381f41ab  unzip-6.0-localtime-proto.patch
 62b490407489521db863b523a7f86375  unzip60.tar.gz
+f1fddb5a9be32f5f2a7cc946e6474655  unzip-6.0-no-dir-fallback.patch

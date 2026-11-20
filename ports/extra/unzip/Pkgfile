@@ -3,7 +3,8 @@ version=60
 release=1
 source=(https://downloads.sourceforge.net/infozip/${name}${version}.tar.gz
 	unzip-6.0-consolidated_fixes-1.patch
-	unzip-6.0-localtime-proto.patch)
+	unzip-6.0-localtime-proto.patch
+	unzip-6.0-no-dir-fallback.patch)
 
 pkg_build() {
 	# unzip declares its API with the __G macro, which globals.h expands to
@@ -13,12 +14,9 @@ pkg_build() {
 	sed -i 's|^CFLAGS = -O[[:space:]]*$|CFLAGS = -O -std=gnu17|' unix/Makefile || return 1
 	sed -i 's|^CF_NOOPT = -I\.|CF_NOOPT = -std=gnu17 -I.|' unix/Makefile || return 1
 
-	# unix/configure probes dir functions with "int main(){return closedir(
-	# opendir(\".\"));}" and neither includes dirent.h nor uses CFLAGS.  Under C23
-	# those implicit declarations are errors, the probe fails, and the build ends
-	# up with -DNO_DIR, which switches unzip to a 3B1 fallback that typedefs DIR
-	# to FILE and then expects a struct member.  Put the language pin on CC, which
-	# the probe does use.
+	# unix/configure probes opendir() with "return closedir(opendir(\".\"));" and no
+	# dirent.h include, which C23 rejects, so the probe can end up defining
+	# -DNO_DIR.  The no-dir-fallback patch makes that harmless on Linux.
 	rm -f flags    # stale configure output would carry -DNO_DIR over
 
 	make -f unix/Makefile generic CC="${CC:-cc} -std=gnu17" || return 1

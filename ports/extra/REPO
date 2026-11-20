@@ -2909,10 +2909,11 @@ f:380d36c4279dca5ed264f3e5da039c3c:unrar/.footprint
 f:a1329cc514752a37b129b4bf5908958c:unrar/.md5sum
 f:b6d8f6982f9c58f8dfba8666a1ca319b:unrar/Pkgfile
 f:0db7cd354be055906ac6edf7e2ce227b:unzip/.footprint
-f:79abbaaa8cecf1dbd6fdf6516bc2af1f:unzip/.md5sum
-f:e4716def83852e8247a5d5b93deef882:unzip/Pkgfile
+f:572fa77c5d94562a0e8ef190c1d9e1d7:unzip/.md5sum
+f:e045095ec409ed43889020bd2ec33bf6:unzip/Pkgfile
 f:14c119ef7019f769497363e5cec306e0:unzip/unzip-6.0-consolidated_fixes-1.patch
 f:74c2c3961722c7fbaa98d432381f41ab:unzip/unzip-6.0-localtime-proto.patch
+f:f1fddb5a9be32f5f2a7cc946e6474655:unzip/unzip-6.0-no-dir-fallback.patch
 f:c358fbf59f898f89149f9ede1e721aa7:urxvt-perls/Pkgfile
 f:253794fa756791765ba58c253ce00532:utf8cpp/Pkgfile
 f:d8abf2591188e6e6a8badd0abe472dca:uthash/.footprint

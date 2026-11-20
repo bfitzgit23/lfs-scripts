@@ -1,0 +1,12 @@
+--- a/unix/unix.c
++++ b/unix/unix.c
+@@ -128,6 +128,9 @@
+ 
+ 
+ #ifndef SFX
++#if defined(NO_DIR) && defined(DIRENT)
++#  undef NO_DIR          /* dirent.h is available; the fallback below cannot compile */
++#endif
+ #ifdef NO_DIR                  /* for AT&T 3B1 */
+ 
+ #define opendir(path) fopen(path,"r")
