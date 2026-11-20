@@ -6,34 +6,42 @@
 description="Operating system and container binary deployment and upgrades"
 name=ostree
 version=2026.4
-release=1
+release=2
 source="https://github.com/ostreedev/ostree/releases/download/v${version}/libostree-${version}.tar.xz"
 
 pkg_build() {
-	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
-	[ -n "$_bfs_src" ] || _bfs_src=.
-	[ -n "$_bfs_src" ] || return 1
-	cd "$_bfs_src" || return 1
-    cd "libostree-$version" || return 1
+	# The driver unpacks the release tarball and cds into its top-level
+	# directory before calling this, so configure is normally right here and a
+	# second cd fails with "libostree-<version>: No such file or directory".
+	# Step in only when configure is not in sight.
+	if [ ! -e ./configure ]; then
+		for _dir in libostree-$version ostree-$version; do
+			if [ -e "$_dir/configure" ]; then
+				cd "$_dir" || return 1
+				break
+			fi
+		done
+	fi
+	[ -e ./configure ] || return 1
 
-    ./configure \
-        --prefix=/usr \
-        --sysconfdir=/etc \
-        --localstatedir=/var \
-        --disable-static \
-        --disable-gtk-doc \
-        --disable-man \
-        --with-curl \
-        --with-soup=no \
-        --without-systemdsystemunitdir \
-        || return 1
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static \
+		--disable-gtk-doc \
+		--disable-man \
+		--with-curl \
+		--with-soup=no \
+		--without-systemdsystemunitdir \
+		|| return 1
 
-    make -j "${JOBS:-1}" || return 1
-    make DESTDIR="$PKG" install || return 1
+	make -j "${JOBS:-1}" || return 1
+	make DESTDIR="$PKG" install || return 1
 
-    # OSTree ships systemd units and tmpfiles entries; on BFSOS they are
-    # integration artifacts owned by the init profiles, not this package.
-    rm -rf "$PKG/usr/lib/systemd" "$PKG/lib/systemd" "$PKG/usr/lib/tmpfiles.d"
+	# OSTree ships systemd units and tmpfiles entries; on BFSOS they are
+	# integration artifacts owned by the init profiles, not this package.
+	rm -rf "$PKG/usr/lib/systemd" "$PKG/lib/systemd" "$PKG/usr/lib/tmpfiles.d"
 
-    find "$PKG" -name '*.la' -delete
+	find "$PKG" -name '*.la' -delete
 }
