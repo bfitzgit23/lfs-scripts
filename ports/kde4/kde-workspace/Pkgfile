@@ -1,12 +1,12 @@
 # description	: KDE 4 Plasma workspace and window manager
 # homepage	: https://kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
-# Depends: kdelibs kde-runtime kdepimlibs akonadi4 soprano strigi attica4 phonon4 qt4 boost eudev upower glib fontconfig xorg-libs
+# Depends: kdelibs kde-runtime kdepimlibs akonadi4 soprano strigi attica4 phonon4 qt4 boost eudev upower glib fontconfig xorg-libs xcb-util-image xcb-util-keysyms xcb-util-renderutil
 
 description="KDE 4 Plasma workspace and window manager"
 name=kde-workspace
 version=4.11.14
-release=21
+release=22
 source=(https://download.kde.org/Attic/4.14.3/src/kde-workspace-$version.tar.xz kde-workspace-4.11.14-optional-qtdeclarative.patch.manual kde-workspace-4.11.14-optional-webkit.patch.manual kde-workspace-4.11.14-optional-dbusmenu-blitz.patch.manual kde-workspace-4.11.14-optional-qml-sweep.patch.manual kde-workspace-4.11.14-optional-qml-shell.patch.manual kde-workspace-4.11.14-unique-test-names.patch.manual kde-workspace-4.11.14-window-selection-contains.patch.manual kde-workspace-4.11.14-fontconfig-freetype-header.patch.manual kde-workspace-4.11.14-taskmanager-contains.patch.manual kde-workspace-4.11.14-joystick-strict-ansi.patch.manual kde-workspace-4.11.14-kdm-c99.patch.manual kde-workspace-4.11.14-kdm-qimageblitz-fallback.patch.manual kde-workspace-4.11.14-bbcukmet-contains.patch.manual kde-workspace-4.11.14-plasma-akonadi-cxx11.patch.manual kde-workspace-4.11.14-rss-cxx11.patch.manual org.kde.ksysguard.processlisthelper.policy)
 
 pkg_build() {
@@ -98,6 +98,21 @@ pkg_build() {
 		echo "$name: rebuild and reinstall kdelibs before building this package." >&2
 		return 1
 	fi
+
+	# FindXCB.cmake probes a dozen xcb-util modules and then aggregates them
+	# into one variable before its final check, so a single missing module
+	# collapses into "Could NOT find XCB (missing: XCB_INCLUDE_DIR)" and the
+	# REQUIRED find_package(XCB) above aborts the configure.  kwin uses
+	# xcb-image (the screenshot effect) and xcb-keysyms (kill window), and
+	# probes xcb-render-util even though nothing here includes it, so check
+	# for all three headers and name the packages that provide them.
+	for _bfs_xcb_hdr in xcb_image.h xcb_keysyms.h xcb_render_util.h; do
+		if [ ! -f "/usr/include/xcb/$_bfs_xcb_hdr" ]; then
+			echo "$name: /usr/include/xcb/$_bfs_xcb_hdr is missing." >&2
+			echo "$name: build and install xcb-util-image xcb-util-keysyms xcb-util-renderutil first." >&2
+			return 1
+		fi
+	done
 
 	cmake -S . -B build -G Ninja \
 		-DCMAKE_INSTALL_PREFIX=/usr \
