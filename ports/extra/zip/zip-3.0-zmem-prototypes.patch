@@ -1,0 +1,19 @@
+--- a/zip.h
++++ b/zip.h
+@@ -723,9 +723,13 @@
+ int fcopy OF((FILE *, FILE *, uzoff_t));
+ 
+ #ifdef ZMEM
+-   char *memset OF((char *, int, unsigned int));
+-   char *memcpy OF((char *, char *, unsigned int));
+-   int memcmp OF((char *, char *, unsigned int));
++#include <string.h>
++   /* Keep ZMEM's guarantees but use the C library's signatures: the old
++      char *memcpy(char *, char *, unsigned int) conflicts with the standard
++      declaration once the compiler stops tolerating mismatches (C23). */
++   void *memset OF((void *, int, size_t));
++   void *memcpy OF((void *, const void *, size_t));
++   int memcmp OF((const void *, const void *, size_t));
+ #endif /* ZMEM */
+ 
+         /* in system dependent fileio code (<system>.c) */

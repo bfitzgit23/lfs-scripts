@@ -3,16 +3,20 @@
 name=zip
 version=3.0
 release=1
-source=(https://downloads.sourceforge.net/sourceforge/infozip/${name}${version//./}.tar.gz)
+source=(https://downloads.sourceforge.net/sourceforge/infozip/${name}${version//./}.tar.gz
+        zip-3.0-zmem-prototypes.patch)
 
 pkg_build() {
-	# unix/configure tests memset() with "int main(){ char k; memset(&k,0,0);
-	# return 0; }", including no string.h, so under C23 the implicit declaration
-	# fails the probe and the build gets -DZMEM.  zip.h then declares its own
-	# "char *memcpy(char *, char *, unsigned)", which conflicts with glibc.
+	# Two independent defences against zip's own ZMEM fallback, which declares
+	# "char *memcpy(char *, char *, unsigned int)" and conflicts with glibc.
 	#
-	# Pin C17 in both places it is read: CC, which the probes use, and LOCAL_ZIP,
-	# which feeds CFLAGS_NOOPT and ends up in the generated flags file.
+	# 1. zip-3.0-zmem-prototypes.patch gives those declarations the C library's
+	#    signatures, so a misdetected memset/memcpy is harmless.
+	# 2. unix/configure decides memset() is missing by compiling a call with no
+	#    string.h include, which C23 rejects; pinning C17 keeps the probes honest.
+	#    CC carries the pin for the probes, LOCAL_ZIP for the compiled CFLAGS,
+	#    because configure writes its own CFLAGS into flags and generic applies
+	#    that file on the nested make command line.
 	rm -f flags    # stale configure output would carry -DZMEM over
 
 	make -f unix/Makefile LOCAL_ZIP="$CFLAGS -std=gnu17" CC="${CC:-cc} -std=gnu17" prefix=/usr generic || return 1

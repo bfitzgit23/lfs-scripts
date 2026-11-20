@@ -3250,7 +3250,8 @@ f:d0a9752505457b71f731e65cfd7f05c8:zenity/Pkgfile
 f:ba1dfd245affa5a245fb3c5a1a82a837:zig-bin/Pkgfile
 f:5162e32d5379d4a34274987c389a85b4:zip/.footprint
 f:c2c3c7fead72fcce885de61b4f54a308:zip/.md5sum
-f:2a40cb3320f6d2de4a7b52b8f540ba25:zip/Pkgfile
+f:9cc0d30e6670dbd78427a2241cb36fef:zip/zip-3.0-zmem-prototypes.patch
+f:f6f19933840a0217c02cb2ee04bc58a5:zip/Pkgfile
 f:aafab3598c18ccec8395105a1dcf09f1:zita-alsa-pcmi/Pkgfile
 f:bb64a23844189f86007ee84d71c2bb64:zita-convolver/Pkgfile
 f:e662f14739b977d018bf2ba8c8d41c93:zita-resampler-libs/Pkgfile
