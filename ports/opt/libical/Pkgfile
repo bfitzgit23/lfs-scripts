@@ -1,4 +1,4 @@
-# Depends: cmake gobject-introspection vala
+# Depends: cmake glib gobject-introspection libxml2 vala
 # description	: The libical package contains an implementation of the iCalendar protocols and data formats.
 # homepage	: https://github.com/libical
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
@@ -6,16 +6,17 @@
 
 description="The libical package contains an implementation of the iCalendar protocols and data formats."
 name=libical
-version=4.0.5
-release=3
+version=3.0.20
+release=1
 build_opt=(
   -DCMAKE_INSTALL_PREFIX=/usr
   -DCMAKE_BUILD_TYPE=Release
-  -DLIBICAL_STATIC=NO
-  -DLIBICAL_BUILD_DOCS=false
-  -DLIBICAL_GOBJECT_INTROSPECTION=true
-  -DLIBICAL_GLIB_VAPI=true
-  -DLIBICAL_JAVA_BINDINGS=OFF
+  -DSTATIC_ONLY=OFF
+  -DICAL_GLIB=true
+  -DGOBJECT_INTROSPECTION=true
+  -DICAL_GLIB_VAPI=true
+  -DLIBICAL_BUILD_TESTING=false
+  -DICAL_BUILD_DOCS=false
 )
 source="https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.gz"
 
