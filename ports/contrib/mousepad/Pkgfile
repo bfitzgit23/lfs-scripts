@@ -1,4 +1,4 @@
-# Depends on: gtksourceview4
+# Depends: gtksourceview4
 
 name=mousepad
 version=0.6.1

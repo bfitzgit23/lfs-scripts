@@ -1,4 +1,4 @@
-# Depends on: libnotify libxfce4ui libcanberra xfce4-dev-tools xfce4-panel
+# Depends: libnotify libxfce4ui libcanberra xfce4-dev-tools xfce4-panel
 
 name=xfce4-notifyd
 version=0.9.3

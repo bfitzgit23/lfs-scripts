@@ -1,4 +1,4 @@
-# Depends on: libxfce4ui gtk3
+# Depends: libxfce4ui gtk3
 
 name=garcon
 version=4.18.1

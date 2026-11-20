@@ -1,3 +1,4 @@
+# Depends: mousepad ristretto parole orage xfce4-dict xfce4-screenshooter
 # description	: Xfce applications meta package
 # homepage	: https://xfce.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
@@ -5,7 +6,7 @@
 description="Xfce applications meta package"
 name=xfce4-apps-meta
 version=4.20.0
-release=2
+release=3
 source=()
 
 pkg_build() {

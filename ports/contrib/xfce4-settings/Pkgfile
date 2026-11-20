@@ -1,4 +1,4 @@
-# Depends on: exo garcon gnome-icon-theme
+# Depends: exo garcon gnome-icon-theme
 
 name=xfce4-settings
 version=4.18.3

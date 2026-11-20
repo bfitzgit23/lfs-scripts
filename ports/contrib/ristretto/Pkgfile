@@ -1,4 +1,4 @@
-# Depends on: libexif libxfce4ui
+# Depends: libexif libxfce4ui
 
 name=ristretto
 version=0.13.1

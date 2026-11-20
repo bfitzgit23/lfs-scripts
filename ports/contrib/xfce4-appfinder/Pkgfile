@@ -1,4 +1,4 @@
-# Depends on: garcon
+# Depends: garcon
 
 name=xfce4-appfinder
 version=4.18.1

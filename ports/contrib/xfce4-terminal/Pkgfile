@@ -1,4 +1,4 @@
-# Depends on: vte libxfce4ui
+# Depends: vte libxfce4ui
 
 name=xfce4-terminal
 version=1.1.1
