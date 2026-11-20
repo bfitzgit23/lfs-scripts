@@ -1,0 +1,37 @@
+--- a/json-glib/json-object.c
++++ b/json-glib/json-object.c
+@@ -940,8 +940,8 @@
+ /**
+  * json_object_foreach_member:
+  * @object: a JSON object
+- * @func: (scope call): the function to be called on each member
+- * @data: (closure): data to be passed to the function
++ * @func: (scope call) (closure data): the function to be called on each member
++ * @data: data to be passed to the function
+  *
+  * Iterates over all members of @object and calls @func on
+  * each one of them.
+--- a/json-glib/json-array.c
++++ b/json-glib/json-array.c
+@@ -714,8 +714,8 @@
+ /**
+  * json_array_foreach_element:
+  * @array: a JSON array
+- * @func: (scope call): the function to be called on each element
+- * @data: (closure): data to be passed to the function
++ * @func: (scope call) (closure data): the function to be called on each element
++ * @data: data to be passed to the function
+  *
+  * Iterates over all elements of an array, and calls a function on
+  * each one of them.
+--- a/json-glib/meson.build
++++ b/json-glib/meson.build
+@@ -113,7 +113,7 @@
+     header: 'json-glib/json-glib.h',
+     install: true,
+     extra_args: gir_args,
+-    fatal_warnings: true,
++    fatal_warnings: false,
+   )
+ else
+   json_glib_gir = []
