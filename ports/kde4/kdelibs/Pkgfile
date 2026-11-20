@@ -6,7 +6,7 @@
 description="KDE 4 core libraries"
 name=kdelibs
 version=4.14.38
-release=1
+release=2
 source=(https://download.kde.org/Attic/applications/17.08.3/src/kdelibs-$version.tar.xz kdelibs-4.14.38-cmake4.patch.manual kdelibs-4.14.38-cmake4-interface-libs.patch.manual kdelibs-4.14.38-no-tests.patch.manual kdelibs-4.14.38-fake-kauth-backend.patch.manual kdelibs-4.14.38-klocale-bool-comparison.patch.manual kdelibs-4.14.38-optional-dbusmenuqt.patch.manual kdelibs-4.14.38-optional-declarative.patch.manual kdelibs-4.14.38-ordered.patch.manual kdelibs-4.14.38-jasper-exported.patch.manual kdelibs-4.14.38-openssl-1.1.patch.manual kdelibs-4.14.38-kauth-action-target.patch.manual kdelibs-4.14.38-no-qtwebkit-probes.patch.manual)
 
 pkg_build() {
@@ -59,7 +59,10 @@ pkg_build() {
 	#
 	# The remaining patches are the Arch/AUR kdelibs fixes that still apply to
 	# 4.14.38: the QBool comparisons in kio, the libjasper exported entry point,
-	# and the OpenSSL 1.1 API (inert while OpenSSL is disabled below).
+	# and the OpenSSL 1.1 API (inert while OpenSSL is disabled below).  Its hunk
+	# that pushed "-lssl -lcrypto" into kio is dropped: 4.14.38 already links
+	# kio with the keyword signature, so a plain target_link_libraries() there
+	# is a hard CMake error, and OpenSSL is not linked in this build anyway.
 	#
 	# Four further AUR patches from the 4.14.3 series are shipped but
 	# deliberately not applied:

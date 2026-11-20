@@ -63,7 +63,7 @@ f:6f87eabc600c4bc9fbef781160f98929:kde4/Pkgfile
 f:f82acd072b5df945a96fb94b4f1f2add:kde4/kde-plasma.desktop
 f:145a5b575cb10f29624e744386613124:kdeartwork/Pkgfile
 f:413139c16bbdeda585b37586a9fb5e8a:kdeartwork/kdeartwork-4.14.3-cmake-minimum.patch.manual
-f:5f552f7c840236dc6ec2b879fe7e39cf:kdelibs/Pkgfile
+f:1e659baef577cbd2572a7101c24e70c9:kdelibs/Pkgfile
 f:a2c351e5c4d5bef39865e5fc1a39219a:kdelibs/kdelibs-4.14.3-archlinux-menu.patch.manual
 f:2b30cc3e382e99333e7ff388943473e9:kdelibs/kdelibs-4.14.3-kde-applications-menu.patch.manual
 f:0651e75557cbbbb399b0efd36e30013f:kdelibs/kdelibs-4.14.3-no-kdewebkit.patch.manual
@@ -76,7 +76,7 @@ f:3bfa19833f9bb27552f79411a46ca0ad:kdelibs/kdelibs-4.14.38-kauth-action-target.p
 f:3014f2ba7c688fd6f6ee7540f15569bb:kdelibs/kdelibs-4.14.38-klocale-bool-comparison.patch.manual
 f:ff407b36ab221f7dd9516c27d2df1d64:kdelibs/kdelibs-4.14.38-no-qtwebkit-probes.patch.manual
 f:9485eac5a64af4964ffef159ecb68454:kdelibs/kdelibs-4.14.38-no-tests.patch.manual
-f:2591d420fb166eb4cc35ecacad395e22:kdelibs/kdelibs-4.14.38-openssl-1.1.patch.manual
+f:c266df71f0b414a6adc16ea031c53296:kdelibs/kdelibs-4.14.38-openssl-1.1.patch.manual
 f:2e3479109764bdeb589c74a78f61cfdc:kdelibs/kdelibs-4.14.38-optional-dbusmenuqt.patch.manual
 f:2007c0b5de0f580d855512ac9a3e73fe:kdelibs/kdelibs-4.14.38-optional-declarative.patch.manual
 f:953c6b19475e16d338d3857a9349070d:kdelibs/kdelibs-4.14.38-ordered.patch.manual

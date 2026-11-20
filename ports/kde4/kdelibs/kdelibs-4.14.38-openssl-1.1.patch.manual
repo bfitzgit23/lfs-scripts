@@ -1,13 +1,3 @@
---- kdelibs-4.14.26/kio/CMakeLists.txt.omv~	2016-11-14 22:38:29.427137096 +0100
-+++ kdelibs-4.14.26/kio/CMakeLists.txt	2016-11-14 22:39:21.476667341 +0100
-@@ -325,6 +325,7 @@ install(FILES kssl/ksslcertificatemanage
-         DESTINATION  ${DATA_INSTALL_DIR}/kconf_update)
- 
- kde4_add_library(kio ${LIBRARY_TYPE} ${kio_LIB_SRCS})
-+target_link_libraries(kio -lssl -lcrypto)
- 
- if(NOT KIO_NO_NEPOMUK)
-   kde4_add_executable(kfilemetadatareader ${kfilemetadatareaderprocess_SRCS})
 --- kdelibs-4.14.26/kio/kssl/kopenssl.cpp.omv~	2016-11-07 00:11:51.000000000 +0100
 +++ kdelibs-4.14.26/kio/kssl/kopenssl.cpp	2016-11-14 22:11:02.355008887 +0100
 @@ -18,223 +18,52 @@
