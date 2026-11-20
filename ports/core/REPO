@@ -1336,6 +1336,7 @@ f:f79351620395b01c7f26ec10d1e197d4:python3-editables/Pkgfile
 f:1e5feb439908bb103fd49707fa544eab:python3-evdev/Pkgfile
 f:9f816dfe0ae77ce8eb213b5761ac36c1:python3-fastjsonschema/Pkgfile
 f:86b0d6f03bccbf9a9ec22606ee0a0e97:python3-flit-core/Pkgfile
+f:bf0129572172a74f5eaa9b5b37d4406a:python3-flit-core/vendor-licence.patch
 f:7909ba99dfc4b9f30e4aeb03eecca345:python3-geographiclib/Pkgfile
 f:eefd5d7e45a3da8e26191ac8d5b39e7a:python3-geopy/Pkgfile
 f:19df1cc6863de28796a96d43fb702f9a:python3-gi_docgen/Pkgfile

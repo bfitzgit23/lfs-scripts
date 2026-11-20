@@ -1,0 +1,15 @@
+# flit_core 4.2.0 raises ConfigError ("No files found for
+# [project.license-files] pattern") for a glob matching nothing, and this
+# port removes flit_core/vendor/ (the vendored tomli, superseded by the
+# stdlib tomllib), so drop the vendor licence glob from the metadata.
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -13,7 +13,7 @@
+ requires-python = '>=3.8'
+ readme = "README.rst"
+ license = "BSD-3-Clause"
+-license-files = ["LICENSE*", "flit_core/vendor/**/LICENSE*"]
++license-files = ["LICENSE*"]
+ classifiers = [
+     "Topic :: Software Development :: Libraries :: Python Modules",
+ ]
