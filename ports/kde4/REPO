@@ -16,6 +16,7 @@ d:libical1
 d:oxygen-icons4
 d:phonon-backend-gstreamer
 d:phonon4
+d:polkit-qt
 d:qjson
 d:qt4
 d:shared-desktop-ontologies
@@ -103,6 +104,7 @@ f:404a837eabaab3f50e35e9e9f7e1ee0b:oxygen-icons4/Pkgfile
 f:66b1d7d7fee25c6c071e3a67cb949709:phonon-backend-gstreamer/Pkgfile
 f:2239963056fcc7778c2bbecc09ecc214:phonon4/Pkgfile
 f:c003b99fdeed4620950e1467b5ef1dc5:phonon4/phonon-4.10.3-cmp0022.patch.manual
+f:0670303f10f60da4826a660f6de1b74f:polkit-qt/Pkgfile
 f:130bbb02e51465e7370b0878fce96d32:qjson/Pkgfile
 f:be15431cda4ac97e5ae7d52441cf0132:qt4/Pkgfile
 f:790cf802012e90f41fd3a0639b8747ef:qt4/qt4-4.8.7-linguist-pointer-compare.patch.manual

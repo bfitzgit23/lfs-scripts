@@ -1,0 +1,40 @@
+# description	: PolicyKit-1 Qt 4 wrapper library
+# homepage	: https://invent.kde.org/libraries/polkit-qt-1
+# maintainer	: Brian Madonna <bmadonnaster@gmail.com>
+# Depends: qt4 polkit glib
+
+description="PolicyKit-1 Qt 4 wrapper library"
+name=polkit-qt
+version=0.112.0
+release=1
+source="https://invent.kde.org/libraries/polkit-qt-1/-/archive/v$version/polkit-qt-1-v$version.tar.gz"
+
+pkg_build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "polkit-qt-1-v$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=.
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
+
+	export CMAKE_PREFIX_PATH="/opt/qt4:/usr"
+	export PATH="/opt/qt4/bin:$PATH"
+	export QT_QMAKE_EXECUTABLE=/opt/qt4/bin/qmake
+	export CFLAGS="${CFLAGS:+$CFLAGS }-std=gnu99"
+	export CXXFLAGS="${CXXFLAGS:+$CXXFLAGS }-std=gnu++98 -fpermissive -Wno-deprecated-declarations"
+
+	# 0.113.0 switched the library to Qt 5 (polkit-qt5-1), so 0.112.0 is the
+	# last Qt 4 release and the one kdelibs' KAuth "POLKITQT-1" backend and
+	# kde-workspace's polkit agent link against; it installs PolkitQt-1's
+	# CMake config files, which is what FindPolkitQt-1.cmake looks for.  The
+	# project probes for Qt 5 first, so select the Qt 4 flavour explicitly.
+	cmake -S . -B build -G Ninja \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+		-DUSE_QT4=TRUE \
+		-DUSE_QT5=FALSE \
+		-DBUILD_EXAMPLES=OFF \
+		-DBUILD_TEST=OFF || return 1
+
+	cmake --build build -j "${JOBS:-1}" || return 1
+	DESTDIR="$PKG" cmake --install build || return 1
+}
