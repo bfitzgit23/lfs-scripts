@@ -1,0 +1,17 @@
+--- a/unix/configure
++++ b/unix/configure
+@@ -518,10 +518,10 @@
+ done
+ 
+ 
+-echo Check for memset
+-echo "int main(){ char k; memset(&k,0,0); return 0; }" > conftest.c
+-$CC -o conftest conftest.c >/dev/null 2>/dev/null
+-[ $? -ne 0 ] && CFLAGS="${CFLAGS} -DZMEM"
++# ZMEM makes fileio.c compile its own memset/memcpy/memcmp as K&R definitions,
++# which current compilers reject, and no supported C library needs them.  The
++# probe would also report "no memset" whenever its test program is rejected for
++# an unrelated reason (it omits <string.h>), so it is not run at all.
+ 
+ 
+ echo Check for memmove
