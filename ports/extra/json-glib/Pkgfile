@@ -1,36 +1,12 @@
-# Depends on: glib gobject-introspection
+# Depends on: glib
 
 name=json-glib
 version=1.8.0
 release=2
-source=(https://download.gnome.org/sources/$name/${version%.*}/$name-$version.tar.xz json-glib-1.8.0-gir-annotations.patch.manual)
+source=(https://download.gnome.org/sources/$name/${version%.*}/$name-$version.tar.xz)
 
-# meson builds json-1.0.gir with g-ir-scanner, and the scanner resolves the
-# GLib and GObject GIRs that glib installs, so gobject-introspection has to be
-# present before this configures; without it meson silently drops the typelib.
-#
-# The annotation fix runs from pkg_build(), not pre_build(): pkgmk guarantees
-# that cwd is $SRC/$name-$version there, while a pre_build() in this port did
-# not reach the extracted tree (the patch was skipped and the scanner failed on
-# the unmodified sources).  The meson invocation below mirrors the driver's,
-# and stays on one line because this Pkgfile is CRLF.
-pkg_build() {
-	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
-	[ -n "$_bfs_src" ] || _bfs_src=.
-	[ -n "$_bfs_src" ] || return 1
-	cd "$_bfs_src" || return 1
-
-	# g-ir-scanner 1.8x only accepts (closure) on callback parameters and takes
-	# the user-data parameter's name as its argument; this release puts the
-	# annotation on @data and its GIR step sets fatal_warnings, so the scanner
-	# aborted the build with "invalid closure annotation".  Move the annotation
-	# onto @func, and keep scanner warnings advisory for the release tarball.
-	# Skip when an earlier run in the same work directory already patched it.
-	if ! grep -q "closure data" json-glib/json-object.c; then
-		patch -p1 -i "$SRC/json-glib-1.8.0-gir-annotations.patch.manual" || return 1
-	fi
-
-	meson setup build . --prefix=/usr --buildtype=plain --wrap-mode nodownload -D b_lto=true -D b_pie=true || return 1
-	meson compile -C build -j "${JOBS:-1}" || return 1
-	DESTDIR="$PKG" meson install -C build
-}
+# meson's GIR step runs g-ir-scanner with --warn-error, and the (closure)
+# annotations json-glib 1.8.0 puts on plain data parameters are rejected by
+# gobject-introspection 1.8x, which aborted the build.  Nothing in this tree
+# consumes the Json typelib, so skip introspection rather than carry a patch.
+build_opt="-Dintrospection=disabled"
