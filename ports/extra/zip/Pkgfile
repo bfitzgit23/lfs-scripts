@@ -5,7 +5,8 @@ version=3.0
 release=1
 source=(https://downloads.sourceforge.net/sourceforge/infozip/${name}${version//./}.tar.gz
         zip-3.0-no-zmem-fallback.patch
-        zip-3.0-zmem-prototypes.patch)
+        zip-3.0-zmem-prototypes.patch
+        zip-3.0-timezone-include-time.patch)
 
 pkg_build() {
 	# zip's ZMEM fallback compiles its own memset/memcpy/memcmp in fileio.c as

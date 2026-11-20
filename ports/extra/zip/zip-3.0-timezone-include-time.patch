@@ -1,0 +1,10 @@
+--- a/timezone.c
++++ b/timezone.c
+@@ -41,6 +41,7 @@
+ #include "timezone.h"
+ #include <ctype.h>
+ #include <errno.h>
++#include <time.h>      /* struct tm; not pulled in by any header above */
+ 
+ #ifdef IZTZ_DEFINESTDGLOBALS
+ long timezone = 0;
