@@ -1,4 +1,4 @@
-# Depends on: libxcb 
+# Depends: libxcb 
 
 name=xcb-util-keysyms
 version=0.4.1

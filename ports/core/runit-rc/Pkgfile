@@ -1,4 +1,4 @@
-# Depends on: runit 
+# Depends: runit 
 
 name=runit-rc
 version=1

@@ -11,7 +11,7 @@ renames=(pascube-1.7.0.tar.gz)
 
 pkg_build() {
     if [ -d ${name}-${version} ]; then
-     cd ${name}-${version}
+     if [ -d ${name}-${version} ]; then cd ${name}-${version}; fi
     fi
     mkdir -p build
 

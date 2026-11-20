@@ -10,7 +10,7 @@ source=(https://git.sr.ht/~skarnet/mdevd/archive/v$version.tar.gz)
 renames=(mdevd-0.1.8.2.tar.gz)
 
 pkg_build() {
-	cd $name-v$version
+	if [ -d $name-v$version ]; then cd $name-v$version; fi
 	./configure \
 		--bindir=/bin \
 		--prefix=/usr \

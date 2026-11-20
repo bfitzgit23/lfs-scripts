@@ -1,4 +1,4 @@
-# Depends on: glib gtk3 vala
+# Depends: glib gtk3 vala
 
 name=gtksourceview4
 version=4.8.4

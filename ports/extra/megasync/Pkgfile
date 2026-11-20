@@ -1,4 +1,4 @@
-# Depends on: libmediainfo libsodium freeimage crypto++ qt5 c-ares
+# Depends: libmediainfo libsodium freeimage crypto++ qt5 c-ares
 
 name=megasync
 version=4.9.0.0

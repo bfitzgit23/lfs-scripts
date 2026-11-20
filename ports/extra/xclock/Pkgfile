@@ -1,4 +1,4 @@
-# Depends on: libxaw libx11 libxmu libxft libxrender libxkbfile
+# Depends: libxaw libx11 libxmu libxft libxrender libxkbfile
 
 name=xclock
 version=1.2.1

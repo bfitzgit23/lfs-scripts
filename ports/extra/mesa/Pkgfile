@@ -1,4 +1,4 @@
-# Depends on: libdrm libx11 libxcb libxext libxfixes libxshmfence libxxf86vm llvm python3-mako python3-markupsafe python3-yaml libglvnd libxrandr spirv-tools spirv-llvm-translator 
+# Depends: libdrm libx11 libxcb libxext libxfixes libxshmfence libxxf86vm llvm python3-mako python3-markupsafe python3-yaml libglvnd libxrandr spirv-tools spirv-llvm-translator 
 
 name=mesa
 version=26.3.1

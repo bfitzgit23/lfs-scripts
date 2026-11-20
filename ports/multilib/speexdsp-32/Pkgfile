@@ -14,7 +14,7 @@ pkg_build() {
 	export CXX="g++ -m32"
 	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
 
-	cd ${name%-*}-SpeexDSP-$version
+	if [ -d ${name%-*}-SpeexDSP-$version ]; then cd ${name%-*}-SpeexDSP-$version; fi
 
 	./autogen.sh
 	./configure --prefix=/usr --libdir=/usr/lib32

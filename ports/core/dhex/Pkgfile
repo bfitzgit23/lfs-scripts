@@ -10,7 +10,7 @@ source=(http://www.dettus.net/$name/${name}_${version}.tar.gz)
 renames=(dhex-0.69.tar.gz)
 
 pkg_build() {
-	cd ${name}_${version}
+	if [ -d ${name}_${version} ]; then cd ${name}_${version}; fi
 
 	make all
 	install -d $PKG/usr/bin $PKG/usr/share/man/man1 $PKG/usr/share/man/man5

@@ -1,4 +1,4 @@
-# Depends on: glib gtk3 
+# Depends: glib gtk3 
 
 name=gmrun
 version=1.4w

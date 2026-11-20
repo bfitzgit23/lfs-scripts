@@ -1,4 +1,4 @@
-# Depends on: libidn2 libunistring 
+# Depends: libidn2 libunistring 
 
 name=libpsl
 version=0.23.3

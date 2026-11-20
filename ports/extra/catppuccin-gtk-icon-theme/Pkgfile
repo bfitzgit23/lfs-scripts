@@ -12,7 +12,7 @@ source=(https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme/archive/$commit
 renames=(catppuccin-gtk-icon-theme-250821.tar.gz)
 
 pkg_build() {
-	cd $rname-$commit/icons
+	[ -d $rname-$commit ] && cd $rname-$commit; cd icons
 	install -dm 755 $PKG/usr/share/icons
 	cp -r * $PKG/usr/share/icons/
 }

@@ -10,7 +10,7 @@ source=(https://github.com/andmarti1424/sc-im/archive/refs/tags/v$version.tar.gz
 renames=(sc-im-0.8.5.tar.gz)
 
 pkg_build() {
-	cd $name-$version/src
+	[ -d $name-$version ] && cd $name-$version; cd src
 	sed -i 's|prefix  = /usr/local|prefix  = /usr|g' Makefile
 	make
 	make PREFIX=$PKG/usr DESTDIR=$PKG install

@@ -1,4 +1,4 @@
-# Depends on: libsndfile dbus glib libice libsm libxtst
+# Depends: libsndfile dbus glib libice libsm libxtst
 
 name=pulseaudio
 version=16.1

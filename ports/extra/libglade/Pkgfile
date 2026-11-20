@@ -1,4 +1,4 @@
-# Depends on: libxml2 gtk2 glib
+# Depends: libxml2 gtk2 glib
 
 name=libglade
 version=2.6.4

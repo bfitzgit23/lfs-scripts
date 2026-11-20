@@ -12,7 +12,7 @@ pkg_build() {
 
         tar xzf "${name}-${version}-1.tar.gz"
         if [ -d ${name}-${version} ]; then
-        	cd ${name}-${version}
+        	if [ -d ${name}-${version} ]; then cd ${name}-${version}; fi
         fi
         autoreconf -vif 
 

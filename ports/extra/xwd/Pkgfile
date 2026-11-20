@@ -1,4 +1,4 @@
-# Depends on: libxkbfile 
+# Depends: libxkbfile 
 
 name=xwd
 version=1.0.10

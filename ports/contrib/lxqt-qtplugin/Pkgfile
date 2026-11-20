@@ -1,4 +1,4 @@
-# Depends on: qt5 libqtxdg libdbusmenu-qt libfm-qt
+# Depends: qt5 libqtxdg libdbusmenu-qt libfm-qt
 
 name=lxqt-qtplugin
 version=1.4.0

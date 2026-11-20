@@ -10,7 +10,7 @@ source=(https://codeberg.org/dwl/dwl/archive/v$version.tar.gz)
 renames=(dwl-0.8.tar.gz)
 
 pkg_build() {
-	cd $name
+	if [ -d $name ]; then cd $name; fi
 
 	# Uncomment to compile with XWayland support
 	#sed -i -e '/-DXWAYLAND/s/^#//' config.mk

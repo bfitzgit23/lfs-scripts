@@ -1,4 +1,4 @@
-# Depends on: gstreamer gst-plugins-base
+# Depends: gstreamer gst-plugins-base
 
 name=gst-plugins-good
 version=1.28.7

@@ -18,7 +18,7 @@ source=(https://git.sr.ht/~skarnet/s6-linux-init/archive/v$version.tar.gz
 renames=(s6-linux-init-1.2.0.1.tar.gz SKIP SKIP SKIP SKIP)
 
 pkg_build() {
-	cd $name-v$version
+	if [ -d $name-v$version ]; then cd $name-v$version; fi
 	./configure \
 		--bindir=/bin \
 		--prefix=/usr \

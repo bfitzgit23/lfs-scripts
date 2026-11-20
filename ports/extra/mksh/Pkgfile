@@ -11,7 +11,7 @@ source=(https://github.com/MirBSD/mksh/archive/$commit.tar.gz)
 renames=(mksh-20260220.tar.gz)
 
 pkg_build() {
-	cd ${name%-*}-$commit
+	if [ -d ${name%-*}-$commit ]; then cd ${name%-*}-$commit; fi
 
 	CPPFLAGS="$CPPFLAGS -DMKSH_BINSHPOSIX=1 -DMKSH_UNLIMITED=1 -DMKSH_ASSUME_UTF8=1 \
 	-DMKSH_DISABLE_DEPRECATED=1 -DMKSH_DISABLE_EXPERIMENTAL=1 -DMKSH_NOPROSPECTOFWORK=1 \

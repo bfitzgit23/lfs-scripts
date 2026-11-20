@@ -10,7 +10,7 @@ source=(https://downloads.sourceforge.net/tcl/tk$version-src.tar.gz)
 renames=(tk-8.6.18.tar.gz)
 
 pkg_build() {
-	cd $name$version/unix
+	[ -d $name$version ] && cd $name$version; cd unix
 
 	./configure \
 		--prefix=/usr \

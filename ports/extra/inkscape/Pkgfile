@@ -1,4 +1,4 @@
-# Depends on: boost double-conversion gc gsl gtkmm libsoup2 libxslt poppler-glib popt lcms2 potrace 
+# Depends: boost double-conversion gc gsl gtkmm libsoup2 libxslt poppler-glib popt lcms2 potrace 
 
 name=inkscape
 version=1.3

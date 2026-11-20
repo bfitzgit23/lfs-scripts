@@ -9,7 +9,7 @@ release=1
 source="https://cytranet.dl.sourceforge.net/project/$name/$name/$name-$version/${name}${_version}.tar.gz"
 
 pkg_build() {
-    cd ${name}${_version}
+    if [ -d ${name}${_version} ]; then cd ${name}${_version}; fi
 
     autoreconf -vfi
     ./configure --prefix=/usr

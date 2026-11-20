@@ -1,4 +1,4 @@
-# Depends on: poppler glib 
+# Depends: poppler glib 
 
 name=poppler-glib
 version=26.11.0

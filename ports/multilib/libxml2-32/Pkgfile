@@ -1,4 +1,4 @@
-# Depends on: libxml2 icu-32 readline-32
+# Depends: libxml2 icu-32 readline-32
 
 name=libxml2-32
 version=2.15.3

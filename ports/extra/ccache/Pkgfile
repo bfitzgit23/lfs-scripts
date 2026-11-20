@@ -1,4 +1,4 @@
-# Depends on: cmake
+# Depends: cmake
 
 name=ccache
 version=4.14.3

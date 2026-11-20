@@ -11,7 +11,7 @@ source=(https://codeberg.org/fairyglade/ly/archive/v$version.tar.gz
 renames=(ly-1.4.1.tar.gz SKIP SKIP SKIP)
 
 pkg_build() {
-	cd $name
+	if [ -d $name ]; then cd $name; fi
 
 	sed -i '/try install_service(allocator, patch_map);/d' build.zig
 	sed -i 's|restart_cmd = /sbin/shutdown -r now|restart_cmd = reboot|' res/config.ini

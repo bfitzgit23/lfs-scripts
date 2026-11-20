@@ -10,7 +10,7 @@ copy-m4.patch)
 
 pkg_build() {
 	if [ -d $name-$name-$version ]; then
-		cd $name-$name-$version
+		if [ -d $name-$name-$version ]; then cd $name-$name-$version; fi
 	fi
 
 	    patch -Np1 -i $SRC/copy-m4.patch

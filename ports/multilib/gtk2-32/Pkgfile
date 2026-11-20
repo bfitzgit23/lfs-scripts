@@ -1,4 +1,4 @@
-# Depends on: gtk2 glib-32 pango-32 cairo-32 gdk-pixbuf-32 at-spi2-core-32 libx11-32 libxrender-32 libxinerama-32
+# Depends: gtk2 glib-32 pango-32 cairo-32 gdk-pixbuf-32 at-spi2-core-32 libx11-32 libxrender-32 libxinerama-32
 
 name=gtk2-32
 version=2.24.33

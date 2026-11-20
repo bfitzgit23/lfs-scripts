@@ -1,4 +1,4 @@
-# Depends on: libjpeg-turbo
+# Depends: libjpeg-turbo
 
 name=libjpeg-turbo-32
 version=3.2.1

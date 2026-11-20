@@ -11,7 +11,7 @@ source=(https://github.com/stefonarch/$name/archive/$_commit.tar.gz)
 renames=(niri-settings-20260326.tar.gz)
 
 pkg_build() {
-	cd $name-$_commit
+	if [ -d $name-$_commit ]; then cd $name-$_commit; fi
 
 	install -Dm755 niri-settings "$PKG/usr/bin/niri-settings"
 	install -Dm644 niri-settings.desktop "$PKG/usr/share/applications/niri-settings.desktop"

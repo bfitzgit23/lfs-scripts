@@ -10,7 +10,7 @@ source=(https://github.com/besser82/${name%-*}/archive/v${version}/${name%-*}-${
        174c24d6e87aeae631bc0a7bb1ba983cf8def4de.patch)
 
 pkg_build() {
-	cd ${name%-*}-${version}
+	if [ -d ${name%-*}-${version} ]; then cd ${name%-*}-${version}; fi
 
         patch -Np1 -i $SRC/174c24d6e87aeae631bc0a7bb1ba983cf8def4de.patch
 

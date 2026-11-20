@@ -1,4 +1,4 @@
-# Depends on: libffi
+# Depends: libffi
 
 name=libffi-32
 version=3.6.0

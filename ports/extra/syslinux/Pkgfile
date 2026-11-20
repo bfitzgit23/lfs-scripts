@@ -1,4 +1,4 @@
-# Depends on: mtools perl
+# Depends: mtools perl
 
 name=syslinux
 version=6.03

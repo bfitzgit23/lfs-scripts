@@ -1,4 +1,4 @@
-# Depends on: libevent dht libnatpmp libdeflate miniupnpc libpsl
+# Depends: libevent dht libnatpmp libdeflate miniupnpc libpsl
 
 name=transmission
 version=4.1.4

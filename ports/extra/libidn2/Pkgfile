@@ -1,4 +1,4 @@
-# Depends on: libunistring 
+# Depends: libunistring 
 
 name=libidn2
 version=2.3.8

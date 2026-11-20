@@ -1,4 +1,4 @@
-# Depends on: gtk-32 mesa-32 zenity
+# Depends: gtk-32 mesa-32 zenity
 
 name=steam
 version=1.0.0.87

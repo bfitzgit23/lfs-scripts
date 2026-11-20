@@ -1,4 +1,4 @@
-# Depends on: libpciaccess 
+# Depends: libpciaccess 
 
 name=libdrm
 version=2.4.134

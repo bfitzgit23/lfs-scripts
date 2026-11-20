@@ -20,6 +20,6 @@ pkg_build() {
     install -m 0755 -d $PKG/etc/fonts/conf.{d,avail}
     install -m 0644 -t $PKG/etc/fonts/conf.avail fontconfig/*.conf
 
-    cd $PKG/etc/fonts/conf.d
+    [ -d $PKG ] && cd $PKG; cd etc/fonts/conf.d
     ln -s ../conf.avail/* .
 }

@@ -1,4 +1,4 @@
-# Depends on: polkit qt5 liblxqt
+# Depends: polkit qt5 liblxqt
 
 name=lxqt-policykit
 version=1.4.0

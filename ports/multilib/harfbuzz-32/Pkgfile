@@ -1,4 +1,4 @@
-# Depends on: harfbuzz freetype-32
+# Depends: harfbuzz freetype-32
 
 name=harfbuzz-32
 version=14.2.1

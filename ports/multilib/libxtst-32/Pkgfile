@@ -1,4 +1,4 @@
-# Depends on: libxtst libx11-32 libxext-32 libxi-32
+# Depends: libxtst libx11-32 libxext-32 libxi-32
 
 name=libxtst-32
 version=1.2.5

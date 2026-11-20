@@ -1,4 +1,4 @@
-# Depends on: libx11 libxfixes 
+# Depends: libx11 libxfixes 
 
 name=libxdamage
 version=1.1.7

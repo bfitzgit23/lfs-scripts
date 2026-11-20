@@ -67,7 +67,7 @@ make MYCFLAGS="-fPIC" linux
   # fixups
   ln -s liblua5.2.so $PKG/usr/lib/liblua.so.5.2
   ln -s liblua5.2.so $PKG/usr/lib/liblua.so.$version
-  cd $PKG/usr/share/man/man1
+  [ -d $PKG ] && cd $PKG; cd usr/share/man/man1
   mv lua.1 lua5.2.1
   mv luac.1 luac5.2.1
 }

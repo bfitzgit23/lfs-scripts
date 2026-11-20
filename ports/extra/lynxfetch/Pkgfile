@@ -10,7 +10,7 @@ source="https://gitlab.com/${name}/${name}/-/archive/${version}/${name}-${versio
 
 pkg_build() {
     if [ -d ${name}-${version} ]; then
-        cd ${name}-${version}
+        if [ -d ${name}-${version} ]; then cd ${name}-${version}; fi
     fi
 
     cargo build --release

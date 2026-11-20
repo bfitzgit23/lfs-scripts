@@ -1,4 +1,4 @@
-# Depends on: qt5 liblxqt
+# Depends: qt5 liblxqt
 
 name=lxqt-sudo
 version=1.4.0

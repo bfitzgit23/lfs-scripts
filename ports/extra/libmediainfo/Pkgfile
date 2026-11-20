@@ -1,4 +1,4 @@
-# Depends on: libzen
+# Depends: libzen
 
 name=libmediainfo
 version=26.10

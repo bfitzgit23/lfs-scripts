@@ -10,7 +10,7 @@ source=(http://salsa.debian.org/debian/ngetty/-/archive/debian/${_version}/$name
 	Conf)
 
 pkg_build() {
-	cd $name-debian-${_version}
+	if [ -d $name-debian-${_version} ]; then cd $name-debian-${_version}; fi
 	cp $SRC/Conf .	
 	make
 	make DESTDIR=$PKG install

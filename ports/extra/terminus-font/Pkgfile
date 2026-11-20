@@ -21,7 +21,7 @@ pkg_build() {
 		$PKG/etc/fonts/conf.avail/75-yes-terminus.conf
 	install -d $PKG/etc/fonts/conf.d
 
-	cd $PKG/etc/fonts/conf.d
+	[ -d $PKG ] && cd $PKG; cd etc/fonts/conf.d
 	ln -s ../conf.avail/75-yes-terminus.conf .
 
 }

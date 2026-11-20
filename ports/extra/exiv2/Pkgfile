@@ -1,4 +1,4 @@
-# Depends on: brotli inih
+# Depends: brotli inih
 
 name=exiv2
 version=0.28.9

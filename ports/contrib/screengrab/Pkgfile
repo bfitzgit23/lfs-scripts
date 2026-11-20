@@ -1,4 +1,4 @@
-# Depends on: qt5 kwindowsystem libqtxdg
+# Depends: qt5 kwindowsystem libqtxdg
 
 name=screengrab
 version=2.7.0

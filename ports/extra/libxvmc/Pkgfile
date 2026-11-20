@@ -1,4 +1,4 @@
-# Depends on: libx11 libxext libxv 
+# Depends: libx11 libxext libxv 
 
 name=libxvmc
 version=1.0.15

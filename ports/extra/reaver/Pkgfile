@@ -10,7 +10,7 @@ release=1
 source="https://github.com/t6x/$_name/releases/download/v$version/$name-$version.tar.xz"
 
 pkg_build() {
-	cd $name-$version/src
+	[ -d $name-$version ] && cd $name-$version; cd src
 
 	sed 's|CFLAGS=|CFLAGS+=|' -i Makefile
 

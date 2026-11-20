@@ -1,4 +1,4 @@
-# Depends on: libgpg-error 
+# Depends: libgpg-error 
 
 name=libksba
 version=1.9.0

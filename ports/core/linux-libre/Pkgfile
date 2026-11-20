@@ -11,7 +11,7 @@ source=(https://linux-libre.fsfla.org/pub/linux-libre/releases/${version%.0}-gnu
 NO_STRIP=yes
 
 pkg_build() {
-	cd ${name%-*}-${version%.0}
+	if [ -d ${name%-*}-${version%.0} ]; then cd ${name%-*}-${version%.0}; fi
 
 #	patch -Np1 -i ../0001-scripts-Fix-libressl-check.patch
 

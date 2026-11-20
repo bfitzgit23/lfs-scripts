@@ -1,4 +1,4 @@
-# Depends on: lvm2 
+# Depends: lvm2 
 
 name=parted
 version=3.8

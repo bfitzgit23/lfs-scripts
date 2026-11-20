@@ -10,7 +10,7 @@ source=" https://github.com/Oblomov/clinfo/archive/${version}/${name}-${version}
 
 pkg_build() {
      if [ -d ${name}-${version} ]; then
-          cd ${name}-${version}
+          if [ -d ${name}-${version} ]; then cd ${name}-${version}; fi
      fi
      make
      make BINDIR=$PKG/usr/bin MANDIR=$PKG/usr/share/man  install

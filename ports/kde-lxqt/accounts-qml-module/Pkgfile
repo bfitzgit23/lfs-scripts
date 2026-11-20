@@ -10,7 +10,7 @@ release=2
 source="https://gitlab.com/accounts-sso/accounts-qml-module/-/archive/$_commit/$name-$_commit.tar.gz"
 
 pkg_build() {
-	cd $name-$_commit
+	if [ -d $name-$_commit ]; then cd $name-$_commit; fi
 	qmake6 PREFIX=/usr LIBDIR=/usr/lib 
 	make
 	make INSTALL_ROOT="$PKG" install_subtargets

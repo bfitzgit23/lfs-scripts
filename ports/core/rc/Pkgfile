@@ -11,7 +11,7 @@ source=(https://codeberg.org/venomlinux/rc/archive/$version.tar.gz)
 renames=(rc-20241228.tar.gz)
 
 pkg_build() {
-	cd $name
+	if [ -d $name ]; then cd $name; fi
 	make DESTDIR=$PKG install
 	# from now on, modules-load provided by 'init' port, can be used across other inits
 	rm -fr $PKG/usr

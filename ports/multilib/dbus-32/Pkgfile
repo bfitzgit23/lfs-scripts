@@ -1,4 +1,4 @@
-# Depends on: dbus expat-32
+# Depends: dbus expat-32
 
 name=dbus-32
 version=1.16.2

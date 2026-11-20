@@ -1,4 +1,4 @@
-# Depends on: glib
+# Depends: glib
 
 name=libidl
 version=0.8.14

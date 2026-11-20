@@ -1,4 +1,4 @@
-# Depends on: jansson libndp gobject-introspection newt nss polkit vala wpa_supplicant libpsl 
+# Depends: jansson libndp gobject-introspection newt nss polkit vala wpa_supplicant libpsl 
 
 name=networkmanager
 version=1.42.8

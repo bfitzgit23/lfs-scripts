@@ -1,4 +1,4 @@
-# Depends on: dbus glib libusb libsecret gcr libgudev libsoup3 polkit udisks fuse
+# Depends: dbus glib libusb libsecret gcr libgudev libsoup3 polkit udisks fuse
 
 name=gvfs
 version=1.52.0

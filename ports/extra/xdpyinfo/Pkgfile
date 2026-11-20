@@ -1,4 +1,4 @@
-# Depends on: libxcomposite libxinerama libxrender libxxf86dga libxxf86vm libxtst 
+# Depends: libxcomposite libxinerama libxrender libxxf86dga libxxf86vm libxtst 
 
 name=xdpyinfo
 version=1.4.0

@@ -1,4 +1,4 @@
-# Depends on: vulkan-headers vulkan-icd-loader wayland
+# Depends: vulkan-headers vulkan-icd-loader wayland
 
 name=vulkan-tools
 version=v1.3.269

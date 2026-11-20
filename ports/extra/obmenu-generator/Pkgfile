@@ -1,4 +1,4 @@
-# Depends on: perl-data-dump perl-linux-desktopfiles 
+# Depends: perl-data-dump perl-linux-desktopfiles 
 
 name=obmenu-generator
 version=0.93

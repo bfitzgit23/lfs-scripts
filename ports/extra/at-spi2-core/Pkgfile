@@ -1,4 +1,4 @@
-# Depends on: dbus glib libx11 libxi libxtst gobject-introspection 
+# Depends: dbus glib libx11 libxi libxtst gobject-introspection 
 
 name=at-spi2-core
 version=2.46.0

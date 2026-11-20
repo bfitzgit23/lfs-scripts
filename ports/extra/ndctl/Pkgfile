@@ -1,4 +1,4 @@
-# Depends on: iniparser json-c keyutils 
+# Depends: iniparser json-c keyutils 
 
 name=ndctl
 version=78

@@ -19,7 +19,7 @@ source=(https://dl.winehq.org/wine/source/${version%%.*}.x/wine-${version}.tar.x
 
 pkg_build() {
 	# apply staging patches
-	cd ${name%-*}-${version}
+	if [ -d ${name%-*}-${version} ]; then cd ${name%-*}-${version}; fi
 	../wine-staging-v${version}/staging/patchinstall.py DESTDIR=../wine-${version} --all
 	cd .. 
 

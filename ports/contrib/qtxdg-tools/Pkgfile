@@ -1,4 +1,4 @@
-# Depends on: lxqt-build-tools libqtxdg
+# Depends: lxqt-build-tools libqtxdg
 
 name=qtxdg-tools
 version=3.12.0

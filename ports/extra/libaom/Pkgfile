@@ -1,4 +1,4 @@
-# Depends on: yasm
+# Depends: yasm
 
 name=libaom
 version=3.7.0

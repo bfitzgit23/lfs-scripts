@@ -1,4 +1,4 @@
-# Depends on: libglvnd libx11 
+# Depends: libglvnd libx11 
 
 name=xdriinfo
 version=1.0.8

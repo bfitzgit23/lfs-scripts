@@ -10,7 +10,7 @@ source="https://hewlettpackard.github.io/wireless-tools/$name.$version.tar.gz"
 
 pkg_build() {
 ls
-	cd ${name}.${_version}
+	if [ -d ${name}.${_version} ]; then cd ${name}.${_version}; fi
 	sed '/BUILD_STATIC =/d' -i Makefile
 	make CFLAGS="${CFLAGS} -I." LDFLAGS="${LDFLAGS}"
 	make

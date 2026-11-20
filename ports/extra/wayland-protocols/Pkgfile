@@ -1,4 +1,4 @@
-# Depends on: wayland 
+# Depends: wayland 
 
 name=wayland-protocols
 version=1.50

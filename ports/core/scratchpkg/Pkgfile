@@ -15,6 +15,6 @@ backup="etc/scratchpkg.conf
 	etc/revdep.conf"
 
 pkg_build() {
-	cd $name
+	if [ -d $name ]; then cd $name; fi
 	DESTDIR=$PKG ./INSTALL.sh
 }

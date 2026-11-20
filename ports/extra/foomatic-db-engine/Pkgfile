@@ -13,7 +13,7 @@ renames=(foomatic-db-engine-20260209.tar.gz)
 pkg_build() {
 	export LIB_CUPS="/usr/lib/cups"
 	
-	cd $name-$commit
+	if [ -d $name-$commit ]; then cd $name-$commit; fi
 	
 	./make_configure
 	PERL_INSTALLDIRS=vendor \

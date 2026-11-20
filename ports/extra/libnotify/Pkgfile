@@ -1,4 +1,4 @@
-# Depends on: gtk3 
+# Depends: gtk3 
 
 name=libnotify
 version=0.8.9

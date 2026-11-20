@@ -1,4 +1,4 @@
-# Depends on: libassuan gnupg 
+# Depends: libassuan gnupg 
 
 name=gpgme
 version=1.22.0

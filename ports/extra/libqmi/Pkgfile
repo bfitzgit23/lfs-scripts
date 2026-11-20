@@ -1,4 +1,4 @@
-# Depends on: glib libgudev libmbim 
+# Depends: glib libgudev libmbim 
 
 name=libqmi
 version=1.30.8

@@ -1,4 +1,4 @@
-# Depends on: yasm 
+# Depends: yasm 
 
 name=libvpx
 version=1.17.0

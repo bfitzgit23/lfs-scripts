@@ -1,4 +1,4 @@
-# Depends on: xorgproto xtrans 
+# Depends: xorgproto xtrans 
 
 name=libice
 version=1.1.2

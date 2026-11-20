@@ -1,4 +1,4 @@
-# Depends on: libx11 libxcb xcb-util 
+# Depends: libx11 libxcb xcb-util 
 
 name=startup-notification
 version=0.12

@@ -1,4 +1,4 @@
-# Depends on: mkinitramfs
+# Depends: mkinitramfs
 description="Linux LTS kernel, Arch Linux prebuilt image and modules (no compile)"
 homepage="https://archlinux.org/packages/core/x86_64/linux-lts/"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

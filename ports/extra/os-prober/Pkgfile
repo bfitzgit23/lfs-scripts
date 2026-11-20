@@ -1,4 +1,4 @@
-# Depends on: grub
+# Depends: grub
 
 name=os-prober
 version=1.81

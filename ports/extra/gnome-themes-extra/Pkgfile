@@ -1,4 +1,4 @@
-# Depends on: gtk2 gtk3 librsvg
+# Depends: gtk2 gtk3 librsvg
 
 name=gnome-themes-extra
 version=3.28

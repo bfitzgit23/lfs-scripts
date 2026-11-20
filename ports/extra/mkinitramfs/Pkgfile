@@ -1,4 +1,4 @@
-# Depends on: cpio 
+# Depends: cpio 
 
 name=mkinitramfs
 version=63c0bb3acaf3c9e0146007e08c13be448e1814c9

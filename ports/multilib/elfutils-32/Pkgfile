@@ -1,4 +1,4 @@
-# Depends on: zlib-32
+# Depends: zlib-32
 
 name=elfutils-32
 version=0.195

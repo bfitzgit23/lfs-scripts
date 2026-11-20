@@ -1,4 +1,4 @@
-# Depends on: gzip lzo xz
+# Depends: gzip lzo xz
 
 name=squashfs-tools
 version=4.7.5

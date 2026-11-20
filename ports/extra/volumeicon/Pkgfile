@@ -1,4 +1,4 @@
-# Depends on: alsa-lib gtk3 libnotify
+# Depends: alsa-lib gtk3 libnotify
 
 name=volumeicon
 version=0.5.1+git20230228

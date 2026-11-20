@@ -1,4 +1,4 @@
-# Depends on: libxml2 
+# Depends: libxml2 
 
 name=wayland
 version=1.26.0

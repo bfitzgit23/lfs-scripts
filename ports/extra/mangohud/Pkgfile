@@ -12,7 +12,7 @@ source=(https://github.com/flightlessmango/MangoHud/releases/download/v${version
 renames=(mangohud-0.8.4.tar.xz)
 
 pkg_build() {
-	cd ${nm}-v${version} 
+	if [ -d ${nm}-v${version} ]; then cd ${nm}-v${version}; fi
 
 	# Use system cmocka instead of subproject
 	sed -i "s/  cmocka = subproject('cmocka')//g" meson.build

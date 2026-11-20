@@ -1,4 +1,4 @@
-# Depends on: glib 
+# Depends: glib 
 
 name=libgudev
 version=238

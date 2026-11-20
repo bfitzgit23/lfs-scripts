@@ -1,4 +1,4 @@
-# Depends on: kconfig kwayland
+# Depends: kconfig kwayland
 
 name=libkscreen
 version=5.27.7

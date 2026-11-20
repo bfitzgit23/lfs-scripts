@@ -1,4 +1,4 @@
-# Depends on: lxqt-build-tools
+# Depends: lxqt-build-tools
 
 name=lxqt-menu-data
 version=1.4.0

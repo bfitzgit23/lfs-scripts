@@ -1,4 +1,4 @@
-# Depends on: libx11 
+# Depends: libx11 
 
 name=xmodmap
 version=1.0.12

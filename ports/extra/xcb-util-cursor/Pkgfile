@@ -1,4 +1,4 @@
-# Depends on: libxcb xcb-util-image xcb-util-renderutil 
+# Depends: libxcb xcb-util-image xcb-util-renderutil 
 
 name=xcb-util-cursor
 version=0.1.6

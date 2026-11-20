@@ -12,7 +12,7 @@ source=(https://git.sr.ht/~skarnet/s6-frontend/archive/v$version.tar.gz
 renames=(s6-frontend-0.0.1.2.tar.gz SKIP)
 
 pkg_build() {
-	cd $name-v$version  
+	if [ -d $name-v$version ]; then cd $name-v$version; fi
 
 	./configure \
 		--prefix=/usr \

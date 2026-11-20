@@ -10,7 +10,7 @@ source="https://github.com/megastep/$name/archive/release-$version/$name-$versio
 
 pkg_build() {
 	if [ -d $name-release-$version ]; then
-		cd $name-release-$version
+		if [ -d $name-release-$version ]; then cd $name-release-$version; fi
 	fi
 	sed -ie 's|^HEADER=.*|HEADER=/usr/share/makeself/makeself-header.sh|' makeself.sh
 	install -d $PKG/usr/bin $PKG/usr/share/man/man1 $PKG/usr/share/$name

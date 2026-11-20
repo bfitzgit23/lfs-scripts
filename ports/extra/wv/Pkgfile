@@ -11,7 +11,7 @@ source=(https://github.com/AbiWord/wv/archive/refs/tags/$name-1-2-9.tar.gz
 renames=(wv-1.2.9.tar.gz SKIP)
 
 pkg_build() {
-	cd $name-$name-1-2-9
+	if [ -d $name-$name-1-2-9 ]; then cd $name-$name-1-2-9; fi
 
 	# fix build
 	patch -Np1 -i $SRC/format_security.patch	

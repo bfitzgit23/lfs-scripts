@@ -1,4 +1,4 @@
-# Depends on: gtk2 libfm libx11
+# Depends: gtk2 libfm libx11
 
 name=lxhotkey
 version=0.1.1

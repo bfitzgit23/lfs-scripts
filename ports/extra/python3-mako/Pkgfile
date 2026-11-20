@@ -1,4 +1,4 @@
-# Depends on: python3-setuptools python3-markupsafe python3-gpep517 python3-installer
+# Depends: python3-setuptools python3-markupsafe python3-gpep517 python3-installer
 
 name=python3-mako
 version=1.4.3

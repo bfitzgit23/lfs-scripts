@@ -1,4 +1,4 @@
-# Depends on: libx11 libxext libxt 
+# Depends: libx11 libxext libxt 
 
 name=libxpm
 version=3.5.20

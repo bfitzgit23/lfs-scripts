@@ -1,4 +1,4 @@
-# Depends on: gtk3 itstool
+# Depends: gtk3 itstool
 
 name=zenity
 version=3.44.5

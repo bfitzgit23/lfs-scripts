@@ -1,4 +1,4 @@
-# Depends on: libx11 libxext 
+# Depends: libx11 libxext 
 
 name=libvdpau
 version=1.5

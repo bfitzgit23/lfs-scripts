@@ -1,4 +1,4 @@
-# Depends on: libxcomposite libx11-32 libxfixes-32
+# Depends: libxcomposite libx11-32 libxfixes-32
 
 name=libxcomposite-32
 version=0.4.7

@@ -1,4 +1,4 @@
-# Depends on: libfontenc freetype2
+# Depends: libfontenc freetype2
 
 name=mkfontscale
 version=1.2.4

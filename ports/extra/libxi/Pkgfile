@@ -1,4 +1,4 @@
-# Depends on: libx11 libxext libxfixes 
+# Depends: libx11 libxext libxfixes 
 
 name=libxi
 version=1.8.4

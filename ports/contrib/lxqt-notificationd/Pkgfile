@@ -1,4 +1,4 @@
-# Depends on: qt5 kwindowsystem liblxqt
+# Depends: qt5 kwindowsystem liblxqt
 
 name=lxqt-notificationd
 version=1.4.0

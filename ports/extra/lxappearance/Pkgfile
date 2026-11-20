@@ -1,4 +1,4 @@
-# Depends on: gtk2 dbus-glib 
+# Depends: gtk2 dbus-glib 
 
 name=lxappearance
 version=0.6.3

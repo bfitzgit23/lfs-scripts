@@ -1,4 +1,4 @@
-# Depends on: libxml2 
+# Depends: libxml2 
 
 name=nghttp2
 version=1.71.0

@@ -1,4 +1,4 @@
-# Depends on: cairomm-1.0 glibmm pango 
+# Depends: cairomm-1.0 glibmm pango 
 
 name=pangomm
 version=2.46.5

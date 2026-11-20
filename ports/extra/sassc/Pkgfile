@@ -1,4 +1,4 @@
-# Depends on: libsass 
+# Depends: libsass 
 
 name=sassc
 version=3.6.2

@@ -9,7 +9,7 @@ source=(http://www.mirbsd.org/MirOS/dist/jupp/joe-$version.tgz)
 renames=(jupp-3.1jupp41.tar.gz)
 
 pkg_build() {
-	cd $name
+	if [ -d $name ]; then cd $name; fi
 	chmod +x configure
 	./configure --prefix=/usr \
 		sysconfdir=/etc

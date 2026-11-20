@@ -1,4 +1,4 @@
-# Depends on: gpicview pcmanfm lxappearance-obconf lxde-common lxde-icon-theme lxinput lxpanel lxrandr lxsession lxtask lxterminal
+# Depends: gpicview pcmanfm lxappearance-obconf lxde-common lxde-icon-theme lxinput lxpanel lxrandr lxsession lxtask lxterminal
 
 name=lxde
 version=1

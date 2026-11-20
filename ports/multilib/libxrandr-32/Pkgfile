@@ -1,4 +1,4 @@
-# Depends on: libxrandr libx11-32 libxext-32 libxrender-32
+# Depends: libxrandr libx11-32 libxext-32 libxrender-32
 
 name=libxrandr-32
 version=1.5.5

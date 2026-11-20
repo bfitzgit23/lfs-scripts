@@ -1,4 +1,4 @@
-# Depends on: gtk2 libwnck2 libfm keybinder wireless-tools
+# Depends: gtk2 libwnck2 libfm keybinder wireless-tools
 
 name=lxpanel
 version=0.10.1

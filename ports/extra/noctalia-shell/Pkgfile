@@ -9,7 +9,7 @@ release=2
 source="https://github.com/noctalia-dev/noctalia-shell/archive/v$version/$name-$version.tar.gz"
 
 pkg_build() {
-	cd ${name%-*}-$version
+	if [ -d ${name%-*}-$version ]; then cd ${name%-*}-$version; fi
 	install -dm755 $PKG/etc/xdg/quickshell/noctalia-shell
 	cp -r $SRC/${name%-*}-$version/* $PKG/etc/xdg/quickshell/noctalia-shell/
 }

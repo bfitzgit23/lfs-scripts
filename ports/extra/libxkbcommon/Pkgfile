@@ -1,4 +1,4 @@
-# Depends on: libxcb wayland-protocols xkeyboard-config 
+# Depends: libxcb wayland-protocols xkeyboard-config 
 
 name=libxkbcommon
 version=1.6.0

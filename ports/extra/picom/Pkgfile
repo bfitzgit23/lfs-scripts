@@ -1,4 +1,4 @@
-# Depends on: libconfig uthash libev libx11 xcb-util-renderutil xcb-util-image libxext pixman pcre libglvnd dbus 
+# Depends: libconfig uthash libev libx11 xcb-util-renderutil xcb-util-image libxext pixman pcre libglvnd dbus 
 
 name=picom
 version=10.2

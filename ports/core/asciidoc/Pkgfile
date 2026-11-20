@@ -12,7 +12,7 @@ pkg_build() {
 	export XML_CATALOG_FILES=/etc/xml/catalog
 
 	if [ -d $name-py-$version ]; then
-		cd $name-py-$version
+		if [ -d $name-py-$version ]; then cd $name-py-$version; fi
 	fi
 
 	autoconf

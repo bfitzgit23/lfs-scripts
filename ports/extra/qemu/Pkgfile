@@ -1,4 +1,4 @@
-# Depends on: glib libslirp alsa-lib sdl pixman
+# Depends: glib libslirp alsa-lib sdl pixman
 
 name=qemu
 version=8.1.1

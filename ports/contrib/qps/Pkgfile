@@ -1,4 +1,4 @@
-# Depends on: liblxqt
+# Depends: liblxqt
 
 name=qps
 version=2.8.0

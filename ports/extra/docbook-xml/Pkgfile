@@ -1,4 +1,4 @@
-# Depends on: libxml2
+# Depends: libxml2
 
 name=docbook-xml
 version=4.5

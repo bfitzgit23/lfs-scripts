@@ -12,7 +12,7 @@ renames=(libxpresent-1.0.2.tar.xz)
 
 pkg_build() {
 	if [ -d $_name-$version ]; then
-		cd $_name-$version
+		if [ -d $_name-$version ]; then cd $_name-$version; fi
 	fi
 	./configure \
 		--prefix=/usr \

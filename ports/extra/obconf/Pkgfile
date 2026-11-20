@@ -1,4 +1,4 @@
-# Depends on: openbox gtk2 libglade
+# Depends: openbox gtk2 libglade
 
 name=obconf
 version=2.0.4

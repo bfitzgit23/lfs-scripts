@@ -1,4 +1,4 @@
-# Depends on: gcr gtk3 iso-codes networkmanager 
+# Depends: gcr gtk3 iso-codes networkmanager 
 
 name=libnma
 version=1.10.6

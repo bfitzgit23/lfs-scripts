@@ -1,4 +1,4 @@
-# Depends on: gtk3
+# Depends: gtk3
 
 name=xarchiver
 version=0.5.4.27

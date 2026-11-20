@@ -1,4 +1,4 @@
-# Depends on: inih urcu
+# Depends: inih urcu
 
 name=xfsprogs
 version=6.5.0

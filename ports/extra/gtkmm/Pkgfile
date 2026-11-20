@@ -1,4 +1,4 @@
-# Depends on: atkmm gtk3 pangomm 
+# Depends: atkmm gtk3 pangomm 
 
 name=gtkmm
 version=3.24.8

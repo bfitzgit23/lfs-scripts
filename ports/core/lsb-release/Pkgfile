@@ -8,7 +8,7 @@ release=1
 source="https://salsa.debian.org/gioele/lsb-release-minimal/-/archive/v$version/$name-minimal-v$version.tar.gz"
 
 pkg_build() {
-	cd $name-minimal-v$version
+	if [ -d $name-minimal-v$version ]; then cd $name-minimal-v$version; fi
 	make
 	make DESTDIR=$PKG install
 }

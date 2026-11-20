@@ -1,4 +1,4 @@
-# Depends on: libxres libxt gtk2 glib
+# Depends: libxres libxt gtk2 glib
 
 name=libwnck2
 version=2.30.7

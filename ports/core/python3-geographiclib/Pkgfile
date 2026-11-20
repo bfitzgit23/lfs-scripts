@@ -11,7 +11,7 @@ source="https://files.pythonhosted.org/packages/source/g/$nm/$nm-$version.tar.gz
 
 pkg_build() {
 	if [ -d $nm-$version ]; then
-		cd $nm-$version
+		if [ -d $nm-$version ]; then cd $nm-$version; fi
 	fi
 	gpep517 build-wheel \
 		--wheel-dir .dist \

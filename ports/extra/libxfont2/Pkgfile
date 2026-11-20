@@ -1,4 +1,4 @@
-# Depends on: libfontenc freetype2 xtrans
+# Depends: libfontenc freetype2 xtrans
 
 name=libxfont2
 version=2.0.10

@@ -1,4 +1,4 @@
-# Depends on: libassuan libgcrypt libksba npth gnutls 
+# Depends: libassuan libgcrypt libksba npth gnutls 
 
 name=gnupg
 version=2.4.3

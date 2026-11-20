@@ -8,7 +8,7 @@ release=1
 source="http://ppa.launchpad.net/tiheum/equinox/ubuntu/pool/main/f/$name/${name}_${version}.tar.gz"
 
 pkg_build() {
-	cd $name-${version%.*}
+	if [ -d $name-${version%.*} ]; then cd $name-${version%.*}; fi
 
   	mkdir -p $PKG/usr/share/icons $PKG/usr/lib $PKG/usr/share
 
@@ -18,10 +18,10 @@ pkg_build() {
 	cp -rf emesene $PKG/usr/share/
 
 	for theme in  Faenza Faenza-Dark; do
-	    cd $PKG/usr/share/icons/$theme/apps/scalable/
+	    [ -d $PKG ] && cd $PKG; cd usr/share/icons/$theme/apps/scalable/
 	    ln -sf gnome-session-reboot.svg system-reboot.svg
 	    for size in 16 22 24 32 48 64 96; do
-	      cd $PKG/usr/share/icons/$theme/apps/$size/
+	      [ -d $PKG ] && cd $PKG; cd usr/share/icons/$theme/apps/$size/
 	      ln -sf gnome-session-reboot.png system-reboot.png
 	    done
 	  done

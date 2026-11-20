@@ -1,4 +1,4 @@
-# Depends on: libxau libxdmcp xcb-proto 
+# Depends: libxau libxdmcp xcb-proto 
 
 name=libxcb
 version=1.17.0

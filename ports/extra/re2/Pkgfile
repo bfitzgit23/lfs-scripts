@@ -10,7 +10,7 @@ release=2
 source="https://github.com/google/re2/archive/$_version/$name-$_version.tar.gz"
 
 pkg_build() {
-	cd $name-$_version
+	if [ -d $name-$_version ]; then cd $name-$_version; fi
 	make
 	make prefix=/usr DESTDIR=$PKG install
 }

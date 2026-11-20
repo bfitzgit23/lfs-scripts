@@ -1,4 +1,4 @@
-# Depends on: c-ares icu libuv nghttp2 
+# Depends: c-ares icu libuv nghttp2 
 
 name=nodejs
 version=20.8.0

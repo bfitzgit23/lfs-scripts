@@ -1,4 +1,4 @@
-# Depends on: libx11 
+# Depends: libx11 
 
 name=xinit
 version=1.4.4

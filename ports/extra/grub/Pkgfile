@@ -1,4 +1,4 @@
-# Depends on: freetype2 fuse2
+# Depends: freetype2 fuse2
 
 name=grub
 version=2.14

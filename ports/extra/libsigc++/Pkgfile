@@ -1,4 +1,4 @@
-# Depends on: boost libxslt 
+# Depends: boost libxslt 
 
 name=libsigc++
 version=2.12.1

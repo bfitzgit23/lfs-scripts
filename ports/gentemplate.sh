@@ -36,7 +36,7 @@ esac
 #echo "version: $version"
 mkdir -p $name
 
-echo "# Depends on: 
+echo "# Depends:
 
 name=$name
 version=$version

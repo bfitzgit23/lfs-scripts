@@ -1,4 +1,4 @@
-# Depends on: gobject-introspection 
+# Depends: gobject-introspection 
 
 name=libmbim
 version=1.26.4

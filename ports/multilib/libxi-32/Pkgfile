@@ -1,4 +1,4 @@
-# Depends on: libxi libx11-32 libxext-32 libxfixes-32
+# Depends: libxi libx11-32 libxext-32 libxfixes-32
 
 name=libxi-32
 version=1.8.3

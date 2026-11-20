@@ -1,4 +1,4 @@
-# Depends on: libevent openssl zlib bzip2 xz zstd
+# Depends: libevent openssl zlib bzip2 xz zstd
 
 name=links
 version=2.30

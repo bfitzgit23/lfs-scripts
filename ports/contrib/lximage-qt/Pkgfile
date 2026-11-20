@@ -1,4 +1,4 @@
-# Depends on: qt5 libfm-qt
+# Depends: qt5 libfm-qt
 
 name=lximage-qt
 version=1.4.0

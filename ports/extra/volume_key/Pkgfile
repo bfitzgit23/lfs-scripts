@@ -1,4 +1,4 @@
-# Depends on: cryptsetup glib gnupg gpgme nss swig 
+# Depends: cryptsetup glib gnupg gpgme nss swig 
 
 name=volume_key
 version=0.3.12

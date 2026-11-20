@@ -1,4 +1,4 @@
-# Depends on: nasm
+# Depends: nasm
 
 name=x264
 version=20230215

@@ -1,4 +1,4 @@
-# Depends on: libxxf86vm libx11-32 libxext-32
+# Depends: libxxf86vm libx11-32 libxext-32
 
 name=libxxf86vm-32
 version=1.1.7

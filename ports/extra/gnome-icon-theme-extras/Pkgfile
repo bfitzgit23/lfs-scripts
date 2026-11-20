@@ -1,4 +1,4 @@
-# Depends on: gnome-icon-theme
+# Depends: gnome-icon-theme
 
 name=gnome-icon-theme-extras
 version=3.12.0

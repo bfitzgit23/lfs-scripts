@@ -10,7 +10,7 @@ source=(https://git.sr.ht/~rkta/w3m/archive/v$version.tar.gz)
 renames=(w3m-0.5.6.tar.gz)
 
 pkg_build() {
-	cd $name-v$version
+	if [ -d $name-v$version ]; then cd $name-v$version; fi
 
 	./configure \
  	       --prefix=/usr \

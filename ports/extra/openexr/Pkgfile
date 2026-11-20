@@ -1,4 +1,4 @@
-# Depends on: imath libdeflate
+# Depends: imath libdeflate
 
 name=openexr
 version=3.5.4

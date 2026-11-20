@@ -1,4 +1,4 @@
-# Depends on: libxcb xcb-util 
+# Depends: libxcb xcb-util 
 
 name=xbacklight
 version=1.2.3

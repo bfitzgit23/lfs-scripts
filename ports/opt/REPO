@@ -567,7 +567,7 @@ f:90c401f8b6bf78f1799202a339f34d6d:lightdm/Pkgfile
 f:f12ddb628236c33dec38fecae3f193b3:lightdm/post-install
 f:5cb2ae1815d02b27fbf0a35c5853c24d:lmdb/Pkgfile
 f:d2b3b601067dc956d5f093120dcab026:lua/Pkgfile
-f:db04c70ae7c4139c0634809b215b201d:lua52/Pkgfile
+f:630af176120e4ea07cd579b69f521f72:lua52/Pkgfile
 f:d703bf06f6a517463de205060b01b45d:lua52/lua-5.2-cflags.diff
 f:8586e4a767f4f9087d97e284141aee42:lua52/lua-5.2.4-shared_library-1.patch
 f:bdc663c7b82ffc0b5df67611621fb625:lua52/lua.diff

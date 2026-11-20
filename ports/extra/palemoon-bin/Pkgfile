@@ -13,7 +13,7 @@ renames=(SKIP palemoon-bin-35.0.3.tar.xz) # EU link
 rev_ex_libs="libhunspell.so libxul.so libmozsqlite3.so libmozavutil.so liblgpllibs.so libmozgtk.so"
 
 pkg_build() {
-    cd ${name%-*}
+    if [ -d ${name%-*} ]; then cd ${name%-*}; fi
     install -d $PKG/usr/bin
 	install -d $PKG/usr/lib
 	cp --reflink=auto -r $SRC/${name%-*}/ $PKG/usr/lib/${name%-*}

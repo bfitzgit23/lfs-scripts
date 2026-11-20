@@ -1,4 +1,4 @@
-# Depends on: imlib2 libx11 libxfixes 
+# Depends: imlib2 libx11 libxfixes 
 
 name=scrot
 version=0.10.0

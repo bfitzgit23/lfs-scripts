@@ -1,4 +1,4 @@
-# Depends on: sassc inkscape murrine 
+# Depends: sassc inkscape murrine 
 
 name=arc-gtk-theme
 version=20221218

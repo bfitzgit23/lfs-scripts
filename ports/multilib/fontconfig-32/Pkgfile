@@ -1,4 +1,4 @@
-# Depends on: fontconfig freetype-32 expat-32
+# Depends: fontconfig freetype-32 expat-32
 
 name=fontconfig-32
 version=2.14.2

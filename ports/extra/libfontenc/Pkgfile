@@ -1,4 +1,4 @@
-# Depends on: xorgproto 
+# Depends: xorgproto 
 
 name=libfontenc
 version=1.1.10

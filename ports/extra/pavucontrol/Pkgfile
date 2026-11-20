@@ -1,4 +1,4 @@
-# Depends on: pulseaudio gtkmm json-glib libcanberra
+# Depends: pulseaudio gtkmm json-glib libcanberra
 
 name=pavucontrol
 version=5.0

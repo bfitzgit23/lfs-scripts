@@ -1,4 +1,4 @@
-# Depends on: lxappearance openbox 
+# Depends: lxappearance openbox 
 
 name=lxappearance-obconf
 version=0.2.3

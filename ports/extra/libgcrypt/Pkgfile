@@ -1,4 +1,4 @@
-# Depends on: libgpg-error 
+# Depends: libgpg-error 
 
 name=libgcrypt
 version=1.12.4

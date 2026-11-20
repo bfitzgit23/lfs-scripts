@@ -1,4 +1,4 @@
-# Depends on: libglvnd libx11-32 libxext-32
+# Depends: libglvnd libx11-32 libxext-32
 
 name=libglvnd-32
 version=1.7.0

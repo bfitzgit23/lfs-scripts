@@ -11,7 +11,7 @@ renames=(wlopm-1.0.0.tar.gz)
 
 pkg_build() {
     
-    cd $name-v$version
+    if [ -d $name-v$version ]; then cd $name-v$version; fi
 	make PREFIX=/usr
 	install -d  $PKG/usr/share/bash-completion/completions
 	make PREFIX=/usr DESTDIR=$PKG install

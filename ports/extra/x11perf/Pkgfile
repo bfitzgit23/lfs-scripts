@@ -1,4 +1,4 @@
-# Depends on: libx11 libxext libxft libxmu libxrender 
+# Depends: libx11 libxext libxft libxmu libxrender 
 
 name=x11perf
 version=1.6.1

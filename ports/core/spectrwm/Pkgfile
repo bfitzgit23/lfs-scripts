@@ -12,7 +12,7 @@ source=(https://github.com/conformal/spectrwm/archive/SPECTRWM_$_version.tar.gz
 renames=(spectrwm-3.7.0.tar.gz SKIP)
 
 pkg_build() {
-	cd $name-SPECTRWM_$_version
+	if [ -d $name-SPECTRWM_$_version ]; then cd $name-SPECTRWM_$_version; fi
 	make -C linux PREFIX=/usr SYSCONFDIR=/etc
 	make -C linux PREFIX=/usr SYSCONFDIR=/etc DESTDIR=$PKG install
 	install -d $PKG/usr/share/$name

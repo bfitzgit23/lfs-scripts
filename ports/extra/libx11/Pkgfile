@@ -1,4 +1,4 @@
-# Depends on: libxcb xtrans 
+# Depends: libxcb xtrans 
 
 name=libx11
 version=1.8.14

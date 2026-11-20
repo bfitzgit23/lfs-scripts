@@ -10,6 +10,6 @@ source=(https://github.com/graphicore/$_name/archive/pre-v$version.tar.gz)
 renames=(librebarcode-1.008.tar.gz)
 
 pkg_build() {
-     cd "$_name-pre-v$version"
+     if [ -d "$_name-pre-v$version" ]; then cd "$_name-pre-v$version"; fi
     install -Dm644 -t "$PKG/usr/share/fonts/TTF/" fonts/*.ttf
 }

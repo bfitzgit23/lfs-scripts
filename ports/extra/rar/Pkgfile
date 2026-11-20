@@ -11,7 +11,7 @@ source=(https://www.rarlab.com/rar/rarlinux-x64-${_version}.tar.gz)
 renames=(rar-7.22.tar.gz)
 
 pkg_build() {
-	cd $name
+	if [ -d $name ]; then cd $name; fi
 	install -Dm755 rar          $PKG/usr/bin/rar
 	install -Dm755 default.sfx  $PKG/usr/lib/default.sfx
 	install -Dm644 rarfiles.lst $PKG/etc/rarfiles.lst

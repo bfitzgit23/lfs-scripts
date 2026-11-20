@@ -1,4 +1,4 @@
-# Depends on: glib pcre2-32 libffi-32 zlib-32
+# Depends: glib pcre2-32 libffi-32 zlib-32
 
 name=glib-32
 version=2.90.1

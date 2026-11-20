@@ -1,4 +1,4 @@
-# Depends on: libgpg-error 
+# Depends: libgpg-error 
 
 name=libassuan
 version=2.5.6

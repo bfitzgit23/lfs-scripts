@@ -10,7 +10,7 @@ source=(https://git.kernel.org/torvalds/t/${name%-*}-${version%.*}-rc$release.ta
 	x86_64-dotconfig)
 
 pkg_build() {
-	cd ${name%-*}-${version%.0}-rc$release
+	if [ -d ${name%-*}-${version%.0}-rc$release ]; then cd ${name%-*}-${version%.0}-rc$release; fi
 	
 	make mrproper
 

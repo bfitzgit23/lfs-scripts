@@ -12,7 +12,7 @@ renames=(ttf-cantarell-0.311.tar.gz)
 
 pkg_build() {
 	if [ -d $_name-$version ]; then
-		cd $_name-$version
+		if [ -d $_name-$version ]; then cd $_name-$version; fi
 	fi
 	uv sync
 	. $SRC/$_name-$version/.venv/bin/activate

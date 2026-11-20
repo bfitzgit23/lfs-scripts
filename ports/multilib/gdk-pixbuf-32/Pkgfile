@@ -1,4 +1,4 @@
-# Depends on: gdk-pixbuf glib-32 shared-mime-info libpng-32 libjpeg-turbo-32 libx11-32
+# Depends: gdk-pixbuf glib-32 shared-mime-info libpng-32 libjpeg-turbo-32 libx11-32
 
 name=gdk-pixbuf-32
 version=2.44.7

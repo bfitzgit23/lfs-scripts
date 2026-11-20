@@ -1,4 +1,4 @@
-# Depends on: pixman glib
+# Depends: pixman glib
 
 name=pixman-32
 version=0.46.4

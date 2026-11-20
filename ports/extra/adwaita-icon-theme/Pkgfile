@@ -1,4 +1,4 @@
-# Depends on: gtk3
+# Depends: gtk3
 
 name=adwaita-icon-theme
 version=45.0

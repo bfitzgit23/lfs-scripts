@@ -14,7 +14,7 @@ renames=(apparmor-5.0.1.tar.gz SKIP)
 pkg_build() {
 
 #	bash $SRC/common/list_af_names.sh >> $SRC/parser/base_af_names.h
-	cd $name-v$version
+	if [ -d $name-v$version ]; then cd $name-v$version; fi
 
 	export PYTHON_VERSION=3
 	export PYTHON_VERSIONS=python3

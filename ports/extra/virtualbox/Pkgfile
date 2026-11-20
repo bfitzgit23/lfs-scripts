@@ -1,4 +1,4 @@
-# Depends on: qt5 sdl2 acpica-unix libidl glslang libvpx libxt lvm2 libxinerama libxcursor
+# Depends: qt5 sdl2 acpica-unix libidl glslang libvpx libxt lvm2 libxinerama libxcursor
 
 name=virtualbox
 _name=VirtualBox

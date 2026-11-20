@@ -1,4 +1,4 @@
-# Depends on: libx11 libxext libxrender 
+# Depends: libx11 libxext libxrender 
 
 name=libxrandr
 version=1.5.5

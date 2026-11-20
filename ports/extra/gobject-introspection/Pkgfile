@@ -1,4 +1,4 @@
-# Depends on: glib libffi python3-setuptools
+# Depends: glib libffi python3-setuptools
 
 # glib 2.90 wants gobject-introspection >= 1.80 for its own GIR step;
 # python >= 3.12 needs setuptools installed at configure time.

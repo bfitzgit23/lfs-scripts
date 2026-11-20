@@ -11,7 +11,7 @@ source=(https://github.com/dbeaver/dbeaver/releases/download/$version/dbeaver-ce
 renames=(dbeaver-ce-jre-bin-26.1.1.tar.gz SKIP)
 
 pkg_build() {
-	cd ${name%%-*}
+	if [ -d ${name%%-*} ]; then cd ${name%%-*}; fi
 
 	install -m 755 -d "${PKG}/opt"
 	cp -r "$SRC/${name%%-*}" "${PKG}/opt/${name%%-*}"

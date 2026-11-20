@@ -1,4 +1,4 @@
-# Depends on: mkfontscale font-util 
+# Depends: mkfontscale font-util 
 
 name=encodings
 version=1.1.0

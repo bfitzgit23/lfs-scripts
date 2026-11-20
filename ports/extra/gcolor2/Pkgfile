@@ -1,4 +1,4 @@
-# Depends on: glib gtk2
+# Depends: glib gtk2
 
 name=gcolor2
 version=0.4

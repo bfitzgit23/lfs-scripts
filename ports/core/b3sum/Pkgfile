@@ -10,7 +10,7 @@ source=(https://git.sr.ht/~mcf/b3sum/archive/$commit.tar.gz)
 renames=(b3sum-1.5.0.tar.gz)
 
 pkg_build() {
-	cd $name-$commit
+	if [ -d $name-$commit ]; then cd $name-$commit; fi
 	make
 	make PREFIX=/usr DESTDIR="$PKG" install
 }

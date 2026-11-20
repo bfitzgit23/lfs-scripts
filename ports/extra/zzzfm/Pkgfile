@@ -12,7 +12,7 @@ source=(https://gitlab.com/antix-contribs/zzzfm/-/archive/$version-$release/$nam
 pkg_build() {
 	export CFLAGS="$CFLAGS -Wno-incompatible-pointer-types"
 
-	cd $name-$version-$release
+	if [ -d $name-$version-$release ]; then cd $name-$version-$release; fi
 
 	patch -Np1 -i $SRC/zzzfm-fix-wayland.patch
 	

@@ -11,7 +11,7 @@ source=(https://github.com/greatscottgadgets/$name/archive/refs/tags/v$version.t
 renames=(hackrf-2026.01.3.tar.gz SKIP)
 
 pkg_build() {
-	cd $name-$version/host
+	[ -d $name-$version ] && cd $name-$version; cd host
 	mkdir build
     cd build
     cmake ../ -DCMAKE_INSTALL_PREFIX=/usr \

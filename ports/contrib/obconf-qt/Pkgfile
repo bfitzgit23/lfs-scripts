@@ -1,4 +1,4 @@
-# Depends on: qt5 lxqt-build-tools openbox
+# Depends: qt5 lxqt-build-tools openbox
 
 name=obconf-qt
 version=0.16.3

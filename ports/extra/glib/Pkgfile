@@ -1,4 +1,4 @@
-# Depends on: pcre2 libxslt
+# Depends: pcre2 libxslt
 
 # glib writes GLib-2.0.gir and GObject-2.0.gir only when g-ir-scanner is
 # already installed, and gobject-introspection itself needs glib first.  A

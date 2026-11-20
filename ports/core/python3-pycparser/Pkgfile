@@ -10,7 +10,7 @@ source=(https://github.com/eliben/${name#*-*}/archive/release_v$version.tar.gz)
 renames=(python3-pycparser-3.12.tar.gz)
 
 pkg_build() {
-	cd ${name#*-}-release_v$version
+	if [ -d ${name#*-}-release_v$version ]; then cd ${name#*-}-release_v$version; fi
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d $PKG .dist/*.whl
 }

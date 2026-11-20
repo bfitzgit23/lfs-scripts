@@ -1,4 +1,4 @@
-# Depends on: glib gtk3 
+# Depends: glib gtk3 
 
 name=geany
 version=2.1

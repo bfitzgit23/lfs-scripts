@@ -1,4 +1,4 @@
-# Depends on: font-util
+# Depends: font-util
 
 name=font-alias
 version=1.0.6

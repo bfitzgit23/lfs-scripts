@@ -1,4 +1,4 @@
-# Depends on: efivar
+# Depends: efivar
 
 name=efibootmgr
 version=18

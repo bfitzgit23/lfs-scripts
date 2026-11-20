@@ -1,4 +1,4 @@
-# Depends on: fontconfig fribidi glib cairo gobject-introspection libx11 libxft libxrender harfbuzz 
+# Depends: fontconfig fribidi glib cairo gobject-introspection libx11 libxft libxrender harfbuzz 
 
 name=pango
 version=1.50.14

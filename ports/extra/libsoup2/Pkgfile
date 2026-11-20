@@ -1,4 +1,4 @@
-# Depends on: glib-networking libpsl libxml2 gobject-introspection vala 
+# Depends: glib-networking libpsl libxml2 gobject-introspection vala 
 
 name=libsoup2
 version=2.74.3

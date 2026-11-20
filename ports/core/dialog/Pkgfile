@@ -10,7 +10,7 @@ release=1
 source="https://invisible-mirror.net/archives/$name/$name-$vrsn.tgz"
 
 pkg_build() {
-	cd $name-$vrsn
+	if [ -d $name-$vrsn ]; then cd $name-$vrsn; fi
 
 	./configure \
 		--prefix=/usr \

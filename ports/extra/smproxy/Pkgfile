@@ -1,4 +1,4 @@
-# Depends on: libice libsm libx11 libxmu libxt 
+# Depends: libice libsm libx11 libxmu libxt 
 
 name=smproxy
 version=1.0.8

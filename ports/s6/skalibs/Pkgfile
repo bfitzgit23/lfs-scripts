@@ -9,7 +9,7 @@ source=(https://git.sr.ht/~skarnet/skalibs/archive/v$version.tar.gz)
 renames=(skalibs-2.15.0.0.tar.gz)
 
 pkg_build() {
-	cd $name-v$version
+	if [ -d $name-v$version ]; then cd $name-v$version; fi
 	./configure \
 		--prefix=/usr \
 		--libdir=/usr/lib \

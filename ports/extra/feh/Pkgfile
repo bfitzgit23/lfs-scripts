@@ -1,4 +1,4 @@
-# Depends on: libpng imlib2 libxinerama libxt 
+# Depends: libpng imlib2 libxinerama libxt 
 
 name=feh
 version=3.13.1

@@ -1,4 +1,4 @@
-# Depends on: exo libburn libisofs
+# Depends: exo libburn libisofs
 
 name=xfburn
 version=0.7.0

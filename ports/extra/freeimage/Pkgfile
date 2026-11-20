@@ -1,4 +1,4 @@
-# Depends on: openjpeg libraw openexr libpng tiff libwebp jxrlib
+# Depends: openjpeg libraw openexr libpng tiff libwebp jxrlib
 
 name=freeimage
 version=3.18.0

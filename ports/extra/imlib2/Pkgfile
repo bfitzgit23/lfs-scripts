@@ -1,4 +1,4 @@
-# Depends on: cairo gdk-pixbuf glib librsvg 
+# Depends: cairo gdk-pixbuf glib librsvg 
 
 name=imlib2
 version=1.12.1

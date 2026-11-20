@@ -1,4 +1,4 @@
-# Depends on: glib cairo gtk3
+# Depends: glib cairo gtk3
 
 name=libwnck
 version=43.0

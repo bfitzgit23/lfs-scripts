@@ -1,4 +1,4 @@
-# Depends on: gstreamer gst-plugins-base libdvdread libdvdnav soundtouch
+# Depends: gstreamer gst-plugins-base libdvdread libdvdnav soundtouch
 
 name=gst-plugins-bad
 version=1.28.7

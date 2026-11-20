@@ -1,4 +1,4 @@
-# Depends on: libxfixes libxext-32 libx11-32
+# Depends: libxfixes libxext-32 libx11-32
 
 name=libxfixes-32
 version=6.0.2

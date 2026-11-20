@@ -1,4 +1,4 @@
-# Depends on: xorg-server xorgproto 
+# Depends: xorg-server xorgproto 
 
 name=xf86-video-vesa
 version=2.3.3

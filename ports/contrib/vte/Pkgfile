@@ -1,4 +1,4 @@
-# Depends on: gtk3 gtk4 gnutls vala
+# Depends: gtk3 gtk4 gnutls vala
 
 name=vte
 version=0.74.1

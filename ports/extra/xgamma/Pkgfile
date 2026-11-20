@@ -1,4 +1,4 @@
-# Depends on: libx11 libxxf86vm 
+# Depends: libx11 libxxf86vm 
 
 name=xgamma
 version=1.0.8

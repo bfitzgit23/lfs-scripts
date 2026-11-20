@@ -1,4 +1,4 @@
-# Depends on: tango-icon-theme 
+# Depends: tango-icon-theme 
 
 name=tango-icon-theme-extras
 version=0.1.0

@@ -1,4 +1,4 @@
-# Depends on: popt
+# Depends: popt
 
 name=efivar
 version=38

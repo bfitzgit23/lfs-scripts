@@ -10,7 +10,7 @@ release=1
 source="https://github.com/${name%-*}/${name%-*}/releases/download/${name%-*}-$version/${name%-*}-$version.tar.gz"
 
 pkg_build() {
-	cd ${name%-*}-$version
+	if [ -d ${name%-*}-$version ]; then cd ${name%-*}-$version; fi
 
         export CC="gcc -m32"
 	export CXX="g++ -m32"

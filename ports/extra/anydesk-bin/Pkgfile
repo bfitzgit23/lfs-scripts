@@ -1,4 +1,4 @@
-# Depends on: pciutils glu
+# Depends: pciutils glu
 
 name=anydesk-bin
 version=8.1.0

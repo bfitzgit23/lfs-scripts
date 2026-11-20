@@ -1,4 +1,4 @@
-# Depends on: nspr 
+# Depends: nspr 
 
 name=nss
 version=3.92

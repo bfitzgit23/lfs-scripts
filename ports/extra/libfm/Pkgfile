@@ -1,4 +1,4 @@
-# Depends on: gtk2 menu-cache libexif vala lxmenu-data 
+# Depends: gtk2 menu-cache libexif vala lxmenu-data 
 
 name=libfm
 version=1.3.2

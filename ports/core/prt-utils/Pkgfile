@@ -1,4 +1,4 @@
-# Depends on: elfutils
+# Depends: elfutils
 
 name=prt-utils
 version=1.3

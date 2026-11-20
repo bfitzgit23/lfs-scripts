@@ -1,4 +1,4 @@
-# Depends on: cairo gdk-pixbuf pango rust gobject-introspection vala 
+# Depends: cairo gdk-pixbuf pango rust gobject-introspection vala 
 
 name=librsvg
 version=2.56.93

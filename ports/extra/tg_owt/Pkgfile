@@ -22,7 +22,7 @@ renames=(tg_owt-20260309-26068e29bfa8d74a9dc9c8f7f94172fafbc262b8.tar.gz libyuv-
 IGNORE_CHECKSUM="yes"
 
 pkg_build() {
-	cd $name-$_commit
+	if [ -d $name-$_commit ]; then cd $name-$_commit; fi
 	patch -Np1 -i $SRC/tg_owt-gcc16.patch
 	for d in libyuv libyuv crc32c/src abseil-cpp libsrtp; do mkdir -pv $SRC/src/third_party/$d; done
 	mv $SRC/crc32c-${_crc32c_commit}/* src/third_party/crc32c/src 

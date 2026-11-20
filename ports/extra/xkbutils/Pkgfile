@@ -1,4 +1,4 @@
-# Depends on: libx11 libxaw libxt 
+# Depends: libx11 libxaw libxt 
 
 name=xkbutils
 version=1.0.7

@@ -1,4 +1,4 @@
-# Depends on: cairo pixman-32 glib-32 fontconfig-32 libx11-32 libxext-32 libxrender-32
+# Depends: cairo pixman-32 glib-32 fontconfig-32 libx11-32 libxext-32 libxrender-32
 
 name=cairo-32
 version=1.18.4

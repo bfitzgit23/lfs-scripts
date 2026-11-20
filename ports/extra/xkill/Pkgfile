@@ -1,4 +1,4 @@
-# Depends on: libx11 libxmu 
+# Depends: libx11 libxmu 
 
 name=xkill
 version=1.0.7

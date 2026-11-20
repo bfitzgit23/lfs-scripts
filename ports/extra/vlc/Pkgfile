@@ -1,4 +1,4 @@
-# Depends on: liba52 libmad dav1d qt5 ffmpeg
+# Depends: liba52 libmad dav1d qt5 ffmpeg
 
 name=vlc
 version=3.0.19

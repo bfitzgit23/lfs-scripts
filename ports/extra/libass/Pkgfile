@@ -1,4 +1,4 @@
-# Depends on: freetype2 fribidi harfbuzz
+# Depends: freetype2 fribidi harfbuzz
 
 name=libass
 version=0.17.5

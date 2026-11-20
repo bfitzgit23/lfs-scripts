@@ -1,4 +1,4 @@
-# Depends on: lxqt-build-tools lxqt-menu-data menu-cache libexif
+# Depends: lxqt-build-tools lxqt-menu-data menu-cache libexif
 
 name=libfm-qt
 version=1.4.0

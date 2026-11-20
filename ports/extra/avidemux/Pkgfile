@@ -10,7 +10,7 @@ source=(https://sourceforge.net/projects/avidemux/files/avidemux/${version}/avid
 renames=(avidemux-2.8.1.tar.gz)
 
 pkg_build() {
-	cd ${name}_${version}
+	if [ -d ${name}_${version} ]; then cd ${name}_${version}; fi
 	mkdir $SRC/tmp
 	sed -i -e "s=/tmp/log\$BUILDDIR=$SRC/tmp/log\$BUILDDIR=g" bootStrap.bash
 	bash bootStrap.bash --tgz --with-cli --with-plugins --with-core

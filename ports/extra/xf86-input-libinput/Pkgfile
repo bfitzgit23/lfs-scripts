@@ -1,4 +1,4 @@
-# Depends on: libinput xorg-server xorgproto 
+# Depends: libinput xorg-server xorgproto 
 
 name=xf86-input-libinput
 version=1.5.0

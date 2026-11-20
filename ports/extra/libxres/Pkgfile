@@ -1,4 +1,4 @@
-# Depends on: libx11 libxext 
+# Depends: libx11 libxext 
 
 name=libxres
 version=1.2.3

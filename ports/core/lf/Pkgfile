@@ -9,7 +9,7 @@ release=1
 source="https://github.com/gokcehan/$name/archive/r$version/$name-r$version.tar.gz"
 
 pkg_build() {
-	cd $name-r$version
+	if [ -d $name-r$version ]; then cd $name-r$version; fi
 
 	go mod tidy
 	go build -v -o bin/$name

@@ -1,4 +1,4 @@
-# Depends on: lxqt-build-tools upower kidletime solid liblxqt lxqt-globalkeys
+# Depends: lxqt-build-tools upower kidletime solid liblxqt lxqt-globalkeys
 
 name=lxqt-powermanagement
 version=1.4.0

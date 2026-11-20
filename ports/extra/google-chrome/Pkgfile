@@ -1,4 +1,4 @@
-# Depends on: alsa-lib gtk3 libxtst nss cups
+# Depends: alsa-lib gtk3 libxtst nss cups
 
 name=google-chrome
 version=158.0.8127.36

@@ -9,7 +9,7 @@ release=1
 source="https://gitlab.gnome.org/GNOME/libxslt/-/archive/v$version/${name%-*}-v$version.tar.gz"
 
 pkg_build() {
-	cd ${name%-*}-v$version
+	if [ -d ${name%-*}-v$version ]; then cd ${name%-*}-v$version; fi
 
 	export CC="gcc -m32"
 	export CXX="g++ -m32"

@@ -1,4 +1,4 @@
-# Depends on: mkfontscale font-util 
+# Depends: mkfontscale font-util 
 
 name=font-ibm-type1
 version=1.0.4

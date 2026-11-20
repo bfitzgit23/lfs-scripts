@@ -1,4 +1,4 @@
-# Depends on: gtk3 polkit 
+# Depends: gtk3 polkit 
 
 name=polkit-gnome
 version=0.105

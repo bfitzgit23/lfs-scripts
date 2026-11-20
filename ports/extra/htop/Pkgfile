@@ -1,4 +1,4 @@
-# Depends on: libnl 
+# Depends: libnl 
 
 name=htop
 version=3.5.3

@@ -1,4 +1,4 @@
-# Depends on: json-c lvm2 popt 
+# Depends: json-c lvm2 popt 
 
 name=cryptsetup
 version=2.6.1

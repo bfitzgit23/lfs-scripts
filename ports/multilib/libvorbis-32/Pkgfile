@@ -13,7 +13,7 @@ pkg_build() {
 	export CXX="g++ -m32"
 	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
 
-	cd ${name%-*}-$version
+	if [ -d ${name%-*}-$version ]; then cd ${name%-*}-$version; fi
 	
 	./configure --prefix=/usr --libdir=/usr/lib32 
 	make

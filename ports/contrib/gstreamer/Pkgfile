@@ -1,4 +1,4 @@
-# Depends on: glib
+# Depends: glib
 
 name=gstreamer
 version=1.28.7

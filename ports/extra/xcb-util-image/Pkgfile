@@ -1,4 +1,4 @@
-# Depends on: libxcb xcb-util 
+# Depends: libxcb xcb-util 
 
 name=xcb-util-image
 version=0.4.1

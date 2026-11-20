@@ -1,5 +1,3 @@
-# Depends on: 
-
 name=taglib
 version=1.13.1
 release=1

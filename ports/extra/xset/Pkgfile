@@ -1,4 +1,4 @@
-# Depends on: libx11 libxext libxmu 
+# Depends: libx11 libxext libxmu 
 
 name=xset
 version=1.2.6

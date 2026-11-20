@@ -1,4 +1,4 @@
-# Depends on: imlib2 librsvg startup-notification libxcomposite libxdamage libxinerama libxrandr gtk3 
+# Depends: imlib2 librsvg startup-notification libxcomposite libxdamage libxinerama libxrandr gtk3 
 
 name=tint2
 version=17.1.3

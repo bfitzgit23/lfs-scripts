@@ -1,4 +1,4 @@
-# Depends on: qt5 polkit
+# Depends: qt5 polkit
 
 name=polkit-qt
 version=0.114.0

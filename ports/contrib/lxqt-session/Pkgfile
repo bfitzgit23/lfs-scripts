@@ -1,4 +1,4 @@
-# Depends on: qt5 kwindowsystem liblxqt qtxdg-tools xdg-user-dirs
+# Depends: qt5 kwindowsystem liblxqt qtxdg-tools xdg-user-dirs
 
 name=lxqt-session
 version=1.4.0

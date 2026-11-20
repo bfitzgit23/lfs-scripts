@@ -1,4 +1,4 @@
-# Depends on: qt5 liblxqt lxqt-menu-data xf86-input-libinput libxi libkscreen libxcursor
+# Depends: qt5 liblxqt lxqt-menu-data xf86-input-libinput libxi libkscreen libxcursor
 
 name=lxqt-config
 version=1.4.0

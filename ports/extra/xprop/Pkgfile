@@ -1,4 +1,4 @@
-# Depends on: libx11 
+# Depends: libx11 
 
 name=xprop
 version=1.2.8

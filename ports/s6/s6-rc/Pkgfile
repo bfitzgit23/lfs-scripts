@@ -10,7 +10,7 @@ source=(https://git.sr.ht/~skarnet/s6-rc/archive/v$version.tar.gz)
 renames=(s6-rc-0.6.1.1.tar.gz)
 
 pkg_build() {
-	cd $name-v$version
+	if [ -d $name-v$version ]; then cd $name-v$version; fi
 	./configure \
 		--bindir=/bin \
 		--prefix=/usr \

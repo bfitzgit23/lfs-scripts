@@ -1,4 +1,4 @@
-# Depends on: doxygen icu python3 readline
+# Depends: doxygen icu python3 readline
 
 name=libxml2
 version=2.15.4

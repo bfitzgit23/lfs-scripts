@@ -1,4 +1,4 @@
-# Depends on: gnutls dbus libusb linux-pam 
+# Depends: gnutls dbus libusb linux-pam 
 
 name=cups
 version=2.4.7

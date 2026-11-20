@@ -1,4 +1,4 @@
-# Depends on: pcre2 
+# Depends: pcre2 
 
 name=libbytesize
 version=2.12

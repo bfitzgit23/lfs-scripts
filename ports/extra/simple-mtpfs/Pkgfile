@@ -11,7 +11,7 @@ source=(https://github.com/phatina/simple-mtpfs/archive/$commit.tar.gz)
 renames=(simple-mtpfs-0.4.0.tar.gz)
 
 pkg_build() {
-	cd $name-$commit
+	if [ -d $name-$commit ]; then cd $name-$commit; fi
 	./autogen.sh
 	./configure --prefix=/usr
 	make

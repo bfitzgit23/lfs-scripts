@@ -1,4 +1,4 @@
-# Depends on: extra-cmake-modules qt5 plasma-wayland-protocols
+# Depends: extra-cmake-modules qt5 plasma-wayland-protocols
 
 name=kidletime
 version=5.109.0

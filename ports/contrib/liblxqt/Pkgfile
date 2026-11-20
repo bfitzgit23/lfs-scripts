@@ -1,4 +1,4 @@
-# Depends on: lxqt-build-tools polkit-qt libqtxdg kwindowsystem libxscrnsaver
+# Depends: lxqt-build-tools polkit-qt libqtxdg kwindowsystem libxscrnsaver
 
 name=liblxqt
 version=1.4.0

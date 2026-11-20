@@ -1,4 +1,4 @@
-# Depends on: mkfontscale 
+# Depends: mkfontscale 
 
 name=liberation-fonts-ttf
 version=2.1.5

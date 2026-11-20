@@ -32,7 +32,7 @@ pkg_build() {
 	RELEASE=RELEASE
 
 
-	cd $_name-$_realversion
+	if [ -d $_name-$_realversion ]; then cd $_name-$_realversion; fi
 
 
 	# Apply patches

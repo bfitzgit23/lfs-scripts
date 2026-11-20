@@ -1,4 +1,4 @@
-# Depends on: grub 
+# Depends: grub 
 
 name=grub-efi
 version=2.14

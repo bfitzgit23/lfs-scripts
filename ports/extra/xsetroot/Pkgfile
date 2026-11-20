@@ -1,4 +1,4 @@
-# Depends on: libx11 libxcursor libxmu xbitmaps 
+# Depends: libx11 libxcursor libxmu xbitmaps 
 
 name=xsetroot
 version=1.1.4

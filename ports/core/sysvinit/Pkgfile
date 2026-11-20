@@ -9,7 +9,7 @@ source=(https://codeberg.org/thejessesmith/sysvinit/archive/$version.tar.gz)
 renames=(sysvinit-3.18.tar.gz)
 
 pkg_build() {
-	cd $name
+	if [ -d $name ]; then cd $name; fi
 
 	make -C src
 	make -C src ROOT=$PKG install

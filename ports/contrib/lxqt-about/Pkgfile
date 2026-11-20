@@ -1,4 +1,4 @@
-# Depends on: liblxqt
+# Depends: liblxqt
 
 name=lxqt-about
 version=1.4.0

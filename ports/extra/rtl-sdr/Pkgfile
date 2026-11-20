@@ -11,7 +11,7 @@ source=(https://gitea.osmocom.org/sdr/$name/archive/v$version.tar.gz
 renames=(rtl-sdr-2.0.2.tar.gz SKIP)
 
 pkg_build() {
-	cd $name
+	if [ -d $name ]; then cd $name; fi
 	autoreconf -i
 	./configure --prefix=/usr
 	make

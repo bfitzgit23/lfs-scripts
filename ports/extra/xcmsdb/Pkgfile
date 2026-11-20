@@ -1,4 +1,4 @@
-# Depends on: libx11 
+# Depends: libx11 
 
 name=xcmsdb
 version=1.0.7

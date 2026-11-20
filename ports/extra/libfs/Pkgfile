@@ -1,4 +1,4 @@
-# Depends on: xorgproto xtrans 
+# Depends: xorgproto xtrans 
 
 name=libfs
 version=1.0.10

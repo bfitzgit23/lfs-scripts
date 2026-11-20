@@ -1,4 +1,4 @@
-# Depends on: libx11 libxmu 
+# Depends: libx11 libxmu 
 
 name=xrdb
 version=1.2.3

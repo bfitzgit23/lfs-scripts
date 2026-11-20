@@ -10,7 +10,7 @@ source=(https://github.com/michaelforney/sbase/archive/$_commit.tar.gz)
 renames=(sbase-20230729.tar.gz)
 
 pkg_build() {
-	cd $name-$_commit
+	if [ -d $name-$_commit ]; then cd $name-$_commit; fi
 	make $name-box
 	install -Dm 755 $name-box $PKG/bin/$name-box
 	#make DESTDIR=$PKG PREFIX=/usr $name-box-install

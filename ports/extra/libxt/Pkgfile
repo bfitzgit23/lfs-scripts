@@ -1,4 +1,4 @@
-# Depends on: libice libsm libx11 
+# Depends: libice libsm libx11 
 
 name=libxt
 version=1.3.1

@@ -1,4 +1,4 @@
-# Depends on: icu
+# Depends: icu
 
 name=icu-32
 version=73.1

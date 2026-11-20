@@ -1,4 +1,4 @@
-# Depends on: glib libsigc++ 
+# Depends: glib libsigc++ 
 
 name=glibmm
 version=2.66.10

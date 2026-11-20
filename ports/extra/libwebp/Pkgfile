@@ -1,4 +1,4 @@
-# Depends on: libjpeg-turbo libpng tiff 
+# Depends: libjpeg-turbo libpng tiff 
 
 name=libwebp
 version=1.6.0

@@ -1,4 +1,4 @@
-# Depends on: mesa 
+# Depends: mesa 
 
 name=libepoxy
 version=1.5.10

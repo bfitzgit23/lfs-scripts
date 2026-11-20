@@ -12,7 +12,7 @@ $name.desktop)
 renames=(android-studio-2026.1.1.10.tar.gz SKIP)
 
 pkg_build() {
-	cd $name
+	if [ -d $name ]; then cd $name; fi
 
 	# Install the application
 	install -d $PKG/opt/$name

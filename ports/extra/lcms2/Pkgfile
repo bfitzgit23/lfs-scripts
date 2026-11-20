@@ -1,4 +1,4 @@
-# Depends on: libjpeg-turbo tiff 
+# Depends: libjpeg-turbo tiff 
 
 name=lcms2
 version=2.20

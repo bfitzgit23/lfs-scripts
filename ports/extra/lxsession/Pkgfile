@@ -1,4 +1,4 @@
-# Depends on: libx11 glib gtk2 polkit
+# Depends: libx11 glib gtk2 polkit
 
 name=lxsession
 version=0.5.5

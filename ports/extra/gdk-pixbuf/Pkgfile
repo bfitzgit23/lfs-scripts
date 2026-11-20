@@ -1,4 +1,4 @@
-# Depends on: glib libjpeg-turbo libpng tiff shared-mime-info gobject-introspection 
+# Depends: glib libjpeg-turbo libpng tiff shared-mime-info gobject-introspection 
 
 name=gdk-pixbuf
 version=2.42.12

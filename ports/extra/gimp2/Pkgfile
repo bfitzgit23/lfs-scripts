@@ -9,7 +9,7 @@ release=2
 source="https://download.gimp.org/pub/${name%2*}/v${version%.*}/${name%2*}-$version.tar.bz2"
 
 pkg_build() {
-	cd ${name%2*}-$version
+	if [ -d ${name%2*}-$version ]; then cd ${name%2*}-$version; fi
 
 	# fix build gcc 14	
 	export CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types -Wno-int-conversion"

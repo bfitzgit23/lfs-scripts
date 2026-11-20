@@ -1,4 +1,4 @@
-# Depends on: qt5 liblxqt lxqt-menu-data
+# Depends: qt5 liblxqt lxqt-menu-data
 
 name=lxqt-globalkeys
 version=1.4.0

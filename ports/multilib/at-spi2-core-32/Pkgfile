@@ -1,4 +1,4 @@
-# Depends on: at-spi2-core dbus-32 glib-32 libxml2-32 libx11-32 libxtst-32
+# Depends: at-spi2-core dbus-32 glib-32 libxml2-32 libx11-32 libxtst-32
 
 name=at-spi2-core-32
 version=2.60.5

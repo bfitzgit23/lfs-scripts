@@ -1,4 +1,4 @@
-# Depends on: extra-cmake-modules
+# Depends: extra-cmake-modules
 
 name=plasma-wayland-protocols
 version=1.23.0

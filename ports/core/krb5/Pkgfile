@@ -13,7 +13,7 @@ source=(https://kerberos.org/dist/krb5/${vrsn}/$name-$version.tar.gz
 pkg_build() {
 	patch -d $name-$version -Np1 -i $SRC/mitkrb-1.22.2-upstream_fix-1.patch
 
-	cd $name-$version/src
+	[ -d $name-$version ] && cd $name-$version; cd src
 
 	# increases the width of the virtual terminal used for some tests to
 	# prevent some spurious text in the output which is taken as a failure

@@ -1,4 +1,4 @@
-# Depends on: xcursorgen 
+# Depends: xcursorgen 
 
 name=xcursor-themes
 version=1.0.7

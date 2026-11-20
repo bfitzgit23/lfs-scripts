@@ -1,4 +1,4 @@
-# Depends on: libdvdread
+# Depends: libdvdread
 
 name=libdvdnav
 version=6.1.1

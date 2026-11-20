@@ -1,4 +1,4 @@
-# Depends on: libxslt docbook-xsl elinks
+# Depends: libxslt docbook-xsl elinks
 
 name=xmlto
 version=0.0.29

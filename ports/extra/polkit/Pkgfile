@@ -1,4 +1,4 @@
-# Depends on: glib duktape gobject-introspection libxslt linux-pam docbook-xml docbook-xsl
+# Depends: glib duktape gobject-introspection libxslt linux-pam docbook-xml docbook-xsl
 
 name=polkit
 version=122

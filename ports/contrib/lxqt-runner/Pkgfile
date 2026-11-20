@@ -1,4 +1,4 @@
-# Depends on: qt5 kwindowsystem liblxqt lxqt-globalkeys muparser
+# Depends: qt5 kwindowsystem liblxqt lxqt-globalkeys muparser
 
 name=lxqt-runner
 version=1.4.0

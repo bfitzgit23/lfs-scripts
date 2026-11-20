@@ -1,4 +1,4 @@
-# Depends on: libx11 libxext libxi libxinerama libxrandr 
+# Depends: libx11 libxext libxi libxinerama libxrandr 
 
 name=xinput
 version=1.6.4

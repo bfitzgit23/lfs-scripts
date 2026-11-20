@@ -1,4 +1,4 @@
-# Depends on: popt slang 
+# Depends: popt slang 
 
 name=newt
 version=0.52.25

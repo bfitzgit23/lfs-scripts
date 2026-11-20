@@ -1,4 +1,4 @@
-# Depends on: libxcvt pixman font-util xkeyboard-config libepoxy libdrm libxkbfile libxfont2 
+# Depends: libxcvt pixman font-util xkeyboard-config libepoxy libdrm libxkbfile libxfont2 
 
 name=xorg-server
 version=21.1.8

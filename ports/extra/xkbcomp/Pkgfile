@@ -1,4 +1,4 @@
-# Depends on: libx11 libxkbfile 
+# Depends: libx11 libxkbfile 
 
 name=xkbcomp
 version=1.5.0

@@ -1,4 +1,4 @@
-# Depends on: xmlto libxslt docbook-xsl docbook-xml
+# Depends: xmlto libxslt docbook-xsl docbook-xml
 
 name=xdg-utils
 version=1.1.3

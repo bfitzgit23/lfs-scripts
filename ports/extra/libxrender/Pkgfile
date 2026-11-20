@@ -1,4 +1,4 @@
-# Depends on: libx11 
+# Depends: libx11 
 
 name=libxrender
 version=0.9.13

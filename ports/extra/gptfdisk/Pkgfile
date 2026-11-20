@@ -1,4 +1,4 @@
-# Depends on: popt
+# Depends: popt
 
 name=gptfdisk
 version=1.0.9

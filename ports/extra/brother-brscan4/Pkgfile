@@ -17,7 +17,7 @@ pkg_build() {
 
 	mv $PKG/usr/lib64 $PKG/usr/lib
 
-  	cd $PKG/usr/lib/sane
+  	[ -d $PKG ] && cd $PKG; cd usr/lib/sane
   	ln -sf libsane-brother4.so.1.0.7 libsane-brother4.so.1
   	ln -sf libsane-brother4.so.1 libsane-brother4.so
 }

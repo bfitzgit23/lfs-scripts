@@ -1,4 +1,4 @@
-# Depends on: glib gtk2 libxcomposite
+# Depends: glib gtk2 libxcomposite
 
 name=audacious
 version=4.6.2

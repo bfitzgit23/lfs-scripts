@@ -10,7 +10,7 @@ source="https://github.com/OpenSC/pkcs11-helper/archive/pkcs11-helper-${version}
 
 pkg_build() {
 	if [ -d ${name}-${name}-${version} ]; then
-		cd ${name}-${name}-${version}
+		if [ -d ${name}-${name}-${version} ]; then cd ${name}-${name}-${version}; fi
 	fi
 	libtoolize
 	aclocal

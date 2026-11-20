@@ -1,4 +1,4 @@
-# Depends on: exiv2 gtk2 intltool meson perl
+# Depends: exiv2 gtk2 intltool meson perl
 
 name=viewnior
 version=1.8

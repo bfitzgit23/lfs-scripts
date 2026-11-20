@@ -9,7 +9,7 @@ source=(https://gitlab.com/saalen/astyle/-/archive/$version/$name-$version.tar.b
 	makefile-install.patch)
 
 pkg_build() {
-	cd $name-$version/AStyle/build/gcc
+	[ -d $name-$version ] && cd $name-$version; cd AStyle/build/gcc
 	patch -Np1 -i $SRC/makefile-install.patch
 	make shared release
 	DESTDIR=$PKG make INSTALL=install install

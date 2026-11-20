@@ -1,4 +1,4 @@
-# Depends on: libpng zlib-32
+# Depends: libpng zlib-32
 
 name=libpng-32
 version=1.6.58

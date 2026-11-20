@@ -9,7 +9,7 @@ source=(https://github.com/michaelforney/ubase/archive/f152e7fc3bd1675060818ac22
 renames=(ubase-20200605.tar.gz)
 
 pkg_build() {
-	cd $name-f152e7fc3bd1675060818ac224f96541a2d9d6e7
+	if [ -d $name-f152e7fc3bd1675060818ac224f96541a2d9d6e7 ]; then cd $name-f152e7fc3bd1675060818ac224f96541a2d9d6e7; fi
 	make ubase-box
 	install -Dm 755 $name-box $PKG/bin/$name-box
 	#make DESTDIR=$PKG PREFIX=/usr ubase-box-install

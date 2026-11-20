@@ -1,4 +1,4 @@
-# Depends on: libx11 libxrandr 
+# Depends: libx11 libxrandr 
 
 name=xev
 version=1.2.7

@@ -10,7 +10,7 @@ source="http://download.netsurf-browser.org/netsurf/releases/source-full/netsurf
 
 pkg_build() {
 	if [ -d $name-all-$version ]; then
-		cd $name-all-$version
+		if [ -d $name-all-$version ]; then cd $name-all-$version; fi
 	fi
 
 	CFLAGS="$CFLAGS -w -Os -funroll-loops" \

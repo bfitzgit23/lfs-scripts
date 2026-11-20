@@ -1,4 +1,4 @@
-# Depends on: qt5
+# Depends: qt5
 
 name=lxqt-build-tools
 version=0.13.0

@@ -1,4 +1,4 @@
-# Depends on: libxcb libxau-32
+# Depends: libxcb libxau-32
 
 name=libxcb-32
 version=1.17.0

@@ -10,7 +10,7 @@ source="https://github.com/OlafvdSpek/${name}/archive/${name}-${version}.tar.gz"
 
 pkg_build() {
 	if [ -d ${name}-${name}-${version} ]; then
-		cd ${name}-${name}-${version}
+		if [ -d ${name}-${name}-${version} ]; then cd ${name}-${name}-${version}; fi
 	fi
 
 	NOCONFIGURE=1 ./autogen.sh

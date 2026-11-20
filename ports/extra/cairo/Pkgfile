@@ -1,4 +1,4 @@
-# Depends on: libpng glib libx11 libxcb libxext libxrender pixman fontconfig 
+# Depends: libpng glib libx11 libxcb libxext libxrender pixman fontconfig 
 
 name=cairo
 version=1.18.6

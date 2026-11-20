@@ -11,7 +11,7 @@ source=(https://github.com/hramrach/lm-sensors/archive/refs/tags/V$_version.tar.
 renames=(lm_sensors-3.6.2.tar.gz)
 
 pkg_build() {
-	cd $_name-$_version
+	if [ -d $_name-$_version ]; then cd $_name-$_version; fi
 	make PREFIX=/usr        \
 	     BUILD_STATIC_LIB=0 \
 	     MANDIR=/usr/share/man

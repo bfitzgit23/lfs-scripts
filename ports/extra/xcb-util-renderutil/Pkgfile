@@ -1,4 +1,4 @@
-# Depends on: libxcb 
+# Depends: libxcb 
 
 name=xcb-util-renderutil
 version=0.3.10

@@ -9,7 +9,7 @@ release=2
 source="https://github.com/mypaint/mypaint-brushes/archive/v${version}/${name}-${version}.tar.gz"
 
 pkg_build() {
-	cd ${name%1}-$version
+	if [ -d ${name%1}-$version ]; then cd ${name%1}-$version; fi
 
 	autoreconf -fiv
 	./configure --prefix=/usr

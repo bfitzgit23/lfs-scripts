@@ -1,4 +1,4 @@
-# Depends on: alsa-lib 
+# Depends: alsa-lib 
 
 name=alsa-utils
 version=1.2.10

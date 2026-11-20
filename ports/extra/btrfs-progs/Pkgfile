@@ -1,4 +1,4 @@
-# Depends on: lzo
+# Depends: lzo
 
 name=btrfs-progs
 version=6.3.3

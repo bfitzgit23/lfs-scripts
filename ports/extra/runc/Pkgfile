@@ -12,7 +12,7 @@ pkg_build() {
     mkdir -pv src/github.com/opencontainers
     cd src/github.com/opencontainers
     ln -sf $SRC/$name-$version $name
-    cd $name
+    if [ -d $name ]; then cd $name; fi
     export GOPATH=$SRC
     export BUILDTAGS="seccomp"
     export GOFLAGS="-trimpath -mod=readonly -modcacherw"

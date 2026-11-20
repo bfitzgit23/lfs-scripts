@@ -1,4 +1,4 @@
-# Depends on: libx11 xorgproto 
+# Depends: libx11 xorgproto 
 
 name=xwud
 version=1.0.8

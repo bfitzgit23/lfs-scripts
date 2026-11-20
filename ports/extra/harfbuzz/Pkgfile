@@ -1,4 +1,4 @@
-# Depends on: glib graphite2 freetype2 gobject-introspection icu cairo
+# Depends: glib graphite2 freetype2 gobject-introspection icu cairo
 
 name=harfbuzz
 version=15.1.0

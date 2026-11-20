@@ -1,4 +1,4 @@
-# Depends on: libpciaccess zlib-32
+# Depends: libpciaccess zlib-32
 
 name=libpciaccess-32
 version=0.19

@@ -1,4 +1,4 @@
-# Depends on: icon-naming-utils imagemagick 
+# Depends: icon-naming-utils imagemagick 
 
 name=tango-icon-theme
 version=0.8.90

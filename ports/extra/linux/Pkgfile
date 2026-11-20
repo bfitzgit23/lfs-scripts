@@ -1,4 +1,4 @@
-# Depends on: mkinitramfs
+# Depends: mkinitramfs
 
 name=linux
 version=7.3.4

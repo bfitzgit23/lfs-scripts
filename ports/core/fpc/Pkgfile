@@ -12,7 +12,7 @@ source=(https://downloads.sourceforge.net/sourceforge/freepascal/Linux/$version/
 
 pkg_build() {
 	# Bootstrap fpc
-	cd $name-$version.$arch-linux
+	if [ -d $name-$version.$arch-linux ]; then cd $name-$version.$arch-linux; fi
 	tar xf binary.$arch-linux.tar
 
 	# Unpack only files strictly necessary for build

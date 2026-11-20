@@ -1,4 +1,4 @@
-# Depends on: gdk-pixbuf libnotify libxinerama libxscrnsaver
+# Depends: gdk-pixbuf libnotify libxinerama libxscrnsaver
 
 name=dunst
 version=1.13.2

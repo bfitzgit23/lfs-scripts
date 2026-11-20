@@ -1,4 +1,4 @@
-# Depends on: gtk2
+# Depends: gtk2
 
 name=lxtask
 version=0.1.10

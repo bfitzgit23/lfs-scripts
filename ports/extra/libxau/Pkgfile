@@ -1,4 +1,4 @@
-# Depends on: xorgproto 
+# Depends: xorgproto 
 
 name=libxau
 version=1.0.12

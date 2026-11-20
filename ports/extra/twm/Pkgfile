@@ -1,4 +1,4 @@
-# Depends on: libx11 libxext libxt libxmu libice libsm
+# Depends: libx11 libxext libxt libxmu libice libsm
 
 name=twm
 version=1.0.13.1

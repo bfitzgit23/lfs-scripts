@@ -12,7 +12,7 @@ source=(https://codeberg.org/smxi/inxi/archive/${_ver}-${_sion}.tar.gz)
 renames=(inxi-3.3.40.1.tar.gz)
 
 pkg_build() {
-	cd $name
+	if [ -d $name ]; then cd $name; fi
 	install -D -m755 inxi $PKG/usr/bin/inxi
 	install -D -m755 inxi.1 $PKG/usr/share/man/man1/inxi.1
 }

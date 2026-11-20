@@ -1,4 +1,4 @@
-# Depends on: gtk3 
+# Depends: gtk3 
 
 name=clipit
 version=1.4.5

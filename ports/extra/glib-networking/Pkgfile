@@ -1,4 +1,4 @@
-# Depends on: glib gnutls gsettings-desktop-schemas 
+# Depends: glib gnutls gsettings-desktop-schemas 
 
 name=glib-networking
 version=2.78.1

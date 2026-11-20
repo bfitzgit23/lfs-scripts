@@ -1,4 +1,4 @@
-# Depends on: qt5 libfm-qt
+# Depends: qt5 libfm-qt
 
 name=pcmanfm-qt
 version=1.4.0

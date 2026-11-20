@@ -1,4 +1,4 @@
-# Depends on: libxslt 
+# Depends: libxslt 
 
 name=xdg-user-dirs
 version=0.18

@@ -1,4 +1,4 @@
-# Depends on: libdrm pixman xcb-util xorg-server libxvmc 
+# Depends: libdrm pixman xcb-util xorg-server libxvmc 
 
 name=xf86-video-intel
 version=2.99.917-923

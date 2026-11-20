@@ -1,4 +1,4 @@
-# Depends on: autoconf2.13 cbindgen dbus-glib gtk3 llvm nodejs alsa-lib startup-notification unzip yasm nspr libwebp libxcomposite libxcursor libxdamage libice libsm libvpx nasm nss libevent 
+# Depends: autoconf2.13 cbindgen dbus-glib gtk3 llvm nodejs alsa-lib startup-notification unzip yasm nspr libwebp libxcomposite libxcursor libxdamage libice libsm libvpx nasm nss libevent 
 
 name=firefox-esr
 version=115.4.0

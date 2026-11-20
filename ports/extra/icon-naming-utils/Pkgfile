@@ -1,4 +1,4 @@
-# Depends on: perl-xml-simple 
+# Depends: perl-xml-simple 
 
 name=icon-naming-utils
 version=0.8.90

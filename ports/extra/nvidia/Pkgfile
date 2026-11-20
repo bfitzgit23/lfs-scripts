@@ -1,4 +1,4 @@
-# Depends on: gtk2 gtk3 libglvnd 
+# Depends: gtk2 gtk3 libglvnd 
 
 name=nvidia
 version=535.129.03

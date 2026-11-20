@@ -1,4 +1,4 @@
-# Depends on: qt5 lxqt-build-tools
+# Depends: qt5 lxqt-build-tools
 
 name=qtermwidget
 version=1.4.0

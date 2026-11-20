@@ -9,7 +9,7 @@ source="http://dl.mercurylang.org/release/${name}-srcdist-${version}.tar.gz"
 
 pkg_build() {
 	if [ -d $name-srcdist-$version ]; then
-		cd $name-srcdist-$version
+		if [ -d $name-srcdist-$version ]; then cd $name-srcdist-$version; fi
 	fi
 
 	./configure \

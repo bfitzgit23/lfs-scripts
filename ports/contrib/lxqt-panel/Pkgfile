@@ -1,4 +1,4 @@
-# Depends on: qt5 kwindowsystem liblxqt lxqt-globalkeys libstatgrab solid libsysstat lm-sensors libdbusmenu-qt libxtst pulseaudio
+# Depends: qt5 kwindowsystem liblxqt lxqt-globalkeys libstatgrab solid libsysstat lm-sensors libdbusmenu-qt libxtst pulseaudio
 
 name=lxqt-panel
 version=1.4.0

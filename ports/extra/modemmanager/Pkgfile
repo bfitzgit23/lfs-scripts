@@ -1,4 +1,4 @@
-# Depends on: libgudev libmbim libqmi polkit vala 
+# Depends: libgudev libmbim libqmi polkit vala 
 
 name=modemmanager
 version=1.18.12

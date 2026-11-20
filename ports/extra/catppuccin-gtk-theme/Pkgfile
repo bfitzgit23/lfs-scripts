@@ -12,7 +12,7 @@ source=(https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme/archive/$commit
 renames=(catppuccin-gtk-theme-250821.tar.gz)
 
 pkg_build() {
-	cd $rname-$commit/themes
+	[ -d $rname-$commit ] && cd $rname-$commit; cd themes
 	./build.sh
 	./install.sh --dest $PKG/usr/share/themes --theme all --color light dark
 }

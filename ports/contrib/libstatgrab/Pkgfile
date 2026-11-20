@@ -1,4 +1,4 @@
-# Depends on: lxqt-build-tools
+# Depends: lxqt-build-tools
 
 name=libstatgrab
 version=0.92.1

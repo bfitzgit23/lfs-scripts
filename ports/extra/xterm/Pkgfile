@@ -1,4 +1,4 @@
-# Depends on: libxaw
+# Depends: libxaw
 
 name=xterm
 version=386

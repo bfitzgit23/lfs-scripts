@@ -1,4 +1,4 @@
-# Depends on: libx11 glib gtk2
+# Depends: libx11 glib gtk2
 
 name=lxdm
 version=0.5.3

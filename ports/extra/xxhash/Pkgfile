@@ -10,7 +10,7 @@ source="https://github.com/Cyan4973/${nm}/archive/v${version}/${name}-${version}
 
 pkg_build() {
   if [ -d $nm-$version ]; then
-    cd $nm-$version
+    if [ -d $nm-$version ]; then cd $nm-$version; fi
   fi
   make PREFIX=/usr DESTDIR=$PKG install
 }

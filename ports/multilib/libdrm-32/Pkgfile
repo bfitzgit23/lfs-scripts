@@ -1,4 +1,4 @@
-# Depends on: libdrm libpciaccess-32
+# Depends: libdrm libpciaccess-32
 
 name=libdrm-32
 version=2.4.134

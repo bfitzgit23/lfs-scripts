@@ -1,4 +1,4 @@
-# Depends on: libice 
+# Depends: libice 
 
 name=libsm
 version=1.2.6

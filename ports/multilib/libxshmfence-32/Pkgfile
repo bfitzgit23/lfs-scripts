@@ -1,4 +1,4 @@
-# Depends on: libxshmfence
+# Depends: libxshmfence
 
 name=libxshmfence-32
 version=1.3.3

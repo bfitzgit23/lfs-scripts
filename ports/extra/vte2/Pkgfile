@@ -1,4 +1,4 @@
-# Depends on: glib gtk2
+# Depends: glib gtk2
 
 name=vte2
 version=0.28.2

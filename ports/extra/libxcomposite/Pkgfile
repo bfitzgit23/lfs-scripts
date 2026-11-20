@@ -1,4 +1,4 @@
-# Depends on: libx11 libxfixes 
+# Depends: libx11 libxfixes 
 
 name=libxcomposite
 version=0.4.7

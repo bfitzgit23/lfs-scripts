@@ -1,4 +1,4 @@
-# Depends on: libatasmart libblockdev libgudev polkit libxslt 
+# Depends: libatasmart libblockdev libgudev polkit libxslt 
 
 name=udisks
 version=2.12.0

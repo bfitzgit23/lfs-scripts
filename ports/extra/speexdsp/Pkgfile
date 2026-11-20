@@ -10,7 +10,7 @@ renames=(speexdsp-1.2.1.tar.gz)
 
 pkg_build() {
 	if [ -d $name-SpeexDSP-$version ]; then
-		cd $name-SpeexDSP-$version
+		if [ -d $name-SpeexDSP-$version ]; then cd $name-SpeexDSP-$version; fi
 	fi
 	./autogen.sh
 	./configure --prefix=/usr --disable-static

@@ -10,7 +10,7 @@ source=(https://gitlab.com/accounts-sso/signon-ui/-/archive/master/signon-ui-eef
     fake-user-agent.patch)
 
 pkg_build() {
-    cd $name-master-eef943f0edf3beee8ecb85d4a9dae3656002fc24
+    if [ -d $name-master-eef943f0edf3beee8ecb85d4a9dae3656002fc24 ]; then cd $name-master-eef943f0edf3beee8ecb85d4a9dae3656002fc24; fi
 
     sed -e 's|src \\|src|' -e '/tests/d' -i signon-ui.pro
     patch -Np1 -i $SRC/fake-user-agent.patch

@@ -1,4 +1,4 @@
-# Depends on: libogg
+# Depends: libogg
 
 name=libvorbis
 version=1.3.7

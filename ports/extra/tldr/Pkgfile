@@ -10,7 +10,7 @@ source="https://github.com/tldr-pages/tldr-c-client/archive/v$version/$name-$ver
 
 pkg_build() {
 	if [ -d $name-c-client-$version ]; then
-		cd $name-c-client-$version
+		if [ -d $name-c-client-$version ]; then cd $name-c-client-$version; fi
 	fi
 	make
 	make PREFIX=$PKG/usr DESTDIR=$PKG install

@@ -8,7 +8,7 @@ release=1
 source="https://downloads.sourceforge.net/$name/$name-${version%.*}-${version##*.}.tar.gz"
 
 pkg_build() {
-	cd $name-${version%.*}-${version##*.}
+	if [ -d $name-${version%.*}-${version##*.} ]; then cd $name-${version%.*}-${version##*.}; fi
 	./configure --prefix=/usr --mandir=/usr/share/man
 	make
 	make DESTDIR=$PKG install

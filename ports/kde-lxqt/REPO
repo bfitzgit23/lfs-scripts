@@ -240,8 +240,8 @@ d:xdg-desktop-portal-kde
 d:xdg-desktop-portal-lxqt
 d:yakuake
 d:zint
-f:29b0f8c706c6cacaa110a0121c7b5062:accounts-qml-module/Pkgfile
-f:a55d120f45336f7353a35a7ee133a2f6:aha/Pkgfile
+f:0616ecf6943821ec60a5fae50fd6cf86:accounts-qml-module/Pkgfile
+f:53190097986d014a1f5dddc1d53fb0f5:aha/Pkgfile
 f:3bd4680a2ff545df80803a1e3c9ca5a7:akonadi-calendar/Pkgfile
 f:85a646a85ce126f754b401811b949de6:akonadi-contacts/Pkgfile
 f:7262e4fa53873ba10782a574b91524b3:akonadi-import-wizard/Pkgfile
@@ -262,9 +262,9 @@ f:c8750dfc5bc4a7dbae370ec30e7a62ff:breeze-gtk/Pkgfile
 f:e107d7107dc68b41bfe937de52738b79:breeze/Pkgfile
 f:5faf4e0e800ed7b82b5833b141ec68b4:calendarsupport/Pkgfile
 f:9918f28f7c933dd96aca3b490d55c6ca:calligra/Pkgfile
-f:729f4aea81c2d19f74d7481add35dff4:clinfo/Pkgfile
+f:b657aae101df897a359e507d8f9be067:clinfo/Pkgfile
 f:6e0d1eba69587a71a18ddaa2ef6fe3ca:crystal-dock/Pkgfile
-f:6c55cd4525bf8125a21b486730a12ee9:cunit/Pkgfile
+f:754353921e1d49a01c4c35a395f49471:cunit/Pkgfile
 f:c4ee76ffffad35369435d5f52552ed45:discount/Pkgfile
 f:762bce7722f87b25479e1e515fbe7e47:discover/Pkgfile
 f:d8db355cf3a42a3707978b9858339f69:dlpack/Pkgfile
@@ -468,8 +468,8 @@ f:5e05f5d9047f76dd818b788b611ba009:qqc2-desktop-style/Pkgfile
 f:4a31a025a558f08b18d75ff0ac048ecb:qtkeychain6/Pkgfile
 f:7000386bcc88cd4c3871a7fc930ac0c5:sddm-kcm/Pkgfile
 f:2e3734b7bc6af0d2457b057b0af08892:signon-kwallet-extension/Pkgfile
-f:d218d7b76d2c58993e68e841033b7952:signon-plugin-oauth2/Pkgfile
-f:2f30ada2e4f7370016e558c86533f0aa:signon-ui/Pkgfile
+f:96a518e386e5f33bf1f34a54844326f4:signon-plugin-oauth2/Pkgfile
+f:71343dc307a3d583f40514020e03bcdd:signon-ui/Pkgfile
 f:fc54d0a65213c4b5898d0f2131579cf2:skanlite/Pkgfile
 f:e3a6d41a83ff19ec2887aa670ac70a0b:sonnet/Pkgfile
 f:e4171b16585aca7bfba28954c9211245:spectacle/Pkgfile

@@ -1,4 +1,4 @@
-# Depends on: libaio 
+# Depends: libaio 
 
 name=lvm2
 version=2.03.22

@@ -1,4 +1,4 @@
-# Depends on: dbus glib 
+# Depends: dbus glib 
 
 name=dbus-glib
 version=0.116

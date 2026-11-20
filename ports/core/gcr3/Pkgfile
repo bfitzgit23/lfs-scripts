@@ -10,7 +10,7 @@ source=(https://gitlab.gnome.org/GNOME/${name%3}/-/archive/$version/${name%3}-$v
 renames=(gcr3-3.41.2.tar.xz)
 
 pkg_build() {
-	cd ${name%3}-$version
+	if [ -d ${name%3}-$version ]; then cd ${name%3}-$version; fi
 
 	sed -i -r 's:"(/desktop):"/org/gnome\1:' schema/*.xml
 

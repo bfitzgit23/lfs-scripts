@@ -9,7 +9,7 @@ release=2
 source="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/archive/$version/${name%-*}-$version.tar.gz"
 
 pkg_build() {
-	cd ${name%-*}-$version
+	if [ -d ${name%-*}-$version ]; then cd ${name%-*}-$version; fi
 	make DESTDIR="$PKG" ICON_THEMES="Papirus-Light" install
 
 	rm -f $PKG/usr/share/icons/Papirus/*/mimetypes/text-x-systemd-unit.svg \

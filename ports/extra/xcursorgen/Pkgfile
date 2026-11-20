@@ -1,4 +1,4 @@
-# Depends on: libpng libx11 libxcursor 
+# Depends: libpng libx11 libxcursor 
 
 name=xcursorgen
 version=1.0.9

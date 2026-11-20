@@ -10,7 +10,7 @@ source=(https://git.sr.ht/~skarnet/execline/archive/v$version.tar.gz)
 renames=(execline-2.9.9.1.tar.gz)
 
 pkg_build() {
-	cd $name-v$version
+	if [ -d $name-v$version ]; then cd $name-v$version; fi
 	./configure \
 		--bindir=/bin \
 		--prefix=/usr \

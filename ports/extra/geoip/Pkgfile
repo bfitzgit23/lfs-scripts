@@ -11,7 +11,7 @@ renames=(geoip-1.6.12.tar.gz)
 
 pkg_build() {
 	if [ -d $name-api-c-$version ]; then
-		cd $name-api-c-$version
+		if [ -d $name-api-c-$version ]; then cd $name-api-c-$version; fi
 	fi
 
 	autoreconf -vi

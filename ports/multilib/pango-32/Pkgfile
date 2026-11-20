@@ -1,4 +1,4 @@
-# Depends on: pango glib-32 fribidi-32 harfbuzz-32 fontconfig-32 cairo-32
+# Depends: pango glib-32 fribidi-32 harfbuzz-32 fontconfig-32 cairo-32
 
 name=pango-32
 version=1.58.0

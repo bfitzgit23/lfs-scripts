@@ -1,4 +1,4 @@
-# Depends on: libxdamage libxfixes-32 libxext-32 libx11-32
+# Depends: libxdamage libxfixes-32 libxext-32 libx11-32
 
 name=libxdamage-32
 version=1.1.7
