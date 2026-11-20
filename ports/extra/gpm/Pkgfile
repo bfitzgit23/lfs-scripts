@@ -1,6 +1,6 @@
 name=gpm
 version=1.20.7
-release=1
+release=2
 source=(https://anduin.linuxfromscratch.org/BLFS/$name/$name-$version.tar.bz2
 	gpm-1.20.7-consolidated-1.patch)
 
@@ -10,4 +10,16 @@ pre_build() {
 
 post_build() {
 	install -v -m644 conf/gpm-root.conf $PKG/etc
+
+	# src/Makefile.in installs libgpm.so.2.1.0 and the libgpm.so.2 link but
+	# leaves the "libgpm.so" development link commented out, so nothing can
+	# link with -lgpm against this package.  elinks' meson
+	# find_library('gpm') is the first consumer that trips over it, with
+	# "C shared or static library 'gpm' not found".
+	_bfs_lib=$(cd "$PKG/usr/lib" && echo libgpm.so.*.*)
+	[ -e "$PKG/usr/lib/$_bfs_lib" ] || {
+		echo "gpm: no versioned libgpm.so under $PKG/usr/lib" >&2
+		return 1
+	}
+	ln -sf "$_bfs_lib" "$PKG/usr/lib/libgpm.so"
 }

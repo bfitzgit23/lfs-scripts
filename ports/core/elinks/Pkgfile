@@ -1,4 +1,4 @@
-# Depends: expat openssl zlib libidn gpm
+# Depends: expat openssl zlib libidn2 gpm curl
 description="An advanced and well-established feature-rich text mode web browser"
 homepage="https://github.com/rkd77/elinks"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

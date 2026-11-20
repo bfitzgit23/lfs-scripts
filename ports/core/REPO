@@ -799,7 +799,7 @@ f:2d2af76acfcf36a654862c599bcb389d:elfutils/.footprint
 f:9f0dd10ec6d2603f8be97d2b0d627c68:elfutils/.md5sum
 f:2eb2776ffb2ef81017f172718134a4ad:elfutils/Pkgfile
 f:3c176b7f0c131d9f492b73a2d3943cab:elfutils/update
-f:586a78b57ac1171e231a85172c07f9c8:elinks/Pkgfile
+f:ccecff2310027f6af4824d2d7f5267d4:elinks/Pkgfile
 f:fa3ac83d0bb07dfcb69d8fb4b2bcf875:emacs/Pkgfile
 f:313cb6164eddba4d6c093e8677888bad:ethtool/Pkgfile
 f:df702c7baeea22e885d97ecdd036ebeb:eudev/.footprint
