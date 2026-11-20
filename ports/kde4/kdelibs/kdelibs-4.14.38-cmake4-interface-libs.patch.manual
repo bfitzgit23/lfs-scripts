@@ -1,0 +1,17 @@
+--- a/cmake/modules/KDE4Macros.cmake
++++ b/cmake/modules/KDE4Macros.cmake
+@@ -465,7 +465,14 @@
+          set(_icon_GROUP "actions")
+       endif(NOT _icon_GROUP)
+ #      message(STATUS "icon: ${_current_ICON} size: ${_size} group: ${_group} name: ${_name} l10n: ${_l10n_SUBDIR}")
++      if(POLICY CMP0177)
++         cmake_policy(PUSH)
++         cmake_policy(SET CMP0177 NEW)
++      endif()
+       install(FILES ${_orig_NAME} DESTINATION ${_install_PATH}/${_icon_GROUP}/${_l10n_SUBDIR}/ RENAME ${_install_NAME} )
++      if(POLICY CMP0177)
++         cmake_policy(POP)
++      endif()
+    endif (NOT ${_group} STREQUAL ${_install_NAME} )
+ 
+ endmacro (_KDE4_ADD_ICON_INSTALL_RULE)
