@@ -2,7 +2,7 @@
 
 name=xmlto
 version=0.0.29
-release=2
+release=3
 # pagure.io was retired in 2026 and serves no release tarballs any more; the
 # Debian orig tarball is the upstream one, unchanged.
 source=(https://deb.debian.org/debian/pool/main/x/xmlto/${name}_$version.orig.tar.bz2)
@@ -15,32 +15,47 @@ pkg_build() {
 
 	./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man || return 1
 
-	# 0.0.29 no longer ships pre-rendered man pages: "make install" generates
-	# man/man1/{xmlto,xmlif}.1 by running the xmlto script it has just
-	# configured, and that runs xsltproc with --nonet.  Two http URLs
+	# 0.0.28 shipped pre-rendered man pages; 0.0.29 does not, so "make
+	# install" renders man/man1/{xmlto,xmlif}.1 by running the xmlto it has
+	# just configured, and that runs xsltproc with --nonet.  Two http URLs
 	# therefore have to resolve locally:
-	#   - the stylesheet named in format/docbook/man,
-	#     http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl,
-	#     which docbook-xsl rewrites in /etc/xml/docbook-xsl;
+	#   - the stylesheet in format/docbook/man,
+	#     http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl
 	#   - the DocBook DTD in the DOCTYPE of doc/*.xml,
-	#     http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd,
-	#     which docbook-xml rewrites in /etc/xml/docbook-xml.
-	# Name those catalogues directly instead of relying on the delegates in
-	# /etc/xml/catalog: that file only exists once docbook-xml is installed,
-	# and without it xsltproc tries the network and fails with
-	# "Attempt to load network entity http://docbook.sourceforge.net/...".
-	_bfs_catalogs=
-	for _bfs_catalog in /etc/xml/docbook-xsl /etc/xml/docbook-xml /etc/xml/catalog; do
-		[ -f "$_bfs_catalog" ] && _bfs_catalogs="$_bfs_catalogs $_bfs_catalog"
+	#     http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd
+	# Neither resolves through /etc/xml/catalog unless docbook-xml set it up
+	# and its delegate entries match, which is where "failed to load external
+	# entity .../docbook.xsl" comes from.  Write a catalogue into the build
+	# directory that points those prefixes straight at the installed files, so
+	# the render only depends on docbook-xsl and docbook-xml being installed.
+	_bfs_xsl_dir=
+	for _bfs_dir in /usr/share/xml/docbook/xsl-stylesheets-[0-9]*; do
+		[ -f "$_bfs_dir/manpages/docbook.xsl" ] && _bfs_xsl_dir=$_bfs_dir
 	done
+	_bfs_dtd_dir=/usr/share/xml/docbook/xml-dtd-4.2
 
-	if [ -n "$_bfs_catalogs" ]; then
-		export XML_CATALOG_FILES=${_bfs_catalogs# }
-		_bfs_manopts=
+	_bfs_manopts=
+	if [ -n "$_bfs_xsl_dir" ] && [ -f "$_bfs_dtd_dir/docbookx.dtd" ]; then
+		_bfs_catalog=$PWD/.xmlto-catalog
+		xmlcatalog --noout --create "$_bfs_catalog" || return 1
+		xmlcatalog --noout --add rewriteURI \
+			"http://docbook.sourceforge.net/release/xsl/current" \
+			"$_bfs_xsl_dir" "$_bfs_catalog" || return 1
+		xmlcatalog --noout --add rewriteURI \
+			"http://docbook.sourceforge.net/release/xsl/${_bfs_xsl_dir##*-}" \
+			"$_bfs_xsl_dir" "$_bfs_catalog" || return 1
+		xmlcatalog --noout --add rewriteURI \
+			"http://www.oasis-open.org/docbook/xml/4.2" \
+			"$_bfs_dtd_dir" "$_bfs_catalog" || return 1
+		_bfs_catalogs=$_bfs_catalog
+		for _bfs_extra in /etc/xml/docbook-xsl /etc/xml/docbook-xml /etc/xml/catalog; do
+			[ -f "$_bfs_extra" ] && _bfs_catalogs="$_bfs_catalogs $_bfs_extra"
+		done
+		export XML_CATALOG_FILES=$_bfs_catalogs
 	else
-		# Without the DocBook stylesheets the pages cannot be rendered, so
-		# install xmlto without them rather than failing the build.
-		echo "xmlto: no DocBook catalogues in /etc/xml, installing without man pages" >&2
+		# Without docbook-xsl and docbook-xml the pages cannot be rendered
+		# offline, so install xmlto without them rather than failing.
+		echo "xmlto: docbook-xsl/docbook-xml not installed, skipping man pages" >&2
 		_bfs_manopts="dist_man1_MANS= man1_MANS="
 	fi
 
