@@ -1,16 +1,25 @@
-# Depends on: chrpath 
+# Depends: cmake
 
 name=iniparser
 version=4.3.2
-release=1
+release=2
 source=(https://github.com/ndevilla/$name/archive/v$version/$name-$version.tar.gz)
 
 pkg_build() {
-	make
-	install -Dm0644 src/iniparser.h $PKG/usr/include/$name/iniparser.h
-	install -Dm0644 src/dictionary.h $PKG/usr/include/$name/dictionary.h
-	install -Dm0644 libiniparser.so.1 $PKG/usr/lib/libiniparser.so.1
+	# 4.3.x removed the hand-written Makefile; the tree builds with CMake only.
+	# BUILD_SHARED_LIBS/static: ship the shared library alone, as the old port
+	# did, so the package does not grow a .a and a target file for it.
+	cmake -B build -S . \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_INSTALL_LIBDIR=lib \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DBUILD_SHARED_LIBS=ON \
+		-DBUILD_STATIC_LIBS=OFF \
+		-DBUILD_DOCS=OFF \
+		-DBUILD_EXAMPLES=OFF \
+		-DBUILD_TESTING=OFF || return 1
 
-	ln -sf libiniparser.so.1 $PKG/usr/lib/libiniparser.so
-	chrpath -d $PKG/usr/lib/libiniparser.so
+	cmake --build build -j"${JOBS:-1}" || return 1
+
+	DESTDIR="$PKG" cmake --install build || return 1
 }
