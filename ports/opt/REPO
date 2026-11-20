@@ -563,7 +563,7 @@ f:0d6fa7dc0228ea2840eb810e98cb6ea7:libwacom/Pkgfile
 f:4c5d16d73c6bb578d4242194b642773c:libxmlb/Pkgfile
 f:7f5445274a633f8328b1f2ac5471eecb:lightdm-gtk-greeter/Pkgfile
 f:9a9303bdbcf90aa3d0637674a7052f02:lightdm-gtk-greeter/greeter.conf
-f:4a62c0208ac84bcdefa12a77bae79666:lightdm/Pkgfile
+f:90c401f8b6bf78f1799202a339f34d6d:lightdm/Pkgfile
 f:f12ddb628236c33dec38fecae3f193b3:lightdm/post-install
 f:5cb2ae1815d02b27fbf0a35c5853c24d:lmdb/Pkgfile
 f:d2b3b601067dc956d5f093120dcab026:lua/Pkgfile

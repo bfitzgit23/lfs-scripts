@@ -1,8 +1,8 @@
-# Depends: glib libgcrypt linux-pam consolekit intltool itstool xorg-server
+# Depends: glib libgcrypt linux-pam consolekit intltool itstool xorg-server libxklavier
 # description	: Lightweight cross-desktop display manager
 # homepage	: https://github.com/ubuntu/lightdm
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
-# optional	: accountsservice libxklavier vala
+# optional	: accountsservice vala
 
 description="Lightweight cross-desktop display manager"
 name=lightdm

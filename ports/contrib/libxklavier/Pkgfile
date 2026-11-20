@@ -1,4 +1,4 @@
-# Depends on: libx11 libxml2 glib iso-codes
+# Depends on: libx11 libxml2 glib iso-codes xkeyboard-config
 
 name=libxklavier
 version=5.4
