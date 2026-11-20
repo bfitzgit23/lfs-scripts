@@ -96,7 +96,7 @@ f:12e76d8951f28dc61696e96e0f2eb501:gnome-session/post-install
 f:bd012d4e559cd6c959be7c02dbb9b2af:gnome-settings-daemon/Pkgfile
 f:07f83683969ed35805a91afc348674ed:gnome-shell-extensions/Pkgfile
 f:9a51608f1dfb11262a0e1e0c1b78629f:gnome-shell/Pkgfile
-f:94ff78b2684026f388d2092d88241196:gnome-software/Pkgfile
+f:9580782e88ace40d090466ff5056e79e:gnome-software/Pkgfile
 f:dd1d5601addec1328af2e7681aba386d:gnome-system-monitor/Pkgfile
 f:94e6058dba384b284f775265fc850d3f:gnome-terminal/Pkgfile
 f:534f95c6fe911b73056053355fe118ad:gnome-tweaks/Pkgfile
