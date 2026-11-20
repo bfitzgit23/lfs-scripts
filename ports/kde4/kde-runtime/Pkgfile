@@ -1,12 +1,12 @@
 # description	: KDE 4 runtime components
 # homepage	: https://kde.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
-# Depends: kdelibs qt4 phonon4 dbus
+# Depends: kdelibs qt4 phonon4 dbus kdepimlibs
 
 description="KDE 4 runtime components"
 name=kde-runtime
 version=4.14.3
-release=11
+release=12
 source=(https://download.kde.org/Attic/4.14.3/src/kde-runtime-$version.tar.xz kde-runtime-4.14.3-cmake-minimum.patch.manual kde-runtime-4.14.3-optional-kdeclarative.patch.manual kde-runtime-4.14.3-duplicate-handbook-targets.patch.manual kde-runtime-4.14.3-skip-html-thumbnail.patch.manual kde-runtime-4.14.3-error-dialog-without-kwebkit.patch.manual kde-runtime-4.14.3-skip-declarative-scriptengines.patch.manual kde-runtime-4.14.3-drop-kdewebkit-link.patch.manual)
 
 pkg_build() {
@@ -75,10 +75,27 @@ pkg_build() {
 		return 1
 	fi
 
+	# drkonqi files bug reports with Bugzilla through KXmlRpc::Client from
+	# kdepimlibs, and kde-runtime marks KdepimLibs TYPE REQUIRED, so
+	# configure aborts in feature_summary(FATAL_ON_MISSING_REQUIRED_PACKAGES)
+	# when it is absent.  Name the remedy instead of that summary, and point
+	# find_package() at the install location we did find.
+	_bfs_kdepimlibs=
+	for _bfs_dir in /usr/lib /usr/lib64 /usr/local/lib /opt; do
+		_bfs_kdepimlibs=$(find "$_bfs_dir" -maxdepth 4 -name KdepimLibsConfig.cmake -print -quit 2>/dev/null)
+		[ -n "$_bfs_kdepimlibs" ] && break
+	done
+	if [ -z "$_bfs_kdepimlibs" ]; then
+		echo "$name: KdepimLibs was not found, and drkonqi cannot be built without it." >&2
+		echo "$name: build and install kdepimlibs first (prt-get depinst kdepimlibs)." >&2
+		return 1
+	fi
+
 	cmake -S . -B build -G Ninja \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+		-DKdepimLibs_DIR="$(dirname "$_bfs_kdepimlibs")" \
 		-DKDE4_BUILD_TESTS=OFF \
 		-DBUILD_TESTING=OFF \
 		-DKDERUNTIME_BUILD_NEPOMUK=OFF \
