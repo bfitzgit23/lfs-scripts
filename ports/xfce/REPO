@@ -36,7 +36,7 @@ d:xfce4-whiskermenu-plugin
 d:xfce4-xkb-plugin
 f:12032c4e14b18caa80c245f18d112c67:libxfce4windowing/Pkgfile
 f:06cac90c5b3235499697857b5d561d39:menumaker/Pkgfile
-f:4fbfa62f497c4f0896b881af6dd50017:orage/Pkgfile
+f:e29193c5a83fb212ff794155e0d517df:orage/Pkgfile
 f:0a800f8e59d331cf817a45f5dfc3aba9:thunar-archive-plugin/Pkgfile
 f:bb7fa05d6544257dbea91de5ef662b51:thunar-media-tags-plugin/Pkgfile
 f:240f5192035434b32a87677963b989c7:wlr-protocols/Pkgfile
