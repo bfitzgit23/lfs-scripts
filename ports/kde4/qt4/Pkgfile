@@ -7,7 +7,7 @@
 description="Qt 4.8 compatibility framework for KDE 4"
 name=qt4
 version=4.8.7
-release=6
+release=7
 source=(https://download.qt.io/archive/qt/4.8/$version/qt-everywhere-opensource-src-$version.tar.gz qt4-gcc-requires.patch.manual qt4-4.8.7-qforeach-gcc9.patch.manual qt4-4.8.7-linguist-pointer-compare.patch.manual qt4-openssl-1.1.patch.manual qt4-openssl4.patch.manual)
 
 pkg_build() {
@@ -78,9 +78,33 @@ pkg_build() {
 		-no-gstreamer \
 		-nomake examples \
 		-nomake demos || return 1
-
 	make -j "${JOBS:-1}" || return 1
+
+	# Qt 4 builds libQtUiTools.a from tools/designer/src/uitools, and kdelibs
+	# links it from kjsembed, kross and plasma.  A tree that skipped its tools
+	# part would otherwise ship a Qt those three cannot link against, so build
+	# that one archive here rather than leave it out of the package.
+	if [ ! -f lib/libQtUiTools.a ]; then
+		echo "qt4: libQtUiTools.a was not built, building tools/designer/src/uitools" >&2
+		_bfs_qtdir=$PWD
+		( cd tools/designer/src/uitools &&
+			"$_bfs_qtdir/bin/qmake" uitools.pro &&
+			make -j "${JOBS:-1}" &&
+			make -j1 INSTALL_ROOT="$PKG" install ) || return 1
+	fi
 	make -j1 INSTALL_ROOT="$PKG" install || return 1
+
+	# kdelibs links QtUiTools from kjsembed, kross and plasma; without the
+	# archive and its headers they fail much later with undefined QUiLoader
+	# references, so never package a Qt 4 that lacks them.
+	[ -f "$PKG/opt/qt4/lib/libQtUiTools.a" ] || {
+		echo "qt4: staged package has no libQtUiTools.a" >&2
+		return 1
+	}
+	[ -f "$PKG/opt/qt4/include/QtUiTools/QUiLoader" ] || {
+		echo "qt4: staged package has no QtUiTools headers" >&2
+		return 1
+	}
 
 	install -d "$PKG/etc/ld.so.conf.d" "$PKG/etc/profile.d" || return 1
 	printf '%s\n' '/opt/qt4/lib' > "$PKG/etc/ld.so.conf.d/qt4.conf" || return 1

@@ -106,7 +106,7 @@ f:2239963056fcc7778c2bbecc09ecc214:phonon4/Pkgfile
 f:c003b99fdeed4620950e1467b5ef1dc5:phonon4/phonon-4.10.3-cmp0022.patch.manual
 f:0670303f10f60da4826a660f6de1b74f:polkit-qt/Pkgfile
 f:130bbb02e51465e7370b0878fce96d32:qjson/Pkgfile
-f:be15431cda4ac97e5ae7d52441cf0132:qt4/Pkgfile
+f:0ee8433d0f0d16f6612cfccc9a6ec86f:qt4/Pkgfile
 f:790cf802012e90f41fd3a0639b8747ef:qt4/qt4-4.8.7-linguist-pointer-compare.patch.manual
 f:04012dbd13bf1bcee73751ce78925386:qt4/qt4-4.8.7-qforeach-gcc9.patch.manual
 f:45b1bb94398cb8187c4ed9c223ba1902:qt4/qt4-gcc-requires.patch.manual
