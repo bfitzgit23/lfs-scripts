@@ -1,6 +1,6 @@
 # Depends: dbus-glib libnotify xfce4-panel pavucontrol keybinder
 
 name=xfce4-pulseaudio-plugin
-version=0.4.8
+version=0.4.9
 release=1
 source=(https://archive.xfce.org/src/panel-plugins/${name}/${version%.*}/${name}-${version}.tar.bz2)
