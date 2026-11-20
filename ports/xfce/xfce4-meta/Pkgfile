@@ -1,3 +1,4 @@
+# Depends: libxfce4util libxfce4ui libxfce4windowing exo garcon xfconf xfce4-session xfwm4 xfdesktop xfce4-panel xfce4-settings xfce4-appfinder thunar thunar-volman tumbler thunar-archive-plugin thunar-media-tags-plugin xfce4-terminal mousepad ristretto parole orage xfce4-power-manager xfce4-notifyd xfce4-screenshooter xfce4-screensaver xfce4-panel-profiles xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin xfce4-dict
 # description	: Complete BFSOS Xfce desktop meta package
 # homepage	: https://xfce.org/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
@@ -5,7 +6,7 @@
 description="Complete BFSOS Xfce desktop meta package"
 name=xfce4-meta
 version=4.20.0
-release=6
+release=7
 source=()
 
 pkg_build() {
