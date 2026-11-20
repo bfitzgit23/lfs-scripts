@@ -1,5 +1,8 @@
 name=libmad
 version=0.16.5
-release=1
-source=(https://codeberg.org/tenacityteam/$name/archive/$version.tar.gz)
-renames=($name-$version.tar.gz)
+release=2
+# codeberg.org's archive endpoint for this fork hangs until the download
+# times out, and the GitHub mirror carries no tags.  Debian archives the
+# same 0.16.5 tree, which is CMake based (no configure script).
+source=(http://deb.debian.org/debian/pool/main/libm/libmad/libmad_$version.orig.tar.xz)
+renames=(libmad-$version.tar.xz)
