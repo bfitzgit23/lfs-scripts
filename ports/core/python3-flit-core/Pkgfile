@@ -11,17 +11,21 @@ source=(https://github.com/takluyver/flit/archive/$version/flit-$version.tar.gz
 renames=(python3-flit-core-4.2.0.tar.gz SKIP)
 
 pkg_build() {
-  rm flit-$version/tests/test_sdist.py
- cd flit-$version/flit_core
+	# pkgmk already cd's into the extracted flit-$version directory before it
+	# calls pkg_build, so every path here is relative to that directory.
+	rm -f tests/test_sdist.py
+	cd flit_core || return 1
 
-	# pkgmk applies every *.patch in source from the tarball root, where
-	# pyproject.toml is flit's own project file, so keep this one out of that
-	# pass (.patch.manual) and apply it where flit_core's metadata lives.
+	# flit_core 4.2.0 raises ConfigError for a [project.license-files] glob
+	# that matches nothing, and vendor/ is dropped below.  The automatic
+	# *.patch pass cannot do this: from the tarball root pyproject.toml is
+	# flit's own project file, not flit_core's.
 	if ! grep -q 'license-files = \["LICENSE\*"\]' pyproject.toml; then
 		patch -Np1 -i $SRC/vendor-licence.patch.manual || return 1
 	fi
-  rm -rf flit_core/vendor/
-	python3 build_dists.py
-	python3 -m installer -d $PKG \
-		dist/flit_core-$version-py3-none-any.whl
+
+	rm -rf flit_core/vendor/
+	python3 build_dists.py || return 1
+	python3 -m installer -d "$PKG" \
+		dist/flit_core-$version-py3-none-any.whl || return 1
 }
