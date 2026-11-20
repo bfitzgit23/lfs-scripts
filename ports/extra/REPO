@@ -2910,10 +2910,11 @@ f:a1329cc514752a37b129b4bf5908958c:unrar/.md5sum
 f:b6d8f6982f9c58f8dfba8666a1ca319b:unrar/Pkgfile
 f:0db7cd354be055906ac6edf7e2ce227b:unzip/.footprint
 f:572fa77c5d94562a0e8ef190c1d9e1d7:unzip/.md5sum
-f:e045095ec409ed43889020bd2ec33bf6:unzip/Pkgfile
 f:14c119ef7019f769497363e5cec306e0:unzip/unzip-6.0-consolidated_fixes-1.patch
 f:74c2c3961722c7fbaa98d432381f41ab:unzip/unzip-6.0-localtime-proto.patch
-f:f1fddb5a9be32f5f2a7cc946e6474655:unzip/unzip-6.0-no-dir-fallback.patch
+f:98ee4684eb700fb615d0c9b57d77ad4e:unzip/unzip-6.0-no-dir-fallback.patch
+f:5ef98504702f68a84549c4df65c67bd0:unzip/unzip-6.0-no-dir-probe.patch
+f:5e80412b67561bd21781918e31deb8c8:unzip/Pkgfile
 f:d4c424c13e6faea6b5e93763b666cc6c:zip/zip-3.0-no-zmem-fallback.patch
 f:9cc0d30e6670dbd78427a2241cb36fef:zip/zip-3.0-zmem-prototypes.patch
 f:56c9034e24900ee54f21e310bb156cd8:zip/zip-3.0-timezone-include-time.patch

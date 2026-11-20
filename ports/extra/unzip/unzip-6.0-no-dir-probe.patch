@@ -1,0 +1,32 @@
+--- a/unix/configure
++++ b/unix/configure
+@@ -417,25 +417,10 @@
+ $CC $CFLAGS -c conftest.c >/dev/null 2>/dev/null
+ [ $? -ne 0 ] && CFLAGSR="${CFLAGSR} -DNO_ERRNO"
+ 
+-echo Check for directory libraries
+-cat > conftest.c << _EOF_
+-int main() { return closedir(opendir(".")); }
+-_EOF_
+-
+-$CC -o conftest conftest.c >/dev/null 2>/dev/null
+-if [ $? -ne 0 ]; then
+-  OPT=""
+-  for lib in ndir dir ucb bsd BSD PW x dirent
+-  do
+-    $CC -o conftest conftest.c -l$lib >/dev/null 2>/dev/null
+-    [ $? -eq 0 ] && OPT=-l$lib && break
+-  done
+-  if [ ${OPT} ]; then
+-    LFLAGS2="${LFLAGS2} ${OPT}"
+-  else
+-    CFLAGSR="${CFLAGSR} -DNO_DIR"
+-  fi
+-fi
++# No dirent probe: -DNO_DIR makes unix/unix.c emulate opendir/readdir with
++# "typedef FILE DIR;", which conflicts with the system DIR from <dirent.h>.
++# The probe only fails when its test program is rejected for an unrelated
++# reason (it omits <dirent.h>), so it is dropped rather than made to pass.
+ 
+ # Dynix/ptx 1.3 needed this
+ echo Check for readlink

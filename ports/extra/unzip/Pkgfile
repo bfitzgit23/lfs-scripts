@@ -4,7 +4,8 @@ release=1
 source=(https://downloads.sourceforge.net/infozip/${name}${version}.tar.gz
 	unzip-6.0-consolidated_fixes-1.patch
 	unzip-6.0-localtime-proto.patch
-	unzip-6.0-no-dir-fallback.patch)
+	unzip-6.0-no-dir-fallback.patch
+	unzip-6.0-no-dir-probe.patch)
 
 pkg_build() {
 	# unzip declares its API with the __G macro, which globals.h expands to
@@ -15,8 +16,10 @@ pkg_build() {
 	sed -i 's|^CF_NOOPT = -I\.|CF_NOOPT = -std=gnu17 -I.|' unix/Makefile || return 1
 
 	# unix/configure probes opendir() with "return closedir(opendir(\".\"));" and no
-	# dirent.h include, which C23 rejects, so the probe can end up defining
-	# -DNO_DIR.  The no-dir-fallback patch makes that harmless on Linux.
+	# dirent.h include, so the probe reports "no dirent" for reasons unrelated to
+	# dirent and the build gets -DNO_DIR, under which unix.c declares
+	# "typedef FILE DIR;" and collides with the system DIR.  The probe patch drops
+	# that detection, the fallback patch neutralises NO_DIR if it arrives anyway.
 	rm -f flags    # stale configure output would carry -DNO_DIR over
 
 	make -f unix/Makefile generic CC="${CC:-cc} -std=gnu17" || return 1

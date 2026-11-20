@@ -1,11 +1,14 @@
 --- a/unix/unix.c
 +++ b/unix/unix.c
-@@ -128,6 +128,9 @@
+@@ -125,6 +125,12 @@
  
  
  #ifndef SFX
-+#if defined(NO_DIR) && defined(DIRENT)
-+#  undef NO_DIR          /* dirent.h is available; the fallback below cannot compile */
++/* The system provides opendir/closedir/readdir through <dirent.h>; the NO_DIR
++   fallback below is a pre-dirent emulation whose "typedef FILE DIR;" cannot
++   coexist with the real DIR, and whose zdir typedef is malformed anyway. */
++#ifdef NO_DIR
++#  undef NO_DIR
 +#endif
  #ifdef NO_DIR                  /* for AT&T 3B1 */
  
