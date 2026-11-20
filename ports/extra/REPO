@@ -2599,7 +2599,7 @@ f:2b23300f3e388995a86d89970ec0114a:qemu/post-install
 f:bb128f44872e780a112ff6a3380b7a78:qjackctl/Pkgfile
 f:cfb8578ddb35d9c290de2cae49a2833d:qt5/.footprint
 f:054ba3d822619d595bd7acb501e1b715:qt5/.md5sum
-f:adfd649b3e9eeab15f265cf9121e3252:qt5/Pkgfile
+f:5fa47bf9e4679887c4206ecd6fbcb139:qt5/Pkgfile
 f:2b23300f3e388995a86d89970ec0114a:qt5/post-install
 f:138f9afe745c14c5bed2fa8ebfce0c41:qt5/qt-5.15.11-xkbcommon160.patch
 f:00684445d97a2d82430bc9b3c14d1eee:qt5/qt-everywhere-opensource-src-5.15.11-kf5-1.patch
