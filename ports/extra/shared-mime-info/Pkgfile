@@ -1,6 +1,29 @@
-# Depends on: glib libxml2 
+# Depends on: glib libxml2
 
 name=shared-mime-info
 version=2.5.1
-release=1
+release=2
 source=(https://gitlab.freedesktop.org/xdg/$name/-/archive/$version/$name-$version.tar.gz)
+
+pkg_build() {
+	# build-tests defaults to true and then pulls in the xdgmime subproject.
+	# A git archive cannot carry that submodule, so meson falls back to
+	# subprojects/xdgmime.wrap, tries to clone it and gives up with
+	# "Subproject xdgmime is buildable: NO".  The tests are development only
+	# and never installed, so leave them out.
+	#
+	# build-spec defaults to true as well and renders the HTML specification
+	# with xmlto and the DocBook stylesheets, which is not installed by
+	# "install" either.
+	venom-meson "$SRC/$name-$version" build \
+		-Dbuild-tests=false \
+		-Dbuild-spec=false || return 1
+
+	meson compile -C build || return 1
+	DESTDIR=$PKG meson install --no-rebuild -C build || return 1
+
+	# The recipes that use pkgmk's default build get their man pages gzipped;
+	# this port has its own pkg_build, so compress them here to keep the
+	# footprint (usr/share/man/man1/update-mime-database.1.gz) unchanged.
+	find "$PKG/usr/share/man" -type f -name '*.[1-9]' -exec gzip -9 {} +
+}
