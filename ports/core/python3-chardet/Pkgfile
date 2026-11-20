@@ -1,4 +1,4 @@
-# Depends: python3-setuptools python3-gpep517
+# Depends: python3-gpep517 python3-hatch-vcs python3-hatchling python3-setuptools
 description="Python module for character encoding auto-detection"
 homepage="https://github.com/chardet/chardet"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"
@@ -7,11 +7,19 @@ name=python3-chardet
 _name=${name#*-}
 _n=${_name%${_name#?}}
 version=7.7.0
-release=1
+release=2
 source=(https://files.pythonhosted.org/packages/source/$_n/${name#*-}/${name#*-}-$version.tar.gz)
 renames=(python3-chardet-7.7.0.tar.gz)
 
 pkg_build() {
+	# pyproject.toml asks hatchling for the "vcs" version source and build hook,
+	# both provided by the hatch-vcs plugin.  gpep517 does not install the
+	# sdist's build requirements, so without that plugin hatchling stops with
+	# "Unknown build hook: vcs" before the wheel is built.
+	# The tarball carries no git metadata, so the version is pinned rather than
+	# guessed from a repository that is not there.
+	export SETUPTOOLS_SCM_PRETEND_VERSION="$version"
+
 	gpep517 build-wheel \
 		    --wheel-dir .dist \
 		    --output-fd 3 3>&1 >&2
