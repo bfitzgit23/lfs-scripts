@@ -2914,11 +2914,13 @@ f:14c119ef7019f769497363e5cec306e0:unzip/unzip-6.0-consolidated_fixes-1.patch
 f:74c2c3961722c7fbaa98d432381f41ab:unzip/unzip-6.0-localtime-proto.patch
 f:98ee4684eb700fb615d0c9b57d77ad4e:unzip/unzip-6.0-no-dir-fallback.patch
 f:5ef98504702f68a84549c4df65c67bd0:unzip/unzip-6.0-no-dir-probe.patch
-f:5e80412b67561bd21781918e31deb8c8:unzip/Pkgfile
+f:ac56867ebf0bb0236807770fa939157b:zip/zip-3.0-no-dir-fallback.patch
+f:c4259cd889e0ba0e66612b3b3bad4c52:zip/zip-3.0-no-dir-probe.patch
 f:d4c424c13e6faea6b5e93763b666cc6c:zip/zip-3.0-no-zmem-fallback.patch
-f:9cc0d30e6670dbd78427a2241cb36fef:zip/zip-3.0-zmem-prototypes.patch
 f:56c9034e24900ee54f21e310bb156cd8:zip/zip-3.0-timezone-include-time.patch
-f:9f699be8b479618622d8902160c8a62f:zip/Pkgfile
+f:9cc0d30e6670dbd78427a2241cb36fef:zip/zip-3.0-zmem-prototypes.patch
+f:4e1c91559de0456a278a47f25a689ff7:zip/Pkgfile
+f:5e80412b67561bd21781918e31deb8c8:unzip/Pkgfile
 f:c358fbf59f898f89149f9ede1e721aa7:urxvt-perls/Pkgfile
 f:253794fa756791765ba58c253ce00532:utf8cpp/Pkgfile
 f:d8abf2591188e6e6a8badd0abe472dca:uthash/.footprint

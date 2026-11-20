@@ -1,0 +1,15 @@
+--- a/unix/unix.c
++++ b/unix/unix.c
+@@ -62,6 +62,12 @@
+ local char *readd OF((DIR *));
+ 
+ 
++/* DIR above is the system's, from <dirent.h>; the NO_DIR fallback below
++   retypes it as FILE and redefines readdir, which contradicts readd()'s
++   prototype and cannot compile against a modern C library. */
++#ifdef NO_DIR
++#  undef NO_DIR
++#endif
+ #ifdef NO_DIR                    /* for AT&T 3B1 */
+ #include <sys/dir.h>
+ #ifndef dirent
