@@ -2,7 +2,7 @@
 
 name=xmlto
 version=0.0.29
-release=1
+release=2
 # pagure.io was retired in 2026 and serves no release tarballs any more; the
 # Debian orig tarball is the upstream one, unchanged.
 source=(https://deb.debian.org/debian/pool/main/x/xmlto/${name}_$version.orig.tar.bz2)
@@ -15,12 +15,35 @@ pkg_build() {
 
 	./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man || return 1
 
-	# "make install" generates man/man1/{xmlto,xmlif}.1 by running the xmlto
-	# script that was just configured.  xsltproc runs with --nonet and the
-	# stylesheet URLs in doc/*.xml are http ones, so they have to resolve
-	# through the catalogue docbook-xml and docbook-xsl install.
-	export XML_CATALOG_FILES=/etc/xml/catalog
+	# 0.0.29 no longer ships pre-rendered man pages: "make install" generates
+	# man/man1/{xmlto,xmlif}.1 by running the xmlto script it has just
+	# configured, and that runs xsltproc with --nonet.  Two http URLs
+	# therefore have to resolve locally:
+	#   - the stylesheet named in format/docbook/man,
+	#     http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl,
+	#     which docbook-xsl rewrites in /etc/xml/docbook-xsl;
+	#   - the DocBook DTD in the DOCTYPE of doc/*.xml,
+	#     http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd,
+	#     which docbook-xml rewrites in /etc/xml/docbook-xml.
+	# Name those catalogues directly instead of relying on the delegates in
+	# /etc/xml/catalog: that file only exists once docbook-xml is installed,
+	# and without it xsltproc tries the network and fails with
+	# "Attempt to load network entity http://docbook.sourceforge.net/...".
+	_bfs_catalogs=
+	for _bfs_catalog in /etc/xml/docbook-xsl /etc/xml/docbook-xml /etc/xml/catalog; do
+		[ -f "$_bfs_catalog" ] && _bfs_catalogs="$_bfs_catalogs $_bfs_catalog"
+	done
 
-	make || return 1
-	make DESTDIR=$PKG install || return 1
+	if [ -n "$_bfs_catalogs" ]; then
+		export XML_CATALOG_FILES=${_bfs_catalogs# }
+		_bfs_manopts=
+	else
+		# Without the DocBook stylesheets the pages cannot be rendered, so
+		# install xmlto without them rather than failing the build.
+		echo "xmlto: no DocBook catalogues in /etc/xml, installing without man pages" >&2
+		_bfs_manopts="dist_man1_MANS= man1_MANS="
+	fi
+
+	make $_bfs_manopts || return 1
+	make DESTDIR=$PKG install $_bfs_manopts || return 1
 }
