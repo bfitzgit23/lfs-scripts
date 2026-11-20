@@ -7,14 +7,19 @@ name=python3-flit-core
 version=4.2.0
 release=1
 source=(https://github.com/takluyver/flit/archive/$version/flit-$version.tar.gz
-	vendor-licence.patch)
+	vendor-licence.patch.manual)
 renames=(python3-flit-core-4.2.0.tar.gz SKIP)
 
 pkg_build() {
   rm flit-$version/tests/test_sdist.py
  cd flit-$version/flit_core
 
- patch -Np1 -i $SRC/vendor-licence.patch
+	# pkgmk applies every *.patch in source from the tarball root, where
+	# pyproject.toml is flit's own project file, so keep this one out of that
+	# pass (.patch.manual) and apply it where flit_core's metadata lives.
+	if ! grep -q 'license-files = \["LICENSE\*"\]' pyproject.toml; then
+		patch -Np1 -i $SRC/vendor-licence.patch.manual || return 1
+	fi
   rm -rf flit_core/vendor/
 	python3 build_dists.py
 	python3 -m installer -d $PKG \
