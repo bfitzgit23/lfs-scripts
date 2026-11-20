@@ -22,4 +22,9 @@ pkg_build() {
 
 	make || return 1
 	make DESTDIR=$PKG install || return 1
+
+	# The recipes that use pkgmk's default build get their man pages gzipped;
+	# this port has its own pkg_build, so compress them here to keep the
+	# footprint (usr/share/man/man1/links.1.gz) unchanged.
+	find "$PKG/usr/share/man" -type f -name '*.[1-9]' -exec gzip -9 {} +
 }

@@ -1,6 +1,58 @@
-# Depends on: xmlto libxslt  
+# Depends on: xmlto libxslt docbook-xsl docbook-xml
 
 name=xdg-utils
 version=1.1.3
-release=1
+release=2
 source=(https://portland.freedesktop.org/download/$name-$version.tar.gz)
+
+pkg_build() {
+	./configure --prefix=/usr --mandir=/usr/share/man || return 1
+
+	# scripts/Makefile renders the man and html pages from scripts/desc/*.xml
+	# with xmlto, and xmlto runs xsltproc with --nonet.  Each .xml names two
+	# http URLs: the stylesheet
+	#   http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl
+	# and the DTD http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd.
+	# Neither resolves unless docbook-xml wired /etc/xml/catalog, so write a
+	# catalogue in the build directory that points them straight at the
+	# installed files.
+	_bfs_xsl_dir=
+	for _bfs_dir in /usr/share/xml/docbook/xsl-stylesheets-[0-9]*; do
+		[ -f "$_bfs_dir/manpages/docbook.xsl" ] && _bfs_xsl_dir=$_bfs_dir
+	done
+	_bfs_dtd_dir=/usr/share/xml/docbook/xml-dtd-4.2
+
+	if [ -n "$_bfs_xsl_dir" ] && [ -f "$_bfs_dtd_dir/docbookx.dtd" ]; then
+		_bfs_catalog=$PWD/.xdg-utils-catalog
+		xmlcatalog --noout --create "$_bfs_catalog" || return 1
+		xmlcatalog --noout --add rewriteURI \
+			"http://docbook.sourceforge.net/release/xsl/current" \
+			"$_bfs_xsl_dir" "$_bfs_catalog" || return 1
+		xmlcatalog --noout --add rewriteURI \
+			"http://docbook.sourceforge.net/release/xsl/${_bfs_xsl_dir##*-}" \
+			"$_bfs_xsl_dir" "$_bfs_catalog" || return 1
+		for _bfs_dtd in 4.1.2 4.2 4.3 4.4 4.5; do
+			xmlcatalog --noout --add rewriteURI \
+				"http://www.oasis-open.org/docbook/xml/$_bfs_dtd" \
+				"$_bfs_dtd_dir" "$_bfs_catalog" || return 1
+		done
+		_bfs_catalogs=$_bfs_catalog
+		for _bfs_extra in /etc/xml/docbook-xsl /etc/xml/docbook-xml /etc/xml/catalog; do
+			[ -f "$_bfs_extra" ] && _bfs_catalogs="$_bfs_catalogs $_bfs_extra"
+		done
+		export XML_CATALOG_FILES=$_bfs_catalogs
+		make || return 1
+	else
+		# Without docbook-xsl the pages cannot be rendered offline; build the
+		# scripts and install those alone rather than failing.
+		echo "xdg-utils: docbook-xsl not installed, skipping man and html pages" >&2
+		make -C scripts scripts || return 1
+	fi
+
+	make DESTDIR=$PKG install || return 1
+
+	# The recipes that use pkgmk's default build get their man pages gzipped;
+	# this port has its own pkg_build, so compress them here to keep the
+	# footprint (usr/share/man/man1/xdg-*.1.gz) unchanged.
+	find "$PKG/usr/share/man" -type f -name '*.[1-9]' -exec gzip -9 {} +
+}

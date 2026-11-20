@@ -2075,7 +2075,7 @@ f:bf9bd0932b729fc9d2d6bb1d1647ee58:limine/.md5sum
 f:a0f0ef6810483699a0a5172a44a26270:limine/Pkgfile
 f:ae9af266637be1ea3d46c3c72890d390:links/.footprint
 f:06ceb2d3f728f809aa460494d4d6b072:links/.md5sum
-f:68fd8a4fc736ffc9c8e0509f18f03ec3:links/Pkgfile
+f:6301418b32ce988af70e836723d1f3e2:links/Pkgfile
 f:7af4d8fb31aacde1c8f4a9642c910690:links/links-2.30-recent-gcc.patch.manual
 f:cd767fce1f5978ccb52eeddd6b30546a:linux-firmware/.footprint
 f:f3c12b0e2521fc25dcd67d1ebc5f1a3c:linux-firmware/.md5sum
@@ -3094,7 +3094,7 @@ f:abb3a11e7cd4564142830f8c304ccede:xdg-user-dirs/.md5sum
 f:0e208d81ccc65af64d0c0583d079fc6e:xdg-user-dirs/Pkgfile
 f:6a7fca796dcb640f51f29ae1af6be2a1:xdg-utils/.footprint
 f:aa241f9ed4db8db0f405a169b47b90ee:xdg-utils/.md5sum
-f:7743bc08d34834c36c77b95a40e15b06:xdg-utils/Pkgfile
+f:cfa3c999dbfc0b9e47d77723e12145af:xdg-utils/Pkgfile
 f:ce81fb1ad9815ac502dd687648b27a8f:xdgmenumaker/.md5sum
 f:7e9330a81fbb43b732e1e9d418988fc8:xdgmenumaker/Pkgfile
 f:06aacd937e067410786b03df394365cb:xdpyinfo/.footprint
