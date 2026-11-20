@@ -1688,8 +1688,7 @@ f:5c59cd25a6e857ab640b014c7f89adb1:json-c/Pkgfile
 f:cf453382a690822b5fa2a59d47fab1c0:json-c/update
 f:5bec6689d59799312a91fbe89df2b96a:json-glib/.footprint
 f:5d64a6af48e79b7782dc4b1c4160ab9d:json-glib/.md5sum
-f:3ec12bbfd224ee90635f66866806d0d6:json-glib/Pkgfile
-f:b339eaaa89e31927e5e15edbb32586fe:json-glib/json-glib-1.8.0-gir-annotations.patch
+f:87e3ad2706fa171c246334d3064df3ba:json-glib/Pkgfile
 f:193369419f75b315a1a7cb41de572425:jxrlib/.footprint
 f:ecd47bea91b184d38d6698021b39985d:jxrlib/.md5sum
 f:fb96b4445fca3dbffa6ebb6a78f990ba:jxrlib/CMakeLists.txt
