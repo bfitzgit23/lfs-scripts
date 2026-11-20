@@ -1,7 +1,11 @@
-# Depends on: fribidi gdk-pixbuf graphene iso-codes libxkbcommon pango wayland-protocols libepoxy libxi libxcursor libxdamage libxinerama gst-plugins-bad gst-plugins-base
+# Depends: fribidi gdk-pixbuf graphene iso-codes libxkbcommon pango wayland-protocols libepoxy libxi libxcursor libxdamage libxinerama gst-plugins-bad gst-plugins-base
 
 name=gtk4
 version=4.12.3
-release=1
+release=2
 source=(https://download.gnome.org/sources/gtk/${version%.*}/gtk-$version.tar.xz)
-build_opt="-Dbroadway-backend=true -Dintrospection=enabled"
+# pkgmk's meson driver passes -Db_lto=true -Db_thinlto_cache=true for every
+# meson port; on this toolchain the parallel lto1 jobs lose their ltrans
+# objects in meson-private/thinlto-cache ("lto1: fatal error: open ...
+# ltrans1862.o failed"), so turn both back off for this build.
+build_opt="-Dbroadway-backend=true -Dintrospection=enabled -Db_lto=false -Db_thinlto_cache=false"
