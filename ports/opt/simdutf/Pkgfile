@@ -1,3 +1,4 @@
+# Depends: cmake ninja
 # description	: Fast Unicode validation and transcoding library
 # homepage	: https://simdutf.github.io/simdutf/
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
