@@ -9,12 +9,25 @@ source=(https://download.gnome.org/sources/$name/${version%.*}/$name-$version.ta
 # meson builds json-1.0.gir with g-ir-scanner, and the scanner resolves the
 # GLib and GObject GIRs that glib installs, so gobject-introspection has to be
 # present before this configures; without it meson silently drops the typelib.
+#
+# The annotation fix runs from pkg_build(), not pre_build(): in this tree
+# build() is the pkgutils driver, so only pkg_build() reaches a Pkgfile and the
+# pre_build() hook never fires - the first attempt at this patch was silently
+# skipped.  The meson invocation below mirrors the driver's.
+pkg_build() {
+	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
+	[ -n "$_bfs_src" ] || _bfs_src=.
+	[ -n "$_bfs_src" ] || return 1
+	cd "$_bfs_src" || return 1
 
-pre_build() {
 	# g-ir-scanner 1.8x only accepts (closure) on callback parameters and takes
 	# the user-data parameter's name as its argument; this release puts the
 	# annotation on @data and its GIR step sets fatal_warnings, so the scanner
 	# aborted the build with "invalid closure annotation".  Move the annotation
 	# onto @func, and keep scanner warnings advisory for the release tarball.
 	patch -p1 -i "$SRC/json-glib-1.8.0-gir-annotations.patch.manual" || return 1
+
+	meson setup build . 		--prefix=/usr 		--buildtype=plain 		--wrap-mode nodownload 		-D b_lto=true 		-D b_pie=true || return 1
+	meson compile -C build -j "${JOBS:-1}" || return 1
+	DESTDIR="$PKG" meson install -C build
 }
