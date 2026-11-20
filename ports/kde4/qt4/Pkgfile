@@ -7,7 +7,7 @@
 description="Qt 4.8 compatibility framework for KDE 4"
 name=qt4
 version=4.8.7
-release=7
+release=8
 source=(https://download.qt.io/archive/qt/4.8/$version/qt-everywhere-opensource-src-$version.tar.gz qt4-gcc-requires.patch.manual qt4-4.8.7-qforeach-gcc9.patch.manual qt4-4.8.7-linguist-pointer-compare.patch.manual qt4-openssl-1.1.patch.manual qt4-openssl4.patch.manual)
 
 pkg_build() {
@@ -91,6 +91,16 @@ pkg_build() {
 			"$_bfs_qtdir/bin/qmake" uitools.pro &&
 			make -j "${JOBS:-1}" &&
 			make -j1 INSTALL_ROOT="$PKG" install ) || return 1
+		# A build tree that never ran syncqt for this module has no
+		# headers.pri either, so install QUiLoader's header from the source
+		# by hand; kjsembed and kross include <QtUiTools/QUiLoader>.
+		[ -f "$PKG/opt/qt4/include/QtUiTools/QUiLoader" ] || {
+			install -d "$PKG/opt/qt4/include/QtUiTools" || return 1
+			install -m644 tools/designer/src/uitools/quiloader.h \
+				"$PKG/opt/qt4/include/QtUiTools/quiloader.h" || return 1
+			printf '%s\n' '#include "quiloader.h"' \
+				> "$PKG/opt/qt4/include/QtUiTools/QUiLoader" || return 1
+		}
 	fi
 	make -j1 INSTALL_ROOT="$PKG" install || return 1
 
