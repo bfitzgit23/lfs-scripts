@@ -6,7 +6,7 @@
 description="KDE 4 core libraries"
 name=kdelibs
 version=4.14.38
-release=3
+release=4
 source=(https://download.kde.org/Attic/applications/17.08.3/src/kdelibs-$version.tar.xz kdelibs-4.14.38-cmake4.patch.manual kdelibs-4.14.38-cmake4-interface-libs.patch.manual kdelibs-4.14.38-no-tests.patch.manual kdelibs-4.14.38-fake-kauth-backend.patch.manual kdelibs-4.14.38-klocale-bool-comparison.patch.manual kdelibs-4.14.38-optional-dbusmenuqt.patch.manual kdelibs-4.14.38-optional-declarative.patch.manual kdelibs-4.14.38-ordered.patch.manual kdelibs-4.14.38-jasper-exported.patch.manual kdelibs-4.14.38-openssl-1.1.patch.manual kdelibs-4.14.38-kauth-action-target.patch.manual kdelibs-4.14.38-no-qtwebkit-probes.patch.manual)
 
 pkg_build() {
@@ -109,6 +109,16 @@ pkg_build() {
 	export CFLAGS="${CFLAGS:+$CFLAGS }-std=gnu99"
 	export CXXFLAGS="${CXXFLAGS:+$CXXFLAGS }-std=gnu++98 -fpermissive -Wno-deprecated-declarations"
 
+	# FindQt4's module scan searches only QT_LIBRARY_DIR and does not reliably
+	# pick up Qt 4's static-only QtUiTools, and an unset variable is dropped
+	# from the link line, so kjsembed, plasma and kross ended up linking
+	# without QUiLoader.  Point the module at the archive qmake reports.
+	_bfs_uitools="$(/opt/qt4/bin/qmake -query QT_INSTALL_LIBS)/libQtUiTools.a"
+	if [ ! -f "$_bfs_uitools" ]; then
+		echo "QtUiTools is missing: $_bfs_uitools" >&2
+		return 1
+	fi
+
 	# The test programs are not installed and several of them target optional
 	# modules BFSOS does not ship, so leave them out of the package build.
 	# KDE4Defaults.cmake force-sets BUILD_TESTING to ON internally; the lever
@@ -121,6 +131,7 @@ pkg_build() {
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 		-DQT_QMAKE_EXECUTABLE=/opt/qt4/bin/qmake \
+		-DQT_QTUITOOLS_LIBRARY_RELEASE="$_bfs_uitools" \
 		-DKDE4_BUILD_TESTS=OFF \
 		-DKHTML_BUILD_TESTREGRESSION=OFF \
 		-DCMAKE_DISABLE_FIND_PACKAGE_OpenSSL=TRUE \
