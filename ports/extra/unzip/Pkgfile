@@ -10,14 +10,18 @@ pkg_build() {
 	# nothing unless REENTRANT is defined, so "int CloseError(__G)" becomes
 	# "int CloseError()" and every call with arguments is rejected under C23.
 	# Build as C17, where empty parentheses still mean unspecified arguments.
-	#
-	# The flag has to sit in CF_NOOPT: unix/configure copies it into flags and
-	# the "generic" target re-runs make with CF=<that value> on its command
-	# line, which overrides the Makefile's own CF and any CFLAGS with it.
-	sed -i 's|^CF_NOOPT = -I\.|CF_NOOPT = -std=gnu17 -I.|' unix/Makefile || return 1
 	sed -i 's|^CFLAGS = -O[[:space:]]*$|CFLAGS = -O -std=gnu17|' unix/Makefile || return 1
+	sed -i 's|^CF_NOOPT = -I\.|CF_NOOPT = -std=gnu17 -I.|' unix/Makefile || return 1
 
-	make -f unix/Makefile generic || return 1
+	# unix/configure probes dir functions with "int main(){return closedir(
+	# opendir(\".\"));}" and neither includes dirent.h nor uses CFLAGS.  Under C23
+	# those implicit declarations are errors, the probe fails, and the build ends
+	# up with -DNO_DIR, which switches unzip to a 3B1 fallback that typedefs DIR
+	# to FILE and then expects a struct member.  Put the language pin on CC, which
+	# the probe does use.
+	rm -f flags    # stale configure output would carry -DNO_DIR over
+
+	make -f unix/Makefile generic CC="${CC:-cc} -std=gnu17" || return 1
 
 	make prefix=$PKG/usr MANDIR=$PKG/usr/share/man/man1 -f unix/Makefile install || return 1
 }
