@@ -6,7 +6,7 @@
 description="QJson JSON parsing and serialisation library for Qt 4"
 name=qjson
 version=0.9.0
-release=1
+release=2
 source="https://github.com/flavio/qjson/archive/refs/tags/$version.tar.gz"
 
 pkg_build() {
@@ -17,6 +17,15 @@ pkg_build() {
 	export QT_QMAKE_EXECUTABLE=/opt/qt4/bin/qmake
 	export CFLAGS="${CFLAGS:+$CFLAGS }-std=gnu99"
 	export CXXFLAGS="${CXXFLAGS:+$CXXFLAGS }-std=gnu++98 -fpermissive -Wno-deprecated-declarations"
+
+	# 0.9.0 sets CMP0020 OLD so Windows executables skip qtmain; CMake 4
+	# no longer accepts the OLD behavior of policies from before 3.5.
+	find . -name CMakeLists.txt -print0 |
+		xargs -0 sed -i -e '/cmake_policy(SET CMP[0-9][0-9]* OLD)/d' || return 1
+	if grep -rq 'cmake_policy(SET CMP[0-9]* OLD)' --include=CMakeLists.txt .; then
+		echo "$name: unsupported OLD cmake policies remain in the source tree" >&2
+		return 1
+	fi
 
 	cmake -S . -B build -G Ninja \
 		-DCMAKE_INSTALL_PREFIX=/usr \
