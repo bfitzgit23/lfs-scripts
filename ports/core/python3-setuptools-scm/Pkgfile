@@ -1,4 +1,4 @@
-# Depends: python3-setuptools python3-packaging python3-wheel python3-gpep517
+# Depends: python3-setuptools python3-packaging python3-wheel python3-gpep517 python3-vcs-versioning
 description="Handles managing your python package versions in scm metadata"
 homepage="https://github.com/pypa/setuptools_scm"
 maintainer="Venom Linux Team, venomlinux at disroot dot org"

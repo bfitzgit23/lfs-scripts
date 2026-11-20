@@ -1408,7 +1408,7 @@ f:4b458c889f4c6f4133c6bd05d900a9ef:python3-scour/Pkgfile
 f:374985749424526a6886818d98cf6c1d:python3-semantic-version/Pkgfile
 f:71c8a159d459cd1b26a01fd6118da5e7:python3-setproctitle/Pkgfile
 f:6ef343b7fbb956de56abf22b7fc622cd:python3-setuptools-rust/Pkgfile
-f:28a51ae8c7e90d4d27e0dfe4098bf97e:python3-setuptools-scm/Pkgfile
+f:81517218adbb752e447d1174e1d2efac:python3-setuptools-scm/Pkgfile
 f:882e1f96133dd9d83198619610757100:python3-sip-pyqt5/Pkgfile
 f:ef27eda0a791fe7c919f2c243d1f041e:python3-six/Pkgfile
 f:5585b1a20f658f9df44b7e63b91fa76f:python3-snowballstemmer/Pkgfile
@@ -1433,7 +1433,7 @@ f:c1062b25f79bee4bdd87b59361fe0a4e:python3-typing_extensions/Pkgfile
 f:c0c57dc6204decb5fb49e3e8044e37e4:python3-typogrify/Pkgfile
 f:e41b31b2561f670c2ef8eaa55d136238:python3-urllib3/Pkgfile
 f:dc9740c534daa90730c2ab8060852ab2:python3-urwid/Pkgfile
-f:98f6026e4f5649b65d5d5e8ab520a2f1:python3-vcs-versioning/Pkgfile
+f:d4730a6a6c8b09864e283c05f3e9f0de:python3-vcs-versioning/Pkgfile
 f:c62cfcaa10b11abf04a7fa4c9e6b5bdb:python3-vdf/Pkgfile
 f:17cb615b5f45bff520a9490d83c111cc:python3-webencodings/Pkgfile
 f:e31b40ab46f0c5e37f34e0d59e5459c3:python3-websocket-client/Pkgfile
