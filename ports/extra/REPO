@@ -1466,7 +1466,7 @@ f:39e7ae8fa3ca5d794025f58b099fdb8b:glib-networking/Pkgfile
 f:30e9dbe6d7f0821fcdc995864db7cd44:glib-networking/post-install
 f:cfbc99119da9fb6a5795a2cb691a238b:glib/.md5sum
 f:bb58c23f81746d5e7fed77c1e16c9153:glib/0001-glib-compile-schemas-Remove-noisy-deprecation-warnin.patch
-f:ddce17b4146e7d98cb90566ca57f0b66:glib/Pkgfile
+f:936c8d24cb0769dd7daf867784294e57:glib/Pkgfile
 f:5d987ba0082cdb35e6a93d3ea328f90b:glib/post-install
 f:47759eaf0d40d770fb30965dda252188:glibmm/.footprint
 f:4ec67aaf54355c2303d42c81c367b1de:glibmm/.md5sum
@@ -1688,7 +1688,7 @@ f:5c59cd25a6e857ab640b014c7f89adb1:json-c/Pkgfile
 f:cf453382a690822b5fa2a59d47fab1c0:json-c/update
 f:5bec6689d59799312a91fbe89df2b96a:json-glib/.footprint
 f:5d64a6af48e79b7782dc4b1c4160ab9d:json-glib/.md5sum
-f:76c42e309610df421a55fe938c50afb4:json-glib/Pkgfile
+f:fe13b0fb7defece29dfb59800081d4f3:json-glib/Pkgfile
 f:193369419f75b315a1a7cb41de572425:jxrlib/.footprint
 f:ecd47bea91b184d38d6698021b39985d:jxrlib/.md5sum
 f:fb96b4445fca3dbffa6ebb6a78f990ba:jxrlib/CMakeLists.txt

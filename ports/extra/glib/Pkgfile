@@ -1,5 +1,11 @@
 # Depends on: pcre2 libxslt
 
+# glib writes GLib-2.0.gir and GObject-2.0.gir only when g-ir-scanner is
+# already installed, and gobject-introspection itself needs glib first.  A
+# clean bootstrap is therefore two passes: glib, then
+# gobject-introspection, then rebuild glib so the GIRs appear - packages that
+# scan against GLib (json-glib and friends) fail without them.
+
 name=glib
 version=2.90.1
 release=1
