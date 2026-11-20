@@ -6,11 +6,18 @@ source=(https://downloads.sourceforge.net/infozip/${name}${version}.tar.gz
 	unzip-6.0-localtime-proto.patch)
 
 pkg_build() {
-	# unzip builds its API around the __G macro, which globals.h expands to
+	# unzip declares its API with the __G macro, which globals.h expands to
 	# nothing unless REENTRANT is defined, so "int CloseError(__G)" becomes
 	# "int CloseError()" and every call with arguments is rejected under C23.
 	# Build as C17, where empty parentheses still mean unspecified arguments.
-	make -f unix/Makefile generic CFLAGS="$CFLAGS -std=gnu17" || return 1
+	#
+	# The flag has to sit in CF_NOOPT: unix/configure copies it into flags and
+	# the "generic" target re-runs make with CF=<that value> on its command
+	# line, which overrides the Makefile's own CF and any CFLAGS with it.
+	sed -i 's|^CF_NOOPT = -I\.|CF_NOOPT = -std=gnu17 -I.|' unix/Makefile || return 1
+	sed -i 's|^CFLAGS = -O[[:space:]]*$|CFLAGS = -O -std=gnu17|' unix/Makefile || return 1
+
+	make -f unix/Makefile generic || return 1
 
 	make prefix=$PKG/usr MANDIR=$PKG/usr/share/man/man1 -f unix/Makefile install || return 1
 }
