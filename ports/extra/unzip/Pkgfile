@@ -2,7 +2,8 @@ name=unzip
 version=60
 release=1
 source=(https://downloads.sourceforge.net/infozip/${name}${version}.tar.gz
-	unzip-6.0-consolidated_fixes-1.patch)
+	unzip-6.0-consolidated_fixes-1.patch
+	unzip-6.0-localtime-proto.patch)
 
 pkg_build() {
 	make -f unix/Makefile generic
