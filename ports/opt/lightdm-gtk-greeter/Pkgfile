@@ -24,7 +24,9 @@ build_opt="\
 source=(https://deb.debian.org/debian/pool/main/l/lightdm-gtk-greeter/lightdm-gtk-greeter_${version}.orig.tar.gz greeter.conf)
 
 pkg_build() {
-	_bfs_greeter="$PWD/greeter.conf"
+	# pkgmk copies the local source into $SRC and cd's into the extracted
+	# tree before this runs, so greeter.conf is next to the tarball, not in $PWD.
+	_bfs_greeter="$SRC/greeter.conf"
 	. /usr/share/bfsos/spkgbuild.helper || return 1
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
 	[ -n "$_bfs_src" ] || _bfs_src=.
