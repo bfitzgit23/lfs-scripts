@@ -1567,7 +1567,7 @@ f:2b23300f3e388995a86d89970ec0114a:gsmartcontrol/post-install
 f:a10d4cade559d4b5fdb2f5dd332637d1:gtk-engines/Pkgfile
 f:8db495d8334619429e07432981666268:gtk2/.footprint
 f:03dcfc7c8f36f841034accbccf8d67fc:gtk2/.md5sum
-f:e10251d88ed3469229baf0c494f476e6:gtk2/Pkgfile
+f:adc53e4cdf0dd6d7c1466ccb4e995c77:gtk2/Pkgfile
 f:963693f158f19226b2c275e9700a730c:gtk2/post-install
 f:3adf00a5582656b3c3a9898e39be0a7d:gtk2/update
 f:405f961624fddc35c2bf1526e5c35fab:gtk3/.footprint
