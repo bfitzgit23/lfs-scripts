@@ -1,6 +1,14 @@
 # Depends on: glib libsigc++ 
 
 name=glibmm
-version=2.66.5
+version=2.66.10
 release=1
 source=(https://download.gnome.org/sources/$name/${version%.*}/$name-$version.tar.xz)
+
+# 2.66 is the last series of the glibmm-2.4 ABI (libsigc++ 2) and still the one
+# that atkmm, pangomm and gtkmm3 here build against; the 2.68 and later series
+# is a separate ABI on libsigc++ 3 and ships as glibmm-2.68.  2.66.10 is the
+# release that drops G_GNUC_CONST and stops deriving the Gio types that GLib
+# 2.89.2 made final, so it is the first in this series that builds against the
+# glib 2.90 in this tree.  The series is meson-only: no configure script.
+build_opt="-Dbuild-documentation=false -Dbuild-examples=false"
