@@ -32,7 +32,7 @@ f:3d75dd5fcc863669defb878982d81791:kde-base-artwork/Pkgfile
 f:6f390846d0a01092f9dbff6566eefe7c:kde-base-artwork/kde-base-artwork-4.14.3-cmake-minimum.patch.manual
 f:8afc5556be11a08f78af65452d27f0c8:kde-baseapps/Pkgfile
 f:a0d9126ab01e3556739899f9d26d8fdb:kde-baseapps/kde-baseapps-4.14.3-cmake-minimum.patch.manual
-f:35d554d86fb2bc8f3b58a127e9bc3194:kde-runtime/Pkgfile
+f:9ae4d43635b6438dfe9bc2f38c8bfad9:kde-runtime/Pkgfile
 f:2ebeb9c15bc27beddb49b8f59d7bb76d:kde-runtime/kde-runtime-4.14.3-cmake-minimum.patch.manual
 f:268054502682c624ba19d2d1e714ce10:kde-runtime/kde-runtime-4.14.3-drop-kdewebkit-link.patch.manual
 f:1ef6c927d07128918ecf852151343c2e:kde-runtime/kde-runtime-4.14.3-duplicate-handbook-targets.patch.manual
@@ -40,6 +40,7 @@ f:4bfea76a3142a0a416cdf64f2de65a2c:kde-runtime/kde-runtime-4.14.3-error-dialog-w
 f:85b6e79be62b52b06a4f390036288df3:kde-runtime/kde-runtime-4.14.3-optional-kdeclarative.patch.manual
 f:3f069e9b33485851f2477c2e810828e8:kde-runtime/kde-runtime-4.14.3-skip-declarative-scriptengines.patch.manual
 f:478e3ff7f52bda92afb25a688ad5dd8e:kde-runtime/kde-runtime-4.14.3-skip-html-thumbnail.patch.manual
+f:8be86d628b4b682eea81a9ae17eeb297:kde-runtime/kde-runtime-4.14.3-unit-test-args.patch.manual
 f:cfceec0ad556cc3e5e42cca2daac7d4a:kde-wallpapers/Pkgfile
 f:6f390846d0a01092f9dbff6566eefe7c:kde-wallpapers/kde-wallpapers-4.14.3-cmake-minimum.patch.manual
 f:7b32637873ef8bf827b0dbfdc7b5135f:kde-workspace/Pkgfile

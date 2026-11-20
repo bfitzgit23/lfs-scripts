@@ -1,0 +1,11 @@
+--- a/keditfiletype/tests/CMakeLists.txt
++++ b/keditfiletype/tests/CMakeLists.txt
+@@ -3,7 +3,7 @@
+ 
+ ########### filetypestest ###############
+ 
+-kde4_add_unit_test(filetypestest TEST 
++kde4_add_unit_test(filetypestest
+  filetypestest.cpp
+  ../mimetypedata.cpp
+  ../mimetypewriter.cpp

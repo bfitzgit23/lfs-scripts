@@ -6,8 +6,8 @@
 description="KDE 4 runtime components"
 name=kde-runtime
 version=4.14.3
-release=12
-source=(https://download.kde.org/Attic/4.14.3/src/kde-runtime-$version.tar.xz kde-runtime-4.14.3-cmake-minimum.patch.manual kde-runtime-4.14.3-optional-kdeclarative.patch.manual kde-runtime-4.14.3-duplicate-handbook-targets.patch.manual kde-runtime-4.14.3-skip-html-thumbnail.patch.manual kde-runtime-4.14.3-error-dialog-without-kwebkit.patch.manual kde-runtime-4.14.3-skip-declarative-scriptengines.patch.manual kde-runtime-4.14.3-drop-kdewebkit-link.patch.manual)
+release=13
+source=(https://download.kde.org/Attic/4.14.3/src/kde-runtime-$version.tar.xz kde-runtime-4.14.3-cmake-minimum.patch.manual kde-runtime-4.14.3-optional-kdeclarative.patch.manual kde-runtime-4.14.3-duplicate-handbook-targets.patch.manual kde-runtime-4.14.3-skip-html-thumbnail.patch.manual kde-runtime-4.14.3-error-dialog-without-kwebkit.patch.manual kde-runtime-4.14.3-skip-declarative-scriptengines.patch.manual kde-runtime-4.14.3-drop-kdewebkit-link.patch.manual kde-runtime-4.14.3-unit-test-args.patch.manual)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
@@ -62,6 +62,14 @@ pkg_build() {
 	# linker goes looking for libraries that do not exist.  Nothing in
 	# kde-runtime refers to a WebKit symbol any more, so drop the references.
 	patch -p1 -i "$SRC/kde-runtime-4.14.3-drop-kdewebkit-link.patch.manual" || return 1
+
+	# kde4_add_unit_test() tests ${ARGV1} STREQUAL "TESTNAME", and
+	# keditfiletype/tests passes a stray TEST there.  CMake reads a leading
+	# TEST as its if(TEST <name>) keyword, so the condition degenerates to
+	# "STREQUAL TESTNAME" and configure dies with "Unknown arguments
+	# specified".  The macro already builds test targets with TEST, so the
+	# argument is redundant.
+	patch -p1 -i "$SRC/kde-runtime-4.14.3-unit-test-args.patch.manual" || return 1
 
 	# kdelibs before 4.14.3-21 shipped cmake modules that read the location of a
 	# kauth-policy-gen target its exported tools file never contained, so every
