@@ -3,18 +3,16 @@ version=0.7.4
 release=1
 # liba52.sourceforge.io is gone; Debian's orig tarball is the same 0.7.4 tree.
 source=(http://deb.debian.org/debian/pool/main/a/a52dec/a52dec_0.7.4.orig.tar.gz)
-build_opt="--enable-shared"
-
-pre_build() {
-	export CFLAGS="$CFLAGS -fPIC"
-}
 
 pkg_build() {
-	./configure --prefix=/usr $build_opt
-	make
-	make DESTDIR=$PKG install
-}
-
-post_build() {
-	cp liba52/a52_internal.h $PKG/usr/include/a52dec
+	# pkgmk's driver skips pre_build and post_build entirely when a Pkgfile
+	# defines pkg_build, so -fPIC and the a52_internal.h install have to
+	# happen here.  Without -fPIC libtool's shared link of liba52 fails with
+	# "relocation R_X86_64_PC32 against symbol stderr can not be used when
+	# making a shared object".
+	export CFLAGS="$CFLAGS -fPIC"
+	./configure --prefix=/usr --enable-shared || return 1
+	make || return 1
+	make DESTDIR="$PKG" install || return 1
+	cp liba52/a52_internal.h "$PKG/usr/include/a52dec" || return 1
 }
