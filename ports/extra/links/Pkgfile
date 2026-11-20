@@ -1,6 +1,25 @@
-# Depends on: libevent 
+# Depends on: libevent openssl zlib bzip2 xz zstd
 
 name=links
 version=2.30
-release=1
-source=(http://$name.twibright.com/download/$name-$version.tar.bz2)
+release=2
+source=(https://$name.twibright.com/download/$name-$version.tar.bz2 links-2.30-recent-gcc.patch.manual)
+
+pkg_build() {
+	# GCC 15 made the strchr()/strstr() builtins const-preserving: with a
+	# const argument they return const char *, so casting the constness away
+	# and writing through the result is an error ("assignment of read-only
+	# location").  ftp.c does exactly that when it strips the POST payload
+	# off a URL; keep the pointer in a local variable instead.
+	patch -p1 -i "$SRC/links-2.30-recent-gcc.patch.manual" || return 1
+
+	# Text mode only: no X, framebuffer or svgalib driver, so the package
+	# stays the single "links" binary whatever graphics libraries happen to
+	# be installed.
+	./configure --prefix=/usr --mandir=/usr/share/man \
+		--without-x --without-fb --without-svgalib --without-directfb \
+		--disable-graphics || return 1
+
+	make || return 1
+	make DESTDIR=$PKG install || return 1
+}

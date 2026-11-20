@@ -2074,8 +2074,9 @@ f:be16b9af573f04ad537e892f89442a9b:lightdm-gtk-greeter-settings/Pkgfile
 f:bf9bd0932b729fc9d2d6bb1d1647ee58:limine/.md5sum
 f:a0f0ef6810483699a0a5172a44a26270:limine/Pkgfile
 f:ae9af266637be1ea3d46c3c72890d390:links/.footprint
-f:a1a63aaaac082c9ba88bd0d07597ded5:links/.md5sum
-f:d8847ccc61fb5dec96e2f5a0d1366b59:links/Pkgfile
+f:06ceb2d3f728f809aa460494d4d6b072:links/.md5sum
+f:68fd8a4fc736ffc9c8e0509f18f03ec3:links/Pkgfile
+f:7af4d8fb31aacde1c8f4a9642c910690:links/links-2.30-recent-gcc.patch.manual
 f:cd767fce1f5978ccb52eeddd6b30546a:linux-firmware/.footprint
 f:f3c12b0e2521fc25dcd67d1ebc5f1a3c:linux-firmware/.md5sum
 f:5b4af32bf4866ff4b96089c20a2f672f:linux-firmware/Pkgfile
@@ -3162,8 +3163,8 @@ f:47ef0f0645356b38de908e8ecf36e658:xlsfonts/Pkgfile
 f:6950b437abeb9b7e2bd0d2a69a21928a:xman/Pkgfile
 f:2f754ff35bb7574c4386180be9a224fd:xmessage/Pkgfile
 f:226ded7b4bab530139b9c8f534528abc:xmlstarlet/Pkgfile
-f:c6ef629ff7f8248d6c484648caf6d25c:xmlto/.md5sum
-f:60fd470a1373196528882186db049ab6:xmlto/Pkgfile
+f:c79636c43e6fa9edc424ad0b61286474:xmlto/.md5sum
+f:2dd24d35c248ce535a988a64f8857bb9:xmlto/Pkgfile
 f:42d10991a7696d0b0208727a9223464d:xmodmap/.footprint
 f:23234a05c71a9a08f2f8b6fc629b8e62:xmodmap/.md5sum
 f:832a6d1fa3792a66a6b7ba902058a867:xmodmap/Pkgfile

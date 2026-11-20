@@ -1,14 +1,26 @@
-# Depends on: links 
+# Depends on: libxslt docbook-xsl elinks
 
 name=xmlto
-version=0.0.28
+version=0.0.29
 release=1
-# releases.pagure.org no longer serves tarballs; Debian keeps the upstream one.
-source=(http://deb.debian.org/debian/pool/main/x/xmlto/xmlto_$version.orig.tar.bz2)
-export LINKS="/usr/bin/links"
+# pagure.io was retired in 2026 and serves no release tarballs any more; the
+# Debian orig tarball is the upstream one, unchanged.
+source=(https://deb.debian.org/debian/pool/main/x/xmlto/${name}_$version.orig.tar.bz2)
 
 pkg_build() {
-	./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man
-	make
-	make DESTDIR=$PKG install
+	# The orig tarball ships configure.ac only (no generated configure), and
+	# 0.0.29 is the release whose flex-generated xmlif was regenerated so it
+	# still compiles with current gcc.
+	autoreconf -fi || return 1
+
+	./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man || return 1
+
+	# "make install" generates man/man1/{xmlto,xmlif}.1 by running the xmlto
+	# script that was just configured.  xsltproc runs with --nonet and the
+	# stylesheet URLs in doc/*.xml are http ones, so they have to resolve
+	# through the catalogue docbook-xml and docbook-xsl install.
+	export XML_CATALOG_FILES=/etc/xml/catalog
+
+	make || return 1
+	make DESTDIR=$PKG install || return 1
 }
