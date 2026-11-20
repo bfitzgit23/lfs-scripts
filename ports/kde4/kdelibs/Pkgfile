@@ -6,7 +6,7 @@
 description="KDE 4 core libraries"
 name=kdelibs
 version=4.14.38
-release=4
+release=5
 source=(https://download.kde.org/Attic/applications/17.08.3/src/kdelibs-$version.tar.xz kdelibs-4.14.38-cmake4.patch.manual kdelibs-4.14.38-cmake4-interface-libs.patch.manual kdelibs-4.14.38-no-tests.patch.manual kdelibs-4.14.38-fake-kauth-backend.patch.manual kdelibs-4.14.38-klocale-bool-comparison.patch.manual kdelibs-4.14.38-optional-dbusmenuqt.patch.manual kdelibs-4.14.38-optional-declarative.patch.manual kdelibs-4.14.38-ordered.patch.manual kdelibs-4.14.38-jasper-exported.patch.manual kdelibs-4.14.38-openssl-1.1.patch.manual kdelibs-4.14.38-kauth-action-target.patch.manual kdelibs-4.14.38-no-qtwebkit-probes.patch.manual)
 
 pkg_build() {
@@ -116,6 +116,12 @@ pkg_build() {
 	_bfs_uitools="$(/opt/qt4/bin/qmake -query QT_INSTALL_LIBS)/libQtUiTools.a"
 	if [ ! -f "$_bfs_uitools" ]; then
 		echo "QtUiTools is missing: $_bfs_uitools" >&2
+		echo "  qmake: $(/opt/qt4/bin/qmake -query QT_VERSION 2>&1) in $(/opt/qt4/bin/qmake -query QT_INSTALL_LIBS 2>&1)" >&2
+		echo "  /opt/qt4/lib entries matching uitools/designer: $(ls /opt/qt4/lib 2>/dev/null | grep -ci 'uitools\|designer')" >&2
+		echo "  QtUiTools headers: $(ls -d /opt/qt4/include/QtUiTools 2>/dev/null || echo absent)" >&2
+		echo "  QtDesigner headers: $(ls -d /opt/qt4/include/QtDesigner 2>/dev/null || echo absent)" >&2
+		echo "  Qt tools binaries: $(ls /opt/qt4/bin/designer /opt/qt4/bin/assistant 2>/dev/null | tr '\n' ' ')" >&2
+		echo "  cached qt4 packages: $(ls /var/cache/pkg/packages/qt4#* 2>/dev/null | tr '\n' ' ')" >&2
 		return 1
 	fi
 

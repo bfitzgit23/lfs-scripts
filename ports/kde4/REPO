@@ -63,7 +63,7 @@ f:6f87eabc600c4bc9fbef781160f98929:kde4/Pkgfile
 f:f82acd072b5df945a96fb94b4f1f2add:kde4/kde-plasma.desktop
 f:145a5b575cb10f29624e744386613124:kdeartwork/Pkgfile
 f:413139c16bbdeda585b37586a9fb5e8a:kdeartwork/kdeartwork-4.14.3-cmake-minimum.patch.manual
-f:f5db6b95725b8daba35193e1991b0b30:kdelibs/Pkgfile
+f:091d0d605498b7e4dfcdf5a413b08e4c:kdelibs/Pkgfile
 f:a2c351e5c4d5bef39865e5fc1a39219a:kdelibs/kdelibs-4.14.3-archlinux-menu.patch.manual
 f:2b30cc3e382e99333e7ff388943473e9:kdelibs/kdelibs-4.14.3-kde-applications-menu.patch.manual
 f:0651e75557cbbbb399b0efd36e30013f:kdelibs/kdelibs-4.14.3-no-kdewebkit.patch.manual
