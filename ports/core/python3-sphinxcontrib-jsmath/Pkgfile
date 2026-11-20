@@ -10,7 +10,6 @@ source=(https://github.com/sphinx-doc/${name#*-}/archive/$version/${name#*-}-$ve
 renames=(python3-sphinxcontrib-jsmath-2.0.0.tar.gz)
 
 pkg_build() {
-	cd ${name#*-}-$version
 
 	sed -i '/^tag_build =/s/= .*$/=/' setup.cfg
 	sed -i '/^tag_date =/s/true/false/' setup.cfg

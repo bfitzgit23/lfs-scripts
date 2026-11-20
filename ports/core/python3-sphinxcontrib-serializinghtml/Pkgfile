@@ -10,7 +10,6 @@ source=(https://github.com/sphinx-doc/${name#*-}/archive/$version/${name#*-}-$ve
 renames=(python3-sphinxcontrib-serializinghtml-2.0.0.tar.gz)
 
 pkg_build() {
-	cd ${name#*-}-$version
 
 	    gpep517 build-wheel \
 		   --wheel-dir .dist \

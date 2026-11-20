@@ -10,7 +10,7 @@ source=(https://github.com/AA-Turner/roman-numerals/archive/v$version.tar.gz)
 renames=(python3-roman-numerals-4.1.0.tar.gz)
 
 pkg_build() {
-	cd ${name#*-}-$version/python
+	cd python
 	cp ../LICENCE* ./
 	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	/usr/bin/python3 -m installer -d $PKG .dist/*.whl

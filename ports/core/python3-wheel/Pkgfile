@@ -10,14 +10,11 @@ source="https://files.pythonhosted.org/packages/source/w/wheel/${name#*-}-$versi
 
 pkg_build() {
 
-	cd ${name#*-}-$version
-
 		gpep517 build-wheel \
 		    --wheel-dir .dist \
 		    --output-fd 3 3>&1 >&2
 
 		python3 -m installer -d $PKG \
 		    .dist/*.whl
-
 
 }
