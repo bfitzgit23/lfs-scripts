@@ -1,3 +1,4 @@
+# Depends: gtk3 libdbusmenu-glib
 # description	: GTK3 library for passing menus over D-Bus
 # homepage	: https://launchpad.net/libdbusmenu
 # maintainer	: Brian Madonna <bmadonnaster@gmail.com>
@@ -33,7 +34,7 @@ pkg_build() {
   ./autogen.sh $build_opt || return 1
 
   make -j"${JOBS:-1}" || return 1
-  make DESTDIR="$PKG" -C libdbusmenu-gtk install || return 1
+  make LDFLAGS="$LDFLAGS -L$PWD/libdbusmenu-glib/.libs" DESTDIR="$PKG" -C libdbusmenu-gtk install || return 1
   rm -rf "$PKG/usr/share/doc"
   )
 }

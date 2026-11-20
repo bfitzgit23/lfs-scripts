@@ -160,7 +160,7 @@ f:17c5e6f1ee1ff1e6abade18ea46e9b28:libdbusmenu-gtk2/Pkgfile
 f:4ef7a9590c4a1051ee19295c57edee00:libdbusmenu-gtk3/0001_no-deprecated-gnome-common-macros.patch
 f:48242e2e03c53e45fd5def9ad8614931:libdbusmenu-gtk3/0003_port-tools-dbusmenu-bench-to-py3.patch
 f:7b482c0ad8f7f0935c078a1589184854:libdbusmenu-gtk3/0004_prevent-test-json-from-failing.patch
-f:592af1efb8538956d6f42b824e176dd6:libdbusmenu-gtk3/Pkgfile
+f:c7d1fa30b1b8b5d206468dee2dc45f48:libdbusmenu-gtk3/Pkgfile
 f:e1fe42b7987a336f2e62c2b9bc6a2c54:libdbusmenu-qt/.footprint
 f:ad50cd53ee5da39002718fef27f570fb:libdbusmenu-qt/.md5sum
 f:de94db2e0b1f8f2380d15c473a1d7f82:libdbusmenu-qt/Pkgfile
