@@ -59,6 +59,20 @@ _perlmodule_build() {
 }
 
 _cmake_build() {
+	# CMake 4 aborts on any project whose cmake_minimum_required is below 3.5
+	# ("Compatibility with CMake < 3.5 has been removed"), and while the policy
+	# baseline is unset it also escalates the old CMP0025 (AppleClang id) and
+	# CMP0054 (quoted if() arguments) policies to errors.  Pinning the baseline
+	# to 3.5 makes both NEW, but lowering it for a modern project would break
+	# its own policy expectations, so only do it when the project asks for an
+	# old minimum.
+	_policy_opt=
+	if grep -rqsE \
+		-e 'cmake_minimum_required[^0-9]*VERSION[[:space:]]+[012]\.' \
+		-e 'cmake_minimum_required[^0-9]*VERSION[[:space:]]+3\.[0-4]([^0-9]|$)' \
+		--include=CMakeLists.txt --exclude-dir=cmakebuild .; then
+		_policy_opt="-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+	fi
 	mkdir -p cmakebuild
 	cd cmakebuild
 	cmake -DCMAKE_INSTALL_PREFIX=/usr \
@@ -69,7 +83,7 @@ _cmake_build() {
 		-DFETCHCONTENT_FULLY_DISCONNECTED=ON \
 		-DCMAKE_C_FLAGS_RELEASE="$CFLAGS" \
 		-DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
-		$build_opt  $@ \
+		$build_opt $_policy_opt $@ \
 		-G Ninja .. || return $?
 	if [ -f build.ninja ]; then
 		ninja || return $?

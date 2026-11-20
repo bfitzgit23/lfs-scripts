@@ -1252,8 +1252,8 @@ f:5cf92018b160aec65ef552504d87a463:pkgconf/.md5sum
 f:e1adf0ce6545fae447f57dddc5aba296:pkgconf/Pkgfile
 f:f1de037f285c72752b6f7646cafadbca:pkgutils/.footprint
 f:b8f0efd30808c216f91570ea414a4f44:pkgutils/.md5sum
-f:c1f72b7bcc8bd015eefd009f9115d286:pkgutils/Pkgfile
-f:87b9242c8f82a9c2ad89fba5fcfddc70:pkgutils/extension
+f:9d31e5d16584476aad94d238df32f8fc:pkgutils/Pkgfile
+f:c32e2a9d65051da196cd8c1706361ed8:pkgutils/extension
 f:468a4d0cd212769920fa6b4fe491ea6e:pkgutils/pkgadd.conf
 f:0dfa77a89e494b2dda58ba76efd2fb48:pkgutils/pkgmk.conf
 f:c2e8fb9b19509c195556bef3c51fb3dc:poppler-qt6/.md5sum
