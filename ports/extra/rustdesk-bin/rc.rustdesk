@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# /etc/rc.d/rustdesk: start/stop the RustDesk service daemon
+#
+
+. /etc/rc.subr
+
+NAME="RustDesk"
+PIDFILE="/run/rustdesk.pid"
+
+case $1 in
+	start)
+		msg "Starting $NAME..."
+		/usr/bin/rustdesk --service >/dev/null 2>&1 &
+		echo $! > $PIDFILE
+		;;
+	stop)
+		msg "Stopping $NAME..."
+		# --service spawns the --server and --tray processes, so signal the
+		# whole match the way the upstream systemd unit does.
+		pkill -f "rustdesk --" >/dev/null 2>&1
+		rm -f $PIDFILE
+		;;
+	restart)
+		$0 stop
+		sleep 2
+		$0 start
+		;;
+	status)
+		if pgrep -f "rustdesk --service" >/dev/null 2>&1; then
+			msg "$NAME is running\n"
+		else
+			msg "$NAME is not running\n"
+		fi
+		;;
+	*)
+		echo "usage: $0 [start|stop|restart|status]"
+		;;
+esac
+
+# End of file

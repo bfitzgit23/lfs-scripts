@@ -2670,7 +2670,8 @@ f:30b5a3782f21bac3cdb0c1c164070caa:rust/0001-cargo-Change-libexec-dir.patch
 f:e77b6f8ce0901880f9910d5b93659f8d:rust/0003-compiler-Change-LLVM-targets.patch
 f:40d33170b16e3dbde099e87d68c04745:rust/Pkgfile
 f:c7665570731cee3fa637d9c81ef2485f:rust/update
-f:37f691770cada3df3e5d1ff6d48ccda8:rustdesk-bin/Pkgfile
+f:b1c4735bbcc3d3cad033f76b0e122bef:rustdesk-bin/Pkgfile
+f:ae095608279475ea1ca7992227006c6c:rustdesk-bin/rc.rustdesk
 f:8c81f465019995eebd0da8a064f79a32:sakura/Pkgfile
 f:4178992b76c868b3c01751ec48dfcea7:samba/.footprint
 f:53e02171a02c35b14488d99ded88c26b:samba/.md5sum

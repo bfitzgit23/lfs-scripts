@@ -1,30 +1,51 @@
-# Depends: gtk3 xdotool libxcb libxfixes alsa-lib libva linux-pam gst-plugins-base libayatana-appindicator
-description="Yet another remote desktop software, written in Rust. Works out of the box, no configuration required."
-homepage="https://github.com/rustdesk/rustdesk"
-maintainer="Venom Linux Team, venomlinux at disroot dot org"
+# Depends: alsa-lib curl gst-plugins-base gtk3 libayatana-appindicator libva libxcb libxfixes xdotool
+# description	: Remote desktop software (prebuilt binary)
+# homepage	: https://github.com/rustdesk/rustdesk
+# maintainer	: Venom Linux Team, venomlinux at disroot dot org
 
+description="Remote desktop software (prebuilt binary)"
 name=rustdesk-bin
-version=1.4.8
+version=1.5.3
 release=1
-source=(https://github.com/rustdesk/rustdesk/releases/download/$version/${name%-*}-$version-0-x86_64.pkg.tar.zst
-	rc.rustdesk)
-renames=(rustdesk-bin-1.4.8.tar.zst SKIP)
+build_work=disk
+# The release binaries are already stripped and libapp.so is a Dart AOT
+# snapshot, so keep the whole rustdesk tree out of the stripping pass.
+nostrip="usr/share/rustdesk"
+source="https://github.com/rustdesk/rustdesk/releases/download/$version/rustdesk-$version-0-x86_64.pkg.tar.zst"
 
 pkg_build() {
+	local _usr
 
-    install -d "$PKG/usr/share/" "$PKG/usr/bin/" "$PKG/rc.d"
-    cp -r "$SRC/usr/share/rustdesk/" "$PKG/usr/share/"
-    cp -r "$SRC/usr/share/icons/" "$PKG/usr/share/"
+	# pkgmk unpacks the release package; the Arch build keeps a plain usr tree
+	# either at the top of $SRC or inside a single directory.
+	_usr=$(find . -mindepth 1 -maxdepth 2 -type d -name usr -print -quit)
+	[ -n "$_usr" ] || {
+		echo "rustdesk-bin: staged usr tree is missing" >&2
+		return 1
+	}
+	[ -x "$_usr/share/rustdesk/rustdesk" ] || {
+		echo "rustdesk-bin: staged rustdesk executable is missing" >&2
+		return 1
+	}
 
-    ln -s "/usr/share/rustdesk/rustdesk" "$PKG/usr/bin/rustdesk"
+	install -d "$PKG" || return 1
+	cp -a "$_usr" "$PKG/usr" || return 1
 
-    install -Dm 644 "$SRC/usr/share/rustdesk/files/rustdesk.desktop" "$PKG/usr/share/applications/rustdesk.desktop"
-    install -Dm 644 "$SRC/usr/share/rustdesk/files/rustdesk-link.desktop" "$PKG/usr/share/applications/rustdesk-link.desktop"
+	# The release keeps the launcher in /usr/share/rustdesk, while the desktop
+	# entry and the service both call /usr/bin/rustdesk.
+	install -d "$PKG/usr/bin" || return 1
+	rm -f "$PKG/usr/bin/rustdesk"
+	ln -s /usr/share/rustdesk/rustdesk "$PKG/usr/bin/rustdesk" || return 1
 
-    # rc service
-	scratch isinstalled sysvinit && \
-		install -Dm755 $SRC/rc.rustdesk $PKG/etc/rc.d/rustdesk || continue
+	# Some release packages keep the desktop entries under rustdesk/files.
+	if [ ! -e "$PKG/usr/share/applications/rustdesk.desktop" ] &&
+	   [ -e "$PKG/usr/share/rustdesk/files/rustdesk.desktop" ]; then
+		install -Dm644 "$PKG/usr/share/rustdesk/files/rustdesk.desktop" \
+			"$PKG/usr/share/applications/rustdesk.desktop" || return 1
+	fi
 
-    # Remove useless files
-    rm -r "$PKG/usr/share/rustdesk/files/"
+	# Upstream only ships a systemd unit; BFSOS runs sysvinit.
+	if scratch isinstalled sysvinit; then
+		install -Dm755 "$SRC/rc.rustdesk" "$PKG/etc/rc.d/rustdesk" || return 1
+	fi
 }
