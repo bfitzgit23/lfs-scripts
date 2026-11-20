@@ -3,5 +3,7 @@
 name=libsecret
 version=0.21.8.2
 release=1
-source=(https://download.gnome.org/sources/$name/${version%.*}/$name-$version.tar.xz)
+# 0.21.8.2 is a four-part version: ${version%.*} would strip only the last
+# component and ask for .../0.21.8/, which does not exist.
+source=(https://download.gnome.org/sources/$name/0.21/$name-$version.tar.xz)
 build_opt="-Dgtk_doc=false"
