@@ -197,8 +197,8 @@ f:8fde3bb53fa74ca87dc182a73d61eb9d:libxfce4ui/.md5sum
 f:372e727bb5ec10db006f245635ee23d7:libxfce4ui/Pkgfile
 f:2b23300f3e388995a86d89970ec0114a:libxfce4ui/post-install
 f:32ffdc677c10a95812a67f138bb64689:libxfce4util/.footprint
-f:d480a13c55d90926f5364c91280e350f:libxfce4util/.md5sum
-f:578334af7ba71be931e61b079490b0ae:libxfce4util/Pkgfile
+f:ed9d5fc796b6dcbbda3a851a46b4261a:libxfce4util/.md5sum
+f:f080346ef9f5689356fe60ff57203e27:libxfce4util/Pkgfile
 f:3dc6be62f92b3c9382f881063e674304:libxklavier/.footprint
 f:50aa22f491c8a8f39d61b9018d5f703b:libxklavier/.md5sum
 f:2c23b8f9ca630d97483f0aaf34945a67:libxklavier/Pkgfile
