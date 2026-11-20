@@ -470,6 +470,7 @@ d:mingw-w64-winpthreads
 d:minidlna
 d:minisign
 d:miniupnpc
+d:mintstick
 d:mjwm
 d:mkfontscale
 d:mkinitramfs
@@ -2206,6 +2207,7 @@ f:74168b424fbc9726790580e94c72fd01:minisign/Pkgfile
 f:80fdab31ad754303e17bb870770f63be:miniupnpc/.footprint
 f:0e94afb21d51f7bfdc5febe0d0eead89:miniupnpc/.md5sum
 f:a96fa94a5ac9c1375f7af120130672e8:miniupnpc/Pkgfile
+f:9c3f0b4c6620a97bdab8db37ab0797d7:mintstick/Pkgfile
 f:185ea8bb269f7fb9d7c5daa0d4a9d0d3:mjwm/Pkgfile
 f:5b62cdf5c2a471c55e8d4d341f9700b3:mkfontscale/.footprint
 f:31d23dcafe09b0939041ed895be2678d:mkfontscale/.md5sum
