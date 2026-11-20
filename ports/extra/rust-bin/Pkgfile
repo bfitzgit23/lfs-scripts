@@ -9,7 +9,9 @@ NO_STRIP="yes"
 source="https://static.rust-lang.org/dist/rust-$version-x86_64-unknown-linux-gnu.tar.gz"
 
 pkg_build() {
-	cd rust-$version-x86_64-unknown-linux-gnu
+	# The driver unpacks this tarball and cds into its single top-level
+	# directory before calling pkg_build, so only step in when it did not.
+	[ -x ./install.sh ] || cd rust-$version-x86_64-unknown-linux-gnu
 	./install.sh --prefix=/usr --destdir=$PKG --disable-ldconfig
 
 	# move libexec to lib, remove libexec dir

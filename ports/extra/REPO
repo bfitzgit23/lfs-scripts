@@ -2662,7 +2662,7 @@ f:6c49ad9fb35714720f8c4f468bbda3e8:run-parts/.md5sum
 f:929815b57b42879e5beaf7bdaf8fb37f:run-parts/Pkgfile
 f:6a7aec10fb944176397d15b85b1a61e5:runc/.md5sum
 f:bc391b2189f69060f6da0699d25947a2:runc/Pkgfile
-f:9b318b36db9f94ca524efe3c7d2d8112:rust-bin/Pkgfile
+f:c1a6c5e3bb6470c2c1087d190ccb12d1:rust-bin/Pkgfile
 f:05b60705117d97631a410aab4040799e:rust/.footprint
 f:2a627265dc273f418d0cdeea852ec685:rust/.md5sum
 f:be0cb1f8f06b2461c67857f7d6225253:rust/0001-bootstrap-Change-libexec-dir.patch
