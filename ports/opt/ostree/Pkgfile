@@ -33,7 +33,7 @@ pkg_build() {
 		--disable-man \
 		--with-curl \
 		--with-soup=no \
-		--without-systemdsystemunitdir \
+		--without-libsystemd \
 		|| return 1
 
 	make -j "${JOBS:-1}" || return 1
