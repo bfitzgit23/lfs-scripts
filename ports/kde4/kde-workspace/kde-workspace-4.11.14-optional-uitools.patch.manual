@@ -1,0 +1,163 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -20,6 +20,25 @@
+ 
+ option(WITH_XINERAMA "Xinerama support for multi-headed X displays" ON)
+ 
++# QtUiTools (QUiLoader) is an optional Qt module - Qt 4 builds it only from
++# tools/designer/src/uitools, so a Qt configured without its tools part has
++# none.  The workspace uses it to load the .ui files that wallpaper and
++# window-decoration packages ship; build those parts out when it is missing
++# instead of leaving them with an undefined reference to QUiLoader.
++option(WITH_UITOOLS "Build the parts that need QtUiTools (QUiLoader)" ON)
++if (WITH_UITOOLS)
++   set(KDE4WORKSPACE_UITOOLS_LIBS ${QT_QTUITOOLS_LIBRARY})
++else (WITH_UITOOLS)
++   set(KDE4WORKSPACE_UITOOLS_LIBS "")
++   add_definitions(-DWITHOUT_UITOOLS)
++   message(WARNING "\n"
++      "kde-workspace: QtUiTools (QUiLoader) is unavailable, building without it.\n"
++      "  disabled: the wallpaper package settings page, the window-decoration\n"
++      "            settings page and the scripted effect/decoration\n"
++      "            configuration UIs, all of which load package .ui files.\n"
++      "  re-enable: provide libQtUiTools.a in Qt 4's library directory.\n")
++endif (WITH_UITOOLS)
++
+ find_package(Strigi)
+ 
+ set_package_properties(Strigi PROPERTIES DESCRIPTION "Desktop indexing and search support"
+--- a/libs/plasmagenericshell/CMakeLists.txt
++++ b/libs/plasmagenericshell/CMakeLists.txt
+@@ -35,7 +35,7 @@
+ 
+ kde4_add_library(plasmagenericshell SHARED ${plasmagenericshell_LIB_SRCS})
+ 
+-target_link_libraries(plasmagenericshell ${KDE4_PLASMA_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} ${QT_QTSCRIPT_LIBRARY} ${QT_QTDECLARATIVE_LIBRARY} ${QT_QTUITOOLS_LIBRARY} kworkspace kephal)
++target_link_libraries(plasmagenericshell ${KDE4_PLASMA_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} ${QT_QTSCRIPT_LIBRARY} ${QT_QTDECLARATIVE_LIBRARY} ${KDE4WORKSPACE_UITOOLS_LIBS} kworkspace kephal)
+ if(UNIX AND Q_WS_X11)
+     target_link_libraries(plasmagenericshell ${X11_LIBRARIES})
+ endif(UNIX AND Q_WS_X11)
+--- a/libs/plasmagenericshell/backgrounddialog.cpp
++++ b/libs/plasmagenericshell/backgrounddialog.cpp
+@@ -17,7 +17,9 @@
+ #include <QFile>
+ #include <QPainter>
+ #include <QStandardItemModel>
++#ifndef WITHOUT_UITOOLS
+ #include <QUiLoader>
++#endif
+ 
+ #include <KColorScheme>
+ #include <KDebug>
+@@ -208,6 +210,7 @@
+ 
+     void createConfigurationInterfaceForPackage()
+     {
++#ifndef WITHOUT_UITOOLS
+         const QString uiFile = containment.data()->package()->filePath("mainconfigui");
+         if (uiFile.isEmpty()) {
+             kWarning() << "No ui file found for containment";
+@@ -228,6 +231,10 @@
+         } else {
+             kWarning() << "Failed to load widget from" << uiFile;
+         }
++#else
++        kWarning() << "This build has no QtUiTools module: the wallpaper package's"
++                   << "configuration UI cannot be shown";
++#endif
+     }
+ };
+ 
+--- a/libs/plasmagenericshell/tests/CMakeLists.txt
++++ b/libs/plasmagenericshell/tests/CMakeLists.txt
+@@ -27,7 +27,7 @@
+ kde4_add_kcfg_files(backgrounddialog_SRCS ../../../plasma/desktop/shell/data/plasma-shell-desktop.kcfgc)
+ 
+ kde4_add_executable(plasmabackgrounddialog ${backgrounddialog_SRCS})
+-target_link_libraries(plasmabackgrounddialog ${KDE4_PLASMA_LIBS} ${QT_QTUITOOLS_LIBRARY} ${KDE4_KFILE_LIBRARY} kworkspace)
++target_link_libraries(plasmabackgrounddialog ${KDE4_PLASMA_LIBS} ${KDE4WORKSPACE_UITOOLS_LIBS} ${KDE4_KFILE_LIBRARY} kworkspace)
+ 
+ endif (KDE4_BUILD_TESTS)
+ 
+--- a/kwin/kcmkwin/kwindecoration/CMakeLists.txt
++++ b/kwin/kcmkwin/kwindecoration/CMakeLists.txt
+@@ -24,7 +24,7 @@
+ )
+ 
+ kde4_add_plugin(kcm_kwindecoration ${kcm_kwindecoration_PART_SRCS})
+-target_link_libraries(kcm_kwindecoration ${KDE4_KNEWSTUFF3_LIBS} kdecorations ${KDE4_PLASMA_LIBS} ${QT_QTDECLARATIVE_LIBRARY} ${QT_QTUITOOLS_LIBRARY} ${X11_LIBRARIES})
++target_link_libraries(kcm_kwindecoration ${KDE4_KNEWSTUFF3_LIBS} kdecorations ${KDE4_PLASMA_LIBS} ${QT_QTDECLARATIVE_LIBRARY} ${KDE4WORKSPACE_UITOOLS_LIBS} ${X11_LIBRARIES})
+ install(TARGETS kcm_kwindecoration  DESTINATION ${PLUGIN_INSTALL_DIR} )
+ 
+ ########### install files ###############
+--- a/kwin/kcmkwin/kwindecoration/kwindecoration.cpp
++++ b/kwin/kcmkwin/kwindecoration/kwindecoration.cpp
+@@ -43,7 +43,9 @@
+ #include <QSortFilterProxyModel>
+ #include <QGraphicsObject>
+ #include <QScrollBar>
++#ifndef WITHOUT_UITOOLS
+ #include <QUiLoader>
++#endif
+ // KDE
+ #include <KAboutData>
+ #include <KDialog>
+@@ -405,6 +407,7 @@
+                 KSharedConfigPtr auroraeConfig = KSharedConfig::openConfig("auroraerc");
+                 KConfigGroup configGroup = auroraeConfig->group(packageName);
+                 Plasma::ConfigLoader *skeleton = new Plasma::ConfigLoader(&configGroup, &configFile, dlg);
++#ifndef WITHOUT_UITOOLS
+                 // load the ui file
+                 QUiLoader *loader = new QUiLoader(dlg);
+                 QFile uiFile(uiPath);
+@@ -415,6 +418,10 @@
+                 // connect the ui file with the skeleton
+                 configManager = new KConfigDialogManager(customConfigForm, skeleton);
+                 configManager->updateWidgets();
++#else
++                // No QtUiTools in this build: the decoration ships no settings page.
++                Q_UNUSED(skeleton);
++#endif
+             }
+         }
+         if (dlg->exec() == KDialog::Accepted) {
+--- a/kwin/scripting/CMakeLists.txt
++++ b/kwin/scripting/CMakeLists.txt
+@@ -1,4 +1,4 @@
+ set(kcm_kwin4_genericscripted_SRCS genericscriptedconfig.cpp)
+ kde4_add_plugin( kcm_kwin4_genericscripted ${kcm_kwin4_genericscripted_SRCS} )
+-target_link_libraries( kcm_kwin4_genericscripted ${KDE4_KIO_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_PLASMA_LIBS} ${QT_QTUITOOLS_LIBRARY} )
++target_link_libraries( kcm_kwin4_genericscripted ${KDE4_KIO_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_PLASMA_LIBS} ${KDE4WORKSPACE_UITOOLS_LIBS} )
+ install( TARGETS kcm_kwin4_genericscripted DESTINATION ${PLUGIN_INSTALL_DIR} )
+--- a/kwin/scripting/genericscriptedconfig.cpp
++++ b/kwin/scripting/genericscriptedconfig.cpp
+@@ -28,7 +28,9 @@
+ #include <QDBusMessage>
+ #include <QFile>
+ #include <QLabel>
++#ifndef WITHOUT_UITOOLS
+ #include <QUiLoader>
++#endif
+ #include <QVBoxLayout>
+ 
+ namespace KWin {
+@@ -72,6 +74,7 @@
+     QFile xmlFile(kconfigXTFile);
+     KConfigGroup cg = configGroup();
+     Plasma::ConfigLoader *configLoader = new Plasma::ConfigLoader(&cg, &xmlFile, this);
++#ifndef WITHOUT_UITOOLS
+     // load the ui file
+     QUiLoader *loader = new QUiLoader(this);
+     QFile uiFile(uiPath);
+@@ -80,6 +83,11 @@
+     uiFile.close();
+     layout->addWidget(customConfigForm);
+     addConfig(configLoader, customConfigForm);
++#else
++    Q_UNUSED(configLoader);
++    layout->addWidget(new QLabel(i18nc("Error message",
++        "This build has no QtUiTools module, so this plugin has no configuration interface")));
++#endif
+ }
+ 
+ void GenericScriptedConfig::save()

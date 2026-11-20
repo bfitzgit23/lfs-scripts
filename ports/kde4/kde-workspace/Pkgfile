@@ -6,8 +6,8 @@
 description="KDE 4 Plasma workspace and window manager"
 name=kde-workspace
 version=4.11.14
-release=25
-source=(https://download.kde.org/Attic/4.14.3/src/kde-workspace-$version.tar.xz kde-workspace-4.11.14-optional-qtdeclarative.patch.manual kde-workspace-4.11.14-optional-webkit.patch.manual kde-workspace-4.11.14-optional-dbusmenu-blitz.patch.manual kde-workspace-4.11.14-optional-qml-sweep.patch.manual kde-workspace-4.11.14-optional-qml-shell.patch.manual kde-workspace-4.11.14-unique-test-names.patch.manual kde-workspace-4.11.14-window-selection-contains.patch.manual kde-workspace-4.11.14-fontconfig-freetype-header.patch.manual kde-workspace-4.11.14-taskmanager-contains.patch.manual kde-workspace-4.11.14-joystick-strict-ansi.patch.manual kde-workspace-4.11.14-kdm-c99.patch.manual kde-workspace-4.11.14-kdm-qimageblitz-fallback.patch.manual kde-workspace-4.11.14-bbcukmet-contains.patch.manual kde-workspace-4.11.14-plasma-akonadi-cxx11.patch.manual kde-workspace-4.11.14-rss-cxx11.patch.manual org.kde.ksysguard.processlisthelper.policy)
+release=26
+source=(https://download.kde.org/Attic/4.14.3/src/kde-workspace-$version.tar.xz kde-workspace-4.11.14-optional-qtdeclarative.patch.manual kde-workspace-4.11.14-optional-webkit.patch.manual kde-workspace-4.11.14-optional-dbusmenu-blitz.patch.manual kde-workspace-4.11.14-optional-qml-sweep.patch.manual kde-workspace-4.11.14-optional-qml-shell.patch.manual kde-workspace-4.11.14-unique-test-names.patch.manual kde-workspace-4.11.14-window-selection-contains.patch.manual kde-workspace-4.11.14-fontconfig-freetype-header.patch.manual kde-workspace-4.11.14-taskmanager-contains.patch.manual kde-workspace-4.11.14-joystick-strict-ansi.patch.manual kde-workspace-4.11.14-kdm-c99.patch.manual kde-workspace-4.11.14-kdm-qimageblitz-fallback.patch.manual kde-workspace-4.11.14-bbcukmet-contains.patch.manual kde-workspace-4.11.14-plasma-akonadi-cxx11.patch.manual kde-workspace-4.11.14-rss-cxx11.patch.manual kde-workspace-4.11.14-optional-uitools.patch.manual org.kde.ksysguard.processlisthelper.policy)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
@@ -81,6 +81,12 @@ pkg_build() {
 	# syndication pulls in the same C++11-only Boost headers.
 	patch -p1 -i "$SRC/kde-workspace-4.11.14-rss-cxx11.patch.manual" || return 1
 
+	# QtUiTools (QUiLoader) is only built when Qt 4 was configured with its
+	# tools part.  The workspace loads the .ui files that wallpaper and
+	# decoration packages ship with QUiLoader, so make those three users
+	# optional instead of linking against a module that does not exist.
+	patch -p1 -i "$SRC/kde-workspace-4.11.14-optional-uitools.patch.manual" || return 1
+
 	export CMAKE_PREFIX_PATH="/opt/qt4:/usr"
 	export PATH="/opt/qt4/bin:$PATH"
 	export QT_QMAKE_EXECUTABLE=/opt/qt4/bin/qmake
@@ -130,10 +136,38 @@ pkg_build() {
 		return 1
 	fi
 
+	# QtUiTools (QUiLoader) exists only when Qt 4 was built with its tools
+	# part.  The wallpaper package settings page, the decoration KCM and the
+	# scripted effect/decoration configuration UIs load package .ui files with
+	# it; when the archive is absent, build those out and say so.
+	_bfs_uitools="$(/opt/qt4/bin/qmake -query QT_INSTALL_LIBS 2>/dev/null)/libQtUiTools.a"
+	_bfs_with_uitools=OFF
+	_bfs_uitools_lib=
+	if [ -f "$_bfs_uitools" ]; then
+		_bfs_with_uitools=ON
+		_bfs_uitools_lib="-DQT_QTUITOOLS_LIBRARY_RELEASE=$_bfs_uitools"
+	else
+		cat >&2 <<-'EOM'
+		======================================================================
+		 WARNING: Qt 4 has no QtUiTools archive (QUiLoader):
+		            /opt/qt4/lib/libQtUiTools.a
+		 kde-workspace is configured WITHOUT the parts that need it:
+		   - the wallpaper package settings page (background dialog)
+		   - the window-decoration settings page
+		   - the scripted effect/decoration configuration UIs
+		 Everything else, including the Plasma shell library, KWin and the
+		 other KCMs, builds normally.  Install libQtUiTools.a and rebuild
+		 kdelibs and kde-workspace to get these back.
+		======================================================================
+		EOM
+	fi
+
 	cmake -S . -B build -G Ninja \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+		-DWITH_UITOOLS="$_bfs_with_uitools" \
+		$_bfs_uitools_lib \
 		-DKDE4_BUILD_TESTS=OFF \
 		-DBUILD_TESTING=OFF \
 		-DWITH_XINERAMA=ON \
