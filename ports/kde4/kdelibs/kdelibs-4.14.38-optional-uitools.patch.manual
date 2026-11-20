@@ -1,0 +1,280 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -32,6 +32,23 @@
+ 
+ option(STATIC_LIBRARY "Build kdelibs as static libraries." FALSE)
+ 
++# QtUiTools (QUiLoader) is an optional Qt module.  Qt 4 builds it only from
++# tools/designer/src/uitools, so a Qt configured without its tools part has no
++# libQtUiTools.a.  Everything in kdelibs that needs QUiLoader is droppable, so
++# build it out instead of refusing to configure.
++option(WITH_UITOOLS "Build the parts that need QtUiTools (QUiLoader)" ON)
++if (NOT WITH_UITOOLS)
++   add_definitions(-DWITHOUT_UITOOLS)
++   message(WARNING "\n"
++      "kdelibs: QtUiTools (QUiLoader) is unavailable, building without it.\n"
++      "  disabled: KJSEmbed's QUiLoader binding and the QWidget/QAction/\n"
++      "            QActionGroup/QLayout constructors that load widgets by\n"
++      "            class name, Kross' forms module, the QtScript Kross\n"
++      "            widget-binding plugin (krossqtsplugin) and Plasma applets'\n"
++      "            mainconfigui .ui configuration pages.\n"
++      "  re-enable: provide libQtUiTools.a in Qt 4's library directory.\n")
++endif (NOT WITH_UITOOLS)
++
+ ################# write platform profile file which will be installed #################
+ include(CreateKDEPlatformProfile.cmake)
+ 
+--- a/kjsembed/kjsembed/CMakeLists.txt
++++ b/kjsembed/kjsembed/CMakeLists.txt
+@@ -48,9 +48,12 @@
+    pixmap.cpp point.cpp rect.cpp size.cpp url.cpp
+    brush.cpp
+    QBrush_bind.cpp
+-   quiloader_binding.cpp
+    )
+ 
++if (WITH_UITOOLS)
++   list(APPEND kjsembed_LIB_SRCS quiloader_binding.cpp)
++endif (WITH_UITOOLS)
++
+ if (NOT DEFINED QT_ONLY)
+    set(KJSLIBNAME kjs)
+    set(KJSEMBEDLIBNAME kjsembed)
+@@ -64,9 +67,13 @@
+    endif (NOT QTONLY_WEBKIT)
+ endif (NOT DEFINED QT_ONLY)
+ 
++if (WITH_UITOOLS)
++   set(kjsembed_UITOOLS_LIBS ${QT_QTUITOOLS_LIBRARY})
++endif (WITH_UITOOLS)
++
+ kde4_add_library(${KJSEMBEDLIBNAME} ${LIBRARY_TYPE} ${kjsembed_LIB_SRCS})
+ 
+-target_link_libraries(${KJSEMBEDLIBNAME} LINK_PRIVATE ${KDE4_KDECORE_LIBS} ${QT_QTUITOOLS_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTSVG_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTCORE_LIBRARY} ${KJSLIBNAME} )
++target_link_libraries(${KJSEMBEDLIBNAME} LINK_PRIVATE ${KDE4_KDECORE_LIBS} ${kjsembed_UITOOLS_LIBS} ${QT_QTGUI_LIBRARY} ${QT_QTSVG_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTCORE_LIBRARY} ${KJSLIBNAME} )
+ 
+ set_target_properties(${KJSEMBEDLIBNAME} PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
+ install(TARGETS ${KJSEMBEDLIBNAME} EXPORT kdelibsLibraryTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+--- a/kjsembed/kjsembed/kjsembed.cpp
++++ b/kjsembed/kjsembed/kjsembed.cpp
+@@ -27,7 +27,9 @@
+ #include "static_binding.h"
+ 
+ #include "iosupport.h"
++#ifndef WITHOUT_UITOOLS
+ #include "quiloader_binding.h"
++#endif
+ #ifdef KJSEMBED_FORMBUILDER_BINDING
+ #include "qformbuilder_binding.h"
+ #endif
+@@ -142,7 +144,9 @@
+ #ifdef KJSEMBED_FORMBUILDER_BINDING
+         StaticConstructor::add( exec, parent, FormBuilder::constructor() ); // Ctor
+ #endif
++#ifndef WITHOUT_UITOOLS
+         StaticConstructor::add( exec, parent, UiLoaderBinding::constructor() ); // Ctor
++#endif
+         StaticConstructor::add( exec, parent, QWidgetBinding::constructor() ); // Ctor
+         StaticConstructor::add( exec, parent, Layout::constructor() ); // Ctor
+         StaticConstructor::add( exec, parent, Action::constructor() ); // Ctor
+--- a/kjsembed/kjsembed/qwidget_binding.cpp
++++ b/kjsembed/kjsembed/qwidget_binding.cpp
+@@ -30,12 +30,15 @@
+ #include <QtGui/QWidget>
+ #include <QtGui/QAction>
+ #include <QtGui/QLayout>
++#ifndef WITHOUT_UITOOLS
+ #include <QtUiTools/QUiLoader>
++#endif
+ 
+ #include <QtCore/QFile>
+ 
+ namespace KJSEmbed
+ {
++#ifndef WITHOUT_UITOOLS
+     static QUiLoader *gUiLoader = 0L;
+ 
+     QUiLoader *uiLoader()
+@@ -44,6 +47,7 @@
+ 	  gUiLoader = new QUiLoader();
+         return gUiLoader;
+     }
++#endif
+ }
+ 
+ using namespace KJSEmbed;
+@@ -154,7 +158,13 @@
+             parentWidget = parentImp->object<QWidget>();
+         }
+ 
++#ifndef WITHOUT_UITOOLS
+         QWidget* widget = uiLoader()->createWidget(widgetName, parentWidget, "QWidget");
++#else
++        Q_UNUSED(widgetName);
++        Q_UNUSED(parentWidget);
++        QWidget* widget = 0;
++#endif
+         if( widget )
+             return new QWidgetBinding(exec, widget);
+ 
+--- a/kjsembed/kjsembed/qaction_binding.cpp
++++ b/kjsembed/kjsembed/qaction_binding.cpp
+@@ -27,12 +27,14 @@
+ #include <QtCore/QDebug>
+ 
+ #include <QtGui/QAction>
++#ifndef WITHOUT_UITOOLS
+ #include <QtUiTools/QUiLoader>
+ 
+ namespace KJSEmbed
+ {
+ 	QUiLoader *uiLoader();
+ }
++#endif
+ 
+ 
+ using namespace KJSEmbed;
+@@ -48,7 +50,13 @@
+     QObject *parent = KJSEmbed::extractObject<QObject>(exec, args, 0, 0);
+     QString actionName = KJSEmbed::extractQString(exec, args, 1);
+ 
++#ifndef WITHOUT_UITOOLS
+     QAction *action = uiLoader()->createAction(parent, actionName);
++#else
++    Q_UNUSED(parent);
++    Q_UNUSED(actionName);
++    QAction *action = 0;
++#endif
+     if( action )
+     {
+         KJS::JSObject *actionObject = new Action( exec, action );
+@@ -75,7 +83,13 @@
+         QObject *parent = KJSEmbed::extractObject<QObject>(exec, args, 0, 0);
+         QString actionName = KJSEmbed::extractQString(exec, args, 1);
+ 
++#ifndef WITHOUT_UITOOLS
+         QActionGroup *action = uiLoader()->createActionGroup(parent, actionName);
++#else
++        Q_UNUSED(parent);
++        Q_UNUSED(actionName);
++        QActionGroup *action = 0;
++#endif
+         if( action )
+         {
+             KJS::JSObject *actionObject = new ActionGroup( exec, action );
+--- a/kjsembed/kjsembed/qlayout_binding.cpp
++++ b/kjsembed/kjsembed/qlayout_binding.cpp
+@@ -29,12 +29,14 @@
+ #include <QtGui/QWidget>
+ #include <QtGui/QAction>
+ #include <QtGui/QLayout>
++#ifndef WITHOUT_UITOOLS
+ #include <QtUiTools/QUiLoader>
+ 
+ namespace KJSEmbed
+ {
+   QUiLoader *uiLoader();
+ }
++#endif
+ 
+ 
+ using namespace KJSEmbed;
+@@ -81,7 +83,13 @@
+             parentObject = parentImp->object<QObject>();
+         }
+ 
++#ifndef WITHOUT_UITOOLS
+         QLayout *layout = uiLoader()->createLayout(layoutName, parentObject, "QLayout");
++#else
++        Q_UNUSED(layoutName);
++        Q_UNUSED(parentObject);
++        QLayout *layout = 0;
++#endif
+         if( layout )
+         {
+           KJS::JSObject *layoutObject = new Layout(exec, layout);//KJSEmbed::createQObject(exec, layout);
+--- a/kross/modules/CMakeLists.txt
++++ b/kross/modules/CMakeLists.txt
+@@ -6,7 +6,7 @@
+     ${CMAKE_SOURCE_DIR}/kfile
+ )
+ 
+-if( QT_QTDESIGNER_FOUND )
++if( QT_QTDESIGNER_FOUND AND WITH_UITOOLS )
+ 	############################################
+ 	# the forms module
+ 
+@@ -15,7 +15,7 @@
+ 
+ 	target_link_libraries(krossmoduleforms ${QT_QTUITOOLS_LIBRARY} ${KDE4_KPARTS_LIBS} ${KDE4_KFILE_LIBS} krosscore krossui)
+ 	install(TARGETS krossmoduleforms DESTINATION ${PLUGIN_INSTALL_DIR})
+-endif( QT_QTDESIGNER_FOUND )
++endif( QT_QTDESIGNER_FOUND AND WITH_UITOOLS )
+ 
+ ############################################
+ # the kdetranslation module
+--- a/kross/qts/CMakeLists.txt
++++ b/kross/qts/CMakeLists.txt
+@@ -1,6 +1,9 @@
+ include_directories(${CMAKE_SOURCE_DIR} ${KDE4_KDECORE_INCLUDES} ${KDE4_KDEUI_INCLUDES})
+ 
+ ########### next target ###############
++# krossqtsplugin exposes QUiLoader-built widgets to QtScript, so it needs
++# QtUiTools.  krossqts itself does not, and keeps working without it.
++if (WITH_UITOOLS)
+ set(krossqtsplugin_LIB_SRCS plugin.cpp)
+ kde4_add_library(krossqtsplugin ${LIBRARY_TYPE} ${krossqtsplugin_LIB_SRCS})
+ target_link_libraries(krossqtsplugin LINK_PRIVATE ${QT_QTUITOOLS_LIBRARY} ${KDE4_KDECORE_LIBS} ${KDE4_KDEUI_LIBS} krosscore ${QT_QTSCRIPT_LIBRARY})
+@@ -17,6 +20,7 @@
+ set(krossqtstest_SRCS main.cpp)
+ kde4_add_executable(krossqtstest TEST ${krossqtstest_SRCS})
+ target_link_libraries(krossqtstest ${KDE4_KDEUI_LIBS} krossqtsplugin ${QT_QTSCRIPT_LIBRARY})
++endif (WITH_UITOOLS)
+ # set(krossqtsplugintest_SRCS main.cpp)
+ # target_link_libraries(krossqtsplugintest ${KDE4_KDECORE_LIBS} )
+ # kde4_add_executable(krossqtsplugintest ${krossqtsplugintest_SRCS})
+--- a/plasma/CMakeLists.txt
++++ b/plasma/CMakeLists.txt
+@@ -289,7 +289,13 @@
+ 
+ kde4_add_library(plasma ${LIBRARY_TYPE} ${plasma_LIB_SRCS})
+ 
+-target_link_libraries(plasma LINK_PRIVATE ${QT_QTUITOOLS_LIBRARY}
++if (WITH_UITOOLS)
++   set(plasma_UITOOLS_LIBS ${QT_QTUITOOLS_LIBRARY})
++else (WITH_UITOOLS)
++   set(plasma_UITOOLS_LIBS "")
++endif (WITH_UITOOLS)
++
++target_link_libraries(plasma LINK_PRIVATE ${plasma_UITOOLS_LIBS}
+                              ${QT_QTSCRIPT_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTDECLARATIVE_LIBRARY}
+                              ${KDE4_KDEUI_LIBS} ${KDE4_KDNSSD_LIBS} ${KDE4_THREADWEAVER_LIBS} ${PLASMA_EXTRA_LIBS})
+ 
+--- a/plasma/applet.cpp
++++ b/plasma/applet.cpp
+@@ -45,7 +45,9 @@
+ #include <QSize>
+ #include <QStyleOptionGraphicsItem>
+ #include <QTextDocument>
++#ifndef WITHOUT_UITOOLS
+ #include <QUiLoader>
++#endif
+ #include <QVBoxLayout>
+ #include <QWidget>
+ 
+@@ -1934,6 +1936,7 @@
+             dialog->setAttribute(Qt::WA_DeleteOnClose, true);
+             bool hasPages = false;
+ 
++#ifndef WITHOUT_UITOOLS
+             QFile f(uiFile);
+             QUiLoader loader;
+             QWidget *w = loader.load(&f);
+@@ -1941,6 +1944,7 @@
+                 dialog->addPage(w, i18n("Settings"), icon(), i18n("%1 Settings", name()));
+                 hasPages = true;
+             }
++#endif
+ 
+             foreach (const QString &kcm, kcmPlugins) {
+ #ifndef PLASMA_NO_KUTILS

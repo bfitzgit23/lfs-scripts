@@ -63,7 +63,7 @@ f:6f87eabc600c4bc9fbef781160f98929:kde4/Pkgfile
 f:f82acd072b5df945a96fb94b4f1f2add:kde4/kde-plasma.desktop
 f:145a5b575cb10f29624e744386613124:kdeartwork/Pkgfile
 f:413139c16bbdeda585b37586a9fb5e8a:kdeartwork/kdeartwork-4.14.3-cmake-minimum.patch.manual
-f:091d0d605498b7e4dfcdf5a413b08e4c:kdelibs/Pkgfile
+f:27fcba32469013732a021184f477ade9:kdelibs/Pkgfile
 f:a2c351e5c4d5bef39865e5fc1a39219a:kdelibs/kdelibs-4.14.3-archlinux-menu.patch.manual
 f:2b30cc3e382e99333e7ff388943473e9:kdelibs/kdelibs-4.14.3-kde-applications-menu.patch.manual
 f:0651e75557cbbbb399b0efd36e30013f:kdelibs/kdelibs-4.14.3-no-kdewebkit.patch.manual
@@ -79,6 +79,7 @@ f:9485eac5a64af4964ffef159ecb68454:kdelibs/kdelibs-4.14.38-no-tests.patch.manual
 f:c266df71f0b414a6adc16ea031c53296:kdelibs/kdelibs-4.14.38-openssl-1.1.patch.manual
 f:2e3479109764bdeb589c74a78f61cfdc:kdelibs/kdelibs-4.14.38-optional-dbusmenuqt.patch.manual
 f:2007c0b5de0f580d855512ac9a3e73fe:kdelibs/kdelibs-4.14.38-optional-declarative.patch.manual
+f:59029a78e63492456cf97619c2bb3cfe:kdelibs/kdelibs-4.14.38-optional-uitools.patch.manual
 f:953c6b19475e16d338d3857a9349070d:kdelibs/kdelibs-4.14.38-ordered.patch.manual
 f:868d611bcb30955ee824a0717b5aeb68:kdepimlibs/Pkgfile
 f:4153d5ab62c04f07909112caba29b116:kdepimlibs/kdepimlibs-4.14.3-akonadi-location.patch.manual

@@ -6,8 +6,8 @@
 description="KDE 4 core libraries"
 name=kdelibs
 version=4.14.38
-release=5
-source=(https://download.kde.org/Attic/applications/17.08.3/src/kdelibs-$version.tar.xz kdelibs-4.14.38-cmake4.patch.manual kdelibs-4.14.38-cmake4-interface-libs.patch.manual kdelibs-4.14.38-no-tests.patch.manual kdelibs-4.14.38-fake-kauth-backend.patch.manual kdelibs-4.14.38-klocale-bool-comparison.patch.manual kdelibs-4.14.38-optional-dbusmenuqt.patch.manual kdelibs-4.14.38-optional-declarative.patch.manual kdelibs-4.14.38-ordered.patch.manual kdelibs-4.14.38-jasper-exported.patch.manual kdelibs-4.14.38-openssl-1.1.patch.manual kdelibs-4.14.38-kauth-action-target.patch.manual kdelibs-4.14.38-no-qtwebkit-probes.patch.manual)
+release=6
+source=(https://download.kde.org/Attic/applications/17.08.3/src/kdelibs-$version.tar.xz kdelibs-4.14.38-cmake4.patch.manual kdelibs-4.14.38-cmake4-interface-libs.patch.manual kdelibs-4.14.38-no-tests.patch.manual kdelibs-4.14.38-fake-kauth-backend.patch.manual kdelibs-4.14.38-klocale-bool-comparison.patch.manual kdelibs-4.14.38-optional-dbusmenuqt.patch.manual kdelibs-4.14.38-optional-declarative.patch.manual kdelibs-4.14.38-ordered.patch.manual kdelibs-4.14.38-jasper-exported.patch.manual kdelibs-4.14.38-openssl-1.1.patch.manual kdelibs-4.14.38-kauth-action-target.patch.manual kdelibs-4.14.38-no-qtwebkit-probes.patch.manual kdelibs-4.14.38-optional-uitools.patch.manual)
 
 pkg_build() {
 	_bfs_src=$(find . -mindepth 1 -maxdepth 1 -type d -iname "$name-$version" -print -quit)
@@ -103,6 +103,12 @@ pkg_build() {
 	# WebKit is unavailable.
 	patch -p1 -i "$SRC/kdelibs-4.14.38-no-qtwebkit-probes.patch.manual" || return 1
 
+	# Qt 4 ships QtUiTools only when it was built with its tools part.  When
+	# that archive is missing, make the QUiLoader users optional instead of
+	# failing here: that patch adds the WITH_UITOOLS option and the
+	# WITHOUT_UITOOLS definition, and the detection below turns them off.
+	patch -p1 -i "$SRC/kdelibs-4.14.38-optional-uitools.patch.manual" || return 1
+
 	export CMAKE_PREFIX_PATH="/opt/qt4:/usr"
 	export PATH="/opt/qt4/bin:$PATH"
 	export QT_QMAKE_EXECUTABLE=/opt/qt4/bin/qmake
@@ -110,19 +116,38 @@ pkg_build() {
 	export CXXFLAGS="${CXXFLAGS:+$CXXFLAGS }-std=gnu++98 -fpermissive -Wno-deprecated-declarations"
 
 	# FindQt4's module scan searches only QT_LIBRARY_DIR and does not reliably
-	# pick up Qt 4's static-only QtUiTools, and an unset variable is dropped
-	# from the link line, so kjsembed, plasma and kross ended up linking
-	# without QUiLoader.  Point the module at the archive qmake reports.
-	_bfs_uitools="$(/opt/qt4/bin/qmake -query QT_INSTALL_LIBS)/libQtUiTools.a"
-	if [ ! -f "$_bfs_uitools" ]; then
-		echo "QtUiTools is missing: $_bfs_uitools" >&2
-		echo "  qmake: $(/opt/qt4/bin/qmake -query QT_VERSION 2>&1) in $(/opt/qt4/bin/qmake -query QT_INSTALL_LIBS 2>&1)" >&2
-		echo "  /opt/qt4/lib entries matching uitools/designer: $(ls /opt/qt4/lib 2>/dev/null | grep -ci 'uitools\|designer')" >&2
-		echo "  QtUiTools headers: $(ls -d /opt/qt4/include/QtUiTools 2>/dev/null || echo absent)" >&2
-		echo "  QtDesigner headers: $(ls -d /opt/qt4/include/QtDesigner 2>/dev/null || echo absent)" >&2
-		echo "  Qt tools binaries: $(ls /opt/qt4/bin/designer /opt/qt4/bin/assistant 2>/dev/null | tr '\n' ' ')" >&2
-		echo "  cached qt4 packages: $(ls /var/cache/pkg/packages/qt4#* 2>/dev/null | tr '\n' ' ')" >&2
-		return 1
+	# pick up Qt 4's static-only QtUiTools.  The archive exists only when Qt
+	# was built with its tools part, so detection here also decides whether
+	# the QUiLoader users can be built at all.
+	#
+	# kjsembed's QUiLoader binding (and the QWidget/QAction/QActionGroup/QLayout
+	# constructors that create widgets by class name), kross' forms module, the
+	# QtScript Kross widget-binding plugin and Plasma applets' mainconfigui .ui
+	# configuration pages are the only consumers.  Without the archive, build
+	# those out and say so, rather than failing the whole package.
+	_bfs_uitools="$(/opt/qt4/bin/qmake -query QT_INSTALL_LIBS 2>/dev/null)/libQtUiTools.a"
+	_bfs_with_uitools=OFF
+	_bfs_uitools_lib=
+	if [ -f "$_bfs_uitools" ]; then
+		_bfs_with_uitools=ON
+		_bfs_uitools_lib="-DQT_QTUITOOLS_LIBRARY_RELEASE=$_bfs_uitools"
+	else
+		cat >&2 <<-'EOM'
+		======================================================================
+		 WARNING: Qt 4 has no QtUiTools archive (QUiLoader):
+		            /opt/qt4/lib/libQtUiTools.a
+		 kdelibs is configured WITHOUT the parts that need it:
+		   - KJSEmbed's QUiLoader binding, and the QWidget/QAction/
+		     QActionGroup/QLayout constructors that create widgets by
+		     class name
+		   - the Kross forms module (krossmoduleforms)
+		   - the QtScript Kross widget-binding plugin (krossqtsplugin)
+		   - Plasma applets' mainconfigui .ui configuration pages
+		 Everything else, including KJSEmbed, Kross and Plasma themselves,
+		 builds normally.  Install libQtUiTools.a (build Qt with its tools
+		 part) and rebuild kdelibs to get these back.
+		======================================================================
+		EOM
 	fi
 
 	# The test programs are not installed and several of them target optional
@@ -137,7 +162,8 @@ pkg_build() {
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 		-DQT_QMAKE_EXECUTABLE=/opt/qt4/bin/qmake \
-		-DQT_QTUITOOLS_LIBRARY_RELEASE="$_bfs_uitools" \
+		-DWITH_UITOOLS="$_bfs_with_uitools" \
+		$_bfs_uitools_lib \
 		-DKDE4_BUILD_TESTS=OFF \
 		-DKHTML_BUILD_TESTREGRESSION=OFF \
 		-DCMAKE_DISABLE_FIND_PACKAGE_OpenSSL=TRUE \
